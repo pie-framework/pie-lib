@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as vx from '@vx/grid';
 import { types } from '@pie-lib/plot';
-import { withStyles } from '@material-ui/core/styles';
 import { getTickValues } from './utils';
 
 export class Grid extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
     disabledAdditionalGrid: PropTypes.bool,
-    classes: PropTypes.object.isRequired,
     graphProps: types.GraphPropsType.isRequired,
   };
 
@@ -132,4 +130,4 @@ export class Grid extends React.Component {
   }
 }
 
-export default withStyles(() => ({}))(Grid);
+export default Grid;

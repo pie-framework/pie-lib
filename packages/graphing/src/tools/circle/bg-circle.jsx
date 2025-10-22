@@ -1,21 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { types, gridDraggable } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import * as utils from '../../utils';
 import { disabled, disabledSecondary, correct, incorrect, missing } from '../shared/styles';
+import { styled } from '@mui/material/styles';
 
-/**
- * A low level circle component
- *
- * TODO: This and base point have a lot of similarities - merge commonality
- *
- */
 class RawCircle extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     correctness: PropTypes.string,
     disabled: PropTypes.bool,
@@ -26,14 +19,14 @@ class RawCircle extends React.Component {
   };
 
   render() {
-    const { classes, disabled, className, correctness, x, y, radius, graphProps, ...rest } = this.props;
+    const { disabled, className, correctness, x, y, radius, graphProps, ...rest } = this.props;
     const { scale } = graphProps;
     const rx = Math.abs(scale.x(x + radius) - scale.x(x));
     const ry = Math.abs(scale.y(y + radius) - scale.y(y));
 
     return (
-      <ellipse
-        className={classNames(classes.bgCircle, disabled && classes.disabledSecondary, classes[correctness], className)}
+      <StyledEllipse
+        className={classNames(className, disabled && 'disabledSecondary', correctness)}
         cx={scale.x(x)}
         cy={scale.y(y)}
         rx={rx}
@@ -44,6 +37,7 @@ class RawCircle extends React.Component {
   }
 }
 
+// helper to convert old style functions
 const applyStyle = (fn) => ({
   ...fn('stroke'),
   '&:hover': {
@@ -52,25 +46,23 @@ const applyStyle = (fn) => ({
   },
 });
 
-const styles = () => ({
-  bgCircle: {
-    fill: 'transparent',
-    stroke: color.defaults.BLACK,
-    strokeWidth: 3,
-    transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
-    '&:hover': {
-      strokeWidth: 6,
-      stroke: color.defaults.PRIMARY_DARK,
-    },
+const StyledEllipse = styled('ellipse')(() => ({
+  fill: 'transparent',
+  stroke: color.defaults.BLACK,
+  strokeWidth: 3,
+  transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
+  '&:hover': {
+    strokeWidth: 6,
+    stroke: color.defaults.PRIMARY_DARK,
   },
-  disabled: applyStyle(disabled),
-  disabledSecondary: applyStyle(disabledSecondary),
-  correct: applyStyle(correct),
-  incorrect: applyStyle(incorrect),
-  missing: applyStyle(missing),
-});
+  '&.disabled': applyStyle(disabled),
+  '&.disabledSecondary': applyStyle(disabledSecondary),
+  '&.correct': applyStyle(correct),
+  '&.incorrect': applyStyle(incorrect),
+  '&.missing': applyStyle(missing),
+}));
 
-export const BgCircle = withStyles(styles)(RawCircle);
+export const BgCircle = RawCircle;
 
 export default gridDraggable({
   bounds: (props, { domain, range }) => {

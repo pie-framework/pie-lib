@@ -1,44 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { color } from '@pie-lib/render-ui';
 
-const styles = (theme) => ({
-  container: {
-    backgroundColor: color.defaults.WHITE,
-    padding: '20px',
-    width: '355px',
-    boxShadow: '0px 1px 5px 0px #9297A6',
-  },
-  row: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '10px',
-  },
-  title: {
-    fontSize: theme.typography.h6.fontSize,
-    marginLeft: '30px',
-    fontWeight: '700',
-    marginBottom: '10px',
-  },
-  text: {
-    textAlign: 'right',
-    marginRight: '10px',
-    width: '175px',
-    fontSize: '15px',
-  },
+const StyledContainer = styled('div')(({ theme }) => ({
+  backgroundColor: color.defaults.WHITE,
+  padding: '20px',
+  width: '355px',
+  boxShadow: '0px 1px 5px 0px #9297A6',
+}));
+
+const StyledRow = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '10px',
 });
 
-const KeyLegend = ({ className, classes, isLabelAvailable }) => {
-  const names = classNames(classes.formControl, className);
+const StyledTitle = styled('div')(({ theme }) => ({
+  fontSize: theme.typography.h6.fontSize,
+  marginLeft: '30px',
+  fontWeight: '700',
+  marginBottom: '10px',
+}));
 
+const StyledText = styled('div')({
+  textAlign: 'right',
+  marginRight: '10px',
+  width: '175px',
+  fontSize: '15px',
+});
+
+const KeyLegend = ({ className, isLabelAvailable }) => {
   return (
-    <div className={classes.container}>
-      <div className={classes.title}>Key</div>
+    <StyledContainer className={className}>
+      <StyledTitle>Key</StyledTitle>
       {isLabelAvailable && (
-        <div className={classes.row}>
-          <div className={classes.text}> Missing Required Label </div>
+        <StyledRow>
+          <StyledText> Missing Required Label </StyledText>
           <svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="33" height="15" rx="3.5" fill="white" stroke="#BF0D00" />
             <path
@@ -50,10 +48,10 @@ const KeyLegend = ({ className, classes, isLabelAvailable }) => {
               fill="#BF0D00"
             />
           </svg>
-        </div>
+        </StyledRow>
       )}
-      <div className={classes.row}>
-        <div className={classes.text}> Answer Key Correct </div>
+      <StyledRow>
+        <StyledText> Answer Key Correct </StyledText>
         <svg width="75" height="15" viewBox="0 0 75 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="7.5" cy="7.5" r="7.5" fill="#6A78A1" />
           <path
@@ -62,10 +60,10 @@ const KeyLegend = ({ className, classes, isLabelAvailable }) => {
           />
           <path d="M75 7L15 7" stroke="#6A78A1" strokeDasharray="4 2" />
         </svg>
-      </div>
+      </StyledRow>
       {isLabelAvailable && (
-        <div className={classes.row}>
-          <div className={classes.text}> Answer Key Correct Label </div>
+        <StyledRow>
+          <StyledText> Answer Key Correct Label </StyledText>
           <svg width="30" height="16" viewBox="0 0 30 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="29" height="15" rx="3.5" fill="white" />
             <rect x="0.5" y="0.5" width="29" height="15" rx="3.5" stroke="#6A78A1" />
@@ -74,10 +72,10 @@ const KeyLegend = ({ className, classes, isLabelAvailable }) => {
               fill="#6A78A1"
             />
           </svg>
-        </div>
+        </StyledRow>
       )}
-      <div className={classes.row}>
-        <div className={classes.text}> Student Incorrect </div>
+      <StyledRow>
+        <StyledText> Student Incorrect </StyledText>
         <svg width="77" height="16" viewBox="0 0 77 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="8" cy="8" r="8" fill="#BF0D00" />
           <path
@@ -86,10 +84,10 @@ const KeyLegend = ({ className, classes, isLabelAvailable }) => {
           />
           <path d="M77 8L15 8" stroke="#BF0D00" strokeWidth="3" />
         </svg>
-      </div>
+      </StyledRow>
       {isLabelAvailable && (
-        <div className={classes.row}>
-          <div className={classes.text}> Incorrect Student Label </div>
+        <StyledRow>
+          <StyledText> Incorrect Student Label </StyledText>
           <svg width="42" height="16" viewBox="0 0 42 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="41" height="15" rx="3.5" fill="white" />
             <rect x="0.5" y="0.5" width="41" height="15" rx="3.5" stroke="#BF0D00" />
@@ -102,22 +100,21 @@ const KeyLegend = ({ className, classes, isLabelAvailable }) => {
               fill="#BF0D00"
             />
           </svg>
-        </div>
+        </StyledRow>
       )}
-      <div className={classes.row}>
-        <div className={classes.text}> Student Correct </div>
+      <StyledRow>
+        <StyledText> Student Correct </StyledText>
         <svg width="76" height="16" viewBox="0 0 76 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M76 8L14 8" stroke="#0B7D38" strokeWidth="3" />
           <circle cx="8" cy="8" r="8" fill="#0B7D38" />
           <path
             d="M12.1953 4.46875C12.3125 4.35156 12.5 4.35156 12.5938 4.46875L13.2734 5.125C13.3672 5.24219 13.3672 5.42969 13.2734 5.52344L6.24219 12.5547C6.125 12.6719 5.96094 12.6719 5.84375 12.5547L2.70312 9.4375C2.60938 9.32031 2.60938 9.13281 2.70312 9.03906L3.38281 8.35938C3.47656 8.26562 3.66406 8.26562 3.78125 8.35938L6.03125 10.6328L12.1953 4.46875Z"
             fill="white"
-          />
-        </svg>
-      </div>
+          />          </svg>
+      </StyledRow>
       {isLabelAvailable && (
-        <div className={classes.row}>
-          <div className={classes.text}> Student Correct Label </div>
+        <StyledRow>
+          <StyledText> Student Correct Label </StyledText>
           <svg width="43" height="16" viewBox="0 0 43 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="42" height="15" rx="3.5" fill="white" />
             <rect x="0.5" y="0.5" width="42" height="15" rx="3.5" stroke="#0B7D38" />
@@ -130,16 +127,15 @@ const KeyLegend = ({ className, classes, isLabelAvailable }) => {
               fill="#0B7D38"
             />
           </svg>
-        </div>
+        </StyledRow>
       )}
-    </div>
+    </StyledContainer>
   );
 };
 
 KeyLegend.propTypes = {
   className: PropTypes.string,
-  classes: PropTypes.object.isRequired,
   isLabelAvailable: PropTypes.bool,
 };
 
-export default withStyles(styles)(KeyLegend);
+export default KeyLegend;

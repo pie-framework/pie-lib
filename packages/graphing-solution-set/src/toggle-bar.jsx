@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import cn from 'classnames';
 import Button from '@mui/material/Button';
 import { color } from '@pie-lib/render-ui';
 import { allTools } from './tools';

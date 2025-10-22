@@ -3,7 +3,7 @@ import { Axis } from '@vx/axis';
 import { types } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import Arrow from './arrow';
-import { withStyles } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
 import { countWords, findLongestWord, amountToIncreaseWidth, getTickValues } from '../utils';
 import { color, Readable } from '@pie-lib/render-ui';
 
@@ -21,34 +21,38 @@ const AxisDefaultProps = {
   },
 };
 
-const axisStyles = (theme) => ({
-  line: {
+
+const StyledArrow = styled(Arrow)(() => ({
+  fill: color.defaults.PRIMARY,
+}));
+
+const StyledLabel = styled('div')(({ theme }) => ({
+  fontSize: theme.typography.fontSize,
+}));
+
+const StyledAxisLabelHolder = styled('div')(({ theme }) => ({
+  padding: 0,
+  margin: 0,
+  textAlign: 'center',
+  '* > *': {
+    margin: 0,
+    padding: 0,
+  },
+  fontSize: theme.typography.fontSize,
+}));
+
+const StyledAxis = styled(Axis)(() => ({
+  '& .vx-axis-line': {
     stroke: color.defaults.PRIMARY,
     strokeWidth: 3,
   },
-  arrow: {
+  '& .vx-axis-tick': {
     fill: color.defaults.PRIMARY,
-  },
-  tick: {
-    fill: color.defaults.PRIMARY,
-    '& > line': {
+    '& line': {
       stroke: color.defaults.PRIMARY,
     },
   },
-  labelFontSize: {
-    fontSize: theme.typography.fontSize,
-  },
-  axisLabelHolder: {
-    padding: 0,
-    margin: 0,
-    textAlign: 'center',
-    '* > *': {
-      margin: 0,
-      padding: 0,
-    },
-    fontSize: theme.typography.fontSize,
-  },
-});
+}));
 
 const tickLabelStyles = {
   fontFamily: 'Roboto',
@@ -84,7 +88,6 @@ export const firstNegativeValue = (interval) => (interval || []).find((element) 
 export class RawXAxis extends React.Component {
   static propTypes = {
     ...AxisPropTypes,
-    classes: PropTypes.object,
     graphProps: types.GraphPropsType.isRequired,
   };
   static defaultProps = AxisDefaultProps;
@@ -92,7 +95,6 @@ export class RawXAxis extends React.Component {
   render() {
     const {
       includeArrows,
-      classes,
       graphProps,
       columnTicksValues,
       skipValues,
@@ -125,27 +127,25 @@ export class RawXAxis extends React.Component {
 
     return (
       <React.Fragment>
-        <Axis
-          axisLineClassName={classes.line}
+        <StyledAxis
           scale={scale.x}
           top={scale.y(0)}
           left={0}
           label={domain.label}
           rangePadding={8}
-          tickClassName={classes.tick}
           tickFormat={(value) => value}
           tickLabelProps={labelProps}
           tickValues={tickValues}
         />
         {includeArrows && includeArrows.left && (
-          <Arrow direction="left" x={domain.min} y={0} className={classes.arrow} scale={scale} />
+          <StyledArrow direction="left" x={domain.min} y={0} scale={scale} />
         )}
         {includeArrows && includeArrows.right && (
-          <Arrow direction="right" x={domain.max} y={0} className={classes.arrow} scale={scale} />
+          <StyledArrow direction="right" x={domain.max} y={0} scale={scale} />
         )}
         {domain.axisLabel && (
           <foreignObject x={size.width + 17} y={scale.y(0) - 9} width={necessaryWidth} height={20 * necessaryRows}>
-            <div dangerouslySetInnerHTML={{ __html: domain.axisLabel }} className={classes.labelFontSize} />
+            <StyledLabel dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
           </foreignObject>
         )}
       </React.Fragment>
@@ -153,7 +153,7 @@ export class RawXAxis extends React.Component {
   }
 }
 
-const XAxis = withStyles(axisStyles)(RawXAxis);
+const XAxis = RawXAxis;
 
 export class RawYAxis extends React.Component {
   static propTypes = {
@@ -163,7 +163,7 @@ export class RawYAxis extends React.Component {
   static defaultProps = AxisDefaultProps;
 
   render() {
-    const { classes, includeArrows, graphProps, skipValues, rowTickValues } = this.props;
+    const { includeArrows, graphProps, skipValues, rowTickValues } = this.props;
     const { scale, range, size } = graphProps || {};
 
     const necessaryWidth = range.axisLabel ? amountToIncreaseWidth(range.axisLabel.length) : 0;
@@ -172,8 +172,7 @@ export class RawYAxis extends React.Component {
 
     return (
       <React.Fragment>
-        <Axis
-          axisLineClassName={classes.line}
+        <StyledAxis
           orientation={'left'}
           scale={scale.y}
           top={0}
@@ -183,7 +182,6 @@ export class RawYAxis extends React.Component {
           labelProps={{ 'data-pie-readable': false }}
           rangePadding={8}
           tickLength={10}
-          tickClassName={classes.tick}
           tickFormat={customTickFormat}
           tickLabelProps={(value) => {
             let digits = value.toLocaleString().replace(/[.-]/g, '').length || 1;
@@ -199,17 +197,16 @@ export class RawYAxis extends React.Component {
           tickTextAnchor={'bottom'}
           tickValues={rowTickValues}
         />
-
         {includeArrows && includeArrows.down && (
-          <Arrow direction="down" x={0} y={range.min} className={classes.arrow} scale={scale} />
+          <StyledArrow direction="down" x={0} y={range.min} scale={scale} />
         )}
         {includeArrows && includeArrows.up && (
-          <Arrow direction="up" x={0} y={range.max} className={classes.arrow} scale={scale} />
+          <StyledArrow direction="up" x={0} y={range.max} scale={scale} />
         )}
         {range.axisLabel && (
           <foreignObject x={scale.x(0) - necessaryWidth / 2} y={-33} width={necessaryWidth} height="20">
             <Readable false>
-              <div dangerouslySetInnerHTML={{ __html: range.axisLabel }} className={classes.axisLabelHolder} />
+              <StyledAxisLabelHolder dangerouslySetInnerHTML={{ __html: range.axisLabel }} />
             </Readable>
           </foreignObject>
         )}
@@ -218,12 +215,11 @@ export class RawYAxis extends React.Component {
   }
 }
 
-const YAxis = withStyles(axisStyles)(RawYAxis);
+const YAxis = RawYAxis;
 
 export default class Axes extends React.Component {
   static propTypes = {
     ...AxisPropTypes,
-    classes: PropTypes.object,
     graphProps: types.GraphPropsType.isRequired,
   };
   static defaultProps = AxisDefaultProps;

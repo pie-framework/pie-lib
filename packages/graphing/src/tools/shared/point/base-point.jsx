@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
-import CoordinatesLabel from '../../../coordinates-label';
 import ReactDOM from 'react-dom';
+import CoordinatesLabel from '../../../coordinates-label';
 import { thinnerShapesNeeded } from '../../../utils';
 import MissingSVG from '../icons/MissingSVG';
 import CorrectSVG from '../icons/CorrectSVG';
@@ -11,25 +10,23 @@ import IncorrectSVG from '../icons/IncorrectSVG';
 
 export class RawBp extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     coordinatesOnHover: PropTypes.bool,
     correctness: PropTypes.string,
     disabled: PropTypes.bool,
     labelNode: PropTypes.object,
-    x: PropTypes.number,
-    y: PropTypes.number,
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
     graphProps: types.GraphPropsType.isRequired,
+    onClick: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    onTouchEnd: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = { showCoordinates: false };
-  }
+  state = { showCoordinates: false };
 
   render() {
     const {
-      classes,
       className,
       coordinatesOnHover,
       x,
@@ -38,19 +35,16 @@ export class RawBp extends React.Component {
       correctness,
       graphProps,
       labelNode,
-      // we need to remove style from props
-      // eslint-disable-next-line no-unused-vars,react/prop-types
-      style,
       onClick,
-      // Refactored RawBp component by isolating onTouchStart and onTouchEnd handlers to the outer circle, resolving erratic touch event behavior.
-      // Remaining props are now applied only to the inner circle for improved event handling consistency.
       onTouchStart,
       onTouchEnd,
       ...rest
     } = this.props;
+
     const { showCoordinates } = this.state;
     const { scale } = graphProps;
     const r = thinnerShapesNeeded(graphProps) ? 5 : 7;
+
     let SvgComponent;
     switch (correctness) {
       case 'missing':
@@ -64,11 +58,11 @@ export class RawBp extends React.Component {
         break;
       default:
         SvgComponent = null;
-        break;
     }
 
     return (
       <>
+        {/* Outer invisible circle for easier touch/click */}
         <circle
           style={{ fill: 'transparent', cursor: 'pointer', pointerEvents: 'all' }}
           r={r * 3}
@@ -80,8 +74,9 @@ export class RawBp extends React.Component {
           onTouchEnd={onTouchEnd}
           onClick={onClick}
         />
+        {/* Actual point */}
         <g
-          className={classNames(classes.point, disabled && classes.disabledSecondary, classes[correctness], className)}
+          className={className}
           onMouseEnter={() => this.setState({ showCoordinates: true })}
           onMouseLeave={() => this.setState({ showCoordinates: false })}
         >
