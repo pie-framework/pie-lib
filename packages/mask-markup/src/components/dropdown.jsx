@@ -1,18 +1,152 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import InputLabel from '@material-ui/core/InputLabel';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import Close from '@material-ui/icons/Close';
-import Check from '@material-ui/icons/Check';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import Button from '@mui/material/Button';
+import InputLabel from '@mui/material/InputLabel';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import Close from '@mui/icons-material/Close';
+import Check from '@mui/icons-material/Check';
+import { styled } from '@mui/material/styles';
 
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
+
+const StyledButton = styled(Button)(() => ({
+  color: color.text(),
+  border: `1px solid ${color.borderGray()}`,
+  borderRadius: '4px',
+  justifyContent: 'space-between',
+  backgroundColor: color.background(),
+  position: 'relative',
+  height: '45px',
+  width: 'fit-content',
+  margin: '2px',
+  textTransform: 'none',
+  '& span': {
+    paddingRight: '5px',
+  },
+  '& svg': {
+    position: 'absolute',
+    right: 0,
+    top: 'calc(50% - 12px)',
+    pointerEvents: 'none',
+    color: color.text(),
+    marginLeft: '5px',
+  },
+  '&.Mui-focused': {
+    outline: `3px solid ${color.tertiary()}`,
+    outlineOffset: '2px',
+    borderWidth: '3px',
+  },
+  '&.disabledCorrect': {
+    borderWidth: '2px',
+    borderColor: color.correct(),
+    color: `${color.text()} !important`,
+  },
+  '&.disabledIncorrect': {
+    borderWidth: '2px',
+    borderColor: color.incorrectWithIcon(),
+    color: `${color.text()} !important`,
+  },
+}));
+
+const StyledMenu = styled(Menu)(() => ({
+  backgroundColor: color.background(),
+  border: `1px solid ${color.correct()} !important`,
+  '&:hover': {
+    border: `1px solid ${color.text()} `,
+    borderColor: 'initial',
+  },
+  '&:focus': {
+    border: `1px solid ${color.text()}`,
+    borderColor: 'initial',
+  },
+  // remove default padding on the inner list
+  '& .MuiList-root': {
+    padding: 0,
+  },
+}));
+
+const StyledMenuItem = styled(MenuItem)(() => ({
+  color: color.text(),
+  backgroundColor: color.background(),
+  '&.Mui-focused': {
+    outline: `3px solid ${color.tertiary()}`,
+    outlineOffset: '-1px', // keeps it inside the item
+    color: color.text(),
+    backgroundColor: color.background(),
+  },
+  '&:hover': {
+    color: color.text(),
+    backgroundColor: color.dropdownBackground(),
+  },
+  boxSizing: 'border-box',
+  padding: '25px',
+  borderRadius: '4px',
+  '&.selected': {
+    color: `${color.text()} !important`,
+    backgroundColor: `${color.background()} !important`,
+    '&:hover': {
+      color: color.text(),
+      backgroundColor: `${color.dropdownBackground()} !important`,
+    },
+  },
+}));
+
+const StyledLabel = styled('span')(() => ({
+  fontSize: 'max(1rem, 14px)',
+}));
+
+const StyledSelectedIndicator = styled('span')(() => ({
+  fontSize: 'max(1rem, 14px)',
+  position: 'absolute',
+  right: '10px',
+}));
+
+const StyledInputLabel = styled(InputLabel)(() => ({
+  position: 'absolute',
+  left: '-10000px',
+  top: 'auto',
+  width: '1px',
+  height: '1px',
+  overflow: 'hidden',
+}));
+
+const StyledCorrectnessIcon = styled(Check)(() => ({
+  color: `${color.white()} !important`,
+  position: 'absolute',
+  top: '-8px !important',
+  left: '-8px',
+  marginLeft: '0 !important',
+  borderRadius: '50%',
+  fontSize: '16px',
+  padding: '2px',
+  '&.correct': {
+    backgroundColor: color.correct(),
+  },
+  '&.incorrect': {
+    backgroundColor: color.incorrectWithIcon(),
+  },
+}));
+
+const StyledIncorrectnessIcon = styled(Close)(() => ({
+  color: `${color.white()} !important`,
+  position: 'absolute',
+  top: '-8px !important',
+  left: '-8px',
+  marginLeft: '0 !important',
+  borderRadius: '50%',
+  fontSize: '16px',
+  padding: '2px',
+  '&.correct': {
+    backgroundColor: color.correct(),
+  },
+  '&.incorrect': {
+    backgroundColor: color.incorrectWithIcon(),
+  },
+}));
 
 class Dropdown extends React.Component {
   static propTypes = {
@@ -20,7 +154,6 @@ class Dropdown extends React.Component {
     value: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
-    classes: PropTypes.object,
     correct: PropTypes.bool,
     choices: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })),
     showCorrectAnswer: PropTypes.bool,
@@ -135,7 +268,7 @@ class Dropdown extends React.Component {
   }
 
   render() {
-    const { classes, id, correct, disabled, value, choices, showCorrectAnswer, singleQuery, correctValue } = this.props;
+    const { id, correct, disabled, value, choices, showCorrectAnswer, singleQuery, correctValue } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
     const buttonId = `dropdown-button-${id}`;
@@ -148,7 +281,7 @@ class Dropdown extends React.Component {
     this.elementRefs = [];
 
     if (disabled && correct !== undefined) {
-      disabledClass = correct || showCorrectAnswer ? classes.disabledCorrect : classes.disabledIncorrect;
+      disabledClass = correct || showCorrectAnswer ? 'disabledCorrect' : 'disabledIncorrect';
     }
 
     // Create distinct, visually hidden labels for each dropdown
@@ -161,9 +294,9 @@ class Dropdown extends React.Component {
     if (disabled && correct !== undefined) {
       correctnessIcon =
         correct || showCorrectAnswer ? (
-          <Check className={classNames(classes.correctnessIndicatorIcon, classes.correctIcon)} />
+          <StyledCorrectnessIcon className="correct" />
         ) : (
-          <Close className={classNames(classes.correctnessIndicatorIcon, classes.incorrectIcon)} />
+          <StyledIncorrectnessIcon className="incorrect" />
         );
     }
 
@@ -176,20 +309,19 @@ class Dropdown extends React.Component {
           aria-hidden="true"
         >
           {(choices || []).map((c, index) => (
-            <MenuItem
+            <StyledMenuItem
               key={index}
-              classes={{ root: classes.menuRoot, selected: classes.selected }}
               tabIndex={-1}
               aria-hidden="true"
             >
-              <span className={classes.label} dangerouslySetInnerHTML={{ __html: c.label }} />
-            </MenuItem>
+              <StyledLabel dangerouslySetInnerHTML={{ __html: c.label }} />
+            </StyledMenuItem>
           ))}
         </div>
-        <InputLabel className={classes.srOnly} id={labelId} tabIndex={-1} aria-hidden="true">
+        <StyledInputLabel id={labelId} tabIndex={-1} aria-hidden="true">
           {labelText}
-        </InputLabel>
-        <Button
+        </StyledInputLabel>
+        <StyledButton
           ref={this.buttonRef}
           style={{
             ...(this.state.menuWidth && { minWidth: `calc(${this.state.menuWidth}px + 8px)` }),
@@ -201,10 +333,7 @@ class Dropdown extends React.Component {
           aria-expanded={open ? 'true' : undefined}
           aria-activedescendant={this.state.highlightedOptionId}
           onClick={this.handleClick}
-          classes={{
-            root: classes.root,
-            disabled: disabledClass,
-          }}
+          className={disabledClass}
           disabled={disabled}
           id={buttonId}
           role="combobox"
@@ -212,10 +341,9 @@ class Dropdown extends React.Component {
           aria-labelledby={valueDisplayId}
         >
           {correctnessIcon}
-          <span
+          <StyledLabel
             id={valueDisplayId}
             ref={this.previewRef}
-            className={classes.label}
             dangerouslySetInnerHTML={{
               __html: correctValue
                 ? correctValue
@@ -225,11 +353,10 @@ class Dropdown extends React.Component {
             }}
           />
           {open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-        </Button>
-        <Menu
+        </StyledButton>
+        <StyledMenu
           id={menuId}
           anchorEl={anchorEl}
-          className={classes.selectMenu}
           keepMounted
           open={open}
           onClose={this.handleClose}
@@ -247,9 +374,9 @@ class Dropdown extends React.Component {
             const optionId = `dropdown-option-${id}-${index}`;
 
             return (
-              <MenuItem
+              <StyledMenuItem
                 id={optionId}
-                classes={{ root: classes.menuRoot, selected: classes.selected }}
+                className={c.value === value ? 'selected' : ''}
                 key={`${c.label}-${index}`}
                 value={c.value}
                 onClick={() => this.handleSelect(c.value, index)}
@@ -257,138 +384,20 @@ class Dropdown extends React.Component {
                 aria-selected={this.state.highlightedOptionId === optionId ? 'true' : undefined}
                 onMouseOver={() => this.handleHover(index)}
               >
-                <span
+                <StyledLabel
                   ref={(ref) => (this.elementRefs[index] = ref)}
-                  className={classes.label}
                   dangerouslySetInnerHTML={{ __html: c.label }}
                 />
-                <span
-                  className={classes.selectedIndicator}
+                <StyledSelectedIndicator
                   dangerouslySetInnerHTML={{ __html: c.value === value ? ' &check;' : '' }}
                 />
-              </MenuItem>
+              </StyledMenuItem>
             );
           })}
-        </Menu>
+        </StyledMenu>
       </>
     );
   }
 }
 
-const styles = () => ({
-  root: {
-    color: color.text(),
-    border: `1px solid ${color.borderGray()}`,
-    borderRadius: '4px',
-    justifyContent: 'space-between',
-    backgroundColor: color.background(),
-    position: 'relative',
-    height: '45px',
-    width: 'fit-content',
-    margin: '2px',
-    textTransform: 'none',
-    '& span': {
-      paddingRight: '5px',
-    },
-    '& svg': {
-      position: 'absolute',
-      right: 0,
-      top: 'calc(50% - 12px)',
-      pointerEvents: 'none',
-      color: color.text(),
-      marginLeft: '5px',
-    },
-    '&:focus, &:focus-visible': {
-      outline: `3px solid ${color.tertiary()}`,
-      outlineOffset: '2px',
-      borderWidth: '3px',
-    },
-  },
-  disabledCorrect: {
-    borderWidth: '2px',
-    borderColor: color.correct(),
-    color: `${color.text()} !important`,
-  },
-  disabledIncorrect: {
-    borderWidth: '2px',
-    borderColor: color.incorrectWithIcon(),
-    color: `${color.text()} !important`,
-  },
-  selectMenu: {
-    backgroundColor: color.background(),
-    border: `1px solid ${color.correct()} !important`,
-    '&:hover': {
-      border: `1px solid ${color.text()} `,
-      borderColor: 'initial',
-    },
-    '&:focus': {
-      border: `1px solid ${color.text()}`,
-      borderColor: 'initial',
-    },
-    // remove default padding on the inner list
-    '& .MuiList-root': {
-      padding: 0,
-    },
-  },
-  selected: {
-    color: `${color.text()} !important`,
-    backgroundColor: `${color.background()} !important`,
-    '&:hover': {
-      color: color.text(),
-      backgroundColor: `${color.dropdownBackground()} !important`,
-    },
-  },
-  menuRoot: {
-    color: color.text(),
-    backgroundColor: color.background(),
-    '&:focus, &:focus-visible': {
-      outline: `3px solid ${color.tertiary()}`,
-      outlineOffset: '-1px', // keeps it inside the item
-    },
-    '&:focus': {
-      color: color.text(),
-      backgroundColor: color.background(),
-    },
-    '&:hover': {
-      color: color.text(),
-      backgroundColor: color.dropdownBackground(),
-    },
-    boxSizing: 'border-box',
-    padding: '25px',
-    borderRadius: '4px',
-  },
-  label: {
-    fontSize: 'max(1rem, 14px)',
-  },
-  selectedIndicator: {
-    fontSize: 'max(1rem, 14px)',
-    position: 'absolute',
-    right: '10px',
-  },
-  srOnly: {
-    position: 'absolute',
-    left: '-10000px',
-    top: 'auto',
-    width: '1px',
-    height: '1px',
-    overflow: 'hidden',
-  },
-  correctnessIndicatorIcon: {
-    color: `${color.white()} !important`,
-    position: 'absolute',
-    top: '-8px !important',
-    left: '-8px',
-    marginLeft: '0 !important',
-    borderRadius: '50%',
-    fontSize: '16px',
-    padding: '2px',
-  },
-  correctIcon: {
-    backgroundColor: color.correct(),
-  },
-  incorrectIcon: {
-    backgroundColor: color.incorrectWithIcon(),
-  },
-});
-
-export default withStyles(styles)(Dropdown);
+export default Dropdown;

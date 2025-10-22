@@ -18,15 +18,9 @@ import debug from 'debug';
 import takeRight from 'lodash/takeRight';
 import PointMenu from './point-menu';
 import range from 'lodash/range';
-
+import EditableHtml from '@pie-lib/editable-html';
 import { InputContainer } from '@pie-lib/config-ui';
 import { grey } from '@mui/material/colors';
-
-// mathquill error window not defined
-let EditableHtml;
-if (typeof window !== 'undefined') {
-  EditableHtml = require('@pie-lib/editable-html')['default'];
-} 
 
 const log = debug('pie-lib:rubric:authoring');
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
+import { styled } from '@mui/material/styles';
+import Chip from '@mui/material/Chip';
 import classnames from 'classnames';
 
 import { renderMath } from '@pie-lib/math-rendering';
@@ -11,11 +11,51 @@ import { DragSource } from '@pie-lib/drag';
 
 export const DRAG_TYPE = 'MaskBlank';
 
+const StyledChoice = styled('span')(({ theme }) => ({
+  border: `solid 0px ${theme.palette.primary.main}`,
+  borderRadius: theme.spacing(2),
+  margin: theme.spacing(0.5),
+  transform: 'translate(0, 0)',
+  '&.disabled': {
+    opacity: 0.6,
+  },
+}));
+
+const StyledChip = styled(Chip)(() => ({
+  backgroundColor: color.white(),
+  border: `1px solid ${color.text()}`,
+  color: color.text(),
+  alignItems: 'center',
+  display: 'inline-flex',
+  height: 'initial',
+  minHeight: '32px',
+  fontSize: 'inherit',
+  whiteSpace: 'pre-wrap',
+  maxWidth: '374px',
+  // Added for touch devices, for image content.
+  // This will prevent the context menu from appearing and not allowing other interactions with the image.
+  // If interactions with the image in the token will be requested we should handle only the context Menu.
+  pointerEvents: 'none',
+  borderRadius: '3px',
+  paddingTop: '12px',
+  paddingBottom: '12px',
+}));
+
+const StyledChipLabel = styled('span')(() => ({
+  whiteSpace: 'normal',
+  '& img': {
+    display: 'block',
+    padding: '2px 0',
+  },
+  '& mjx-frac': {
+    fontSize: '120% !important',
+  },
+}));
+
 class BlankContentComp extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
     choice: PropTypes.object,
-    classes: PropTypes.object,
     connectDragSource: PropTypes.func,
   };
 
@@ -63,29 +103,27 @@ class BlankContentComp extends React.Component {
   }
 
   render() {
-    const { connectDragSource, choice, classes, disabled } = this.props;
+    const { connectDragSource, choice, disabled } = this.props;
 
     // TODO the Chip element is causing drag problems on touch devices. Avoid using Chip and consider refactoring the code. Keep in mind that Chip is a span with a button role, which interferes with seamless touch device dragging.
 
     return connectDragSource(
-      <span
-        className={classnames(classes.choice, disabled && classes.disabled)}
+      <StyledChoice
+        className={disabled ? 'disabled' : ''}
         ref={(ref) => {
           //eslint-disable-next-line
           this.dragContainerRef = ReactDOM.findDOMNode(ref);
         }}
       >
-        <Chip
+        <StyledChip
           clickable={false}
           disabled={true}
           ref={(ref) => {
             //eslint-disable-next-line
             this.rootRef = ReactDOM.findDOMNode(ref);
           }}
-          className={classes.chip}
           label={
-            <span
-              className={classes.chipLabel}
+            <StyledChipLabel
               ref={(ref) => {
                 if (ref) {
                   ref.innerHTML = choice.value || ' ';
@@ -93,56 +131,17 @@ class BlankContentComp extends React.Component {
               }}
             >
               {' '}
-            </span>
+            </StyledChipLabel>
           }
           variant={disabled ? 'outlined' : undefined}
         />
-      </span>,
+      </StyledChoice>,
       {},
     );
   }
 }
 
-export const BlankContent = withStyles((theme) => ({
-  choice: {
-    border: `solid 0px ${theme.palette.primary.main}`,
-    borderRadius: theme.spacing.unit * 2,
-    margin: theme.spacing.unit / 2,
-    transform: 'translate(0, 0)',
-  },
-  chip: {
-    backgroundColor: color.white(),
-    border: `1px solid ${color.text()}`,
-    color: color.text(),
-    alignItems: 'center',
-    display: 'inline-flex',
-    height: 'initial',
-    minHeight: '32px',
-    fontSize: 'inherit',
-    whiteSpace: 'pre-wrap',
-    maxWidth: '374px',
-    // Added for touch devices, for image content.
-    // This will prevent the context menu from appearing and not allowing other interactions with the image.
-    // If interactions with the image in the token will be requested we should handle only the context Menu.
-    pointerEvents: 'none',
-    borderRadius: '3px',
-    paddingTop: '12px',
-    paddingBottom: '12px',
-  },
-  chipLabel: {
-    whiteSpace: 'normal',
-    '& img': {
-      display: 'block',
-      padding: '2px 0',
-    },
-    '& mjx-frac': {
-      fontSize: '120% !important',
-    },
-  },
-  disabled: {
-    opacity: 0.6,
-  },
-}))(BlankContentComp);
+export const BlankContent = BlankContentComp;
 
 const tileSource = {
   canDrag(props) {

@@ -1,78 +1,86 @@
-import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
 import debug from 'debug';
 import { DragSource, DropTarget } from '@pie-lib/drag';
-import { withStyles } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
+import { styled } from '@mui/material/styles';
+import Chip from '@mui/material/Chip';
 import classnames from 'classnames';
 import { color } from '@pie-lib/render-ui';
+import { grey } from '@mui/material/colors';
 
 const log = debug('pie-lib:mask-markup:blank');
 export const DRAG_TYPE = 'MaskBlank';
 
-const useStyles = withStyles(() => ({
-  content: {
-    border: `solid 0px ${color.primary()}`,
-    minWidth: '200px',
-    touchAction: 'none',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap', // Prevent line wrapping
-  },
-  chip: {
-    backgroundColor: color.background(),
-    border: `2px dashed ${color.text()}`,
-    color: color.text(),
-    fontSize: 'inherit',
-    maxWidth: '374px',
-    position: 'relative',
-    borderRadius: '3px',
-  },
-  chipLabel: {
-    whiteSpace: 'normal',
-    // Added for touch devices, for image content.
-    // This will prevent the context menu from appearing and not allowing other interactions with the image.
-    // If interactions with the image in the token will be requested we should handle only the context Menu.
-    pointerEvents: 'none',
-    '& img': {
-      display: 'block',
-      padding: '2px 0',
-    },
-    // Remove default <p> margins to ensure consistent spacing across all wrapped content (p, span, div, math)
-    // Padding for top and bottom will instead be controlled by the container for consistent layout
-    // Ensures consistent behavior with pie-api-browser, where marginTop is already removed by a Bootstrap stylesheet
-    '& p': {
-      marginTop: '0',
-      marginBottom: '0',
-    },
-    '& mjx-frac': {
-      fontSize: '120% !important',
-    },
-  },
-  hidden: {
-    color: 'transparent',
-    opacity: 0,
-  },
-  dragged: {
-    position: 'absolute',
-    left: 16,
-    maxWidth: '60px',
-  },
-  correct: {
-    border: `solid 1px ${color.correct()}`,
-  },
-  incorrect: {
-    border: `solid 1px ${color.incorrect()}`,
-  },
-  over: {
+const StyledContent = styled('span')(() => ({
+  border: `solid 0px ${color.primary()}`,
+  minWidth: '200px',
+  touchAction: 'none',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap', // Prevent line wrapping
+  '&.over': {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   },
-  parentOver: {
+}));
+
+const StyledChip = styled(Chip)(() => ({
+  backgroundColor: color.background(),
+  border: `2px dashed ${color.text()}`,
+  color: color.text(),
+  fontSize: 'inherit',
+  maxWidth: '374px',
+  position: 'relative',
+  borderRadius: '3px',
+  '&.over': {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  },
+  '&.parentOver': {
     border: `1px solid ${grey[500]}`,
     backgroundColor: `${grey[300]}`,
+  },
+  '&.correct': {
+    border: `solid 1px ${color.correct()}`,
+  },
+  '&.incorrect': {
+    border: `solid 1px ${color.incorrect()}`,
+  },
+}));
+
+const StyledChipLabel = styled('span')(() => ({
+  whiteSpace: 'normal',
+  // Added for touch devices, for image content.
+  // This will prevent the context menu from appearing and not allowing other interactions with the image.
+  // If interactions with the image in the token will be requested we should handle only the context Menu.
+  pointerEvents: 'none',
+  '& img': {
+    display: 'block',
+    padding: '2px 0',
+  },
+  // Remove default <p> margins to ensure consistent spacing across all wrapped content (p, span, div, math)
+  // Padding for top and bottom will instead be controlled by the container for consistent layout
+  // Ensures consistent behavior with pie-api-browser, where marginTop is already removed by a Bootstrap stylesheet
+  '& p': {
+    marginTop: '0',
+    marginBottom: '0',
+  },
+  '& mjx-frac': {
+    fontSize: '120% !important',
+  },
+  '&.over': {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+  },
+  '&.hidden': {
+    color: 'transparent',
+    opacity: 0,
+  },
+  '&.dragged': {
+    position: 'absolute',
+    left: 16,
+    maxWidth: '60px',
   },
 }));
 
@@ -205,13 +213,13 @@ export class BlankContent extends React.Component {
   }
 
   render() {
-    const { disabled, choice, classes, isOver, dragItem, correct } = this.props;
+    const { disabled, choice, isOver, dragItem, correct } = this.props;
     const draggedLabel = dragItem && isOver && dragItem.choice.value;
     const label = choice && choice.value;
 
     return (
       // TODO the Chip element is causing drag problems on touch devices. Avoid using Chip and consider refactoring the code. Keep in mind that Chip is a span with a button role, which interferes with seamless touch device dragging.
-      <Chip
+      <StyledChip
         clickable={false}
         disabled={true}
         ref={(ref) => {
@@ -221,9 +229,10 @@ export class BlankContent extends React.Component {
         component="span"
         label={
           <React.Fragment>
-            <span
-              className={classnames(classes.chipLabel, isOver && classes.over, {
-                [classes.hidden]: draggedLabel,
+            <StyledChipLabel
+              className={classnames({
+                over: isOver,
+                hidden: draggedLabel,
               })}
               ref={(ref) => {
                 if (ref) {
@@ -235,10 +244,13 @@ export class BlankContent extends React.Component {
               }}
             >
               {' '}
-            </span>
+            </StyledChipLabel>
             {draggedLabel && (
-              <span
-                className={classnames(classes.chipLabel, isOver && classes.over, classes.dragged)}
+              <StyledChipLabel
+                className={classnames({
+                  over: isOver,
+                  dragged: true,
+                })}
                 ref={(ref) => {
                   if (ref) {
                     //eslint-disable-next-line
@@ -249,13 +261,15 @@ export class BlankContent extends React.Component {
                 }}
               >
                 {' '}
-              </span>
+              </StyledChipLabel>
             )}
           </React.Fragment>
         }
-        className={classnames(classes.chip, isOver && classes.over, isOver && classes.parentOver, {
-          [classes.correct]: correct !== undefined && correct,
-          [classes.incorrect]: correct !== undefined && !correct,
+        className={classnames({
+          over: isOver,
+          parentOver: isOver,
+          correct: correct !== undefined && correct,
+          incorrect: correct !== undefined && !correct,
         })}
         variant={disabled ? 'outlined' : undefined}
         style={{
@@ -276,7 +290,6 @@ BlankContent.propTypes = {
   disabled: PropTypes.bool,
   duplicates: PropTypes.bool,
   choice: PropTypes.object,
-  classes: PropTypes.object,
   isOver: PropTypes.bool,
   dragItem: PropTypes.object,
   correct: PropTypes.bool,
@@ -285,19 +298,17 @@ BlankContent.propTypes = {
   emptyResponseAreaHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-const StyledBlankContent = useStyles(BlankContent);
-
-const connectedBlankContent = useStyles(({ connectDragSource, connectDropTarget, ...props }) => {
-  const { classes, isOver } = props;
+const connectedBlankContent = ({ connectDragSource, connectDropTarget, ...props }) => {
+  const { isOver } = props;
 
   return connectDropTarget(
     connectDragSource(
-      <span className={classnames(classes.content, isOver && classes.over)}>
-        <StyledBlankContent {...props} />
-      </span>,
+      <StyledContent className={isOver ? 'over' : ''}>
+        <BlankContent {...props} />
+      </StyledContent>,
     ),
   );
-});
+};
 
 const tileTarget = {
   drop(props, monitor) {
