@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.1...@pie-lib/tools@0.29.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+
+
+
+
 # [0.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.0...@pie-lib/tools@0.29.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/tools
