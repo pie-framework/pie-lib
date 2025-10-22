@@ -2662,10 +2662,36 @@
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
 
+"@pie-lib/style-utils@^0.18.4":
+  version "0.18.4"
+  resolved "https://registry.yarnpkg.com/@pie-lib/style-utils/-/style-utils-0.18.4.tgz#2f54db7955bdbb6daa6918e2609564521338a89e"
+  integrity sha512-X96YITrnwCJCEHJtSyNK0XwxHLnjczYBLu9B7I05kzqziJOY/cuIRzXEchuSseYoGOq5H2o45Z5D8Fdn5IkdzQ==
+
+"@pie-lib/test-utils@^0.19.5":
+  version "0.19.5"
+  resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.19.5.tgz#0006d20e0a52f0eb9178055ca4e05bd29760a591"
+  integrity sha512-HYvIA6A865PEzxzKvEbh+CGmXFJg8ra6QVdKAxTa2+ROu1HXLyJqal0l8juzZRwT0cDrwVxPQTtxP2+2QSw6HQ==
+
 "@pie-lib/test-utils@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.8.0.tgz#29f60bfd277906297f841532c4d5c2769847489c"
   integrity sha512-gN0ssH49ey/8qseSgMgqEEpD+Egieaz0k2zI8UQkgYuF5bRha2/tvmbcsmOq92v6H2LJCiiJOI/9pmwS20ll/A==
+
+"@pie-lib/tools@^0.26.4":
+  version "0.26.4"
+  resolved "https://registry.yarnpkg.com/@pie-lib/tools/-/tools-0.26.4.tgz#5294c310719b5fef4aba14cf40a8d65f999f7d65"
+  integrity sha512-o05b3+D4CUimMONdZdsh7PKd8YZrUVsrT6P5TK8swNGdlYLEtHPaFAC0f1SjRI/t6UzAxBs61c2nwjF4M/3r0A==
+  dependencies:
+    "@mapbox/point-geometry" "^0.1.0"
+    "@pie-lib/style-utils" "^0.18.4"
+    assert "^1.4.1"
+    classnames "^2.2.6"
+    debug "^4.1.1"
+    invariant "^2.2.4"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
+    react-portal "^4.2.0"
+    trigonometry-calculator "^2.0.0"
 
 "@pslb/estree-helper@^4.2.0":
   version "4.2.0"
