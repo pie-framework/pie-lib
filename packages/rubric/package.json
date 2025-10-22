@@ -9,6 +9,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/style": "^0.8.0",
+    "@hello-pangea/dnd": "^18.0.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@pie-lib/editable-html": "^11.17.2",
@@ -17,7 +18,6 @@
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
-    "react-beautiful-dnd": "^11.0.2",
     "react-dom": "^18.2.0"
   },
   "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
