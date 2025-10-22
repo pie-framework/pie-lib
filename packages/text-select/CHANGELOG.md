@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.32.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.2...@pie-lib/text-select@1.32.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+
+
+
+
 # [1.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.31.0...@pie-lib/text-select@1.32.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/text-select
