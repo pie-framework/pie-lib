@@ -1,15 +1,19 @@
 import React from 'react';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import classnames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { color } from '@pie-lib/render-ui';
 
-const correctStyle = (color) => ({
-  borderColor: `${color} !important`,
-});
-
-export default withStyles(() => ({
-  input: {
+const StyledOutlinedInput = styled(OutlinedInput)(() => ({
+  padding: '2px',
+  borderRadius: '4px',
+  fontSize: 'inherit',
+  display: 'inline-block',
+  verticalAlign: 'middle',
+  '& fieldset': {
+    border: 0,
+  },
+  '& .MuiOutlinedInput-input': {
     color: color.text(),
     backgroundColor: color.background(),
     borderRadius: '4px !important',
@@ -26,35 +30,25 @@ export default withStyles(() => ({
         borderColor: 'initial',
       },
     },
-    '&:focus': {
+    '&.Mui-focused': {
       borderColor: color.primaryDark(),
     },
-  },
-  crInput: {
-    padding: '8px !important',
-  },
-  correct: correctStyle(color.correct()),
-  incorrect: correctStyle(color.incorrect()),
-  box: {
-    fontSize: 'inherit',
-    display: 'inline-block',
-    verticalAlign: 'middle',
-  },
-  outlinedInput: {
-    padding: '2px',
-    borderRadius: '4px',
-    '& fieldset': {
-      border: 0,
+    '&.crInput': {
+      padding: '8px !important',
+    },
+    '&.correct': {
+      borderColor: `${color.correct()} !important`,
+    },
+    '&.incorrect': {
+      borderColor: `${color.incorrect()} !important`,
     },
   },
-  notchedOutline: {
-    borderColor: color.correct(),
-  },
-}))((props) => {
+}));
+
+const CorrectInput = (props) => {
   const {
     correct,
     charactersLimit,
-    classes,
     disabled,
     isBox,
     isConstructedResponse,
@@ -75,24 +69,24 @@ export default withStyles(() => ({
   }
 
   return (
-    <OutlinedInput
+    <StyledOutlinedInput
       className={classnames({
-        [classes.disabledInput]: disabled,
-        [classes.box]: isBox,
-        [classes.outlinedInput]: true,
+        disabledInput: disabled,
+        box: isBox,
       })}
       classes={{
         input: classnames({
-          [classes.input]: true,
-          [classes[label]]: label,
-          [classes.crInput]: isConstructedResponse,
+          [label]: label,
+          crInput: isConstructedResponse,
         }),
       }}
       inputProps={inputProps}
-      labelWidth={0}
       disabled={disabled}
       spellCheck={spellCheck}
       {...rest}
     />
   );
-});
+};
+
+export default CorrectInput;
+

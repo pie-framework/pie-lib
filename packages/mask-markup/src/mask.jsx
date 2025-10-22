@@ -1,23 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { MARK_TAGS } from './serialization';
-import cx from 'classnames';
 
-const Paragraph = withStyles((theme) => ({
-  para: {
-    paddingTop: 2 * theme.spacing.unit,
-    paddingBottom: 2 * theme.spacing.unit,
-  },
-}))((props) => <div className={props.classes.para}>{props.children}</div>);
+const Paragraph = styled('div')(({ theme }) => ({
+  paddingTop: theme.spacing(2),
+  paddingBottom: theme.spacing(2),
+}));
 
-const Spacer = withStyles(() => ({
-  spacer: {
-    display: 'inline-block',
-    width: '.75em',
-  },
-}))((props) => <span className={props.classes.spacer} />);
+const Spacer = styled('span')(() => ({
+  display: 'inline-block',
+  width: '.75em',
+}));
 
 const restrictWhitespaceTypes = ['tbody', 'tr'];
 
@@ -120,21 +115,17 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
   return children;
 };
 
-const MaskContainer = withStyles(() => ({
-  main: {
-    display: 'initial',
+const MaskContainer = styled('div')(() => ({
+  display: 'initial',
+  '&:not(.MathJax) table': {
+    borderCollapse: 'collapse',
   },
-  tableStyle: {
-    '&:not(.MathJax) table': {
-      borderCollapse: 'collapse',
-    },
-    // align table content to left as per STAR requirement PD-3687
-    '&:not(.MathJax) table td, &:not(.MathJax) table th': {
-      padding: '8px 12px',
-      textAlign: 'left',
-    },
+  // align table content to left as per STAR requirement PD-3687
+  '&:not(.MathJax) table td, &:not(.MathJax) table th': {
+    padding: '8px 12px',
+    textAlign: 'left',
   },
-}))((props) => <div className={cx(props.classes.main, props.classes.tableStyle)}>{props.children}</div>);
+}));
 
 /**
  * Renders a layout that uses the slate.js Value model structure.

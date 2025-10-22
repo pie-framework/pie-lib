@@ -8,8 +8,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@material-ui/core": "^3.9.3",
-    "@material-ui/icons": "^3.0.2",
+    "@emotion/react": "^11.14.0",
+    "@emotion/style": "^0.8.0",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
     "@pie-lib/drag": "^2.18.2",
     "@pie-lib/editable-html": "^11.17.2",
     "@pie-lib/math-rendering": "^3.19.4",
