@@ -3,38 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [6.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.31.0) (2025-10-16)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.30.0) (2025-10-16)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.29.0) (2025-10-16)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.28.0) (2025-10-16)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
 # [6.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.11.4...@pie-lib/math-input@6.27.0) (2025-09-25)
 
 

@@ -4,6 +4,13 @@
   "description": "Some shared ui elements when rendering - but not worthy of their own package yet.",
   "module": "src/index.js",
   "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./lib/index.js",
+      "default": "./esm/index.js"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -28,5 +35,5 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "20caabe19279c68c86fc179191d3eb403bb0be76"
 }

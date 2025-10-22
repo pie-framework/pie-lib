@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.30.0...@pie-lib/math-toolbar@1.31.0) (2025-10-16)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-# [1.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.0...@pie-lib/math-toolbar@1.30.0) (2025-10-16)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-# [1.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.0...@pie-lib/math-toolbar@1.29.0) (2025-10-16)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-# [1.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.0...@pie-lib/math-toolbar@1.28.0) (2025-10-16)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-## [1.27.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.1...@pie-lib/math-toolbar@1.27.2) (2025-10-14)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-## [1.27.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.0...@pie-lib/math-toolbar@1.27.1) (2025-10-09)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
 # [1.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.11.30...@pie-lib/math-toolbar@1.27.0) (2025-09-25)
 
 
