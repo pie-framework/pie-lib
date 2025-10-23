@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import uniq from 'lodash/uniq';
 import isString from 'lodash/isString';
 import { color } from '@pie-lib/render-ui';
@@ -10,8 +9,45 @@ import ToolMenu from './tool-menu';
 import Graph, { graphPropTypes } from './graph';
 import UndoRedo from './undo-redo';
 import { allTools, toolsArr } from './tools';
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+const StyledGraphContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  width: 'min-content',
+});
+
+const StyledControls = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: theme.spacing(1),
+  color: color.text(),
+  backgroundColor: color.primaryLight(),
+  '& button': {
+    fontSize: theme.typography.fontSize,
+  },
+}));
+
+const StyledAccordion = styled(Accordion)({
+  backgroundColor: color.primaryLight(),
+  width: '100%',
+});
+
+const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
+  padding: `0 ${theme.spacing(1)}px`,
+  minHeight: '32px !important',
+  '& .MuiAccordionSummary-content': {
+    margin: '4px 0 !important',
+  },
+}));
+
+const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
+  padding: 0,
+  marginTop: theme.spacing(1),
+  display: 'flex',
+  justifyContent: 'space-between',
+}));
 
 export const setToolbarAvailability = (toolbarTools) =>
   toolsArr.map((tA) => ({ ...tA, toolbar: !!toolbarTools.find((t) => t === tA.type) })) || [];
@@ -29,23 +65,16 @@ export const filterByVisibleToolTypes = (toolbarTools, marks) =>
 
 const getDefaultCurrentTool = (toolType) => toolsArr.find((tool) => tool.type === toolType) || null;
 
-const Collapsible = ({ classes, children, title }) => (
-  <ExpansionPanel elevation={0} className={classes.expansionPanel} disabledGutters={true} square={true}>
-    <ExpansionPanelSummary
-      classes={{
-        root: classes.summaryRoot,
-        content: classes.summaryContent,
-      }}
-      expandIcon={<ExpandMoreIcon />}
-    >
+const Collapsible = ({ children, title }) => (
+  <StyledAccordion elevation={0} disableGutters={true} square={true}>
+    <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
       <Typography variant="subheading">{title}</Typography>
-    </ExpansionPanelSummary>
-    <ExpansionPanelDetails className={classes.details}>{children}</ExpansionPanelDetails>
-  </ExpansionPanel>
+    </StyledAccordionSummary>
+    <StyledAccordionDetails>{children}</StyledAccordionDetails>
+  </StyledAccordion>
 );
 
 Collapsible.propTypes = {
-  classes: PropTypes.object,
   children: PropTypes.array,
   title: PropTypes.string,
 };
@@ -96,7 +125,6 @@ export class GraphWithControls extends React.Component {
     let { currentTool, labelModeEnabled } = this.state;
     const {
       axesSettings,
-      classes,
       className,
       coordinatesOnHover,
       collapsibleToolbar,
@@ -162,16 +190,16 @@ export class GraphWithControls extends React.Component {
     );
 
     return (
-      <div className={classNames(classes.graphWithControls, className)}>
-        <div className={classes.controls}>
+      <StyledGraphContainer className={className}>
+        <StyledControls>
           {collapsibleToolbar ? (
-            <Collapsible classes={classes} title={collapsibleToolbarTitle}>
+            <Collapsible title={collapsibleToolbarTitle}>
               {graphActions}
             </Collapsible>
           ) : (
             graphActions
           )}
-        </div>
+        </StyledControls>
 
         <div ref={(r) => (this.labelNode = r)} />
 
@@ -201,44 +229,9 @@ export class GraphWithControls extends React.Component {
           removeIncompleteTool={removeIncompleteTool}
           limitLabeling={limitLabeling}
         />
-      </div>
+      </StyledGraphContainer>
     );
   }
 }
 
-const styles = (theme) => ({
-  graphWithControls: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 'min-content',
-  },
-  controls: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: theme.spacing.unit,
-    color: color.text(),
-    backgroundColor: color.primaryLight(),
-    '& button': {
-      fontSize: theme.typography.fontSize,
-    },
-  },
-  expansionPanel: {
-    backgroundColor: color.primaryLight(),
-    width: '100%',
-  },
-  summaryRoot: {
-    padding: `0 ${theme.spacing.unit}px`,
-    minHeight: '32px !important',
-  },
-  summaryContent: {
-    margin: '4px 0 !important',
-  },
-  details: {
-    padding: 0,
-    marginTop: theme.spacing.unit,
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-});
-
-export default withStyles(styles)(GraphWithControls);
+export default GraphWithControls;

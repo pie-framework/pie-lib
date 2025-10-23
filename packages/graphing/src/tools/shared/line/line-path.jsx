@@ -1,16 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { types } from '@pie-lib/plot';
-import classNames from 'classnames';
 import { disabled, correct, incorrect, missing, disabledSecondary } from '../styles';
 import * as vx from '@vx/shape';
 import { color } from '@pie-lib/render-ui';
 
+const dragging = () => ({
+  strokeWidth: 4,
+  stroke: color.defaults.BLACK,
+});
+
+const StyledDrawLine = styled(vx.LinePath)(({ theme, disabled: isDisabled, correctness }) => ({
+  fill: 'none',
+  strokeWidth: 2,
+  stroke: color.black(),
+  ...(isDisabled && {
+    ...disabledSecondary('stroke'),
+    strokeWidth: 2,
+  }),
+  ...(correctness === 'correct' && correct('stroke')),
+  ...(correctness === 'incorrect' && incorrect('stroke')),
+  ...(correctness === 'missing' && {
+    ...missing('stroke'),
+    strokeWidth: 1,
+    strokeDasharray: '4 3',
+  }),
+}));
+
+const StyledLine = styled(vx.LinePath)(({ theme, disabled: isDisabled, correctness, isDragging }) => ({
+  strokeWidth: 3,
+  fill: 'none',
+  transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
+  stroke: 'transparent',
+  '&:hover': dragging(theme),
+  ...(isDragging && dragging(theme)),
+  ...(isDisabled && {
+    ...disabled('stroke'),
+    strokeWidth: 2,
+  }),
+  ...(correctness === 'correct' && correct('stroke')),
+  ...(correctness === 'incorrect' && incorrect('stroke')),
+  ...(correctness === 'missing' && {
+    ...missing('stroke'),
+    strokeWidth: 1,
+    strokeDasharray: '4 3',
+  }),
+}));
+
 export class RawLinePath extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    classes: PropTypes.object,
     data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
@@ -27,30 +67,24 @@ export class RawLinePath extends React.Component {
 
   render() {
     /* eslint-disable no-unused-vars */
-    const { data, classes, className, disabled, correctness, from, to, graphProps, isDragging, ...rest } = this.props;
+    const { data, className, disabled, correctness, from, to, graphProps, isDragging, ...rest } = this.props;
     /* eslint-enable */
 
     return (
       <React.Fragment>
-        <vx.LinePath
+        <StyledDrawLine
           data={data}
-          className={classNames(
-            classes.drawLine,
-            disabled && classes.disabledSecondary,
-            classes[correctness],
-            className,
-          )}
+          className={className}
+          disabled={disabled}
+          correctness={correctness}
           {...rest}
         />
-        <vx.LinePath
+        <StyledLine
           data={data}
-          className={classNames(
-            classes.line,
-            isDragging && classes.dragging,
-            disabled && classes.disabledSecondary,
-            classes[correctness],
-            className,
-          )}
+          className={className}
+          isDragging={isDragging}
+          disabled={disabled}
+          correctness={correctness}
           {...rest}
         />
       </React.Fragment>
@@ -58,42 +92,4 @@ export class RawLinePath extends React.Component {
   }
 }
 
-const dragging = () => ({
-  strokeWidth: 4,
-  stroke: color.defaults.BLACK,
-});
-
-export const LinePath = withStyles((theme) => ({
-  drawLine: {
-    fill: 'none',
-    strokeWidth: 2,
-    stroke: color.black(),
-  },
-  line: {
-    strokeWidth: 3,
-    fill: 'none',
-    transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
-    stroke: 'transparent',
-    '&:hover': dragging(theme),
-  },
-  dragging: dragging(theme),
-  disabled: {
-    ...disabled('stroke'),
-    strokeWidth: 2,
-  },
-  disabledSecondary: {
-    ...disabledSecondary('stroke'),
-    strokeWidth: 2,
-  },
-  correct: {
-    ...correct('stroke'),
-  },
-  incorrect: {
-    ...incorrect('stroke'),
-  },
-  missing: {
-    ...missing('stroke'),
-    strokeWidth: 1,
-    strokeDasharray: '4 3',
-  },
-}))(RawLinePath);
+export const LinePath = RawLinePath;

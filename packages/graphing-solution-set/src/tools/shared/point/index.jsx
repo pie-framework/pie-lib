@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core/styles/index';
+import { styled } from '@mui/material/styles';
 import { gridDraggable } from '@pie-lib/plot';
 import * as utils from '../../../utils';
 import { disabled, correct, incorrect, missing } from '../styles';
@@ -24,37 +24,25 @@ const opts = {
   },
 };
 
-const styles = () => {
-  return {
-    point: {
-      '& circle, & polygon': {
-        cursor: 'pointer',
-        fill: color.defaults.SECONDARY,
-      },
-    },
-    disabled: {
-      '& circle, & polygon': {
-        ...disabled(),
-      },
-    },
-    correct: {
-      '& circle, & polygon': {
-        ...correct(),
-      },
-    },
-    incorrect: {
-      '& circle, & polygon': {
-        ...incorrect(),
-      },
-    },
-    missing: {
-      '& circle, & polygon': {
-        ...missing(),
-      },
-    },
-  };
-};
+const StyledPointWrapper = styled('g', {
+  shouldForwardProp: (prop) => !['disabled', 'correctness'].includes(prop),
+})(({ disabled: isDisabled, correctness }) => ({
+  '& circle, & polygon': {
+    cursor: 'pointer',
+    fill: color.defaults.SECONDARY,
+    ...(isDisabled && disabled()),
+    ...(correctness === 'correct' && correct()),
+    ...(correctness === 'incorrect' && incorrect()),
+    ...(correctness === 'missing' && missing()),
+  },
+}));
 
-export const BasePoint = withStyles(styles)(gridDraggable(opts)(RawBp));
-export const ArrowPoint = withStyles(styles)(gridDraggable(opts)(RawArrow));
-export const Arrow = withStyles(styles)(gridDraggable(opts)(BaseArrow));
+const withStyledWrapper = (WrappedComponent) => (props) => (
+  <StyledPointWrapper disabled={props.disabled} correctness={props.correctness}>
+    <WrappedComponent {...props} />
+  </StyledPointWrapper>
+);
+
+export const BasePoint = gridDraggable(opts)(withStyledWrapper(RawBp));
+export const ArrowPoint = gridDraggable(opts)(withStyledWrapper(RawArrow));
+export const Arrow = gridDraggable(opts)(withStyledWrapper(BaseArrow));

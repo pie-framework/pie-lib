@@ -3,23 +3,18 @@ import { Arrow } from '../shared/point';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { getDistanceBetweenTwoPoints } from '../../utils';
 
-const lineStyles = (theme) => ({
-  line: styles.line(theme),
-  disabled: styles.disabled(theme),
-  disabledSecondary: styles.disabledSecondary(theme),
-  correct: styles.correct(theme, 'stroke'),
-  incorrect: styles.incorrect(theme, 'stroke'),
-  missing: styles.missing(theme, 'stroke'),
-});
+const StyledLine = styled('line')(({ theme, disabled, correctness }) => ({
+  ...styles.line(theme),
+  ...(disabled && styles.disabledSecondary(theme)),
+  ...(correctness && styles[correctness] && styles[correctness](theme, 'stroke')),
+}));
 
 export const Line = (props) => {
   const {
     className,
-    classes,
     disabled,
     correctness,
     graphProps: { scale },
@@ -32,8 +27,10 @@ export const Line = (props) => {
   const length = getDistanceBetweenTwoPoints(startPoint, endPoint);
 
   return (
-    <line
-      className={classNames(classes.line, disabled && classes.disabledSecondary, classes[correctness], className)}
+    <StyledLine
+      className={className}
+      disabled={disabled}
+      correctness={correctness}
       x1={startPoint.x}
       y1={startPoint.y}
       x2={endPoint.x}
@@ -46,7 +43,6 @@ export const Line = (props) => {
 
 Line.propTypes = {
   className: PropTypes.string,
-  classes: PropTypes.object,
   disabled: PropTypes.bool,
   correctness: PropTypes.string,
   graphProps: PropTypes.any,
@@ -54,8 +50,7 @@ Line.propTypes = {
   to: types.PointType,
 };
 
-const StyledLine = withStyles(lineStyles)(Line);
-const Vector = lineBase(StyledLine, { to: Arrow });
+const Vector = lineBase(Line, { to: Arrow });
 const Component = lineToolComponent(Vector);
 
 export default Component;

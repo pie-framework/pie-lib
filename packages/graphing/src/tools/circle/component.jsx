@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 import { BasePoint } from '../shared/point';
 import BgCircle from './bg-circle';
 import { getMiddleOfTwoPoints, point, equalPoints } from '../../utils';
-import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import { rootEdgeComponent } from '../shared/line/with-root-edge';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
 import isEmpty from 'lodash/isEmpty';
 import { color } from '@pie-lib/render-ui';
+import { styled, keyframes } from '@mui/material/styles';
 
-const opacityPulsate = (opacity) => ({
+const opacityPulsate = (opacity) => keyframes({
   '0%': { opacity: '0.0' },
   '50%': { opacity },
   '100%': { opacity: '0.0' },
@@ -26,7 +26,6 @@ const getRadius = (from, outer) => {
 export class RawBaseCircle extends React.Component {
   static propTypes = {
     building: PropTypes.bool,
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     coordinatesOnHover: PropTypes.bool,
     correctness: PropTypes.string,
@@ -53,12 +52,10 @@ export class RawBaseCircle extends React.Component {
     const { middle, onChange } = this.props;
     const { from, to } = point;
 
-    // because point.from.label and point.to.label can be different
     if (!equalPoints(from, to)) {
       if (middle) {
         point.middle = { ...middle, ...getMiddleOfTwoPoints(from, to) };
       }
-
       onChange(point);
     }
   };
@@ -66,10 +63,7 @@ export class RawBaseCircle extends React.Component {
   dragFrom = (draggedFrom) => {
     const { from, to } = this.props;
 
-    if (from.label) {
-      draggedFrom.label = from.label;
-    }
-
+    if (from.label) draggedFrom.label = from.label;
     if (!equalPoints(draggedFrom, to)) {
       this.onChangePoint({ from: draggedFrom, to });
     }
@@ -78,10 +72,7 @@ export class RawBaseCircle extends React.Component {
   dragTo = (draggedTo) => {
     const { from, to } = this.props;
 
-    if (to.label) {
-      draggedTo.label = to.label;
-    }
-
+    if (to.label) draggedTo.label = to.label;
     if (!equalPoints(from, draggedTo)) {
       this.onChangePoint({ from, to: draggedTo });
     }
@@ -92,58 +83,36 @@ export class RawBaseCircle extends React.Component {
     const diff = point(from).sub(point(draggedFrom));
     const draggedTo = point(to).sub(diff);
 
-    if (from.label) {
-      draggedFrom.label = from.label;
-    }
-
-    if (to.label) {
-      draggedTo.label = to.label;
-    }
+    if (from.label) draggedFrom.label = from.label;
+    if (to.label) draggedTo.label = to.label;
 
     const updated = { from: draggedFrom, to: draggedTo };
-
     if (middle) {
       updated.middle = { ...middle, ...getMiddleOfTwoPoints(draggedFrom, draggedTo) };
     }
 
     this.setState(
-      {
-        draggedroot: undefined,
-        draggedOuter: undefined,
-        isCircleDrag: false,
-      },
-      () => {
-        onChange(updated);
-      },
+      { draggedroot: undefined, draggedOuter: undefined, isCircleDrag: false },
+      () => onChange(updated),
     );
   };
 
   labelChange = (point, type) => {
     const { changeMarkProps } = this.props;
     const update = { ...point };
-
-    if (!point.label || isEmpty(point.label)) {
-      delete update.label;
-    }
-
+    if (!point.label || isEmpty(point.label)) delete update.label;
     changeMarkProps({ [type]: update });
   };
 
   clickPoint = (point, type, data) => {
     const { changeMarkProps, disabled, from, to, labelModeEnabled, limitLabeling, onClick } = this.props;
+
     if (!labelModeEnabled) {
       onClick(point || data);
       return;
     }
 
-    if (disabled) {
-      return;
-    }
-
-    // limit labeling the points of the circle
-    if (limitLabeling) {
-      return;
-    }
+    if (disabled || limitLabeling) return;
 
     if (type === 'middle' && !point && from && to) {
       point = { ...point, ...getMiddleOfTwoPoints(from, to) };
@@ -156,7 +125,6 @@ export class RawBaseCircle extends React.Component {
     }
   };
 
-  // IMPORTANT, do not remove
   input = {};
 
   render() {
@@ -165,9 +133,8 @@ export class RawBaseCircle extends React.Component {
       to,
       middle,
       disabled,
-      classes,
-      coordinatesOnHover,
       building,
+      coordinatesOnHover,
       onDragStart,
       onDragStop,
       onClick,
@@ -176,10 +143,9 @@ export class RawBaseCircle extends React.Component {
       labelNode,
       labelModeEnabled,
     } = this.props;
+
     const common = { onDragStart, onDragStop, graphProps, onClick };
-
     to = to || from;
-
     const radius = getRadius(from, to);
 
     let fromLabelNode = null;
@@ -187,7 +153,7 @@ export class RawBaseCircle extends React.Component {
     let circleLabelNode = null;
 
     if (labelNode) {
-      if (from && from.hasOwnProperty('label')) {
+      if (from?.label !== undefined) {
         fromLabelNode = ReactDOM.createPortal(
           <MarkLabel
             inputRef={(r) => (this.input.from = r)}
@@ -200,7 +166,7 @@ export class RawBaseCircle extends React.Component {
         );
       }
 
-      if (to && to.hasOwnProperty('label')) {
+      if (to?.label !== undefined) {
         toLabelNode = ReactDOM.createPortal(
           <MarkLabel
             inputRef={(r) => (this.input.to = r)}
@@ -213,7 +179,7 @@ export class RawBaseCircle extends React.Component {
         );
       }
 
-      if (middle && middle.hasOwnProperty('label')) {
+      if (middle?.label !== undefined) {
         circleLabelNode = ReactDOM.createPortal(
           <MarkLabel
             inputRef={(r) => (this.input.middle = r)}
@@ -229,10 +195,10 @@ export class RawBaseCircle extends React.Component {
 
     return (
       <g>
-        <BgCircle
+        <StyledBgCircle
           disabled={building || disabled}
           correctness={correctness}
-          className={classNames(building && classes.bgCircleBuilding)}
+          className={classNames(building && 'bgCircleBuilding')}
           x={from.x}
           y={from.y}
           radius={radius}
@@ -262,7 +228,7 @@ export class RawBaseCircle extends React.Component {
           labelNode={labelNode}
           x={from.x}
           y={from.y}
-          className={classes.from}
+          className="from"
           onDrag={this.dragFrom}
           {...common}
           onClick={(data) => this.clickPoint(from, 'from', data)}
@@ -273,9 +239,10 @@ export class RawBaseCircle extends React.Component {
   }
 }
 
-export const BaseCircle = withStyles(() => ({
-  outerLine: {
-    fill: 'rgb(0,0,0,0)', // TODO hardcoded color
+// MUI v5 styled() replaces withStyles
+const StyledBgCircle = styled(BgCircle)(({ theme }) => ({
+  '&.outerLine': {
+    fill: 'rgba(0,0,0,0)',
     stroke: color.defaults.BLACK,
     strokeWidth: 4,
     '&:hover': {
@@ -283,15 +250,13 @@ export const BaseCircle = withStyles(() => ({
       stroke: color.defaults.PRIMARY_DARK,
     },
   },
-  root: {},
-  bgCircleBuilding: {
+  '&.bgCircleBuilding': {
     stroke: color.defaults.BLACK,
-    animation: 'opacityPulse 2s ease-out',
-    animationIterationCount: 'infinite',
+    animation: `${opacityPulsate('0.3')} 2s ease-out infinite`,
     opacity: 1,
   },
-  '@keyframes opacityPulse': opacityPulsate('0.3'),
-}))(RawBaseCircle);
+}));
 
+export const BaseCircle = RawBaseCircle;
 const Component = rootEdgeComponent(BaseCircle);
 export default Component;

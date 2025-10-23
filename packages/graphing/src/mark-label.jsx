@@ -1,71 +1,75 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import cn from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import AutosizeInput from 'react-input-autosize';
 import { useDebounce } from './use-debounce';
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import SvgIcon from './label-svg-icon';
 
-const inputStyles = (theme) => ({
+const StyledInputCorrect = styled('div')(({ theme }) => ({
   float: 'right',
-  padding: theme.spacing.unit * 0.5,
+  padding: theme.spacing(0.5),
   borderRadius: '4px',
   fontSize: '10px',
   backgroundColor: color.defaults.WHITE,
+  color: color.defaults.CORRECT_WITH_ICON,
+  border: `solid 1px ${color.defaults.CORRECT_WITH_ICON}`,
+}));
+
+const StyledInputIncorrect = styled('div')(({ theme }) => ({
+  float: 'right',
+  padding: theme.spacing(0.5),
+  borderRadius: '4px',
+  fontSize: '10px',
+  backgroundColor: color.defaults.WHITE,
+  color: color.defaults.INCORRECT_WITH_ICON,
+  border: `solid 1px ${color.defaults.INCORRECT_WITH_ICON}`,
+}));
+
+const StyledInputMissing = styled('div')(({ theme }) => ({
+  float: 'right',
+  padding: theme.spacing(0.5),
+  borderRadius: '4px',
+  fontSize: '10px',
+  backgroundColor: color.defaults.WHITE,
+  color: color.defaults.MISSING_WITH_ICON,
+  border: `solid 1px ${color.defaults.MISSING_WITH_ICON}`,
+  fontWeight: 'bold',
+}));
+
+const StyledIncorrect = styled('div')(({ theme }) => ({
+  float: 'right',
+  padding: 0,
+  borderRadius: '4px',
+  fontSize: '10px',
+  backgroundColor: color.defaults.WHITE,
+  color: color.defaults.INCORRECT_WITH_ICON,
+  fontWeight: 'bold',
+}));
+
+const getInputStyles = (theme, disabled, markDisabled) => ({
+  float: 'right',
+  padding: theme.spacing(0.5),
+  fontFamily: theme.typography.fontFamily,
+  fontSize: '10px',
+  border: disabled 
+    ? `solid 1px ${color.defaults.PRIMARY_DARK}`
+    : markDisabled 
+      ? `solid 1px ${color.disabled()}`
+      : `solid 1px ${color.defaults.SECONDARY}`,
+  borderRadius: '3px',
+  color: markDisabled ? color.disabled() : color.defaults.PRIMARY_DARK,
+  backgroundColor: color.defaults.WHITE,
+  WebkitOpacity: disabled ? '1' : undefined,
+  WebkitTextFillColor: markDisabled ? color.disabled() : undefined,
 });
 
-const styles = (theme) => ({
-  inputStudent: {
-    ...inputStyles(theme),
-    padding: '0',
-    border: 'none',
-    color: 'inherit',
-    fontWeight: 'bold',
-  },
-  input: {
-    float: 'right',
-    padding: theme.spacing.unit * 0.5,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: '10px',
-    border: `solid 1px ${color.defaults.SECONDARY}`,
-    borderRadius: '3px',
-    color: color.defaults.PRIMARY_DARK,
-    backgroundColor: color.defaults.WHITE,
-  },
-  disabled: {
-    border: `solid 1px ${color.defaults.PRIMARY_DARK}`,
-    backgroundColor: color.defaults.WHITE,
-    '-webkit-opacity': '1',
-  },
-  disabledMark: {
-    border: `solid 1px ${color.disabled()}`,
-    color: color.disabled(),
-    '-webkit-text-fill-color': color.disabled(),
-  },
-  inputCorrect: {
-    ...inputStyles(theme),
-    color: color.defaults.CORRECT_WITH_ICON,
-    border: `solid 1px ${color.defaults.CORRECT_WITH_ICON}`,
-  },
-  inputIncorrect: {
-    ...inputStyles(theme),
-    color: color.defaults.INCORRECT_WITH_ICON,
-    border: `solid 1px ${color.defaults.INCORRECT_WITH_ICON}`,
-  },
-  inputMissing: {
-    ...inputStyles(theme),
-    color: color.defaults.MISSING_WITH_ICON,
-    border: `solid 1px ${color.defaults.MISSING_WITH_ICON}`,
-    fontWeight: 'bold',
-  },
-  incorrect: {
-    ...inputStyles(theme),
-    color: color.defaults.INCORRECT_WITH_ICON,
-    fontWeight: 'bold',
-    padding: '0',
-  },
+const getStudentInputStyles = () => ({
+  padding: '0',
+  border: 'none',
+  color: 'inherit',
+  fontWeight: 'bold',
 });
 
 export const position = (graphProps, mark, rect = { width: 0, height: 0 }) => {
@@ -99,14 +103,14 @@ export const coordinates = (graphProps, mark, rect = { width: 0, height: 0 }, po
   }
 };
 
-const LabelInput = ({ _ref, externalInputRef, label, disabled, inputClassName, onChange }) => (
+const LabelInput = ({ _ref, externalInputRef, label, disabled, inputStyle, onChange }) => (
   <AutosizeInput
     inputRef={(r) => {
       _ref(r);
       externalInputRef(r);
     }}
     disabled={disabled}
-    inputClassName={inputClassName}
+    inputStyle={inputStyle}
     value={label}
     onChange={onChange}
   />
@@ -115,8 +119,9 @@ const LabelInput = ({ _ref, externalInputRef, label, disabled, inputClassName, o
 export const MarkLabel = (props) => {
   const [input, setInput] = useState(null);
   const _ref = useCallback((node) => setInput(node));
+  const theme = useTheme();
 
-  const { mark, graphProps, classes, disabled, inputRef: externalInputRef, theme } = props;
+  const { mark, graphProps, disabled, inputRef: externalInputRef } = props;
 
   const [label, setLabel] = useState(mark.label);
   const { correctness, correctnesslabel, correctlabel } = mark;
@@ -156,23 +161,25 @@ export const MarkLabel = (props) => {
 
   const disabledInput = disabled || mark.disabled;
 
-  const renderInput = (inputClass, labelValue) => (
+  const renderInput = (inputStyle, labelValue) => (
     <LabelInput
       _ref={_ref}
       externalInputRef={externalInputRef}
       label={labelValue}
       disabled={disabledInput}
-      inputClassName={cn(inputClass)}
+      inputStyle={inputStyle}
       onChange={onChange}
     />
   );
 
+  const studentInputStyle = getStudentInputStyles();
+
   if (correctness === 'correct' && correctnesslabel === 'correct' && correctlabel) {
     return (
-      <div className={classes.inputCorrect} style={style}>
+      <StyledInputCorrect style={style}>
         <SvgIcon type="correct" />
-        {renderInput(classes.inputStudent, correctlabel)}
-      </div>
+        {renderInput(studentInputStyle, correctlabel)}
+      </StyledInputCorrect>
     );
   }
 
@@ -184,44 +191,41 @@ export const MarkLabel = (props) => {
   if (correctness === 'correct' && correctnesslabel === 'incorrect') {
     return (
       <>
-        <div className={classes.inputIncorrect} style={style}>
+        <StyledInputIncorrect style={style}>
           <SvgIcon type="incorrect" />
           {label === '' ? (
             <SvgIcon type="empty" style={{ marginLeft: '3px' }} />
           ) : (
-            renderInput(classes.inputStudent, label)
+            renderInput(studentInputStyle, label)
           )}
-        </div>
-        <div className={classes.inputMissing} style={secondLabelStyle}>
-          {renderInput(classes.inputStudent, correctlabel)}
-        </div>
+        </StyledInputIncorrect>
+        <StyledInputMissing style={secondLabelStyle}>
+          {renderInput(studentInputStyle, correctlabel)}
+        </StyledInputMissing>
       </>
     );
   }
 
   if (correctness === 'missing') {
     return (
-      <div className={classes.inputMissing} style={style}>
-        {renderInput(classes.inputStudent, label)}
-      </div>
+      <StyledInputMissing style={style}>
+        {renderInput(studentInputStyle, label)}
+      </StyledInputMissing>
     );
   }
 
   if (correctness === 'incorrect') {
     return (
-      <div className={classes.incorrect} style={style}>
-        {renderInput(classes.inputStudent, label)}
-      </div>
+      <StyledIncorrect style={style}>
+        {renderInput(studentInputStyle, label)}
+      </StyledIncorrect>
     );
   }
 
   return (
     <div style={style}>
       {renderInput(
-        cn(classes.input, {
-          [classes.disabled]: disabled,
-          [classes.disabledMark]: mark.disabled,
-        }),
+        getInputStyles(theme, disabled, mark.disabled),
         label,
       )}
     </div>
@@ -232,10 +236,8 @@ MarkLabel.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
   graphProps: types.GraphPropsType,
-  classes: PropTypes.object,
   inputRef: PropTypes.func,
   mark: PropTypes.object,
-  theme: PropTypes.object,
 };
 
-export default withStyles(styles, { withTheme: true })(MarkLabel);
+export default MarkLabel;

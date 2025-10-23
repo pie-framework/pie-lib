@@ -2,22 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
-import { withStyles } from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
+import { styled } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
 import { roundNumber } from './utils';
 
-const styles = (theme) => ({
-  input: {
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.fontSize,
-    borderRadius: '8px',
-    background: theme.palette.common.white,
-    color: color.defaults.PRIMARY_DARK,
-  },
-  inputLabel: {
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
+  fontSize: theme.typography.fontSize,
+  borderRadius: '8px',
+  background: theme.palette.common.white,
+  color: color.defaults.PRIMARY_DARK,
+  '& .MuiInputBase-input': {
     padding: 0,
   },
-});
+}));
 
 export const getLabelPosition = (graphProps, x, y, labelLength) => {
   const { scale, domain, range } = graphProps;
@@ -39,7 +37,7 @@ export const getLabelPosition = (graphProps, x, y, labelLength) => {
   };
 };
 
-export const CoordinatesLabel = ({ x, y, graphProps, classes }) => {
+export const CoordinatesLabel = ({ x, y, graphProps }) => {
   const label = `(${roundNumber(x)}, ${roundNumber(y)})`;
   const labelLength = (label.length || 0) * 6;
   const labelPosition = getLabelPosition(graphProps, x, y, labelLength);
@@ -53,10 +51,8 @@ export const CoordinatesLabel = ({ x, y, graphProps, classes }) => {
   };
 
   return (
-    <InputBase
+    <StyledInputBase
       style={style}
-      classes={{ input: classes.inputLabel }}
-      className={classes.input}
       value={label}
       inputProps={{ ariaLabel: 'naked' }}
     />
@@ -65,9 +61,8 @@ export const CoordinatesLabel = ({ x, y, graphProps, classes }) => {
 
 CoordinatesLabel.propTypes = {
   graphProps: types.GraphPropsType,
-  classes: PropTypes.object,
   x: PropTypes.number,
   y: PropTypes.number,
 };
 
-export default withStyles(styles)(CoordinatesLabel);
+export default CoordinatesLabel;

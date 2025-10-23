@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { ToolPropTypeFields } from '../shared/types';
 import { BasePoint } from '../shared/point';
 import chunk from 'lodash/chunk';
@@ -304,7 +303,7 @@ export class RawBaseComponent extends React.Component {
   }
 }
 
-export const BaseComponent = withStyles(() => ({}))(RawBaseComponent);
+export const BaseComponent = RawBaseComponent;
 
 export default class Component extends React.Component {
   static propTypes = {

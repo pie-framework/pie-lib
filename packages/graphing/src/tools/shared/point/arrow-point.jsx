@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
-import isEqual from 'lodash/isEqual';
 import { getAngleDeg, arrowDimensions } from '../../../utils';
 
 export class RawArrow extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     correctness: PropTypes.string,
     disabled: PropTypes.bool,
-    x: PropTypes.number,
-    y: PropTypes.number,
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
     from: PropTypes.shape({
       x: PropTypes.number,
       y: PropTypes.number,
@@ -30,32 +27,21 @@ export class RawArrow extends React.Component {
   };
 
   render() {
-    const { classes, className, x, y, disabled, correctness, graphProps, from, to, ...rest } = this.props;
-    // x & y are the initial coordinates for the arrow
-    // from & to are used only to calculate the angle that the arrow should be rotated with
-
+    const { className, x, y, disabled, correctness, graphProps, from, to, ...rest } = this.props;
     const { scale } = graphProps;
-    const angle = getAngleDeg(from.x, from.y, to.x, to.y);
 
-    let points = '';
+    const angle = from && to ? getAngleDeg(from.x, from.y, to.x, to.y) : 0;
 
-    if (isEqual(from, to)) {
-      points = '0,0 0,0 0,0';
-    } else {
-      points = `0,0 ${arrowDimensions.vector},${arrowDimensions.vector * 2} 
-      -${arrowDimensions.vector},${arrowDimensions.vector * 2}`;
-    }
+    const points =
+      from && to && (from.x !== to.x || from.y !== to.y)
+        ? `0,0 ${arrowDimensions.vector},${arrowDimensions.vector * 2} -${arrowDimensions.vector},${arrowDimensions.vector * 2}`
+        : '0,0 0,0 0,0';
 
     return (
-      <g
-        className={classNames(classes.point, disabled && classes.disabledSecondary, classes[correctness], className)}
-        {...rest}
-      >
+      <g className={className} {...rest}>
         <polygon
           points={points}
-          transform={`
-          translate(${scale.x(x)}, ${scale.y(y)})
-          rotate(${angle} 0 0)`}
+          transform={`translate(${scale.x(x)}, ${scale.y(y)}) rotate(${angle} 0 0)`}
         />
       </g>
     );

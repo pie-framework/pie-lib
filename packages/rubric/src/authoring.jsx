@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 
 import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,8 +13,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/material/Typography';
 import DragIndicator from '@mui/icons-material/DragIndicator';
-
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import debug from 'debug';
 import takeRight from 'lodash/takeRight';
 import PointMenu from './point-menu';
@@ -315,43 +315,43 @@ export class RawAuthoring extends React.Component {
             <Rubricless />
           ) : (
             <Container>
-          <DragDropContext onDragEnd={this.dragEnd}>
-            <Droppable droppableId="droppable">
-              {(provided) => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {value.points.map(
-                    (p, index) =>
-                      this.shouldRenderPoint(index, value) && (
-                        <Draggable key={`${p.points}-${index}`} index={index} draggableId={index.toString()}>
-                          {(provided) => (
-                            <ConfigHolder
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                            >
-                              <PointConfig
-                                points={value.points.length - 1 - index}
-                                content={p}
-                                error={
-                                  pointsDescriptorsErrors && pointsDescriptorsErrors[value.points.length - 1 - index]
-                                }
-                                sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
-                                onChange={(content) => this.changeContent(index, content, 'points')}
-                                onSampleChange={(content) => this.changeContent(index, content, 'sampleAnswers')}
-                                onMenuChange={(clickedItem) => this.onPointMenuChange(index, clickedItem)}
-                                mathMlOptions={mathMlOptions}
-                                pluginOpts={pluginOpts}
-                              />
-                            </ConfigHolder>
-                          )}
-                        </Draggable>
-                      ),
+              <DragDropContext onDragEnd={this.dragEnd}>
+                <Droppable droppableId="droppable">
+                  {(provided) => (
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                      {value.points.map(
+                        (p, index) =>
+                          this.shouldRenderPoint(index, value) && (
+                            <Draggable key={`${p.points}-${index}`} index={index} draggableId={index.toString()}>
+                              {(provided) => (
+                                <ConfigHolder
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <PointConfig
+                                    points={value.points.length - 1 - index}
+                                    content={p}
+                                    error={
+                                      pointsDescriptorsErrors && pointsDescriptorsErrors[value.points.length - 1 - index]
+                                    }
+                                    sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
+                                    onChange={(content) => this.changeContent(index, content, 'points')}
+                                    onSampleChange={(content) => this.changeContent(index, content, 'sampleAnswers')}
+                                    onMenuChange={(clickedItem) => this.onPointMenuChange(index, clickedItem)}
+                                    mathMlOptions={mathMlOptions}
+                                    pluginOpts={pluginOpts}
+                                  />
+                                </ConfigHolder>
+                              )}
+                            </Draggable>
+                          ),
+                      )}
+                      {provided.placeholder}
+                    </div>
                   )}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+                </Droppable>
+              </DragDropContext>
             </Container>
           )}
         </div>

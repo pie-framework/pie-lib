@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import { ArrowHead } from '../arrow-head';
 import { thinnerShapesNeeded } from '../../../utils';
 
-export default class Arrow extends React.Component {
+export class BaseArrow extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     correctness: PropTypes.string,
     disabled: PropTypes.bool,
@@ -18,8 +16,7 @@ export default class Arrow extends React.Component {
   };
 
   render() {
-    const { classes, angle, className, x, y, disabled, correctness, graphProps, ...rest } = this.props;
-
+    const { className, angle, x, y, disabled, correctness, graphProps, ...rest } = this.props;
     const size = thinnerShapesNeeded(graphProps) ? 12 : 14;
     const { scale } = graphProps;
 
@@ -29,13 +26,10 @@ export default class Arrow extends React.Component {
     const transform = `rotate(${-angle}, ${scaledX},${scaledY})`;
     const points = `${scaledX},${scaledY}
         ${scaledX - size},${scaledY - size / 2}
-        ${scaledX - size}, ${scaledY + size / 2}`;
+        ${scaledX - size},${scaledY + size / 2}`;
 
     return (
-      <g
-        className={classNames(classes.point, disabled && classes.disabledSecondary, classes[correctness], className)}
-        {...rest}
-      >
+      <g className={className} {...rest}>
         <ArrowHead size={size} transform={transform} points={points} />
       </g>
     );

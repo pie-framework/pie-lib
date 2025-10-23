@@ -1,32 +1,25 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import cn from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import AutosizeInput from 'react-input-autosize';
 import { useDebounce } from './use-debounce';
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 
-const styles = (theme) => ({
-  input: {
+const StyledAutosizeInput = styled(AutosizeInput, {
+  shouldForwardProp: (prop) => !['disabled', 'markDisabled'].includes(prop),
+})(({ theme, disabled, markDisabled }) => ({
+  '& input': {
     float: 'right',
-    padding: theme.spacing.unit * 0.5,
+    padding: theme.spacing(0.5),
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
-    border: `solid 1px ${color.defaults.SECONDARY}`,
+    border: `solid 1px ${disabled ? color.defaults.PRIMARY_DARK : markDisabled ? color.disabled() : color.defaults.SECONDARY}`,
     borderRadius: '3px',
-    color: color.defaults.PRIMARY_DARK,
+    color: markDisabled ? color.disabled() : color.defaults.PRIMARY_DARK,
+    background: (disabled || markDisabled) ? theme.palette.background.paper : 'transparent',
   },
-  disabled: {
-    border: `solid 1px ${color.defaults.PRIMARY_DARK}`,
-    background: theme.palette.background.paper,
-  },
-  disabledMark: {
-    border: `solid 1px ${color.disabled()}`,
-    background: theme.palette.background.paper,
-    color: color.disabled(),
-  },
-});
+}));
 
 export const position = (graphProps, mark, rect) => {
   rect = rect || { width: 0, height: 0 };
@@ -73,7 +66,7 @@ export const MarkLabel = (props) => {
   const [input, setInput] = useState(null);
   const _ref = useCallback((node) => setInput(node));
 
-  const { mark, graphProps, classes, disabled, inputRef: externalInputRef, theme } = props;
+  const { mark, graphProps, disabled, inputRef: externalInputRef, theme } = props;
 
   const [label, setLabel] = useState(mark.label);
 
@@ -106,16 +99,13 @@ export const MarkLabel = (props) => {
   const disabledInput = disabled || mark.disabled;
 
   return (
-    <AutosizeInput
+    <StyledAutosizeInput
       inputRef={(r) => {
         _ref(r);
         externalInputRef(r);
       }}
       disabled={disabledInput}
-      inputClassName={cn(classes.input, {
-        [classes.disabled]: disabled,
-        [classes.disabledMark]: mark.disabled,
-      })}
+      markDisabled={mark.disabled}
       value={label}
       style={style}
       onChange={onChange}
@@ -127,10 +117,9 @@ MarkLabel.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
   graphProps: types.GraphPropsType,
-  classes: PropTypes.object,
   inputRef: PropTypes.func,
   mark: PropTypes.object,
   theme: PropTypes.object,
 };
 
-export default withStyles(styles, { withTheme: true })(MarkLabel);
+export default MarkLabel;

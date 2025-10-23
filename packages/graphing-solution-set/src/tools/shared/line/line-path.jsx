@@ -1,16 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { types } from '@pie-lib/plot';
-import classNames from 'classnames';
 import { disabled, correct, incorrect, missing } from '../styles';
 import * as vx from '@vx/shape';
 import { color } from '@pie-lib/render-ui';
 
+const dragging = () => ({
+  strokeWidth: 7,
+  stroke: color.defaults.BLACK,
+});
+
+const StyledDrawLine = styled(vx.LinePath, {
+  shouldForwardProp: (prop) => !['disabled', 'correctness'].includes(prop),
+})(({ disabled: isDisabled, correctness }) => ({
+  fill: 'none',
+  strokeWidth: 2,
+  stroke: color.secondaryLight(),
+  ...(isDisabled && {
+    ...disabled('stroke'),
+    strokeWidth: 2,
+  }),
+  ...(correctness === 'correct' && correct('stroke')),
+  ...(correctness === 'incorrect' && incorrect('stroke')),
+  ...(correctness === 'missing' && missing('stroke')),
+}));
+
+const StyledInteractionLine = styled(vx.LinePath, {
+  shouldForwardProp: (prop) => !['disabled', 'correctness', 'isDragging'].includes(prop),
+})(({ disabled: isDisabled, correctness, isDragging }) => ({
+  strokeWidth: 6,
+  fill: 'none',
+  transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
+  stroke: 'transparent',
+  '&:hover': dragging(),
+  ...(isDragging && dragging()),
+  ...(isDisabled && {
+    ...disabled('stroke'),
+    strokeWidth: 2,
+  }),
+  ...(correctness === 'correct' && correct('stroke')),
+  ...(correctness === 'incorrect' && incorrect('stroke')),
+  ...(correctness === 'missing' && missing('stroke')),
+}));
+
 export class RawLinePath extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    classes: PropTypes.object,
     data: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
     graphProps: types.GraphPropsType.isRequired,
     disabled: PropTypes.bool,
@@ -27,25 +63,24 @@ export class RawLinePath extends React.Component {
 
   render() {
     /* eslint-disable no-unused-vars */
-    const { data, classes, className, disabled, correctness, from, to, graphProps, isDragging, ...rest } = this.props;
+    const { data, className, disabled, correctness, from, to, graphProps, isDragging, ...rest } = this.props;
     /* eslint-enable */
 
     return (
       <React.Fragment>
-        <vx.LinePath
+        <StyledDrawLine
           data={data}
-          className={classNames(classes.drawLine, disabled && classes.disabled, classes[correctness], className)}
+          disabled={disabled}
+          correctness={correctness}
+          className={className}
           {...rest}
         />
-        <vx.LinePath
+        <StyledInteractionLine
           data={data}
-          className={classNames(
-            classes.line,
-            isDragging && classes.dragging,
-            disabled && classes.disabled,
-            classes[correctness],
-            className,
-          )}
+          isDragging={isDragging}
+          disabled={disabled}
+          correctness={correctness}
+          className={className}
           {...rest}
         />
       </React.Fragment>
@@ -53,36 +88,4 @@ export class RawLinePath extends React.Component {
   }
 }
 
-const dragging = () => ({
-  strokeWidth: 7,
-  stroke: color.defaults.BLACK,
-});
-
-export const LinePath = withStyles((theme) => ({
-  drawLine: {
-    fill: 'none',
-    strokeWidth: 2,
-    stroke: color.secondaryLight(),
-  },
-  line: {
-    strokeWidth: 6,
-    fill: 'none',
-    transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
-    stroke: 'transparent',
-    '&:hover': dragging(theme),
-  },
-  dragging: dragging(theme),
-  disabled: {
-    ...disabled('stroke'),
-    strokeWidth: 2,
-  },
-  correct: {
-    ...correct('stroke'),
-  },
-  incorrect: {
-    ...incorrect('stroke'),
-  },
-  missing: {
-    ...missing('stroke'),
-  },
-}))(RawLinePath);
+export const LinePath = RawLinePath;
