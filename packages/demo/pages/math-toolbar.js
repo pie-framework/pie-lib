@@ -5,7 +5,7 @@ import withRoot from '../source/withRoot';
 let MathToolbar;
 
 if (typeof window !== 'undefined') {
-  MathToolbarPackage = require('@pie-lib/math-toolbar');
+  const MathToolbarPackage = require('@pie-lib/math-toolbar');
   MathToolbar = MathToolbarPackage.MathToolbar;
 }
 
