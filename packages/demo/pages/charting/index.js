@@ -43,7 +43,7 @@ export class ChartDemo extends React.Component {
         },
       },
       model: {
-        chartType: 'bar',
+        chartType: 'lineDot',
         title: 'This is a chart!',
         domain: {
           label: 'Fruits',
@@ -66,16 +66,50 @@ export class ChartDemo extends React.Component {
           createCategory('Melons', 4),
         ],
         charts: [
-          // chartTypes.Bar(),
-          // chartTypes.Histogram(),
-          // chartTypes.LineDot(),
-          // chartTypes.LineCross(),
-          // chartTypes.DotPlot(),
-          // chartTypes.LinePlot(),
+          chartTypes.Bar(),
+          chartTypes.Histogram(),
+          chartTypes.LineDot(),
+          chartTypes.LineCross(),
+          chartTypes.DotPlot(),
+          chartTypes.LinePlot(),
         ],
         editCategoryEnabled: true,
         addCategoryEnabled: true,
         categoryDefaultLabel: 'Category',
+        correctAnswer: {
+          data: [
+            {
+              label: 'Apples', value: 5, interactive: true,
+              editable: true,
+              deletable: true
+            },
+            {
+              label: 'Grapes', value: 2, interactive: true,
+              editable: true,
+              deletable: true
+            },
+            {
+              label: 'Lemons', value: 1, interactive: true,
+              editable: true,
+              deletable: true
+            },
+            {
+              label: 'Plums', value: 4, interactive: true,
+              editable: true,
+              deletable: true
+            },
+            {
+              label: 'Peaches', value: 1, interactive: true,
+              editable: true,
+              deletable: true
+            },
+            {
+              label: 'Melons', value: 1, interactive: true,
+              editable: true,
+              deletable: true
+            },
+          ],
+        }
       },
     };
   }
@@ -98,6 +132,14 @@ export class ChartDemo extends React.Component {
     this.setState({ model });
   };
 
+  mapCorrectData = (data) => {
+    return data.map((dataPoint) => ({
+      ...dataPoint,
+      interactive: false,
+      editable: false,
+    }));
+  };
+
   render() {
     const { model, settings, mounted } = this.state;
 
@@ -111,19 +153,19 @@ export class ChartDemo extends React.Component {
             <Options model={model} onChange={this.change} />
           </div>
           <div>
-            {/* <Chart
+            <Chart
               chartType={model.chartType}
               size={settings.size}
               domain={model.domain}
               range={model.range}
               charts={model.charts}
-              data={model.data}
+              data={model.displayWithCorrectness ? this.mapCorrectData(model.correctAnswer.data) : model.data}
               title={model.title}
               onDataChange={this.changeData}
               editCategoryEnabled={model.editCategoryEnabled}
               addCategoryEnabled={model.addCategoryEnabled}
               categoryDefaultLabel={model.categoryDefaultLabel}
-            /> */}
+            />
           </div>
         </DemoContainer>
       </div>

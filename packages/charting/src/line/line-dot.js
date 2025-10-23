@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
@@ -8,12 +8,23 @@ import { dataToXBand } from '../utils';
 import RawLine from './common/line';
 import { CorrectnessIndicator, SmallCorrectPointIndicator } from '../common/correctness-indicators';
 
+
+const StyledHandle = styled('circle')(({ correctness, interactive }) => ({
+}));
+
+
+const StyledTransparentHandle = styled('circle')(() => ({
+  height: '20px',
+  fill: 'transparent', // keep it invisible
+  stroke: 'none',
+  pointerEvents: 'auto', // allow drag events
+}));
+
 const DraggableComponent = ({
   scale,
   x,
   y,
   className,
-  classes,
   r,
   correctness,
   interactive,
@@ -25,20 +36,28 @@ const DraggableComponent = ({
   const allowRolloverEvent = !correctness && interactive;
 
   return (
-    <g onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-      <circle
+    <g
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
+    >
+      <StyledTransparentHandle
         cx={scale.x(x)}
         cy={scale.y(y)}
         r={r * 3}
-        className={classNames(classes.transparentHandle, className)}
-        pointerEvents={correctness ? 'none' : ''}
+        className={className}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         {...rest}
       />
-      <circle
+      <StyledHandle
         cx={scale.x(x)}
         cy={scale.y(y)}
         r={r}
-        className={classNames(className, classes.handle, correctness && !interactive && classes.disabledPoint)}
+        className={className}
+        correctness={correctness}
+        interactive={interactive}
         {...rest}
       />
       {/* show correctness indicators */}
@@ -46,7 +65,6 @@ const DraggableComponent = ({
         scale={scale}
         x={x}
         y={y}
-        classes={classes}
         r={r}
         correctness={correctness}
         interactive={interactive}
@@ -58,7 +76,6 @@ const DraggableComponent = ({
         x={x}
         r={r}
         correctness={correctness}
-        classes={classes}
         correctData={correctData}
         label={label}
       />
@@ -85,11 +102,13 @@ DraggableComponent.propTypes = {
   y: PropTypes.number,
   r: PropTypes.number,
   className: PropTypes.string,
-  classes: PropTypes.object,
   correctness: PropTypes.shape({
     value: PropTypes.string,
     label: PropTypes.string,
   }),
+  interactive: PropTypes.bool,
+  correctData: PropTypes.array,
+  label: PropTypes.string,
 };
 
 export class LineDot extends React.Component {

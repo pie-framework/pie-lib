@@ -1,28 +1,62 @@
 import React from 'react';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import Check from '@mui/icons-material/Check';
 import Close from '@mui/icons-material/Close';
+import { color as enumColor } from '@pie-lib/render-ui';
 
-export const CorrectnessIndicator = ({ scale, x, y, classes, r, correctness, interactive }) => {
+const StyledCorrectIcon = styled(Check)(({ theme }) => ({
+  borderRadius: theme.spacing(2),
+  color: enumColor.defaults.WHITE,
+  fontSize: '16px',
+  padding: '2px',
+  border: `4px solid ${enumColor.defaults.WHITE}`,
+  width: '16px',
+  height: '16px',
+  boxSizing: 'unset', // to override the default border-box in IBX
+  backgroundColor: enumColor.correct(),
+  '&.small': {
+    fontSize: '10px',
+    width: '10px',
+    height: '10px',
+  },
+}));
+
+const StyledIncorrectIcon = styled(Close)(({ theme }) => ({
+  borderRadius: theme.spacing(2),
+  color: enumColor.defaults.WHITE,
+  fontSize: '16px',
+  padding: '2px',
+  border: `4px solid ${enumColor.defaults.WHITE}`,
+  width: '16px',
+  height: '16px',
+  boxSizing: 'unset', // to override the default border-box in IBX
+  backgroundColor: enumColor.incorrectWithIcon(),
+  '&.small': {
+    fontSize: '10px',
+    width: '10px',
+    height: '10px',
+  },
+}));
+
+export const CorrectnessIndicator = ({ scale, x, y, r, correctness, interactive }) => {
   if (!correctness || !interactive) return null;
   const cx = scale ? scale.x(x) : x;
   const cy = scale ? scale.y(y) : y;
   const isCorrect = correctness.value === 'correct';
-  const iconClass = isCorrect ? classes.correctIcon : classes.incorrectIcon;
 
   // the icon is 16px + 2px padding + 1px border, so total size is 22px
   return (
     <foreignObject x={cx - 11} y={cy - 11} width={22} height={22}>
       {isCorrect ? (
-        <Check className={classNames(classes.correctnessIcon, iconClass)} title={correctness.label} />
+        <StyledCorrectIcon title={correctness.label} />
       ) : (
-        <Close className={classNames(classes.correctnessIcon, iconClass)} title={correctness.label} />
+        <StyledIncorrectIcon title={correctness.label} />
       )}
     </foreignObject>
   );
 };
 
-export const SmallCorrectPointIndicator = ({ scale, x, r, correctness, classes, correctData, label }) => {
+export const SmallCorrectPointIndicator = ({ scale, x, r, correctness, correctData, label }) => {
   if (correctness && correctness.value === 'incorrect') {
     const correctVal = parseFloat(correctData.find((d) => d.label === label)?.value);
     if (isNaN(correctVal)) return null;
@@ -33,8 +67,8 @@ export const SmallCorrectPointIndicator = ({ scale, x, r, correctness, classes, 
     // small circle has 10px font + 2px padding + 1px border, so total size is 15px
     return (
       <foreignObject x={xToRender} y={yToRender} width={15} height={15}>
-        <Check
-          className={classNames(classes.correctnessIcon, classes.correctIcon, classes.smallIcon)}
+        <StyledCorrectIcon
+          className="small"
           title={correctness.label}
         />
       </foreignObject>
@@ -44,12 +78,12 @@ export const SmallCorrectPointIndicator = ({ scale, x, r, correctness, classes, 
   return null;
 };
 
-export const TickCorrectnessIndicator = ({ classes, correctness, interactive }) => {
+export const TickCorrectnessIndicator = ({ correctness, interactive }) => {
   if (!correctness || !interactive) return null;
 
   return correctness.value === 'correct' ? (
-    <Check className={classNames(classes.correctnessIcon, classes.correctIcon)} title={correctness.label} />
+    <StyledCorrectIcon title={correctness.label} />
   ) : (
-    <Close className={classNames(classes.correctnessIcon, classes.incorrectIcon)} title={correctness.label} />
+    <StyledIncorrectIcon title={correctness.label} />
   );
 };

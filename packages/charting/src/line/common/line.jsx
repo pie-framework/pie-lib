@@ -23,11 +23,17 @@ const getData = (data, domain) => {
   }));
 };
 
+const StyledLinePath = styled(LinePath)(() => ({
+  fill: 'transparent',
+  stroke: color.defaults.TERTIARY,
+  strokeWidth: 3,
+  transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
+}));
+
 export class RawLine extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.number,
-    classes: PropTypes.object,
     label: PropTypes.string,
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
@@ -78,18 +84,19 @@ export class RawLine extends React.Component {
   };
 
   render() {
-    const { graphProps, data, classes, CustomDraggableComponent, defineChart, correctData } = this.props;
+    const { graphProps, data, CustomDraggableComponent, defineChart, correctData } = this.props;
     const { line: lineState, dragging } = this.state;
     const { scale } = graphProps;
     const lineToUse = dragging ? lineState : getData(data, graphProps.domain);
 
+    console.log('defineChart', lineToUse);
     return (
       <React.Fragment>
-        <LinePath
+        <StyledLinePath
           data={lineToUse}
           x={(d) => scale.x(d.x)}
           y={(d) => scale.y(d.dragValue !== undefined ? d.dragValue : d.y)}
-          className={classes.line}
+          className="line"
         />
         {lineToUse &&
           lineToUse.map((point, i) => {
@@ -97,6 +104,8 @@ export class RawLine extends React.Component {
             const enableDraggable = defineChart || point.interactive;
             const Component = enableDraggable ? DraggableHandle : DragHandle;
 
+            console.log('point', point);
+            
             return (
               <Component
                 key={`point-${point.x}-${i}`}

@@ -7,7 +7,8 @@ import { gridDraggable, utils, types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { disabled } from '../../common/styles';
 
-const StyledDragHandle = styled('div')(({ theme }) => ({
+const StyledDragHandle = styled('g')(({ theme }) => ({
+  color: 'black',
   '& .handle': {
     transition: 'fill 200ms linear, height 200ms linear',
     '&.non-interactive': disabled('fill'),

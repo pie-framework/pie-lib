@@ -6,9 +6,17 @@ import { types } from '@pie-lib/plot';
 import { dataToXBand } from '../utils';
 import Plot from './common/plot';
 import { color } from '@pie-lib/render-ui';
+import { styled } from '@mui/material/styles';
+import { correct, incorrect } from '../common/styles';
+
+const StyledCircle = styled(Circle)(() => ({
+  fill: color.visualElementsColors.PLOT_FILL_COLOR,
+  '&.correct': correct('stroke'),
+  '&.incorrect': incorrect('stroke'),
+}));
 
 const CustomBarElement = (props) => {
-  const { index, pointDiameter, barX, barWidth, pointHeight, label, value, classes, scale, dottedOverline } = props;
+  const { index, pointDiameter, barX, barWidth, pointHeight, label, value, scale, dottedOverline } = props;
 
   const r = pointDiameter / 2;
   const cx = barX + (barWidth - pointDiameter) / 2 + r;
@@ -26,7 +34,7 @@ const CustomBarElement = (props) => {
       fill="none"
     />
   ) : (
-    <Circle key={`point-${label}-${value}-${index}`} className={classes.dot} cx={cx} cy={cy} r={r} />
+    <StyledCircle key={`point-${label}-${value}-${index}`} cx={cx} cy={cy} r={r} />
   );
 };
 
@@ -38,7 +46,6 @@ CustomBarElement.propTypes = {
   pointHeight: PropTypes.number,
   value: PropTypes.number,
   label: PropTypes.string,
-  classes: PropTypes.object,
   scale: PropTypes.object,
   dottedOverline: PropTypes.bool,
 };

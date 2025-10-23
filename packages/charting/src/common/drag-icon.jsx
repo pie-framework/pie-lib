@@ -1,7 +1,7 @@
 import React from 'react';
 import { getAdjustedX, getScale } from '../utils';
 
-const DragIcon = ({ width, scaleValue, color, classes }) => (
+const DragIcon = ({ width, scaleValue, color }) => (
   <svg
     x={getAdjustedX(width, scaleValue)}
     y={getScale(width)?.deltay}
@@ -10,7 +10,7 @@ const DragIcon = ({ width, scaleValue, color, classes }) => (
     height={width}
     overflow="visible"
     viewBox={`0 0 ${width} ${width}`}
-    className={classes.svgOverflowVisible}
+    style={{ overflow: 'visible !important' }}
   >
     <g xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" transform={`scale(${scaleValue})`}>
       <circle cx="28.5" cy="23.5" r="22" fill="white" stroke="currentColor" />

@@ -169,6 +169,7 @@ export const MarkLabel = (props) => {
             _ref(r);
             externalInputRef(r);
           }}
+          name='mark-label-input'
           autoFocus={isEditing || autoFocus}
           disabled={disabled}
           inputClassName={classNames(
@@ -183,6 +184,7 @@ export const MarkLabel = (props) => {
             boxSizing: 'border-box',
             paddingLeft: 0,
             paddingRight: 0,
+            border: 'none',
             ...extraStyle,
           }}
           value={label}
