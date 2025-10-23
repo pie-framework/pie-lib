@@ -1,27 +1,26 @@
 import FeedbackSelector, { FeedbackType } from './feedback-selector';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { styled } from '@mui/material/styles';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import merge from 'lodash/merge';
 
 export { FeedbackSelector };
 
-const style = {
-  feedbackContainer: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-  },
-  panelDetails: {
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-};
+const StyledFeedbackContainer = styled('div')(() => ({
+  display: 'flex',
+  flex: 1,
+  flexDirection: 'column',
+}));
+
+const StyledAccordionDetails = styled(AccordionDetails)(() => ({
+  paddingTop: 0,
+  paddingBottom: 0,
+}));
 
 export const buildDefaults = (input) => {
   return merge(
@@ -45,7 +44,6 @@ export class FeedbackConfig extends React.Component {
       partial: PropTypes.shape(FeedbackType),
     }),
     onChange: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
     toolbarOpts: PropTypes.object,
   };
 
@@ -68,17 +66,17 @@ export class FeedbackConfig extends React.Component {
   onPartialChange = this.onChange.bind(this, 'partial');
 
   render() {
-    const { classes, className, allowPartial, feedback, toolbarOpts } = this.props;
+    const { className, allowPartial, feedback, toolbarOpts } = this.props;
 
     return (
       <div className={className}>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>Feedback</Typography>
-          </ExpansionPanelSummary>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>Feedback</Typography>
+          </AccordionSummary>
 
-          <ExpansionPanelDetails className={classes.panelDetails}>
-            <div className={classes.feedbackContainer}>
+          <StyledAccordionDetails>
+            <StyledFeedbackContainer>
               <FeedbackSelector
                 label="If correct, show"
                 feedback={feedback.correct}
@@ -101,12 +99,12 @@ export class FeedbackConfig extends React.Component {
                 onChange={this.onIncorrectChange}
                 toolbarOpts={toolbarOpts}
               />
-            </div>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+            </StyledFeedbackContainer>
+          </StyledAccordionDetails>
+        </Accordion>
       </div>
     );
   }
 }
 
-export default withStyles(style)(FeedbackConfig);
+export default FeedbackConfig;

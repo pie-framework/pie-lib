@@ -1,22 +1,15 @@
 import React from 'react';
 import Measure from 'react-measure';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { withContentRect } from 'react-measure';
-import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import LayoutContents from './layout-contents';
 import SettingsBox from './settings-box';
 import { AppendCSSRules } from '@pie-lib/render-ui';
 
-const styles = {
-  extraCSSRules: {},
-};
-
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
-    // In MUI v3, this opts into the h1–h6 variants; otherwise use display1/headline/etc.
-    useNextVariants: true,
     fontFamily: 'inherit',
   },
 });
@@ -25,7 +18,6 @@ class MeasuredConfigLayout extends AppendCSSRules {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
     className: PropTypes.string,
-    classes: PropTypes.object,
     dimensions: PropTypes.object,
     settings: PropTypes.element,
     sidePanelMinWidth: PropTypes.number,
@@ -56,31 +48,32 @@ class MeasuredConfigLayout extends AppendCSSRules {
 
   render() {
     return (
-      <MuiThemeProvider theme={theme}>
-        <Measure bounds onResize={this.onResize}>
-          {({ measureRef }) => {
-            const { children, settings, hideSettings, dimensions, classes } = this.props;
-            const { layoutMode } = this.state;
+      <StyledEngineProvider injectFirst>(<ThemeProvider theme={theme}>
+            <Measure bounds onResize={this.onResize}>
+              {({ measureRef }) => {
+                const { children, settings, hideSettings, dimensions } = this.props;
+                const { layoutMode } = this.state;
 
-            const settingsPanel =
-              layoutMode === 'inline' ? <SettingsBox className="settings-box">{settings}</SettingsBox> : settings;
-            const secondaryContent = hideSettings ? null : settingsPanel;
-            const finalClass = classNames('main-container', classes.extraCSSRules);
+                const settingsPanel =
+                  layoutMode === 'inline' ? <SettingsBox className="settings-box">{settings}</SettingsBox> : settings;
+                const secondaryContent = hideSettings ? null : settingsPanel;
+                const finalClass = classNames('main-container');
 
-            return (
-              <div ref={measureRef} className={finalClass}>
-                <LayoutContents mode={layoutMode} secondary={secondaryContent} dimensions={dimensions}>
-                  {children}
-                </LayoutContents>
-              </div>
-            );
-          }}
-        </Measure>
-      </MuiThemeProvider>
+                return (
+                  <div ref={measureRef} className={finalClass}>
+                    <LayoutContents mode={layoutMode} secondary={secondaryContent} dimensions={dimensions}>
+                      {children}
+                    </LayoutContents>
+                  </div>
+                );
+              }}
+            </Measure>
+          </ThemeProvider>)
+              </StyledEngineProvider>
     );
   }
 }
 
-const ConfigLayout = withStyles(styles)(withContentRect('bounds')(MeasuredConfigLayout));
+const ConfigLayout = withContentRect('bounds')(MeasuredConfigLayout);
 
 export default ConfigLayout;

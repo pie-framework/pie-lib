@@ -1,117 +1,179 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import ActionDelete from '@material-ui/icons/Delete';
-import ArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
-import IconButton from '@material-ui/core/IconButton';
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import ActionDelete from '@mui/icons-material/Delete';
+import ArrowRight from '@mui/icons-material/SubdirectoryArrowRight';
+import IconButton from '@mui/material/IconButton';
 import classNames from 'classnames';
 import { InputContainer } from '@pie-lib/render-ui';
-import EditableHtml from '@pie-lib/editable-html';
+// import EditableHtml from '@pie-lib/editable-html';
 import { InputCheckbox, InputRadio } from '../inputs';
 import FeedbackMenu from './feedback-menu';
 
-const EditableHtmlContainer = withStyles((theme) => ({
-  labelContainer: {},
-  editorHolder: {
-    marginTop: theme.spacing.unit * 2,
-  },
-}))(
-  ({
-    label,
-    classes,
-    onChange,
-    value,
-    className,
-    imageSupport,
-    disableImageAlignmentButtons,
-    disabled,
-    spellCheck,
-    nonEmpty,
-    pluginOpts,
-    toolbarOpts,
-    error,
-    maxImageWidth,
-    maxImageHeight,
-    uploadSoundSupport,
-    mathMlOptions = {},
-  }) => {
-    const names = classNames(classes.labelContainer, className);
+// - mathquill error window not defined
+let EditableHtml;
+if (typeof window !== 'undefined') {
+  EditableHtml = require('@pie-lib/editable-html')['default'];
+}
 
-    return (
-      <InputContainer label={label} className={names}>
-        <div className={classes.editorHolder}>
-          <EditableHtml
-            markup={value || ''}
-            disabled={disabled}
-            spellCheck={spellCheck}
-            nonEmpty={nonEmpty}
-            onChange={onChange}
-            imageSupport={imageSupport}
-            disableImageAlignmentButtons={disableImageAlignmentButtons}
-            className={classes.editor}
-            pluginProps={pluginOpts || {}}
-            toolbarOpts={toolbarOpts}
-            error={error}
-            maxImageWidth={maxImageWidth}
-            maxImageHeight={maxImageHeight}
-            uploadSoundSupport={uploadSoundSupport}
-            languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
-            mathMlOptions={mathMlOptions}
-          />
-        </div>
-      </InputContainer>
-    );
-  },
-);
+const StyledEditorHolder = styled('div')(({ theme }) => ({
+  marginTop: theme.spacing(2),
+}));
 
-const Feedback = withStyles((theme) => ({
-  text: {
-    width: '100%',
-  },
-  feedbackContainer: {
-    position: 'relative',
-  },
-  arrowIcon: {
-    fill: theme.palette.grey[400],
-    left: -56,
-    position: 'absolute',
-    top: 20,
-  },
-}))(({ value, onChange, type, correct, classes, defaults, toolbarOpts, mathMlOptions = {} }) => {
+const EditableHtmlContainer = ({
+  label,
+  onChange,
+  value,
+  className,
+  imageSupport,
+  disableImageAlignmentButtons,
+  disabled,
+  spellCheck,
+  nonEmpty,
+  pluginOpts,
+  toolbarOpts,
+  error,
+  maxImageWidth,
+  maxImageHeight,
+  uploadSoundSupport,
+  mathMlOptions = {},
+}) => {
+  const names = classNames(className);
+
+  return (
+    <InputContainer label={label} className={names}>
+      <StyledEditorHolder>
+        <EditableHtml
+          markup={value || ''}
+          disabled={disabled}
+          spellCheck={spellCheck}
+          nonEmpty={nonEmpty}
+          onChange={onChange}
+          imageSupport={imageSupport}
+          disableImageAlignmentButtons={disableImageAlignmentButtons}
+          pluginProps={pluginOpts || {}}
+          toolbarOpts={toolbarOpts}
+          error={error}
+          maxImageWidth={maxImageWidth}
+          maxImageHeight={maxImageHeight}
+          uploadSoundSupport={uploadSoundSupport}
+          languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
+          mathMlOptions={mathMlOptions}
+        />
+      </StyledEditorHolder>
+    </InputContainer>
+  );
+};
+
+const StyledFeedbackContainer = styled('div')(() => ({
+  position: 'relative',
+}));
+
+const StyledArrowIcon = styled(ArrowRight)(({ theme }) => ({
+  fill: theme.palette.grey[400],
+  left: -56,
+  position: 'absolute',
+  top: 20,
+}));
+
+const StyledTextField = styled(TextField)(() => ({
+  width: '100%',
+}));
+
+const StyledEditableHtmlContainer = styled(EditableHtmlContainer)(() => ({
+  width: '100%',
+}));
+
+const Feedback = ({ value, onChange, type, correct, defaults, toolbarOpts, mathMlOptions = {} }) => {
   if (!type || type === 'none') {
     return null;
   } else if (type === 'default') {
     return (
-      <div className={classes.feedbackContainer}>
-        <ArrowRight className={classes.arrowIcon} />
-        <TextField
-          className={classes.text}
+      <StyledFeedbackContainer>
+        <StyledArrowIcon />
+        <StyledTextField
           label="Feedback Text"
           value={correct ? defaults.correct : defaults.incorrect}
         />
-      </div>
+      </StyledFeedbackContainer>
     );
   } else {
     return (
-      <div className={classes.feedbackContainer}>
-        <ArrowRight className={classes.arrowIcon} />
-        <EditableHtmlContainer
-          className={classes.text}
+      <StyledFeedbackContainer>
+        <StyledArrowIcon />
+        <StyledEditableHtmlContainer
           label="Feedback Text"
           value={value}
           onChange={onChange}
           toolbarOpts={toolbarOpts}
           mathMlOptions={mathMlOptions}
         />
-      </div>
+      </StyledFeedbackContainer>
     );
   }
-});
+};
+
+const StyledIndex = styled('span')(({ theme }) => ({
+  paddingRight: theme.spacing(1),
+  paddingTop: theme.spacing(3.5),
+}));
+
+const StyledTopRow = styled('div')(() => ({
+  display: 'flex',
+}));
+
+const StyledToggle = styled('div')(({ theme }) => ({
+  flex: '0 1 auto',
+  paddingTop: theme.spacing(0.5),
+  paddingBottom: 0,
+  marginRight: 0,
+  marginLeft: theme.spacing(1),
+}));
+
+const StyledFeedback = styled('div')(({ theme }) => ({
+  flex: '0 1 auto',
+  paddingTop: theme.spacing(2),
+  paddingLeft: 0,
+  marginLeft: 0,
+  marginRight: theme.spacing(1),
+}));
+
+const StyledFeedbackIcon = styled('div')(() => ({
+  margin: 0,
+  width: 'inherit',
+}));
+
+const StyledDeleteIcon = styled('div')(() => ({
+  margin: 0,
+  width: 'inherit',
+}));
+
+const StyledDelete = styled('div')(({ theme }) => ({
+  flex: '0 1 auto',
+  paddingTop: theme.spacing(2),
+  paddingLeft: 0,
+  marginLeft: 0,
+}));
+
+const StyledMiddleColumn = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flex: 1,
+  flexDirection: 'column',
+  marginRight: theme.spacing(1),
+}));
+
+const StyledInput = styled('div')(() => ({
+  marginRight: 0,
+}));
+
+const StyledErrorText = styled('div')(({ theme }) => ({
+  fontSize: theme.typography.fontSize - 2,
+  color: theme.palette.error.main,
+}));
 
 export class ChoiceConfiguration extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     noLabels: PropTypes.bool,
     useLetterOrdering: PropTypes.bool,
     className: PropTypes.string,
@@ -201,7 +263,6 @@ export class ChoiceConfiguration extends React.Component {
   render() {
     const {
       data,
-      classes,
       mode,
       onDelete,
       defaultFeedback,
@@ -227,45 +288,47 @@ export class ChoiceConfiguration extends React.Component {
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
-    const names = classNames(classes.choiceConfiguration, className);
+    const names = classNames(className);
 
     return (
       <div className={names}>
-        <div className={classes.topRow}>
+        <StyledTopRow>
           {index > 0 && (
-            <span className={classes.index} type="title">
+            <StyledIndex type="title">
               {useLetterOrdering ? String.fromCharCode(96 + index).toUpperCase() : index}
-            </span>
+            </StyledIndex>
           )}
 
-          <InputToggle
-            className={classes.toggle}
-            onChange={this.onCheckedChange}
-            label={!noLabels ? 'Correct' : ''}
-            checked={!!data.correct}
-            error={noCorrectAnswerError}
-          />
-
-          <div className={classes.middleColumn}>
-            <EditableHtmlContainer
-              className={classes.input}
-              label={!noLabels ? 'Label' : ''}
-              value={data.label}
-              onChange={this.onLabelChange}
-              imageSupport={imageSupport}
-              disableImageAlignmentButtons={disableImageAlignmentButtons}
-              disabled={disabled}
-              spellCheck={spellCheck}
-              nonEmpty={nonEmpty}
-              pluginOpts={pluginOpts}
-              toolbarOpts={toolbarOpts}
-              error={error}
-              uploadSoundSupport={uploadSoundSupport}
-              mathMlOptions={mathMlOptions}
-              maxImageWidth={maxImageWidth}
-              maxImageHeight={maxImageHeight}
+          <StyledToggle>
+            <InputToggle
+              onChange={this.onCheckedChange}
+              label={!noLabels ? 'Correct' : ''}
+              checked={!!data.correct}
+              error={noCorrectAnswerError}
             />
-            {error && <div className={classes.errorText}>{error}</div>}
+          </StyledToggle>
+
+          <StyledMiddleColumn>
+            <StyledInput>
+              <EditableHtmlContainer
+                label={!noLabels ? 'Label' : ''}
+                value={data.label}
+                onChange={this.onLabelChange}
+                imageSupport={imageSupport}
+                disableImageAlignmentButtons={disableImageAlignmentButtons}
+                disabled={disabled}
+                spellCheck={spellCheck}
+                nonEmpty={nonEmpty}
+                pluginOpts={pluginOpts}
+                toolbarOpts={toolbarOpts}
+                error={error}
+                uploadSoundSupport={uploadSoundSupport}
+                mathMlOptions={mathMlOptions}
+                maxImageWidth={maxImageWidth}
+                maxImageHeight={maxImageHeight}
+              />
+            </StyledInput>
+            {error && <StyledErrorText>{error}</StyledErrorText>}
 
             {allowFeedBack && (
               <Feedback
@@ -276,90 +339,39 @@ export class ChoiceConfiguration extends React.Component {
                 toolbarOpts={toolbarOpts}
               />
             )}
-          </div>
+          </StyledMiddleColumn>
 
           {allowFeedBack && (
-            <InputContainer className={classes.feedback} label={!noLabels ? 'Feedback' : ''}>
-              <FeedbackMenu
-                onChange={this.onFeedbackTypeChange}
-                value={data.feedback}
-                classes={{
-                  icon: classes.feedbackIcon,
-                }}
-              />
-            </InputContainer>
+            <StyledFeedback>
+              <InputContainer label={!noLabels ? 'Feedback' : ''}>
+                <StyledFeedbackIcon>
+                  <FeedbackMenu
+                    onChange={this.onFeedbackTypeChange}
+                    value={data.feedback}
+                  />
+                </StyledFeedbackIcon>
+              </InputContainer>
+            </StyledFeedback>
           )}
 
           {allowDelete && (
-            <InputContainer className={classes.delete} label={!noLabels ? 'Delete' : ''}>
-              <IconButton aria-label="delete" className={classes.deleteIcon} onClick={onDelete}>
-                <ActionDelete />
-              </IconButton>
-            </InputContainer>
+            <StyledDelete>
+              <InputContainer label={!noLabels ? 'Delete' : ''}>
+                <StyledDeleteIcon>
+                  <IconButton
+                    aria-label="delete"
+                    onClick={onDelete}
+                    size="large">
+                    <ActionDelete />
+                  </IconButton>
+                </StyledDeleteIcon>
+              </InputContainer>
+            </StyledDelete>
           )}
-        </div>
+        </StyledTopRow>
       </div>
     );
   }
 }
 
-const styles = (theme) => ({
-  index: {
-    paddingRight: theme.spacing.unit,
-    paddingTop: theme.spacing.unit * 3.5,
-  },
-  choiceConfiguration: {},
-  topRow: {
-    display: 'flex',
-  },
-  value: {
-    flex: '0.5',
-    paddingRight: theme.spacing.unit,
-  },
-  editorHolder: {
-    marginTop: theme.spacing.unit * 2,
-  },
-  toggle: {
-    flex: '0 1 auto',
-    paddingTop: theme.spacing.unit / 2,
-    paddingBottom: 0,
-    marginRight: 0,
-    marginLeft: theme.spacing.unit,
-  },
-  feedback: {
-    flex: '0 1 auto',
-    paddingTop: theme.spacing.unit * 2,
-    paddingLeft: 0,
-    marginLeft: 0,
-    marginRight: theme.spacing.unit,
-  },
-  feedbackIcon: {
-    margin: 0,
-    width: 'inherit',
-  },
-  deleteIcon: {
-    margin: 0,
-    width: 'inherit',
-  },
-  delete: {
-    flex: '0 1 auto',
-    paddingTop: theme.spacing.unit * 2,
-    paddingLeft: 0,
-    marginLeft: 0,
-  },
-  middleColumn: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    marginRight: theme.spacing.unit,
-  },
-  input: {
-    marginRight: 0,
-  },
-  errorText: {
-    fontSize: theme.typography.fontSize - 2,
-    color: theme.palette.error.main,
-  },
-});
-
-export default withStyles(styles)(ChoiceConfiguration);
+export default ChoiceConfiguration;

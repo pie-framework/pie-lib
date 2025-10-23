@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import get from 'lodash/get';
 import set from 'lodash/set';
-import Select from '@material-ui/core/Select';
-import Input from '@material-ui/core/Input';
-import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@mui/material/Select';
+import Input from '@mui/material/Input';
+import MenuItem from '@mui/material/MenuItem';
 import debug from 'debug';
 
 import Toggle from './toggle';
@@ -13,7 +13,7 @@ import { NChoice } from '../two-choice';
 import SettingsRadioLabel from './settings-radio-label';
 import NumberTextField from '../number-text-field';
 import Checkbox from '../checkbox';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 const log = debug('pie-lib:config-ui:settings:panel');
 
@@ -46,10 +46,23 @@ CheckboxChoice.propTypes = {
   onChange: PropTypes.func,
 };
 
-const Radio = ({ classes, label, value, onChange, choices }) => {
+const StyledNChoice = styled(NChoice)(({ theme }) => ({
+  marginTop: theme.spacing(0.5),
+  paddingBottom: theme.spacing(0.5),
+  width: '100%',
+  '& > label': {
+    color: 'rgba(0, 0, 0, 0.89)',
+    transform: 'translate(0, 10px) scale(1)',
+    fontSize: '14px',
+  },
+  '& > div': {
+    marginTop: theme.spacing(2.5),
+  },
+}));
+
+const Radio = ({ label, value, onChange, choices }) => {
   return (
-    <NChoice
-      className={classes.radioSettings}
+    <StyledNChoice
       direction="horizontal"
       customLabel={SettingsRadioLabel}
       value={value}
@@ -62,44 +75,27 @@ const Radio = ({ classes, label, value, onChange, choices }) => {
 
 Radio.propTypes = { ...baseTypes, choices: PropTypes.arrayOf(PropTypes.shape(labelValue)) };
 
-const StyledRadio = withStyles((theme) => ({
-  radioSettings: {
-    marginTop: theme.spacing.unit / 2,
-    paddingBottom: theme.spacing.unit / 2,
-    width: '100%',
-    '& > label': {
-      color: 'rgba(0, 0, 0, 0.89)',
-      transform: 'translate(0, 10px) scale(1)',
-      fontSize: '14px',
-    },
-    '& > div': {
-      marginTop: theme.spacing.unit * 2.5,
-    },
-  },
-  label: {
-    display: 'none',
-  },
-}))(Radio);
+const StyledRadio = Radio;
 
-const Dropdown = withStyles((theme) => ({
-  label: {
-    margin: 0,
-    fontSize: theme.typography.fontSize,
-  },
-  wrapper: {
-    marginTop: theme.spacing.unit / 2,
-    border: '2px solid lightgrey',
-    borderRadius: '4px',
-    padding: `0 ${theme.spacing.unit}px`,
-  },
-}))(({ classes, label, value, onChange, choices = [] }) => {
+const StyledLabel = styled('p')(({ theme }) => ({
+  margin: 0,
+  fontSize: theme.typography.fontSize,
+}));
+
+const StyledSelect = styled(Select)(({ theme }) => ({
+  marginTop: theme.spacing(0.5),
+  border: '2px solid lightgrey',
+  borderRadius: '4px',
+  padding: `0 ${theme.spacing(1)}px`,
+}));
+
+const Dropdown = ({ label, value, onChange, choices = [] }) => {
   const getItemLabel = (l) => (typeof l === 'string' ? l : l.label);
   const getItemValue = (l) => (typeof l === 'string' ? l : l.value);
   return (
     <div>
-      {label && <p className={classes.label}>{label}</p>}
-      <Select
-        className={classes.wrapper}
+      {label && <StyledLabel>{label}</StyledLabel>}
+      <StyledSelect
         value={value || (choices && choices[0])}
         onChange={({ target }) => onChange(target.value)}
         input={<Input id={`dropdown-${label}`} />}
@@ -110,55 +106,51 @@ const Dropdown = withStyles((theme) => ({
             {getItemLabel(l)}
           </MenuItem>
         ))}
-      </Select>
+      </StyledSelect>
     </div>
   );
-});
+};
 
 Dropdown.propTypes = { ...baseTypes, choices: PropTypes.arrayOf(PropTypes.string) };
 
-const TextField = withStyles((theme) => ({
-  field: {
-    marginRight: theme.spacing.unit * 3,
-    marginTop: theme.spacing.unit,
-  },
-}))(({ classes, label }) => {
-  return <Typography className={classes.field}>{label}</Typography>;
-});
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  marginRight: theme.spacing(3),
+  marginTop: theme.spacing(1),
+}));
 
-const NumberField = withStyles((theme) => ({
-  field: {
-    width: '35%',
-    marginRight: theme.spacing.unit * 3,
-    marginTop: theme.spacing.unit,
-  },
-  wrapper: {
-    marginTop: theme.spacing.unit / 2,
+const TextField = ({ label }) => {
+  return <StyledTypography>{label}</StyledTypography>;
+};
+
+const StyledNumberTextField = styled(NumberTextField)(({ theme }) => ({
+  width: '35%',
+  marginRight: theme.spacing(3),
+  marginTop: theme.spacing(1),
+  '& .MuiInputBase-root': {
+    marginTop: theme.spacing(0.5),
     border: '2px solid lightgrey',
     borderRadius: '4px',
-    padding: `0 ${theme.spacing.unit}px`,
+    padding: `0 ${theme.spacing(1)}px`,
   },
-}))(({ classes, label, value, onChange = () => {}, suffix, min, max }) => {
+}));
+
+const NumberField = ({ label, value, onChange = () => {}, suffix, min, max }) => {
   return (
-    <NumberTextField
+    <StyledNumberTextField
       label={label || 'Label'}
       value={value}
       max={max}
       min={min}
       onChange={(ev, value) => onChange(value)}
       suffix={suffix}
-      className={classes.field}
       showErrorWhenOutsideRange
-      inputClassName={classes.wrapper}
       disableUnderline
-      classes={classes}
     />
   );
-});
+};
 
 NumberField.propTypes = {
   ...baseTypes,
-  classes: PropTypes.object,
   suffix: PropTypes.string,
   min: PropTypes.number,
   max: PropTypes.number,
@@ -184,22 +176,24 @@ const tagMap = {
   textField: TextField,
 };
 
-const Group = withStyles((theme) => ({
-  group: {
-    margin: `0 0 ${theme.spacing.unit * 2}px 0`,
-  },
-  groupHeader: {
-    color: '#495B8F',
-    fontSize: theme.typography.fontSize + 2,
-    fontWeight: 600,
-    marginBottom: theme.spacing.unit,
-  },
-  numberFields: {
-    fontSize: theme.typography.fontSize,
-    marginBottom: 0,
-  },
-}))((props) => {
-  const { classes, model, label, group, configuration, onChange } = props;
+const StyledGroup = styled('div')(({ theme }) => ({
+  margin: `0 0 ${theme.spacing(2)}px 0`,
+}));
+
+const StyledGroupHeader = styled('div')(({ theme }) => ({
+  color: '#495B8F',
+  fontSize: theme.typography.fontSize + 2,
+  fontWeight: 600,
+  marginBottom: theme.spacing(1),
+}));
+
+const StyledNumberFields = styled('p')(({ theme }) => ({
+  fontSize: theme.typography.fontSize,
+  marginBottom: 0,
+}));
+
+const Group = (props) => {
+  const { model, label, group, configuration, onChange } = props;
 
   /**
    * @param group - the group of settings
@@ -227,7 +221,7 @@ const Group = withStyles((theme) => ({
     if (type === 'numberFields') {
       return (
         <div key={`numberField-${label}`}>
-          <p className={classes.numberFields}>{label}</p>
+          <StyledNumberFields>{label}</StyledNumberFields>
           {Object.keys(fields).map((fieldKey) => {
             return getTag(group, `${key}.${fieldKey}`, `${key}.fields.${fieldKey}`);
           })}
@@ -251,15 +245,15 @@ const Group = withStyles((theme) => ({
   };
 
   return (
-    <div className={classes.group}>
-      <div className={classes.groupHeader}>{label}</div>
+    <StyledGroup>
+      <StyledGroupHeader>{label}</StyledGroupHeader>
 
       {Object.keys(group).map((key) => {
         return content(group, key);
       })}
-    </div>
+    </StyledGroup>
   );
-});
+};
 
 export class Panel extends React.Component {
   static propTypes = {

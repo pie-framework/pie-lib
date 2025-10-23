@@ -1,23 +1,23 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
-const styles = (theme) => ({
-  formSection: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-  },
-  label: {
-    marginBottom: theme.spacing.unit,
-  },
-});
+const StyledFormSection = styled('div')(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  marginBottom: theme.spacing(2),
+}));
 
-export default withStyles(styles)(({ className, classes, label, children, labelExtraStyle }) => (
-  <div className={classNames(classes.formSection, className)}>
-    <Typography className={classes.label} type="subheading" style={labelExtraStyle}>
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  marginBottom: theme.spacing(1),
+}));
+
+const FormSection = ({ className, label, children, labelExtraStyle }) => (
+  <StyledFormSection className={className}>
+    <StyledTypography variant="subtitle1" style={labelExtraStyle}>
       {label}
-    </Typography>
+    </StyledTypography>
     {children}
-  </div>
-));
+  </StyledFormSection>
+);
+
+export default FormSection;

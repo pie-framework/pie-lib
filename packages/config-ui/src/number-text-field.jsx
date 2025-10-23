@@ -1,21 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import isFinite from 'lodash/isFinite';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import InputAdornment from '@mui/material/InputAdornment';
 const log = debug('@pie-lib:config-ui:number-text-field');
 
-const styles = (theme) => ({
-  root: {
-    marginRight: theme.spacing.unit,
-    '& label': {
-      width: 'max-content',
-    },
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  marginRight: theme.spacing(1),
+  '& label': {
+    width: 'max-content',
   },
-});
+}));
 
 const fallbackNumber = (min, max) => {
   if (!isFinite(min) && !isFinite(max)) {
@@ -33,7 +30,6 @@ const fallbackNumber = (min, max) => {
 export class NumberTextField extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     inputClassName: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -146,7 +142,6 @@ export class NumberTextField extends React.Component {
   render() {
     const {
       className,
-      classes,
       label,
       disabled,
       suffix,
@@ -157,12 +152,11 @@ export class NumberTextField extends React.Component {
       showErrorWhenOutsideRange,
       variant,
     } = this.props;
-    const names = classNames(classes.root, className);
 
     const error = showErrorWhenOutsideRange && this.getError();
     return (
-      <TextField
-        variant={variant || 'standard'}
+      <StyledTextField
+        variant={disableUnderline ? 'filled' : (variant || 'standard')}
         inputRef={(ref) => {
           this.inputRef = ref;
         }}
@@ -173,25 +167,23 @@ export class NumberTextField extends React.Component {
         helperText={error}
         onChange={this.onChange}
         onBlur={this.onBlur}
-        onKeyPress={(e) => {
+        onKeyDown={(e) => {
           // once the Enter key is pressed, we force input blur
           if (e.key === 'Enter' && this.inputRef) {
             this.inputRef.blur();
           }
         }}
         type="number"
-        className={names}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        InputProps={{
-          endAdornment: suffix && <InputAdornment position="end">{suffix}</InputAdornment>,
-          className: inputClassName,
-          disableUnderline: disableUnderline,
-        }}
-        inputProps={{
-          min,
-          max,
+        className={className}
+        slotProps={{
+          input: {
+            endAdornment: suffix && <InputAdornment position="end">{suffix}</InputAdornment>,
+            className: inputClassName,
+            inputProps: {
+              min,
+              max,
+            },
+          },
         }}
         margin="normal"
       />
@@ -199,4 +191,4 @@ export class NumberTextField extends React.Component {
   }
 }
 
-export default withStyles(styles)(NumberTextField);
+export default NumberTextField;

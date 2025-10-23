@@ -1,9 +1,20 @@
-import EditableHTML from '@pie-lib/editable-html';
+//import EditableHTML from '@pie-lib/editable-html';
 import { InputContainer } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import Group from './group';
+
+
+// - mathquill error window not defined
+let EditableHtml;
+let StyledEditableHTML;
+if (typeof window !== 'undefined') {
+  EditableHtml = require('@pie-lib/editable-html')['default'];
+  StyledEditableHTML = styled(EditableHtml)(({ theme }) => ({
+    fontFamily: theme.typography.fontFamily,
+  }));
+}
 
 const feedbackLabels = {
   default: 'Simple Feedback',
@@ -11,44 +22,35 @@ const feedbackLabels = {
   custom: 'Customized Feedback',
 };
 
-const holder = (theme, extras) => ({
+const StyledFeedbackSelector = styled('div')(({ theme }) => ({
+  marginBottom: theme.spacing(1),
+}));
+
+const StyledInputContainer = styled(InputContainer)(() => ({
+  paddingBottom: 0,
+}));
+
+const StyledCustomHolder = styled('div')(({ theme }) => ({
   marginTop: '0px',
   background: theme.palette.grey[300],
-  padding: theme.spacing.unit,
-  marginBottom: theme.spacing.unit * 2,
+  padding: 0,
+  marginBottom: theme.spacing(2),
   borderRadius: '4px',
-  ...extras,
-});
+}));
 
-const style = (theme) => ({
-  feedbackSelector: {
-    marginBottom: theme.spacing.unit,
-  },
-  label: {
-    cursor: 'pointer',
-  },
-  inputContainerLabel: {
-    transform: 'translateY(-20%)',
-  },
-  feedbackInputContainer: {
-    paddingBottom: 0,
-  },
-  customHolder: holder(theme, {
-    background: theme.palette.grey[300],
-    padding: 0,
-  }),
-  defaultHolder: holder(theme, {
-    fontFamily: theme.typography.fontFamily,
-    padding: theme.spacing.unit * 2,
-    cursor: 'default',
-  }),
-  editor: {
-    fontFamily: theme.typography.fontFamily,
-  },
-  group: {
-    paddingTop: theme.spacing.unit,
-  },
-});
+const StyledDefaultHolder = styled('div')(({ theme }) => ({
+  marginTop: '0px',
+  background: theme.palette.grey[300],
+  padding: theme.spacing(2),
+  marginBottom: theme.spacing(2),
+  borderRadius: '4px',
+  fontFamily: theme.typography.fontFamily,
+  cursor: 'default',
+}));
+
+const StyledGroup = styled(Group)(({ theme }) => ({
+  paddingTop: theme.spacing(1),
+}));
 
 export const FeedbackType = {
   type: PropTypes.oneOf(['default', 'custom', 'none']),
@@ -59,7 +61,6 @@ export const FeedbackType = {
 export class FeedbackSelector extends React.Component {
   static propTypes = {
     keys: PropTypes.arrayOf(PropTypes.string),
-    classes: PropTypes.object.isRequired,
     label: PropTypes.string.isRequired,
     feedback: PropTypes.shape(FeedbackType).isRequired,
     onChange: PropTypes.func.isRequired,
@@ -79,44 +80,41 @@ export class FeedbackSelector extends React.Component {
   };
 
   render() {
-    const { keys, classes, label, feedback, toolbarOpts, mathMlOptions = {} } = this.props;
+    const { keys, label, feedback, toolbarOpts, mathMlOptions = {} } = this.props;
 
     const feedbackKeys = keys || Object.keys(feedbackLabels);
 
     return (
-      <div className={classes.feedbackSelector}>
-        <InputContainer
+      <StyledFeedbackSelector>
+        <StyledInputContainer
           label={label}
-          className={classes.feedbackInputContainer}
-          extraClasses={{ label: classes.inputContainerLabel }}
+          extraClasses={{ label: { transform: 'translateY(-20%)' } }}
         >
-          <Group
-            className={classes.group}
+          <StyledGroup
             keys={feedbackKeys}
             label={label}
             value={feedback.type}
             onChange={this.changeType}
             feedbackLabels={feedbackLabels}
           />
-        </InputContainer>
+        </StyledInputContainer>
 
         {feedback.type === 'custom' && (
-          <div className={classes.customHolder}>
-            <EditableHTML
-              className={classes.editor}
+          <StyledCustomHolder>
+            <StyledEditableHTML
               onChange={this.changeCustom}
               markup={feedback.custom || ''}
               toolbarOpts={toolbarOpts}
               languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
               mathMlOptions={mathMlOptions}
             />
-          </div>
+          </StyledCustomHolder>
         )}
 
-        {feedback.type === 'default' && <div className={classes.defaultHolder}> {feedback.default}</div>}
-      </div>
+        {feedback.type === 'default' && <StyledDefaultHolder> {feedback.default}</StyledDefaultHolder>}
+      </StyledFeedbackSelector>
     );
   }
 }
 
-export default withStyles(style)(FeedbackSelector);
+export default FeedbackSelector;

@@ -1,14 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-const AlertDialog = ({ text, title, onClose, onConfirm, open, onCloseText, onConfirmText, classes }) => (
+const StyledDialogTitle = styled(DialogTitle)(() => ({
+  fontSize: 'max(1.25rem, 18px)',
+}));
+
+const StyledDialogContentText = styled(DialogContentText)(() => ({
+  fontSize: 'max(1rem, 14px)',
+}));
+
+const AlertDialog = ({ text, title, onClose, onConfirm, open, onCloseText, onConfirmText }) => (
   <Dialog open={open} onClose={onClose}>
-    {title && <DialogTitle className={classes.heading}>{title}</DialogTitle>}
+    {title && <StyledDialogTitle>{title}</StyledDialogTitle>}
     {text && (
       <DialogContent>
-        <DialogContentText className={classes.subheading}>{text}</DialogContentText>
+        <StyledDialogContentText>{text}</StyledDialogContentText>
       </DialogContent>
     )}
     <DialogActions>
@@ -39,18 +47,6 @@ AlertDialog.propTypes = {
   open: PropTypes.bool,
   onConfirmText: PropTypes.string,
   onCloseText: PropTypes.string,
-  classes: PropTypes.object,
 };
 
-const styles = () => ({
-  heading: {
-    '& h2': {
-      fontSize: 'max(1.25rem, 18px)',
-    },
-  },
-  subheading: {
-    fontSize: 'max(1rem, 14px)',
-  },
-});
-
-export default withStyles(styles)(AlertDialog);
+export default AlertDialog;
