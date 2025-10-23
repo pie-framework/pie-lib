@@ -1,40 +1,38 @@
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
+import { styled } from '@mui/material/styles';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
 import debug from 'debug';
 
 const log = debug('pie-elements:config-ui:langs');
 
-const styles = (theme) => ({
-  root: {
-    flexDirection: 'column',
-    alignItems: 'start',
-    display: 'flex',
-    position: 'relative',
-    paddingTop: '0px',
-    paddingRight: '0px',
-  },
-  formControl: {
-    position: 'initial',
-  },
-  inputLabel: {
-    paddingBottom: theme.spacing.unit,
-  },
-});
+const StyledRoot = styled('div')(() => ({
+  flexDirection: 'column',
+  alignItems: 'start',
+  display: 'flex',
+  position: 'relative',
+  paddingTop: '0px',
+  paddingRight: '0px',
+}));
 
-export class RawLangs extends React.Component {
+const StyledFormControl = styled(FormControl)(() => ({
+  position: 'initial',
+}));
+
+const StyledInputLabel = styled(InputLabel)(({ theme }) => ({
+  paddingBottom: theme.spacing(1),
+}));
+
+export class Langs extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     langs: PropTypes.array,
     selected: PropTypes.string,
     label: PropTypes.string,
-    classes: PropTypes.object.isRequired,
     uid: PropTypes.string,
   };
 
@@ -52,16 +50,16 @@ export class RawLangs extends React.Component {
   };
 
   render() {
-    let { langs, selected, label, classes } = this.props;
+    let { langs, selected, label } = this.props;
 
     log('[render] selected:', selected);
 
     return (
-      <div className={classes.root}>
-        <FormControl className={classes.formControl}>
-          <InputLabel className={classes.inputLabel} htmlFor={this.uid}>
+      <StyledRoot>
+        <StyledFormControl>
+          <StyledInputLabel htmlFor={this.uid}>
             {label}
-          </InputLabel>
+          </StyledInputLabel>
 
           <Select value={selected} onChange={this.choose} input={<Input id={this.uid} />}>
             {langs.map((l, index) => (
@@ -70,27 +68,23 @@ export class RawLangs extends React.Component {
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
-      </div>
+        </StyledFormControl>
+      </StyledRoot>
     );
   }
 }
-
-const Langs = withStyles(styles, { name: 'Langs' })(RawLangs);
 export default Langs;
 
-export const LanguageControls = withStyles({
-  languageControls: {
-    display: 'grid',
-    gridAutoFlow: 'column',
-    gridAutoColumns: '1fr',
-    gridGap: '8px',
-  },
-})(({ classes, langs, activeLang, defaultLang, onActiveLangChange, onDefaultLangChange, className }) => {
-  const names = classNames(classes.languageControls, className);
+const StyledLanguageControls = styled('div')(() => ({
+  display: 'grid',
+  gridAutoFlow: 'column',
+  gridAutoColumns: '1fr',
+  gridGap: '8px',
+}));
 
+export const LanguageControls = ({ langs, activeLang, defaultLang, onActiveLangChange, onDefaultLangChange, className }) => {
   return (
-    <div className={names}>
+    <StyledLanguageControls className={className}>
       <Langs
         label="Choose language to edit"
         langs={langs}
@@ -98,9 +92,9 @@ export const LanguageControls = withStyles({
         onChange={(l) => onActiveLangChange(l)}
       />
       <Langs label="Default language" langs={langs} selected={defaultLang} onChange={(l) => onDefaultLangChange(l)} />
-    </div>
+    </StyledLanguageControls>
   );
-});
+};
 
 LanguageControls.propTypes = {
   langs: PropTypes.array,

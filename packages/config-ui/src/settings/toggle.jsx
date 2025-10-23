@@ -1,44 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InputLabel from '@material-ui/core/InputLabel';
-import { withStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
-import classNames from 'classnames';
+import InputLabel from '@mui/material/InputLabel';
+import { styled } from '@mui/material/styles';
+import Switch from '@mui/material/Switch';
 import { color } from '@pie-lib/render-ui';
 
-const Toggle = withStyles((theme) => ({
-  toggle: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between',
-  },
-  label: {
-    color: 'rgba(0, 0, 0, 0.89)',
-    fontSize: theme.typography.fontSize,
-    paddingTop: theme.spacing.unit * 2,
-  },
-  checkedThumb: {
+const StyledToggle = styled('div')(() => ({
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'space-between',
+}));
+
+const StyledInputLabel = styled(InputLabel)(({ theme }) => ({
+  color: 'rgba(0, 0, 0, 0.89)',
+  fontSize: theme.typography.fontSize,
+  paddingTop: theme.spacing(2),
+}));
+
+const StyledSwitch = styled(Switch)(({ checked }) => ({
+  '&.Mui-checked .MuiSwitch-thumb': {
     color: `${color.tertiary()} !important`,
   },
-  checkedBar: {
+  '&.Mui-checked .MuiSwitch-track': {
     backgroundColor: `${color.tertiaryLight()} !important`,
   },
-}))(({ checked, disabled, label, toggle, classes }) => (
-  <div className={classes.toggle}>
-    <InputLabel className={classes.label}>{label}</InputLabel>
-    <Switch
-      classes={{
-        checked: classNames(classes.checkedThumb),
-        bar: classNames({
-          [classes.checkedBar]: checked,
-        }),
-      }}
+  '& .MuiSwitch-track': {
+    backgroundColor: checked ? `${color.tertiaryLight()} !important` : undefined,
+  },
+}));
+
+const Toggle = ({ checked, disabled, label, toggle }) => (
+  <StyledToggle>
+    <StyledInputLabel>{label}</StyledInputLabel>
+    <StyledSwitch
       checked={checked}
       disabled={disabled}
       onChange={(e) => toggle(e.target.checked)}
     />
-  </div>
-));
+  </StyledToggle>
+);
 
 Toggle.propTypes = {
   checked: PropTypes.bool,

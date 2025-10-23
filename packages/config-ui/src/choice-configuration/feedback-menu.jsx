@@ -1,7 +1,7 @@
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ActionFeedback from '@material-ui/icons/Feedback';
-import IconButton from '@material-ui/core/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ActionFeedback from '@mui/icons-material/Feedback';
+import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -70,7 +70,7 @@ export default class FeedbackMenu extends React.Component {
     const tooltip = t === 'custom' ? 'Custom Feedback' : t === 'default' ? 'Default Feedback' : 'Feedback disabled';
 
     const icon = (
-      <IconButton className={classes.icon} aria-label={tooltip}>
+      <IconButton className={classes.icon} aria-label={tooltip} size="large">
         <ActionFeedback color={iconColor} />
       </IconButton>
     );

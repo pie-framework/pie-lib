@@ -1,15 +1,13 @@
-import Checkbox from '@material-ui/core/Checkbox';
-import Radio from '@material-ui/core/Radio';
+import Checkbox from '@mui/material/Checkbox';
+import Radio from '@mui/material/Radio';
 import { InputContainer } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Switch from '@material-ui/core/Switch';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import Switch from '@mui/material/Switch';
+import { styled } from '@mui/material/styles';
 import { color } from '@pie-lib/render-ui';
 
 const InputTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   label: PropTypes.string,
   checked: PropTypes.bool,
@@ -18,81 +16,67 @@ const InputTypes = {
   error: PropTypes.string,
 };
 
-const RawInputSwitch = ({ classes, className, label, checked, onChange }) => {
+const StyledSwitch = styled(Switch)(() => ({
+  justifyContent: 'inherit',
+  transform: 'translate(-20%, 20%)',
+}));
+
+const InputSwitch = ({ className, label, checked, onChange }) => {
   return (
     <InputContainer className={className} label={label}>
-      <Switch className={classes.switchRoot} checked={checked} onChange={onChange} aria-label={label} />
+      <StyledSwitch checked={checked} onChange={onChange} aria-label={label} />
     </InputContainer>
   );
 };
 
-RawInputSwitch.propTypes = { ...InputTypes };
+InputSwitch.propTypes = { ...InputTypes };
 
-const InputSwitch = withStyles({
-  switchRoot: {
-    justifyContent: 'inherit',
-    transform: 'translate(-20%, 20%)',
-  },
-})(RawInputSwitch);
+const StyledCheckbox = styled(Checkbox)(({ theme, error }) => ({
+  transform: 'translate(-25%, 20%)',
+  color: `${color.tertiary()} !important`,
+  ...(error && {
+    color: `${theme.palette.error.main} !important`,
+  }),
+}));
 
-const RawInputCheckbox = (props) => {
-  const { classes, className, label, checked, onChange, disabled, error } = props;
-
+const InputCheckbox = ({ className, label, checked, onChange, disabled, error }) => {
   return (
     <InputContainer className={className} label={label}>
-      <Checkbox
-        className={classNames(classes.checkboxRoot, classes.customColor, error && classes.error)}
+      <StyledCheckbox
         disabled={disabled}
         checked={checked}
         onChange={onChange}
         aria-label={label}
+        error={error}
       />
     </InputContainer>
   );
 };
 
-RawInputCheckbox.propTypes = { ...InputTypes };
+InputCheckbox.propTypes = { ...InputTypes };
 
-const RawInputRadio = (props) => {
-  const { classes, className, label, checked, onChange, disabled, error } = props;
+const StyledRadio = styled(Radio)(({ theme, error }) => ({
+  transform: 'translate(-20%, 20%)',
+  color: `${color.tertiary()} !important`,
+  ...(error && {
+    color: `${theme.palette.error.main} !important`,
+  }),
+}));
 
+const InputRadio = ({ className, label, checked, onChange, disabled, error }) => {
   return (
     <InputContainer className={className} label={label}>
-      <Radio
-        className={classNames(classes.radioRoot, classes.customColor, error && classes.error)}
+      <StyledRadio
         disabled={disabled}
         checked={checked}
         onChange={onChange}
         aria-label={label}
+        error={error}
       />
     </InputContainer>
   );
 };
 
-RawInputRadio.propTypes = { ...InputTypes };
-
-const InputCheckbox = withStyles((theme) => ({
-  checkboxRoot: {
-    transform: 'translate(-25%, 20%)',
-  },
-  error: {
-    color: theme.palette.error.main,
-  },
-  customColor: {
-    color: `${color.tertiary()} !important`,
-  },
-}))(RawInputCheckbox);
-
-const InputRadio = withStyles((theme) => ({
-  radioRoot: {
-    transform: 'translate(-20%, 20%)',
-  },
-  error: {
-    color: theme.palette.error.main,
-  },
-  customColor: {
-    color: `${color.tertiary()} !important`,
-  },
-}))(RawInputRadio);
+InputRadio.propTypes = { ...InputTypes };
 
 export { InputSwitch, InputCheckbox, InputRadio };
