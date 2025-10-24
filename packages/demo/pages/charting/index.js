@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import withRoot from '../../source/withRoot';
@@ -12,7 +11,6 @@ if (typeof window !== 'undefined') {
 }
 
 import Options from './options';
-import editableHtml from '../editable-html/editable-html';
 
 const log = debug('pie-lib:charting:graph-lines-demo');
 
