@@ -101,6 +101,7 @@ export class RawPlot extends React.Component {
       correctness,
       defineChart,
       correctData,
+      className
     } = this.props;
 
     const { scale, range, size } = graphProps;
@@ -128,6 +129,7 @@ export class RawPlot extends React.Component {
     return (
       <React.Fragment>
         <g
+          className={className}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           onTouchStart={this.handleMouseEnter}
@@ -297,6 +299,7 @@ const Bar = styled(RawPlot)(({ theme }) => ({
     border: `1px solid ${color.defaults.WHITE}`,
     stroke: 'initial',
     boxSizing: 'unset', // to override the default border-box in IBX
+    display: 'block',
   },
   '& .smallIcon': {
     fontSize: '10px',

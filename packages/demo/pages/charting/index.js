@@ -12,6 +12,7 @@ if (typeof window !== 'undefined') {
 }
 
 import Options from './options';
+import editableHtml from '../editable-html/editable-html';
 
 const log = debug('pie-lib:charting:graph-lines-demo');
 
@@ -35,6 +36,59 @@ export class ChartDemo extends React.Component {
   constructor(props) {
     super(props);
 
+    // Store base data without correctness properties
+    this.baseData = [
+      {
+        "label": "a",
+        "value": 1,
+        "interactive": true
+      },
+      {
+        "label": "b",
+        "value": 2,
+        "interactive": true
+      },
+      {
+        "label": "c",
+        "value": 1,
+        "interactive": true
+      },
+      {
+        "label": "d",
+        "value": 2,
+        "interactive": true
+      },
+      {
+        "label": "e",
+        "value": 3,
+        "interactive": true
+      }
+    ];
+
+    // Store correctness data separately
+    this.correctnessData = [
+      {
+        "value": "correct",
+        "label": "correct"
+      },
+      {
+        "value": "incorrect",
+        "label": "incorrect"
+      },
+      {
+        "value": "incorrect",
+        "label": "incorrect"
+      },
+      {
+        "value": "correct",
+        "label": "correct"
+      },
+      {
+        "value": "correct",
+        "label": "correct"
+      }
+    ];
+
     this.state = {
       settings: {
         size: {
@@ -43,27 +97,97 @@ export class ChartDemo extends React.Component {
         },
       },
       model: {
-        chartType: 'lineDot',
-        title: 'This is a chart!',
-        domain: {
-          label: 'Fruits',
-          axisLabel: 'X',
+        "addCategoryEnabled": false,
+        "chartType": "lineDot",
+        "data": this.baseData,
+        "domain": {
+          "label": "<div></div>"
         },
-        range: {
-          label: 'Amount',
-          max: 10,
-          min: 0,
-          axisLabel: 'Y',
-          step: null,
-          labelStep: null,
+        "graph": {
+          "width": 480,
+          "height": 480
         },
-        data: [
-          { ...createCategory('Apples', 5), interactive: false },
-          createCategory('Grapes', 3),
-          createCategory('Lemons', 0),
-          createCategory('Plums', 2),
-          createCategory('Peaches', 1),
-          createCategory('Melons', 4),
+        "prompt": "<div></div>",
+        "range": {
+          "max": 5,
+          "min": 0,
+          "labelStep": 1,
+          "step": 0.1,
+          "label": "<div></div>"
+        },
+        "rationale": null,
+        "title": "<div></div>",
+        "size": {
+          "width": 480,
+          "height": 480
+        },
+        "showToggle": true,
+        "correctness": {
+          "correctness": "incorrect",
+          "score": "0%"
+        },
+        "disabled": true,
+        "scoringType": "all or nothing",
+        "studentNewCategoryDefaultLabel": "New Category",
+        "env": {
+          "mode": "evaluate",
+          "role": "student"
+        },
+        "correctAnswer": {
+          "data": [
+            {
+              "label": "a",
+              "value": 1
+            },
+            {
+              "label": "b",
+              "value": 1
+            },
+            {
+              "label": "c",
+              "value": 3
+            },
+            {
+              "label": "d",
+              "value": 2
+            },
+            {
+              "label": "e",
+              "value": 3
+            }
+          ]
+        },
+        correctData: [
+          {
+            "label": "a",
+            "value": 1,
+            "interactive": false,
+            editable: false
+          },
+          {
+            "label": "b",
+            "value": 1,
+            "interactive": false,
+            editable: false
+          },
+          {
+            "label": "c",
+            "value": 3,
+            "interactive": false,
+            editable: false
+          },
+          {
+            "label": "d",
+            "value": 2,
+            "interactive": false,
+            editable: false
+          },
+          {
+            "label": "e",
+            "value": 3,
+            "interactive": false,
+            editable: false
+          }
         ],
         charts: [
           chartTypes.Bar(),
@@ -73,43 +197,8 @@ export class ChartDemo extends React.Component {
           chartTypes.DotPlot(),
           chartTypes.LinePlot(),
         ],
-        editCategoryEnabled: true,
-        addCategoryEnabled: true,
-        categoryDefaultLabel: 'Category',
-        correctAnswer: {
-          data: [
-            {
-              label: 'Apples', value: 5, interactive: true,
-              editable: true,
-              deletable: true
-            },
-            {
-              label: 'Grapes', value: 2, interactive: true,
-              editable: true,
-              deletable: true
-            },
-            {
-              label: 'Lemons', value: 1, interactive: true,
-              editable: true,
-              deletable: true
-            },
-            {
-              label: 'Plums', value: 4, interactive: true,
-              editable: true,
-              deletable: true
-            },
-            {
-              label: 'Peaches', value: 1, interactive: true,
-              editable: true,
-              deletable: true
-            },
-            {
-              label: 'Melons', value: 1, interactive: true,
-              editable: true,
-              deletable: true
-            },
-          ],
-        }
+        "showKeyLegend": true,
+        "teacherInstructions": null
       },
     };
   }
@@ -117,6 +206,33 @@ export class ChartDemo extends React.Component {
   componentDidMount() {
     this.setState({ mounted: true });
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const currentDisplayWithCorrectness = this.state.model.displayWithCorrectness;
+    const prevDisplayWithCorrectness = prevState.model.displayWithCorrectness;
+
+    // Only update if displayWithCorrectness changed
+    if (currentDisplayWithCorrectness !== prevDisplayWithCorrectness) {
+      console.log('Updating data with correctness:', currentDisplayWithCorrectness);
+      this.updateDataWithCorrectness(currentDisplayWithCorrectness);
+    }
+  }
+
+  updateDataWithCorrectness = (displayWithCorrectness) => {
+    const newData = displayWithCorrectness 
+      ? this.baseData.map((item, index) => ({
+          ...item,
+          correctness: this.correctnessData[index]
+        }))
+      : this.baseData.map(item => ({ ...item }));
+
+    this.setState(prevState => ({
+      model: {
+        ...prevState.model,
+        data: newData
+      }
+    }));
+  };
 
   change = (model) => {
     log('[change] model:', model);
@@ -159,12 +275,13 @@ export class ChartDemo extends React.Component {
               domain={model.domain}
               range={model.range}
               charts={model.charts}
-              data={model.displayWithCorrectness ? this.mapCorrectData(model.correctAnswer.data) : model.data}
+              data={model.data}
               title={model.title}
               onDataChange={this.changeData}
               editCategoryEnabled={model.editCategoryEnabled}
               addCategoryEnabled={model.addCategoryEnabled}
               categoryDefaultLabel={model.categoryDefaultLabel}
+              correctData={model.displayWithCorrectness ? model.correctData : undefined}
             />
           </div>
         </DemoContainer>

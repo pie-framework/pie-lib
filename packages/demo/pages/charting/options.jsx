@@ -111,7 +111,7 @@ export class Options extends React.Component {
           onChange={(e) => this.change('categoryDefaultLabel', e.target.value)}
         />
         <div>
-          Display with Correctness
+          See how evaluate mode would look like
           <Switch
             checked={model.displayWithCorrectness}
             onChange={(e) => {

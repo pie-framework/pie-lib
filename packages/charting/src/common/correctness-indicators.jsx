@@ -8,12 +8,14 @@ const StyledCorrectIcon = styled(Check)(({ theme }) => ({
   borderRadius: theme.spacing(2),
   color: enumColor.defaults.WHITE,
   fontSize: '16px',
-  padding: '2px',
-  border: `4px solid ${enumColor.defaults.WHITE}`,
   width: '16px',
   height: '16px',
+  padding: '2px',
+  border: `1px solid ${enumColor.defaults.WHITE}`,
+  stroke: 'initial',
   boxSizing: 'unset', // to override the default border-box in IBX
   backgroundColor: enumColor.correct(),
+  display: 'block',
   '&.small': {
     fontSize: '10px',
     width: '10px',
@@ -25,12 +27,14 @@ const StyledIncorrectIcon = styled(Close)(({ theme }) => ({
   borderRadius: theme.spacing(2),
   color: enumColor.defaults.WHITE,
   fontSize: '16px',
-  padding: '2px',
-  border: `4px solid ${enumColor.defaults.WHITE}`,
   width: '16px',
   height: '16px',
+  padding: '2px',
+  border: `1px solid ${enumColor.defaults.WHITE}`,
+  stroke: 'initial',
   boxSizing: 'unset', // to override the default border-box in IBX
   backgroundColor: enumColor.incorrectWithIcon(),
+  display: 'block',
   '&.small': {
     fontSize: '10px',
     width: '10px',
