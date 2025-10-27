@@ -47,7 +47,7 @@
     "invariant": "^2.2.4",
     "jsesc": "^2.5.2",
     "lodash": "^4.17.11",
-    "markdown-to-jsx": "^6.9.1",
+    "markdown-to-jsx": "^8.0.0",
     "mathjax-full": "3.2.2",
     "mathjs": "^7.0.1",
     "prop-types": "^15.7.2",
