@@ -39,31 +39,43 @@ export class GridDemo extends React.PureComponent {
       },
     },
     model: {
-      labels: {
-        bottom: 'TEST FOR THE LABELS',
-        top: 'TEST FOR THE LABELS',
-        left: 'TEST FOR THE LABELS',
-        right: 'TEST FOR THE LABELS',
-      },
-      title: 'Title',
-      domain: {
-        axisLabel: '<i>domain</i>',
-        min: -4.3,
-        max: 5.9,
-        padding: 0,
-        step: 0.25,
-        labelStep: 0.5,
-      },
-      range: {
-        axisLabel: '<em>range</em>',
-        min: -6.2,
-        max: 5.1,
-        padding: 0,
-        step: 0.67,
-        labelStep: 0.67,
-      },
-      backgroundMarks: backgroundMarks,
-      marks: marks,
+      labels: {},
+      "promptEnabled": true,
+      "domain": { "min": -10, "max": 10, "step": 1, "labelStep": 0 },
+      "range": { "min": -10, "max": 10, "step": 1, "labelStep": 0 },
+      "backgroundMarks": [{ "type": "point", "x": 2, "y": 2 }],
+      "answers": { "correctAnswer": { "name": "Correct Answer", "marks": [] } },
+      "arrows": { "left": true, "right": true, "up": true, "down": true },
+      "coordinatesOnHover": false,
+      "defaultGridConfiguration": 0,
+      "graph": { "width": 500, "height": 500 },
+      "includeAxes": true,
+      "labelsEnabled": true,
+      "padding": true,
+      "prompt": "",
+      "rationale": "",
+      "rationaleEnabled": true,
+      "standardGrid": false,
+      "studentInstructionsEnabled": true,
+      "teacherInstructions": "",
+      "teacherInstructionsEnabled": true,
+      "title": "",
+      "titleEnabled": true,
+      "toolbarTools": [
+        "circle",
+        "line",
+        "label",
+        "parabola",
+        "point",
+        "polygon",
+        "ray",
+        "segment",
+        "sine",
+        "vector"
+      ],
+      "defaultTool": "circle",
+      "dimensionsEnabled": true,
+      "marks": marks,
     },
   };
 
@@ -205,7 +217,6 @@ export class GridDemo extends React.PureComponent {
               title={settings.graphTitle && model.title}
               toolbarTools={stateTools}
               coordinatesOnHover={settings.coordinatesOnHover}
-              language={'es_ES'}
             />
           </div>
         </DemoContainer>

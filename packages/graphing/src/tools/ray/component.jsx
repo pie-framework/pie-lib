@@ -7,18 +7,29 @@ import classNames from 'classnames';
 import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
 import { styled } from '@mui/material/styles';
 
-const StyledRayRoot = styled('g')(({ theme }) => ({
-  line: styles.line(theme),
-  enabledArrow: styles.arrow(theme),
-  disabledArrow: styles.disabledArrow(theme),
-  disabled: styles.disabled(theme),
-  disabledSecondary: styles.disabledSecondary(theme),
-  correct: styles.correct(theme, 'stroke'),
-  correctArrow: styles.correct(theme),
-  incorrect: styles.incorrect(theme, 'stroke'),
-  incorrectArrow: styles.incorrect(theme),
-  missing: styles.missing(theme, 'stroke'),
-  missingArrow: styles.missing(theme),
+const StyledRayRoot = styled('g')(({ theme, disabled, correctness }) => ({
+  '& line': {
+    ...styles.line(theme),
+    ...(disabled && styles.disabledSecondary(theme)),
+    ...(correctness === 'correct' && styles.correct(theme, 'stroke')),
+    ...(correctness === 'incorrect' && styles.incorrect(theme, 'stroke')),
+    ...(correctness === 'missing' && styles.missing(theme, 'stroke')),
+  },
+  '& .enabledArrow': {
+    ...styles.arrow(theme),
+  },
+  '& .disabledArrow': {
+    ...styles.disabledArrow(theme),
+  },
+  '& .correctArrow': {
+    ...styles.correct(theme),
+  },
+  '& .incorrectArrow': {
+    ...styles.incorrect(theme),
+  },
+  '& .missingArrow': {
+    ...styles.missing(theme),
+  },
 }));
 
 export const RayLine = (props) => {
@@ -31,7 +42,7 @@ export const RayLine = (props) => {
   const finalMarkerId = propMarkerId || markerId;
 
   return (
-    <StyledRayRoot>
+    <StyledRayRoot disabled={disabled} correctness={correctness}>
       <defs>
         <ArrowMarker
           size={thinnerShapesNeeded(graphProps) ? 4 : 5}
@@ -48,12 +59,7 @@ export const RayLine = (props) => {
         y1={scale.y(from.y)}
         x2={scale.x(aToB.x)}
         y2={scale.y(aToB.y)}
-        className={classNames(
-          'line',
-          disabled && 'disabledSecondary',
-          correctness,
-          className
-        )}
+        className={className}
         markerEnd={`url(#${finalMarkerId}-${suffix})`}
         {...rest}
       />

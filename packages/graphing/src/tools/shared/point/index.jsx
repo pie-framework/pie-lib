@@ -2,10 +2,9 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { gridDraggable } from '@pie-lib/plot';
 import * as utils from '../../../utils';
-import { color } from '@pie-lib/render-ui';
 import { RawBp } from './base-point';
 import { RawArrow } from './arrow-point';
-import BaseArrow from './arrow';
+import { BaseArrow } from './arrow';
 
 // Drag & bounds options
 const opts = {
@@ -24,31 +23,10 @@ const opts = {
 };
 
 // Common styled point
-const PointStyle = styled('g')(({ disabled, correctness }) => ({
+const PointStyle = styled('g')(() => ({
   '& circle, & polygon': {
     cursor: 'pointer',
-    fill: color.defaults.BLACK,
   },
-  ...(disabled && {
-    '& circle, & polygon': {
-      fill: '#ccc',
-    },
-  }),
-  ...(correctness === 'correct' && {
-    '& circle, & polygon': {
-      stroke: 'green',
-    },
-  }),
-  ...(correctness === 'incorrect' && {
-    '& circle, & polygon': {
-      stroke: 'red',
-    },
-  }),
-  ...(correctness === 'missing' && {
-    '& circle, & polygon': {
-      stroke: 'orange',
-    },
-  }),
 }));
 
 export const BasePoint = gridDraggable(opts)((props) => (

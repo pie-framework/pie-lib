@@ -30,7 +30,7 @@ export class BaseArrow extends React.Component {
 
     return (
       <g className={className} {...rest}>
-        <ArrowHead size={size} transform={transform} points={points} />
+        <ArrowHead size={size} transform={transform} points={points} correctness={correctness} />
       </g>
     );
   }

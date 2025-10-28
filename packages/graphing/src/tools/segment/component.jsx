@@ -2,16 +2,17 @@ import { lineToolComponent, lineBase, styles } from '../shared/line';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
-import classNames from 'classnames';
 import { styled } from '@mui/material/styles';
 
-const StyledLineRoot = styled('line')(({ theme }) => ({
-  line: styles.line(theme),
-  disabled: styles.disabled(theme),
-  disabledSecondary: styles.disabledSecondary(theme),
-  correct: styles.correct(theme, 'stroke'),
-  incorrect: styles.incorrect(theme, 'stroke'),
-  missing: styles.missing(theme, 'stroke'),
+const StyledLineRoot = styled('line')(({ theme, disabled, correctness }) => ({
+  ...styles.line(theme),
+  ...(disabled && {
+    ...styles.disabled(theme),
+    ...styles.disabledSecondary(theme),
+  }),
+  ...(correctness === 'correct' && styles.correct(theme, 'stroke')),
+  ...(correctness === 'incorrect' && styles.incorrect(theme, 'stroke')),
+  ...(correctness === 'missing' && styles.missing(theme, 'stroke')),
 }));
 
 export const Line = (props) => {
@@ -26,12 +27,9 @@ export const Line = (props) => {
       y1={scale.y(from.y)}
       x2={scale.x(to.x)}
       y2={scale.y(to.y)}
-      className={classNames(
-        'line',
-        disabled && 'disabledSecondary',
-        correctness,
-        className
-      )}
+      className={className}
+      disabled={disabled}
+      correctness={correctness}
       {...rest}
     />
   );

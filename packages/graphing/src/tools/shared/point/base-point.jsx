@@ -2,11 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import ReactDOM from 'react-dom';
+import { styled } from '@mui/material/styles';
+
 import CoordinatesLabel from '../../../coordinates-label';
 import { thinnerShapesNeeded } from '../../../utils';
 import MissingSVG from '../icons/MissingSVG';
 import CorrectSVG from '../icons/CorrectSVG';
 import IncorrectSVG from '../icons/IncorrectSVG';
+import * as styles from '../styles';
+
+const StyledPointGroup = styled('g')(({ disabled, correctness }) => ({
+  cursor: 'pointer',
+  '& circle': {
+    fill: 'currentColor',
+  },
+  ...(disabled && {
+    ...styles.disabled('fill'),
+    ...styles.disabled('color'),
+  }),
+  ...(correctness === 'correct' && {
+    ...styles.correct('fill'),
+    ...styles.correct('color'),
+  }),
+  ...(correctness === 'incorrect' && {
+    ...styles.incorrect('fill'),
+    ...styles.incorrect('color'),
+  }),
+  ...(correctness === 'missing' && {
+    ...styles.missing('fill'),
+    ...styles.missing('color'),
+  }),
+}));
 
 export class RawBp extends React.Component {
   static propTypes = {
@@ -75,8 +101,10 @@ export class RawBp extends React.Component {
           onClick={onClick}
         />
         {/* Actual point */}
-        <g
+        <StyledPointGroup
           className={className}
+          disabled={disabled}
+          correctness={correctness}
           onMouseEnter={() => this.setState({ showCoordinates: true })}
           onMouseLeave={() => this.setState({ showCoordinates: false })}
         >
@@ -86,7 +114,7 @@ export class RawBp extends React.Component {
             coordinatesOnHover &&
             showCoordinates &&
             ReactDOM.createPortal(<CoordinatesLabel graphProps={graphProps} x={x} y={y} />, labelNode)}
-        </g>
+        </StyledPointGroup>
       </>
     );
   }

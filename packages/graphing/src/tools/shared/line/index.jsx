@@ -10,6 +10,43 @@ import MarkLabel from '../../../mark-label';
 import isEmpty from 'lodash/isEmpty';
 import { color } from '@pie-lib/render-ui';
 import { getMiddleOfTwoPoints, equalPoints, sameAxes } from '../../../utils';
+import { styled } from '@mui/material/styles';
+
+const StyledLineGroup = styled('g')(({ disabled, correctness }) => ({
+  '& line': {
+    fill: 'transparent',
+    stroke: color.defaults.BLACK,
+    strokeWidth: 3,
+    transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
+    '&:hover': {
+      strokeWidth: 6,
+      stroke: color.defaults.PRIMARY_DARK,
+    },
+  },
+  ...(disabled && {
+    '& line': {
+      ...disabledSecondary('stroke'),
+      strokeWidth: 2,
+    },
+  }),
+  ...(correctness === 'correct' && {
+    '& line': {
+      ...correct('stroke'),
+    },
+  }),
+  ...(correctness === 'incorrect' && {
+    '& line': {
+      ...incorrect('stroke'),
+    },
+  }),
+  ...(correctness === 'missing' && {
+    '& line': {
+      ...missing('stroke'),
+      strokeWidth: 1,
+      strokeDasharray: '4 3',
+    },
+  }),
+}));
 
 export const lineTool = (type, Component) => () => ({
   type,
@@ -350,7 +387,7 @@ export const lineBase = (Comp, opts) => {
       }
 
       return (
-        <g>
+        <StyledLineGroup disabled={disabled} correctness={correctness}>
           {to && (
             <DraggableComp
               from={from}
@@ -387,7 +424,7 @@ export const lineBase = (Comp, opts) => {
             />
           )}
           {toLabelNode}
-        </g>
+        </StyledLineGroup>
       );
     }
   }

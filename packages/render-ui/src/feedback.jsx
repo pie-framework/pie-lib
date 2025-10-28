@@ -20,7 +20,7 @@ const FeedbackContainer = styled('div')({
 });
 
 const FeedbackContent = styled('div')({
-  '-webkit-font-smoothing': 'antialiased',
+  WebkitFontSmoothing: 'antialiased',
   backgroundColor: `var(--feedback-bg-color, ${color.disabled()})`,
   borderRadius: '4px',
   lineHeight: '25px',
