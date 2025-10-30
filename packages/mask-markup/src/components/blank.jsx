@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
 import debug from 'debug';
-import { DragSource, DropTarget } from '@pie-lib/drag';
+import { useDraggable, useDroppable } from '@dnd-kit/core';
+import { CSS } from '@dnd-kit/utilities';
 import { styled } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import classnames from 'classnames';
@@ -11,7 +12,6 @@ import { color } from '@pie-lib/render-ui';
 import { grey } from '@mui/material/colors';
 
 const log = debug('pie-lib:mask-markup:blank');
-export const DRAG_TYPE = 'MaskBlank';
 
 const StyledContent = styled('span')(() => ({
   border: `solid 0px ${color.primary()}`,
@@ -84,200 +84,170 @@ const StyledChipLabel = styled('span')(() => ({
   },
 }));
 
-export class BlankContent extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      height: 0,
-      width: 0,
-    };
-  }
+function BlankContent({ 
+  disabled, 
+  choice, 
+  isOver, 
+  dragItem, 
+  correct,
+  emptyResponseAreaWidth,
+  emptyResponseAreaHeight,
+}) {
+  const rootRef = useRef(null);
+  const spanRef = useRef(null);
+  const [dimensions, setDimensions] = useState({ height: 0, width: 0 });
 
-  handleImageLoad = () => {
-    this.updateDimensions();
+  const handleImageLoad = () => {
+    updateDimensions();
   };
 
-  handleElements() {
-    const imageElement = this.spanRef?.querySelector('img');
-
+  const handleElements = () => {
+    const imageElement = spanRef.current?.querySelector('img');
     if (imageElement) {
-      imageElement.onload = this.handleImageLoad;
+      imageElement.onload = handleImageLoad;
     } else {
       setTimeout(() => {
-        this.updateDimensions();
+        updateDimensions();
       }, 300);
     }
-  }
-
-  componentDidMount() {
-    this.handleElements();
-    if (this.rootRef) {
-      this.rootRef.addEventListener('touchstart', this.handleTouchStart, { passive: false });
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    renderMath(this.rootRef);
-    const { choice: currentChoice } = this.props;
-    const { choice: prevChoice } = prevProps;
-
-    if (JSON.stringify(currentChoice) !== JSON.stringify(prevChoice)) {
-      if (!currentChoice) {
-        this.setState({
-          height: 0,
-          width: 0,
-        });
-        return;
-      }
-      this.handleElements();
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.rootRef) {
-      this.rootRef.removeEventListener('touchstart', this.handleTouchStart);
-    }
-  }
-
-  handleTouchStart = (e) => {
-    e.preventDefault();
-    this.touchStartTimer = setTimeout(() => {
-      this.startDrag();
-    }, 300); // Start drag after 300ms (touch and hold duration)
   };
 
-  startDrag = () => {
-    const { connectDragSource, disabled } = this.props;
-    if (!disabled) {
-      connectDragSource(this.rootRef);
-    }
-  };
-
-  updateDimensions() {
-    if (this.spanRef && this.rootRef) {
+  const updateDimensions = () => {
+    if (spanRef.current && rootRef.current) {
       // Temporarily set rootRef width to 'auto' for natural measurement
-      this.rootRef.style.width = 'auto';
+      rootRef.current.style.width = 'auto';
 
       // Get the natural dimensions of the content
-      const width = this.spanRef.offsetWidth || 0;
-      const height = this.spanRef.offsetHeight || 0;
+      const width = spanRef.current.offsetWidth || 0;
+      const height = spanRef.current.offsetHeight || 0;
 
       const widthWithPadding = width + 24; // 12px padding on each side
       const heightWithPadding = height + 24; // 12px padding on top and bottom
 
-      const responseAreaWidth = parseFloat(this.props.emptyResponseAreaWidth) || 0;
-      const responseAreaHeight = parseFloat(this.props.emptyResponseAreaHeight) || 0;
+      const responseAreaWidth = parseFloat(emptyResponseAreaWidth) || 0;
+      const responseAreaHeight = parseFloat(emptyResponseAreaHeight) || 0;
 
       const adjustedWidth = widthWithPadding <= responseAreaWidth ? responseAreaWidth : widthWithPadding;
       const adjustedHeight = heightWithPadding <= responseAreaHeight ? responseAreaHeight : heightWithPadding;
 
-      this.setState((prevState) => ({
+      setDimensions(prevState => ({
         width: adjustedWidth > responseAreaWidth ? adjustedWidth : prevState.width,
         height: adjustedHeight > responseAreaHeight ? adjustedHeight : prevState.height,
       }));
 
-      this.rootRef.style.width = `${adjustedWidth}px`;
-      this.rootRef.style.height = `${adjustedHeight}px`;
+      rootRef.current.style.width = `${adjustedWidth}px`;
+      rootRef.current.style.height = `${adjustedHeight}px`;
     }
-  }
+  };
 
-  addDraggableFalseAttributes(parent) {
-    parent.childNodes.forEach((elem) => {
-      if (elem instanceof Element || elem instanceof HTMLDocument) {
-        elem.setAttribute('draggable', false);
-      }
-    });
-  }
+  const addDraggableFalseAttributes = (parent) => {
+    if (parent && parent.childNodes) {
+      parent.childNodes.forEach((elem) => {
+        if (elem instanceof Element || elem instanceof HTMLDocument) {
+          elem.setAttribute('draggable', false);
+        }
+      });
+    }
+  };
 
-  getRootDimensions() {
+  const getRootDimensions = () => {
     // Handle potential non-numeric values
-    const responseAreaWidth = !isNaN(parseFloat(this.props.emptyResponseAreaWidth))
-      ? parseFloat(this.props.emptyResponseAreaWidth)
+    const responseAreaWidth = !isNaN(parseFloat(emptyResponseAreaWidth))
+      ? parseFloat(emptyResponseAreaWidth)
       : 0;
-    const responseAreaHeight = !isNaN(parseFloat(this.props.emptyResponseAreaHeight))
-      ? parseFloat(this.props.emptyResponseAreaHeight)
+    const responseAreaHeight = !isNaN(parseFloat(emptyResponseAreaHeight))
+      ? parseFloat(emptyResponseAreaHeight)
       : 0;
 
     const rootStyle = {
-      height: this.state.height || responseAreaHeight,
-      width: this.state.width || responseAreaWidth,
+      height: dimensions.height || responseAreaHeight,
+      width: dimensions.width || responseAreaWidth,
     };
 
     // add minWidth, minHeight if width and height are not defined
-    // minWidth, minHeight will be also in model in the future
     return {
       ...rootStyle,
       ...(responseAreaWidth ? {} : { minWidth: 90 }),
       ...(responseAreaHeight ? {} : { minHeight: 32 }),
     };
-  }
+  };
 
-  render() {
-    const { disabled, choice, isOver, dragItem, correct } = this.props;
-    const draggedLabel = dragItem && isOver && dragItem.choice.value;
-    const label = choice && choice.value;
+  useEffect(() => {
+    handleElements();
+  }, []);
 
-    return (
-      // TODO the Chip element is causing drag problems on touch devices. Avoid using Chip and consider refactoring the code. Keep in mind that Chip is a span with a button role, which interferes with seamless touch device dragging.
-      <StyledChip
-        clickable={false}
-        disabled={true}
-        ref={(ref) => {
-          //eslint-disable-next-line
-          this.rootRef = ReactDOM.findDOMNode(ref);
-        }}
-        component="span"
-        label={
-          <React.Fragment>
+  useEffect(() => {
+    if (rootRef.current) {
+      renderMath(rootRef.current);
+    }
+  });
+
+  useEffect(() => {
+    if (JSON.stringify(choice) !== JSON.stringify(choice)) {
+      if (!choice) {
+        setDimensions({ height: 0, width: 0 });
+        return;
+      }
+      handleElements();
+    }
+  }, [choice]);
+
+  const draggedLabel = dragItem && isOver && dragItem.choice && dragItem.choice.value;
+  const label = choice && choice.value;
+
+  return (
+    <StyledChip
+      clickable={false}
+      disabled={true}
+      ref={rootRef}
+      component="span"
+      label={
+        <React.Fragment>
+          <StyledChipLabel
+            className={classnames({
+              over: isOver,
+              hidden: draggedLabel,
+            })}
+            ref={(ref) => {
+              if (ref) {
+                spanRef.current = ref;
+                ref.innerHTML = label || '';
+                addDraggableFalseAttributes(ref);
+              }
+            }}
+          >
+            {' '}
+          </StyledChipLabel>
+          {draggedLabel && (
             <StyledChipLabel
               className={classnames({
                 over: isOver,
-                hidden: draggedLabel,
+                dragged: true,
               })}
               ref={(ref) => {
                 if (ref) {
-                  //eslint-disable-next-line
-                  this.spanRef = ReactDOM.findDOMNode(ref);
-                  ref.innerHTML = label || '';
-                  this.addDraggableFalseAttributes(ref);
+                  ref.innerHTML = draggedLabel || '';
+                  addDraggableFalseAttributes(ref);
                 }
               }}
             >
               {' '}
             </StyledChipLabel>
-            {draggedLabel && (
-              <StyledChipLabel
-                className={classnames({
-                  over: isOver,
-                  dragged: true,
-                })}
-                ref={(ref) => {
-                  if (ref) {
-                    //eslint-disable-next-line
-                    this.spanRef = ReactDOM.findDOMNode(ref);
-                    ref.innerHTML = draggedLabel || '';
-                    this.addDraggableFalseAttributes(ref);
-                  }
-                }}
-              >
-                {' '}
-              </StyledChipLabel>
-            )}
-          </React.Fragment>
-        }
-        className={classnames({
-          over: isOver,
-          parentOver: isOver,
-          correct: correct !== undefined && correct,
-          incorrect: correct !== undefined && !correct,
-        })}
-        variant={disabled ? 'outlined' : undefined}
-        style={{
-          ...this.getRootDimensions(),
-        }}
-      />
-    );
-  }
+          )}
+        </React.Fragment>
+      }
+      className={classnames({
+        over: isOver,
+        parentOver: isOver,
+        correct: correct !== undefined && correct,
+        incorrect: correct !== undefined && !correct,
+      })}
+      variant={disabled ? 'outlined' : undefined}
+      style={{
+        ...getRootDimensions(),
+      }}
+    />
+  );
 }
 
 BlankContent.defaultProps = {
@@ -296,76 +266,105 @@ BlankContent.propTypes = {
   onChange: PropTypes.func,
   emptyResponseAreaWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   emptyResponseAreaHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  instanceId: PropTypes.string,
 };
 
-const connectedBlankContent = ({ connectDragSource, connectDropTarget, ...props }) => {
-  const { isOver } = props;
+// New functional component using @dnd-kit hooks
+function DragDropBlank({ 
+  id, 
+  disabled, 
+  duplicates, 
+  choice, 
+  correct, 
+  onChange, 
+  emptyResponseAreaWidth, 
+  emptyResponseAreaHeight,
+  instanceId 
+}) {
+  // Setup draggable functionality
+  const {
+    attributes: dragAttributes,
+    listeners: dragListeners,
+    setNodeRef: setDragNodeRef,
+    transform,
+    isDragging,
+  } = useDraggable({
+    id: `mask-blank-drag-${id}`,
+    disabled: disabled || !choice,
+    data: {
+      id: id,
+      choice: choice,
+      instanceId: instanceId,
+      fromChoice: false, // This is from a blank, not from choices
+      type: 'MaskBlank',
+    },
+  });
 
-  return connectDropTarget(
-    connectDragSource(
-      <StyledContent className={isOver ? 'over' : ''}>
-        <BlankContent {...props} />
-      </StyledContent>,
-    ),
+  // Setup droppable functionality
+  const {
+    setNodeRef: setDropNodeRef,
+    isOver,
+    active: dragItem,
+  } = useDroppable({
+    id: `mask-blank-drop-${id}`,
+    data: {
+      id: id,
+      accepts: ['MaskBlank'],
+      instanceId: instanceId,
+    },
+  });
+
+  // Combine refs for both drag and drop
+  const setNodeRef = (node) => {
+    setDragNodeRef(node);
+    setDropNodeRef(node);
+  };
+
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <StyledContent 
+      ref={setNodeRef}
+      style={style}
+      className={isOver ? 'over' : ''}
+      {...dragAttributes}
+      {...dragListeners}
+    >
+      <BlankContent
+        id={id}
+        disabled={disabled}
+        duplicates={duplicates}
+        choice={choice}
+        isOver={isOver}
+        dragItem={dragItem?.data?.current}
+        correct={correct}
+        onChange={onChange}
+        emptyResponseAreaWidth={emptyResponseAreaWidth}
+        emptyResponseAreaHeight={emptyResponseAreaHeight}
+        instanceId={instanceId}
+      />
+    </StyledContent>
   );
+}
+
+DragDropBlank.defaultProps = {
+  emptyResponseAreaWidth: 0,
+  emptyResponseAreaHeight: 0,
 };
 
-const tileTarget = {
-  drop(props, monitor) {
-    const draggedItem = monitor.getItem();
-
-    log('props.instanceId', props.instanceId, 'draggedItem.instanceId:', draggedItem.instanceId);
-
-    if (draggedItem.id !== props.id) {
-      props.onChange(props.id, draggedItem.choice.id);
-    }
-
-    return {
-      dropped: draggedItem.id !== props.id,
-    };
-  },
-  canDrop(props, monitor) {
-    const draggedItem = monitor.getItem();
-
-    return draggedItem.instanceId === props.instanceId;
-  },
+DragDropBlank.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  disabled: PropTypes.bool,
+  duplicates: PropTypes.bool,
+  choice: PropTypes.object,
+  correct: PropTypes.bool,
+  onChange: PropTypes.func,
+  emptyResponseAreaWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  emptyResponseAreaHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  instanceId: PropTypes.string,
 };
 
-const DropTile = DropTarget(DRAG_TYPE, tileTarget, (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget(),
-  isOver: monitor.isOver(),
-  dragItem: monitor.getItem(),
-}))(connectedBlankContent);
-
-const tileSource = {
-  canDrag(props) {
-    return !props.disabled && !!props.choice;
-  },
-  beginDrag(props) {
-    return {
-      id: props.id,
-      choice: props.choice,
-      instanceId: props.instanceId,
-      fromChoice: true,
-    };
-  },
-  endDrag(props, monitor) {
-    // this will be null if it did not drop
-    const dropResult = monitor.getDropResult();
-
-    if (!dropResult || dropResult.dropped) {
-      const draggedItem = monitor.getItem();
-
-      if (draggedItem.fromChoice) {
-        props.onChange(props.id, undefined);
-      }
-    }
-  },
-};
-
-const DragDropTile = DragSource(DRAG_TYPE, tileSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging(),
-}))(DropTile);
-
-export default DragDropTile;
+export default DragDropBlank;
