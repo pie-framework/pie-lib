@@ -4,7 +4,10 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { color } from '@pie-lib/render-ui';
 import { allTools } from './tools';
-import { withDragContext, DragSource, DropTarget } from '@pie-lib/drag';
+import { DragProvider } from '@pie-lib/drag';
+import { useDraggable, useDroppable } from '@dnd-kit/core';
+import { CSS } from '@dnd-kit/utilities';
+import { arrayMove } from '@dnd-kit/sortable';
 import Translator from '@pie-lib/translator';
 
 const { translator } = Translator;
@@ -74,18 +77,6 @@ const StyledWrapper = styled('div')({
   position: 'relative',
 });
 
-const StyledUnder = styled('div')({
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  zIndex: -1,
-  pointerEvents: 'none',
-});
-
-const StyledHidden = styled('div')({
-  opacity: 0,
-});
-
 export class ToggleBar extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -104,133 +95,137 @@ export class ToggleBar extends React.Component {
 
   moveTool = (dragIndex, hoverIndex) => {
     const { options, onChangeToolsOrder } = this.props;
-    const dragged = options[dragIndex];
+    const newOptions = arrayMove(options, dragIndex, hoverIndex);
+    console.log('New Options Order:', newOptions);
+    onChangeToolsOrder(newOptions);
+  };
 
-    options.splice(dragIndex, 1);
-    options.splice(hoverIndex, 0, dragged);
+  handleDragEnd = (event) => {
+    const { active, over } = event;
+    
+    console.log('Drag End Event:', event);
+    if (!over || !active) return;
 
-    onChangeToolsOrder(options);
+    const activeData = active.data.current;
+    const overData = over.data.current;
+
+    if (activeData?.type === 'tool' && overData?.type === 'tool') {
+      const dragIndex = activeData.index;
+      const hoverIndex = overData.index;
+      
+      if (dragIndex !== hoverIndex) {
+        this.moveTool(dragIndex, hoverIndex);
+      }
+    }
   };
 
   render() {
     const { className, disabled, options, selectedToolType, draggableTools, language } = this.props;
 
     return (
-      <StyledToolsContainer className={className}>
-        {(options || []).map((option, index) => {
-          if ((allTools || []).includes(option)) {
-            const isSelected = option === selectedToolType;
-            const toolRef = React.createRef();
+      <DragProvider onDragEnd={this.handleDragEnd}>
+        <StyledToolsContainer className={className}>
+          {(options || []).map((option, index) => {
+            if ((allTools || []).includes(option)) {
+              const isSelected = option === selectedToolType;
+              const toolRef = React.createRef();
 
-            return (
-              <DragTool
-                key={option}
-                index={index}
-                draggable={draggableTools}
-                moveTool={this.moveTool}
-                toolRef={toolRef}
-              >
-                <StyledButton
-                  disabled={disabled}
-                  disableRipple={true}
-                  onClick={this.select}
+              return (
+                <DragTool
+                  key={option}
+                  index={index}
                   value={option}
-                  selected={isSelected}
-                  language={language}
-                />
-              </DragTool>
-            );
-          }
-        })}
-      </StyledToolsContainer>
+                  draggable={draggableTools}
+                  moveTool={this.moveTool}
+                  toolRef={toolRef}
+                >
+                  <StyledButton
+                    disabled={disabled}
+                    disableRipple={true}
+                    onClick={this.select}
+                    value={option}
+                    selected={isSelected}
+                    language={language}
+                  />
+                </DragTool>
+              );
+            }
+          })}
+        </StyledToolsContainer>
+      </DragProvider>
     );
   }
 }
 
-export default withDragContext(ToggleBar);
+// DragTool functional component using @dnd-kit hooks
+function DragTool({ 
+  children, 
+  index, 
+  draggable, 
+  moveTool, 
+  toolRef, 
+  value 
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef: setDragNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useDraggable({
+    id: `tool-${value}-${index}`,
+    disabled: !draggable,
+    data: {
+      type: 'tool',
+      index,
+      value,
+    },
+  });
 
-const DRAG_TYPE = 'tool';
+  const {
+    setNodeRef: setDropNodeRef,
+    isOver,
+  } = useDroppable({
+    id: `drop-tool-${value}-${index}`,
+    data: {
+      type: 'tool',
+      index,
+      accepts: ['tool'],
+    },
+  });
 
-export class Item extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    connectDragSource: PropTypes.func.isRequired,
-    connectDragPreview: PropTypes.func.isRequired,
-    connectDropTarget: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool,
-    toolRef: PropTypes.any,
+  // Combine refs
+  const setNodeRef = (node) => {
+    setDragNodeRef(node);
+    setDropNodeRef(node);
+    if (toolRef?.current) {
+      toolRef.current = node;
+    }
   };
 
-  static defaultProps = {};
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
 
-  render() {
-    const {
-      children,
-      connectDragSource,
-      connectDropTarget,
-      connectDragPreview,
-      isDragging,
-      toolRef,
-    } = this.props;
-
-    return (
-      <StyledWrapper ref={toolRef}>
-        {connectDragSource(connectDropTarget(<div style={{ opacity: isDragging ? 0 : 1 }}>{children}</div>))}
-        {connectDragPreview(<StyledUnder>{children}</StyledUnder>)}
-      </StyledWrapper>
-    );
-  }
+  return (
+    <StyledWrapper ref={setNodeRef} style={style}>
+      <div {...attributes} {...listeners}>
+        {children}
+      </div>
+    </StyledWrapper>
+  );
 }
 
-const itemSource = {
-  canDrag(props) {
-    return props.draggable;
-  },
-  beginDrag(props) {
-    return {
-      index: props.index,
-    };
-  },
+DragTool.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number,
+  draggable: PropTypes.bool,
+  moveTool: PropTypes.func,
+  toolRef: PropTypes.object,
+  value: PropTypes.string,
 };
 
-const itemTarget = {
-  hover(props, monitor) {
-    const dragIndex = monitor.getItem().index;
-    const { toolRef, index: hoverIndex } = props;
-
-    if (dragIndex === hoverIndex || !toolRef.current) {
-      return;
-    }
-
-    const hoverBoundingRect = toolRef.current?.getBoundingClientRect();
-    const hoverMiddleX = (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
-    const clientOffset = monitor.getClientOffset();
-    const hoverClientX = clientOffset.x - hoverBoundingRect.left;
-
-    if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
-      return;
-    }
-
-    if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
-      return;
-    }
-
-    props.moveTool(dragIndex, hoverIndex);
-    monitor.getItem().index = hoverIndex;
-  },
-};
-
-const collectTarget = (connect) => ({ connectDropTarget: connect.dropTarget() });
-
-const collectSource = (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  connectDragPreview: connect.dragPreview(),
-  isDragging: monitor.isDragging(),
-});
-
-const DragTool = DropTarget(
-  DRAG_TYPE,
-  itemTarget,
-  collectTarget,
-)(DragSource(DRAG_TYPE, itemSource, collectSource)(Item));
+export default ToggleBar;
