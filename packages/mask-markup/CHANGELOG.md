@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.2...@pie-lib/mask-markup@1.30.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* drag library update in mask-markup and demo packages ([c8a5c17](https://github.com/pie-framework/pie-lib/commit/c8a5c17b0cb16d0c9debb876b4fdba13fbdf5404))
+
+
+
+
+
 ## [1.29.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.1...@pie-lib/mask-markup@1.29.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

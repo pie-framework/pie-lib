@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.30.2...@pie-lib/graphing@2.31.0-mui-update.0) (2025-10-31)
+
+
+### Bug Fixes
+
+* update graphing components - styling and correctness handling PD-5258 ([7f1d3ba](https://github.com/pie-framework/pie-lib/commit/7f1d3bade7271c8f95bb9a67352fc9a52888ffda))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* drag library update in graphing packages ([6638af8](https://github.com/pie-framework/pie-lib/commit/6638af83235a13b983b95587ba042bbdff61c4df))
+* packages/graphing  mui update PD-5268 ([503e9fd](https://github.com/pie-framework/pie-lib/commit/503e9fd47f230503ca8133eb8a61cacc727bb0fe))
+
+
+
+
+
 ## [2.30.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.30.1...@pie-lib/graphing@2.30.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/graphing

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.23.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
+
+
+
+
+
 # [3.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.2.1...@pie-lib/math-rendering@3.18.0) (2025-09-25)
 
 

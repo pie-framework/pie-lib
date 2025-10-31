@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.2...@pie-lib/drag@2.19.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* drag library update ([fb7a4d0](https://github.com/pie-framework/pie-lib/commit/fb7a4d0ce761f2f4c1a122854cfa306abb8ea7c8))
+* **drag:** update drag package to corresp to material v5 PD-5258 ([7400327](https://github.com/pie-framework/pie-lib/commit/740032735077939f4e05897aaf6b618bfa5b236d))
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+
+
+
+
+
 ## [2.18.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.1...@pie-lib/drag@2.18.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/drag

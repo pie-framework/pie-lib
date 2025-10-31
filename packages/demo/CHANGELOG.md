@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.3...@pie-lib/demo@8.28.0-mui-update.0) (2025-10-31)
+
+
+### Bug Fixes
+
+* charting cleanup ([4f8b14f](https://github.com/pie-framework/pie-lib/commit/4f8b14f59cf6d977af04feaa75f78f65fe4ffbb8))
+* charting issues ([fb42cac](https://github.com/pie-framework/pie-lib/commit/fb42cacad4753b1aaf501969bde0a489fd223a1e))
+* charting ux fixes after mui update PD-5258 ([38ee1dc](https://github.com/pie-framework/pie-lib/commit/38ee1dc3810760794690534821f78672906a4981))
+* missing declaration ([0c906d1](https://github.com/pie-framework/pie-lib/commit/0c906d139a075f0a9e5c91c25df44840375349ab))
+* next link error ([51ad4e9](https://github.com/pie-framework/pie-lib/commit/51ad4e9e88e62b4fbf918608245c2cb524f84460))
+* update graphing components - styling and correctness handling PD-5258 ([7f1d3ba](https://github.com/pie-framework/pie-lib/commit/7f1d3bade7271c8f95bb9a67352fc9a52888ffda))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* drag library update ([fb7a4d0](https://github.com/pie-framework/pie-lib/commit/fb7a4d0ce761f2f4c1a122854cfa306abb8ea7c8))
+* drag library update in graphing packages ([6638af8](https://github.com/pie-framework/pie-lib/commit/6638af83235a13b983b95587ba042bbdff61c4df))
+* drag library update in mask-markup and demo packages ([c8a5c17](https://github.com/pie-framework/pie-lib/commit/c8a5c17b0cb16d0c9debb876b4fdba13fbdf5404))
+* **rubric:** migrate rubric package to material-ui 5 PD-5258 ([1b33f99](https://github.com/pie-framework/pie-lib/commit/1b33f99c073eaaa32eac36f848a814ade4c97593))
+* packages/charting  mui update PD-5268 ([9619c34](https://github.com/pie-framework/pie-lib/commit/9619c3437ad7ae762daa04350e1110cb429c7166))
+* packages/demo mui update PD-5268 ([6557a9b](https://github.com/pie-framework/pie-lib/commit/6557a9bac4f00622b1354f08635bfaec1175cff6))
+* packages/math-input mui update PD-5268 ([b2603ad](https://github.com/pie-framework/pie-lib/commit/b2603ad0901b4b1611b7cd06ae3610c5822090b0))
+* packages/math-toolbar & packages/icons  mui update PD-5268 ([8a18bc1](https://github.com/pie-framework/pie-lib/commit/8a18bc1a79cd3ca3baa7ff7a94b050ec20371649))
+* PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
+
+
+
+
+
 ## [8.27.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.2...@pie-lib/demo@8.27.3) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/demo

@@ -12,7 +12,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.21.2",
+  "version": "2.22.0-mui-update.0",
   "main": "lib/index.js",
   "module": "src/index.jsx",
   "scripts": {},
@@ -22,8 +22,8 @@
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@pie-lib/icons": "^2.21.4",
-    "@pie-lib/render-ui": "^4.31.2",
-    "@pie-lib/translator": "^2.20.4",
+    "@pie-lib/render-ui": "^4.32.0-mui-update.0",
+    "@pie-lib/translator": "^2.22.0-mui-update.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",

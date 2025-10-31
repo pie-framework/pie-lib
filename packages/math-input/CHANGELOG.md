@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.28.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* packages/math-input mui update PD-5268 ([b2603ad](https://github.com/pie-framework/pie-lib/commit/b2603ad0901b4b1611b7cd06ae3610c5822090b0))
+
+
+
+
+
 # [6.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.11.4...@pie-lib/math-input@6.27.0) (2025-09-25)
 
 

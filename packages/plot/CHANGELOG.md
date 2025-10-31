@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.2...@pie-lib/plot@2.24.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* packages/plot  mui update PD-5268 ([6456853](https://github.com/pie-framework/pie-lib/commit/645685333cb277208ca197b2853a3780edc92b15))
+
+
+
+
+
 ## [2.23.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.1...@pie-lib/plot@2.23.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/plot

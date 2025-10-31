@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.22.2...@pie-lib/scoring-config@3.23.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* packages/scoring-config mui update PD-5268 ([7ca6f32](https://github.com/pie-framework/pie-lib/commit/7ca6f32cf8bbd7b5d79479d80b8d2edfe86f2fb3))
+
+
+
+
+
 ## [3.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.22.1...@pie-lib/scoring-config@3.22.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/scoring-config

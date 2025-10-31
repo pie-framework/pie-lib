@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.18.0...@pie-lib/test-utils@0.19.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+
+
+
+
+
 # [0.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.33...@pie-lib/test-utils@0.18.0) (2025-09-25)
 
 

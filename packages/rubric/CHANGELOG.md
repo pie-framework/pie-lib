@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.24.2...@pie-lib/rubric@0.25.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* PD-5258 rubric fix ([de878e0](https://github.com/pie-framework/pie-lib/commit/de878e0b02a3181985f93f1cea16f93c36d826a4))
+* **rubric:** migrate rubric package to material-ui 5 PD-5258 ([1b33f99](https://github.com/pie-framework/pie-lib/commit/1b33f99c073eaaa32eac36f848a814ade4c97593))
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+
+
+
+
+
 ## [0.24.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.24.1...@pie-lib/rubric@0.24.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/rubric

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.2...@pie-lib/render-ui@4.32.0-mui-update.0) (2025-10-31)
+
+
+### Bug Fixes
+
+* update graphing components - styling and correctness handling PD-5258 ([7f1d3ba](https://github.com/pie-framework/pie-lib/commit/7f1d3bade7271c8f95bb9a67352fc9a52888ffda))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
+
+
+
+
+
 ## [4.31.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.1...@pie-lib/render-ui@4.31.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/render-ui

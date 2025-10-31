@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.21.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* packages/math-toolbar & packages/icons  mui update PD-5268 ([8a18bc1](https://github.com/pie-framework/pie-lib/commit/8a18bc1a79cd3ca3baa7ff7a94b050ec20371649))
+
+
+
+
+
 # [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.4.43...@pie-lib/icons@2.20.0) (2025-09-25)
 
 

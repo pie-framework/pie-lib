@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.2...@pie-lib/correct-answer-toggle@2.22.0-mui-update.0) (2025-10-31)
+
+
+### Bug Fixes
+
+* **correct-answer-toggle, text-select:** change logic to corresp to material v5 PD-5269 PD-5271 ([e992861](https://github.com/pie-framework/pie-lib/commit/e992861c6d964340bf7afc8e5ac9007816d510ef))
+
+
+### Features
+
+* **correct-answe-toggle, legend:** delete unused files and imports PD-5258 ([261638d](https://github.com/pie-framework/pie-lib/commit/261638d9ceff79163eb858696a4c8eb7a7a3006c))
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+
+
+
+
+
 ## [2.21.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.1...@pie-lib/correct-answer-toggle@2.21.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle

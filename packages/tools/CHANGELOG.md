@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.1...@pie-lib/tools@0.26.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* packages/charting  mui update PD-5268 ([9619c34](https://github.com/pie-framework/pie-lib/commit/9619c3437ad7ae762daa04350e1110cb429c7166))
+* packages/tools  mui update PD-5268 ([acbdc9a](https://github.com/pie-framework/pie-lib/commit/acbdc9a7354db19e4671bcbe182878c1d5791bc1))
+
+
+
+
+
 ## [0.25.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.0...@pie-lib/tools@0.25.1) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/tools

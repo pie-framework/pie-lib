@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.18.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.17.2...@pie-lib/editable-html@11.18.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* drag library update ([fb7a4d0](https://github.com/pie-framework/pie-lib/commit/fb7a4d0ce761f2f4c1a122854cfa306abb8ea7c8))
+* packages/editable-html mui update PD-5268 ([6b8d201](https://github.com/pie-framework/pie-lib/commit/6b8d201cfc0bf7e26eea58e296109c463544075f))
+
+
+
+
+
 ## [11.17.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.17.1...@pie-lib/editable-html@11.17.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/editable-html

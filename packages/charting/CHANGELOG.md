@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.7...@pie-lib/charting@5.33.0-mui-update.0) (2025-10-31)
+
+
+### Bug Fixes
+
+* charting cleanup ([4f8b14f](https://github.com/pie-framework/pie-lib/commit/4f8b14f59cf6d977af04feaa75f78f65fe4ffbb8))
+* charting issues ([fb42cac](https://github.com/pie-framework/pie-lib/commit/fb42cacad4753b1aaf501969bde0a489fd223a1e))
+* charting ux fixes after mui update PD-5258 ([38ee1dc](https://github.com/pie-framework/pie-lib/commit/38ee1dc3810760794690534821f78672906a4981))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* packages/charting  mui update PD-5268 ([9619c34](https://github.com/pie-framework/pie-lib/commit/9619c3437ad7ae762daa04350e1110cb429c7166))
+
+
+
+
+
 ## [5.32.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.6...@pie-lib/charting@5.32.7) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/charting

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.2...@pie-lib/config-ui@11.26.0-mui-update.0) (2025-10-31)
+
+
+### Features
+
+* **config-ui:** migrate to material v5 PD-5258 ([3ea0799](https://github.com/pie-framework/pie-lib/commit/3ea0799ce78ca20c938c7765b7af5a47194c39d1))
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+
+
+
+
+
 ## [11.25.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.1...@pie-lib/config-ui@11.25.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/config-ui
