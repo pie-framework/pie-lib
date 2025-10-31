@@ -23,7 +23,7 @@
     "@mui/material": "^7.3.4",
     "@pie-lib/drag": "^2.19.0-mui-update.0",
     "@pie-lib/editable-html": "^11.18.0-mui-update.0",
-    "@pie-lib/graphing-utils": "^1.18.4",
+    "@pie-lib/graphing-utils": "^1.18.0-mui-update.0",
     "@pie-lib/plot": "^2.24.0-mui-update.0",
     "@pie-lib/render-ui": "^4.32.0-mui-update.0",
     "@pie-lib/translator": "^2.22.0-mui-update.0",
