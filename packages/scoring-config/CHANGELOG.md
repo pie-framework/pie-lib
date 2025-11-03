@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.25.0-mui-update.0...@pie-lib/scoring-config@3.26.0-mui-update.0) (2025-11-03)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
 # [3.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.23.0-mui-update.0...@pie-lib/scoring-config@3.25.0-mui-update.0) (2025-11-03)
 
 **Note:** Version bump only for package @pie-lib/scoring-config
