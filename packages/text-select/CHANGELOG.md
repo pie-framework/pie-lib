@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.29.0-mui-update.0...@pie-lib/text-select@1.31.0-mui-update.0) (2025-11-03)
+
+
+### Bug Fixes
+
+* refactor text select as renderAsString not used anymore ([9a1aea9](https://github.com/pie-framework/pie-lib/commit/9a1aea9c9cc709a803e30a8477b42ae2136a5061))
+
+
+
+
+
 # [1.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.2...@pie-lib/text-select@1.29.0-mui-update.0) (2025-10-31)
 
 

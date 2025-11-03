@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "5.34.0-mui-update.0",
+  "version": "5.35.0-mui-update.0",
   "description": "charting",
   "keywords": [
     "react",
@@ -22,10 +22,10 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/math-rendering": "^3.24.0-mui-update.0",
-    "@pie-lib/plot": "^2.25.0-mui-update.0",
-    "@pie-lib/render-ui": "^4.33.0-mui-update.0",
-    "@pie-lib/translator": "^2.22.0-mui-update.0",
+    "@pie-lib/math-rendering": "^3.25.0-mui-update.0",
+    "@pie-lib/plot": "^2.26.0-mui-update.0",
+    "@pie-lib/render-ui": "^4.34.0-mui-update.0",
+    "@pie-lib/translator": "^2.23.0-mui-update.0",
     "@vx/axis": "^0.0.183",
     "@vx/event": "^0.0.182",
     "@vx/grid": "^0.0.183",

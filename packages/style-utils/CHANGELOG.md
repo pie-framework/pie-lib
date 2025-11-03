@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.18.0-mui-update.0...@pie-lib/style-utils@0.20.0-mui-update.0) (2025-11-03)
+
+
+### Bug Fixes
+
+* refactor text select as renderAsString not used anymore ([9a1aea9](https://github.com/pie-framework/pie-lib/commit/9a1aea9c9cc709a803e30a8477b42ae2136a5061))
+
+
+
+
+
 # [0.18.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/style-utils@0.17.0...@pie-lib/style-utils@0.18.0-mui-update.0) (2025-10-31)
 
 **Note:** Version bump only for package @pie-lib/style-utils
