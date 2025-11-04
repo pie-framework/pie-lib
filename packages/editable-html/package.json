@@ -36,7 +36,9 @@
     "slate-react": "^0.14.3",
     "slate-schema-violations": "^0.1.39",
     "slate-soft-break": "^0.8.1",
-    "to-style": "^1.3.3"
+    "to-style": "^1.3.3",
+    "@dnd-kit/core": "6.1.0",
+    "@dnd-kit/utilities": "3.2.2"
   },
   "devDependencies": {
     "@pie-framework/mathquill": "^1.1.3",
