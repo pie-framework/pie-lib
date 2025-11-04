@@ -48,28 +48,28 @@ class MeasuredConfigLayout extends AppendCSSRules {
 
   render() {
     return (
-      <StyledEngineProvider injectFirst>(<ThemeProvider theme={theme}>
-            <Measure bounds onResize={this.onResize}>
-              {({ measureRef }) => {
-                const { children, settings, hideSettings, dimensions } = this.props;
-                const { layoutMode } = this.state;
+      <StyledEngineProvider injectFirst><ThemeProvider theme={theme}>
+        <Measure bounds onResize={this.onResize}>
+          {({ measureRef }) => {
+            const { children, settings, hideSettings, dimensions } = this.props;
+            const { layoutMode } = this.state;
 
-                const settingsPanel =
-                  layoutMode === 'inline' ? <SettingsBox className="settings-box">{settings}</SettingsBox> : settings;
-                const secondaryContent = hideSettings ? null : settingsPanel;
-                const finalClass = classNames('main-container');
+            const settingsPanel =
+              layoutMode === 'inline' ? <SettingsBox className="settings-box">{settings}</SettingsBox> : settings;
+            const secondaryContent = hideSettings ? null : settingsPanel;
+            const finalClass = classNames('main-container');
 
-                return (
-                  <div ref={measureRef} className={finalClass}>
-                    <LayoutContents mode={layoutMode} secondary={secondaryContent} dimensions={dimensions}>
-                      {children}
-                    </LayoutContents>
-                  </div>
-                );
-              }}
-            </Measure>
-          </ThemeProvider>)
-              </StyledEngineProvider>
+            return (
+              <div ref={measureRef} className={finalClass}>
+                <LayoutContents mode={layoutMode} secondary={secondaryContent} dimensions={dimensions}>
+                  {children}
+                </LayoutContents>
+              </div>
+            );
+          }}
+        </Measure>
+      </ThemeProvider>
+      </StyledEngineProvider>
     );
   }
 }
