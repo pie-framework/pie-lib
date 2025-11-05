@@ -42,6 +42,10 @@ export class ActionsButton extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    this.setState({ actionsAnchorEl: null });
+  }
+
   static propTypes = {
     addCategory: PropTypes.func.isRequired,
     deleteCategory: PropTypes.func.isRequired,
@@ -71,6 +75,7 @@ export class ActionsButton extends React.Component {
 
   render() {
     const { categories, language } = this.props;
+    const { actionsAnchorEl } = this.state;
 
     return (
       <StyledActions>
@@ -78,8 +83,9 @@ export class ActionsButton extends React.Component {
           Actions
         </StyledTrigger>
         <Popover
-          open={Boolean(this.state.actionsAnchorEl)}
-          anchorEl={this.state.actionsAnchorEl}
+          key={`actions-popover-${Math.random()}`}
+          open={Boolean(actionsAnchorEl)}
+          anchorEl={actionsAnchorEl}
           onClose={this.handleActionsClose}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}

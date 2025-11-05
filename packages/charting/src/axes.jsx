@@ -22,33 +22,15 @@ const StyledCheckbox = styled(Checkbox)(() => ({
   color: `${color.tertiary()} !important`,
 }));
 
-// TODO: check if this styling works as intended once MUI migration is done
-// Styled components for axis elements
-const StyledAxisLeft = styled(AxisLeft)(() => ({
-  stroke: color.primaryDark(),
-  strokeWidth: 2,
+const StyledAxesGroup = styled('g')(({ theme }) => ({
   '& .vx-axis-line': {
     stroke: color.visualElementsColors.AXIS_LINE_COLOR,
     strokeWidth: 2,
   },
   '& .vx-axis-tick': {
-    '& > line': {
-      stroke: color.primaryDark(),
-      strokeWidth: 2,
-    },
-  },
-}));
-
-const StyledAxisBottom = styled(AxisBottom)(({ theme }) => ({
-  stroke: color.primaryDark(),
-  strokeWidth: 2,
-  '& .vx-axis-line': {
-    stroke: color.visualElementsColors.AXIS_LINE_COLOR,
-    strokeWidth: 2,
-  },
-  '& .vx-axis-tick': {
-    '& > line': {
-      stroke: color.primaryDark(),
+    fill: color.visualElementsColors.AXIS_TICK_COLOR,
+    '& line': {
+      stroke: color.visualElementsColors.AXIS_TICK_COLOR,
       strokeWidth: 2,
     },
     fontFamily: theme.typography.body1?.fontFamily,
@@ -57,7 +39,6 @@ const StyledAxisBottom = styled(AxisBottom)(({ theme }) => ({
   },
 }));
 
-// Styled components for correctness indicators
 const correctnessIconStyles = (theme) => ({
   borderRadius: theme.spacing(2),
   color: color.defaults.WHITE,
@@ -522,9 +503,9 @@ export class RawChartAxes extends React.Component {
     };
 
     return (
-      <React.Fragment>
+      <StyledAxesGroup>
         {leftAxis && (
-          <StyledAxisLeft
+          <AxisLeft
             scale={scale.y}
             tickLength={10}
             tickFormat={(value) => value}
@@ -532,7 +513,7 @@ export class RawChartAxes extends React.Component {
             tickLabelProps={getTickLabelProps}
           />
         )}
-        <StyledAxisBottom
+        <AxisBottom
           scale={bottomScale}
           labelProps={{ y: 60 + top }}
           top={scale.y && scale.y(range.min)}
@@ -542,7 +523,7 @@ export class RawChartAxes extends React.Component {
           autoFocus={autoFocus}
           onAutoFocusUsed={onAutoFocusUsed}
         />
-      </React.Fragment>
+      </StyledAxesGroup>
     );
   }
 }
