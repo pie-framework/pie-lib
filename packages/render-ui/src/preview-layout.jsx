@@ -22,11 +22,11 @@ class PreviewLayout extends React.Component {
   };
 
   render() {
-    const { children, ariaLabel, role, extraCSSRules, fontSizeFactor } = this.props;
+    const { children, ariaLabel, role, extraCSSRules, fontSizeFactor, classes } = this.props;
     const accessibility = ariaLabel ? { 'aria-label': ariaLabel, role } : {};
 
     return (
-      <StyledUiLayout {...accessibility} extraCSSRules={extraCSSRules} fontSizeFactor={fontSizeFactor}>
+      <StyledUiLayout {...accessibility} extraCSSRules={extraCSSRules} fontSizeFactor={fontSizeFactor} classes={classes}>
         {children}
       </StyledUiLayout>
     );

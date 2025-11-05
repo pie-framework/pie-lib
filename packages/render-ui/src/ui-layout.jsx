@@ -76,11 +76,15 @@ class UiLayout extends AppendCSSRules {
       names: PropTypes.arrayOf(PropTypes.string),
       rules: PropTypes.string,
     }),
+    classes: PropTypes.shape({
+      extraCSSRules: PropTypes.string,
+    }),
     fontSizeFactor: PropTypes.number,
   };
 
   static defaultProps = {
     extraCSSRules: {},
+    classes: {},
     fontSizeFactor: 1,
   };
 
