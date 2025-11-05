@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.36.0-mui-update.0...@pie-lib/charting@5.37.0-mui-update.0) (2025-11-05)
+
+
+### Bug Fixes
+
+* charting styles ([c733e4e](https://github.com/pie-framework/pie-lib/commit/c733e4e316b572a8aea3e494a2ab3bf3863a015e))
+
+
+
+
+
 # [5.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.35.0-mui-update.0...@pie-lib/charting@5.36.0-mui-update.0) (2025-11-03)
 
 **Note:** Version bump only for package @pie-lib/charting

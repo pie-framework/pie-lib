@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.22.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.21.0-mui-update.0...@pie-lib/editable-html@11.22.0-mui-update.0) (2025-11-05)
+
+
+### Bug Fixes
+
+* add missing dependencies for dnd-kit ([c50ec8e](https://github.com/pie-framework/pie-lib/commit/c50ec8e0a839e574aa61db78ecd121c6fdbc70c9))
+
+
+
+
+
 # [11.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.20.0-mui-update.0...@pie-lib/editable-html@11.21.0-mui-update.0) (2025-11-03)
 
 **Note:** Version bump only for package @pie-lib/editable-html

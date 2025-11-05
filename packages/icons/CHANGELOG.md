@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.24.0-mui-update.0...@pie-lib/icons@2.25.0-mui-update.0) (2025-11-05)
+
+
+### Bug Fixes
+
+* icon rendering ([d20951d](https://github.com/pie-framework/pie-lib/commit/d20951da114ef6a3939a12d0ea5f195ebe372240))
+
+
+
+
+
 # [2.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.23.0-mui-update.0...@pie-lib/icons@2.24.0-mui-update.0) (2025-11-03)
 
 **Note:** Version bump only for package @pie-lib/icons

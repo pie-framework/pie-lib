@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.29.0-mui-update.0...@pie-lib/config-ui@11.30.0-mui-update.0) (2025-11-05)
+
+
+### Bug Fixes
+
+* label positioning in input render-ui ([8012817](https://github.com/pie-framework/pie-lib/commit/80128173dc596181de296633e9413bba8b79db81))
+* remove parantheses ([07c8d13](https://github.com/pie-framework/pie-lib/commit/07c8d1366d768b1e22e31fb930a7d41a2a31d5ca))
+
+
+
+
+
 # [11.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.28.0-mui-update.0...@pie-lib/config-ui@11.29.0-mui-update.0) (2025-11-03)
 
 **Note:** Version bump only for package @pie-lib/config-ui

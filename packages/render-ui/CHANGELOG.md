@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.0-mui-update.0...@pie-lib/render-ui@4.36.0-mui-update.0) (2025-11-05)
+
+
+### Bug Fixes
+
+* add default props uiLayout, add props for previewLayout ([933e5f7](https://github.com/pie-framework/pie-lib/commit/933e5f71f1f2fff99c57ee5132f9f23ee85c3f28))
+* label positioning in input render-ui ([8012817](https://github.com/pie-framework/pie-lib/commit/80128173dc596181de296633e9413bba8b79db81))
+
+
+
+
+
 # [4.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.34.0-mui-update.0...@pie-lib/render-ui@4.35.0-mui-update.0) (2025-11-03)
 
 **Note:** Version bump only for package @pie-lib/render-ui
