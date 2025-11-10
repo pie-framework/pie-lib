@@ -12,6 +12,19 @@ const theme = createTheme({
   typography: {
     fontFamily: 'inherit',
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          backgroundColor: '#e0e0e0',
+          color: '#000000',
+          '&:hover': {
+            backgroundColor: '#bdbdbd',
+          },
+        },
+      },
+    },
+  },
 });
 
 class MeasuredConfigLayout extends AppendCSSRules {
