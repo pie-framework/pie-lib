@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import { WebComponentSafeSelect } from './web-component-safe-select';
+import { Select } from '@mui/material';
 
 const StyledContainer = styled('div')(() => ({
   width: '160px',
@@ -23,13 +23,14 @@ const ChartType = ({ onChange, value, availableChartTypes, chartTypeLabel }) => 
       <StyledInputLabel id="type-helper-label">
         {chartTypeLabel}
       </StyledInputLabel>
-      <WebComponentSafeSelect
+      <Select
         labelId="type-helper-label"
         id="type-helper-label-select"
         name="chartType"
         value={value}
         onChange={onChange}
         label={chartTypeLabel}
+        MenuProps={{transitionDuration: { enter: 225, exit: 195 }}}
       >
         {availableChartTypes?.histogram && <MenuItem value={'histogram'}>{availableChartTypes.histogram}</MenuItem>}
         {availableChartTypes?.bar && <MenuItem value={'bar'}>{availableChartTypes.bar}</MenuItem>}
@@ -37,7 +38,7 @@ const ChartType = ({ onChange, value, availableChartTypes, chartTypeLabel }) => 
         {availableChartTypes?.lineCross && <MenuItem value={'lineCross'}>{availableChartTypes.lineCross}</MenuItem>}
         {availableChartTypes?.dotPlot && <MenuItem value={'dotPlot'}>{availableChartTypes.dotPlot}</MenuItem>}
         {availableChartTypes?.linePlot && <MenuItem value={'linePlot'}>{availableChartTypes.linePlot}</MenuItem>}
-      </WebComponentSafeSelect>
+      </Select>
     </StyledFormControl>
   </StyledContainer>
 );
