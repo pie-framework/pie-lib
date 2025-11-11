@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
 import get from 'lodash/get';
 import set from 'lodash/set';
+import { styled } from '@mui/material/styles';
 import Select from '@mui/material/Select';
 import Input from '@mui/material/Input';
 import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
 import debug from 'debug';
 
 import Toggle from './toggle';
@@ -13,7 +14,6 @@ import { NChoice } from '../two-choice';
 import SettingsRadioLabel from './settings-radio-label';
 import NumberTextField from '../number-text-field';
 import Checkbox from '../checkbox';
-import Typography from '@mui/material/Typography';
 
 const log = debug('pie-lib:config-ui:settings:panel');
 
@@ -85,8 +85,8 @@ const StyledLabel = styled('p')(({ theme }) => ({
 const StyledSelect = styled(Select)(({ theme }) => ({
   marginTop: theme.spacing(0.5),
   border: '2px solid lightgrey',
+  padding: `0 ${theme.spacing(1)}`,
   borderRadius: '4px',
-  padding: `0 ${theme.spacing(1)}px`,
 }));
 
 const Dropdown = ({ label, value, onChange, choices = [] }) => {
@@ -100,6 +100,7 @@ const Dropdown = ({ label, value, onChange, choices = [] }) => {
         onChange={({ target }) => onChange(target.value)}
         input={<Input id={`dropdown-${label}`} />}
         disableUnderline
+        MenuProps={{ transitionDuration: { enter: 225, exit: 195 } }}
       >
         {choices.map((l, index) => (
           <MenuItem key={index} value={getItemValue(l)}>
@@ -130,13 +131,15 @@ const StyledNumberTextField = styled(NumberTextField)(({ theme }) => ({
     marginTop: theme.spacing(0.5),
     border: '2px solid lightgrey',
     borderRadius: '4px',
-    padding: `0 ${theme.spacing(1)}px`,
+    padding: `0 ${theme.spacing(1)}`,
+    backgroundColor: 'transparent',
   },
 }));
 
 const NumberField = ({ label, value, onChange = () => {}, suffix, min, max }) => {
   return (
     <StyledNumberTextField
+      variant={'standard'}
       label={label || 'Label'}
       value={value}
       max={max}
@@ -177,7 +180,7 @@ const tagMap = {
 };
 
 const StyledGroup = styled('div')(({ theme }) => ({
-  margin: `0 0 ${theme.spacing(2)}px 0`,
+  margin: `0 0 ${theme.spacing(2)} 0`,
 }));
 
 const StyledGroupHeader = styled('div')(({ theme }) => ({

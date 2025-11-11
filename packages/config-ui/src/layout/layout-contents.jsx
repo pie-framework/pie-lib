@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Tabs from '../tabs';
-import classNames from 'classnames';
 
 const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -16,7 +15,7 @@ const StyledFlow = styled('div')(() => ({
 }));
 
 const StyledContentContainer = styled('div')(({ theme }) => ({
-  padding: `${theme.spacing(2)}px 0`,
+  padding: `${theme.spacing(2)} 0`,
 }));
 
 const StyledConfigContainer = styled('div')(() => ({
