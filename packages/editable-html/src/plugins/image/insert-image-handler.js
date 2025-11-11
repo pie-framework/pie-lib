@@ -12,45 +12,19 @@ const log = debug('@pie-lib:editable-html:image:insert-image-handler');
  * @param {Boolean} isPasted - a boolean that keeps track if the file is pasted
  */
 class InsertImageHandler {
-  constructor(placeholderBlock, onFinish, getValue, onChange, isPasted = false) {
-    this.placeholderBlock = placeholderBlock;
-    this.getValue = getValue;
+  constructor(editor, onFinish, isPasted = false) {
+    this.editor = editor;
     this.onFinish = onFinish;
-    this.onChange = onChange;
     this.isPasted = isPasted;
     this.chosenFile = null;
-  }
-
-  getPlaceholderInDocument(value) {
-    const { document } = value;
-    const directChild = document.getChild(this.placeholderBlock.key);
-
-    if (directChild) {
-      return directChild;
-    }
-
-    const child = document.getDescendant(this.placeholderBlock.key);
-
-    if (child) {
-      return child;
-    } else {
-      // eslint-disable-next-line
-      throw new Error("insert-image: Can't find placeholder!");
-    }
   }
 
   cancel() {
     log('insert cancelled');
 
     try {
-      const value = this.getValue();
-      const child = this.getPlaceholderInDocument(value);
-
-      if (child) {
-        const c = value.change().removeNodeByKey(child.key);
-        this.onChange(c);
-        this.onFinish(false);
-      }
+      this.editor.commands.deleteNode('imageUploadNode');
+      this.onFinish(false);
     } catch (err) {
       //
     }
@@ -63,12 +37,7 @@ class InsertImageHandler {
       console.log(err);
       this.onFinish(false);
     } else {
-      const value = this.getValue();
-      const child = this.getPlaceholderInDocument(value);
-      const data = child.data.merge(Data.create({ loaded: true, src, percent: 100 }));
-
-      const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
-      this.onChange(change);
+      this.editor.commands.updateAttributes('imageUploadNode', { loaded: true, src, percent: 100 });
       this.onFinish(true);
     }
   }
@@ -89,23 +58,16 @@ class InsertImageHandler {
     log('[fileChosen] file: ', file);
     const reader = new FileReader();
     reader.onload = () => {
-      const value = this.getValue();
       const dataURL = reader.result;
-      const child = this.getPlaceholderInDocument(value);
-      const data = child.data.set('src', dataURL);
-      const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
-      this.onChange(change);
+
+      this.editor.commands.updateAttributes('imageUploadNode', { src: dataURL });
     };
     reader.readAsDataURL(file);
   }
 
   progress(percent, bytes, total) {
     log('progress: ', percent, bytes, total);
-    const value = this.getValue();
-    const child = this.getPlaceholderInDocument(value);
-    const data = child.data.set('percent', percent);
-    const change = value.change().setNodeByKey(this.placeholderBlock.key, { data });
-    this.onChange(change);
+    this.editor.commands.updateAttributes('imageUploadNode', { percent });
   }
 
   // Add a getter method to retrieve the chosen file

@@ -26,6 +26,7 @@
     "@tiptap/extension-superscript": "3.0.9",
     "@tiptap/extension-subscript": "3.0.9",
     "@tiptap/extension-text-align": "3.0.9",
+    "@tiptap/extension-image": "3.0.9",
     "@tiptap/pm": "3.0.9",
     "@tiptap/react": "3.0.9",
     "@tiptap/starter-kit": "3.0.9",

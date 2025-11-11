@@ -121,12 +121,6 @@ const insertDialog = ({ editorDOM, value, callback, opts, textNode, parentNode }
 
       editorDOM.parentElement.parentElement.parentElement.appendChild(newEl);
 
-      // when height of toolbar exceeds screen - can happen in scrollable contexts
-      let additionalTopOffset = 0;
-      if (boundRect.y < newEl.offsetHeight) {
-        additionalTopOffset = newEl.offsetHeight - boundRect.y + 10;
-      }
-
       newEl.style.maxWidth = '500px';
       newEl.style.position = 'absolute';
       newEl.style.top = 0;

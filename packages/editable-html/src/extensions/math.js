@@ -1,10 +1,84 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Extension, Node, mergeAttributes } from '@tiptap/core';
 import { NodeViewWrapper, ReactRenderer, ReactNodeViewRenderer } from '@tiptap/react';
-import { Plugin, PluginKey, NodeSelection } from 'prosemirror-state';
+import { Plugin, PluginKey, NodeSelection, TextSelection } from 'prosemirror-state';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';
-import tippy from 'tippy.js';
+
+const ensureTextAfterMathPluginKey = new PluginKey('ensureTextAfterMath');
+
+export const EnsureTextAfterMathPlugin = (mathNodeName) =>
+  new Plugin({
+    key: ensureTextAfterMathPluginKey,
+    appendTransaction: (transactions, oldState, newState) => {
+      // Only act when the doc actually changed
+      if (!transactions.some((tr) => tr.docChanged)) return null;
+
+      const tr = newState.tr;
+      let changed = false;
+
+      newState.doc.descendants((node, pos) => {
+        if (node.type.name === mathNodeName) {
+          const nextPos = pos + node.nodeSize;
+          const nextNode = newState.doc.nodeAt(nextPos);
+
+          // If there's no node after, or the next node isn't text, insert a space
+          if (!nextNode || nextNode.type.name !== 'text') {
+            tr.insert(nextPos, newState.schema.text('\u200b'));
+            changed = true;
+          }
+        }
+      });
+
+      return changed ? tr : null;
+    },
+  });
+
+export const ZeroWidthSpaceHandlingPlugin = new Plugin({
+  key: new PluginKey('zeroWidthSpaceHandling'),
+  props: {
+    handleKeyDown(view, event) {
+      const { state, dispatch } = view;
+      const { selection, doc } = state;
+      const { from, empty } = selection;
+
+      if (empty && event.key === 'Backspace' && from > 0) {
+        const prevChar = doc.textBetween(from - 1, from, '\uFFFC', '\uFFFC');
+        if (prevChar === '\u200b') {
+          const tr = state.tr.delete(from - 2, from);
+          dispatch(tr);
+          return true; // handled
+        }
+      }
+
+      if (empty && event.key === 'ArrowLeft' && from > 0) {
+        const prevChar = doc.textBetween(from - 1, from, '\uFFFC', '\uFFFC');
+        // If the previous character is the zero-width space...
+        if (prevChar === '\u200b') {
+          const posBefore = from - 1;
+          const resolved = state.doc.resolve(posBefore - 1); // look just before the zwsp
+          const maybeNode = resolved.nodeAfter || resolved.nodeBefore;
+
+          // Check if there's an inline selectable node (e.g., your math node)
+          if (maybeNode) {
+            const nodePos = posBefore - maybeNode.nodeSize;
+            const nodeResolved = state.doc.resolve(nodePos);
+            const tr = state.tr.setSelection(NodeSelection.create(state.doc, nodeResolved.pos));
+            dispatch(tr);
+            return true;
+          } else {
+            // Just move the text cursor before the zwsp
+            const tr = state.tr.setSelection(TextSelection.create(state.doc, from - 2));
+            dispatch(tr);
+            return true;
+          }
+        }
+      }
+
+      return false;
+    },
+  },
+});
 
 export const MathNode = Node.create({
   name: 'math',
@@ -18,6 +92,10 @@ export const MathNode = Node.create({
       wrapper: { default: null },
       html: { default: null },
     };
+  },
+
+  addProseMirrorPlugins() {
+    return [EnsureTextAfterMathPlugin(this.name), ZeroWidthSpaceHandlingPlugin];
   },
 
   parseHTML() {
@@ -39,12 +117,37 @@ export const MathNode = Node.create({
 
   addCommands() {
     return {
-      insertMath: (latex = '') => ({ commands }) => {
-        return commands.insertContent({
-          type: this.name,
-          attrs: { latex },
+      insertMath: (latex = '') => ({ tr, editor, dispatch }) => {
+        // 2) Now the editor.view.state reflects the insertion
+        const { state } = editor.view;
+        const node = state.schema.nodes.math.create({
+          latex,
         });
+        const { selection } = state;
+
+        // The inserted node is typically just before the cursor
+        const pos = selection.$from.pos;
+
+        tr.insert(pos, node);
+
+        if (node?.type?.name === this.name) {
+          // Create a NodeSelection from the current doc
+          const sel = NodeSelection.create(tr.doc, selection.$from.pos);
+
+          // Build a fresh transaction from the current state and set the selection
+          tr.setSelection(sel);
+        }
+
+        dispatch(tr);
+
+        return true;
       },
+      // insertMath: (latex = '') => ({ commands }) => {
+      //   return commands.insertContent({
+      //     type: this.name,
+      //     attrs: { latex },
+      //   });
+      // },
     };
   },
 
@@ -61,15 +164,46 @@ export const MathNode = Node.create({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(MathNodeView);
+    return ReactNodeViewRenderer((props) => <MathNodeView {...{ ...props, options: this.options }} />);
   },
 });
 
 export const MathNodeView = (props) => {
-  const { node, updateAttributes, editor, selected, getPos } = props;
-  const [showToolbar, setShowToolbar] = useState(false);
+  const { node, updateAttributes, editor, selected, options } = props;
+  const [showToolbar, setShowToolbar] = useState(selected);
+  const toolbarRef = useRef(null);
 
   const latex = node.attrs.latex || '';
+
+  useEffect(() => {
+    if (selected) {
+      setShowToolbar(true);
+    }
+  }, [selected]);
+
+  useEffect(() => {
+    editor._toolbarOpened = !!showToolbar;
+  }, [showToolbar]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        toolbarRef.current &&
+        !toolbarRef.current.contains(event.target) &&
+        !event.target.closest('[data-inline-node]')
+      ) {
+        setShowToolbar(false);
+      }
+    };
+
+    if (showToolbar) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showToolbar]);
 
   const handleChange = (newLatex) => {
     updateAttributes({ latex: newLatex });
@@ -78,92 +212,48 @@ export const MathNodeView = (props) => {
   const handleDone = (newLatex) => {
     updateAttributes({ latex: newLatex });
     setShowToolbar(false);
+
+    editor._toolbarOpened = false;
+
+    const { selection, tr, doc } = editor.state;
+    const sel = TextSelection.create(doc, selection.from + 1);
+
+    // Build a fresh transaction from the current state and set the selection
+    tr.setSelection(sel);
+    editor.view.dispatch(tr);
     editor.commands.focus();
   };
 
   return (
-    <NodeViewWrapper className="math-node inline-flex items-center" data-selected={selected}>
+    <NodeViewWrapper
+      className="math-node"
+      style={{
+        display: 'inline-flex',
+        cursor: 'pointer',
+        margin: '0 4px',
+      }}
+      data-selected={selected}
+    >
       <div onClick={() => setShowToolbar(true)} contentEditable={false}>
         <MathPreview latex={latex} />
       </div>
 
       {showToolbar && (
-        <div className="absolute z-50 bg-white shadow-lg rounded p-2">
-          <MathToolbar latex={latex} onChange={handleChange} onDone={handleDone} keypadMode="basic" />
+        <div
+          ref={toolbarRef}
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            zIndex: 20,
+            background: 'var(--editable-html-toolbar-bg, #efefef)',
+            boxShadow:
+              '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+          }}
+        >
+          <MathToolbar latex={latex} autoFocus onChange={handleChange} onDone={handleDone} keypadMode="basic" />
         </div>
       )}
     </NodeViewWrapper>
   );
 };
-
-export const MathToolbarExtension = Extension.create({
-  name: 'mathToolbar',
-
-  addStorage() {
-    return {
-      renderer: null,
-      popup: null,
-    };
-  },
-
-  addProseMirrorPlugins() {
-    const extension = this;
-
-    return [
-      new Plugin({
-        key: new PluginKey('math-toolbar-plugin'),
-        props: {},
-        view: () => ({
-          update: (view, prevState) => {
-            const { from, to } = view.state.selection;
-            const node = view.state.doc.nodeAt(from);
-
-            // Check if selection is on a math node
-            const isMathActive = node?.type?.name === 'math';
-
-            if (!isMathActive) {
-              this.storage.popup?.destroy?.();
-              this.storage.popup = null;
-              return;
-            }
-
-            // Create toolbar renderer if needed
-            if (!this.storage.renderer) {
-              const latex = node.attrs.latex || '';
-              this.storage.renderer = new ReactRenderer(MathToolbar, {
-                editor: extension.editor,
-                props: {
-                  node,
-                  latex,
-                  onDone: (latex) => {
-                    this.editor.chain().focus().updateAttributes('math', { latex }).run();
-                  },
-                },
-              });
-            }
-
-            // Create popup if needed
-            if (!this.storage.popup) {
-              const dom = view.nodeDOM(from);
-              this.storage.popup = tippy('body', {
-                getReferenceClientRect: () => dom.getBoundingClientRect(),
-                appendTo: () => document.body,
-                content: this.storage.renderer.element,
-                interactive: true,
-                trigger: 'manual',
-                placement: 'bottom-start',
-              })[0];
-
-              this.storage.popup.show();
-            }
-          },
-          destroy: () => {
-            this.storage.popup?.destroy?.();
-            this.storage.renderer?.destroy?.();
-          },
-        }),
-      }),
-    ];
-  },
-});
-

@@ -12,6 +12,7 @@ import { TableHeader } from '@tiptap/extension-table-header';
 import SuperScript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
 import TextAlign from '@tiptap/extension-text-align';
+import Image from '@tiptap/extension-image';
 
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -20,7 +21,7 @@ import {
   InlineDropdownNode,
   ResponseAreaExtension,
 } from './extensions/responseArea';
-import { MathNode, MathToolbarExtension } from './extensions/math';
+import { MathNode } from './extensions/math';
 import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
 import { primary } from './theme';
@@ -35,16 +36,23 @@ import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
 import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
 import Underline from '@material-ui/icons/FormatUnderlined';
 import Functions from '@material-ui/icons/Functions';
+import ImageIcon from '@material-ui/icons/Image';
 import { ToolbarIcon } from './plugins/respArea/icons';
-import Image from '@material-ui/icons/Image';
 import Redo from '@material-ui/icons/Redo';
 import Undo from '@material-ui/icons/Undo';
+import TheatersIcon from "@material-ui/icons/Theaters";
+import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 import { characterIcons, spanishConfig, specialConfig } from './plugins/characters/utils';
 import PropTypes from 'prop-types';
 import { MathToolbar, PureToolbar } from '@pie-lib/math-toolbar';
 import get from 'lodash/get';
 import CustomPopper from './plugins/characters/custom-popper';
 import TextAlignIcon from './plugins/textAlign/icons';
+import CSSIcon from './plugins/css/icons';
+
+import { ImageUploadNode } from './extensions/image';
+import { Media } from './extensions/media';
+import { CSSMark } from "./extensions/css";
 
 const CharacterIcon = ({ letter }) => (
   <div
@@ -62,8 +70,13 @@ CharacterIcon.propTypes = {
 };
 
 export function CharacterPicker({ editor, opts, onClose }) {
+  if (!opts?.characters?.length) {
+    return null;
+  }
+
   const containerRef = useRef(null);
   const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [popover, setPopover] = useState(null);
 
   let configToUse;
 
@@ -90,6 +103,12 @@ export function CharacterPicker({ editor, opts, onClose }) {
   );
 
   useEffect(() => {
+    return () => {
+      closePopOver();
+    };
+  }, []);
+
+  useEffect(() => {
     if (!editor) return;
 
     // Calculate position relative to selection
@@ -111,50 +130,8 @@ export function CharacterPicker({ editor, opts, onClose }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [editor]);
 
-  if (!opts?.characters?.length) {
-    return null;
-  }
-
-  const removePopOvers = () => {
-    const prevPopOvers = document.querySelectorAll('#mouse-over-popover');
-
-    console.log('[characters:removePopOvers]');
-    prevPopOvers.forEach((s) => s.remove());
-  };
-
-  let popoverRoot = null;
-
-  const closePopOver = () => {
-    if (popoverRoot) {
-      popoverRoot.unmount();
-      popoverRoot = null;
-    }
-
-    const existing = document.getElementById('popover-container');
-    if (existing) existing.remove();
-  };
-
-  const renderPopOver = (event, el) => {
-    if (!event) return;
-
-    const infoStyle = { fontSize: '20px', lineHeight: '20px' };
-
-    closePopOver(); // Close any previous popover
-
-    const container = document.createElement('div');
-    container.id = 'popover-container';
-    document.body.appendChild(container);
-
-    popoverRoot = createRoot(container);
-
-    popoverRoot.render(
-      <CustomPopper onClose={closePopOver} anchorEl={event.currentTarget}>
-        <div>{el.label}</div>
-        <div style={infoStyle}>{el.description}</div>
-        <div style={infoStyle}>{el.unicode}</div>
-      </CustomPopper>,
-    );
-  };
+  const renderPopOver = (event, el) => setPopover({ anchorEl: event.currentTarget, el });
+  const closePopOver = () => setPopover(null);
 
   const handleChange = (val) => {
     if (typeof val === 'string') {
@@ -166,60 +143,73 @@ export function CharacterPicker({ editor, opts, onClose }) {
     }
   };
 
-  return ReactDOM.createPortal(
-    <div
-      ref={containerRef}
-      className="insert-character-dialog"
-      style={{
-        position: 'absolute',
-        top: `${position.top}px`,
-        left: `${position.left}px`,
-        maxWidth: '500px',
-      }}
-    >
-      <div>
-        <PureToolbar
-          keyPadCharacterRef={opts.keyPadCharacterRef}
-          setKeypadInteraction={opts.setKeypadInteraction}
-          autoFocus
-          noDecimal
-          hideInput
-          noLatexHandling
-          hideDoneButtonBackground
-          layoutForKeyPad={layoutForCharacters}
-          additionalKeys={configToUse.characters.reduce((arr, n) => {
-            arr = [
-              ...arr,
-              ...n.map((k) => ({
-                name: get(k, 'name') || k,
-                write: get(k, 'write') || k,
-                label: get(k, 'label') || k,
-                category: 'character',
-                extraClass: 'character',
-                extraProps: {
-                  ...(k.extraProps || {}),
-                  style: {
-                    ...(k.extraProps || {}).style,
-                    border: '1px solid #000',
-                  },
-                },
-                ...(configToUse.hasPreview
-                  ? {
-                      actions: { onMouseEnter: (ev) => renderPopOver(ev, k), onMouseLeave: closePopOver },
-                    }
-                  : {}),
-              })),
-            ];
+  return (
+    <React.Fragment>
+      {ReactDOM.createPortal(
+        <div
+          ref={containerRef}
+          className="insert-character-dialog"
+          style={{
+            position: 'absolute',
+            top: `${position.top}px`,
+            left: `${position.left}px`,
+            maxWidth: '500px',
+          }}
+        >
+          <div>
+            <PureToolbar
+              keyPadCharacterRef={opts.keyPadCharacterRef}
+              setKeypadInteraction={opts.setKeypadInteraction}
+              autoFocus
+              noDecimal
+              hideInput
+              noLatexHandling
+              hideDoneButtonBackground
+              layoutForKeyPad={layoutForCharacters}
+              additionalKeys={configToUse.characters.reduce((arr, n) => {
+                arr = [
+                  ...arr,
+                  ...n.map((k) => ({
+                    name: get(k, 'name') || k,
+                    write: get(k, 'write') || k,
+                    label: get(k, 'label') || k,
+                    category: 'character',
+                    extraClass: 'character',
+                    extraProps: {
+                      ...(k.extraProps || {}),
+                      style: {
+                        ...(k.extraProps || {}).style,
+                        border: '1px solid #000',
+                      },
+                    },
+                    ...(configToUse.hasPreview
+                      ? {
+                          actions: { onMouseEnter: (ev) => renderPopOver(ev, k), onMouseLeave: closePopOver },
+                        }
+                      : {}),
+                  })),
+                ];
 
-            return arr;
-          }, [])}
-          keypadMode="language"
-          onChange={handleChange}
-          onDone={onClose}
-        />
-      </div>
-    </div>,
-    document.body,
+                return arr;
+              }, [])}
+              keypadMode="language"
+              onChange={handleChange}
+              onDone={onClose}
+            />
+          </div>
+        </div>,
+        document.body,
+      )}
+      {popover &&
+        ReactDOM.createPortal(
+          <CustomPopper onClose={closePopOver} anchorEl={popover.anchorEl}>
+            <div>{popover.el.label}</div>
+            <div style={{ fontSize: 20, lineHeight: '20px' }}>{popover.el.description}</div>
+            <div style={{ fontSize: 20, lineHeight: '20px' }}>{popover.el.unicode}</div>
+          </CustomPopper>,
+          document.body,
+        )}
+    </React.Fragment>
   );
 }
 
@@ -370,7 +360,8 @@ const styles = (theme) => ({
   editorHolder: {
     position: 'relative',
     padding: '0px',
-    overflowY: 'auto',
+    // overflowY: 'auto',
+    overflow: 'visible',
     color: color.text(),
     backgroundColor: color.background(),
     '&::before': {
@@ -473,12 +464,43 @@ const styles = (theme) => ({
   noPadding: {
     padding: 0,
   },
+  toolbarOnTop: {
+    marginTop: '45px',
+  },
 });
 
 const defaultResponseAreaProps = {
   options: {},
   respAreaToolbar: () => {},
   onHandleAreaChange: () => {},
+};
+
+const valueToSize = (v) => {
+  if (!v) {
+    return;
+  }
+  const calcRegex = /^calc\((.*)\)$/;
+
+  if (typeof v === 'string') {
+    if (v.endsWith('%')) {
+      return undefined;
+    } else if (
+      v.endsWith('px') ||
+      v.endsWith('vh') ||
+      v.endsWith('vw') ||
+      v.endsWith('ch') ||
+      v.endsWith('em') ||
+      v.match(calcRegex)
+    ) {
+      return v;
+    } else {
+      const value = parseInt(v, 10);
+      return isNaN(value) ? value : `${value}px`;
+    }
+  }
+  if (typeof v === 'number') {
+    return `${v}px`;
+  }
 };
 
 function TiptapContainer(props) {
@@ -492,6 +514,12 @@ function TiptapContainer(props) {
     toolbarOpts,
     responseAreaProps,
     autoFocus,
+    minWidth,
+    width,
+    maxWidth,
+    minHeight,
+    height,
+    maxHeight,
   } = props;
   const holderNames = classNames(classes.editorHolder, {
     [classes.editorInFocus]: editorState.isFocused,
@@ -508,6 +536,17 @@ function TiptapContainer(props) {
     }
   }, [editor, autoFocus]);
 
+  const sizeStyle = useMemo(() => {
+    return {
+      width: valueToSize(width),
+      minWidth: valueToSize(minWidth),
+      maxWidth: valueToSize(maxWidth),
+      height: valueToSize(height),
+      minHeight: valueToSize(minHeight),
+      maxHeight: valueToSize(maxHeight),
+    };
+  }, [minWidth, width, maxWidth, minHeight, height, maxHeight]);
+
   return (
     <div
       className={classNames(
@@ -516,7 +555,9 @@ function TiptapContainer(props) {
           [classes.error]: toolbarOpts && toolbarOpts.error,
         },
         classes.root,
+        props.className,
       )}
+      style={{ width: sizeStyle.width, minWidth: sizeStyle.minWidth, maxWidth: sizeStyle.maxWidth }}
     >
       <div className={holderNames}>
         <div
@@ -562,11 +603,15 @@ function MenuBar({ editor, classes, toolbarOpts: toolOpts, responseAreaProps, on
         currentNode = selection.node; // the selected node
       }
 
+      const customToolbarActive =
+        ctx.editor?.isActive('math') ||
+        ctx.editor?.isActive('explicit_constructed_response') ||
+        ctx.editor?.isActive('imageUploadNode');
+
       return {
         currentNode,
+        customToolbarActive,
         isFocused: ctx.editor?.isFocused,
-        isMathActive: ctx.editor?.isActive('math') ?? false,
-        isECRActive: ctx.editor?.isActive('explicit_constructed_response') ?? false,
         isBold: ctx.editor.isActive('bold') ?? false,
         canBold:
           ctx.editor
@@ -644,7 +689,7 @@ function MenuBar({ editor, classes, toolbarOpts: toolOpts, responseAreaProps, on
     [classes.toolbarWithNoDone]: !hasDoneButton,
     [classes.toolbarTop]: toolbarOpts.position === 'top',
     [classes.toolbarRight]: toolbarOpts.alignment === 'right',
-    [classes.focused]: toolbarOpts.alwaysVisible || editorState.isFocused,
+    [classes.focused]: toolbarOpts.alwaysVisible || (editorState.isFocused && !editor._toolbarOpened),
     [classes.autoWidth]: autoWidth,
     [classes.fullWidth]: !autoWidth,
     [classes.hidden]: toolbarOpts.isHidden === true,
@@ -654,39 +699,9 @@ function MenuBar({ editor, classes, toolbarOpts: toolOpts, responseAreaProps, on
     e.preventDefault();
   };
 
-  const attrs = editor?.getAttributes('math');
-
-  const handleMathChange = (latex) => {
-    editor.commands.updateAttributes('math', { latex });
-  };
-
-  const handleMathDone = (latex) => {
-    editor.commands.updateAttributes('math', { latex });
-    editor.commands.focus();
-  };
-
-  let EcrToolbar;
-
-  if (editorState.isECRActive) {
-    EcrToolbar = responseAreaProps.respAreaToolbar(editorState.currentNode, editor, () => {});
-  }
-
   return (
     <div className={names} style={{ ...customStyles }} onMouseDown={handleMouseDown}>
-      {/*{
-        editorState.isECRActive && (
-          <EcrToolbar />
-        )
-      }*/}
-      {/*{
-        editorState.isMathActive && (<MathToolbar
-          latex={attrs.latex || ''}
-          onChange={handleMathChange}
-          onDone={handleMathDone}
-          keypadMode="basic"
-        />)
-      }*/}
-      {!editorState.isMathActive && !editorState.isECRActive && (
+      {!editorState.customToolbarActive && (
         <div className={classes.defaultToolbar} tabIndex="1">
           <div className={classes.buttonsContainer}>
             <button
@@ -852,6 +867,54 @@ function MenuBar({ editor, classes, toolbarOpts: toolOpts, responseAreaProps, on
               className={classNames(classes.button, { [classes.active]: editorState.isSuperScript })}
             >
               <SuperscriptIcon />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .setImageUploadNode()
+                  .run()
+              }
+              className={classNames(classes.button, { [classes.active]: editorState.isSuperScript })}
+            >
+              <ImageIcon />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .insertMedia({
+                    tag: 'video',
+                  })
+                  .run()
+              }
+              className={classNames(classes.button)}
+            >
+              <TheatersIcon />
+            </button>
+            <button
+              onClick={() =>
+                editor
+                  .chain()
+                  .focus()
+                  .insertMedia({
+                    tag: 'audio',
+                  })
+                  .run()
+              }
+              className={classNames(classes.button)}
+            >
+              <VolumeUpIcon />
+            </button>
+            <button
+              onClick={() =>
+                editor.commands.openCSSClassDialog()
+              }
+              className={classNames(classes.button)}
+            >
+              <CSSIcon />
             </button>
             <button
               onClick={() =>
@@ -1108,7 +1171,7 @@ const style = (theme) => ({
   },
   toolbar: {
     position: 'absolute',
-    zIndex: 10,
+    zIndex: 20,
     cursor: 'pointer',
     justifyContent: 'space-between',
     background: 'var(--editable-html-toolbar-bg, #efefef)',
@@ -1159,8 +1222,22 @@ const style = (theme) => ({
 });
 const StyledMenuBar = withStyles(style, { index: 1000 })(MenuBar);
 
+const defaultToolbarOpts = {
+  position: 'bottom',
+  alignment: 'left',
+  alwaysVisible: false,
+  showDone: true,
+  doneOn: 'blur',
+};
+
 export const EditableHtml = (props) => {
-  const { classes } = props;
+  const [pendingImages, setPendingImages] = useState([]);
+  const [scheduled, setScheduled] = useState(false);
+  const { classes, toolbarOpts } = props;
+  const toolbarOptsToUse = {
+    ...defaultToolbarOpts,
+    ...toolbarOpts,
+  };
   const extensions = [
     TextStyleKit,
     StarterKit,
@@ -1172,13 +1249,84 @@ export const EditableHtml = (props) => {
     ExplicitConstructedResponseNode.configure(props.responseAreaProps),
     DragInTheBlankNode.configure(props.responseAreaProps),
     InlineDropdownNode.configure(props.responseAreaProps),
-    MathNode,
-    // MathToolbarExtension,
+    MathNode.configure({
+      toolbarOpts: toolbarOptsToUse,
+    }),
     SubScript,
     SuperScript,
     TextAlign.configure({
       types: ['heading', 'paragraph'],
       alignments: ['left', 'right', 'center'],
+    }),
+    Image,
+    ImageUploadNode.configure({
+      toolbarOpts: toolbarOptsToUse,
+      imageHandling: {
+        disableImageAlignmentButtons: props.disableImageAlignmentButtons,
+        onDelete:
+          props.imageSupport &&
+          props.imageSupport.delete &&
+          ((node, done) => {
+            const { src } = node.attrs;
+
+            props.imageSupport.delete(src, (e) => {
+              const newPendingImages = pendingImages.filter((img) => img.key !== node.key);
+              const newState = {
+                pendingImages: newPendingImages,
+                scheduled: scheduled && newPendingImages.length === 0 ? false : scheduled,
+              };
+
+              setPendingImages(newState.pendingImages);
+              setScheduled(newState.scheduled);
+              done();
+            });
+          }),
+        insertImageRequested:
+          props.imageSupport &&
+          ((addedImage, getHandler) => {
+            const onFinish = (result) => {
+              let cb;
+
+              if (scheduled && result) {
+                // finish editing only on success
+                cb = props.onChange;
+              }
+
+              const newPendingImages = pendingImages.filter((img) => img.key !== addedImage.key);
+              const newState = {
+                pendingImages: newPendingImages,
+              };
+
+              if (newPendingImages.length === 0) {
+                newState.scheduled = false;
+              }
+
+              setPendingImages(newState.pendingImages);
+              setScheduled(newState.scheduled);
+              cb?.(editor.getHTML());
+            };
+            const callback = () => {
+              /**
+               * The handler is the object through which the outer context
+               * communicates file upload events like: fileChosen, cancel, progress
+               */
+              const handler = getHandler(onFinish);
+              props.imageSupport.add(handler);
+            };
+
+            setPendingImages([...pendingImages, addedImage]);
+            callback();
+          }),
+        maxImageWidth: props.maxImageWidth,
+        maxImageHeight: props.maxImageHeight,
+      },
+      limit: 3,
+    }),
+    Media.configure({
+      uploadSoundSupport: props.uploadSoundSupport,
+    }),
+    CSSMark.configure({
+      extraCSSRules: props.extraCSSRules
     }),
   ];
   const editor = useEditor({
@@ -1186,7 +1334,13 @@ export const EditableHtml = (props) => {
     immediatelyRender: false,
     content: props.markup,
     onUpdate: ({ editor, transaction }) => transaction.isDone && props.onChange?.(editor.getHTML()),
-    onBlur: ({ editor }) => props.onDone?.(editor.getHTML()),
+    onBlur: ({ editor }) => {
+      if (toolbarOptsToUse.doneOn === 'blur') {
+        props.onChange?.(editor.getHTML());
+      } else {
+        props.onDone?.(editor.getHTML());
+      }
+    },
   });
 
   useEffect(() => {
@@ -1279,12 +1433,18 @@ export const EditableHtml = (props) => {
   }, [props]);
 
   return (
-    <EditorContainer {...props} editorState={editorState} editor={editor}>
-      {editor && <EditorContent style={{
-        minHeight: sizeStyle.minHeight,
-        height: sizeStyle.height,
-        maxHeight: sizeStyle.maxHeight,
-      }} className={classes.root} editor={editor} />}
+    <EditorContainer {...{ ...props, toolbarOpts: toolbarOptsToUse }} editorState={editorState} editor={editor}>
+      {editor && (
+        <EditorContent
+          style={{
+            minHeight: sizeStyle.minHeight,
+            height: sizeStyle.height,
+            maxHeight: sizeStyle.maxHeight,
+          }}
+          className={classes.root}
+          editor={editor}
+        />
+      )}
     </EditorContainer>
   );
 };
@@ -1294,6 +1454,7 @@ const StyledEditor = withStyles({
     outline: 'none !important',
     '& .ProseMirror': {
       outline: 'none !important',
+      position: 'initial',
     },
   },
 })(EditableHtml);

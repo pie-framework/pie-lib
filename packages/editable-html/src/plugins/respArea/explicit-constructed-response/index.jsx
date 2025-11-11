@@ -3,8 +3,7 @@ import { NodeViewWrapper } from '@tiptap/react';
 import PropTypes from 'prop-types';
 
 const ExplicitConstructedResponse = (props) => {
-  // const { attributes, value, error } = props;
-  const { editor, node, getPos, options, selected, responseAreaProps } = props;
+  const { editor, node, getPos, options, selected } = props;
   const { attrs: attributes } = node;
   const { value, error } = attributes;
   const pos = getPos();
@@ -17,6 +16,10 @@ const ExplicitConstructedResponse = (props) => {
     setShowToolbar(false);
     editor.commands.focus();
   };
+
+  useEffect(() => {
+    setShowToolbar(selected);
+  }, [selected]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -62,7 +65,7 @@ const ExplicitConstructedResponse = (props) => {
           borderRadius: '4px',
           overflow: 'hidden',
           padding: '12px 21px',
-          marginLeft: '4px',
+          margin: '0 4px',
           visibility: showToolbar ? 'hidden' : 'visible',
         }}
         onClick={() => setShowToolbar(true)}
@@ -71,7 +74,7 @@ const ExplicitConstructedResponse = (props) => {
         }}
       />
       {showToolbar && (
-        <div ref={toolbarRef} className="absolute z-50 bg-white shadow-lg rounded p-2">
+        <div ref={toolbarRef} className="absolute z-50 bg-white shadow-lg rounded p-2" style={{ zIndex: 1 }}>
           <EcrToolbar />
         </div>
       )}
