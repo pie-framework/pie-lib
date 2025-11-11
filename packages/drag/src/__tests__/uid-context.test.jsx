@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { withUid, UidProvider } from '../uid-context';
+import '@testing-library/jest-dom';
+import { withUid, Provider as UidProvider } from '../uid-context';
 
 describe('uid-context', () => {
   describe('withUid', () => {

@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import React from 'react';
 import { PlaceHolder } from '../placeholder';
 
@@ -101,7 +102,7 @@ describe('placeholder', () => {
     it('applies minHeight style when provided', () => {
       const { container } = renderComponent({ minHeight: 200 });
       const placeholder = container.firstChild;
-      expect(placeholder).toHaveStyle({ minHeight: 200 });
+      expect(placeholder).toHaveStyle({ minHeight: '200px' });
     });
   });
 });
