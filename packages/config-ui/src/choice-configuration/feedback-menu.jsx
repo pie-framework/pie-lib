@@ -40,7 +40,7 @@ export class IconMenu extends React.Component {
     return (
       <div>
         <div onClick={this.handleClick}>{this.props.iconButtonElement}</div>
-        <Menu id="simple-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleRequestClose}>
+        <Menu id="simple-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleRequestClose} transitionDuration={{ enter: 225, exit: 195 }}>
           {keys.map((k, index) => (
             <MenuItem key={index} onClick={handleMenuClick(k)}>
               {opts[k]}
