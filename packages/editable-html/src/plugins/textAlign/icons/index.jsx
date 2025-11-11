@@ -39,19 +39,32 @@ export const AlignJustify = () => (
   </svg>
 );
 
-export default ({ editor, onChange }) => {
+export default ({ getValue, onChange }) => {
   const [open, setOpen] = useState(false);
+  const value = getValue();
+  const text = value.texts.get(0);
+
+  let type;
+
+  if (text) {
+    const blockParent = value.document.getParent(text.key);
+    const data = blockParent.data.toJSON();
+
+    if (data?.attributes?.align) {
+      type = data?.attributes?.align;
+    }
+  }
 
   let icon;
 
-  switch (true) {
-    case editor.isActive({ textAlign: 'right' }):
+  switch (type) {
+    case 'right':
       icon = <AlignRight />;
       break;
-    case editor.isActive({ textAlign: 'center' }):
+    case 'center':
       icon = <AlignCenter />;
       break;
-    case editor.isActive({ textAlign: 'justify' }):
+    case 'justify':
       icon = <AlignJustify />;
       break;
     default:
@@ -60,10 +73,22 @@ export default ({ editor, onChange }) => {
   }
 
   const applyAlignment = (event) => {
-    const alignType = event.target?.closest('div')?.getAttribute('value');
+    if (value.texts.size) {
+      const alignType = event.target?.closest('div')?.getAttribute('value');
 
-    if (alignType) {
-      editor.commands.setTextAlign(alignType);
+      if (alignType) {
+        let c = value.change();
+
+        value.texts.forEach((text) => {
+          const blockParent = value.document.getParent(text.key);
+
+          c = c.setNodeByKey(blockParent.key, {
+            data: { ...blockParent.data, attributes: { ...blockParent.data?.attributes, align: alignType } },
+          });
+        });
+
+        onChange(c);
+      }
     }
 
     setOpen(false);

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`toolbar renders 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="editorHolder editorInFocus"
+  >
+    <div
+      className=""
+    >
+      children
+    </div>
+  </div>
+  <div>
+    ---- toolbar ------ 
+  </div>
+</div>
+`;

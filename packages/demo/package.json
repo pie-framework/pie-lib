@@ -15,6 +15,7 @@
     "@pie-lib/correct-answer-toggle": "^2.25.1",
     "@pie-lib/drag": "^2.22.1",
     "@pie-lib/editable-html": "^11.21.1",
+    "@pie-lib/editable-html-tip-tap": "^1.0.0",
     "@pie-lib/graphing": "^2.34.1",
     "@pie-lib/icons": "^2.24.1",
     "@pie-lib/mask-markup": "^1.33.1",

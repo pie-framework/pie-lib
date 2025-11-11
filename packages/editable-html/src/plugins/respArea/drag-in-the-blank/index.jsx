@@ -1,61 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NodeViewWrapper } from '@tiptap/react';
 import DragDropTile from './choice';
-import omit from 'lodash/omit';
 
-export const onValueChange = (editor, node, pos, choice) => {
-  const { tr } = editor.state;
+export const onValueChange = (nodeProps, n, value) => {
+  const val = nodeProps.editor.value;
+  const change = val.change();
 
-  // Merge old and new attributes
-  tr.setNodeMarkup(pos, undefined, {
-    ...node.attrs,
-    ...choice,
+  change.setNodeByKey(n.key, {
+    data: {
+      ...value,
+      index: n.data.get('index'),
+    },
   });
-  tr.isDone = true;
-  editor.view.dispatch(tr);
+
+  nodeProps.editor.props.onChange(change, () => {
+    nodeProps.editor.props.onEditingDone();
+  });
 };
 
-export const onRemoveResponse = (editor, node, pos) => {
-  const { tr } = editor.state;
+export const onRemoveResponse = (nodeProps, value) => {
+  const val = nodeProps.editor.value;
+  const change = val.change();
+  const dragInTheBlank = val.document.findDescendant((n) => n.data && n.data.get('index') === value.index);
 
-  // Merge old and new attributes
-  tr.setNodeMarkup(pos, undefined, omit(node.attrs, ['value', 'id']));
-  tr.isDone = true;
-  editor.view.dispatch(tr);
+  change.setNodeByKey(dragInTheBlank.key, {
+    data: {
+      index: dragInTheBlank.data.get('index'),
+    },
+  });
+
+  nodeProps.editor.props.onChange(change, () => {
+    nodeProps.editor.props.onEditingDone();
+  });
 };
 
 const DragDrop = (props) => {
-  const { editor, node, getPos, options, selected } = props;
-  const { attrs: attributes } = node;
-  const { inTable } = attributes;
-  const pos = getPos();
+  const { attributes, data, n, nodeProps, opts } = props;
+  const { inTable } = data;
 
-  // console.log({nodeProps.children})
   return (
-    <NodeViewWrapper className="drag-in-the-blank" data-selected={selected}>
-      <span
-        {...attributes}
-        style={{
-          display: 'inline-flex',
-          minHeight: '50px',
-          minWidth: '178px',
-          position: 'relative',
-          margin: inTable ? '10px' : '0 10px',
-          cursor: 'pointer',
-        }}
+    <span
+      {...attributes}
+      style={{
+        display: 'inline-flex',
+        minHeight: '50px',
+        minWidth: '178px',
+        position: 'relative',
+        margin: inTable ? '10px' : '0 10px',
+        cursor: 'pointer',
+      }}
+    >
+      <DragDropTile
+        n={n}
+        dragKey={n.key}
+        targetId="0"
+        value={data}
+        duplicates={opts.options.duplicates}
+        onChange={(value) => onValueChange(nodeProps, n, value)}
+        removeResponse={(value) => onRemoveResponse(nodeProps, value)}
       >
-        <DragDropTile
-          n={attributes}
-          dragKey={attributes.id}
-          targetId="0"
-          value={attributes}
-          duplicates={options.duplicates}
-          onChange={(choice) => onValueChange(editor, node, pos, choice)}
-          removeResponse={() => onRemoveResponse(editor, node, pos)}
-        ></DragDropTile>
-      </span>
-    </NodeViewWrapper>
+        {nodeProps.children}
+      </DragDropTile>
+    </span>
   );
 };
 
