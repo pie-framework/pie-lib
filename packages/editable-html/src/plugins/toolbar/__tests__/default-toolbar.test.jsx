@@ -1,19 +1,21 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 import { Value } from 'slate';
 import { DefaultToolbar } from '../default-toolbar';
 
-// Mock IconButton
+// Mock IconButton to preserve onClick
 jest.mock('@mui/material/IconButton', () => {
   return function IconButton(props) {
-    return <div className={props.className} style={props.style} aria-label={props['aria-label']} />;
+    const { onClick, children, buttonRef, ...rest } = props;
+    return (
+      <button onClick={onClick} {...rest}>
+        {children}
+      </button>
+    );
   };
 });
-
-// Mock DoneButton
-jest.mock('../done-button', () => ({
-  DoneButton: ({ onDone }) => <button data-testid="done-button" onClick={onDone}>Done</button>,
-}));
 
 describe('default-toolbar', () => {
   let onDone;
@@ -37,7 +39,7 @@ describe('default-toolbar', () => {
 
   describe('rendering', () => {
     it('renders toolbar', () => {
-      const { container } = render(<DefaultToolbar {...defaultProps} />);
+      const { container } = render(<DefaultToolbar {...defaultProps} deletable={false} />);
       expect(container.firstChild).toBeInTheDocument();
     });
 
@@ -91,28 +93,28 @@ describe('default-toolbar', () => {
     it('renders done button when not deletable', () => {
       render(<DefaultToolbar {...defaultProps} deletable={false} />);
 
-      expect(screen.getByTestId('done-button')).toBeInTheDocument();
+      expect(screen.getByLabelText('Done')).toBeInTheDocument();
     });
 
     it('does not render done button when deletable', () => {
       render(<DefaultToolbar {...defaultProps} deletable={true} />);
 
-      expect(screen.queryByTestId('done-button')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Done')).not.toBeInTheDocument();
     });
 
     it('does not render done button when showDone is false', () => {
       render(<DefaultToolbar {...defaultProps} showDone={false} deletable={false} />);
 
-      expect(screen.queryByTestId('done-button')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Done')).not.toBeInTheDocument();
     });
   });
 
   describe('interactions', () => {
-    it('calls onDone when done button is clicked', async () => {
+    it('calls onDone when done button is clicked', () => {
       render(<DefaultToolbar {...defaultProps} deletable={false} />);
 
-      const doneButton = screen.getByTestId('done-button');
-      doneButton.click();
+      const doneButton = screen.getByLabelText('Done');
+      fireEvent.click(doneButton);
 
       expect(onDone).toHaveBeenCalled();
     });

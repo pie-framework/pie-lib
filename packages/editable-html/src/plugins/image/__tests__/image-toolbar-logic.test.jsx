@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { ImageToolbar } from '../image-toolbar';
 import React from 'react';
@@ -57,9 +58,9 @@ describe('ImageToolbar', () => {
 
     it('shows active state for selected alignment', () => {
       const { container } = renderComponent({ alignment: 'center' });
-      // The MarkButton component uses 'active' class for active state
+      // The MarkButton component uses aria-pressed for active state
       const centerButton = screen.getByText('center').closest('button');
-      expect(centerButton).toHaveClass('active');
+      expect(centerButton).toHaveAttribute('aria-pressed', 'true');
     });
   });
 

@@ -2,6 +2,7 @@ import { classObject } from '../../../__tests__/utils';
 import { RawMarkButton, RawButton } from '../toolbar-buttons';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 // Mock IconButton
@@ -42,7 +43,7 @@ describe('Button', () => {
       </RawButton>,
     );
 
-    const button = screen.getByTestId('icon-button');
+    const button = screen.getByText('children');
     await user.click(button);
 
     expect(onClick).toHaveBeenCalled();
@@ -64,9 +65,9 @@ describe('MarkButton', () => {
       </RawMarkButton>,
     );
 
-    expect(screen.getByText('children')).toBeInTheDocument();
-    const button = screen.getByTestId('icon-button');
-    expect(button).not.toHaveClass('active');
+    const button = screen.getByText('children');
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveAttribute('aria-pressed', 'false');
   });
 
   it('renders when active', () => {
@@ -76,9 +77,9 @@ describe('MarkButton', () => {
       </RawMarkButton>,
     );
 
-    expect(screen.getByText('children')).toBeInTheDocument();
-    const button = screen.getByTestId('icon-button');
-    expect(button).toHaveClass('active');
+    const button = screen.getByText('children');
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveAttribute('aria-pressed', 'true');
   });
 
   it('calls onToggle when clicked', async () => {
@@ -89,7 +90,7 @@ describe('MarkButton', () => {
       </RawMarkButton>,
     );
 
-    const button = screen.getByTestId('icon-button');
+    const button = screen.getByText('children');
     await user.click(button);
 
     expect(onToggle).toHaveBeenCalled();
