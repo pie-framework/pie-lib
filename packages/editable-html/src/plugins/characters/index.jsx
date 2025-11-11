@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import debug from 'debug';
 import get from 'lodash/get';
 
@@ -85,15 +85,15 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
     closePopOver();
 
     popoverEl = document.createElement('div');
-    ReactDOM.render(
+    const popoverRoot = createRoot(popoverEl);
+    popoverRoot.render(
       <CustomPopper onClose={closePopOver} anchorEl={event.currentTarget}>
         <div>{el.label}</div>
 
         <div style={infoStyle}>{el.description}</div>
 
         <div style={infoStyle}>{el.unicode}</div>
-      </CustomPopper>,
-      popoverEl,
+      </CustomPopper>
     );
 
     document.body.appendChild(newEl);
@@ -172,7 +172,11 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
     />
   );
 
-  ReactDOM.render(el, newEl, () => {
+  const dialogRoot = createRoot(newEl);
+  dialogRoot.render(el);
+
+  // Layout callback - executed after render
+  requestAnimationFrame(() => {
     const cursorItem = document.querySelector(`[data-key="${value.anchorKey}"]`);
 
     if (cursorItem) {

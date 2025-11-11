@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Inline } from 'slate';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
@@ -44,7 +44,8 @@ export const insertDialog = (props) => {
     />
   );
 
-  ReactDOM.render(el, newEl);
+  const root = createRoot(newEl);
+  root.render(el);
 
   document.body.appendChild(newEl);
 };

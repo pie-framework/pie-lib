@@ -1,19 +1,39 @@
 const ig = ['node_modules', '.*/lib/.*'];
+
 module.exports = {
   testRegex: 'src/.*/?__tests__/.*.test\\.jsx?$',
-  setupFiles: ['./jest.setup.js'],
-  verbose: false,
-  snapshotSerializers: ['enzyme-to-json/serializer'],
-  testURL: 'http://localhost',
-  testPathIgnorePatterns: ig,
-  transformIgnorePatterns: ig,
-  moduleNameMapper: {
-    '^dnd-core$': 'dnd-core/dist/cjs',
-    '^react-dnd$': 'react-dnd/dist/cjs',
-    '^react-dnd-html5-backend$': 'react-dnd-html5-backend/dist/cjs',
-    '^react-dnd-touch-backend$': 'react-dnd-touch-backend/dist/cjs',
-    '^react-dnd-test-backend$': 'react-dnd-test-backend/dist/cjs',
-    '^react-dnd-test-utils$': 'react-dnd-test-utils/dist/cjs',
-    '^react-dnd-multi-backend$': 'react-dnd-multi-backend/dist/cjs',
+  setupFilesAfterEnv: ['./jest.setup.js'],
+  testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    url: 'http://localhost',
   },
+  verbose: false,
+  testPathIgnorePatterns: ig,
+
+  // Transform ES modules from these packages
+  transformIgnorePatterns: [
+    'node_modules/(?!(@mui|@emotion|@testing-library|@dnd-kit|@tiptap)/)',
+  ],
+
+  // Custom resolver to handle node: protocol imports
+  resolver: '<rootDir>/jest-resolver.js',
+
+  moduleNameMapper: {
+    // CSS/Style imports
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+
+    // Image imports
+    '\\.(jpg|jpeg|png|gif|svg|webp)$': '<rootDir>/__mocks__/fileMock.js',
+
+    // Workspace packages - map to source
+    '^@pie-lib/(.*)$': '<rootDir>/packages/$1/src',
+  },
+
+  // Collect coverage from source files
+  collectCoverageFrom: [
+    'packages/*/src/**/*.{js,jsx}',
+    '!packages/*/src/**/*.d.ts',
+    '!packages/*/src/**/__tests__/**',
+    '!packages/*/src/**/__mocks__/**',
+  ],
 };

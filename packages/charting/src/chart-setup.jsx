@@ -128,17 +128,12 @@ const ConfigureChartPanel = (props) => {
     </StyledRowView>
   );
 
-  const handleAlertDialog = (openStatus, callback) => {
+  const handleAlertDialog = (openStatus) => {
     setAlertDialog(
       (prevState) => ({
         ...prevState,
         open: openStatus,
       }),
-      () => {
-        if (callback) {
-          callback();
-        }
-      },
     );
 
     setOpen(openStatus);
@@ -221,7 +216,8 @@ const ConfigureChartPanel = (props) => {
         text: 'This change will remove values defined for one or more categories',
         onConfirm: () => {
           removeOutOfRangeValues();
-          handleAlertDialog(false, onChange({ ...model, range, correctAnswer }));
+          handleAlertDialog(false);
+          onChange({ ...model, range, correctAnswer });
         },
         onClose: () => {
           range[rangeKey] = resetValue;
@@ -255,7 +251,8 @@ const ConfigureChartPanel = (props) => {
           onConfirm: () => {
             getPlotConfiguration();
             removeOutOfRangeValues();
-            handleAlertDialog(false, onChange({ ...model, range, chartType }));
+            handleAlertDialog(false);
+            onChange({ ...model, range, chartType });
           },
           onClose: () => {
             handleAlertDialog(false);

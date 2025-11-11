@@ -1,45 +1,92 @@
 import * as React from 'react';
-import { shallowChild } from '../index';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { renderWithTheme, renderWithProviders, screen, createTestTheme } from '../index';
+import { Button } from '@mui/material';
 
-Enzyme.configure({ adapter: new Adapter() });
-
-describe('test-utils', () => {
-  describe('shallowChild', () => {
-    function simpleHoC(WrappedComponent) {
-      return class extends React.Component {
-        render() {
-          return (
-            <div>
-              <WrappedComponent oneMoreProp="hello" {...this.props} />
-            </div>
-          );
-        }
-      };
-    }
-
-    class SimpleComponent extends React.Component {
-      render() {
-        return <span>My simple component will get wrapped</span>;
-      }
-    }
-
-    it('moves past HoC and returns shallow rendered component using enzyme', () => {
-      const wrapper = shallowChild(simpleHoC(SimpleComponent), null, 1);
-      const shallowComponent = wrapper();
-
-      expect(shallowComponent.find(SimpleComponent).length).toEqual(1);
-      expect(shallowComponent.props().children.props.oneMoreProp).toEqual('hello');
-      expect(shallowComponent.html().includes('span')).toEqual(true);
+describe('@pie-lib/test-utils', () => {
+  describe('renderWithTheme', () => {
+    it('renders a component with default MUI theme', () => {
+      renderWithTheme(<Button>Click me</Button>);
+      expect(screen.getByRole('button')).toBeInTheDocument();
+      expect(screen.getByText('Click me')).toBeInTheDocument();
     });
 
-    it('overwrites specific props when passed into the closure', () => {
-      const wrapper = shallowChild(simpleHoC(SimpleComponent), null, 1);
-      const shallowComponent = wrapper({ oneMoreProp: 'helloToo' });
+    it('renders a component with custom theme', () => {
+      const customTheme = createTestTheme({
+        palette: {
+          primary: {
+            main: '#ff0000',
+          },
+        },
+      });
 
-      expect(shallowComponent.find(SimpleComponent).length).toEqual(1);
-      expect(shallowComponent.props().children.props.oneMoreProp).toEqual('helloToo');
+      renderWithTheme(<Button color="primary">Themed Button</Button>, {
+        theme: customTheme,
+      });
+
+      expect(screen.getByRole('button')).toBeInTheDocument();
+    });
+
+    it('accepts additional render options', () => {
+      const { container } = renderWithTheme(<Button>Test</Button>, {
+        container: document.body,
+      });
+
+      expect(container).toBe(document.body);
+    });
+  });
+
+  describe('renderWithProviders', () => {
+    it('renders with theme provider by default', () => {
+      renderWithProviders(<Button>Provided Button</Button>);
+      expect(screen.getByRole('button')).toBeInTheDocument();
+    });
+
+    it('renders with additional providers', () => {
+      const TestProvider = ({ children }) => (
+        <div data-testid="test-provider">{children}</div>
+      );
+
+      renderWithProviders(<Button>Multi Provider</Button>, {
+        providers: [TestProvider],
+      });
+
+      expect(screen.getByTestId('test-provider')).toBeInTheDocument();
+      expect(screen.getByRole('button')).toBeInTheDocument();
+    });
+  });
+
+  describe('createTestTheme', () => {
+    it('creates a theme with custom options', () => {
+      const theme = createTestTheme({
+        palette: {
+          mode: 'dark',
+          primary: {
+            main: '#90caf9',
+          },
+        },
+      });
+
+      expect(theme.palette.mode).toBe('dark');
+      expect(theme.palette.primary.main).toBe('#90caf9');
+    });
+
+    it('creates a theme with default options when none provided', () => {
+      const theme = createTestTheme();
+      expect(theme.palette).toBeDefined();
+      expect(theme.spacing).toBeDefined();
+    });
+  });
+
+  describe('RTL re-exports', () => {
+    it('exports screen utility', () => {
+      renderWithTheme(<div>Test Content</div>);
+      expect(screen.getByText('Test Content')).toBeInTheDocument();
+    });
+
+    it('exports render function', async () => {
+      const { render, screen: screenImport } = await import('../index');
+      render(<div>Direct Render</div>);
+      expect(screenImport.getByText('Direct Render')).toBeInTheDocument();
     });
   });
 });

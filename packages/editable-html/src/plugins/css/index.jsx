@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import List from '@mui/material/List';
 import { Mark } from 'slate';
 import ListItem from '@mui/material/ListItem';
@@ -110,7 +110,11 @@ const insertDialog = ({ editorDOM, value, callback, opts, textNode, parentNode }
     </div>
   );
 
-  ReactDOM.render(el, newEl, () => {
+  const cssDialogRoot = createRoot(newEl);
+  cssDialogRoot.render(el);
+
+  // Layout callback - executed after render
+  requestAnimationFrame(() => {
     const cursorItem = document.querySelector(`[data-key="${value.anchorKey}"]`);
 
     if (cursorItem) {

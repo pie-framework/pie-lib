@@ -1,37 +1,68 @@
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { RawLangs } from '../langs';
+import { Langs } from '../langs';
 
 describe('langs', () => {
   let onChange;
-  const wrapper = (extras) => {
+  const renderComponent = (extras = {}) => {
     const defaults = {
       uid: '1',
       onChange,
-      classes: {},
       langs: ['en-US', 'es-ES'],
+      selected: 'en-US',
     };
     const props = { ...defaults, ...extras };
-    return shallow(<RawLangs {...props} />);
+    return render(<Langs {...props} />);
   };
 
   beforeEach(() => {
     onChange = jest.fn();
   });
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      expect(wrapper()).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders language selector with options', () => {
+      renderComponent();
+
+      // Select should be present
+      const select = screen.getByRole('combobox');
+      expect(select).toBeInTheDocument();
+
+      // Should show selected value - MUI Select displays value as text content
+      expect(select).toHaveTextContent('en-US');
+    });
+
+    it('renders with custom label', () => {
+      renderComponent({ label: 'Choose Language' });
+      expect(screen.getByText('Choose Language')).toBeInTheDocument();
     });
   });
 
-  describe('logic', () => {
-    describe('choose', () => {
-      it('calls onChange', () => {
-        const w = wrapper();
-        w.instance().choose({ target: { value: 'en-US' } });
-        expect(onChange).toBeCalledWith('en-US');
-      });
+  describe('user interactions', () => {
+    it('calls onChange when user selects a language', async () => {
+      const user = userEvent.setup();
+      renderComponent();
+
+      const select = screen.getByRole('combobox');
+
+      // Open the select and choose es-ES
+      await user.click(select);
+      await user.click(screen.getByRole('option', { name: 'es-ES' }));
+
+      expect(onChange).toHaveBeenCalledWith('es-ES');
+    });
+
+    it('calls onChange with correct value', async () => {
+      const user = userEvent.setup();
+      renderComponent({ selected: 'es-ES' });
+
+      const select = screen.getByRole('combobox');
+
+      await user.click(select);
+      await user.click(screen.getByRole('option', { name: 'en-US' }));
+
+      expect(onChange).toHaveBeenCalledWith('en-US');
     });
   });
 });

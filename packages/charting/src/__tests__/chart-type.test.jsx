@@ -1,9 +1,9 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render } from '@pie-lib/test-utils';
+import '@testing-library/jest-dom/extend-expect';
 import ChartType from '../chart-type';
 
 describe('ChartType', () => {
-  let wrapper;
   let props;
   const onChange = jest.fn();
 
@@ -13,17 +13,12 @@ describe('ChartType', () => {
       value: 'bar',
       onChange,
     };
-
-    wrapper = (newProps) => {
-      const configureProps = { ...props, newProps };
-
-      return shallow(<ChartType {...configureProps} />);
-    };
   });
 
   describe('renders', () => {
     it('snapshot', () => {
-      expect(wrapper()).toMatchSnapshot();
+      const { container } = render(<ChartType {...props} />);
+      expect(container).toMatchSnapshot();
     });
   });
 });
