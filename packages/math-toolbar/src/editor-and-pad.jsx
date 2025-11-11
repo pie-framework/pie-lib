@@ -7,6 +7,8 @@ import { styled } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import isEqual from 'lodash/isEqual';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 
 import { HorizontalKeypad, mq, updateSpans } from '@pie-lib/math-input';
 import { color, InputContainer } from '@pie-lib/render-ui';
@@ -145,7 +147,7 @@ const InputAndTypeContainer = styled('div')(({ theme, hide }) => ({
   },
 }));
 
-const SelectContainer = styled(InputContainer)({
+const StyledFormControl = styled(FormControl)({
   flex: 'initial',
   width: '25%',
   minWidth: '100px',
@@ -161,7 +163,10 @@ const SelectContainer = styled(InputContainer)({
   },
 });
 
-const StyledSelect = styled(Select)({});
+
+const StyledInputLabel = styled(InputLabel)(() => ({
+  backgroundColor: 'transparent',
+}));
 
 const InputContainerDiv = styled('div')(({ theme, error }) => ({
   minWidth: '500px',
@@ -420,8 +425,19 @@ export class EditorAndPad extends React.Component {
       <MathToolbarContainer className={cx(classNames.mathToolbar)}>
         <InputAndTypeContainer hide={hideInput}>
           {controlledKeypadMode && (
-            <SelectContainer label="Equation Editor">
-              <StyledSelect onChange={this.onEditorTypeChange} value={this.state.equationEditor}>
+            <StyledFormControl variant={'standard'}>
+              <StyledInputLabel id="equation-editor-label">
+                {'Equation Editor'}
+              </StyledInputLabel>
+              <Select
+                labelId="equation-editor-label"
+                id="equation-editor-select"
+                name="equationEditor"
+                label={'Equation Editor'}
+                onChange={this.onEditorTypeChange}
+                value={this.state.equationEditor}
+                MenuProps={{ transitionDuration: { enter: 225, exit: 195 } }}
+              >
                 <MenuItem value="non-negative-integers">Numeric - Non-Negative Integers</MenuItem>
                 <MenuItem value="integers">Numeric - Integers</MenuItem>
                 <MenuItem value="decimals">Numeric - Decimals</MenuItem>
@@ -434,8 +450,8 @@ export class EditorAndPad extends React.Component {
                 <MenuItem value={'advanced-algebra'}>Advanced Algebra</MenuItem>
                 <MenuItem value={'statistics'}>Statistics</MenuItem>
                 <MenuItem value={'item-authoring'}>Item Authoring</MenuItem>
-              </StyledSelect>
-            </SelectContainer>
+              </Select>
+            </StyledFormControl>
           )}
           <InputContainerDiv error={error}>
             <MathEditor
@@ -449,7 +465,7 @@ export class EditorAndPad extends React.Component {
               }}
               className={cx(classNames.editor)}
               controlledKeypadMode={controlledKeypadMode}
-              innerRef={(r) => (this.input = r)}
+              ref={(r) => (this.input = r)}
               latex={latex}
               onChange={this.onEditorChange}
             />
