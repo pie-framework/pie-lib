@@ -74,15 +74,17 @@ const StyledArrowIcon = styled(ArrowRight)(({ theme }) => ({
   fill: theme.palette.grey[400],
   left: -56,
   position: 'absolute',
-  top: 20,
+  top: 40,
 }));
 
-const StyledTextField = styled(TextField)(() => ({
+const StyledTextField = styled(TextField)(({ theme }) => ({
   width: '100%',
+  marginTop: theme.spacing(2),
 }));
 
-const StyledEditableHtmlContainer = styled(EditableHtmlContainer)(() => ({
+const StyledEditableHtmlContainer = styled(EditableHtmlContainer)(({ theme }) => ({
   width: '100%',
+  marginTop: theme.spacing(2),
 }));
 
 const Feedback = ({ value, onChange, type, correct, defaults, toolbarOpts, mathMlOptions = {} }) => {
@@ -95,6 +97,7 @@ const Feedback = ({ value, onChange, type, correct, defaults, toolbarOpts, mathM
         <StyledTextField
           label="Feedback Text"
           value={correct ? defaults.correct : defaults.incorrect}
+          variant="standard"
         />
       </StyledFeedbackContainer>
     );
@@ -116,11 +119,12 @@ const Feedback = ({ value, onChange, type, correct, defaults, toolbarOpts, mathM
 
 const StyledIndex = styled('span')(({ theme }) => ({
   paddingRight: theme.spacing(1),
-  paddingTop: theme.spacing(3.5),
+  paddingTop: theme.spacing(3),
 }));
 
 const StyledTopRow = styled('div')(() => ({
   display: 'flex',
+  alignItems: 'center',
 }));
 
 const StyledToggle = styled('div')(({ theme }) => ({
@@ -161,10 +165,6 @@ const StyledMiddleColumn = styled('div')(({ theme }) => ({
   flex: 1,
   flexDirection: 'column',
   marginRight: theme.spacing(1),
-}));
-
-const StyledInput = styled('div')(() => ({
-  marginRight: 0,
 }));
 
 const StyledErrorText = styled('div')(({ theme }) => ({
@@ -288,10 +288,8 @@ export class ChoiceConfiguration extends React.Component {
     } = this.props;
 
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
-    const names = classNames(className);
 
     return (
-      <div className={names}>
         <StyledTopRow>
           {index > 0 && (
             <StyledIndex type="title">
@@ -309,7 +307,6 @@ export class ChoiceConfiguration extends React.Component {
           </StyledToggle>
 
           <StyledMiddleColumn>
-            <StyledInput>
               <EditableHtmlContainer
                 label={!noLabels ? 'Label' : ''}
                 value={data.label}
@@ -327,7 +324,6 @@ export class ChoiceConfiguration extends React.Component {
                 maxImageWidth={maxImageWidth}
                 maxImageHeight={maxImageHeight}
               />
-            </StyledInput>
             {error && <StyledErrorText>{error}</StyledErrorText>}
 
             {allowFeedBack && (
@@ -369,7 +365,6 @@ export class ChoiceConfiguration extends React.Component {
             </StyledDelete>
           )}
         </StyledTopRow>
-      </div>
     );
   }
 }
