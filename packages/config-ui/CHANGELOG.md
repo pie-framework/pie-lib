@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.30.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.2...@pie-lib/config-ui@11.30.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* avoid redundant re-renders by guarding layoutMode setState ([3f4aecd](https://github.com/pie-framework/pie-lib/commit/3f4aecd1c862b94a9faf3e058086da30995ae60d))
+
+
+
+
+
+# [11.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.28.0...@pie-lib/config-ui@11.29.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [11.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.28.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [11.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.27.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [11.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.26.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
 ## [11.25.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.1...@pie-lib/config-ui@11.25.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/config-ui

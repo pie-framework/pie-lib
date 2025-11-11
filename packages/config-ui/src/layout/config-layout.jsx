@@ -51,11 +51,16 @@ class MeasuredConfigLayout extends AppendCSSRules {
     const layoutMode =
       bounds.width > sidePanelMinWidth && (maxWidth ? maxWidth > sidePanelMinWidth : true) ? 'inline' : 'tabbed';
 
-    this.setState({ layoutMode });
+    // Only update state (and cause a re-render) if the computed layoutMode changed.
+    if (layoutMode !== this.state.layoutMode) {
+      this.setState({ layoutMode });
+    }
   };
 
   render() {
     return (
+      // TODO: REVIEW MuiThemeProvider usage
+      // Different theme object identities will force theme consumers to re-render.
       <MuiThemeProvider theme={theme}>
         <Measure bounds onResize={this.onResize}>
           {({ measureRef }) => {
