@@ -4,18 +4,19 @@ import userEvent from '@testing-library/user-event';
 import { ChoiceConfiguration } from '../index';
 
 // Mock editable-html to simplify testing
-jest.mock('@pie-lib/editable-html', () => {
-  return function EditableHtml({ markup, onChange, disabled }) {
-    return (
-      <textarea
-        data-testid="editable-html"
-        value={markup || ''}
-        onChange={(e) => onChange(e.target.value)}
-        disabled={disabled}
-      />
-    );
-  };
-});
+// The component uses require('@pie-lib/editable-html')['default']
+// so we need to export default properly
+jest.mock('@pie-lib/editable-html', () => ({
+  __esModule: true,
+  default: ({ markup, onChange, disabled }) => (
+    <textarea
+      data-testid="editable-html"
+      defaultValue={markup || ''}
+      onChange={(e) => onChange(e.target.value)}
+      disabled={disabled}
+    />
+  ),
+}));
 
 const defaultFeedback = {
   correct: 'Correct',

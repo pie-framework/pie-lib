@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
-import '@testing-library/jest-dom/extend-expect';
 import Line, { LineCross as LineChart } from '../line-cross';
 import { graphProps } from './utils';
 

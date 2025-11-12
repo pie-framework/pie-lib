@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@pie-lib/test-utils';
-import '@testing-library/jest-dom/extend-expect';
 import {
   Correct,
   CorrectResponse,

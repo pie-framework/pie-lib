@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import React from 'react';
 import Plot, { RawPlot } from '../plot';
 import { graphProps } from './utils';

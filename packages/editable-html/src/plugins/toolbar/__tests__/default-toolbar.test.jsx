@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, within, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { Value } from 'slate';
 import { DefaultToolbar } from '../default-toolbar';

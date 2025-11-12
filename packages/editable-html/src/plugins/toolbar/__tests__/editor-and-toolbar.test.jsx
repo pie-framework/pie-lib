@@ -5,7 +5,6 @@ import { EditorAndToolbar, getClonedChildren } from '../editor-and-toolbar';
 import React from 'react';
 import debug from 'debug';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 jest.mock('../toolbar', () => () => <div>---- toolbar ------ </div>);
 

@@ -106,6 +106,38 @@ export { default as userEvent } from '@testing-library/user-event';
 export * from '@testing-library/jest-dom';
 
 /**
+ * Keyboard helpers for testing keyboard interactions
+ * Especially useful for components checking event.keyCode
+ */
+export {
+  Keys,
+  KeyCode,
+  pressKey,
+  typeAndSubmit,
+  typeAndPressKey,
+  clearAndType,
+  pressKeys,
+  navigateWithKeys,
+} from './keyboard';
+
+/**
+ * Web component testing utilities
+ * For testing custom elements with Shadow DOM
+ */
+export {
+  withinShadow,
+  queryInShadow,
+  waitForCustomElement,
+  renderWebComponent,
+  dispatchCustomEvent,
+  waitForEvent,
+  queryAllInShadow,
+  queryInShadowDOM,
+  hasShadowRoot,
+  getShadowRootMode,
+} from './web-components';
+
+/**
  * Helper to create a mock function that can track calls
  * This is just an alias for jest.fn() for consistency
  *

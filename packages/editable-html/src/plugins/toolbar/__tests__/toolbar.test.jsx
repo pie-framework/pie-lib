@@ -3,7 +3,6 @@ import { Data, Value, Inline } from 'slate';
 import { Toolbar } from '../toolbar';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 mockMathInput();
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
-import '@testing-library/jest-dom/extend-expect';
 import { MarkLabel } from '../mark-label';
 import { graphProps as getGraphProps } from './utils';
 

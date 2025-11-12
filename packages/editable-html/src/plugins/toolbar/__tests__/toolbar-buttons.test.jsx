@@ -2,7 +2,6 @@ import { classObject } from '../../../__tests__/utils';
 import { RawMarkButton, RawButton } from '../toolbar-buttons';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 // Mock IconButton

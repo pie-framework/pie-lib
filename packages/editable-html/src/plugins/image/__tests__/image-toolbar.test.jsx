@@ -1,7 +1,6 @@
 import React from 'react';
 import Toolbar from '../image-toolbar';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { Data, Block, Value } from 'slate';
 
 it('renders image toolbar', () => {

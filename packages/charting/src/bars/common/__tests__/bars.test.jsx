@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import React from 'react';
 import Bars, { RawBar } from '../bars';
 import { graphProps } from './utils';

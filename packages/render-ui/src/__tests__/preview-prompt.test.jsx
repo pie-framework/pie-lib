@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import PreviewPrompt from '../preview-prompt';
 
 describe('Prompt without Custom tag', () => {

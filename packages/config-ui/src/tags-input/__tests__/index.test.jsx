@@ -1,6 +1,5 @@
 import { TagsInput } from '../index';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, userEvent, pressKey, Keys } from '@pie-lib/test-utils';
 import React from 'react';
 
 describe('TagsInput', () => {
@@ -69,7 +68,8 @@ describe('TagsInput', () => {
         renderComponent();
 
         const input = screen.getByRole('textbox');
-        await user.type(input, 'banana{Enter}');
+        await user.type(input, 'banana');
+        pressKey(input, Keys.ENTER);
 
         expect(onChange).toHaveBeenCalledWith(['foo', 'banana']);
       });
@@ -79,7 +79,8 @@ describe('TagsInput', () => {
         renderComponent();
 
         const input = screen.getByRole('textbox');
-        await user.type(input, 'foo{Enter}');
+        await user.type(input, 'foo');
+        pressKey(input, Keys.ENTER);
 
         expect(onChange).not.toHaveBeenCalled();
       });
@@ -89,7 +90,8 @@ describe('TagsInput', () => {
         renderComponent();
 
         const input = screen.getByRole('textbox');
-        await user.type(input, 'banana{Enter}');
+        await user.type(input, 'banana');
+        pressKey(input, Keys.ENTER);
 
         expect(input).toHaveValue('');
       });

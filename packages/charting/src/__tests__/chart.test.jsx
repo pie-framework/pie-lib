@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
-import '@testing-library/jest-dom/extend-expect';
 import { Chart } from '../chart';
 import { graphProps, createBandScale } from './utils';
 

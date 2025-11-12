@@ -3,10 +3,16 @@ const ig = ['node_modules', '.*/lib/.*'];
 module.exports = {
   testRegex: 'src/.*/?__tests__/.*.test\\.jsx?$',
   setupFilesAfterEnv: ['./jest.setup.js'],
+
+  // Jest 29 requires explicit jsdom environment
   testEnvironment: 'jsdom',
   testEnvironmentOptions: {
     url: 'http://localhost',
   },
+
+  // Use jest-circus runner (Jest 27+ default, but explicit is better)
+  testRunner: 'jest-circus/runner',
+
   verbose: false,
   testPathIgnorePatterns: ig,
 

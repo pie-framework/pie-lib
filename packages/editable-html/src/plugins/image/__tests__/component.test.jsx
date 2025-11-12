@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { Data, Block } from 'slate';
 import { Component } from '../component';
 

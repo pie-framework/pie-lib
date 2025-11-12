@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
-import '@testing-library/jest-dom/extend-expect';
 import Bar, { Bar as BarChart } from '../bar';
 import { graphProps } from './utils';
 

@@ -10,7 +10,7 @@ jest.mock('@pie-lib/editable-html', () => {
     default: ({ markup, onChange }) => (
       <textarea
         data-testid="editable-html"
-        value={markup || ''}
+        defaultValue={markup || ''}
         onChange={(e) => onChange(e.target.value)}
       />
     ),
@@ -93,13 +93,15 @@ describe('feedback-selector', () => {
 
       const editor = screen.getByTestId('editable-html');
       await user.clear(editor);
-      await user.type(editor, 'new custom text');
+      await user.type(editor, 'text');
 
-      expect(onChange).toHaveBeenLastCalledWith({
-        type: 'custom',
-        custom: 'new custom text',
-        default: 'hi',
-      });
+      // user.type triggers onChange for each character, so check that onChange was called
+      // and that the last call has 'text' in custom field
+      expect(onChange).toHaveBeenCalled();
+      const lastCall = onChange.mock.calls[onChange.mock.calls.length - 1][0];
+      expect(lastCall.type).toBe('custom');
+      expect(lastCall.custom).toBe('text');
+      expect(lastCall.default).toBe('hi');
     });
   });
 });

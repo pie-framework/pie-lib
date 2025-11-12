@@ -1,6 +1,14 @@
 // React 18 + React Testing Library setup
-// Note: Due to Jest 24 limitations, @testing-library/jest-dom matchers
-// must be imported in each test file instead of globally
+
+// Global jest-dom matchers (Jest 29+ supports this properly!)
+// This means we don't need to import '@testing-library/jest-dom' in each test file
+import '@testing-library/jest-dom';
+
+// Polyfill TextEncoder/TextDecoder for Jest 29 + jsdom
+// Required for slate-html-serializer and other packages using encoding APIs
+import { TextEncoder, TextDecoder } from 'util';
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
 
 // Mock window.matchMedia (required for MUI components)
 Object.defineProperty(window, 'matchMedia', {

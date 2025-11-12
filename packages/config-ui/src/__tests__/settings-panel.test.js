@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 import { Panel } from '../settings/panel';
 import { toggle, radio, dropdown, numberField, numberFields } from '../settings';
 
