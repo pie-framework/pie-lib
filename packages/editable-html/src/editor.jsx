@@ -49,6 +49,57 @@ const createToolbarOpts = (toolbarOpts, error, isHtmlMode) => {
 };
 
 /**
+ * Converts a value to a CSS size string
+ * @param {string|number} v - The value to convert
+ * @returns {string|undefined} CSS size string or undefined
+ */
+export const valueToSize = (v) => {
+  if (!v) {
+    return;
+  }
+  const calcRegex = /^calc\((.*)\)$/;
+
+  if (typeof v === 'string') {
+    if (v.endsWith('%')) {
+      return undefined;
+    } else if (
+      v.endsWith('px') ||
+      v.endsWith('vh') ||
+      v.endsWith('vw') ||
+      v.endsWith('ch') ||
+      v.endsWith('em') ||
+      v.match(calcRegex)
+    ) {
+      return v;
+    } else {
+      const value = parseInt(v, 10);
+      return isNaN(value) ? value : `${value}px`;
+    }
+  }
+  if (typeof v === 'number') {
+    return `${v}px`;
+  }
+};
+
+/**
+ * Builds a style object for editor size constraints
+ * @param {Object} props - Editor props containing size values
+ * @returns {Object} Style object with width/height constraints
+ */
+export const buildSizeStyle = (props) => {
+  const { minWidth, width, maxWidth, minHeight, height, maxHeight } = props;
+
+  return {
+    width: valueToSize(width),
+    minWidth: valueToSize(minWidth),
+    maxWidth: valueToSize(maxWidth),
+    height: valueToSize(height),
+    minHeight: valueToSize(minHeight),
+    maxHeight: valueToSize(maxHeight),
+  };
+};
+
+/**
  * The maximum number of characters the editor can support
  * @type {number}
  */
@@ -840,45 +891,9 @@ export class Editor extends React.Component {
     return this.state.preBlurValue;
   };
 
-  valueToSize = (v) => {
-    if (!v) {
-      return;
-    }
-    const calcRegex = /^calc\((.*)\)$/;
-
-    if (typeof v === 'string') {
-      if (v.endsWith('%')) {
-        return undefined;
-      } else if (
-        v.endsWith('px') ||
-        v.endsWith('vh') ||
-        v.endsWith('vw') ||
-        v.endsWith('ch') ||
-        v.endsWith('em') ||
-        v.match(calcRegex)
-      ) {
-        return v;
-      } else {
-        const value = parseInt(v, 10);
-        return isNaN(value) ? value : `${value}px`;
-      }
-    }
-    if (typeof v === 'number') {
-      return `${v}px`;
-    }
-  };
-
+  // Use the exported utility functions
   buildSizeStyle() {
-    const { minWidth, width, maxWidth, minHeight, height, maxHeight } = this.props;
-
-    return {
-      width: this.valueToSize(width),
-      minWidth: this.valueToSize(minWidth),
-      maxWidth: this.valueToSize(maxWidth),
-      height: this.valueToSize(height),
-      minHeight: this.valueToSize(minHeight),
-      maxHeight: this.valueToSize(maxHeight),
-    };
+    return buildSizeStyle(this.props);
   }
 
   validateNode = (node) => {

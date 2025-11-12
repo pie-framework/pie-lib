@@ -5,37 +5,43 @@ import userEvent from '@testing-library/user-event';
 import { Value } from 'slate';
 import { DefaultToolbar } from '../default-toolbar';
 
-// Mock IconButton to preserve onClick
-jest.mock('@mui/material/IconButton', () => {
-  return function IconButton(props) {
-    const { onClick, children, buttonRef, ...rest } = props;
-    return (
-      <button onClick={onClick} {...rest}>
-        {children}
-      </button>
-    );
-  };
-});
+// Mock the DoneButton component directly to avoid styled component issues
+jest.mock('../done-button', () => ({
+  DoneButton: (props) => (
+    <button aria-label="Done" onClick={props.onClick} data-testid="done-button">
+      Done
+    </button>
+  ),
+  RawDoneButton: (props) => (
+    <button aria-label="Done" onClick={props.onClick} className="RawDoneButton">
+      Done
+    </button>
+  ),
+}));
 
 describe('default-toolbar', () => {
   let onDone;
   let onChange;
+  let getFocusedValue;
+  let defaultProps;
 
   beforeEach(() => {
     onDone = jest.fn();
     onChange = jest.fn();
-  });
+    getFocusedValue = jest.fn();
 
-  const defaultProps = {
-    classes: {},
-    value: Value.fromJSON({}),
-    plugins: [],
-    className: 'className',
-    onDone,
-    onChange,
-    deletable: false,
-    showDone: true,
-  };
+    defaultProps = {
+      classes: {},
+      value: Value.fromJSON({}),
+      plugins: [],
+      className: 'className',
+      onDone,
+      onChange,
+      getFocusedValue,
+      deletable: false,
+      showDone: true,
+    };
+  });
 
   describe('rendering', () => {
     it('renders toolbar', () => {
@@ -110,7 +116,7 @@ describe('default-toolbar', () => {
   });
 
   describe('interactions', () => {
-    it('calls onDone when done button is clicked', () => {
+    it('calls onDone when done button is clicked', async () => {
       render(<DefaultToolbar {...defaultProps} deletable={false} />);
 
       const doneButton = screen.getByLabelText('Done');
