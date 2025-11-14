@@ -363,11 +363,14 @@ class Dropdown extends React.Component {
           getContentAnchorEl={null}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-          PaperProps={this.state.menuWidth ? { style: { minWidth: this.state.menuWidth, padding: '4px' } } : undefined}
-          MenuListProps={{
-            'aria-labelledby': buttonId,
-            role: 'listbox',
-            disablePadding: true,
+          transitionDuration={{ enter: 225, exit: 195 }}
+          slotProps={{
+            paper: this.state.menuWidth ? { style: { minWidth: this.state.menuWidth, padding: '4px' } } : undefined,
+            list: {
+              'aria-labelledby': buttonId,
+              role: 'listbox',
+              disablePadding: true,
+            },
           }}
         >
           {(choices || []).map((c, index) => {

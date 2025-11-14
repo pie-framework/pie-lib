@@ -11,8 +11,8 @@ const StyledDialogContentText = styled(DialogContentText)(() => ({
   fontSize: 'max(1rem, 14px)',
 }));
 
-const AlertDialog = ({ text, title, onClose, onConfirm, open, onCloseText, onConfirmText }) => (
-  <Dialog open={open} onClose={onClose}>
+const AlertDialog = ({ text, title, onClose, onConfirm, open, onCloseText, onConfirmText, disableAutoFocus, disableEnforceFocus, disableRestoreFocus }) => (
+  <Dialog open={open} disableAutoFocus={disableAutoFocus} disableEnforceFocus={disableEnforceFocus} disableRestoreFocus={disableRestoreFocus} onClose={onClose}>
     {title && <StyledDialogTitle>{title}</StyledDialogTitle>}
     {text && (
       <DialogContent>
@@ -37,6 +37,9 @@ const AlertDialog = ({ text, title, onClose, onConfirm, open, onCloseText, onCon
 AlertDialog.defaultProps = {
   onCloseText: 'CANCEL',
   onConfirmText: 'OK',
+  disableAutoFocus: false,
+  disableEnforceFocus: false,
+  disableRestoreFocus: false,
 };
 
 AlertDialog.propTypes = {
@@ -47,6 +50,9 @@ AlertDialog.propTypes = {
   open: PropTypes.bool,
   onConfirmText: PropTypes.string,
   onCloseText: PropTypes.string,
+  disableAutoFocus: PropTypes.bool,
+  disableEnforceFocus: PropTypes.bool,
+  disableRestoreFocus: PropTypes.bool,
 };
 
 export default AlertDialog;
