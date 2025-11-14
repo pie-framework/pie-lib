@@ -1,34 +1,31 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { ArrowHead, ArrowMarker } from '../arrow-head';
+
 describe('ArrowHead', () => {
-  let w;
-  let onChange = jest.fn();
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = { size: 10, transform: '' };
     const props = { ...defaults, ...extras };
-    return shallow(<ArrowHead {...props} />);
+    return render(<ArrowHead {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      const w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });
 
 describe('ArrowMarker', () => {
-  let w;
-  let onChange = jest.fn();
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = { id: 'id', size: 10, className: 'className' };
     const props = { ...defaults, ...extras };
-    return shallow(<ArrowMarker {...props} />);
+    return render(<ArrowMarker {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      const w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

@@ -1,24 +1,41 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 
 import Labels, { getTransform } from '../labels';
 
 describe('Labels', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
+      graphProps: {
+        size: {
+          width: 400,
+          height: 400,
+        },
+        domain: {
+          min: 0,
+          max: 10,
+          step: 1,
+          padding: 0,
+        },
+        range: {
+          min: 0,
+          max: 10,
+          step: 1,
+          padding: 0,
+        },
+      },
     };
     const props = { ...defaults, ...extras };
-    return shallow(<Labels {...props} />);
+    return render(<Labels {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

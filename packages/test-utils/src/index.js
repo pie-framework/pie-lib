@@ -122,19 +122,15 @@ export {
 
 /**
  * Web component testing utilities
- * For testing custom elements with Shadow DOM
+ * For testing light DOM custom elements (no Shadow DOM)
  */
 export {
-  withinShadow,
-  queryInShadow,
   waitForCustomElement,
   renderWebComponent,
   dispatchCustomEvent,
   waitForEvent,
-  queryAllInShadow,
-  queryInShadowDOM,
-  hasShadowRoot,
-  getShadowRootMode,
+  isCustomElementDefined,
+  createCustomElement,
 } from './web-components';
 
 /**

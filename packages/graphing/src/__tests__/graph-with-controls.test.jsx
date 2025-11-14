@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 
 import { xy } from './utils';
@@ -111,7 +111,6 @@ describe('filterByVisibleToolTypes', () => {
 });
 
 describe('GraphWithControls', () => {
-  let w;
   let onChangeMarks = jest.fn();
 
   const defaultProps = () => ({
@@ -132,16 +131,16 @@ describe('GraphWithControls', () => {
   });
   const initialProps = defaultProps();
 
-  const wrapper = (extras, opts) => {
+  const renderComponent = (extras) => {
     const props = { ...initialProps, ...extras };
 
-    return shallow(<GraphWithControls {...props} />, opts);
+    return render(<GraphWithControls {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

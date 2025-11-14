@@ -1,56 +1,5 @@
-import { within } from '@testing-library/react';
-
-/**
- * Query within a shadow root
- * Web components use Shadow DOM which requires special query handling
- *
- * @param {HTMLElement} element - The custom element with shadow root
- * @param {string} role - ARIA role to query for
- * @param {Object} options - Query options (name, etc.)
- * @returns {HTMLElement} The found element
- *
- * @example
- * const button = withinShadow(customElement, 'button');
- * await user.click(button);
- *
- * @example
- * const input = withinShadow(customElement, 'textbox', { name: 'Username' });
- */
-export function withinShadow(element, role, options = {}) {
-  const shadowRoot = element.shadowRoot;
-  if (!shadowRoot) {
-    throw new Error(
-      `Element does not have a shadow root. ` +
-      `Make sure the custom element is properly defined and attached.`
-    );
-  }
-
-  return within(shadowRoot).getByRole(role, options);
-}
-
-/**
- * Query within shadow root using any RTL query
- * More flexible version of withinShadow
- *
- * @param {HTMLElement} element - The custom element with shadow root
- * @returns {Object} RTL queries scoped to shadow root
- *
- * @example
- * const { getByRole, getByText } = queryInShadow(customElement);
- * const button = getByRole('button');
- * const heading = getByText('Welcome');
- */
-export function queryInShadow(element) {
-  const shadowRoot = element.shadowRoot;
-  if (!shadowRoot) {
-    throw new Error(
-      `Element does not have a shadow root. ` +
-      `Make sure the custom element is properly defined and attached.`
-    );
-  }
-
-  return within(shadowRoot);
-}
+// Note: These helpers are for light DOM web components (no Shadow DOM)
+// Standard React Testing Library queries work directly on these components
 
 /**
  * Wait for a custom element to be defined
@@ -209,79 +158,43 @@ export function waitForEvent(element, eventName, timeout = 3000) {
 }
 
 /**
- * Get all elements in shadow DOM matching a selector
- * Sometimes you need to query by CSS selector in shadow DOM
+ * Check if a custom element is defined
+ * Useful for verifying element registration
  *
- * @param {HTMLElement} element - Element with shadow root
- * @param {string} selector - CSS selector
- * @returns {Array<HTMLElement>} Array of matching elements
- *
- * @example
- * const buttons = queryAllInShadow(component, 'button');
- * expect(buttons).toHaveLength(3);
+ * @param {string} tagName - Custom element tag name
+ * @returns {boolean} True if element is defined
  *
  * @example
- * const inputs = queryAllInShadow(form, 'input[type="text"]');
- */
-export function queryAllInShadow(element, selector) {
-  const shadowRoot = element.shadowRoot;
-  if (!shadowRoot) {
-    throw new Error(`Element does not have a shadow root`);
-  }
-
-  return Array.from(shadowRoot.querySelectorAll(selector));
-}
-
-/**
- * Get a single element in shadow DOM matching a selector
- * Convenience wrapper around querySelector
- *
- * @param {HTMLElement} element - Element with shadow root
- * @param {string} selector - CSS selector
- * @returns {HTMLElement|null} The found element or null
- *
- * @example
- * const header = queryInShadowDOM(component, '.header');
- */
-export function queryInShadowDOM(element, selector) {
-  const shadowRoot = element.shadowRoot;
-  if (!shadowRoot) {
-    throw new Error(`Element does not have a shadow root`);
-  }
-
-  return shadowRoot.querySelector(selector);
-}
-
-/**
- * Check if an element has a shadow root
- * Useful for conditional logic in tests
- *
- * @param {HTMLElement} element - Element to check
- * @returns {boolean} True if element has shadow root
- *
- * @example
- * if (hasShadowRoot(element)) {
- *   const button = withinShadow(element, 'button');
+ * if (isCustomElementDefined('pie-chart')) {
+ *   // Element is ready to use
  * }
  */
-export function hasShadowRoot(element) {
-  return !!element.shadowRoot;
+export function isCustomElementDefined(tagName) {
+  return typeof customElements !== 'undefined' && customElements.get(tagName) !== undefined;
 }
 
 /**
- * Get the mode of a shadow root (open or closed)
- * Diagnostic utility
+ * Helper to create and configure a custom element
+ * For light DOM web components that render React
  *
- * @param {HTMLElement} element - Element with shadow root
- * @returns {string|null} 'open', 'closed', or null if no shadow root
+ * @param {string} tagName - Custom element tag name
+ * @param {Object} props - Props to pass to the element
+ * @returns {HTMLElement} The custom element
  *
  * @example
- * const mode = getShadowRootMode(element);
- * expect(mode).toBe('open');
+ * const chart = createCustomElement('pie-chart', {
+ *   data: [1, 2, 3],
+ *   type: 'bar'
+ * });
+ * document.body.appendChild(chart);
  */
-export function getShadowRootMode(element) {
-  if (!element.shadowRoot) {
-    return null;
-  }
-  return element.shadowRoot.mode;
+export function createCustomElement(tagName, props = {}) {
+  const element = document.createElement(tagName);
+
+  // Set properties directly on the element
+  Object.entries(props).forEach(([key, value]) => {
+    element[key] = value;
+  });
+
+  return element;
 }
