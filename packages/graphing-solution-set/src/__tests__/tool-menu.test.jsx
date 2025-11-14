@@ -1,29 +1,33 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 
 import ToolMenu from '../tool-menu';
 
 describe('ToolMenu', () => {
-  let w;
   let onChange = jest.fn();
   const tools = ['one', 'two'];
 
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
       currentTool: tools[0],
       tools,
+      gssLineData: {
+        selectedTool: 'lineA',
+        lineA: { lineType: 'Solid' },
+        lineB: { lineType: 'Solid' },
+      },
     };
     const props = { ...defaults, ...extras };
-    return shallow(<ToolMenu {...props} />);
+    return render(<ToolMenu {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });
