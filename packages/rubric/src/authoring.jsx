@@ -54,6 +54,7 @@ const MaxPoints = (props) => {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         input={<OutlinedInput label="Max Points" />}
+        MenuProps={{transitionDuration: { enter: 225, exit: 195 }}}
       >
         {range(1, max + 1).map((v) => (
           <MenuItem key={`${v}`} value={v}>
