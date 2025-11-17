@@ -36,9 +36,11 @@ describe('WithMask', () => {
       expect(screen.getByText(/Foo bar/)).toBeInTheDocument();
     });
 
-    it('renders paragraph element', () => {
+    it('renders paragraph content', () => {
       const { container } = render(<Masked {...defaultProps} />);
-      expect(container.querySelector('p')).toBeInTheDocument();
+      // Paragraph is rendered as a styled div, not a <p> tag
+      expect(container.firstChild).toBeInTheDocument();
+      expect(screen.getByText(/Foo bar/)).toBeInTheDocument();
     });
   });
 
