@@ -18,6 +18,10 @@ describe('RawXAxis', () => {
         up: true,
         down: true,
       },
+      columnTicksValues: [-1, 0, 1],
+      skipValues: [],
+      distanceFromOriginToFirstNegativeY: 0,
+      dy: 0,
     };
     const props = { ...defaults, ...extras };
     return render(<RawXAxis {...props} />);
@@ -44,6 +48,8 @@ describe('RawYAxis', () => {
         up: true,
         down: true,
       },
+      rowTickValues: [-1, 0, 1],
+      skipValues: [],
     };
     const props = { ...defaults, ...extras };
     return render(<RawYAxis {...props} />);
@@ -59,6 +65,9 @@ describe('RawYAxis', () => {
 const customScaleMock = (distance) => {
   const fn = jest.fn((n) => n * distance);
   fn.invert = jest.fn((n) => n * distance);
+  fn.domain = jest.fn(() => fn);
+  fn.range = jest.fn(() => fn);
+  fn.copy = jest.fn(() => customScaleMock(distance));
   return fn;
 };
 
@@ -191,6 +200,7 @@ describe('sharedValues', () => {
     const distanceFromOriginToFirstNegativeY = -22;
 
     const deltaAllowance = 5;
+    const dy = -20; // dy needs to be within the range for the condition to pass
 
     const result = sharedValues(
       firstNegativeX,
@@ -198,6 +208,7 @@ describe('sharedValues', () => {
       distanceFromOriginToFirstNegativeX,
       distanceFromOriginToFirstNegativeY,
       deltaAllowance,
+      dy,
     );
 
     expect(result).toEqual([-1]);
