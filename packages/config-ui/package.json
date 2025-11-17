@@ -15,7 +15,7 @@
     "@pie-lib/render-ui": "^4.35.1",
     "assert": "^1.4.1",
     "classnames": "^2.2.6",
-    "complex.js": "2.1.1",
+    "complex.js": "2.4.3",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "mathjs": "^7.0.1",
