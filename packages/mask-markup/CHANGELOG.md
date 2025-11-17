@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.34.0-mui-update.0...@pie-lib/mask-markup@1.35.0-mui-update.0) (2025-11-17)
+
+
+### Bug Fixes
+
+* **config-ui, mask-markup:** replace deprecated props, externd AlerDialog with new props ([6e7a163](https://github.com/pie-framework/pie-lib/commit/6e7a16314944745154801010aa4973a03aa15dcc))
+
+
+
+
+
 # [1.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.33.0-mui-update.0...@pie-lib/mask-markup@1.34.0-mui-update.0) (2025-11-05)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

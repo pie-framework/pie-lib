@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.32.0-mui-update.0...@pie-lib/math-input@6.33.0-mui-update.0) (2025-11-17)
+
+
+### Bug Fixes
+
+* math toolbar colors ([1308b62](https://github.com/pie-framework/pie-lib/commit/1308b62031128b61952f299419bcbe46e914ee6f))
+
+
+
+
+
 # [6.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.31.0-mui-update.0...@pie-lib/math-input@6.32.0-mui-update.0) (2025-11-05)
 
 **Note:** Version bump only for package @pie-lib/math-input

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.32.0-mui-update.0...@pie-lib/math-toolbar@1.33.0-mui-update.0) (2025-11-17)
+
+
+### Bug Fixes
+
+* math keyboard ref and remove console log ([fd9dc91](https://github.com/pie-framework/pie-lib/commit/fd9dc91092497e55a75aba3e7ef1c4c1c5723f35))
+
+
+
+
+
 # [1.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.31.0-mui-update.0...@pie-lib/math-toolbar@1.32.0-mui-update.0) (2025-11-05)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
