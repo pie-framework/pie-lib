@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.24.0-mui-update.0...@pie-lib/editable-html@11.25.0-mui-update.0) (2025-11-18)
+
+
+### Bug Fixes
+
+* **editable-html:** replace ReactDOM.render() with createRoot() for React 18 compatibility ([e9618b5](https://github.com/pie-framework/pie-lib/commit/e9618b5d892ee98d08f4440934eec9be58ee170a))
+
+
+
+
+
 # [11.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.23.0-mui-update.0...@pie-lib/editable-html@11.24.0-mui-update.0) (2025-11-18)
 
 **Note:** Version bump only for package @pie-lib/editable-html
