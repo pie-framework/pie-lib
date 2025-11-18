@@ -33,8 +33,8 @@ const defaultToolbarOpts = {
 
 const defaultResponseAreaProps = {
   options: {},
-  respAreaToolbar: () => {},
-  onHandleAreaChange: () => {},
+  respAreaToolbar: () => { },
+  onHandleAreaChange: () => { },
 };
 
 const defaultLanguageCharactersProps = [];
@@ -83,6 +83,7 @@ export class Editor extends React.Component {
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     minHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    slateEditorExtraStyles: PropTypes.object,
     highlightShape: PropTypes.bool,
     disabled: PropTypes.bool,
     spellCheck: PropTypes.bool,
@@ -147,10 +148,10 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => {},
-    onBlur: () => {},
-    onKeyDown: () => {},
-    runSerializationOnMarkup: () => {},
+    onFocus: () => { },
+    onBlur: () => { },
+    onKeyDown: () => { },
+    runSerializationOnMarkup: () => { },
     mathMlOptions: {
       mmlOutput: false,
       mmlEditing: false,
@@ -557,7 +558,7 @@ export class Editor extends React.Component {
       <div ref={(ref) => (this.elementRef = ref)}>
         <div>Preview of Edited Html:</div>
         {/* TODO: check if this works and we don't need to send style over to preview prompt */}
-        <StyledPreviewText> 
+        <StyledPreviewText>
           <PreviewPrompt prompt={this.state.value.document.text} />
         </StyledPreviewText>
         <div>Would you like to save these changes ?</div>
@@ -816,8 +817,8 @@ export class Editor extends React.Component {
     const isEditedInHtmlMode = !this.state.isHtmlMode
       ? false
       : this.state.value.document.text !== value.document.text
-      ? true
-      : this.state.isEditedInHtmlMode;
+        ? true
+        : this.state.isEditedInHtmlMode;
 
     if (isEditedInHtmlMode != this.state.isEditedInHtmlMode) {
       this.handlePlugins(this.props);
@@ -961,7 +962,7 @@ export class Editor extends React.Component {
         this.onChange(ch);
         const handler = new InsertImageHandler(
           inline,
-          () => {},
+          () => { },
           () => this.state.value,
           this.onChange,
           true,
@@ -1030,6 +1031,7 @@ export class Editor extends React.Component {
       placeholder,
       pluginProps,
       onKeyDown,
+      slateEditorExtraStyles,
     } = this.props;
     // We don't want to send customPlugins to slate.
     // Not sure if they would do any harm, but I think it's better to not send them.
@@ -1103,6 +1105,7 @@ export class Editor extends React.Component {
               minHeight: sizeStyle.minHeight,
               height: sizeStyle.height,
               maxHeight: sizeStyle.maxHeight,
+              ...slateEditorExtraStyles
             }}
             pluginProps={otherPluginProps}
             toolbarOpts={toolbarOpts}
