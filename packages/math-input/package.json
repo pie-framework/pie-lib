@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "6.34.0-mui-update.0",
+  "version": "6.35.0-mui-update.0",
   "main": "lib/index.js",
   "module": "src/index.jsx",
   "dependencies": {

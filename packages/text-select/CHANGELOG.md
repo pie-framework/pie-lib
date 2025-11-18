@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.35.0-mui-update.0...@pie-lib/text-select@1.36.0-mui-update.0) (2025-11-18)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
 # [1.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.34.0-mui-update.0...@pie-lib/text-select@1.35.0-mui-update.0) (2025-11-18)
 
 **Note:** Version bump only for package @pie-lib/text-select
