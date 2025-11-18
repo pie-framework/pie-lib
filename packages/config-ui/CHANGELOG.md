@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.31.0-mui-update.0...@pie-lib/config-ui@11.32.0-mui-update.0) (2025-11-18)
+
+
+### Bug Fixes
+
+* **config-ui:** use the styled components for both tabs case as for the others ([81b8c23](https://github.com/pie-framework/pie-lib/commit/81b8c231c3e469e7a07a3e9d9321093dba8d0bcb))
+
+
+
+
+
 # [11.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.30.0-mui-update.0...@pie-lib/config-ui@11.31.0-mui-update.0) (2025-11-17)
 
 
