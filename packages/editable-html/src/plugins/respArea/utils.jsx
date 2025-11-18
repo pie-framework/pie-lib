@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Inline } from 'slate';
 import Snackbar from '@mui/material/Snackbar';
 
@@ -25,11 +25,13 @@ export const insertSnackBar = (message) => {
     />
   );
 
-  ReactDOM.render(el, newEl);
+  const snackbarRoot = createRoot(newEl);
+  snackbarRoot.render(el);
 
   document.body.appendChild(newEl);
 
   setTimeout(() => {
+    snackbarRoot.unmount();
     newEl.remove();
   }, 2000);
 };

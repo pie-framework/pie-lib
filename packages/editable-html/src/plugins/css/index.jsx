@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import List from '@mui/material/List';
 import { Mark } from 'slate';
 import ListItem from '@mui/material/ListItem';
@@ -110,7 +110,11 @@ const insertDialog = ({ editorDOM, value, callback, opts, textNode, parentNode }
     </div>
   );
 
-  ReactDOM.render(el, newEl, () => {
+  const dialogRoot = createRoot(newEl);
+  dialogRoot.render(el);
+
+  // Use setTimeout to ensure the element is rendered before positioning
+  setTimeout(() => {
     const cursorItem = document.querySelector(`[data-key="${value.anchorKey}"]`);
 
     if (cursorItem) {
@@ -154,7 +158,7 @@ const insertDialog = ({ editorDOM, value, callback, opts, textNode, parentNode }
 
       document.body.addEventListener('click', listener);
     }
-  });
+  }, 0);
 };
 
 const findParentNodeInfo = (value, textNode) => {
