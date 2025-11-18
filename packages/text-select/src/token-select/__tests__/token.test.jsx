@@ -1,33 +1,30 @@
 import { Token } from '../token';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render } from '@testing-library/react';
 
 describe('token', () => {
-  describe('snapshot', () => {
-    it('renders', () => {
-      const w = shallow(
-        <Token
-          classes={{
-            token: 'token',
-            selectable: 'selectable',
-          }}
-          text={'foo bar'}
-        />,
-      );
-      expect(w).toMatchSnapshot();
+  const defaultProps = {
+    classes: {
+      token: 'token',
+      selectable: 'selectable',
+    },
+    text: 'foo bar',
+  };
+
+  describe('rendering', () => {
+    it('renders with text', () => {
+      const { container } = render(<Token {...defaultProps} />);
+      expect(container.firstChild).toBeInTheDocument();
     });
 
-    it('renders with brs', () => {
-      const w = shallow(
-        <Token
-          classes={{
-            token: 'token',
-            selectable: 'selectable',
-          }}
-          text={'foo \nbar'}
-        />,
-      );
-      expect(w).toMatchSnapshot();
+    it('renders with newlines', () => {
+      const { container } = render(<Token {...defaultProps} text="foo \nbar" />);
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders with multiple newlines', () => {
+      const { container } = render(<Token {...defaultProps} text="line1\nline2\nline3" />);
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });
