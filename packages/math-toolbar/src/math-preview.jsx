@@ -26,14 +26,17 @@ export class RawMathPreview extends React.Component {
 
   componentDidUpdate(prevProps) {
     // Re-run only if LaTeX changed
-    if (this.props.latex !== prevProps.latex) {
+    const latexToUse = this.props.node?.data ? this.props.node.data.get('latex') : this.props.latex;
+    const prevLatex = prevProps.node?.data ? prevProps.node.data.get('latex') : prevProps.latex;
+
+    if (latexToUse !== prevLatex) {
       markFractionBaseSuperscripts();
     }
   }
 
   render() {
     log('[render] data: ', this.props);
-    const { latex } = this.props;
+    const latex = this.props.node?.data.get('latex') ? this.props.node.data.get('latex') : this.props.latex;
     const { classes, isSelected, onFocus, onBlur } = this.props;
     return (
       <div className={classNames(classes.root, isSelected && classes.selected)}>

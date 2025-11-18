@@ -27,6 +27,7 @@ import { color } from '@pie-lib/render-ui';
 import { primary } from './theme';
 import { PIE_TOOLBAR__CLASS } from './constants';
 import { DoneButton } from './plugins/toolbar/done-button';
+import { DEFAULT_PLUGINS } from './plugins/index';
 import Bold from '@material-ui/icons/FormatBold';
 import Italic from '@material-ui/icons/FormatItalic';
 import Strikethrough from '@material-ui/icons/FormatStrikethrough';
@@ -40,8 +41,8 @@ import ImageIcon from '@material-ui/icons/Image';
 import { ToolbarIcon } from './plugins/respArea/icons';
 import Redo from '@material-ui/icons/Redo';
 import Undo from '@material-ui/icons/Undo';
-import TheatersIcon from "@material-ui/icons/Theaters";
-import VolumeUpIcon from "@material-ui/icons/VolumeUp";
+import TheatersIcon from '@material-ui/icons/Theaters';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import { characterIcons, spanishConfig, specialConfig } from './plugins/characters/utils';
 import PropTypes from 'prop-types';
 import { MathToolbar, PureToolbar } from '@pie-lib/math-toolbar';
@@ -52,7 +53,9 @@ import CSSIcon from './plugins/css/icons';
 
 import { ImageUploadNode } from './extensions/image';
 import { Media } from './extensions/media';
-import { CSSMark } from "./extensions/css";
+import { CSSMark } from './extensions/css';
+import { AddColumn, AddRow, RemoveColumn, RemoveRow, RemoveTable } from "./plugins/table/icons";
+import BorderAll from "@material-ui/icons/BorderAll";
 
 const CharacterIcon = ({ letter }) => (
   <div
@@ -248,15 +251,24 @@ const HeadingIcon = () => (
 );
 
 const ExtendedTable = Table.extend({
+  addAttributes() {
+    return {
+      border: { default: '1' },
+    };
+  },
   renderHTML(props) {
     const originalTable = this.parent(props);
+    const { border } = props.HTMLAttributes;
 
-    originalTable[1].style = `${originalTable[1].style} width: 100%;
+    const previousStyle = `${originalTable[1].style}${originalTable[1].style.match(/.*; */) ? '' : ';'}`;
+
+    originalTable[1].style = `${previousStyle}
+    width: 100%;
     color: var(--pie-text, black);
     table-layout: fixed;
     border-collapse: collapse;
     background-color: var(--pie-background, rgba(255, 255, 255))`;
-    originalTable[1].border = '1';
+    originalTable[1].border = border ? border : '1';
 
     return originalTable;
   },
@@ -352,6 +364,24 @@ const styles = (theme) => ({
       border: 'none',
       borderTop: '1px solid var(--gray-2)',
       margin: '2rem 0',
+    },
+
+    '& table': {
+      tableLayout: 'fixed',
+      width: '100%',
+      borderCollapse: 'collapse',
+      color: color.text(),
+      backgroundColor: color.background(),
+    },
+    '& table:not([border="1"]) tr': {
+      borderTop: '1px solid #dfe2e5',
+    },
+    '& td, th': {
+      padding: '.6em 1em',
+      textAlign: 'center',
+    },
+    '& table:not([border="1"]) td, th': {
+      border: '1px solid #dfe2e5',
     },
   },
   children: {
@@ -511,6 +541,7 @@ function TiptapContainer(props) {
     children,
     disableUnderline,
     disableScrollbar,
+    activePlugins,
     toolbarOpts,
     responseAreaProps,
     autoFocus,
@@ -579,6 +610,7 @@ function TiptapContainer(props) {
           editor={editor}
           responseAreaProps={responseAreaProps}
           toolbarOpts={toolbarOpts}
+          activePlugins={activePlugins}
           onChange={props.onChange}
         />
       )}
@@ -588,7 +620,7 @@ function TiptapContainer(props) {
 
 const EditorContainer = withStyles(styles)(TiptapContainer);
 
-function MenuBar({ editor, classes, toolbarOpts: toolOpts, responseAreaProps, onChange }) {
+function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, responseAreaProps, onChange }) {
   const [showPicker, setShowPicker] = useState(false);
   const toolbarOpts = toolOpts ?? {};
   // Read the current editor's state, and re-render the component when it changes
@@ -603,14 +635,14 @@ function MenuBar({ editor, classes, toolbarOpts: toolOpts, responseAreaProps, on
         currentNode = selection.node; // the selected node
       }
 
-      const customToolbarActive =
+      const hideDefaultToolbar =
         ctx.editor?.isActive('math') ||
         ctx.editor?.isActive('explicit_constructed_response') ||
         ctx.editor?.isActive('imageUploadNode');
 
       return {
         currentNode,
-        customToolbarActive,
+        hideDefaultToolbar,
         isFocused: ctx.editor?.isFocused,
         isBold: ctx.editor.isActive('bold') ?? false,
         canBold:
@@ -620,6 +652,7 @@ function MenuBar({ editor, classes, toolbarOpts: toolOpts, responseAreaProps, on
             .toggleBold()
             .run() ?? false,
         isTable: ctx.editor.isActive('table') ?? false,
+        tableHasBorder: ctx.editor.getAttributes('table')?.border === '1' ?? false,
         canTable:
           ctx.editor
             .can()
@@ -698,401 +731,315 @@ function MenuBar({ editor, classes, toolbarOpts: toolOpts, responseAreaProps, on
   const handleMouseDown = (e) => {
     e.preventDefault();
   };
+  const toolbarButtons = useMemo(
+    () => [
+      {
+        icon: <GridOn />,
+        onClick: (editor) =>
+          editor.chain().focus().insertTable({ rows: 2, cols: 2, withHeaderRow: false }).run(),
+        hidden: (state) => !activePlugins?.includes('table') || state.isTable,
+        isActive: (state) => state.isTable,
+        isDisabled: (state) => !state.canTable,
+      },
+      {
+        icon: <AddRow />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .addRowAfter()
+            .run(),
+        hidden: (state) => !state.isTable,
+        isActive: (state) => state.isTable,
+        isDisabled: (state) => !state.canTable,
+      },
+      {
+        icon: <RemoveRow />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .deleteRow()
+            .run(),
+        hidden: (state) => !state.isTable,
+        isActive: (state) => state.isTable,
+        isDisabled: (state) => !state.canTable,
+      },
+      {
+        icon: <AddColumn />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .addColumnAfter()
+            .run(),
+        hidden: (state) => !state.isTable,
+        isActive: (state) => state.isTable,
+        isDisabled: (state) => !state.canTable,
+      },
+      {
+        icon: <RemoveColumn />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .deleteColumn()
+            .run(),
+        hidden: (state) => !state.isTable,
+        isActive: (state) => state.isTable,
+        isDisabled: (state) => !state.canTable,
+      },
+      {
+        icon: <RemoveTable />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .deleteTable()
+            .run(),
+        hidden: (state) => !state.isTable,
+        isActive: (state) => state.isTable,
+        isDisabled: (state) => !state.canTable,
+      },
+      {
+        icon: <BorderAll />,
+        onClick: (editor) => {
+          const tableAttrs = editor.getAttributes('table');
+
+          const update = {
+            ...tableAttrs,
+            border: tableAttrs.border !== '0' ? '0' : '1',
+          };
+
+          editor.commands.updateAttributes('table', update);
+        },
+        hidden: (state) => !state.isTable,
+        isActive: (state) => state.tableHasBorder,
+        isDisabled: (state) => !state.canTable,
+      },
+      {
+        icon: <Bold />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleBold()
+            .run(),
+        hidden: (state) => state.isTable,
+        isActive: (state) => state.isBold,
+        isDisabled: (state) => !state.canBold,
+      },
+      {
+        icon: <Italic />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleItalic()
+            .run(),
+        hidden: (state) => state.isTable,
+        isActive: (state) => state.isItalic,
+        isDisabled: (state) => !state.canItalic,
+      },
+      {
+        icon: <Strikethrough />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleStrike()
+            .run(),
+        hidden: (state) => state.isTable,
+        isActive: (state) => state.isStrike,
+        isDisabled: (state) => !state.canStrike,
+      },
+      {
+        icon: <Code />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleCode()
+            .run(),
+        hidden: (state) => state.isTable,
+        isActive: (state) => state.isCode,
+        isDisabled: (state) => !state.canCode,
+      },
+      {
+        icon: <Underline />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleUnderline()
+            .run(),
+        hidden: (state) => state.isTable,
+        isActive: (state) => state.isUnderline,
+      },
+      {
+        icon: <SubscriptIcon />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleSubscript()
+            .run(),
+        hidden: (state) => state.isTable,
+        isActive: (state) => state.isSubScript,
+      },
+      {
+        icon: <SuperscriptIcon />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleSuperscript()
+            .run(),
+        hidden: (state) => state.isTable,
+        isActive: (state) => state.isSuperScript,
+      },
+      {
+        icon: <ImageIcon />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .setImageUploadNode()
+            .run(),
+      },
+      {
+        icon: <TheatersIcon />,
+        hidden: (state) => state.isTable,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .insertMedia({ tag: 'video' })
+            .run(),
+      },
+      {
+        icon: <VolumeUpIcon />,
+        hidden: (state) => state.isTable,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .insertMedia({ tag: 'audio' })
+            .run(),
+      },
+      {
+        icon: <CSSIcon />,
+        hidden: (state) => state.isTable,
+        onClick: (editor) => editor.commands.openCSSClassDialog(),
+      },
+      {
+        icon: <HeadingIcon />,
+        hidden: (state) => state.isTable,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleHeading({ level: 3 })
+            .run(),
+        isActive: (state) => state.isHeading3,
+      },
+      {
+        icon: <Functions />,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .insertMath('')
+            .run(),
+      },
+      {
+        icon: <CharacterIcon letter="ñ" />,
+        hidden: (state) => state.isTable,
+        onClick: () => setShowPicker(spanishConfig),
+      },
+      {
+        icon: <CharacterIcon letter="€" />,
+        hidden: (state) => state.isTable,
+        onClick: () => setShowPicker(specialConfig),
+      },
+      {
+        icon: <TextAlignIcon editor={editor} />,
+        hidden: (state) => state.isTable,
+        onClick: () => {},
+      },
+      {
+        icon: <BulletedListIcon />,
+        hidden: (state) => state.isTable,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleBulletList()
+            .run(),
+        isActive: (state) => state.isBulletList,
+      },
+      {
+        icon: <NumberedListIcon />,
+        hidden: (state) => state.isTable,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .toggleOrderedList()
+            .run(),
+        isActive: (state) => state.isOrderedList,
+      },
+      {
+        icon: <Undo />,
+        hidden: (state) => state.isTable,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .undo()
+            .run(),
+        isDisabled: (state) => !state.canUndo,
+      },
+      {
+        icon: <Redo />,
+        hidden: (state) => state.isTable,
+        onClick: (editor) =>
+          editor
+            .chain()
+            .focus()
+            .redo()
+            .run(),
+        isDisabled: (state) => !state.canRedo,
+      },
+    ],
+    [activePlugins, editor, spanishConfig, specialConfig, setShowPicker],
+  );
 
   return (
     <div className={names} style={{ ...customStyles }} onMouseDown={handleMouseDown}>
-      {!editorState.customToolbarActive && (
+      {!editorState.hideDefaultToolbar && (
         <div className={classes.defaultToolbar} tabIndex="1">
           <div className={classes.buttonsContainer}>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                editor
-                  .chain()
-                  .focus()
-                  .insertTable()
-                  .run();
-              }}
-              disabled={!editorState.canTable}
-              className={classNames(classes.button, { [classes.active]: editorState.isTable })}
-            >
-              <GridOn />
-            </button>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                editor
-                  .chain()
-                  .focus()
-                  .toggleBold()
-                  .run();
-              }}
-              disabled={!editorState.canBold}
-              className={classNames(classes.button, { [classes.active]: editorState.isBold })}
-            >
-              <Bold />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .toggleItalic()
-                  .run()
-              }
-              disabled={!editorState.canItalic}
-              active={editorState.isItalic}
-              className={classNames(classes.button, { [classes.active]: editorState.isItalic })}
-            >
-              <Italic />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .toggleStrike()
-                  .run()
-              }
-              disabled={!editorState.canStrike}
-              active={editorState.isStrike}
-              className={classNames(classes.button, { [classes.active]: editorState.isStrike })}
-            >
-              <Strikethrough />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .toggleCode()
-                  .run()
-              }
-              disabled={!editorState.canCode}
-              active={editorState.isCode}
-              className={classNames(classes.button, { [classes.active]: editorState.isCode })}
-            >
-              <Code />
-            </button>
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .unsetAllMarks()*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*>*/}
-            {/*  Clear marks*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .clearNodes()*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*>*/}
-            {/*  Clear nodes*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .setParagraph()*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*  className={editorState.isParagraph ? classes.isActive : ''}*/}
-            {/*>*/}
-            {/*  Paragraph*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .toggleHeading({ level: 1 })*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*  className={editorState.isHeading1 ? classes.isActive : ''}*/}
-            {/*>*/}
-            {/*  H1*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .toggleHeading({ level: 2 })*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*  className={editorState.isHeading2 ? classes.isActive : ''}*/}
-            {/*>*/}
-            {/*  H2*/}
-            {/*</button>*/}
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .toggleUnderline()
-                  .run()
-              }
-              className={classNames(classes.button, { [classes.active]: editorState.isUnderline })}
-            >
-              <Underline />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .toggleSubscript()
-                  .run()
-              }
-              className={classNames(classes.button, { [classes.active]: editorState.isSubScript })}
-            >
-              <SubscriptIcon />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .toggleSuperscript()
-                  .run()
-              }
-              className={classNames(classes.button, { [classes.active]: editorState.isSuperScript })}
-            >
-              <SuperscriptIcon />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .setImageUploadNode()
-                  .run()
-              }
-              className={classNames(classes.button, { [classes.active]: editorState.isSuperScript })}
-            >
-              <ImageIcon />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .insertMedia({
-                    tag: 'video',
-                  })
-                  .run()
-              }
-              className={classNames(classes.button)}
-            >
-              <TheatersIcon />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .insertMedia({
-                    tag: 'audio',
-                  })
-                  .run()
-              }
-              className={classNames(classes.button)}
-            >
-              <VolumeUpIcon />
-            </button>
-            <button
-              onClick={() =>
-                editor.commands.openCSSClassDialog()
-              }
-              className={classNames(classes.button)}
-            >
-              <CSSIcon />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .toggleHeading({ level: 3 })
-                  .run()
-              }
-              className={classNames(classes.button, { [classes.active]: editorState.isHeading3 })}
-            >
-              <HeadingIcon />
-            </button>
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .toggleHeading({ level: 3 })*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*  className={classNames(classes.button, { [classes.active]: editorState.isHeading3 })}*/}
-            {/*>*/}
-            {/*  <Image />*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .toggleHeading({ level: 4 })*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*  className={editorState.isHeading4 ? classes.isActive : ''}*/}
-            {/*>*/}
-            {/*  H4*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .toggleHeading({ level: 5 })*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*  className={editorState.isHeading5 ? classes.isActive : ''}*/}
-            {/*>*/}
-            {/*  H5*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .toggleHeading({ level: 6 })*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*  className={editorState.isHeading6 ? classes.isActive : ''}*/}
-            {/*>*/}
-            {/*  H6*/}
-            {/*</button>*/}
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .insertMath('')
-                  .run()
-              }
-              className={classes.button}
-            >
-              <Functions />
-            </button>
-            <button onClick={() => setShowPicker(spanishConfig)} className={classes.button}>
-              <CharacterIcon letter="ñ" />
-            </button>
-            <button onClick={() => setShowPicker(specialConfig)} className={classes.button}>
-              <CharacterIcon letter="€" />
-            </button>
-            <button onClick={() => {}} className={classes.button}>
-              <TextAlignIcon editor={editor} />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .toggleBulletList()
-                  .run()
-              }
-              className={classNames(classes.button, { [classes.active]: editorState.isBulletList })}
-            >
-              <BulletedListIcon />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .toggleOrderedList()
-                  .run()
-              }
-              className={classNames(classes.button, { [classes.active]: editorState.isOrderedList })}
-            >
-              <NumberedListIcon />
-            </button>
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .toggleCodeBlock()*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*  className={classNames(classes.button, { [classes.active]: editorState.isCodeBlock })}*/}
-            {/*>*/}
-            {/*  Code block*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .toggleBlockquote()*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*  className={classNames(classes.button, { [classes.active]: editorState.isBlockquote })}*/}
-            {/*>*/}
-            {/*  Blockquote*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .setHorizontalRule()*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*>*/}
-            {/*  Horizontal rule*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    editor*/}
-            {/*      .chain()*/}
-            {/*      .focus()*/}
-            {/*      .setHardBreak()*/}
-            {/*      .run()*/}
-            {/*  }*/}
-            {/*>*/}
-            {/*  Hard break*/}
-            {/*</button>*/}
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .undo()
-                  .run()
-              }
-              disabled={!editorState.canUndo}
-              className={classes.button}
-            >
-              <Undo />
-            </button>
-            <button
-              onClick={() =>
-                editor
-                  .chain()
-                  .focus()
-                  .redo()
-                  .run()
-              }
-              disabled={!editorState.canRedo}
-              className={classes.button}
-            >
-              <Redo />
-            </button>
+            {toolbarButtons
+              .filter((btn) => !btn.hidden?.(editorState))
+              .map((btn, index) => {
+                const disabled = btn.isDisabled?.(editorState);
+                const active = btn.isActive?.(editorState);
+
+                return (
+                  <button
+                    key={index}
+                    disabled={disabled}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      btn.onClick(editor);
+                    }}
+                    className={classNames(classes.button, { [classes.active]: active })}
+                  >
+                    {btn.icon}
+                  </button>
+                );
+              })}
           </div>
           <button
             onClick={() => {
@@ -1238,6 +1185,7 @@ export const EditableHtml = (props) => {
     ...defaultToolbarOpts,
     ...toolbarOpts,
   };
+  const activePluginsToUse = props.activePlugins || DEFAULT_PLUGINS;
   const extensions = [
     TextStyleKit,
     StarterKit,
@@ -1263,6 +1211,7 @@ export const EditableHtml = (props) => {
       toolbarOpts: toolbarOptsToUse,
       imageHandling: {
         disableImageAlignmentButtons: props.disableImageAlignmentButtons,
+        onDone: () => props.onDone?.(editor.getHTML()),
         onDelete:
           props.imageSupport &&
           props.imageSupport.delete &&
@@ -1326,7 +1275,7 @@ export const EditableHtml = (props) => {
       uploadSoundSupport: props.uploadSoundSupport,
     }),
     CSSMark.configure({
-      extraCSSRules: props.extraCSSRules
+      extraCSSRules: props.extraCSSRules,
     }),
   ];
   const editor = useEditor({
@@ -1433,7 +1382,7 @@ export const EditableHtml = (props) => {
   }, [props]);
 
   return (
-    <EditorContainer {...{ ...props, toolbarOpts: toolbarOptsToUse }} editorState={editorState} editor={editor}>
+    <EditorContainer {...{ ...props, activePlugins: activePluginsToUse, toolbarOpts: toolbarOptsToUse }} editorState={editorState} editor={editor}>
       {editor && (
         <EditorContent
           style={{

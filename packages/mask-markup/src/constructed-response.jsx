@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 
 import { color } from '@pie-lib/render-ui';
-import EditableHtml from '@pie-lib/editable-html';
+import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import { withMask } from './with-mask';
 
 const styles = () => ({

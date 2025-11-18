@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { NodeViewWrapper } from '@tiptap/react';
 import InsertImageHandler from '../plugins/image/insert-image-handler';
 import ImageToolbar from '../plugins/image/image-toolbar';
-import CustomToolbarWrapper from "./custom-toolbar-wrapper";
+import CustomToolbarWrapper from './custom-toolbar-wrapper';
 
 const log = debug('@pie-lib:editable-html:plugins:image:component');
 
@@ -196,10 +196,18 @@ function ImageComponent(props) {
             background: 'var(--editable-html-toolbar-bg, #efefef)',
             boxShadow:
               '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
-            width: '100%'
+            width: '100%',
           }}
         >
-          <CustomToolbarWrapper showDone {...options}>
+          <CustomToolbarWrapper
+            showDone
+            {...options}
+            onDone={() => {
+              setShowToolbar(false);
+              props.imageHandling?.onDone();
+              props.editor.commands.focus('end');
+            }}
+          >
             <ImageToolbar
               disableImageAlignmentButtons={options.disableImageAlignmentButtons}
               alt={node.attrs.alt}
