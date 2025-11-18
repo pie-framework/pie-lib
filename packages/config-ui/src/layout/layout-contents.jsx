@@ -97,12 +97,12 @@ class RawLayoutContents extends React.Component {
 
         {mode === 'tabbed' && hasSettingsPanel && (
           <Tabs onChange={this.onTabsChange} contentClassName="content-container" indicatorColor="primary">
-            <div title="Design" className="design-container">
+            <StyledContentContainer title="Design" className="design-container">
               {children}
-            </div>
-            <div title="Settings" className="settings-container">
+            </StyledContentContainer>
+            <StyledContentContainer title="Settings" className="settings-container">
               {secondary}
-            </div>
+            </StyledContentContainer>
           </Tabs>
         )}
 
