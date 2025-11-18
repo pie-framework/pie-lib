@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.38.0-mui-update.0...@pie-lib/charting@5.39.0-mui-update.0) (2025-11-18)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+# [5.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.37.0-mui-update.0...@pie-lib/charting@5.38.0-mui-update.0) (2025-11-17)
+
+
+### Bug Fixes
+
+* math keyboard ref and remove console log ([fd9dc91](https://github.com/pie-framework/pie-lib/commit/fd9dc91092497e55a75aba3e7ef1c4c1c5723f35))
+* select in chart type selection ([ba56525](https://github.com/pie-framework/pie-lib/commit/ba5652504daa9fe9bc499b66c5d8acb88ebf7a8e))
+
+
+### Features
+
+* implement web component safe select in charting ([6f84f2f](https://github.com/pie-framework/pie-lib/commit/6f84f2f0bb917a64dbbd46b917f8cc1b5665d9eb))
+
+
+
+
+
 # [5.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.36.0-mui-update.0...@pie-lib/charting@5.37.0-mui-update.0) (2025-11-05)
 
 

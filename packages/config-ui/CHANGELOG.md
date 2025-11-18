@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.31.0-mui-update.0...@pie-lib/config-ui@11.32.0-mui-update.0) (2025-11-18)
+
+
+### Bug Fixes
+
+* **config-ui:** use the styled components for both tabs case as for the others ([81b8c23](https://github.com/pie-framework/pie-lib/commit/81b8c231c3e469e7a07a3e9d9321093dba8d0bcb))
+
+
+
+
+
+# [11.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.30.0-mui-update.0...@pie-lib/config-ui@11.31.0-mui-update.0) (2025-11-17)
+
+
+### Bug Fixes
+
+* **config-ui, mask-markup:** replace deprecated props, externd AlerDialog with new props ([6e7a163](https://github.com/pie-framework/pie-lib/commit/6e7a16314944745154801010aa4973a03aa15dcc))
+* fix feedback menu, adjust choiceconfig style ([f5ea380](https://github.com/pie-framework/pie-lib/commit/f5ea380a108c0da9358c4e9028baa7068f4c5e91))
+* select in settings panel ([89d3f93](https://github.com/pie-framework/pie-lib/commit/89d3f935ebf9e13c6d1f538e6b3d76ff5612b5f6))
+
+
+### Features
+
+* add MuiButton style overrides for consistent theming ([8fc184e](https://github.com/pie-framework/pie-lib/commit/8fc184e0eca3425cc76f1f76d8f1f24eb56c0779))
+
+
+
+
+
 # [11.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.29.0-mui-update.0...@pie-lib/config-ui@11.30.0-mui-update.0) (2025-11-05)
 
 

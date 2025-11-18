@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.37.0-mui-update.0...@pie-lib/render-ui@4.38.0-mui-update.0) (2025-11-18)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+
+
+
+
+# [4.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.36.0-mui-update.0...@pie-lib/render-ui@4.37.0-mui-update.0) (2025-11-17)
+
+
+### Features
+
+* add MuiButton style overrides for consistent theming ([8fc184e](https://github.com/pie-framework/pie-lib/commit/8fc184e0eca3425cc76f1f76d8f1f24eb56c0779))
+
+
+
+
+
 # [4.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.0-mui-update.0...@pie-lib/render-ui@4.36.0-mui-update.0) (2025-11-05)
 
 

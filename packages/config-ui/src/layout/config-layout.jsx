@@ -3,7 +3,6 @@ import Measure from 'react-measure';
 import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { withContentRect } from 'react-measure';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import LayoutContents from './layout-contents';
 import SettingsBox from './settings-box';
 import { AppendCSSRules } from '@pie-lib/render-ui';
@@ -71,7 +70,7 @@ class MeasuredConfigLayout extends AppendCSSRules {
               const settingsPanel =
                 layoutMode === 'inline' ? <SettingsBox className="settings-box">{settings}</SettingsBox> : settings;
               const secondaryContent = hideSettings ? null : settingsPanel;
-              const finalClass = classNames('main-container');
+              const finalClass = 'main-container';
 
               return (
                 <div ref={measureRef} className={finalClass}>
