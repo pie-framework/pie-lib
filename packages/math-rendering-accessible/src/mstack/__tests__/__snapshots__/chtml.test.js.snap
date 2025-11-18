@@ -6,4 +6,4 @@ exports[`chtml one row 1`] = `"<table><tr><td></td><td>1</td></tr></table>"`;
 
 exports[`chtml two rows 1`] = `"<table><tr><td></td><td>1</td></tr><tr><td></td><td>2</td></tr></table>"`;
 
-exports[`chtml two rows with operator 1`] = `"<table><tr><td></td><td>1</td></tr><tr><td class=\\"inner\\">mo:+</td><td>2</td></tr></table>"`;
+exports[`chtml two rows with operator 1`] = `"<table><tr><td></td><td>1</td></tr><tr><td class="inner">mo:+</td><td>2</td></tr></table>"`;
