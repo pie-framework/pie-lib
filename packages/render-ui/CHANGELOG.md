@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.39.0-mui-update.0...@pie-lib/render-ui@4.40.0-mui-update.0) (2025-11-19)
+
+
+### Bug Fixes
+
+* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+
+
+
+
+
 # [4.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.38.0-mui-update.0...@pie-lib/render-ui@4.39.0-mui-update.0) (2025-11-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui

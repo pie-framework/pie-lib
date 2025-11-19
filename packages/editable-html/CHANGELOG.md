@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.25.0-mui-update.0...@pie-lib/editable-html@11.26.0-mui-update.0) (2025-11-19)
+
+
+### Bug Fixes
+
+* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+* **editable-html:** add slateEditorExtraStyles prop ([0b71f34](https://github.com/pie-framework/pie-lib/commit/0b71f3412aeb90d613d41a9afe93b9ccd13f09c4))
+
+
+
+
+
 # [11.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.24.0-mui-update.0...@pie-lib/editable-html@11.25.0-mui-update.0) (2025-11-18)
 
 
