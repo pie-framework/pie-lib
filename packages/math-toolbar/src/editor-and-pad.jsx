@@ -195,6 +195,7 @@ const AddAnswerBlockButton = styled(Button)({
   position: 'absolute',
   right: '12px',
   border: '1px solid lightgrey',
+  color: color.text(),
 });
 
 const StyledHr = styled('hr')(({ theme }) => ({

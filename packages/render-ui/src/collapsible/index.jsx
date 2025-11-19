@@ -53,7 +53,7 @@ export class Collapsible extends React.Component {
         <div onClick={this.toggleExpanded}>
           <Title>{title}</Title>
         </div>
-        <StyledCollapse in={this.state.expanded} timeout="auto" unmountOnExit>
+        <StyledCollapse in={this.state.expanded} timeout={{ enter: 225, exit: 195 }} unmountOnExit>
           {children}
         </StyledCollapse>
       </div>

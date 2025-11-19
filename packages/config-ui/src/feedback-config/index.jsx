@@ -70,7 +70,7 @@ export class FeedbackConfig extends React.Component {
 
     return (
       <div className={className}>
-        <Accordion>
+        <Accordion slotProps={{ transition: { timeout: { enter: 225, exit: 195 } } }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>Feedback</Typography>
           </AccordionSummary>
