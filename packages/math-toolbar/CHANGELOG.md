@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.36.0-mui-update.0...@pie-lib/math-toolbar@1.37.0-mui-update.0) (2025-11-20)
+
+
+### Bug Fixes
+
+* fix some popper components, fix some math toolbar color ([ed1df55](https://github.com/pie-framework/pie-lib/commit/ed1df558e272686a712767e347df49434790f334))
+
+
+
+
+
 # [1.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.35.0-mui-update.0...@pie-lib/math-toolbar@1.36.0-mui-update.0) (2025-11-19)
 
 

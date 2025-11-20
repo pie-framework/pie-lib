@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.40.0-mui-update.0...@pie-lib/render-ui@4.41.0-mui-update.0) (2025-11-20)
+
+
+### Bug Fixes
+
+* fix some popper components, fix some math toolbar color ([ed1df55](https://github.com/pie-framework/pie-lib/commit/ed1df558e272686a712767e347df49434790f334))
+
+
+
+
+
 # [4.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.39.0-mui-update.0...@pie-lib/render-ui@4.40.0-mui-update.0) (2025-11-19)
 
 
