@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.40.0-mui-update.0...@pie-lib/graphing@2.41.0-mui-update.0) (2025-11-20)
+
+
+### Bug Fixes
+
+* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+
+
+
+
+
 # [2.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.39.0-mui-update.0...@pie-lib/graphing@2.40.0-mui-update.0) (2025-11-20)
 
 **Note:** Version bump only for package @pie-lib/graphing
