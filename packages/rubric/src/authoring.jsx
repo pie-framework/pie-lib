@@ -54,7 +54,7 @@ const MaxPoints = (props) => {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         input={<OutlinedInput label="Max Points" />}
-        MenuProps={{transitionDuration: { enter: 225, exit: 195 }}}
+        MenuProps={{ transitionDuration: { enter: 225, exit: 195 } }}
       >
         {range(1, max + 1).map((v) => (
           <MenuItem key={`${v}`} value={v}>
@@ -130,7 +130,12 @@ const Container = styled('div')(({ theme }) => ({
   padding: theme.spacing(2),
   margin: theme.spacing(1),
 }));
-const InputContainerWrapper = styled('div')(({ theme }) => ({ width: '100%', paddingTop: theme.spacing(2), marginBottom: theme.spacing(2) }));
+const InputContainerWrapper = styled('div')(({ theme }) => ({
+  width: '100%',
+  paddingTop: theme.spacing(2),
+  marginBottom: theme.spacing(2),
+  '& MuiFormControl-root': { width: '100%' }
+}));
 const Rubricless = styled('div')(() => ({ display: 'none' }));
 const ConfigHolder = styled('div')(({ theme }) => ({ paddingTop: theme.spacing(1), paddingBottom: theme.spacing(1) }));
 const RubricTitle = styled(Typography)(({ theme }) => ({ paddingLeft: theme.spacing(1), margin: theme.spacing(1) }));
