@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.38.0-mui-update.0...@pie-lib/math-input@6.38.1-mui-update.0) (2025-11-20)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
 # [6.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.37.0-mui-update.0...@pie-lib/math-input@6.38.0-mui-update.0) (2025-11-20)
 
 **Note:** Version bump only for package @pie-lib/math-input

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.41.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.41.0-mui-update.0...@pie-lib/graphing@2.41.1-mui-update.0) (2025-11-20)
+
+
+### Bug Fixes
+
+* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+
+
+
+
+
 # [2.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.40.0-mui-update.0...@pie-lib/graphing@2.41.0-mui-update.0) (2025-11-20)
 
 
