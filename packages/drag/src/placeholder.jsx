@@ -6,22 +6,24 @@ import { color } from '@pie-lib/render-ui';
 import { grey } from '@mui/material/colors';
 
 const StyledPlaceholder = styled('div')(({ theme }) => ({
-  WebkitTouchCallout: 'none',
-  WebkitUserSelect: 'none',
-  KhtmlUserSelect: 'none',
-  MozUserSelect: 'none',
-  MsUserSelect: 'none',
-  userSelect: 'none',
-  width: '100%',
-  height: '100%',
-  background: color.white(),
-  transition: 'background-color 200ms linear, border-color 200ms linear',
-  boxSizing: 'border-box',
-  display: 'grid',
-  gridRowGap: `${theme.spacing(1)}px`,
-  gridColumnGap: `${theme.spacing(1)}px`,
-  padding: theme.spacing(1),
-  border: `2px dashed ${color.black()}`,
+  '&.placeholder': {
+    WebkitTouchCallout: 'none',
+    WebkitUserSelect: 'none',
+    KhtmlUserSelect: 'none',
+    MozUserSelect: 'none',
+    MsUserSelect: 'none',
+    userSelect: 'none',
+    width: '100%',
+    height: '100%',
+    background: color.white(),
+    transition: 'background-color 200ms linear, border-color 200ms linear',
+    boxSizing: 'border-box',
+    display: 'grid',
+    gridRowGap: `${theme.spacing(1)}px`,
+    gridColumnGap: `${theme.spacing(1)}px`,
+    padding: theme.spacing(1),
+    border: `2px dashed ${color.black()}`,
+  },
   '&.disabled': {
     boxShadow: 'none',
     background: theme.palette.background.paper,
@@ -70,6 +72,7 @@ export const PlaceHolder = (props) => {
     isCategorize,
     isVerticalPool,
     minHeight,
+    extraStyles
   } = props;
 
   const names = classNames(
@@ -105,7 +108,7 @@ export const PlaceHolder = (props) => {
 
   return (
     <StyledPlaceholder
-      style={{ ...style, minHeight: minHeight }}
+      style={{ ...style, minHeight: minHeight, ...extraStyles }}
       className={classNames(
         choiceBoard ? boardStyle : names,
         isVerticalPool && 'verticalPool',
