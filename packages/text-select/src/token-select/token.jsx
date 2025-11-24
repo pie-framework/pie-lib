@@ -82,7 +82,7 @@ const StyledMissingContainer = styled(StyledCommonTokenStyle)(() => ({
   border: `${color.incorrectWithIcon()} dashed 2px`,
 }));
 
-const StyledCorrectnessIcon = styled('span')(() => ({
+const baseIconStyles = {
   color: color.white(),
   position: 'absolute',
   top: '-8px',
@@ -91,25 +91,23 @@ const StyledCorrectnessIcon = styled('span')(() => ({
   fontSize: '12px',
   padding: '2px',
   display: 'inline-block',
-}));
+};
 
-const StyledCorrectIcon = styled(StyledCorrectnessIcon)(() => ({
+const StyledCorrectCheckIcon = styled(Check)(() => ({
+  ...baseIconStyles,
   backgroundColor: color.correctTertiary(),
 }));
 
-const StyledIncorrectIcon = styled(StyledCorrectnessIcon)(() => ({
+const StyledIncorrectCloseIcon = styled(Close)(() => ({
+  ...baseIconStyles,
   backgroundColor: color.incorrectWithIcon(),
 }));
 
-const Wrapper = ({ useWrapper, children, Container, IconComponent, Icon }) =>
+const Wrapper = ({ useWrapper, children, Container, Icon }) =>
   useWrapper ? (
     <Container>
       {children}
-      {Icon && IconComponent ? (
-        <IconComponent>
-          <Icon fontSize="inherit" />
-        </IconComponent>
-      ) : null}
+      {Icon ? <Icon /> : null}
     </Container>
   ) : (
     children
@@ -118,7 +116,6 @@ const Wrapper = ({ useWrapper, children, Container, IconComponent, Icon }) =>
 Wrapper.propTypes = {
   useWrapper: PropTypes.bool,
   Container: PropTypes.elementType,
-  IconComponent: PropTypes.elementType,
   Icon: PropTypes.elementType,
   children: PropTypes.node,
 };
@@ -160,7 +157,6 @@ export class Token extends React.Component {
     const baseClassName = Token.rootClassName;
     let Container;
     let Icon;
-    let IconComponent;
 
     if (correct === undefined && selected && disabled) {
       return {
@@ -175,8 +171,7 @@ export class Token extends React.Component {
         className: classNames(baseClassName, 'custom', classNameProp),
         Component: StyledToken,
         Container: isCorrect ? StyledCorrectContainer : StyledIncorrectContainer,
-        Icon: isCorrect ? Check : Close,
-        IconComponent: isCorrect ? StyledCorrectIcon : StyledIncorrectIcon,
+        Icon: isCorrect ? StyledCorrectCheckIcon : StyledIncorrectCloseIcon,
       };
     }
 
@@ -185,8 +180,7 @@ export class Token extends React.Component {
         className: classNames(baseClassName, 'custom', 'missing', classNameProp),
         Component: StyledToken,
         Container: StyledMissingContainer,
-        Icon: Close,
-        IconComponent: StyledIncorrectIcon,
+        Icon: StyledIncorrectCloseIcon,
       };
     }
 
@@ -204,13 +198,12 @@ export class Token extends React.Component {
       Component: StyledToken,
       Container,
       Icon,
-      IconComponent,
     };
   };
 
   render() {
     const { text, index, correct, isMissing } = this.props;
-    const { className, Component, Container, Icon, IconComponent } = this.getClassAndIconConfig();
+    const { className, Component, Container, Icon } = this.getClassAndIconConfig();
 
     const TokenComponent = Component || StyledToken;
 
@@ -218,7 +211,6 @@ export class Token extends React.Component {
       <Wrapper
         useWrapper={correct !== undefined || isMissing}
         Container={Container}
-        IconComponent={IconComponent}
         Icon={Icon}
       >
         <TokenComponent
