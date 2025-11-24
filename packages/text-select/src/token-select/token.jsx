@@ -23,6 +23,7 @@ const StyledToken = styled('span')(({ theme }) => ({
   },
   '&.disabledBlack': {
     cursor: 'inherit',
+    pointerEvents: 'none',
   },
   '&.disabledAndSelected': {
     backgroundColor: color.blueGrey100(),
