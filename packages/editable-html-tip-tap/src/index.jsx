@@ -27,7 +27,7 @@ import { color } from '@pie-lib/render-ui';
 import { primary } from './theme';
 import { PIE_TOOLBAR__CLASS } from './constants';
 import { DoneButton } from './plugins/toolbar/done-button';
-import { DEFAULT_PLUGINS } from './plugins/index';
+import { buildPlugins, DEFAULT_PLUGINS } from "./plugins/index";
 import Bold from '@material-ui/icons/FormatBold';
 import Italic from '@material-ui/icons/FormatItalic';
 import Strikethrough from '@material-ui/icons/FormatStrikethrough';
@@ -54,8 +54,8 @@ import CSSIcon from './plugins/css/icons';
 import { ImageUploadNode } from './extensions/image';
 import { Media } from './extensions/media';
 import { CSSMark } from './extensions/css';
-import { AddColumn, AddRow, RemoveColumn, RemoveRow, RemoveTable } from "./plugins/table/icons";
-import BorderAll from "@material-ui/icons/BorderAll";
+import { AddColumn, AddRow, RemoveColumn, RemoveRow, RemoveTable } from './plugins/table/icons';
+import BorderAll from '@material-ui/icons/BorderAll';
 
 const CharacterIcon = ({ letter }) => (
   <div
@@ -736,7 +736,11 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       {
         icon: <GridOn />,
         onClick: (editor) =>
-          editor.chain().focus().insertTable({ rows: 2, cols: 2, withHeaderRow: false }).run(),
+          editor
+            .chain()
+            .focus()
+            .insertTable({ rows: 2, cols: 2, withHeaderRow: false })
+            .run(),
         hidden: (state) => !activePlugins?.includes('table') || state.isTable,
         isActive: (state) => state.isTable,
         isDisabled: (state) => !state.canTable,
@@ -825,7 +829,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
             .focus()
             .toggleBold()
             .run(),
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('bold') || state.isTable,
         isActive: (state) => state.isBold,
         isDisabled: (state) => !state.canBold,
       },
@@ -837,7 +841,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
             .focus()
             .toggleItalic()
             .run(),
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('italic') || state.isTable,
         isActive: (state) => state.isItalic,
         isDisabled: (state) => !state.canItalic,
       },
@@ -849,7 +853,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
             .focus()
             .toggleStrike()
             .run(),
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('strikethrough') || state.isTable,
         isActive: (state) => state.isStrike,
         isDisabled: (state) => !state.canStrike,
       },
@@ -861,7 +865,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
             .focus()
             .toggleCode()
             .run(),
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('code') || state.isTable,
         isActive: (state) => state.isCode,
         isDisabled: (state) => !state.canCode,
       },
@@ -873,7 +877,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
             .focus()
             .toggleUnderline()
             .run(),
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('underline') || state.isTable,
         isActive: (state) => state.isUnderline,
       },
       {
@@ -884,7 +888,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
             .focus()
             .toggleSubscript()
             .run(),
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('subscript') || state.isTable,
         isActive: (state) => state.isSubScript,
       },
       {
@@ -895,11 +899,12 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
             .focus()
             .toggleSuperscript()
             .run(),
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('superscript') || state.isTable,
         isActive: (state) => state.isSuperScript,
       },
       {
         icon: <ImageIcon />,
+        hidden: (state) => !activePlugins?.includes('image') || state.isTable,
         onClick: (editor) =>
           editor
             .chain()
@@ -909,7 +914,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <TheatersIcon />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('video') || state.isTable,
         onClick: (editor) =>
           editor
             .chain()
@@ -919,7 +924,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <VolumeUpIcon />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('audio') || state.isTable,
         onClick: (editor) =>
           editor
             .chain()
@@ -929,12 +934,12 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <CSSIcon />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('css') || state.isTable,
         onClick: (editor) => editor.commands.openCSSClassDialog(),
       },
       {
         icon: <HeadingIcon />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('h3') || state.isTable,
         onClick: (editor) =>
           editor
             .chain()
@@ -945,6 +950,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <Functions />,
+        hidden: () => !activePlugins?.includes('math'),
         onClick: (editor) =>
           editor
             .chain()
@@ -954,22 +960,22 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <CharacterIcon letter="ñ" />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('languageCharacters') || state.isTable,
         onClick: () => setShowPicker(spanishConfig),
       },
       {
         icon: <CharacterIcon letter="€" />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => activePlugins?.filter(p => p === 'languageCharacters').length !== 2 || state.isTable,
         onClick: () => setShowPicker(specialConfig),
       },
       {
         icon: <TextAlignIcon editor={editor} />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('text-align') || state.isTable,
         onClick: () => {},
       },
       {
         icon: <BulletedListIcon />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('bulleted-list') || state.isTable,
         onClick: (editor) =>
           editor
             .chain()
@@ -980,7 +986,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <NumberedListIcon />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('numbered-list') || state.isTable,
         onClick: (editor) =>
           editor
             .chain()
@@ -991,7 +997,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <Undo />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('undo') || state.isTable,
         onClick: (editor) =>
           editor
             .chain()
@@ -1002,7 +1008,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <Redo />,
-        hidden: (state) => state.isTable,
+        hidden: (state) => !activePlugins?.includes('redo') || state.isTable,
         onClick: (editor) =>
           editor
             .chain()
@@ -1041,18 +1047,20 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
                 );
               })}
           </div>
-          <button
-            onClick={() => {
-              editor
-                .chain()
-                .focus()
-                .insertResponseArea(responseAreaProps.type)
-                .run();
-            }}
-            className={classes.button}
-          >
-            <ToolbarIcon />
-          </button>
+          {activePlugins?.includes('responseArea') && (
+            <button
+              onClick={() => {
+                editor
+                  .chain()
+                  .focus()
+                  .insertResponseArea(responseAreaProps.type)
+                  .run();
+              }}
+              className={classes.button}
+            >
+              <ToolbarIcon />
+            </button>
+          )}
 
           <DoneButton
             onClick={() => {
@@ -1185,7 +1193,26 @@ export const EditableHtml = (props) => {
     ...defaultToolbarOpts,
     ...toolbarOpts,
   };
-  const activePluginsToUse = props.activePlugins || DEFAULT_PLUGINS;
+  const activePluginsToUse = useMemo(() => {
+    let { customPlugins } = props.pluginProps || {};
+
+    customPlugins = customPlugins || [];
+
+    return buildPlugins(props.activePlugins, customPlugins, {
+      math: {},
+      textAlign: {},
+      html: {},
+      extraCSSRules: props.extraCSSRules || {},
+      image: {},
+      toolbar: {},
+      table: {},
+      responseArea: {},
+      languageCharacters: props.languageCharactersProps,
+      keyPadCharacterRef: {},
+      setKeypadInteraction: {},
+      media: {},
+    });
+  }, [props]);
   const extensions = [
     TextStyleKit,
     StarterKit,
@@ -1382,7 +1409,11 @@ export const EditableHtml = (props) => {
   }, [props]);
 
   return (
-    <EditorContainer {...{ ...props, activePlugins: activePluginsToUse, toolbarOpts: toolbarOptsToUse }} editorState={editorState} editor={editor}>
+    <EditorContainer
+      {...{ ...props, activePlugins: activePluginsToUse, toolbarOpts: toolbarOptsToUse }}
+      editorState={editorState}
+      editor={editor}
+    >
       {editor && (
         <EditorContent
           style={{

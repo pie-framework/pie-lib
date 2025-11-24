@@ -281,7 +281,7 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
 
   activePlugins = activePlugins || DEFAULT_PLUGINS;
 
-  const addIf = (key, p) => activePlugins.includes(key) && p;
+  const addIf = (key) => activePlugins.includes(key) && key;
 
   const imagePlugin = opts.image && opts.image.onDelete && ImagePlugin(opts.image);
   const mathPlugin = opts.math && MathPlugin(opts.math);
