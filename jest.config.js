@@ -10,9 +10,6 @@ module.exports = {
     url: 'http://localhost',
   },
 
-  // Use jest-circus runner (Jest 27+ default, but explicit is better)
-  testRunner: 'jest-circus/runner',
-
   verbose: false,
   testPathIgnorePatterns: ig,
 

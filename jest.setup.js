@@ -189,17 +189,22 @@ global.XMLHttpRequest = class XMLHttpRequestMock extends originalXHR {
 };
 
 // Suppress console errors/warnings in tests (optional - comment out if you want to see them)
-// const originalError = console.error;
-// const originalWarn = console.warn;
-// beforeAll(() => {
-//   console.error = jest.fn((...args) => {
-//     // Only show errors that are not React warnings
-//     if (typeof args[0] === 'string' && args[0].includes('Warning:')) return;
-//     originalError.call(console, ...args);
-//   });
-//   console.warn = jest.fn();
-// });
-// afterAll(() => {
-//   console.error = originalError;
-//   console.warn = originalWarn;
-// });
+const originalError = console.error;
+const originalWarn = console.warn;
+beforeAll(() => {
+  console.error = jest.fn((...args) => {
+    // Suppress React key prop warnings
+    if (typeof args[0] === 'string' && args[0].includes('Warning:')) return;
+    if (typeof args[0] === 'string' && args[0].includes('Each child in a list should have a unique "key" prop')) return;
+    originalError.call(console, ...args);
+  });
+  console.warn = jest.fn((...args) => {
+    // Suppress specific warnings if needed
+    if (typeof args[0] === 'string' && args[0].includes('Warning:')) return;
+    originalWarn.call(console, ...args);
+  });
+});
+afterAll(() => {
+  console.error = originalError;
+  console.warn = originalWarn;
+});
