@@ -40,7 +40,7 @@ const StyledToken = styled('span')(({ theme }) => ({
   '&.selected': {
     backgroundColor: color.blueGrey100(),
     color: theme.palette.common.black,
-    lineHeight: `${theme.spacing(1) * LINE_HEIGHT_MULTIPLIER}px`,
+    lineHeight: `${parseFloat(theme.spacing(1)) * LINE_HEIGHT_MULTIPLIER}px`,
     border: `solid 2px ${color.blueGrey900()}`,
     borderRadius: '4px',
     '& > *': {
@@ -50,12 +50,12 @@ const StyledToken = styled('span')(({ theme }) => ({
   '&.highlight': {
     border: `dashed 2px ${color.blueGrey600()}`,
     borderRadius: '4px',
-    lineHeight: `${theme.spacing(1) * LINE_HEIGHT_MULTIPLIER}px`,
+    lineHeight: `${parseFloat(theme.spacing(1)) * LINE_HEIGHT_MULTIPLIER}px`,
   },
   '&.print': {
     border: `dashed 2px ${color.blueGrey600()}`,
     borderRadius: '4px',
-    lineHeight: `${theme.spacing(1) * LINE_HEIGHT_MULTIPLIER}px`,
+    lineHeight: `${parseFloat(theme.spacing(1)) * LINE_HEIGHT_MULTIPLIER}px`,
     color: color.text(),
   },
   '&.custom': {
@@ -67,7 +67,7 @@ const StyledCommonTokenStyle = styled('span')(({ theme }) => ({
   position: 'relative',
   borderRadius: '4px',
   color: theme.palette.common.black,
-  lineHeight: `${theme.spacing(1) * CORRECTNESS_LINE_HEIGHT_MULTIPLIER + CORRECTNESS_PADDING}px`,
+  lineHeight: `${parseFloat(theme.spacing(1)) * CORRECTNESS_LINE_HEIGHT_MULTIPLIER + CORRECTNESS_PADDING}px`,
   padding: `${CORRECTNESS_PADDING}px`,
 }));
 
