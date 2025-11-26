@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.39.1-mui-update.0...@pie-lib/text-select@1.40.0-mui-update.0) (2025-11-26)
+
+
+### Bug Fixes
+
+* diaable toggling selection in view mode ([c0e47f0](https://github.com/pie-framework/pie-lib/commit/c0e47f0f5beaced697d6cdf3c418b92ec29679ab))
+* parsefloat to correctly compute tokens line height ([282c464](https://github.com/pie-framework/pie-lib/commit/282c464b860dc72e08d8692a7c2236c5475e49e0))
+* **text-select:** refactor icon token wrappers,delete unused container ([fdc6066](https://github.com/pie-framework/pie-lib/commit/fdc60661dd3bbda8c936a5e495be75ac4a2ac2ea))
+
+
+
+
+
 ## [1.39.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.39.0-mui-update.0...@pie-lib/text-select@1.39.1-mui-update.0) (2025-11-20)
 
 

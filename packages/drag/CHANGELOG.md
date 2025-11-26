@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.29.1-mui-update.0...@pie-lib/drag@2.30.0-mui-update.0) (2025-11-26)
+
+
+### Bug Fixes
+
+* placehoder styles in drag ([431adbe](https://github.com/pie-framework/pie-lib/commit/431adbe6c020f32615910885dee5d4bd5efbe76a))
+
+
+
+
+
 ## [2.29.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.29.0-mui-update.0...@pie-lib/drag@2.29.1-mui-update.0) (2025-11-20)
 
 

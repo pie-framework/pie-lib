@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.35.1-mui-update.0...@pie-lib/rubric@0.36.0-mui-update.0) (2025-11-26)
+
+
+### Bug Fixes
+
+* rubric - rubricless style ([57701b2](https://github.com/pie-framework/pie-lib/commit/57701b28d49f88f785ef1367e5b658bcf85c79ea))
+
+
+
+
+
 ## [0.35.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.35.0-mui-update.0...@pie-lib/rubric@0.35.1-mui-update.0) (2025-11-20)
 
 

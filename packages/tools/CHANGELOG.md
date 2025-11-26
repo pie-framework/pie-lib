@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.36.1-mui-update.0...@pie-lib/tools@0.37.0-mui-update.0) (2025-11-26)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
 ## [0.36.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.36.0-mui-update.0...@pie-lib/tools@0.36.1-mui-update.0) (2025-11-20)
 
 

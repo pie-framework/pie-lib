@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.39.1-mui-update.0",
+  "version": "1.40.0-mui-update.0",
   "description": "Some react components for text selection",
   "keywords": [
     "react",
@@ -22,9 +22,9 @@
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@pie-framework/parse-english": "^1.0.0",
-    "@pie-lib/render-ui": "4.42.1-mui-update.0",
-    "@pie-lib/style-utils": "0.28.1-mui-update.0",
-    "@pie-lib/translator": "2.31.1-mui-update.0",
+    "@pie-lib/render-ui": "4.43.0-mui-update.0",
+    "@pie-lib/style-utils": "0.29.0-mui-update.0",
+    "@pie-lib/translator": "2.32.0-mui-update.0",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "invariant": "^2.2.4",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@pie-framework/parse-english": "^1.0.0",
-    "@pie-lib/test-utils": "0.29.1-mui-update.0",
+    "@pie-lib/test-utils": "0.30.0-mui-update.0",
     "natural": "^0.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
