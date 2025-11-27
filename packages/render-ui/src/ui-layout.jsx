@@ -18,36 +18,6 @@ const theme = createMuiTheme({
     MuiTypography: {
       root: { fontFamily: 'inherit' },
     },
-    MuiRadio: {
-      root: {
-        '&$checked': {
-          color: '#3f51b5 !important',
-        },
-      },
-    },
-    MuiCheckbox: {
-      root: {
-        '&$checked': {
-          color: '#3f51b5 !important',
-        },
-      },
-    },
-    MuiTabs: {
-      root: {
-        borderBottom: '1px solid #eee',
-      },
-    },
-    MuiSwitch: {
-      root: {
-        '&$checked': {
-          color: '#3f51b5 !important',
-          '& + $bar': {
-            backgroundColor: '#3f51b5 !important',
-            opacity: 0.5,
-          },
-        },
-      },
-    },
   },
 });
 
