@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.35.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.1...@pie-lib/render-ui@4.35.2) (2025-11-27)
+
+
+### Bug Fixes
+
+* **render-ui:** change unneeded colors overwriting in theme provider PD-5274 ([dbfaed5](https://github.com/pie-framework/pie-lib/commit/dbfaed50feed9c059b14c9835468159858446af1))
+* **render-ui:** handle vertical striping only for tables with th first col PD-5211 ([d32502e](https://github.com/pie-framework/pie-lib/commit/d32502e496fc9a19a6444e537587017c91e87724))
+
+
+
+
+
 ## [4.35.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.2...@pie-lib/render-ui@4.35.1) (2025-10-22)
 
 
