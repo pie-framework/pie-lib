@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { DndContext, PointerSensor, KeyboardSensor, useSensor, useSensors } from '@dnd-kit/core';
 
-export function DragProvider({ children, onDragEnd }) {
+export function DragProvider({ children, onDragEnd, onDragStart }) {
   const [activeId, setActiveId] = useState(null);
   
   const sensors = useSensors(
@@ -12,6 +12,9 @@ export function DragProvider({ children, onDragEnd }) {
 
   const handleDragStart = (event) => {
     setActiveId(event.active.id);
+    if (onDragStart) {
+      onDragStart(event);
+    }
   };
 
   const handleDragEnd = (event) => {
@@ -35,6 +38,7 @@ export function DragProvider({ children, onDragEnd }) {
 DragProvider.propTypes = {
   children: PropTypes.node.isRequired,
   onDragEnd: PropTypes.func,
+  onDragStart: PropTypes.func,
 };
 
 export default DragProvider;
