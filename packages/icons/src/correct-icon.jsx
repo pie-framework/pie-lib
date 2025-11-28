@@ -1,8 +1,6 @@
 import IconBase from './icon-base';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { styled } from '@mui/material/styles';
-import { getStyles } from './icon-root';
 
 // Emoji SVG
 const Emoji = ({ fill }) => (
@@ -38,6 +36,9 @@ Correct.propTypes = {
   shape: PropTypes.oneOf(['round', 'square']),
   category: PropTypes.oneOf(['feedback', undefined]),
   open: PropTypes.bool,
+  fg: PropTypes.string,
+  bg: PropTypes.string,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Correct.defaultProps = {
@@ -45,10 +46,9 @@ Correct.defaultProps = {
   shape: 'round',
   category: undefined,
   open: false,
+  fg: '#4aaf46', // foreground color
+  bg: '#f8ffe2', // background color
+  size: 30,
 };
 
-// Optional: default colors
-const styles = getStyles('correct', '#4aaf46', '#f8ffe2');
-const StyledCorrect = styled(Correct)(styles);
-
-export default StyledCorrect;
+export default Correct;
