@@ -20,6 +20,17 @@ const theme = createTheme({
         root: { fontFamily: 'inherit' },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          backgroundColor: '#e0e0e0',
+          color: '#000000',
+          '&:hover': {
+            backgroundColor: '#bdbdbd',
+          },
+        },
+      },
+    },
   },
 });
 
