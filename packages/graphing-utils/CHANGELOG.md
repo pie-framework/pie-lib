@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.28.1-mui-update.0...@pie-lib/graphing-utils@1.29.0-mui-update.0) (2025-11-26)
+## [1.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.17.0...@pie-lib/graphing-utils@1.21.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.28.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.28.0-mui-update.0...@pie-lib/graphing-utils@1.28.1-mui-update.0) (2025-11-20)
+# [1.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.17.0...@pie-lib/graphing-utils@1.21.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.27.0-mui-update.0...@pie-lib/graphing-utils@1.28.0-mui-update.0) (2025-11-20)
+# [1.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.17.0...@pie-lib/graphing-utils@1.20.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
 
@@ -27,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.26.0-mui-update.0...@pie-lib/graphing-utils@1.27.0-mui-update.0) (2025-11-20)
+# [1.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.17.0...@pie-lib/graphing-utils@1.19.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
 
@@ -35,63 +35,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.25.0-mui-update.0...@pie-lib/graphing-utils@1.26.0-mui-update.0) (2025-11-19)
-
-**Note:** Version bump only for package @pie-lib/graphing-utils
-
-
-
-
-
-# [1.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.24.0-mui-update.0...@pie-lib/graphing-utils@1.25.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/graphing-utils
-
-
-
-
-
-# [1.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.23.0-mui-update.0...@pie-lib/graphing-utils@1.24.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/graphing-utils
-
-
-
-
-
-# [1.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.22.0-mui-update.0...@pie-lib/graphing-utils@1.23.0-mui-update.0) (2025-11-17)
-
-**Note:** Version bump only for package @pie-lib/graphing-utils
-
-
-
-
-
-# [1.22.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.21.0-mui-update.0...@pie-lib/graphing-utils@1.22.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/graphing-utils
-
-
-
-
-
-# [1.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.20.0-mui-update.0...@pie-lib/graphing-utils@1.21.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/graphing-utils
-
-
-
-
-
-# [1.20.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.18.0-mui-update.0...@pie-lib/graphing-utils@1.20.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/graphing-utils
-
-
-
-
-
-# [1.18.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.17.0...@pie-lib/graphing-utils@1.18.0-mui-update.0) (2025-10-31)
+# [1.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.17.0...@pie-lib/graphing-utils@1.18.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
 

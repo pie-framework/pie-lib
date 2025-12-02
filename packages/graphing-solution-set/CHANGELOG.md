@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.42.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.41.1-mui-update.0...@pie-lib/graphing-solution-set@2.42.0-mui-update.0) (2025-11-26)
+## [2.34.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.34.1...@pie-lib/graphing-solution-set@2.34.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/graphing-solution-set
 
@@ -11,29 +11,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.41.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.41.0-mui-update.0...@pie-lib/graphing-solution-set@2.41.1-mui-update.0) (2025-11-20)
+## [2.34.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.30.2...@pie-lib/graphing-solution-set@2.34.1) (2025-10-22)
 
 
 ### Bug Fixes
 
-* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
 
 
 
 
 
-# [2.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.40.0-mui-update.0...@pie-lib/graphing-solution-set@2.41.0-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
-
-
-
-
-
-# [2.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.39.0-mui-update.0...@pie-lib/graphing-solution-set@2.40.0-mui-update.0) (2025-11-20)
+# [2.34.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.33.0...@pie-lib/graphing-solution-set@2.34.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/graphing-solution-set
 
@@ -41,18 +30,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.38.0-mui-update.0...@pie-lib/graphing-solution-set@2.39.0-mui-update.0) (2025-11-19)
-
-
-### Bug Fixes
-
-* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
-
-
-
-
-
-# [2.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.37.0-mui-update.0...@pie-lib/graphing-solution-set@2.38.0-mui-update.0) (2025-11-18)
+# [2.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.30.0...@pie-lib/graphing-solution-set@2.33.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/graphing-solution-set
 
@@ -60,7 +38,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.36.0-mui-update.0...@pie-lib/graphing-solution-set@2.37.0-mui-update.0) (2025-11-18)
+# [2.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.30.0...@pie-lib/graphing-solution-set@2.32.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/graphing-solution-set
 
@@ -68,47 +46,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.35.0-mui-update.0...@pie-lib/graphing-solution-set@2.36.0-mui-update.0) (2025-11-17)
+# [2.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.30.0...@pie-lib/graphing-solution-set@2.31.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/graphing-solution-set
-
-
-
-
-
-# [2.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.34.0-mui-update.0...@pie-lib/graphing-solution-set@2.35.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/graphing-solution-set
-
-
-
-
-
-# [2.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.33.0-mui-update.0...@pie-lib/graphing-solution-set@2.34.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/graphing-solution-set
-
-
-
-
-
-# [2.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.31.0-mui-update.0...@pie-lib/graphing-solution-set@2.33.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/graphing-solution-set
-
-
-
-
-
-# [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@2.30.2...@pie-lib/graphing-solution-set@2.31.0-mui-update.0) (2025-10-31)
-
-
-### Features
-
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* drag library update in graphing packages ([6638af8](https://github.com/pie-framework/pie-lib/commit/6638af83235a13b983b95587ba042bbdff61c4df))
-* packages/graphing  mui update PD-5268 ([503e9fd](https://github.com/pie-framework/pie-lib/commit/503e9fd47f230503ca8133eb8a61cacc727bb0fe))
-* packages/graphing-solution-set  mui update PD-5268 ([e73ac80](https://github.com/pie-framework/pie-lib/commit/e73ac80be3059028f7e05fd0f5ece467b2250018))
 
 
 
