@@ -13,6 +13,7 @@ export const compact = (arr) => {
   if (Array.isArray(arr)) {
     return arr.filter((v) => v !== null && v !== undefined);
   }
+
   return arr;
 };
 
@@ -28,7 +29,7 @@ export const getShuffledChoices = (choices, session, updateSession, choiceKey) =
       warn("unable to save shuffled choices because there's no session.");
       resolve(undefined);
     } else if (!isEmpty(currentShuffled)) {
-      debug('use shuffledValues to sort the choices...', session.data?.shuffledValues);
+      debug('use shuffledValues to sort the choices...', currentShuffled);
       resolve(compact(currentShuffled.map((v) => choices.find((c) => c[choiceKey] === v))));
     } else {
       const shuffledChoices = shuffle(choices);
@@ -39,6 +40,7 @@ export const getShuffledChoices = (choices, session, updateSession, choiceKey) =
           const shuffledValues = compact(shuffledChoices.map((c) => c[choiceKey]));
           log('try to save shuffledValues to session...', shuffledValues);
           log('call updateSession... ', session.id, session.element);
+
           if (isEmpty(shuffledValues)) {
             error(
               `shuffledValues is an empty array? - refusing to call updateSession: shuffledChoices: ${JSON.stringify(
@@ -58,6 +60,7 @@ export const getShuffledChoices = (choices, session, updateSession, choiceKey) =
       } else {
         warn('unable to save shuffled choices, shuffle will happen every time.');
       }
+
       //save this shuffle to the session for later retrieval
       resolve(shuffledChoices);
     }

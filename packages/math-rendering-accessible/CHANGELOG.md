@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.29.1-mui-update.0...@pie-lib/math-rendering-accessible@3.30.0-mui-update.0) (2025-11-26)
+## [3.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.18.1...@pie-lib/math-rendering-accessible@3.22.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/math-rendering-accessible
 
@@ -11,29 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.29.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.29.0-mui-update.0...@pie-lib/math-rendering-accessible@3.29.1-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
-
-
-
-
-
-# [3.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.28.0-mui-update.0...@pie-lib/math-rendering-accessible@3.29.0-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
-
-
-
-
-
-# [3.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.27.0-mui-update.0...@pie-lib/math-rendering-accessible@3.28.0-mui-update.0) (2025-11-20)
+# [3.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.21.0...@pie-lib/math-rendering-accessible@3.22.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-rendering-accessible
 
@@ -41,18 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [3.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.26.0-mui-update.0...@pie-lib/math-rendering-accessible@3.27.0-mui-update.0) (2025-11-19)
-
-
-### Bug Fixes
-
-* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
-
-
-
-
-
-# [3.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.25.0-mui-update.0...@pie-lib/math-rendering-accessible@3.26.0-mui-update.0) (2025-11-18)
+# [3.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.18.0...@pie-lib/math-rendering-accessible@3.21.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-rendering-accessible
 
@@ -60,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [3.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.24.0-mui-update.0...@pie-lib/math-rendering-accessible@3.25.0-mui-update.0) (2025-11-18)
+# [3.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.18.0...@pie-lib/math-rendering-accessible@3.20.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-rendering-accessible
 
@@ -68,44 +35,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [3.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.23.0-mui-update.0...@pie-lib/math-rendering-accessible@3.24.0-mui-update.0) (2025-11-17)
+# [3.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.18.0...@pie-lib/math-rendering-accessible@3.19.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-rendering-accessible
-
-
-
-
-
-# [3.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.22.0-mui-update.0...@pie-lib/math-rendering-accessible@3.23.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/math-rendering-accessible
-
-
-
-
-
-# [3.22.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.21.0-mui-update.0...@pie-lib/math-rendering-accessible@3.22.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-rendering-accessible
-
-
-
-
-
-# [3.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.19.0-mui-update.0...@pie-lib/math-rendering-accessible@3.21.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-rendering-accessible
-
-
-
-
-
-# [3.19.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.18.1...@pie-lib/math-rendering-accessible@3.19.0-mui-update.0) (2025-10-31)
-
-
-### Features
-
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
 
 
 

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.31.1-mui-update.0...@pie-lib/icons@2.32.0-mui-update.0) (2025-11-26)
+## [2.24.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.24.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/icons
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.31.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.31.0-mui-update.0...@pie-lib/icons@2.31.1-mui-update.0) (2025-11-20)
+# [2.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.24.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/icons
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.30.0-mui-update.0...@pie-lib/icons@2.31.0-mui-update.0) (2025-11-20)
+# [2.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.23.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/icons
 
@@ -27,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.29.0-mui-update.0...@pie-lib/icons@2.30.0-mui-update.0) (2025-11-20)
+# [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.22.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/icons
 
@@ -35,72 +35,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.28.0-mui-update.0...@pie-lib/icons@2.29.0-mui-update.0) (2025-11-19)
+# [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.21.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.27.0-mui-update.0...@pie-lib/icons@2.28.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.26.0-mui-update.0...@pie-lib/icons@2.27.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.25.0-mui-update.0...@pie-lib/icons@2.26.0-mui-update.0) (2025-11-17)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.24.0-mui-update.0...@pie-lib/icons@2.25.0-mui-update.0) (2025-11-05)
-
-
-### Bug Fixes
-
-* icon rendering ([d20951d](https://github.com/pie-framework/pie-lib/commit/d20951da114ef6a3939a12d0ea5f195ebe372240))
-
-
-
-
-
-# [2.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.23.0-mui-update.0...@pie-lib/icons@2.24.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.21.0-mui-update.0...@pie-lib/icons@2.23.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.21.0-mui-update.0) (2025-10-31)
-
-
-### Features
-
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* packages/math-toolbar & packages/icons  mui update PD-5268 ([8a18bc1](https://github.com/pie-framework/pie-lib/commit/8a18bc1a79cd3ca3baa7ff7a94b050ec20371649))
 
 
 

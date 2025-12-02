@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.40.1-mui-update.0...@pie-lib/mask-markup@1.41.0-mui-update.0) (2025-11-26)
+## [1.33.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.33.1...@pie-lib/mask-markup@1.33.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
@@ -11,29 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.40.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.40.0-mui-update.0...@pie-lib/mask-markup@1.40.1-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
-
-
-
-
-
-# [1.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.39.0-mui-update.0...@pie-lib/mask-markup@1.40.0-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
-
-
-
-
-
-# [1.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.38.0-mui-update.0...@pie-lib/mask-markup@1.39.0-mui-update.0) (2025-11-20)
+## [1.33.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.2...@pie-lib/mask-markup@1.33.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
@@ -41,18 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.37.0-mui-update.0...@pie-lib/mask-markup@1.38.0-mui-update.0) (2025-11-19)
-
-
-### Bug Fixes
-
-* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
-
-
-
-
-
-# [1.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.36.0-mui-update.0...@pie-lib/mask-markup@1.37.0-mui-update.0) (2025-11-18)
+# [1.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.32.0...@pie-lib/mask-markup@1.33.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
@@ -60,7 +27,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.35.0-mui-update.0...@pie-lib/mask-markup@1.36.0-mui-update.0) (2025-11-18)
+# [1.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.0...@pie-lib/mask-markup@1.32.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
@@ -68,18 +35,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.34.0-mui-update.0...@pie-lib/mask-markup@1.35.0-mui-update.0) (2025-11-17)
-
-
-### Bug Fixes
-
-* **config-ui, mask-markup:** replace deprecated props, externd AlerDialog with new props ([6e7a163](https://github.com/pie-framework/pie-lib/commit/6e7a16314944745154801010aa4973a03aa15dcc))
-
-
-
-
-
-# [1.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.33.0-mui-update.0...@pie-lib/mask-markup@1.34.0-mui-update.0) (2025-11-05)
+# [1.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.0...@pie-lib/mask-markup@1.31.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
@@ -87,29 +43,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.32.0-mui-update.0...@pie-lib/mask-markup@1.33.0-mui-update.0) (2025-11-03)
+# [1.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.0...@pie-lib/mask-markup@1.30.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
-
-
-
-
-
-# [1.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.30.0-mui-update.0...@pie-lib/mask-markup@1.32.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/mask-markup
-
-
-
-
-
-# [1.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.2...@pie-lib/mask-markup@1.30.0-mui-update.0) (2025-10-31)
-
-
-### Features
-
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* drag library update in mask-markup and demo packages ([c8a5c17](https://github.com/pie-framework/pie-lib/commit/c8a5c17b0cb16d0c9debb876b4fdba13fbdf5404))
 
 
 

@@ -3,7 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [4.43.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.42.1-mui-update.0...@pie-lib/render-ui@4.43.0-mui-update.0) (2025-11-26)
+## [4.35.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.1...@pie-lib/render-ui@4.35.2) (2025-11-27)
+
+
+### Bug Fixes
+
+* **render-ui:** change unneeded colors overwriting in theme provider PD-5274 ([dbfaed5](https://github.com/pie-framework/pie-lib/commit/dbfaed50feed9c059b14c9835468159858446af1))
+* **render-ui:** handle vertical striping only for tables with th first col PD-5211 ([d32502e](https://github.com/pie-framework/pie-lib/commit/d32502e496fc9a19a6444e537587017c91e87724))
+
+
+
+
+
+## [4.35.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.2...@pie-lib/render-ui@4.35.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+
+
+
+
+# [4.35.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.34.0...@pie-lib/render-ui@4.35.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
@@ -11,51 +34,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [4.42.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.42.0-mui-update.0...@pie-lib/render-ui@4.42.1-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
-
-
-
-
-
-# [4.42.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.41.0-mui-update.0...@pie-lib/render-ui@4.42.0-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
-
-
-
-
-
-# [4.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.40.0-mui-update.0...@pie-lib/render-ui@4.41.0-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* fix some popper components, fix some math toolbar color ([ed1df55](https://github.com/pie-framework/pie-lib/commit/ed1df558e272686a712767e347df49434790f334))
-
-
-
-
-
-# [4.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.39.0-mui-update.0...@pie-lib/render-ui@4.40.0-mui-update.0) (2025-11-19)
-
-
-### Bug Fixes
-
-* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
-
-
-
-
-
-# [4.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.38.0-mui-update.0...@pie-lib/render-ui@4.39.0-mui-update.0) (2025-11-18)
+# [4.34.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.0...@pie-lib/render-ui@4.34.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
@@ -63,7 +42,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [4.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.37.0-mui-update.0...@pie-lib/render-ui@4.38.0-mui-update.0) (2025-11-18)
+# [4.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.0...@pie-lib/render-ui@4.33.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
@@ -71,57 +50,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [4.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.36.0-mui-update.0...@pie-lib/render-ui@4.37.0-mui-update.0) (2025-11-17)
-
-
-### Features
-
-* add MuiButton style overrides for consistent theming ([8fc184e](https://github.com/pie-framework/pie-lib/commit/8fc184e0eca3425cc76f1f76d8f1f24eb56c0779))
-
-
-
-
-
-# [4.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.0-mui-update.0...@pie-lib/render-ui@4.36.0-mui-update.0) (2025-11-05)
-
-
-### Bug Fixes
-
-* add default props uiLayout, add props for previewLayout ([933e5f7](https://github.com/pie-framework/pie-lib/commit/933e5f71f1f2fff99c57ee5132f9f23ee85c3f28))
-* label positioning in input render-ui ([8012817](https://github.com/pie-framework/pie-lib/commit/80128173dc596181de296633e9413bba8b79db81))
-
-
-
-
-
-# [4.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.34.0-mui-update.0...@pie-lib/render-ui@4.35.0-mui-update.0) (2025-11-03)
+# [4.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.0...@pie-lib/render-ui@4.32.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
-
-# [4.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.32.0-mui-update.0...@pie-lib/render-ui@4.34.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
-
-# [4.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.2...@pie-lib/render-ui@4.32.0-mui-update.0) (2025-10-31)
-
-
-### Bug Fixes
-
-* update graphing components - styling and correctness handling PD-5258 ([7f1d3ba](https://github.com/pie-framework/pie-lib/commit/7f1d3bade7271c8f95bb9a67352fc9a52888ffda))
-
-
-### Features
-
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
 
 
 
