@@ -1,12 +1,12 @@
 import React from 'react';
-import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AppendCSSRules from './append-css-rules';
 
-const theme = createTheme({
+const theme = createMuiTheme({
   typography: {
+    useNextVariants: true,
     fontFamily: 'inherit',
   },
   palette: {
@@ -14,88 +14,27 @@ const theme = createTheme({
       disabled: 'rgba(0, 0, 0, 0.54);',
     },
   },
-  components: {
+  overrides: {
     MuiTypography: {
-      styleOverrides: {
-        root: { fontFamily: 'inherit' },
-      },
+      root: { fontFamily: 'inherit' },
     },
-    MuiRadio: {
-      styleOverrides: {
-        root: {
-          '&.Mui-checked': {
-            color: '#3f51b5 !important',
-          },
-        },
-      },
-    },
-    MuiCheckbox: {
-      styleOverrides: {
-        root: {
-          '&.Mui-checked': {
-            color: '#3f51b5 !important',
-          },
-        },
-      },
-    },
-    MuiTabs: {
-      styleOverrides: {
-        root: {
-          borderBottom: '1px solid #eee',
-        },
-      },
-    },
-    MuiSwitch: {
-      styleOverrides: {
-        root: {
-          '&.Mui-checked': {
-            color: '#3f51b5 !important',
-            '& + .MuiSwitch-track': {
-              backgroundColor: '#3f51b5 !important',
-              opacity: 0.5,
-            },
-          },
-        },
-      },
-    },
-    MuiButton: {
-      styleOverrides: {
-        contained: {
-          backgroundColor: '#e0e0e0',
-          color: '#000000',
-          '&:hover': {
-            backgroundColor: '#bdbdbd',
-          },
-        },
-      },
-    },
-  },
-});
-
-const StyledContainer = styled('div')({
-  // need this because some browsers set their own style on table
-  '& table, th, td': {
-    fontSize: 'inherit' /* Ensure table elements inherit font size */,
   },
 });
 
 class UiLayout extends AppendCSSRules {
   static propTypes = {
+    classes: PropTypes.object,
     className: PropTypes.string,
     children: PropTypes.array,
     extraCSSRules: PropTypes.shape({
       names: PropTypes.arrayOf(PropTypes.string),
       rules: PropTypes.string,
     }),
-    classes: PropTypes.shape({
-      extraCSSRules: PropTypes.string,
-    }),
     fontSizeFactor: PropTypes.number,
   };
 
   static defaultProps = {
     extraCSSRules: {},
-    classes: {},
     fontSizeFactor: 1,
   };
 
@@ -115,21 +54,32 @@ class UiLayout extends AppendCSSRules {
   }
 
   render() {
-    const { children, className, fontSizeFactor, ...rest } = this.props;
+    const { children, className, classes, fontSizeFactor, ...rest } = this.props;
 
+    const finalClass = classNames(className, classes.extraCSSRules, classes.uiLayoutContainer);
     const { extraCSSRules, ...restProps } = rest;
     const style = this.computeStyle(fontSizeFactor);
 
     return (
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <StyledContainer className={className} {...restProps} {...(style && { style })}>
-            {children}
-          </StyledContainer>
-        </ThemeProvider>
-      </StyledEngineProvider>
+      <MuiThemeProvider theme={theme}>
+        <div className={finalClass} {...restProps} {...(style && { style })}>
+          {children}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
 
-export default UiLayout;
+const styles = {
+  extraCSSRules: {},
+  // need this because some browsers set their own style on table
+  uiLayoutContainer: {
+    '& table, th, td': {
+      fontSize: 'inherit' /* Ensure table elements inherit font size */,
+    },
+  },
+};
+
+const Styled = withStyles(styles)(UiLayout);
+
+export default Styled;
