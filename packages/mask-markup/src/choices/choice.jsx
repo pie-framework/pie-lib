@@ -19,6 +19,8 @@ class BlankContentComp extends React.Component {
     connectDragSource: PropTypes.func,
   };
 
+  mounted = false;
+
   startDrag = () => {
     const { connectDragSource, disabled } = this.props;
     if (!disabled) {
@@ -43,6 +45,7 @@ class BlankContentComp extends React.Component {
   };
 
   componentDidMount() {
+    this.mounted = true;
     if (this.dragContainerRef) {
       this.dragContainerRef.addEventListener('touchstart', this.handleTouchStart, { passive: false });
       this.dragContainerRef.addEventListener('touchend', this.handleTouchEnd);
@@ -51,6 +54,8 @@ class BlankContentComp extends React.Component {
   }
 
   componentWillUnmount() {
+    this.mounted = false;
+
     if (this.dragContainerRef) {
       this.dragContainerRef.removeEventListener('touchstart', this.handleTouchStart);
       this.dragContainerRef.removeEventListener('touchend', this.handleTouchEnd);
@@ -71,16 +76,20 @@ class BlankContentComp extends React.Component {
       <span
         className={classnames(classes.choice, disabled && classes.disabled)}
         ref={(ref) => {
-          //eslint-disable-next-line
-          this.dragContainerRef = ReactDOM.findDOMNode(ref);
+          if (this.mounted) {
+            //eslint-disable-next-line
+            this.dragContainerRef = ReactDOM.findDOMNode(ref);
+          }
         }}
       >
         <Chip
           clickable={false}
           disabled={true}
           ref={(ref) => {
-            //eslint-disable-next-line
-            this.rootRef = ReactDOM.findDOMNode(ref);
+            if (this.mounted) {
+              //eslint-disable-next-line
+              this.rootRef = ReactDOM.findDOMNode(ref);
+            }
           }}
           className={classes.chip}
           label={

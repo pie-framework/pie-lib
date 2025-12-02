@@ -1,12 +1,12 @@
 // InlineNodes.js
 import React from 'react';
-import { Node, ReactNodeViewRenderer, ReactRenderer } from "@tiptap/react";
-import ExplicitConstructedResponse from '../plugins/respArea/explicit-constructed-response';
-import DragInTheBlank from '../plugins/respArea/drag-in-the-blank';
-import InlineDropdown from '../plugins/respArea/inline-dropdown';
-import { Extension } from "@tiptap/core";
-import { MathToolbar } from "@pie-lib/math-toolbar";
-import tippy from "tippy.js";
+import { Node, ReactNodeViewRenderer, ReactRenderer } from '@tiptap/react';
+import ExplicitConstructedResponse from '../components/respArea/ExplicitConstructedResponse';
+import DragInTheBlank from '../components/respArea/DragInTheBlank/DragInTheBlank';
+import InlineDropdown from '../components/respArea/InlineDropdown';
+import { Extension } from '@tiptap/core';
+import { MathToolbar } from '@pie-lib/math-toolbar';
+import tippy from 'tippy.js';
 
 export const ResponseAreaExtension = Extension.create({
   name: 'responseArea',

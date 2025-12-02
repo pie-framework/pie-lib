@@ -1,0 +1,301 @@
+import React, { useEffect, useMemo, useState } from 'react';
+import { EditorContent, useEditor, useEditorState } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { TextStyleKit } from '@tiptap/extension-text-style';
+import SuperScript from '@tiptap/extension-superscript';
+import SubScript from '@tiptap/extension-subscript';
+import TextAlign from '@tiptap/extension-text-align';
+import Image from '@tiptap/extension-image';
+import { withStyles } from '@material-ui/core/styles';
+
+import ExtendedTable from '../extensions/extended-table';
+import { TableRow } from '@tiptap/extension-table-row';
+import { TableCell } from '@tiptap/extension-table-cell';
+import { TableHeader } from '@tiptap/extension-table-header';
+import {
+  ExplicitConstructedResponseNode,
+  DragInTheBlankNode,
+  InlineDropdownNode,
+  ResponseAreaExtension,
+} from '../extensions/responseArea';
+import { MathNode } from '../extensions/math';
+import { ImageUploadNode } from '../extensions/image';
+import { Media } from '../extensions/media';
+import { CSSMark } from '../extensions/css';
+
+import EditorContainer from './TiptapContainer';
+import { valueToSize } from '../utils/size';
+import { buildExtensions } from '../extensions';
+
+const defaultToolbarOpts = {
+  position: 'bottom',
+  alignment: 'left',
+  alwaysVisible: false,
+  showDone: true,
+  doneOn: 'blur',
+};
+
+const defaultResponseAreaProps = {
+  options: {},
+  respAreaToolbar: () => {},
+  onHandleAreaChange: () => {},
+};
+
+const DEFAULT_ACTIVE_PLUGINS = [
+  'bold',
+  'italic',
+  'underline',
+  'strikethrough',
+  'code',
+  'bulleted-list',
+  'numbered-list',
+  'image',
+  'math',
+  'languageCharacters',
+  'text-align',
+  'table',
+  'video',
+  'audio',
+  'responseArea',
+  'superscript',
+  'subscript',
+  'css',
+  'h3',
+  'undo',
+  'redo',
+];
+
+const cssVariables = {
+  '--white': '#fff',
+  '--black': '#2e2b29',
+  '--black-contrast': '#110f0e',
+  '--gray-1': 'rgba(61, 37, 20, .05)',
+  '--gray-2': 'rgba(61, 37, 20, .08)',
+  '--gray-3': 'rgba(61, 37, 20, .12)',
+  '--gray-4': 'rgba(53, 38, 28, .3)',
+  '--gray-5': 'rgba(28, 25, 23, .6)',
+  '--green': '#22c55e',
+  '--purple': '#6a00f5',
+  '--purple-contrast': '#5800cc',
+  '--purple-light': 'rgba(88, 5, 255, .05)',
+  '--yellow-contrast': '#facc15',
+  '--yellow': 'rgba(250, 204, 21, .4)',
+  '--yellow-light': '#fffae5',
+  '--red': '#ff5c33',
+  '--red-light': '#ffebe5',
+  '--shadow': `0px 12px 33px 0px rgba(0, 0, 0, .06),
+               0px 3.618px 9.949px 0px rgba(0, 0, 0, .04)`,
+};
+
+export const EditableHtml = (props) => {
+  const [pendingImages, setPendingImages] = useState([]);
+  const [scheduled, setScheduled] = useState(false);
+  const { classes, toolbarOpts } = props;
+
+  const toolbarOptsToUse = {
+    ...defaultToolbarOpts,
+    ...toolbarOpts,
+  };
+
+  const activePluginsToUse = useMemo(() => {
+    let { customPlugins } = props.pluginProps || {};
+
+    customPlugins = customPlugins || [];
+
+    return buildExtensions(props.activePlugins, customPlugins, {
+      math: {},
+      textAlign: {},
+      html: {},
+      extraCSSRules: props.extraCSSRules || {},
+      image: {},
+      toolbar: {},
+      table: {},
+      responseArea: {
+        type: props.responseAreaProps?.type,
+      },
+      languageCharacters: props.languageCharactersProps,
+      keyPadCharacterRef: {},
+      setKeypadInteraction: {},
+      media: {},
+    });
+  }, [props]);
+
+  const extensions = [
+    TextStyleKit,
+    StarterKit,
+    ExtendedTable,
+    TableRow,
+    TableHeader,
+    TableCell,
+    ResponseAreaExtension,
+    ExplicitConstructedResponseNode.configure(props.responseAreaProps),
+    DragInTheBlankNode.configure(props.responseAreaProps),
+    InlineDropdownNode.configure(props.responseAreaProps),
+    MathNode.configure({
+      toolbarOpts: toolbarOptsToUse,
+    }),
+    SubScript,
+    SuperScript,
+    TextAlign.configure({
+      types: ['heading', 'paragraph'],
+      alignments: ['left', 'right', 'center'],
+    }),
+    Image,
+    ImageUploadNode.configure({
+      toolbarOpts: toolbarOptsToUse,
+      imageHandling: {
+        disableImageAlignmentButtons: props.disableImageAlignmentButtons,
+        onDone: () => props.onDone?.(editor.getHTML()),
+        onDelete:
+          props.imageSupport &&
+          props.imageSupport.delete &&
+          ((node, done) => {
+            const { src } = node.attrs;
+
+            props.imageSupport.delete(src, (e) => {
+              const newPendingImages = pendingImages.filter((img) => img.key !== node.key);
+              const newState = {
+                pendingImages: newPendingImages,
+                scheduled: scheduled && newPendingImages.length === 0 ? false : scheduled,
+              };
+
+              setPendingImages(newState.pendingImages);
+              setScheduled(newState.scheduled);
+              done();
+            });
+          }),
+        insertImageRequested:
+          props.imageSupport &&
+          ((addedImage, getHandler) => {
+            const onFinish = (result) => {
+              let cb;
+
+              if (scheduled && result) {
+                // finish editing only on success
+                cb = props.onChange;
+              }
+
+              const newPendingImages = pendingImages.filter((img) => img.key !== addedImage.key);
+              const newState = {
+                pendingImages: newPendingImages,
+              };
+
+              if (newPendingImages.length === 0) {
+                newState.scheduled = false;
+              }
+
+              setPendingImages(newState.pendingImages);
+              setScheduled(newState.scheduled);
+              cb?.(editor.getHTML());
+            };
+            const callback = () => {
+              /**
+               * The handler is the object through which the outer context
+               * communicates file upload events like: fileChosen, cancel, progress
+               */
+              const handler = getHandler(onFinish);
+              props.imageSupport.add(handler);
+            };
+
+            setPendingImages([...pendingImages, addedImage]);
+            callback();
+          }),
+        maxImageWidth: props.maxImageWidth,
+        maxImageHeight: props.maxImageHeight,
+      },
+      limit: 3,
+    }),
+    Media.configure({
+      uploadSoundSupport: props.uploadSoundSupport,
+    }),
+    CSSMark.configure({
+      extraCSSRules: props.extraCSSRules,
+    }),
+  ];
+
+  const editor = useEditor({
+    extensions,
+    immediatelyRender: false,
+    content: props.markup,
+    onUpdate: ({ editor, transaction }) => transaction.isDone && props.onChange?.(editor.getHTML()),
+    onBlur: ({ editor }) => {
+      if (toolbarOptsToUse.doneOn === 'blur') {
+        props.onChange?.(editor.getHTML());
+      } else {
+        props.onDone?.(editor.getHTML());
+      }
+    },
+  });
+
+  useEffect(() => {
+    if (!editor) {
+      return;
+    }
+
+    if (props.markup !== editor.getHTML()) {
+      editor.commands.setContent(props.markup, false); // false = don’t emit update
+    }
+  }, [props.markup, editor]);
+
+  useEffect(() => {
+    Object.entries(cssVariables).forEach(([key, value]) => {
+      document.documentElement.style.setProperty(key, value);
+    });
+  }, []);
+
+  const editorState = useEditorState({
+    editor,
+    selector: (ctx) => ({
+      isFocused: ctx.editor?.isFocused,
+    }),
+  });
+
+  const sizeStyle = useMemo(() => {
+    const { minWidth, width, maxWidth, minHeight, height, maxHeight } = props;
+
+    return {
+      width: valueToSize(width),
+      minWidth: valueToSize(minWidth),
+      maxWidth: valueToSize(maxWidth),
+      height: valueToSize(height),
+      minHeight: valueToSize(minHeight),
+      maxHeight: valueToSize(maxHeight),
+    };
+  }, [props]);
+
+  return (
+    <EditorContainer
+      {...{
+        ...props,
+        activePlugins: activePluginsToUse,
+        toolbarOpts: toolbarOptsToUse,
+      }}
+      editorState={editorState}
+      editor={editor}
+    >
+      {editor && (
+        <EditorContent
+          style={{
+            minHeight: sizeStyle.minHeight,
+            height: sizeStyle.height,
+            maxHeight: sizeStyle.maxHeight,
+          }}
+          className={classes.root}
+          editor={editor}
+        />
+      )}
+    </EditorContainer>
+  );
+};
+
+const StyledEditor = withStyles({
+  root: {
+    outline: 'none !important',
+    '& .ProseMirror': {
+      outline: 'none !important',
+      position: 'initial',
+    },
+  },
+})(EditableHtml);
+
+export default StyledEditor;

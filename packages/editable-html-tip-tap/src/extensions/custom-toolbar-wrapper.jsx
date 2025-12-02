@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
-import IconButton from "@material-ui/core/IconButton";
-import Delete from "@material-ui/icons/Delete";
-import { DoneButton } from "../plugins/toolbar/done-button";
-import classNames from "classnames";
-import { PIE_TOOLBAR__CLASS } from "../constants";
-import { withStyles } from "@material-ui/core/styles";
-import { Toolbar } from "../plugins/toolbar/toolbar";
+import IconButton from '@material-ui/core/IconButton';
+import Delete from '@material-ui/icons/Delete';
+import classNames from 'classnames';
+import { PIE_TOOLBAR__CLASS } from '../constants';
+import { withStyles } from '@material-ui/core/styles';
+import { DoneButton } from '../components/common/done-button';
 
 function CustomToolbarWrapper(props) {
   const {

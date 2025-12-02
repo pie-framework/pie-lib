@@ -6,8 +6,8 @@ import debug from 'debug';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles } from '@material-ui/core/styles';
 import { NodeViewWrapper } from '@tiptap/react';
-import InsertImageHandler from '../plugins/image/insert-image-handler';
-import ImageToolbar from '../plugins/image/image-toolbar';
+import InsertImageHandler from '../components/image/InsertImageHandler';
+import ImageToolbar from '../components/image/ImageToolbar';
 import CustomToolbarWrapper from './custom-toolbar-wrapper';
 
 const log = debug('@pie-lib:editable-html:plugins:image:component');

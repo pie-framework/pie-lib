@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { mergeAttributes, Node } from '@tiptap/core';
 import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
-import MediaDialog from '../plugins/media/media-dialog';
-import MediaToolbar from '../plugins/media/media-toolbar';
+import MediaDialog from '../components/media/MediaDialog';
+import MediaToolbar from '../components/media/MediaToolbar';
 
 export const Media = Node.create({
   name: 'media',
@@ -144,7 +144,10 @@ export default function MediaNodeView({ editor, node, updateAttributes, deleteNo
           deleteNode();
         }
 
-        editor.chain().focus().run();
+        editor
+          .chain()
+          .focus()
+          .run();
       },
     });
   };
@@ -161,7 +164,10 @@ export default function MediaNodeView({ editor, node, updateAttributes, deleteNo
           deleteNode();
         }
 
-        editor.chain().focus().run();
+        editor
+          .chain()
+          .focus()
+          .run();
       },
     });
   }, []);
