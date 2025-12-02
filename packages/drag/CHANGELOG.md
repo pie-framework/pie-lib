@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.30.0-mui-update.0...@pie-lib/drag@2.31.0-mui-update.0) (2025-12-02)
+
+
+### Bug Fixes
+
+* drag components ([bea5eaa](https://github.com/pie-framework/pie-lib/commit/bea5eaaa54fc9060ac83bb7d6383b4c9e2491574))
+
+
+### Features
+
+* add drag provider onDragStart prop ([0879247](https://github.com/pie-framework/pie-lib/commit/087924747b02ceed710e971e8dbe0291071396af))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
 ## [2.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.22.1...@pie-lib/drag@2.22.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/drag

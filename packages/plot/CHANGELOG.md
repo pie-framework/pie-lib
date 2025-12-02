@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.35.0-mui-update.0...@pie-lib/plot@2.36.0-mui-update.0) (2025-12-02)
+
+
+### Features
+
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
 ## [2.27.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.27.1...@pie-lib/plot@2.27.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/plot

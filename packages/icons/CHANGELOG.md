@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.32.0-mui-update.0...@pie-lib/icons@2.33.0-mui-update.0) (2025-12-02)
+
+
+### Bug Fixes
+
+* **icons:** add necessary props to correct icon ([638ebf9](https://github.com/pie-framework/pie-lib/commit/638ebf9cfd4375f67233ad055cb269da6cf99454))
+
+
+### Features
+
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
 ## [2.24.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.24.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/icons

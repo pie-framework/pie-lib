@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.29.0-mui-update.0...@pie-lib/graphing-utils@1.30.0-mui-update.0) (2025-12-02)
+
+
+### Features
+
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
 ## [1.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.17.0...@pie-lib/graphing-utils@1.21.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.33.0-mui-update.0...@pie-lib/correct-answer-toggle@2.34.0-mui-update.0) (2025-12-02)
+
+
+### Features
+
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
 ## [2.25.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.25.1...@pie-lib/correct-answer-toggle@2.25.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
