@@ -10,7 +10,7 @@ import StyledMenuBar from './MenuBar';
 function TiptapContainer(props) {
   const {
     editor,
-    editorState,
+    disabled,
     classes,
     children,
     disableUnderline,
@@ -28,8 +28,7 @@ function TiptapContainer(props) {
   } = props;
 
   const holderNames = classNames(classes.editorHolder, {
-    [classes.editorInFocus]: editorState.isFocused,
-    [classes.readOnly]: editorState.readOnly,
+    [classes.readOnly]: disabled,
     [classes.disabledUnderline]: disableUnderline,
     [classes.disabledScrollbar]: disableScrollbar,
   });

@@ -143,20 +143,6 @@ const styles = (theme) => ({
       transition: 'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 200ms linear',
       backgroundColor: 'rgba(0, 0, 0, 0.42)',
     },
-    '&:focus': {
-      '&::after': {
-        transform: 'scaleX(1)',
-        backgroundColor: primary,
-        height: '2px',
-      },
-    },
-    '&:hover': {
-      '&::after': {
-        transform: 'scaleX(1)',
-        backgroundColor: theme.palette.common.black,
-        height: '2px',
-      },
-    },
   },
   disabledUnderline: {
     '&::before': {
@@ -197,18 +183,6 @@ const styles = (theme) => ({
         transform: 'scaleX(0)',
         backgroundColor: theme.palette.common.black,
         height: '2px',
-      },
-    },
-  },
-  editorInFocus: {
-    '&::after': {
-      transform: 'scaleX(1)',
-      backgroundColor: primary,
-      height: '2px',
-    },
-    '&:hover': {
-      '&::after': {
-        backgroundColor: primary,
       },
     },
   },

@@ -216,6 +216,7 @@ export const EditableHtml = (props) => {
   const editor = useEditor({
     extensions,
     immediatelyRender: false,
+    editable: !props.disabled,
     content: props.markup,
     onUpdate: ({ editor, transaction }) => transaction.isDone && props.onChange?.(editor.getHTML()),
     onBlur: ({ editor }) => {
@@ -226,6 +227,10 @@ export const EditableHtml = (props) => {
       }
     },
   });
+
+  useEffect(() => {
+    editor?.setEditable(!props.disabled);
+  }, [props.disabled, editor]);
 
   useEffect(() => {
     if (!editor) {
