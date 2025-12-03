@@ -53,7 +53,7 @@ export default class Choices extends React.Component {
 
     return (
       <div style={elementStyle}>
-        <DragDroppablePlaceholder disabled={disabled}>
+        <DragDroppablePlaceholder disabled={disabled} instanceId={instanceId}>
           {filteredChoices.map((c, index) => (
             <Choice 
               key={`${c.value}-${index}`} 
