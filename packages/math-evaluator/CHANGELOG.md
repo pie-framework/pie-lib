@@ -3,56 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.28.1-mui-update.0...@pie-lib/math-evaluator@2.29.0-mui-update.0) (2025-11-26)
-
-**Note:** Version bump only for package @pie-lib/math-evaluator
+# [2.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.29.0-mui-update.0...@pie-lib/math-evaluator@2.30.0-mui-update.0) (2025-12-02)
 
 
+### Features
 
-
-
-## [2.28.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.28.0-mui-update.0...@pie-lib/math-evaluator@2.28.1-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
 
 
 
 
 
-# [2.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.27.0-mui-update.0...@pie-lib/math-evaluator@2.28.0-mui-update.0) (2025-11-20)
+## [2.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.1...@pie-lib/math-evaluator@2.21.1) (2025-10-22)
 
 
 ### Bug Fixes
 
-* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
 
 
 
 
 
-# [2.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.26.0-mui-update.0...@pie-lib/math-evaluator@2.27.0-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/math-evaluator
-
-
-
-
-
-# [2.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.25.0-mui-update.0...@pie-lib/math-evaluator@2.26.0-mui-update.0) (2025-11-19)
-
-
-### Bug Fixes
-
-* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
-
-
-
-
-
-# [2.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.24.0-mui-update.0...@pie-lib/math-evaluator@2.25.0-mui-update.0) (2025-11-18)
+# [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.0...@pie-lib/math-evaluator@2.21.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
@@ -60,7 +33,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.23.0-mui-update.0...@pie-lib/math-evaluator@2.24.0-mui-update.0) (2025-11-18)
+# [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.0...@pie-lib/math-evaluator@2.20.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
@@ -68,7 +41,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.22.0-mui-update.0...@pie-lib/math-evaluator@2.23.0-mui-update.0) (2025-11-17)
+# [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.0...@pie-lib/math-evaluator@2.19.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
@@ -76,31 +49,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.22.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.21.0-mui-update.0...@pie-lib/math-evaluator@2.22.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/math-evaluator
-
-
-
-
-
-# [2.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.20.0-mui-update.0...@pie-lib/math-evaluator@2.21.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-evaluator
-
-
-
-
-
-# [2.20.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.18.0-mui-update.0...@pie-lib/math-evaluator@2.20.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-evaluator
-
-
-
-
-
-# [2.18.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.1...@pie-lib/math-evaluator@2.18.0-mui-update.0) (2025-10-31)
+# [2.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.0...@pie-lib/math-evaluator@2.18.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 

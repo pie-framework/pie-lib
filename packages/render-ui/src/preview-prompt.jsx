@@ -8,19 +8,15 @@ const StyledPromptContainer = styled('div')(({ theme, tagName }) => ({
   '&:not(.MathJax) > table': {
     borderCollapse: 'collapse',
   },
-  // Apply vertical striping only when first column is a header column (th)
-  '&:not(.MathJax) > table:has(tr:first-child th:first-child) td': {
-    '&:nth-child(2n)': {
-      backgroundColor: '#f6f8fa',
-      color: theme.palette.common.black,
-    },
+  // Apply vertical striping when first column is a header (th) and NOT mixed with td
+  '&:not(.MathJax) > table:has(tbody tr > th:first-child):not(:has(tbody tr > td:first-child)) tbody td:nth-child(even)': {
+    backgroundColor: '#f6f8fa',
+    color: theme.palette.common.black,
   },
-  // Apply horizontal striping for tables where first element is NOT a header (th)
-  '&:not(.MathJax) > table:not(:has(tr:first-child th:first-child)) tr': {
-    '&:nth-child(2n)': {
-      backgroundColor: '#f6f8fa',
-      color: theme.palette.common.black,
-    },
+  // Apply horizontal striping for tables where first element is a data cell (td)
+  '&:not(.MathJax) > table:has(tbody tr > td:first-child) tbody tr:nth-child(even) td': {
+    backgroundColor: '#f6f8fa',
+    color: theme.palette.common.black,
   },
   // align table content to left as per STAR requirement PD-3687
   '&:not(.MathJax) table td, &:not(.MathJax) table th': {

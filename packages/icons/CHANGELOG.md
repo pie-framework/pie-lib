@@ -3,104 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.31.1-mui-update.0...@pie-lib/icons@2.32.0-mui-update.0) (2025-11-26)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-## [2.31.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.31.0-mui-update.0...@pie-lib/icons@2.31.1-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.30.0-mui-update.0...@pie-lib/icons@2.31.0-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.29.0-mui-update.0...@pie-lib/icons@2.30.0-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.28.0-mui-update.0...@pie-lib/icons@2.29.0-mui-update.0) (2025-11-19)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.27.0-mui-update.0...@pie-lib/icons@2.28.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.26.0-mui-update.0...@pie-lib/icons@2.27.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.25.0-mui-update.0...@pie-lib/icons@2.26.0-mui-update.0) (2025-11-17)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.24.0-mui-update.0...@pie-lib/icons@2.25.0-mui-update.0) (2025-11-05)
+# [2.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.32.0-mui-update.0...@pie-lib/icons@2.33.0-mui-update.0) (2025-12-02)
 
 
 ### Bug Fixes
 
-* icon rendering ([d20951d](https://github.com/pie-framework/pie-lib/commit/d20951da114ef6a3939a12d0ea5f195ebe372240))
-
-
-
-
-
-# [2.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.23.0-mui-update.0...@pie-lib/icons@2.24.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.21.0-mui-update.0...@pie-lib/icons@2.23.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/icons
-
-
-
-
-
-# [2.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.21.0-mui-update.0) (2025-10-31)
+* **icons:** add necessary props to correct icon ([638ebf9](https://github.com/pie-framework/pie-lib/commit/638ebf9cfd4375f67233ad055cb269da6cf99454))
 
 
 ### Features
 
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* packages/math-toolbar & packages/icons  mui update PD-5268 ([8a18bc1](https://github.com/pie-framework/pie-lib/commit/8a18bc1a79cd3ca3baa7ff7a94b050ec20371649))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [2.24.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.24.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+# [2.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.24.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+# [2.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.23.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+# [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.22.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/icons
+
+
+
+
+
+# [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/icons@2.20.0...@pie-lib/icons@2.21.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/icons
 
 
 

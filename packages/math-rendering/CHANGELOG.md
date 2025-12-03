@@ -3,101 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.33.1-mui-update.0...@pie-lib/math-rendering@3.34.0-mui-update.0) (2025-11-26)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-## [3.33.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.33.0-mui-update.0...@pie-lib/math-rendering@3.33.1-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.32.0-mui-update.0...@pie-lib/math-rendering@3.33.0-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.31.0-mui-update.0...@pie-lib/math-rendering@3.32.0-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.30.0-mui-update.0...@pie-lib/math-rendering@3.31.0-mui-update.0) (2025-11-19)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.29.0-mui-update.0...@pie-lib/math-rendering@3.30.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.28.0-mui-update.0...@pie-lib/math-rendering@3.29.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.27.0-mui-update.0...@pie-lib/math-rendering@3.28.0-mui-update.0) (2025-11-17)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.26.0-mui-update.0...@pie-lib/math-rendering@3.27.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.25.0-mui-update.0...@pie-lib/math-rendering@3.26.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.23.0-mui-update.0...@pie-lib/math-rendering@3.25.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
-
-# [3.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.23.0-mui-update.0) (2025-10-31)
+# [3.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.34.0-mui-update.0...@pie-lib/math-rendering@3.35.0-mui-update.0) (2025-12-02)
 
 
 ### Features
 
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [3.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.22.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+# [3.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.22.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+# [3.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.21.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+# [3.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.20.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+
+
+
+
+# [3.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.19.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
 
 
 

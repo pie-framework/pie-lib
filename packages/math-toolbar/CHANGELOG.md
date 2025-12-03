@@ -3,116 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.38.1-mui-update.0...@pie-lib/math-toolbar@1.39.0-mui-update.0) (2025-11-26)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-## [1.38.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.38.0-mui-update.0...@pie-lib/math-toolbar@1.38.1-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
-
-
-
-
-
-# [1.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.37.0-mui-update.0...@pie-lib/math-toolbar@1.38.0-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
-
-
-
-
-
-# [1.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.36.0-mui-update.0...@pie-lib/math-toolbar@1.37.0-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* fix some popper components, fix some math toolbar color ([ed1df55](https://github.com/pie-framework/pie-lib/commit/ed1df558e272686a712767e347df49434790f334))
-
-
-
-
-
-# [1.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.35.0-mui-update.0...@pie-lib/math-toolbar@1.36.0-mui-update.0) (2025-11-19)
-
-
-### Bug Fixes
-
-* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
-
-
-
-
-
-# [1.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.34.0-mui-update.0...@pie-lib/math-toolbar@1.35.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-# [1.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.33.0-mui-update.0...@pie-lib/math-toolbar@1.34.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-# [1.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.32.0-mui-update.0...@pie-lib/math-toolbar@1.33.0-mui-update.0) (2025-11-17)
-
-
-### Bug Fixes
-
-* math keyboard ref and remove console log ([fd9dc91](https://github.com/pie-framework/pie-lib/commit/fd9dc91092497e55a75aba3e7ef1c4c1c5723f35))
-
-
-
-
-
-# [1.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.31.0-mui-update.0...@pie-lib/math-toolbar@1.32.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-# [1.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.30.0-mui-update.0...@pie-lib/math-toolbar@1.31.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-# [1.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.28.0-mui-update.0...@pie-lib/math-toolbar@1.30.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-toolbar
-
-
-
-
-
-# [1.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.2...@pie-lib/math-toolbar@1.28.0-mui-update.0) (2025-10-31)
+# [1.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.39.0-mui-update.0...@pie-lib/math-toolbar@1.40.0-mui-update.0) (2025-12-02)
 
 
 ### Features
 
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* packages/math-toolbar & packages/icons  mui update PD-5268 ([8a18bc1](https://github.com/pie-framework/pie-lib/commit/8a18bc1a79cd3ca3baa7ff7a94b050ec20371649))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [1.31.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.31.1...@pie-lib/math-toolbar@1.31.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+## [1.31.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.2...@pie-lib/math-toolbar@1.31.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+
+
+
+
+# [1.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.30.0...@pie-lib/math-toolbar@1.31.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+# [1.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.0...@pie-lib/math-toolbar@1.30.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+# [1.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.0...@pie-lib/math-toolbar@1.29.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
+
+
+
+
+
+# [1.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@1.27.0...@pie-lib/math-toolbar@1.28.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-toolbar
 
 
 

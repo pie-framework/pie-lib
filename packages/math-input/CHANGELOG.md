@@ -3,104 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [6.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.38.1-mui-update.0...@pie-lib/math-input@6.39.0-mui-update.0) (2025-11-26)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-## [6.38.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.38.0-mui-update.0...@pie-lib/math-input@6.38.1-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.37.0-mui-update.0...@pie-lib/math-input@6.38.0-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.36.0-mui-update.0...@pie-lib/math-input@6.37.0-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.35.0-mui-update.0...@pie-lib/math-input@6.36.0-mui-update.0) (2025-11-19)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.34.0-mui-update.0...@pie-lib/math-input@6.35.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.33.0-mui-update.0...@pie-lib/math-input@6.34.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.32.0-mui-update.0...@pie-lib/math-input@6.33.0-mui-update.0) (2025-11-17)
-
-
-### Bug Fixes
-
-* math toolbar colors ([1308b62](https://github.com/pie-framework/pie-lib/commit/1308b62031128b61952f299419bcbe46e914ee6f))
-
-
-
-
-
-# [6.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.31.0-mui-update.0...@pie-lib/math-input@6.32.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.30.0-mui-update.0...@pie-lib/math-input@6.31.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.28.0-mui-update.0...@pie-lib/math-input@6.30.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
-
-# [6.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.28.0-mui-update.0) (2025-10-31)
+# [6.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.39.0-mui-update.0...@pie-lib/math-input@6.40.0-mui-update.0) (2025-12-02)
 
 
 ### Features
 
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* packages/math-input mui update PD-5268 ([b2603ad](https://github.com/pie-framework/pie-lib/commit/b2603ad0901b4b1611b7cd06ae3610c5822090b0))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [6.31.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.31.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+# [6.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.31.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+# [6.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.30.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+# [6.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.29.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+# [6.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.28.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/math-input
 
 
 

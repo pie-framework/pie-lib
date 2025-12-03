@@ -3,115 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.32.1-mui-update.0...@pie-lib/correct-answer-toggle@2.33.0-mui-update.0) (2025-11-26)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-## [2.32.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.32.0-mui-update.0...@pie-lib/correct-answer-toggle@2.32.1-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
-
-
-
-
-
-# [2.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.31.0-mui-update.0...@pie-lib/correct-answer-toggle@2.32.0-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
-
-
-
-
-
-# [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.30.0-mui-update.0...@pie-lib/correct-answer-toggle@2.31.0-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.29.0-mui-update.0...@pie-lib/correct-answer-toggle@2.30.0-mui-update.0) (2025-11-19)
-
-
-### Bug Fixes
-
-* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
-
-
-
-
-
-# [2.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.28.0-mui-update.0...@pie-lib/correct-answer-toggle@2.29.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.27.0-mui-update.0...@pie-lib/correct-answer-toggle@2.28.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.26.0-mui-update.0...@pie-lib/correct-answer-toggle@2.27.0-mui-update.0) (2025-11-17)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.25.0-mui-update.0...@pie-lib/correct-answer-toggle@2.26.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.24.0-mui-update.0...@pie-lib/correct-answer-toggle@2.25.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.22.0-mui-update.0...@pie-lib/correct-answer-toggle@2.24.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.22.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.2...@pie-lib/correct-answer-toggle@2.22.0-mui-update.0) (2025-10-31)
-
-
-### Bug Fixes
-
-* **correct-answer-toggle, text-select:** change logic to corresp to material v5 PD-5269 PD-5271 ([e992861](https://github.com/pie-framework/pie-lib/commit/e992861c6d964340bf7afc8e5ac9007816d510ef))
+# [2.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.33.0-mui-update.0...@pie-lib/correct-answer-toggle@2.34.0-mui-update.0) (2025-12-02)
 
 
 ### Features
 
-* **correct-answe-toggle, legend:** delete unused files and imports PD-5258 ([261638d](https://github.com/pie-framework/pie-lib/commit/261638d9ceff79163eb858696a4c8eb7a7a3006c))
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [2.25.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.25.1...@pie-lib/correct-answer-toggle@2.25.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/correct-answer-toggle
+
+
+
+
+
+## [2.25.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.2...@pie-lib/correct-answer-toggle@2.25.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/correct-answer-toggle
+
+
+
+
+
+# [2.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.24.0...@pie-lib/correct-answer-toggle@2.25.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/correct-answer-toggle
+
+
+
+
+
+# [2.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.0...@pie-lib/correct-answer-toggle@2.24.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/correct-answer-toggle
+
+
+
+
+
+# [2.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.0...@pie-lib/correct-answer-toggle@2.23.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/correct-answer-toggle
+
+
+
+
+
+# [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.0...@pie-lib/correct-answer-toggle@2.22.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
 
 

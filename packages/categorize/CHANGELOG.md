@@ -3,7 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.35.1-mui-update.0...@pie-lib/categorize@0.36.0-mui-update.0) (2025-11-26)
+# [0.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.36.0-mui-update.0...@pie-lib/categorize@0.37.0-mui-update.0) (2025-12-02)
+
+
+### Features
+
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [0.28.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.28.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
@@ -11,7 +22,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.35.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.35.0-mui-update.0...@pie-lib/categorize@0.35.1-mui-update.0) (2025-11-20)
+# [0.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.27.0...@pie-lib/categorize@0.28.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
@@ -19,7 +30,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.34.0-mui-update.0...@pie-lib/categorize@0.35.0-mui-update.0) (2025-11-20)
+# [0.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.27.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
@@ -27,7 +38,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.33.0-mui-update.0...@pie-lib/categorize@0.34.0-mui-update.0) (2025-11-20)
+# [0.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.26.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
@@ -35,63 +46,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.32.0-mui-update.0...@pie-lib/categorize@0.33.0-mui-update.0) (2025-11-19)
-
-**Note:** Version bump only for package @pie-lib/categorize
-
-
-
-
-
-# [0.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.31.0-mui-update.0...@pie-lib/categorize@0.32.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/categorize
-
-
-
-
-
-# [0.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.30.0-mui-update.0...@pie-lib/categorize@0.31.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/categorize
-
-
-
-
-
-# [0.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.29.0-mui-update.0...@pie-lib/categorize@0.30.0-mui-update.0) (2025-11-17)
-
-**Note:** Version bump only for package @pie-lib/categorize
-
-
-
-
-
-# [0.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.28.0-mui-update.0...@pie-lib/categorize@0.29.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/categorize
-
-
-
-
-
-# [0.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.27.0-mui-update.0...@pie-lib/categorize@0.28.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/categorize
-
-
-
-
-
-# [0.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.25.0-mui-update.0...@pie-lib/categorize@0.27.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/categorize
-
-
-
-
-
-# [0.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.25.0-mui-update.0) (2025-10-31)
+# [0.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.25.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/categorize
 

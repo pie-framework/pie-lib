@@ -3,114 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.29.1-mui-update.0...@pie-lib/drag@2.30.0-mui-update.0) (2025-11-26)
+# [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.30.0-mui-update.0...@pie-lib/drag@2.31.0-mui-update.0) (2025-12-02)
 
 
 ### Bug Fixes
 
-* placehoder styles in drag ([431adbe](https://github.com/pie-framework/pie-lib/commit/431adbe6c020f32615910885dee5d4bd5efbe76a))
-
-
-
-
-
-## [2.29.1-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.29.0-mui-update.0...@pie-lib/drag@2.29.1-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
-
-
-
-
-
-# [2.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.28.0-mui-update.0...@pie-lib/drag@2.29.0-mui-update.0) (2025-11-20)
-
-
-### Bug Fixes
-
-* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
-
-
-
-
-
-# [2.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.27.0-mui-update.0...@pie-lib/drag@2.28.0-mui-update.0) (2025-11-20)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.26.0-mui-update.0...@pie-lib/drag@2.27.0-mui-update.0) (2025-11-19)
-
-
-### Bug Fixes
-
-* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
-
-
-
-
-
-# [2.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.25.0-mui-update.0...@pie-lib/drag@2.26.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.24.0-mui-update.0...@pie-lib/drag@2.25.0-mui-update.0) (2025-11-18)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.23.0-mui-update.0...@pie-lib/drag@2.24.0-mui-update.0) (2025-11-17)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.22.0-mui-update.0...@pie-lib/drag@2.23.0-mui-update.0) (2025-11-05)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.22.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.21.0-mui-update.0...@pie-lib/drag@2.22.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.19.0-mui-update.0...@pie-lib/drag@2.21.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.19.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.2...@pie-lib/drag@2.19.0-mui-update.0) (2025-10-31)
+* drag components ([bea5eaa](https://github.com/pie-framework/pie-lib/commit/bea5eaaa54fc9060ac83bb7d6383b4c9e2491574))
 
 
 ### Features
 
-* drag library update ([fb7a4d0](https://github.com/pie-framework/pie-lib/commit/fb7a4d0ce761f2f4c1a122854cfa306abb8ea7c8))
-* **drag:** update drag package to corresp to material v5 PD-5258 ([7400327](https://github.com/pie-framework/pie-lib/commit/740032735077939f4e05897aaf6b618bfa5b236d))
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* add drag provider onDragStart prop ([0879247](https://github.com/pie-framework/pie-lib/commit/087924747b02ceed710e971e8dbe0291071396af))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [2.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.22.1...@pie-lib/drag@2.22.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [2.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.2...@pie-lib/drag@2.22.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.21.0...@pie-lib/drag@2.22.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.21.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.20.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.19.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/drag
 
 
 
