@@ -44,10 +44,13 @@ class InsertImageHandler {
   updateNode(newAttrs) {
     const { state, view } = this.editor;
     const { tr } = state;
+    const node = state.doc.nodeAt(this.nodePos);
 
-    const transaction = tr.setNodeMarkup(this.nodePos, undefined, newAttrs);
+    if (node) {
+      const transaction = tr.setNodeMarkup(this.nodePos, undefined, { ...node.attrs, ...newAttrs });
 
-    view.dispatch(transaction);
+      view.dispatch(transaction);
+    }
   }
 
   deleteNode() {
