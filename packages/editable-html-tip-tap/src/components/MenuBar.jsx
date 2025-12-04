@@ -368,7 +368,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
           editor
             .chain()
             .focus()
-            .insertMedia({ tag: 'video' })
+            .insertMedia({ type: 'video' })
             .run(),
       },
       {
@@ -378,7 +378,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
           editor
             .chain()
             .focus()
-            .insertMedia({ tag: 'audio' })
+            .insertMedia({ type: 'audio', tag: 'audio' })
             .run(),
       },
       {

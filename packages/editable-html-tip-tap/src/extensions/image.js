@@ -1,6 +1,6 @@
 import { Node, mergeAttributes } from '@tiptap/core';
-import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
-import React, { useRef, useState, useCallback } from 'react';
+import { ReactNodeViewRenderer } from '@tiptap/react';
+import React from 'react';
 import ImageComponent from './component';
 
 // ---- Tiptap Extension ---- //

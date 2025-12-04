@@ -136,12 +136,11 @@ export default function MediaNodeView({ editor, node, updateAttributes, deleteNo
   const handleEdit = () => {
     insertDialog({
       ...node.attrs,
+      options: options,
       edit: true,
       callback: (val, data) => {
         if (val) {
           updateAttributes(data);
-        } else {
-          deleteNode();
         }
 
         editor
@@ -176,7 +175,7 @@ export default function MediaNodeView({ editor, node, updateAttributes, deleteNo
     <NodeViewWrapper data-type={type} style={{ width, height }}>
       {tag === 'audio' ? (
         <audio controls controlsList="nodownload">
-          <source src={src} />
+          <source type="audio/mp3" src={src} />
         </audio>
       ) : (
         <iframe src={src} allowFullScreen frameBorder="0" />

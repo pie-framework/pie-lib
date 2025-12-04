@@ -7,7 +7,7 @@ import ArrowRight from '@material-ui/icons/SubdirectoryArrowRight';
 import IconButton from '@material-ui/core/IconButton';
 import classNames from 'classnames';
 import { InputContainer } from '@pie-lib/render-ui';
-import EditableHtml from '@pie-lib/editable-html';
+import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import { InputCheckbox, InputRadio } from '../inputs';
 import FeedbackMenu from './feedback-menu';
 
