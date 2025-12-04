@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.22.1...@pie-lib/controller-utils@0.22.2) (2025-11-27)
+
+
+### Bug Fixes
+
+* **controller-utils:** update debug PD-5248 ([b238a16](https://github.com/pie-framework/pie-lib/commit/b238a16acf55cc7b9316965a10a27a4f9ab4c220))
+
+
+
+
+
 ## [0.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.18.0...@pie-lib/controller-utils@0.22.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/controller-utils
