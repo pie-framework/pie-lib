@@ -2675,7 +2675,7 @@
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
 
-"@pie-lib/config-ui@^11.30.1":
+"@pie-lib/config-ui@^11.30.2":
   version "11.30.2"
   resolved "https://registry.yarnpkg.com/@pie-lib/config-ui/-/config-ui-11.30.2.tgz#8b21016018d0e2b9d7ee79aaa175a3fc3b692d44"
   integrity sha512-Dr1/xZQZGyKHIQFVv1eW4d8hcre0pRQYvl9bR41ExtiN8TsEUnMMoS0eYt4rz5rEfCkWRCUprrmBYAZfFKYg4g==
@@ -2694,72 +2694,19 @@
     prop-types "^15.6.2"
     react-measure "^2.2.2"
 
-"@pie-lib/drag@^2.22.2":
-  version "2.22.2"
-  resolved "https://registry.yarnpkg.com/@pie-lib/drag/-/drag-2.22.2.tgz#48f3cadc87c1a32c50cd8cb3b25a15926ef742e2"
-  integrity sha512-mI9CT8LREIlmC0uqhBqBuy7bHfJ729A83G5/tu9HRXYXm/rvQtSKMRuK0HI783URAFdptGM+TjAkmQA5PdR6xA==
-  dependencies:
-    "@material-ui/core" "^3.8.3"
-    "@pie-lib/math-rendering" "^3.22.1"
-    "@pie-lib/render-ui" "^4.35.2"
-    classnames "^2.2.6"
-    lodash "^4.17.11"
-    prop-types "^15.7.2"
-    react "^16.8.1"
-    react-dnd "^14.0.5"
-    react-dnd-html5-backend "^14.0.2"
-    react-dnd-multi-backend "^6.0.2"
-    react-dnd-touch-backend "^12.0.0"
-
-"@pie-lib/editable-html@^11.21.2":
-  version "11.21.2"
-  resolved "https://registry.yarnpkg.com/@pie-lib/editable-html/-/editable-html-11.21.2.tgz#b6683509c45bc3e89976912efbc6326f3dcad987"
-  integrity sha512-b40zo6E5CS31qnD+ymd6KhoZBZhhIHD10vGKfq/V9Xdz7tgs2PA/ZthEmnRa451GkXwRmR1IVo1SlGuQmS3GJQ==
+"@pie-lib/math-input@^6.31.1":
+  version "6.31.1"
+  resolved "https://registry.yarnpkg.com/@pie-lib/math-input/-/math-input-6.31.1.tgz#fc38e3f930d6c499ba0a94884c374077f9a125bd"
+  integrity sha512-lkinU8SibLQmBLd57RHpSaOUcXysFJgTB1AV3K+Iya+WoameQrNjLuS7722UxA3L6Z2DmDwftNzBF+l2j2O5dg==
   dependencies:
     "@material-ui/core" "^3.8.3"
     "@material-ui/icons" "^3.0.2"
-    "@material-ui/styles" "^3.0.0-alpha.10"
-    "@pie-lib/drag" "^2.22.2"
-    "@pie-lib/math-input" "^6.31.1"
-    "@pie-lib/math-rendering" "^3.22.1"
-    "@pie-lib/math-toolbar" "^1.31.2"
-    "@pie-lib/render-ui" "^4.35.2"
-    change-case "^3.0.2"
+    "@pie-framework/mathquill" "^1.1.3"
     classnames "^2.2.6"
     debug "^4.1.1"
-    immutable "^4.0.0-rc.12"
-    keycode "^2.2.0"
     lodash "^4.17.11"
-    prop-types "^15.6.2"
-    react-attr-converter "^0.3.1"
-    react-jss "^8.6.1"
+    prop-types "^15.7.2"
     react-portal "^4.2.0"
-    slate "^0.36.2"
-    slate-dev-environment "^0.2.0"
-    slate-edit-list "^0.11.3"
-    slate-edit-table "^0.17.0"
-    slate-html-serializer "^0.6.12"
-    slate-plain-serializer "^0.5.26"
-    slate-prop-types "^0.4.38"
-    slate-react "^0.14.3"
-    slate-schema-violations "^0.1.39"
-    slate-soft-break "^0.8.1"
-    to-style "^1.3.3"
-
-"@pie-lib/math-toolbar@^1.31.1":
-  version "1.31.1"
-  resolved "https://registry.yarnpkg.com/@pie-lib/math-toolbar/-/math-toolbar-1.31.1.tgz#ff94f239668f94e2e6166f14219d76e624a7ebfd"
-  integrity sha512-XioXHe3b9cadxyqHbS5icThMHp8G/ezX2AYirp4v4b77tOMRaFLVw5FQIt2QDmoDvKAESOIgYiUteeByUbDokQ==
-  dependencies:
-    "@material-ui/core" "^3.8.3"
-    "@material-ui/icons" "^3.0.2"
-    "@pie-lib/math-input" "^6.31.1"
-    "@pie-lib/render-ui" "^4.35.1"
-    classnames "^2.2.6"
-    debug "^4.1.1"
-    keycode "^2.2.0"
-    lodash "^4.17.11"
-    prop-types "^15.7.2"
 
 "@pie-lib/math-toolbar@^1.31.2":
   version "1.31.2"
@@ -2775,22 +2722,6 @@
     keycode "^2.2.0"
     lodash "^4.17.11"
     prop-types "^15.7.2"
-
-"@pie-lib/render-ui@^4.35.2":
-  version "4.35.2"
-  resolved "https://registry.yarnpkg.com/@pie-lib/render-ui/-/render-ui-4.35.2.tgz#75dc1e2c75e08d2486ec6f93d341fd2b6918baa8"
-  integrity sha512-/w1ido2UGV2x0qdi+90wI6SDjPvcwl1UuCF2WM3M6Lum5JHIKfUXUFxK8Jk/uSCwbQv6XnYPQqH9pQj6cPy2CQ==
-  dependencies:
-    "@material-ui/core" "^3.8.3"
-    "@material-ui/icons" "^3.0.2"
-    "@pie-lib/icons" "^2.24.1"
-    "@pie-lib/math-rendering" "^3.22.1"
-    "@pie-lib/test-utils" "^0.22.1"
-    classnames "^2.2.6"
-    debug "^4.1.1"
-    lodash "^4.17.11"
-    prop-types "^15.7.2"
-    react-transition-group "^2.5.2"
 
 "@pie-lib/test-utils@^0.8.0":
   version "0.8.0"
@@ -14028,15 +13959,6 @@ react@18.2.0:
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
   dependencies:
     loose-envify "^1.1.0"
-
-react@^16.8.1:
-  version "16.14.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
-  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
 
 read-cmd-shim@^1.0.1:
   version "1.0.5"

@@ -11,8 +11,20 @@ const log = debug('@pie-lib:editable-html:image:insert-image-handler');
  * @param {Boolean} isPasted - a boolean that keeps track if the file is pasted
  */
 class InsertImageHandler {
-  constructor(editor, onFinish, isPasted = false) {
+  constructor(editor, node, onFinish, isPasted = false) {
     this.editor = editor;
+    this.node = node;
+
+    let nodePos;
+
+    editor.state.doc.descendants((node, pos) => {
+      if (node === this.node) {
+        nodePos = pos;
+        return false
+      }
+    });
+
+    this.nodePos = nodePos;
     this.onFinish = onFinish;
     this.isPasted = isPasted;
     this.chosenFile = null;
@@ -22,11 +34,29 @@ class InsertImageHandler {
     log('insert cancelled');
 
     try {
-      this.editor.commands.deleteNode('imageUploadNode');
+      this.deleteNode();
       this.onFinish(false);
     } catch (err) {
       //
     }
+  }
+
+  updateNode(newAttrs) {
+    const { state, view } = this.editor;
+    const { tr } = state;
+
+    const transaction = tr.setNodeMarkup(this.nodePos, undefined, newAttrs);
+
+    view.dispatch(transaction);
+  }
+
+  deleteNode() {
+    const { state, view } = this.editor;
+    const { tr } = state;
+
+    const transaction = tr.delete(this.nodePos, this.nodePos + this.node.nodeSize);
+
+    view.dispatch(transaction);
   }
 
   done(err, src) {
@@ -36,7 +66,7 @@ class InsertImageHandler {
       console.log(err);
       this.onFinish(false);
     } else {
-      this.editor.commands.updateAttributes('imageUploadNode', { loaded: true, src, percent: 100 });
+      this.updateNode({ loaded: true, src, percent: 100 });
       this.onFinish(true);
     }
   }
@@ -59,14 +89,14 @@ class InsertImageHandler {
     reader.onload = () => {
       const dataURL = reader.result;
 
-      this.editor.commands.updateAttributes('imageUploadNode', { src: dataURL });
+      this.updateNode({ src: dataURL });
     };
     reader.readAsDataURL(file);
   }
 
   progress(percent, bytes, total) {
     log('progress: ', percent, bytes, total);
-    this.editor.commands.updateAttributes('imageUploadNode', { percent });
+    this.updateNode({ percent });
   }
 
   // Add a getter method to retrieve the chosen file

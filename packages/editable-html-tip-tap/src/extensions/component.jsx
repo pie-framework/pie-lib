@@ -60,7 +60,7 @@ function ImageComponent(props) {
   }, [selected]);
 
   useEffect(() => {
-    options.imageHandling.insertImageRequested(node, (finish) => new InsertImageHandler(editor, finish));
+    options.imageHandling.insertImageRequested(node, (finish) => new InsertImageHandler(editor, node, finish));
     applySizeData();
 
     const resizeHandle = resizeRef.current;
