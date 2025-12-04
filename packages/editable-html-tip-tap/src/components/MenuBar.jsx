@@ -26,7 +26,7 @@ import { ToolbarIcon } from './respArea/ToolbarIcon';
 import { spanishConfig, specialConfig } from './characters/characterUtils';
 import TextAlignIcon from './icons/TextAlign';
 import CSSIcon from './icons/CssIcon';
-import { AddColumn, AddRow, RemoveColumn, RemoveRow, RemoveTable } from './icons/tableIcons';
+import { AddColumn, AddRow, RemoveColumn, RemoveRow, RemoveTable } from './icons/TableIcons';
 
 import { CharacterIcon, CharacterPicker } from './CharacterPicker';
 import { DoneButton } from './common/done-button';
