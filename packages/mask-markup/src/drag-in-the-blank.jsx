@@ -84,7 +84,6 @@ export default class DragInTheBlank extends React.Component {
   };
 
   handleDragStart = (event) => {
-    console.log('Drag Started:', event);
     const { active } = event;
 
     if (active?.data?.current) {
