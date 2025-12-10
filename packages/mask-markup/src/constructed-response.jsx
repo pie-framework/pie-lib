@@ -55,7 +55,7 @@ const MaskedInput = (props) => (node, data) => {
     const handleKeyDown = (event) => {
       // the keyCode value for the Enter/Return key is 13
       if (event.key === 'Enter' || event.keyCode === 13) {
-        return false;
+        return true;
       }
     };
 

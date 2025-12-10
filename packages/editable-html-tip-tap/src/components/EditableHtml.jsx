@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import classNames from 'classnames';
 import { EditorContent, useEditor, useEditorState } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { TextStyleKit } from '@tiptap/extension-text-style';
+import { CharacterCount } from '@tiptap/extension-character-count';
 import SuperScript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
 import TextAlign from '@tiptap/extension-text-align';
@@ -88,6 +90,7 @@ const cssVariables = {
 };
 
 export const EditableHtml = (props) => {
+  const { showParagraphs, separateParagraphs } = props.pluginProps || {};
   const [pendingImages, setPendingImages] = useState([]);
   const [scheduled, setScheduled] = useState(false);
   const { classes, toolbarOpts } = props;
@@ -122,6 +125,9 @@ export const EditableHtml = (props) => {
 
   const extensions = [
     TextStyleKit,
+    CharacterCount.configure({
+      limit: props.charactersLimit,
+    }),
     StarterKit,
     ExtendedTable,
     TableRow,
@@ -216,14 +222,24 @@ export const EditableHtml = (props) => {
   const editor = useEditor({
     extensions,
     immediatelyRender: false,
+    editorProps: {
+      handleKeyDown(view, event) {
+        if (props.onKeyDown) {
+          return props.onKeyDown(event);
+        }
+
+        // Return false to let default behavior continue
+        return false;
+      },
+    },
     editable: !props.disabled,
     content: props.markup,
     onUpdate: ({ editor, transaction }) => transaction.isDone && props.onChange?.(editor.getHTML()),
     onBlur: ({ editor }) => {
       if (toolbarOptsToUse.doneOn === 'blur') {
-        props.onChange?.(editor.getHTML());
-      } else {
         props.onDone?.(editor.getHTML());
+      } else {
+        props.onChange?.(editor.getHTML());
       }
     },
   });
@@ -285,7 +301,13 @@ export const EditableHtml = (props) => {
             height: sizeStyle.height,
             maxHeight: sizeStyle.maxHeight,
           }}
-          className={classes.root}
+          className={classNames(
+            {
+              [classes.showParagraph]: showParagraphs && !showParagraphs.disabled,
+              [classes.separateParagraph]: separateParagraphs && !separateParagraphs.disabled,
+            },
+            classes.root,
+          )}
           editor={editor}
         />
       )}
@@ -297,8 +319,32 @@ const StyledEditor = withStyles({
   root: {
     outline: 'none !important',
     '& .ProseMirror': {
+      padding: '5px',
+      maxHeight: '500px',
       outline: 'none !important',
       position: 'initial',
+      '& > p': {
+        margin: '0',
+      },
+    },
+  },
+  showParagraph: {
+    '& .ProseMirror': {
+      // a p that has a p after it
+      '& > p:has(+ p)::after': {
+        display: 'block',
+        content: '"¶"',
+        fontSize: '1em',
+        color: '#146EB3',
+      },
+    },
+  },
+  separateParagraph: {
+    '& .ProseMirror': {
+      // a p that has a p after it
+      '& > div:has(+ div)': {
+        marginBottom: '1em',
+      },
     },
   },
 })(EditableHtml);

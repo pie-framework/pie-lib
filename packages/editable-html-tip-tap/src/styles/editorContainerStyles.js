@@ -117,8 +117,7 @@ const styles = (theme) => ({
   editorHolder: {
     position: 'relative',
     padding: '0px',
-    // overflowY: 'auto',
-    overflow: 'visible',
+    overflowY: 'auto',
     color: color.text(),
     backgroundColor: color.background(),
     '&::before': {

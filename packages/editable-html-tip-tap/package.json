@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html-tip-tap",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -16,6 +16,7 @@
     "@pie-lib/math-toolbar": "1.31.2-beta.3",
     "@pie-lib/render-ui": "^4.35.1",
     "@tiptap/core": "3.0.9",
+    "@tiptap/extension-character-count": "3.0.9",
     "@tiptap/extension-color": "3.0.9",
     "@tiptap/extension-list-item": "3.0.9",
     "@tiptap/extension-table": "3.0.9",
