@@ -293,7 +293,7 @@ const connectedBlankContent = useStyles(({ connectDragSource, connectDropTarget,
   return connectDropTarget(
     connectDragSource(
       <span className={classnames(classes.content, isOver && classes.over)}>
-        <StyledBlankContent {...props} />
+        <StyledBlankContent {...props} connectDragSource={connectDragSource} connectDropTarget={connectDropTarget} />
       </span>,
     ),
   );

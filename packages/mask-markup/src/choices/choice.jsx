@@ -46,7 +46,7 @@ class BlankContentComp extends React.Component {
     if (this.dragContainerRef) {
       this.dragContainerRef.addEventListener('touchstart', this.handleTouchStart, { passive: false });
       this.dragContainerRef.addEventListener('touchend', this.handleTouchEnd);
-      this.dragContainerRef.addEventListener('touchmove', this.handleTouchMove);
+      this.dragContainerRef.addEventListener('touchmove', this.handleTouchMove, { passive: false });
     }
   }
 
