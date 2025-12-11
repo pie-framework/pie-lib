@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.33.0-mui-update.0...@pie-lib/translator@2.34.0-mui-update.0) (2025-12-11)
+
+**Note:** Version bump only for package @pie-lib/translator
+
+
+
+
+
 # [2.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.32.0-mui-update.0...@pie-lib/translator@2.33.0-mui-update.0) (2025-12-02)
 
 

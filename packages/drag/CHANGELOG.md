@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.31.0-mui-update.0...@pie-lib/drag@2.32.0-mui-update.0) (2025-12-11)
+
+
+### Features
+
+* drag changes for ditb ([fc79ecd](https://github.com/pie-framework/pie-lib/commit/fc79ecdacb5693f1b5dcf19c7114f9cd4bed83ba))
+* updates for drag-in-the-blank ([0c096d8](https://github.com/pie-framework/pie-lib/commit/0c096d887f97edecd2dac68cda136b2d265dc7d5))
+
+
+
+
+
 # [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.30.0-mui-update.0...@pie-lib/drag@2.31.0-mui-update.0) (2025-12-02)
 
 

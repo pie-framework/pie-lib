@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/translator",
-  "version": "2.33.0-mui-update.0",
+  "version": "2.34.0-mui-update.0",
   "publishConfig": {
     "access": "public"
   },

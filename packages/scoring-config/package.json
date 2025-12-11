@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "3.35.0-mui-update.0",
+  "version": "3.36.0-mui-update.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.jsx",
