@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/drag",
-  "version": "2.31.0-mui-update.0",
+  "version": "2.32.0-mui-update.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -12,8 +12,8 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/math-rendering": "3.35.0-mui-update.0",
-    "@pie-lib/render-ui": "4.44.0-mui-update.0",
+    "@pie-lib/math-rendering": "3.36.0-mui-update.0",
+    "@pie-lib/render-ui": "4.45.0-mui-update.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
@@ -25,5 +25,5 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "56f71068deecd32adaab99fd03515f1133919d9d"
 }

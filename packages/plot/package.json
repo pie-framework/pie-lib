@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.36.0-mui-update.0",
+  "version": "2.37.0-mui-update.0",
   "description": "Some underlying components for building charts/graphs",
   "keywords": [
     "react",
@@ -21,8 +21,8 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/editable-html": "11.30.0-mui-update.0",
-    "@pie-lib/render-ui": "4.44.0-mui-update.0",
+    "@pie-lib/editable-html": "11.31.0-mui-update.0",
+    "@pie-lib/render-ui": "4.45.0-mui-update.0",
     "@vx/axis": "^0.0.183",
     "@vx/event": "^0.0.182",
     "@vx/grid": "^0.0.183",
@@ -44,6 +44,6 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "gitHead": "56f71068deecd32adaab99fd03515f1133919d9d",
   "scripts": {}
 }

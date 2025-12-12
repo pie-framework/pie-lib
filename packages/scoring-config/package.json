@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "3.35.0-mui-update.0",
+  "version": "3.36.0-mui-update.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.jsx",
@@ -27,5 +27,5 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "ca668571e7896ba16dd21c2ef58b7d90c84230f6"
 }

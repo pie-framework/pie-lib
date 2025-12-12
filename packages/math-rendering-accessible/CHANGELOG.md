@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.31.0-mui-update.0...@pie-lib/math-rendering-accessible@3.32.0-mui-update.0) (2025-12-11)
+
+**Note:** Version bump only for package @pie-lib/math-rendering-accessible
+
+
+
+
+
 # [3.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering-accessible@3.30.0-mui-update.0...@pie-lib/math-rendering-accessible@3.31.0-mui-update.0) (2025-12-02)
 
 

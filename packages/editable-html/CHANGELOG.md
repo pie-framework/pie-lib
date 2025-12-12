@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.30.0-mui-update.0...@pie-lib/editable-html@11.31.0-mui-update.0) (2025-12-11)
+
+
+### Features
+
+* updates for drag-in-the-blank ([0c096d8](https://github.com/pie-framework/pie-lib/commit/0c096d887f97edecd2dac68cda136b2d265dc7d5))
+
+
+
+
+
 # [11.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.29.0-mui-update.0...@pie-lib/editable-html@11.30.0-mui-update.0) (2025-12-02)
 
 
