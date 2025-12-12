@@ -53,7 +53,8 @@ const StyledNChoice = styled(NChoice)(({ theme }) => ({
   '& > label': {
     color: 'rgba(0, 0, 0, 0.89)',
     transform: 'translate(0, 10px) scale(1)',
-    fontSize: '14px',
+    fontSize: '18px',
+    marginTop: theme.spacing(2.5),
   },
   '& > div': {
     marginTop: theme.spacing(2.5),
@@ -136,7 +137,7 @@ const StyledNumberTextField = styled(NumberTextField)(({ theme }) => ({
   },
 }));
 
-const NumberField = ({ label, value, onChange = () => {}, suffix, min, max }) => {
+const NumberField = ({ label, value, onChange = () => { }, suffix, min, max }) => {
   return (
     <StyledNumberTextField
       variant={'standard'}
@@ -269,8 +270,8 @@ export class Panel extends React.Component {
   };
 
   static defaultProps = {
-    onChangeModel: () => {},
-    onChangeConfiguration: () => {},
+    onChangeModel: () => { },
+    onChangeConfiguration: () => { },
   };
 
   change = (key, value, isConfigProperty = false) => {
