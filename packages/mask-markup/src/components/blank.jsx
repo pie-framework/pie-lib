@@ -169,10 +169,16 @@ function BlankContent({
   }, []);
 
   useEffect(() => {
-    if (rootRef.current) {
-      renderMath(rootRef.current);
-    }
-  });
+    // Defer renderMath to allow speech-rule-engine to initialize
+    // This prevents "Cannot read properties of undefined (reading 'speech')" errors
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (rootRef.current) {
+          renderMath(rootRef.current);
+        }
+      });
+    });
+  }, [choice]);
 
   useEffect(() => {
     if (!choice) {

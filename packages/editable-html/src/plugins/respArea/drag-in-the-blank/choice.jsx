@@ -58,10 +58,19 @@ export function BlankContent({
   }, []);
 
   useEffect(() => {
-    if (elementRef.current && typeof renderMath === 'function') {
-      renderMath(elementRef.current);
-    }
-  });
+    // Only render math if we have a valid value with content
+    if (!value?.value) return;
+
+    // Defer renderMath to allow speech-rule-engine to initialize
+    // This prevents "Cannot read properties of undefined (reading 'speech')" errors
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (elementRef.current && typeof renderMath === 'function') {
+          renderMath(elementRef.current);
+        }
+      });
+    });
+  }, [value?.id, value?.value]);
 
   useEffect(() => {
     if (isOver && elementRef.current && !hoveredElementSize) {
@@ -109,11 +118,9 @@ export function BlankContent({
           contentEditable={false}
         />
       )}
-      <span
-        dangerouslySetInnerHTML={{
-          __html: finalLabel,
-        }}
-      />
+      <span data-latex="" data-raw={finalLabel}>
+        {finalLabel}
+      </span>
       {children}
     </div>
   );
