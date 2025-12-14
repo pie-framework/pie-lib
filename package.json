@@ -12,12 +12,15 @@
   "scripts": {
     "static": "./scripts/static",
     "test": "./scripts/test",
+    "test:esm": "node scripts/build-esm.js && node scripts/test-esm-integrity.mjs",
     "dev": "./scripts/dev",
     "lint": "scripts/build lint",
     "clean": "scripts/build clean",
     "release": "scripts/build release deploy",
     "release:next": "scripts/build release deploy --next",
     "build": "scripts/build build",
+    "build:esm": "node scripts/build-esm.js",
+    "update:esm-exports": "node scripts/update-esm-exports.js",
     "postinstall": "lerna bootstrap",
     "prepush": "npm run test",
     "prepack": "scripts/build changelog",
@@ -40,6 +43,9 @@
     "@pie-framework/build-helper": "^5.2.9",
     "@pie-lib/test-utils": "^0.8.0",
     "@pslb/pslb": "^4.4.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
     "@types/enzyme": "^3.9.3",
     "@types/fs-extra": "^5.0.5",
     "@types/jest": "^24.0.5",
@@ -70,11 +76,14 @@
     "minimist": "^1.2.0",
     "next": "9.5.3",
     "now": "^13.1.3",
+    "postcss": "8.4.31",
     "prettier": "^1.15.3",
     "pretty-quick": "^1.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "regenerator-runtime": "^0.13.1",
+    "rollup": "^4.28.1",
+    "rollup-plugin-postcss": "^4.0.2",
     "semver": "^5.6.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.28.4",
@@ -92,5 +101,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

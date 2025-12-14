@@ -6,6 +6,12 @@ const args = minimist(process.argv.slice(2));
 const { resolve } = require('path');
 
 class LibCommands extends Commands {
+  // Only run ESM build during publishing (lerna publish invoked by build-helper's release).
+  // This keeps normal `yarn build` behavior unchanged.
+  beforePublish() {
+    return this.runCmd(`node scripts/build-esm.js`, { cwd: this.projectRoot });
+  }
+
   async deploy() {
     const demoDir = resolve(this.projectRoot, 'packages', 'demo');
     const next = this.bin('next');
