@@ -44,7 +44,7 @@
     "@pie-lib/test-utils": "^0.8.0",
     "@pslb/pslb": "^4.4.0",
     "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@types/enzyme": "^3.9.3",
     "@types/fs-extra": "^5.0.5",
