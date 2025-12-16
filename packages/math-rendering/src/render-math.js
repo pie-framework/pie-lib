@@ -258,14 +258,35 @@ const bootstrap = (opts) => {
         let updatedDocument = this.html.findMath(elements.length ? { elements } : {}).compile();
 
         if (!temporary && sreReady) {
-          updatedDocument = updatedDocument.enrich();
+          try {
+            updatedDocument = updatedDocument.enrich();
+          } catch (e) {
+            // If enrich fails, speech-rule-engine isn't actually ready yet
+            // eslint-disable-next-line no-console
+            console.warn('[math-rendering] Speech-rule-engine not fully initialized, skipping enrichment');
+            sreReady = false;
+          }
         }
 
         updatedDocument = updatedDocument
           .getMetrics()
-          .typeset()
-          .assistiveMml()
-          .attachSpeech()
+          .typeset();
+
+        // Only add assistive MML and speech if speech-rule-engine is ready and not in temporary mode
+        if (!temporary && sreReady) {
+          try {
+            updatedDocument = updatedDocument
+              .assistiveMml()
+              .attachSpeech();
+          } catch (e) {
+            // If this fails, speech-rule-engine isn't ready
+            // eslint-disable-next-line no-console
+            console.warn('[math-rendering] Speech-rule-engine not fully initialized, skipping assistive features');
+            sreReady = false;
+          }
+        }
+
+        updatedDocument = updatedDocument
           .addMenu()
           .updateDocument();
 
