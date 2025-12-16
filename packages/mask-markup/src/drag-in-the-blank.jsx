@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderMath } from '@pie-lib/math-rendering';
 import { DragProvider } from '@pie-lib/drag';
 import { DragOverlay, closestCenter } from '@dnd-kit/core';
 
@@ -147,30 +146,6 @@ export default class DragInTheBlank extends React.Component {
     this.setState({ activeDragItem: null });
   };
 
-  componentDidMount() {
-    // Defer renderMath to allow speech-rule-engine to initialize
-    // This prevents "Cannot read properties of undefined (reading 'speech')" errors
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (this.rootRef) {
-          renderMath(this.rootRef);
-        }
-      });
-    });
-  }
-
-  componentDidUpdate() {
-    // Defer renderMath to allow speech-rule-engine to initialize
-    // This prevents "Cannot read properties of undefined (reading 'speech')" errors
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (this.rootRef) {
-          renderMath(this.rootRef);
-        }
-      });
-    });
-  }
-
   getPositionDirection = (choicePosition) => {
     let flexDirection;
     let justifyContent;
@@ -215,8 +190,6 @@ export default class DragInTheBlank extends React.Component {
       layout,
       instanceId
     } = this.props;
-
-    console.log('[mask-markup/drag-in-the-blank.jsx] Rendering DragInTheBlank (player table), markup:', markup ? 'present' : 'missing', 'value:', value);
 
     const choicePosition = choicesPosition || 'below';
     const style = { display: 'flex', minWidth: '100px', ...this.getPositionDirection(choicePosition) };

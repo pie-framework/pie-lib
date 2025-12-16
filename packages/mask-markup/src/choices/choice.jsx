@@ -60,16 +60,7 @@ export default function Choice({ choice, disabled, instanceId }) {
   });
 
   useEffect(() => {
-    // Defer renderMath to allow speech-rule-engine to initialize
-    // This prevents "Cannot read properties of undefined (reading 'speech')" errors
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (rootRef.current) {
-          console.log('[mask-markup/choices/choice.jsx] Calling renderMath for player choice, choice:', choice);
-          renderMath(rootRef.current);
-        }
-      });
-    });
+    renderMath(rootRef.current);
   }, [choice.value]);
 
   return (

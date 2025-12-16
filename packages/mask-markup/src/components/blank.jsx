@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
 import debug from 'debug';
@@ -168,30 +167,10 @@ function BlankContent({
     handleElements();
   }, []);
 
-  useEffect(() => {
-    // Defer renderMath to allow speech-rule-engine to initialize
-    // This prevents "Cannot read properties of undefined (reading 'speech')" errors
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (rootRef.current) {
-          console.log('[mask-markup/components/blank.jsx] Calling renderMath for blank/response area, choice:', choice);
-          renderMath(rootRef.current);
-        }
-      });
-    });
-  }, [choice]);
-
   // Render math for the placeholder/preview when dragging over
   useEffect(() => {
-    if (isOver && dragItem?.choice?.value && rootRef.current && typeof renderMath === 'function') {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (rootRef.current) {
-            console.log('[mask-markup/components/blank.jsx] Calling renderMath for PLACEHOLDER/PREVIEW, dragItem:', dragItem.choice.value);
-            renderMath(rootRef.current);
-          }
-        });
-      });
+    if (rootRef.current) {
+      renderMath(rootRef.current);
     }
   }, [isOver, dragItem?.choice?.value]);
 
