@@ -148,11 +148,27 @@ export default class DragInTheBlank extends React.Component {
   };
 
   componentDidMount() {
-    if (this.rootRef) renderMath(this.rootRef);
+    // Defer renderMath to allow speech-rule-engine to initialize
+    // This prevents "Cannot read properties of undefined (reading 'speech')" errors
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (this.rootRef) {
+          renderMath(this.rootRef);
+        }
+      });
+    });
   }
 
   componentDidUpdate() {
-    if (this.rootRef) renderMath(this.rootRef);
+    // Defer renderMath to allow speech-rule-engine to initialize
+    // This prevents "Cannot read properties of undefined (reading 'speech')" errors
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (this.rootRef) {
+          renderMath(this.rootRef);
+        }
+      });
+    });
   }
 
   getPositionDirection = (choicePosition) => {
@@ -199,6 +215,8 @@ export default class DragInTheBlank extends React.Component {
       layout,
       instanceId
     } = this.props;
+
+    console.log('[mask-markup/drag-in-the-blank.jsx] Rendering DragInTheBlank (player table), markup:', markup ? 'present' : 'missing', 'value:', value);
 
     const choicePosition = choicesPosition || 'below';
     const style = { display: 'flex', minWidth: '100px', ...this.getPositionDirection(choicePosition) };

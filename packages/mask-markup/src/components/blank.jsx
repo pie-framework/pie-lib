@@ -174,11 +174,26 @@ function BlankContent({
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         if (rootRef.current) {
+          console.log('[mask-markup/components/blank.jsx] Calling renderMath for blank/response area, choice:', choice);
           renderMath(rootRef.current);
         }
       });
     });
   }, [choice]);
+
+  // Render math for the placeholder/preview when dragging over
+  useEffect(() => {
+    if (isOver && dragItem?.choice?.value && rootRef.current && typeof renderMath === 'function') {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (rootRef.current) {
+            console.log('[mask-markup/components/blank.jsx] Calling renderMath for PLACEHOLDER/PREVIEW, dragItem:', dragItem.choice.value);
+            renderMath(rootRef.current);
+          }
+        });
+      });
+    }
+  }, [isOver, dragItem?.choice?.value]);
 
   useEffect(() => {
     if (!choice) {
@@ -205,6 +220,10 @@ function BlankContent({
       height: frozenRef.current?.height,
     }
     : getRootDimensions();
+
+  if (draggedLabel) {
+    console.log('[mask-markup/components/blank.jsx] RENDERING PLACEHOLDER/PREVIEW (player) - draggedLabel:', draggedLabel, 'isOver:', isOver);
+  }
 
   return (
     <StyledChip

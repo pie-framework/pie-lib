@@ -40,6 +40,7 @@ export function BlankContent({
   const [hoveredElementSize, setHoveredElementSize] = useState(null);
   const elementRef = useRef(null);
 
+
   const handleClick = (event) => {
     if (!elementRef.current) return;
 
@@ -66,11 +67,40 @@ export function BlankContent({
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         if (elementRef.current && typeof renderMath === 'function') {
+          console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] Calling renderMath for response area, value:', value);
           renderMath(elementRef.current);
         }
       });
     });
+
+    // FLICKERING FIX (PREVIOUS APPROACH): Call renderMath synchronously without requestAnimationFrame
+    // This reduces flicker but causes speech-rule-engine errors
+    if (elementRef.current && typeof renderMath === 'function') {
+      console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] Calling renderMath for response area, value:', value);
+      renderMath(elementRef.current);
+    }
   }, [value?.id, value?.value]);
+
+  // Render math for the placeholder/preview when dragging over
+  useEffect(() => {
+    if (isOver && dragItem?.value?.value && elementRef.current && typeof renderMath === 'function') {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (elementRef.current) {
+            console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] Calling renderMath for PLACEHOLDER/PREVIEW, dragItem:', dragItem.value.value);
+            renderMath(elementRef.current);
+          }
+        });
+      });
+    }
+
+    // FLICKERING FIX (PREVIOUS APPROACH): Call renderMath synchronously for placeholder
+    // This reduces flicker but causes speech-rule-engine errors
+    if (isOver && dragItem?.value?.value && elementRef.current && typeof renderMath === 'function') {
+      console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] Calling renderMath for PLACEHOLDER/PREVIEW, dragItem:', dragItem.value.value);
+      renderMath(elementRef.current);
+    }
+  }, [isOver, dragItem?.value?.value]);
 
   useEffect(() => {
     if (isOver && elementRef.current && !hoveredElementSize) {
@@ -85,6 +115,10 @@ export function BlankContent({
   const finalLabel = isDragging ? '\u00A0' : label;
   const hasGrip = finalLabel !== '\u00A0';
   const isPreview = dragItem && isOver;
+
+  if (isPreview) {
+    console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] RENDERING PLACEHOLDER/PREVIEW - dragItem:', dragItem?.value?.value, 'isOver:', isOver);
+  }
 
   return (
     <div

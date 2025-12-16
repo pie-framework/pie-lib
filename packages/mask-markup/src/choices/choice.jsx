@@ -65,6 +65,7 @@ export default function Choice({ choice, disabled, instanceId }) {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         if (rootRef.current) {
+          console.log('[mask-markup/choices/choice.jsx] Calling renderMath for player choice, choice:', choice);
           renderMath(rootRef.current);
         }
       });
