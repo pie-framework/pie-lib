@@ -59,48 +59,15 @@ export function BlankContent({
   }, []);
 
   useEffect(() => {
-    // Only render math if we have a valid value with content
-    if (!value?.value) return;
+    // Render math for the current value or preview
+    const currentContent = (isOver && dragItem?.value?.value) || value?.value;
 
-    // Defer renderMath to allow speech-rule-engine to initialize
-    // This prevents "Cannot read properties of undefined (reading 'speech')" errors
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (elementRef.current && typeof renderMath === 'function') {
-          console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] Calling renderMath for response area, value:', value);
-          renderMath(elementRef.current);
-        }
-      });
-    });
+    if (!currentContent) return;
 
-    // FLICKERING FIX (PREVIOUS APPROACH): Call renderMath synchronously without requestAnimationFrame
-    // This reduces flicker but causes speech-rule-engine errors
     if (elementRef.current && typeof renderMath === 'function') {
-      console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] Calling renderMath for response area, value:', value);
       renderMath(elementRef.current);
     }
-  }, [value?.id, value?.value]);
-
-  // Render math for the placeholder/preview when dragging over
-  useEffect(() => {
-    if (isOver && dragItem?.value?.value && elementRef.current && typeof renderMath === 'function') {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (elementRef.current) {
-            console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] Calling renderMath for PLACEHOLDER/PREVIEW, dragItem:', dragItem.value.value);
-            renderMath(elementRef.current);
-          }
-        });
-      });
-    }
-
-    // FLICKERING FIX (PREVIOUS APPROACH): Call renderMath synchronously for placeholder
-    // This reduces flicker but causes speech-rule-engine errors
-    if (isOver && dragItem?.value?.value && elementRef.current && typeof renderMath === 'function') {
-      console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] Calling renderMath for PLACEHOLDER/PREVIEW, dragItem:', dragItem.value.value);
-      renderMath(elementRef.current);
-    }
-  }, [isOver, dragItem?.value?.value]);
+  }, [value?.id, value?.value, isOver, dragItem?.value?.id, dragItem?.value?.value]);
 
   useEffect(() => {
     if (isOver && elementRef.current && !hoveredElementSize) {
@@ -116,9 +83,6 @@ export function BlankContent({
   const hasGrip = finalLabel !== '\u00A0';
   const isPreview = dragItem && isOver;
 
-  if (isPreview) {
-    console.log('[editable-html/respArea/drag-in-the-blank/choice.jsx] RENDERING PLACEHOLDER/PREVIEW - dragItem:', dragItem?.value?.value, 'isOver:', isOver);
-  }
 
   return (
     <div
@@ -152,7 +116,10 @@ export function BlankContent({
           contentEditable={false}
         />
       )}
-      <span data-latex="" data-raw={finalLabel}>
+      <span
+        key={`${n.key}-${isPreview ? 'preview' : 'value'}`}
+        {...(finalLabel !== '\u00A0' ? { 'data-latex': '', 'data-raw': finalLabel } : {})}
+      >
         {finalLabel}
       </span>
       {children}
