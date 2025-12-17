@@ -58,10 +58,15 @@ export function BlankContent({
   }, []);
 
   useEffect(() => {
+    // Render math for the current value or preview
+    const currentContent = (isOver && dragItem?.value?.value) || value?.value;
+
+    if (!currentContent) return;
+
     if (elementRef.current && typeof renderMath === 'function') {
       renderMath(elementRef.current);
     }
-  });
+  }, [value?.id, value?.value, isOver, dragItem?.value?.id, dragItem?.value?.value]);
 
   useEffect(() => {
     if (isOver && elementRef.current && !hoveredElementSize) {
@@ -76,6 +81,13 @@ export function BlankContent({
   const finalLabel = isDragging ? '\u00A0' : label;
   const hasGrip = finalLabel !== '\u00A0';
   const isPreview = dragItem && isOver;
+  const hasContent = finalLabel !== '\u00A0';
+  const containsHTML = hasContent && /<[^>]+>/.test(finalLabel);
+
+  const spanProps = {
+    key: `${n.key}-${isPreview ? 'preview' : 'value'}`,
+    ...(hasContent && { 'data-latex': '', 'data-raw': finalLabel }),
+  };
 
   return (
     <div
@@ -109,11 +121,11 @@ export function BlankContent({
           contentEditable={false}
         />
       )}
-      <span
-        dangerouslySetInnerHTML={{
-          __html: finalLabel,
-        }}
-      />
+      {containsHTML ? (
+        <span {...spanProps} dangerouslySetInnerHTML={{ __html: finalLabel }} />
+      ) : (
+        <span {...spanProps}>{finalLabel}</span>
+      )}
       {children}
     </div>
   );

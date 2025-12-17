@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import * as color from './color';
+import { renderMath } from '@pie-lib/math-rendering';
 
 const StyledPromptContainer = styled('div')(({ theme, tagName }) => ({
   // Base promptTable styles
@@ -190,14 +191,30 @@ export class PreviewPrompt extends Component {
   componentDidMount() {
     this.alignImages();
     this.addCustomAudioButtonControls();
+    this.setupMathRendering();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.alignImages();
+
+    if (prevProps.prompt !== this.props.prompt) {
+      this.renderMathContent();
+    }
   }
 
   componentWillUnmount() {
     this.removeCustomAudioButtonListeners();
+  }
+
+  setupMathRendering() {
+    this.renderMathContent();
+  }
+
+  renderMathContent() {
+    const container = document.getElementById('preview-prompt');
+    if (container && typeof renderMath === 'function') {
+      renderMath(container);
+    }
   }
 
   alignImages() {

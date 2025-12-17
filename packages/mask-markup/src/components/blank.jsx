@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
 import debug from 'debug';
@@ -168,11 +167,12 @@ function BlankContent({
     handleElements();
   }, []);
 
+  // Render math for the placeholder/preview when dragging over
   useEffect(() => {
     if (rootRef.current) {
       renderMath(rootRef.current);
     }
-  });
+  }, [isOver, dragItem?.choice?.value]);
 
   useEffect(() => {
     if (!choice) {

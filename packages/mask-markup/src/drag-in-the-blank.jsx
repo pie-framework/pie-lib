@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderMath } from '@pie-lib/math-rendering';
 import { DragProvider } from '@pie-lib/drag';
 import { DragOverlay, closestCenter } from '@dnd-kit/core';
 
@@ -146,14 +145,6 @@ export default class DragInTheBlank extends React.Component {
     }
     this.setState({ activeDragItem: null });
   };
-
-  componentDidMount() {
-    if (this.rootRef) renderMath(this.rootRef);
-  }
-
-  componentDidUpdate() {
-    if (this.rootRef) renderMath(this.rootRef);
-  }
 
   getPositionDirection = (choicePosition) => {
     let flexDirection;
