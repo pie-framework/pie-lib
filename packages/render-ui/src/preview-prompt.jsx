@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import * as color from './color';
+import { renderMath } from '@pie-lib/math-rendering';
 
 const StyledPromptContainer = styled('div')(({ theme, tagName }) => ({
   // Base promptTable styles
@@ -190,14 +191,58 @@ export class PreviewPrompt extends Component {
   componentDidMount() {
     this.alignImages();
     this.addCustomAudioButtonControls();
+    this.setupMathRendering();
   }
 
   componentDidUpdate() {
     this.alignImages();
+    this.renderMathContent();
   }
 
   componentWillUnmount() {
     this.removeCustomAudioButtonListeners();
+    this.cleanupMathRendering();
+  }
+
+  setupMathRendering() {
+    // Use MutationObserver to watch for when content is added to the DOM
+    const container = document.getElementById('preview-prompt');
+    if (!container) return;
+
+    this.mathObserver = new MutationObserver((mutations) => {
+      // Check if any mutations added nodes with content
+      const hasNewContent = mutations.some(
+        (mutation) => mutation.addedNodes.length > 0 || mutation.type === 'characterData'
+      );
+
+      if (hasNewContent) {
+        this.renderMathContent();
+      }
+    });
+
+    // Observe the container for changes
+    this.mathObserver.observe(container, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    });
+
+    // Initial render
+    this.renderMathContent();
+  }
+
+  renderMathContent() {
+    const container = document.getElementById('preview-prompt');
+    if (container && typeof renderMath === 'function') {
+      renderMath(container);
+    }
+  }
+
+  cleanupMathRendering() {
+    if (this.mathObserver) {
+      this.mathObserver.disconnect();
+      this.mathObserver = null;
+    }
   }
 
   alignImages() {
