@@ -200,10 +200,6 @@ function BlankContent({
     }
     : getRootDimensions();
 
-  if (draggedLabel) {
-    console.log('[mask-markup/components/blank.jsx] RENDERING PLACEHOLDER/PREVIEW (player) - draggedLabel:', draggedLabel, 'isOver:', isOver);
-  }
-
   return (
     <StyledChip
       clickable={false}
