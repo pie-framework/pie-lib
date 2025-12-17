@@ -194,9 +194,13 @@ export class PreviewPrompt extends Component {
     this.setupMathRendering();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.alignImages();
-    this.renderMathContent();
+
+    // Only render math if the prompt content actually changed
+    if (prevProps.prompt !== this.props.prompt) {
+      this.renderMathContent();
+    }
   }
 
   componentWillUnmount() {
@@ -205,29 +209,7 @@ export class PreviewPrompt extends Component {
   }
 
   setupMathRendering() {
-    // Use MutationObserver to watch for when content is added to the DOM
-    const container = document.getElementById('preview-prompt');
-    if (!container) return;
-
-    this.mathObserver = new MutationObserver((mutations) => {
-      // Check if any mutations added nodes with content
-      const hasNewContent = mutations.some(
-        (mutation) => mutation.addedNodes.length > 0 || mutation.type === 'characterData'
-      );
-
-      if (hasNewContent) {
-        this.renderMathContent();
-      }
-    });
-
-    // Observe the container for changes
-    this.mathObserver.observe(container, {
-      childList: true,
-      subtree: true,
-      characterData: true,
-    });
-
-    // Initial render
+    // Initial render only - don't use MutationObserver as it causes re-rendering issues
     this.renderMathContent();
   }
 
@@ -239,10 +221,7 @@ export class PreviewPrompt extends Component {
   }
 
   cleanupMathRendering() {
-    if (this.mathObserver) {
-      this.mathObserver.disconnect();
-      this.mathObserver = null;
-    }
+    // No cleanup needed since we removed the MutationObserver
   }
 
   alignImages() {
