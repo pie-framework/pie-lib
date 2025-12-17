@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.36.0-mui-update.0...@pie-lib/math-rendering@3.37.0-mui-update.0) (2025-12-17)
+
+
+### Bug Fixes
+
+* prevent speech-rule-engine errors by skipping accessibility features until ready ([e17c4d2](https://github.com/pie-framework/pie-lib/commit/e17c4d2e7d4454571b82a788d100b6ab2002d20a))
+
+
+
+
+
 # [3.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.35.0-mui-update.0...@pie-lib/math-rendering@3.36.0-mui-update.0) (2025-12-11)
 
 **Note:** Version bump only for package @pie-lib/math-rendering

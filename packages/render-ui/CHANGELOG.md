@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.46.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.45.0-mui-update.0...@pie-lib/render-ui@4.46.0-mui-update.0) (2025-12-17)
+
+
+### Bug Fixes
+
+* Add MutationObserver to PreviewPrompt for prompt, rationale & TI  math rendering ([d77ef3c](https://github.com/pie-framework/pie-lib/commit/d77ef3c15c6928f3a7dae627e6c49380cef01745))
+* simplify math render logic ([de11ebe](https://github.com/pie-framework/pie-lib/commit/de11ebe7f2faeb9dce6215673a90b79e86cbc590))
+
+
+
+
+
 # [4.45.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.44.0-mui-update.0...@pie-lib/render-ui@4.45.0-mui-update.0) (2025-12-11)
 
 **Note:** Version bump only for package @pie-lib/render-ui

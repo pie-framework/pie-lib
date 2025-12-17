@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.39.0-mui-update.0...@pie-lib/config-ui@11.40.0-mui-update.0) (2025-12-17)
+
+
+### Bug Fixes
+
+* number fields in settings panel ([babde84](https://github.com/pie-framework/pie-lib/commit/babde844bffe8efdc4a2622bbfc0e372a0d33806))
+* settings panel label size ([c3606b9](https://github.com/pie-framework/pie-lib/commit/c3606b9319e771284415177bee48ffa49fb72fc6))
+
+
+
+
+
 # [11.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.38.0-mui-update.0...@pie-lib/config-ui@11.39.0-mui-update.0) (2025-12-11)
 
 **Note:** Version bump only for package @pie-lib/config-ui

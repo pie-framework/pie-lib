@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "11.39.0-mui-update.0",
+  "version": "11.40.0-mui-update.0",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -12,9 +12,9 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/editable-html": "11.31.0-mui-update.0",
-    "@pie-lib/icons": "2.34.0-mui-update.0",
-    "@pie-lib/render-ui": "4.45.0-mui-update.0",
+    "@pie-lib/editable-html": "11.32.0-mui-update.0",
+    "@pie-lib/icons": "2.35.0-mui-update.0",
+    "@pie-lib/render-ui": "4.46.0-mui-update.0",
     "assert": "^1.4.1",
     "classnames": "^2.2.6",
     "complex.js": "2.1.1",
