@@ -40,7 +40,6 @@ export function BlankContent({
   const [hoveredElementSize, setHoveredElementSize] = useState(null);
   const elementRef = useRef(null);
 
-
   const handleClick = (event) => {
     if (!elementRef.current) return;
 

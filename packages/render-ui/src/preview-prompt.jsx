@@ -197,7 +197,6 @@ export class PreviewPrompt extends Component {
   componentDidUpdate(prevProps) {
     this.alignImages();
 
-    // Only render math if the prompt content actually changed
     if (prevProps.prompt !== this.props.prompt) {
       this.renderMathContent();
     }
@@ -205,11 +204,9 @@ export class PreviewPrompt extends Component {
 
   componentWillUnmount() {
     this.removeCustomAudioButtonListeners();
-    this.cleanupMathRendering();
   }
 
   setupMathRendering() {
-    // Initial render only - don't use MutationObserver as it causes re-rendering issues
     this.renderMathContent();
   }
 
@@ -218,10 +215,6 @@ export class PreviewPrompt extends Component {
     if (container && typeof renderMath === 'function') {
       renderMath(container);
     }
-  }
-
-  cleanupMathRendering() {
-    // No cleanup needed since we removed the MutationObserver
   }
 
   alignImages() {

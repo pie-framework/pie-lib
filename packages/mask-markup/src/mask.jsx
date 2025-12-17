@@ -151,11 +151,6 @@ export default class Mask extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    // DO NOT call renderMath here - it causes already-rendered math to turn back into LaTeX
-    // Math is rendered once on mount, and that should be sufficient
-  }
-
   handleChange = (id, value) => {
     const data = { ...this.props.value, [id]: value };
     this.props.onChange(data);
