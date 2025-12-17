@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/categorize",
-  "version": "0.39.0-mui-update.0",
+  "version": "0.40.0-mui-update.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",

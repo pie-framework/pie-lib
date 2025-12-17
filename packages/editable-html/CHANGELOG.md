@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.32.0-mui-update.0...@pie-lib/editable-html@11.33.0-mui-update.0) (2025-12-17)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
 # [11.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.31.0-mui-update.0...@pie-lib/editable-html@11.32.0-mui-update.0) (2025-12-17)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering",
-  "version": "3.37.0-mui-update.0",
+  "version": "3.38.0-mui-update.0",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
