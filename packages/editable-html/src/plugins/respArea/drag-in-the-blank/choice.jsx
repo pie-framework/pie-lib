@@ -81,7 +81,13 @@ export function BlankContent({
   const finalLabel = isDragging ? '\u00A0' : label;
   const hasGrip = finalLabel !== '\u00A0';
   const isPreview = dragItem && isOver;
+  const hasContent = finalLabel !== '\u00A0';
+  const containsHTML = hasContent && /<[^>]+>/.test(finalLabel);
 
+  const spanProps = {
+    key: `${n.key}-${isPreview ? 'preview' : 'value'}`,
+    ...(hasContent && { 'data-latex': '', 'data-raw': finalLabel }),
+  };
 
   return (
     <div
@@ -115,12 +121,11 @@ export function BlankContent({
           contentEditable={false}
         />
       )}
-      <span
-        key={`${n.key}-${isPreview ? 'preview' : 'value'}`}
-        {...(finalLabel !== '\u00A0' ? { 'data-latex': '', 'data-raw': finalLabel } : {})}
-      >
-        {finalLabel}
-      </span>
+      {containsHTML ? (
+        <span {...spanProps} dangerouslySetInnerHTML={{ __html: finalLabel }} />
+      ) : (
+        <span {...spanProps}>{finalLabel}</span>
+      )}
       {children}
     </div>
   );
