@@ -13,7 +13,6 @@ function TiptapContainer(props) {
     disabled,
     classes,
     children,
-    disableUnderline,
     disableScrollbar,
     activePlugins,
     toolbarOpts,
@@ -28,8 +27,6 @@ function TiptapContainer(props) {
   } = props;
 
   const holderNames = classNames(classes.editorHolder, {
-    [classes.readOnly]: disabled,
-    [classes.disabledUnderline]: disableUnderline,
     [classes.disabledScrollbar]: disableScrollbar,
   });
 

@@ -3,8 +3,6 @@ import { ReactNodeViewRenderer } from '@tiptap/react';
 import React from 'react';
 import ImageComponent from './component';
 
-// ---- Tiptap Extension ---- //
-
 export const ImageUploadNode = Node.create({
   name: 'imageUploadNode',
 
@@ -34,7 +32,6 @@ export const ImageUploadNode = Node.create({
     ];
   },
 
-  // ✅ No `0` here!
   renderHTML({ HTMLAttributes }) {
     return ['img', mergeAttributes(HTMLAttributes, { 'data-type': 'image-upload-node' })];
   },

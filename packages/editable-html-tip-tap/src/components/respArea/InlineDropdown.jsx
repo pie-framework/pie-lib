@@ -15,8 +15,17 @@ const InlineDropdown = (props) => {
   const InlineDropdownToolbar = options.respAreaToolbar(node, editor, () => {});
 
   useEffect(() => {
-    setShowToolbar(selected);
-  }, [selected]);
+    const { selection } = editor.state;
+    const onlyThisNodeSelected = selection.from + node.nodeSize === selection.to;
+
+    if (selected) {
+      if (onlyThisNodeSelected) {
+        setShowToolbar(selected);
+      }
+    } else {
+      setShowToolbar(selected);
+    }
+  }, [editor, node, selected]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

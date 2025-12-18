@@ -73,11 +73,21 @@ export function CharacterPicker({ editor, opts, onClose }) {
     if (!editor) return;
 
     // Calculate position relative to selection
+    const editorDOM = editor.options.element;
+    const editorRect = editorDOM.getBoundingClientRect();
     const bodyRect = document.body.getBoundingClientRect();
     const { from } = editor.state.selection;
     const start = editor.view.coordsAtPos(from);
+
+    let top = editorRect.top + Math.abs(bodyRect.top) + editorRect.height + 60;
+
+    if (top + containerRef.current.offsetHeight > window.outerHeight) {
+      top = top - (containerRef.current.offsetHeight + editorRect.height) - 80;
+    }
+
     setPosition({
-      top: start.top + Math.abs(bodyRect.top) + 40, // shift above
+      // top: start.top + Math.abs(bodyRect.top) - containerRef.current.offsetHeight - 10 + additionalTopOffset, // shift above
+      top: top,
       left: start.left,
     });
 

@@ -4,6 +4,8 @@ import { NodeViewWrapper, ReactRenderer, ReactNodeViewRenderer } from '@tiptap/r
 import { Plugin, PluginKey, NodeSelection, TextSelection } from 'prosemirror-state';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';
+import ReactDOM from 'react-dom';
+import CustomPopper from '../components/characters/custom-popper';
 
 const ensureTextAfterMathPluginKey = new PluginKey('ensureTextAfterMath');
 
@@ -118,7 +120,6 @@ export const MathNode = Node.create({
   addCommands() {
     return {
       insertMath: (latex = '') => ({ tr, editor, dispatch }) => {
-        // 2) Now the editor.view.state reflects the insertion
         const { state } = editor.view;
         const node = state.schema.nodes.math.create({
           latex,
@@ -172,6 +173,7 @@ export const MathNodeView = (props) => {
   const { node, updateAttributes, editor, selected, options } = props;
   const [showToolbar, setShowToolbar] = useState(selected);
   const toolbarRef = useRef(null);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
 
   const latex = node.attrs.latex || '';
 
@@ -186,6 +188,15 @@ export const MathNodeView = (props) => {
   }, [showToolbar]);
 
   useEffect(() => {
+    // Calculate position relative to selection
+    const bodyRect = document.body.getBoundingClientRect();
+    const { from } = editor.state.selection;
+    const start = editor.view.coordsAtPos(from);
+    setPosition({
+      top: start.top + Math.abs(bodyRect.top) + 40, // shift above
+      left: start.left,
+    });
+
     const handleClickOutside = (event) => {
       if (
         toolbarRef.current &&
@@ -203,7 +214,7 @@ export const MathNodeView = (props) => {
     }
 
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [showToolbar]);
+  }, [editor, showToolbar]);
 
   const handleChange = (newLatex) => {
     updateAttributes({ latex: newLatex });
@@ -237,23 +248,24 @@ export const MathNodeView = (props) => {
       <div onClick={() => setShowToolbar(true)} contentEditable={false}>
         <MathPreview latex={latex} />
       </div>
-
-      {showToolbar && (
-        <div
-          ref={toolbarRef}
-          style={{
-            position: 'absolute',
-            top: '100%',
-            left: 0,
-            zIndex: 20,
-            background: 'var(--editable-html-toolbar-bg, #efefef)',
-            boxShadow:
-              '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
-          }}
-        >
-          <MathToolbar latex={latex} autoFocus onChange={handleChange} onDone={handleDone} keypadMode="basic" />
-        </div>
-      )}
+      {showToolbar &&
+        ReactDOM.createPortal(
+          <div
+            ref={toolbarRef}
+            style={{
+              position: 'absolute',
+              top: `${position.top}px`,
+              left: `${position.left}px`,
+              zIndex: 20,
+              background: 'var(--editable-html-toolbar-bg, #efefef)',
+              boxShadow:
+                '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+            }}
+          >
+            <MathToolbar latex={latex} autoFocus onChange={handleChange} onDone={handleDone} keypadMode="basic" />
+          </div>,
+          document.body,
+        )}
     </NodeViewWrapper>
   );
 };

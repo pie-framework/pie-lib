@@ -120,36 +120,6 @@ const styles = (theme) => ({
     overflowY: 'auto',
     color: color.text(),
     backgroundColor: color.background(),
-    '&::before': {
-      left: '0',
-      right: '0',
-      bottom: '0',
-      height: '1px',
-      content: '""',
-      position: 'absolute',
-      transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      pointerEvents: 'none',
-      backgroundColor: 'rgba(0, 0, 0, 0.42)',
-    },
-    '&::after': {
-      left: '0',
-      right: '0',
-      bottom: '0',
-      height: '1px',
-      content: '""',
-      position: 'absolute',
-      transform: 'scaleX(0)',
-      transition: 'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 200ms linear',
-      backgroundColor: 'rgba(0, 0, 0, 0.42)',
-    },
-  },
-  disabledUnderline: {
-    '&::before': {
-      display: 'none',
-    },
-    '&::after': {
-      display: 'none',
-    },
   },
   disabledScrollbar: {
     '&::-webkit-scrollbar': {
@@ -157,33 +127,6 @@ const styles = (theme) => ({
     },
     scrollbarWidth: 'none',
     '-ms-overflow-style': 'none',
-  },
-  readOnly: {
-    '&::before': {
-      background: 'transparent',
-      backgroundSize: '5px 1px',
-      backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.42) 33%, transparent 0%)',
-      backgroundRepeat: 'repeat-x',
-      backgroundPosition: 'left top',
-    },
-    '&::after': {
-      left: '0',
-      right: '0',
-      bottom: '0',
-      height: '1px',
-      content: '""',
-      position: 'absolute',
-      transform: 'scaleX(0)',
-      transition: 'transform 200ms cubic-bezier(0.0, 0.0, 0.2, 1) 0ms, background-color 0ms linear',
-      backgroundColor: 'rgba(0, 0, 0, 0)',
-    },
-    '&:hover': {
-      '&::after': {
-        transform: 'scaleX(0)',
-        backgroundColor: theme.palette.common.black,
-        height: '2px',
-      },
-    },
   },
   error: {
     border: `2px solid ${theme.palette.error.main} !important`,
