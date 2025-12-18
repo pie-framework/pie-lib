@@ -198,7 +198,7 @@ const ConfigureChartPanel = (props) => {
       // check if current chart values are invalid for given range step/max
       const outOfRange = isOutOfRange(model.data, range) || isOutOfRange(model.correctAnswer.data, range);
 
-      if (outOfRange && JSON.stringify(e) !== '{}') {
+      if (outOfRange && e?.target) {
         setOpen(true);
       } else {
         onChange({ ...model, range });
@@ -287,7 +287,7 @@ const ConfigureChartPanel = (props) => {
             availableChartTypes={availableChartTypes}
             chartTypeLabel={chartTypeLabel}
           />
-          <StyledMediumTextField
+          <NumberTextFieldCustom
             label="Max Value"
             value={range.max}
             min={rangeProps(model.chartType).min}
@@ -305,7 +305,7 @@ const ConfigureChartPanel = (props) => {
             </div>
 
             <StyledColumnView>
-              <StyledTextField
+              <NumberTextFieldCustom
                 label={'Width'}
                 value={size.width}
                 min={widthConstraints.min}
@@ -318,7 +318,7 @@ const ConfigureChartPanel = (props) => {
             </StyledColumnView>
 
             <StyledColumnView>
-              <StyledTextField
+              <NumberTextFieldCustom
                 label={'Height'}
                 value={size.height}
                 min={heightConstraints.min}
