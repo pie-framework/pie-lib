@@ -511,12 +511,14 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
             </button>
           )}
 
-          <DoneButton
-            onClick={() => {
-              onChange?.(editor.getHTML());
-              editor.commands.blur();
-            }}
-          />
+          {toolbarOpts.showDone && (
+            <DoneButton
+              onClick={() => {
+                onChange?.(editor.getHTML());
+                editor.commands.blur();
+              }}
+            />
+          )}
         </div>
       )}
       {showPicker && (

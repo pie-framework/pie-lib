@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import { Extension, Node, mergeAttributes } from '@tiptap/core';
 import { NodeViewWrapper, ReactRenderer, ReactNodeViewRenderer } from '@tiptap/react';
 import { Plugin, PluginKey, NodeSelection, TextSelection } from 'prosemirror-state';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';
-import ReactDOM from 'react-dom';
-import CustomPopper from '../components/characters/custom-popper';
 
 const ensureTextAfterMathPluginKey = new PluginKey('ensureTextAfterMath');
 

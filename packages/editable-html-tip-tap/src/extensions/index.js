@@ -57,10 +57,10 @@ export const buildExtensions = (activeExtensions, customExtensions, opts) => {
     addIf('superscript'),
     // icon should be modifies accordingly
     addIf('subscript'),
-    addIf('image', imagePlugin),
+    addIf('image', !!imagePlugin),
     addIf('video'),
     addIf('audio'),
-    addIf('math', mathPlugin),
+    addIf('math', !!mathPlugin),
     ...languageCharactersPlugins.map((plugin) => addIf('languageCharacters', plugin)),
     addIf('text-align'),
     addIf('blockquote'),
@@ -69,8 +69,8 @@ export const buildExtensions = (activeExtensions, customExtensions, opts) => {
     addIf('numbered-list'),
     addIf('undo'),
     addIf('redo'),
-    addIf('responseArea', respAreaPlugin),
-    addIf('css', cssPlugin),
+    addIf('responseArea', !!respAreaPlugin),
+    addIf('css', !!cssPlugin),
     addIf('html', !!opts.html),
   ]);
 };

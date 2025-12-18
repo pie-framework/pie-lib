@@ -101,11 +101,17 @@ export const EditableHtml = (props) => {
   };
 
   const activePluginsToUse = useMemo(() => {
-    let { customPlugins } = props.pluginProps || {};
+    let { customPlugins, ...otherPluginProps } = props.pluginProps || {};
 
     customPlugins = customPlugins || [];
 
-    return buildExtensions(props.activePlugins, customPlugins, {
+    const filteredActivePlugins = (props.activePlugins || DEFAULT_ACTIVE_PLUGINS)?.filter((pluginName) => {
+      const pluginInfo = otherPluginProps[pluginName] || {};
+
+      return !pluginInfo || !pluginInfo.disabled;
+    });
+
+    return buildExtensions(filteredActivePlugins, customPlugins, {
       math: {},
       textAlign: {},
       html: {},

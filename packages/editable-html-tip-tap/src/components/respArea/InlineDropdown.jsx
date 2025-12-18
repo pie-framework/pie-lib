@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import PropTypes from 'prop-types';
 import { NodeViewWrapper } from '@tiptap/react';
 import { Chevron } from '../icons/RespArea';
+import ReactDOM from "react-dom";
+import { MathToolbar } from "@pie-lib/math-toolbar";
 
 const InlineDropdown = (props) => {
   const { editor, node, getPos, options, selected } = props;
@@ -12,6 +14,7 @@ const InlineDropdown = (props) => {
   const html = value || '<div>&nbsp</div>';
   const toolbarRef = useRef(null);
   const [showToolbar, setShowToolbar] = useState(false);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
   const InlineDropdownToolbar = options.respAreaToolbar(node, editor, () => {});
 
   useEffect(() => {
@@ -28,6 +31,16 @@ const InlineDropdown = (props) => {
   }, [editor, node, selected]);
 
   useEffect(() => {
+    // Calculate position relative to selection
+    const bodyRect = document.body.getBoundingClientRect();
+    const { from } = editor.state.selection;
+    const start = editor.view.coordsAtPos(from);
+
+    setPosition({
+      top: start.top + Math.abs(bodyRect.top) + 40, // shift above
+      left: start.left,
+    });
+
     const handleClickOutside = (event) => {
       if (
         toolbarRef.current &&
@@ -100,11 +113,13 @@ const InlineDropdown = (props) => {
           }}
         />
       </div>
-      {showToolbar && (
-        <div ref={toolbarRef} className="absolute z-50 bg-white shadow-lg rounded p-2" style={{ zIndex: 1 }}>
-          <InlineDropdownToolbar />
-        </div>
-      )}
+      {showToolbar &&
+        ReactDOM.createPortal(
+          <div ref={toolbarRef} style={{ zIndex: 1 }}>
+            <InlineDropdownToolbar />
+          </div>,
+          document.body,
+        )}
     </NodeViewWrapper>
   );
 };
