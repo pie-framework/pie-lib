@@ -29,6 +29,7 @@ export function DraggableChoice({
   choiceIndex,
   onRemoveChoice,
   type,
+  id
 }) {
   const {
     attributes,
@@ -36,7 +37,7 @@ export function DraggableChoice({
     setNodeRef,
     isDragging
   } = useDraggable({
-    id: choice.id,
+    id: id || choice.id, // id to be used for dnd-kit
     disabled: disabled,
     categoryId: category?.id,
     alternateResponseIndex,
@@ -81,6 +82,7 @@ DraggableChoice.propTypes = {
   choiceIndex: PropTypes.number,
   onRemoveChoice: PropTypes.func,
   type: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default DraggableChoice;
