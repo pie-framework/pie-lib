@@ -287,7 +287,7 @@ const ConfigureChartPanel = (props) => {
             availableChartTypes={availableChartTypes}
             chartTypeLabel={chartTypeLabel}
           />
-          <NumberTextFieldCustom
+          <StyledMediumTextField
             label="Max Value"
             value={range.max}
             min={rangeProps(model.chartType).min}
@@ -305,7 +305,7 @@ const ConfigureChartPanel = (props) => {
             </div>
 
             <StyledColumnView>
-              <NumberTextFieldCustom
+              <StyledTextField
                 label={'Width'}
                 value={size.width}
                 min={widthConstraints.min}
@@ -318,7 +318,7 @@ const ConfigureChartPanel = (props) => {
             </StyledColumnView>
 
             <StyledColumnView>
-              <NumberTextFieldCustom
+              <StyledTextField
                 label={'Height'}
                 value={size.height}
                 min={heightConstraints.min}
