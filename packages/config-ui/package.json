@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "11.39.0-mui-update.0",
+  "version": "11.41.0-mui-update.0",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -12,9 +12,9 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/editable-html": "11.31.0-mui-update.0",
-    "@pie-lib/icons": "2.34.0-mui-update.0",
-    "@pie-lib/render-ui": "4.45.0-mui-update.0",
+    "@pie-lib/editable-html": "11.33.0-mui-update.0",
+    "@pie-lib/icons": "2.36.0-mui-update.0",
+    "@pie-lib/render-ui": "4.47.0-mui-update.0",
     "assert": "^1.4.1",
     "classnames": "^2.2.6",
     "complex.js": "2.1.1",
@@ -31,5 +31,5 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "gitHead": "52e6f74168f4129f23dced55b91f5d7f155aaeb6"
+  "gitHead": "c0e988917115177798e7686c1f5585f0af1728fc"
 }

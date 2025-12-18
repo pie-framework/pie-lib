@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.45.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.44.0-mui-update.0...@pie-lib/mask-markup@1.45.0-mui-update.0) (2025-12-17)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+# [1.44.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.43.0-mui-update.0...@pie-lib/mask-markup@1.44.0-mui-update.0) (2025-12-17)
+
+
+### Bug Fixes
+
+* fix math rendering issues after React, mui and drag upgrade for drag-in-the-blank ([6dc3c95](https://github.com/pie-framework/pie-lib/commit/6dc3c95c041be02015a9005133fe750e1ff78842))
+* simplify math render logic ([de11ebe](https://github.com/pie-framework/pie-lib/commit/de11ebe7f2faeb9dce6215673a90b79e86cbc590))
+
+
+
+
+
 # [1.43.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.42.0-mui-update.0...@pie-lib/mask-markup@1.43.0-mui-update.0) (2025-12-11)
 
 

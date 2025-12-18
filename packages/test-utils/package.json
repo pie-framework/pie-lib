@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/test-utils",
-  "version": "0.32.0-mui-update.0",
+  "version": "0.34.0-mui-update.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -13,6 +13,6 @@
     "enzyme": "^3.8.0",
     "react": "^18.2.0"
   },
-  "gitHead": "ca668571e7896ba16dd21c2ef58b7d90c84230f6",
+  "gitHead": "d164dea06f2f9e284798fe8558219778dd3df942",
   "scripts": {}
 }

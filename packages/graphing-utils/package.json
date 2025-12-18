@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/graphing-utils",
-  "version": "1.31.0-mui-update.0",
+  "version": "1.33.0-mui-update.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -14,6 +14,6 @@
     "debug": "^4.1.1",
     "lodash": "^4.17.11"
   },
-  "gitHead": "ca668571e7896ba16dd21c2ef58b7d90c84230f6",
+  "gitHead": "d164dea06f2f9e284798fe8558219778dd3df942",
   "scripts": {}
 }
