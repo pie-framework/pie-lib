@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.28.0-mui-update.0...@pie-lib/rubric@0.29.0-mui-update.0) (2025-11-05)
+# [0.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.39.0-mui-update.0...@pie-lib/rubric@0.40.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/rubric
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.27.0-mui-update.0...@pie-lib/rubric@0.28.0-mui-update.0) (2025-11-03)
+# [0.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.38.0-mui-update.0...@pie-lib/rubric@0.39.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/rubric
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.25.0-mui-update.0...@pie-lib/rubric@0.27.0-mui-update.0) (2025-11-03)
+# [0.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.37.0-mui-update.0...@pie-lib/rubric@0.38.0-mui-update.0) (2025-12-11)
 
 **Note:** Version bump only for package @pie-lib/rubric
 
@@ -27,14 +27,60 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.24.2...@pie-lib/rubric@0.25.0-mui-update.0) (2025-10-31)
+# [0.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.36.0-mui-update.0...@pie-lib/rubric@0.37.0-mui-update.0) (2025-12-02)
 
 
 ### Features
 
-* PD-5258 rubric fix ([de878e0](https://github.com/pie-framework/pie-lib/commit/de878e0b02a3181985f93f1cea16f93c36d826a4))
-* **rubric:** migrate rubric package to material-ui 5 PD-5258 ([1b33f99](https://github.com/pie-framework/pie-lib/commit/1b33f99c073eaaa32eac36f848a814ade4c97593))
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [0.28.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.28.1...@pie-lib/rubric@0.28.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+## [0.28.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.24.2...@pie-lib/rubric@0.28.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+# [0.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.27.0...@pie-lib/rubric@0.28.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+# [0.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.24.0...@pie-lib/rubric@0.27.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+# [0.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.24.0...@pie-lib/rubric@0.26.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+# [0.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.24.0...@pie-lib/rubric@0.25.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/rubric
 
 
 

@@ -42,11 +42,17 @@ const TextFieldSmall = styled('div')(({ theme }) => ({
 const TextFieldMedium = styled('div')(({ theme }) => ({
   width: '160px',
   margin: `${theme.spacing(1)} ${theme.spacing(0.5)}`,
+  '& .MuiFormControl-root': {
+    width: '100%',
+  },
 }));
 
 const TextFieldLarge = styled('div')(({ theme }) => ({
   width: '230px',
   margin: `${theme.spacing(1)} ${theme.spacing(0.5)}`,
+  '& .MuiFormControl-root': {
+    width: '100%',
+  },
 }));
 
 const ItalicText = styled(Typography)(({ theme }) => ({
@@ -152,7 +158,7 @@ const AxisConfig = (props) => {
       )}
       {axisLabel && axisLabel.enabled && (
         <TextFieldMedium>
-          <InputContainer label={axisLabel.label || ''}>
+          <InputContainer label={axisLabel.label || ''} >
             <AxisLabel>
               <EditableHTML
                 onChange={(value) => onChange('axisLabel', value)}
@@ -348,7 +354,7 @@ const GridSetup = (props) => {
 
   return (
     <Wrapper>
-      <Accordion onChange={onChangeView}>
+      <Accordion onChange={onChangeView} TransitionProps={{ timeout: { enter: 225, exit: 195 } }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="subtitle1">Customize Grid Setup</Typography>
         </AccordionSummary>

@@ -1,14 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import isUndefined from 'lodash/isUndefined';
+import classnames from 'classnames';
 import { useDraggable, useDroppable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
 import { styled } from '@mui/material/styles';
-import classnames from 'classnames';
 
 import { GripIcon } from '../icons';
+import { onValueChange, onRemoveResponse } from './utils';
 
 const StyledContent = styled('span')(({ theme }) => ({
   border: `solid 0px ${theme.palette.primary.main}`,
@@ -29,22 +28,25 @@ const StyledContent = styled('span')(({ theme }) => ({
   },
 }));
 
-export function BlankContent({ 
-  n, 
-  children, 
-  isDragging, 
-  isOver, 
-  dragItem, 
+export function BlankContent({
+  n,
+  children,
+  isDragging,
+  isOver,
+  dragItem,
   value,
-  disabled,
   style: externalStyle
 }) {
   const [hoveredElementSize, setHoveredElementSize] = useState(null);
   const elementRef = useRef(null);
 
   const handleClick = (event) => {
-    if (elementRef.current) {
-      elementRef.current.className = elementRef.current.contains(event.target) ? 'selected' : '';
+    if (!elementRef.current) return;
+
+    if (elementRef.current.contains(event.target)) {
+      elementRef.current.classList.add('selected');
+    } else {
+      elementRef.current.classList.remove('selected');
     }
   };
 
@@ -56,10 +58,15 @@ export function BlankContent({
   }, []);
 
   useEffect(() => {
+    // Render math for the current value or preview
+    const currentContent = (isOver && dragItem?.value?.value) || value?.value;
+
+    if (!currentContent) return;
+
     if (elementRef.current && typeof renderMath === 'function') {
       renderMath(elementRef.current);
     }
-  });
+  }, [value?.id, value?.value, isOver, dragItem?.value?.id, dragItem?.value?.value]);
 
   useEffect(() => {
     if (isOver && elementRef.current && !hoveredElementSize) {
@@ -70,10 +77,17 @@ export function BlankContent({
     }
   }, [isOver, hoveredElementSize]);
 
-  const label = dragItem && isOver ? dragItem.value.value : value.value || '\u00A0';
+  const label = dragItem && dragItem.value && isOver ? dragItem.value.value : value.value || '\u00A0';
   const finalLabel = isDragging ? '\u00A0' : label;
   const hasGrip = finalLabel !== '\u00A0';
   const isPreview = dragItem && isOver;
+  const hasContent = finalLabel !== '\u00A0';
+  const containsHTML = hasContent && /<[^>]+>/.test(finalLabel);
+
+  const spanProps = {
+    key: `${n.key}-${isPreview ? 'preview' : 'value'}`,
+    ...(hasContent && { 'data-latex': '', 'data-raw': finalLabel }),
+  };
 
   return (
     <div
@@ -107,11 +121,11 @@ export function BlankContent({
           contentEditable={false}
         />
       )}
-      <span
-        dangerouslySetInnerHTML={{
-          __html: finalLabel,
-        }}
-      />
+      {containsHTML ? (
+        <span {...spanProps} dangerouslySetInnerHTML={{ __html: finalLabel }} />
+      ) : (
+        <span {...spanProps}>{finalLabel}</span>
+      )}
       {children}
     </div>
   );
@@ -128,36 +142,50 @@ BlankContent.propTypes = {
   style: PropTypes.object,
 };
 
-function DragDropChoice({ 
-  value, 
-  disabled, 
-  onChange, 
-  removeResponse, 
-  instanceId, 
-  targetId, 
-  duplicates,
+function DragDropChoice({
+  value,
+  disabled,
+  instanceId,
+  children,
   n,
-  children 
+  nodeProps,
+  opts,
 }) {
-  // Setup draggable functionality
   const {
     attributes: dragAttributes,
     listeners: dragListeners,
     setNodeRef: setDragNodeRef,
-    transform: dragTransform,
     isDragging,
   } = useDraggable({
     id: `drag-${n.key}`,
-    disabled: disabled || !value,
+    disabled: disabled || !value?.value,
     data: {
-      id: targetId,
-      value: value,
-      instanceId: instanceId,
-      fromChoice: true,
-    },
+      id: `drag-${n.key}`,
+      value,
+      instanceId,
+      nodeProps,
+      n,
+      opts,
+      type: 'drag-in-the-blank-placed-choice',
+      fromChoice: !value,
+      onRemove: (draggedData) => onRemoveResponse(nodeProps, draggedData.value),
+      onDrop: (draggedData, dropData) => {
+        // check if we're dropping into a blank
+        const isValidBlank =
+          dropData?.type === "drag-in-the-blank-drop-choice";
+
+        if (!isValidBlank) return;
+
+        // place into blank
+        onValueChange(nodeProps, n, draggedData.value);
+
+        if (!opts.options.duplicates && draggedData.fromChoice) {
+          onRemoveResponse(nodeProps, draggedData.value);
+        }
+      }
+    }
   });
 
-  // Setup droppable functionality
   const {
     setNodeRef: setDropNodeRef,
     isOver,
@@ -165,21 +193,52 @@ function DragDropChoice({
   } = useDroppable({
     id: `drop-${n.key}`,
     data: {
-      accepts: ['drag-in-the-blank-choice'],
+      type: 'drag-in-the-blank-drop-choice',
+      accepts: ['drag-in-the-blank-choice', 'drag-in-the-blank-placed-choice'],
       instanceId: instanceId,
       value: value,
-    },
+      id: `drop-${n.key}`,
+      nodeProps,
+      n,
+      opts,
+      onDrop: (draggedData, dropData) => {
+        // check if we're dropping into a blank
+        const isValidBlank =
+          dropData?.type === "drag-in-the-blank-drop-choice";
+
+        if (!isValidBlank) return;
+
+        // if the dragged and dropped data are the same, do nothing
+        if (draggedData.value.id === dropData.value.id) return;
+
+        if (draggedData.type === 'drag-in-the-blank-choice') {
+          // place into blank
+          onValueChange(nodeProps, n, draggedData.value);
+
+          if (!opts.options.duplicates && draggedData.fromChoice) {
+            onRemoveResponse(nodeProps, draggedData.value);
+          }
+          return;
+        }
+
+        // moving placed choice between blanks
+        if (draggedData.type === 'drag-in-the-blank-placed-choice') {
+          // clear target blank
+          onRemoveResponse(nodeProps, dropData.value);
+
+          // set new blank value
+          onValueChange(nodeProps, n, draggedData.value);
+
+          // clear original blank - slight delay to ensure state updates correctly
+          setTimeout(() => onRemoveResponse(nodeProps, draggedData.value), 10);
+        }
+      }
+    }
   });
 
-  // Combine refs for both drag and drop
   const setNodeRef = (node) => {
     setDragNodeRef(node);
     setDropNodeRef(node);
-  };
-
-  const dragStyle = {
-    transform: CSS.Translate.toString(dragTransform),
-    opacity: isDragging ? 0.5 : 1,
   };
 
   const dragContent = (
@@ -190,7 +249,6 @@ function DragDropChoice({
       dragItem={dragItem?.data?.current}
       value={value}
       disabled={disabled}
-      style={dragStyle}
     >
       {children}
     </BlankContent>

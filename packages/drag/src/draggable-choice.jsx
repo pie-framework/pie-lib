@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { useDraggable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
 import { grey } from '@mui/material/colors';
 
 export const DRAG_TYPE = 'CHOICE';
 
-const StyledChoice = styled('div')(({ theme, isDragging }) => ({
+const StyledChoice = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   border: `solid 1px ${grey[400]}`,
   padding: theme.spacing(1),
@@ -15,49 +14,49 @@ const StyledChoice = styled('div')(({ theme, isDragging }) => ({
   minWidth: theme.spacing(20),
   maxWidth: theme.spacing(75),
   cursor: 'grab',
-  opacity: isDragging ? 0.5 : 1,
   '&:active': {
     cursor: 'grabbing',
   },
 }));
 
-export function DraggableChoice({ 
-  choice, 
-  children, 
+export function DraggableChoice({
+  choice,
+  children,
   className,
   disabled,
   category,
   alternateResponseIndex,
   choiceIndex,
-  onRemoveChoice
+  onRemoveChoice,
+  type,
+  id
 }) {
-  const { 
-    attributes, 
-    listeners, 
-    setNodeRef, 
-    transform, 
-    isDragging 
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    isDragging
   } = useDraggable({
-    id: choice.id,
+    id: id || choice.id, // id to be used for dnd-kit
     disabled: disabled,
-    data: { 
+    categoryId: category?.id,
+    alternateResponseIndex,
+    data: {
+      id: choice.id,
       value: choice.value,
       choiceId: choice.id,
       from: category?.id,
+      categoryId: category?.id,
       alternateResponseIndex,
       choiceIndex,
-      onRemoveChoice
+      onRemoveChoice,
+      type
     }
   });
 
-  const style = {
-    transform: CSS.Translate.toString(transform),
-  };
-
   return (
-    <StyledChoice 
+    <StyledChoice
       ref={setNodeRef}
-      style={style}
       className={className}
       isDragging={isDragging}
       {...attributes}
@@ -82,6 +81,8 @@ DraggableChoice.propTypes = {
   alternateResponseIndex: PropTypes.number,
   choiceIndex: PropTypes.number,
   onRemoveChoice: PropTypes.func,
+  type: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default DraggableChoice;

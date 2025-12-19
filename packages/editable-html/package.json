@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "11.22.0-mui-update.0",
+  "version": "11.33.0-mui-update.0",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -8,16 +8,17 @@
   "author": "pie-framework developers",
   "dependencies": {
     "@dnd-kit/core": "6.1.0",
+    "@dnd-kit/modifiers": "9.0.0",
     "@dnd-kit/utilities": "3.2.2",
     "@emotion/react": "^11.14.0",
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/drag": "^2.23.0-mui-update.0",
-    "@pie-lib/math-input": "^6.32.0-mui-update.0",
-    "@pie-lib/math-rendering": "^3.27.0-mui-update.0",
-    "@pie-lib/math-toolbar": "^1.32.0-mui-update.0",
-    "@pie-lib/render-ui": "^4.36.0-mui-update.0",
+    "@pie-lib/drag": "2.34.0-mui-update.0",
+    "@pie-lib/math-input": "6.43.0-mui-update.0",
+    "@pie-lib/math-rendering": "3.38.0-mui-update.0",
+    "@pie-lib/math-toolbar": "1.43.0-mui-update.0",
+    "@pie-lib/render-ui": "4.47.0-mui-update.0",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
@@ -51,6 +52,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "gitHead": "ba9b27bd2b3ece25d9f66f5ce4a51e4a280f930b",
   "scripts": {}
 }

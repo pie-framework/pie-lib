@@ -3,7 +3,6 @@ import Measure from 'react-measure';
 import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { withContentRect } from 'react-measure';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import LayoutContents from './layout-contents';
 import SettingsBox from './settings-box';
 import { AppendCSSRules } from '@pie-lib/render-ui';
@@ -11,6 +10,19 @@ import { AppendCSSRules } from '@pie-lib/render-ui';
 const theme = createTheme({
   typography: {
     fontFamily: 'inherit',
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          backgroundColor: '#e0e0e0',
+          color: '#000000',
+          '&:hover': {
+            backgroundColor: '#bdbdbd',
+          },
+        },
+      },
+    },
   },
 });
 
@@ -43,11 +55,16 @@ class MeasuredConfigLayout extends AppendCSSRules {
     const layoutMode =
       bounds.width > sidePanelMinWidth && (maxWidth ? maxWidth > sidePanelMinWidth : true) ? 'inline' : 'tabbed';
 
-    this.setState({ layoutMode });
+    // Only update state (and cause a re-render) if the computed layoutMode changed.
+    if (layoutMode !== this.state.layoutMode) {
+      this.setState({ layoutMode });
+    }
   };
 
   render() {
     return (
+      // TODO: REVIEW MuiThemeProvider usage
+      // Different theme object identities will force theme consumers to re-render.
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <Measure bounds onResize={this.onResize}>
@@ -58,7 +75,7 @@ class MeasuredConfigLayout extends AppendCSSRules {
               const settingsPanel =
                 layoutMode === 'inline' ? <SettingsBox className="settings-box">{settings}</SettingsBox> : settings;
               const secondaryContent = hideSettings ? null : settingsPanel;
-              const finalClass = classNames('main-container');
+              const finalClass = 'main-container';
 
               return (
                 <div ref={measureRef} className={finalClass}>

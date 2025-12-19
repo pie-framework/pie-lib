@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.22.0-mui-update.0...@pie-lib/drag@2.23.0-mui-update.0) (2025-11-05)
+# [2.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.33.0-mui-update.0...@pie-lib/drag@2.34.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/drag
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.22.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.21.0-mui-update.0...@pie-lib/drag@2.22.0-mui-update.0) (2025-11-03)
+# [2.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.32.0-mui-update.0...@pie-lib/drag@2.33.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/drag
 
@@ -19,22 +19,78 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [2.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.19.0-mui-update.0...@pie-lib/drag@2.21.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.19.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.2...@pie-lib/drag@2.19.0-mui-update.0) (2025-10-31)
+# [2.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.31.0-mui-update.0...@pie-lib/drag@2.32.0-mui-update.0) (2025-12-11)
 
 
 ### Features
 
-* drag library update ([fb7a4d0](https://github.com/pie-framework/pie-lib/commit/fb7a4d0ce761f2f4c1a122854cfa306abb8ea7c8))
-* **drag:** update drag package to corresp to material v5 PD-5258 ([7400327](https://github.com/pie-framework/pie-lib/commit/740032735077939f4e05897aaf6b618bfa5b236d))
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* drag changes for ditb ([fc79ecd](https://github.com/pie-framework/pie-lib/commit/fc79ecdacb5693f1b5dcf19c7114f9cd4bed83ba))
+* updates for drag-in-the-blank ([0c096d8](https://github.com/pie-framework/pie-lib/commit/0c096d887f97edecd2dac68cda136b2d265dc7d5))
+
+
+
+
+
+# [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.30.0-mui-update.0...@pie-lib/drag@2.31.0-mui-update.0) (2025-12-02)
+
+
+### Bug Fixes
+
+* drag components ([bea5eaa](https://github.com/pie-framework/pie-lib/commit/bea5eaaa54fc9060ac83bb7d6383b4c9e2491574))
+
+
+### Features
+
+* add drag provider onDragStart prop ([0879247](https://github.com/pie-framework/pie-lib/commit/087924747b02ceed710e971e8dbe0291071396af))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [2.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.22.1...@pie-lib/drag@2.22.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+## [2.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.2...@pie-lib/drag@2.22.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.21.0...@pie-lib/drag@2.22.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.21.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.20.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.19.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/drag
 
 
 

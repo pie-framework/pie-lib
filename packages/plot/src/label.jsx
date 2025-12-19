@@ -1,41 +1,51 @@
 import React, { useState } from 'react';
-import { Readable } from '@pie-lib/render-ui';
+import { color, Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html';
-import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import { extractTextFromHTML, isEmptyString } from './utils';
 
-const StyledLabel = styled('div', {
-  shouldForwardProp: (prop) => !['side', 'rotatedToHorizontal', 'isChart', 'isChartBottomLabel', 'isDefineChartBottomLabel', 'disabledLabel', 'isEmpty'].includes(prop),
-})(({ theme, side, rotatedToHorizontal, isChart, isChartBottomLabel, isDefineChartBottomLabel, disabledLabel, isEmpty }) => ({
-  fontSize: isChart ? theme.typography.fontSize + 2 : theme.typography.fontSize - 2,
-  textAlign: 'center',
-  margin: theme.spacing(0.5),
-  padding: `${theme.spacing(0.5)} 0`,
-  display: disabledLabel && !isChart && isEmpty ? 'none' : 'block',
-  position: (isChartBottomLabel || isDefineChartBottomLabel || side === 'left' || side === 'right') ? 'absolute' : 'relative',
-  ...(side === 'left' && !rotatedToHorizontal && {
-    WebkitTransform: 'rotate(-90deg)',
-    transformOrigin: '0 0',
-    transformStyle: 'preserve-3d',
-  }),
-  ...(side === 'right' && !rotatedToHorizontal && {
-    WebkitTransform: 'rotate(90deg)',
-    transformOrigin: '0 0',
-    transformStyle: 'preserve-3d',
-  }),
-  ...(rotatedToHorizontal && {
+const styles = {
+  axisLabel: {
+    fontSize: 12,
+    textAlign: 'center',
+    margin: 4,
+    padding: '4px 0',
+  },
+  chartLabel: {
+    fontSize: 16,
+    textAlign: 'center',
+    margin: 4,
+    padding: '4px 0',
+  },
+  disabledLabel: {
+    pointerEvents: 'none',
+    width: '100%',
+  },
+  editLabel: {
+    position: 'absolute',
     backgroundColor: 'white',
-    borderRadius: '4px',
-    boxShadow: '0px 5px 8px rgba(0, 0, 0, 0.15)',
+    borderRadius: 4,
+    boxShadow: '0px 5px 8px rgba(0,0,0,0.15)',
     zIndex: 10,
-  }),
-}));
-
-const DisabledLabel = styled('div')({
-  pointerEvents: 'none',
-  width: '100%',
-});
+  },
+  rotateLeftLabel: {
+    transform: 'rotate(-90deg)',
+    transformOrigin: '0 0',
+    position: 'absolute',
+  },
+  rotateRightLabel: {
+    transform: 'rotate(90deg)',
+    transformOrigin: '0 0',
+    position: 'absolute',
+  },
+  customBottom: {
+    position: 'absolute',
+  },
+  displayNone: {
+    display: 'none',
+  },
+};
 
 const LabelComponent = (props) => {
   const {
@@ -54,21 +64,32 @@ const LabelComponent = (props) => {
     charactersLimit,
     titleHeight,
   } = props;
+
   const [rotatedToHorizontal, setRotatedToHorizontal] = useState(false);
+
   const activePlugins = [
     'bold',
     'italic',
     'underline',
     'strikethrough',
     'math',
-    // 'languageCharacters'
   ];
 
-  const isChart = isChartBottomLabel || isChartLeftLabel || isDefineChartBottomLabel || isDefineChartLeftLabel;
+  const isChart =
+    isChartBottomLabel ||
+    isChartLeftLabel ||
+    isDefineChartBottomLabel ||
+    isDefineChartLeftLabel;
 
-  const chartValue = side === 'left' && isDefineChartLeftLabel && graphHeight - 220;
+  const chartValue =
+    side === 'left' && isDefineChartLeftLabel && graphHeight - 220;
+
   const defaultStyle = {
-    width: chartValue || (side === 'left' || side === 'right' ? graphHeight - 8 : graphWidth - 8),
+    width:
+      chartValue ||
+      (side === 'left' || side === 'right'
+        ? graphHeight - 8
+        : graphWidth - 8),
     top:
       chartValue ||
       (isChartLeftLabel && `${graphHeight - 70}px`) ||
@@ -85,27 +106,44 @@ const LabelComponent = (props) => {
 
   const rotatedStyle = {
     width: graphWidth - 8,
-    top: (side === 'right' && `${graphHeight - 22}px`) || 0,
+    top: side === 'right' ? `${graphHeight - 22}px` : 0,
     left: 0,
   };
 
-  const rotateLabel = () => !disabledLabel && (side === 'left' || side === 'right') && setRotatedToHorizontal(true);
+  const rotateLabel = () => {
+    if (!disabledLabel && (side === 'left' || side === 'right')) {
+      setRotatedToHorizontal(true);
+    }
+  };
 
   return (
     <Readable false>
-      <StyledLabel
-        side={side}
-        rotatedToHorizontal={rotatedToHorizontal}
-        isChart={isChart}
-        isChartBottomLabel={isChartBottomLabel}
-        isDefineChartBottomLabel={isDefineChartBottomLabel}
-        disabledLabel={disabledLabel}
-        isEmpty={isEmptyString(extractTextFromHTML(text))}
-        style={rotatedToHorizontal ? rotatedStyle : defaultStyle}
+      <div
         onClick={rotateLabel}
+        style={{
+          ...(rotatedToHorizontal ? rotatedStyle : defaultStyle),
+          ...(isChart ? styles.chartLabel : styles.axisLabel),
+          ...(side === 'left' && !rotatedToHorizontal
+            ? styles.rotateLeftLabel
+            : {}),
+          ...(side === 'right' && !rotatedToHorizontal
+            ? styles.rotateRightLabel
+            : {}),
+          ...(rotatedToHorizontal ? styles.editLabel : {}),
+          ...((isChartBottomLabel || isDefineChartBottomLabel)
+            ? styles.customBottom
+            : {}),
+          ...((disabledLabel &&
+            !isChart &&
+            isEmptyString(extractTextFromHTML(text))) &&
+            styles.displayNone),
+        }}
       >
         {disabledLabel ? (
-          <DisabledLabel dangerouslySetInnerHTML={{ __html: text || '' }} />
+          <div
+            style={styles.disabledLabel}
+            dangerouslySetInnerHTML={{ __html: text || '' }}
+          />
         ) : (
           <EditableHtml
             markup={text || ''}
@@ -123,7 +161,7 @@ const LabelComponent = (props) => {
             charactersLimit={charactersLimit}
           />
         )}
-      </StyledLabel>
+      </div>
     </Readable>
   );
 };

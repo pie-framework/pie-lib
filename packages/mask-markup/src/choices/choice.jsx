@@ -30,32 +30,61 @@ const StyledChip = styled(Chip)(() => ({
   fontSize: 'inherit',
   whiteSpace: 'pre-wrap',
   maxWidth: '374px',
+  // Added for touch devices, for image content.
+  // This will prevent the context menu from appearing and not allowing other interactions with the image.
+  // If interactions with the image in the token will be requested we should handle only the context Menu.
   pointerEvents: 'none',
   borderRadius: '3px',
   paddingTop: '12px',
   paddingBottom: '12px',
 }));
 
+const StyledChipLabel = styled('span')(() => ({
+  whiteSpace: 'normal',
+  '& img': {
+    display: 'block',
+    padding: '2px 0',
+  },
+  '& mjx-frac': {
+    fontSize: '120% !important',
+  },
+}));
+
 export default function Choice({ choice, disabled, instanceId }) {
   const rootRef = useRef(null);
 
-  const { attributes, listeners, setNodeRef } = useDraggable({
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id: `choice-${choice.id}`,
     data: { choice, instanceId, fromChoice: true, type: DRAG_TYPE },
     disabled,
   });
 
   useEffect(() => {
-    if (rootRef.current) renderMath(rootRef.current);
-  });
+    renderMath(rootRef.current);
+  }, [choice.value]);
 
   return (
-    <StyledChoice ref={setNodeRef} className={classnames({ disabled })} {...listeners} {...attributes}>
+    <StyledChoice
+      ref={setNodeRef}
+      style={
+        isDragging
+          ? {
+            width: rootRef.current?.offsetWidth,
+            height: rootRef.current?.offsetHeight,
+          }
+          : {}
+      }
+      className={classnames({ disabled })}
+      {...listeners}
+      {...attributes}
+    >
       <StyledChip
         clickable={false}
-        disabled
+        disabled={disabled}
         ref={rootRef}
-        label={choice.value}
+        label={
+          <StyledChipLabel dangerouslySetInnerHTML={{ __html: choice.value }} />
+        }
       />
     </StyledChoice>
   );

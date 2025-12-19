@@ -45,7 +45,7 @@ const StyledMissingContainer = styled(StyledContainer)(() => ({
   border: `${color.incorrectWithIcon()} dashed 2px`,
 }));
 
-const StyledIcon = styled('div')(() => ({
+const baseIconStyles = {
   color: color.white(),
   position: 'absolute',
   top: '-8px',
@@ -53,35 +53,34 @@ const StyledIcon = styled('div')(() => ({
   borderRadius: '50%',
   fontSize: '12px',
   padding: '2px',
-}));
+};
 
-const StyledCorrectIcon = styled(StyledIcon)(() => ({
+const StyledCorrectCheckIcon = styled(Check)(() => ({
+  ...baseIconStyles,
   backgroundColor: color.correctTertiary(),
 }));
 
-const StyledIncorrectIcon = styled(StyledIcon)(() => ({
+const StyledIncorrectCloseIcon = styled(Close)(() => ({
+  ...baseIconStyles,
   backgroundColor: color.incorrectWithIcon(),
 }));
 
 export const Legend = ({ language, showOnlyCorrect }) => {
   const legendItems = [
     {
-      Icon: Check,
+      Icon: StyledCorrectCheckIcon,
       label: translator.t('selectText.correctAnswerSelected', { lng: language }),
       Container: StyledCorrectContainer,
-      IconComponent: StyledCorrectIcon,
     },
     {
-      Icon: Close,
+      Icon: StyledIncorrectCloseIcon,
       label: translator.t('selectText.incorrectSelection', { lng: language }),
       Container: StyledIncorrectContainer,
-      IconComponent: StyledIncorrectIcon,
     },
     {
-      Icon: Close,
+      Icon: StyledIncorrectCloseIcon,
       label: translator.t('selectText.correctAnswerNotSelected', { lng: language }),
       Container: StyledMissingContainer,
-      IconComponent: StyledIncorrectIcon,
     },
   ];
 
@@ -92,11 +91,9 @@ export const Legend = ({ language, showOnlyCorrect }) => {
   return (
     <StyledFlexContainer>
       <StyledKey>{translator.t('selectText.key', { lng: language })}</StyledKey>
-      {legendItems.map(({ Icon, label, Container, IconComponent }, idx) => (
+      {legendItems.map(({ Icon, label, Container }, idx) => (
         <Container key={idx}>
-          <IconComponent>
-            <Icon />
-          </IconComponent>
+          <Icon />
           <span>{label}</span>
         </Container>
       ))}

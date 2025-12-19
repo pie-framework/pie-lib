@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 import { styled } from '@mui/material/styles';
+import { renderMath } from '@pie-lib/math-rendering';
 import { MARK_TAGS } from './serialization';
 
 const Paragraph = styled('div')(({ theme }) => ({
@@ -131,6 +132,11 @@ const MaskContainer = styled('div')(() => ({
  * Renders a layout that uses the slate.js Value model structure.
  */
 export default class Mask extends React.Component {
+  constructor(props) {
+    super(props);
+    this.containerRef = React.createRef();
+  }
+
   static propTypes = {
     renderChildren: PropTypes.func,
     layout: PropTypes.object,
@@ -138,6 +144,12 @@ export default class Mask extends React.Component {
     onChange: PropTypes.func,
     elementType: PropTypes.string,
   };
+
+  componentDidMount() {
+    if (this.containerRef.current && typeof renderMath === 'function') {
+      renderMath(this.containerRef.current);
+    }
+  }
 
   handleChange = (id, value) => {
     const data = { ...this.props.value, [id]: value };
@@ -148,6 +160,6 @@ export default class Mask extends React.Component {
     const { value, layout, elementType } = this.props;
     const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren, null, elementType);
 
-    return <MaskContainer>{children}</MaskContainer>;
+    return <MaskContainer ref={this.containerRef}>{children}</MaskContainer>;
   }
 }

@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
 import debug from 'debug';
@@ -18,7 +17,7 @@ const StyledContent = styled('span')(() => ({
   minWidth: '200px',
   touchAction: 'none',
   overflow: 'hidden',
-  whiteSpace: 'nowrap', // Prevent line wrapping
+  whiteSpace: 'nowrap',
   '&.over': {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -84,17 +83,19 @@ const StyledChipLabel = styled('span')(() => ({
   },
 }));
 
-function BlankContent({ 
-  disabled, 
-  choice, 
-  isOver, 
-  dragItem, 
+function BlankContent({
+  disabled,
+  choice,
+  isOver,
+  isDragging,
+  dragItem,
   correct,
   emptyResponseAreaWidth,
   emptyResponseAreaHeight,
 }) {
   const rootRef = useRef(null);
   const spanRef = useRef(null);
+  const frozenRef = useRef(null); // to use during dragging to prevent flickering
   const [dimensions, setDimensions] = useState({ height: 0, width: 0 });
 
   const handleImageLoad = () => {
@@ -140,16 +141,6 @@ function BlankContent({
     }
   };
 
-  const addDraggableFalseAttributes = (parent) => {
-    if (parent && parent.childNodes) {
-      parent.childNodes.forEach((elem) => {
-        if (elem instanceof Element || elem instanceof HTMLDocument) {
-          elem.setAttribute('draggable', false);
-        }
-      });
-    }
-  };
-
   const getRootDimensions = () => {
     // Handle potential non-numeric values
     const responseAreaWidth = !isNaN(parseFloat(emptyResponseAreaWidth))
@@ -176,63 +167,65 @@ function BlankContent({
     handleElements();
   }, []);
 
+  // Render math for the placeholder/preview when dragging over
   useEffect(() => {
     if (rootRef.current) {
       renderMath(rootRef.current);
     }
-  });
+  }, [isOver, dragItem?.choice?.value]);
 
   useEffect(() => {
-    if (JSON.stringify(choice) !== JSON.stringify(choice)) {
-      if (!choice) {
-        setDimensions({ height: 0, width: 0 });
-        return;
-      }
-      handleElements();
+    if (!choice) {
+      setDimensions({ height: 0, width: 0 });
+      return;
     }
+    handleElements();
   }, [choice]);
+
+  useEffect(() => {
+    if (!isOver && !isDragging) {
+      frozenRef.current = {
+        width: rootRef.current.offsetWidth,
+        height: rootRef.current.offsetHeight,
+      };
+    }
+  }, [choice, isOver, isDragging]);
 
   const draggedLabel = dragItem && isOver && dragItem.choice && dragItem.choice.value;
   const label = choice && choice.value;
+  const style = (isOver || isDragging)
+    ? {
+      width: frozenRef.current?.width,
+      height: frozenRef.current?.height,
+    }
+    : getRootDimensions();
 
   return (
     <StyledChip
       clickable={false}
-      disabled={true}
+      disabled={disabled}
       ref={rootRef}
       component="span"
       label={
         <React.Fragment>
           <StyledChipLabel
-            className={classnames({
+              ref={spanRef}
+              draggable={true}
+              className={classnames({
               over: isOver,
               hidden: draggedLabel,
             })}
-            ref={(ref) => {
-              if (ref) {
-                spanRef.current = ref;
-                ref.innerHTML = label || '';
-                addDraggableFalseAttributes(ref);
-              }
-            }}
-          >
-            {' '}
-          </StyledChipLabel>
+            dangerouslySetInnerHTML={{ __html: label || '' }}
+          />
           {draggedLabel && (
             <StyledChipLabel
+              draggable={true}
               className={classnames({
                 over: isOver,
                 dragged: true,
               })}
-              ref={(ref) => {
-                if (ref) {
-                  ref.innerHTML = draggedLabel || '';
-                  addDraggableFalseAttributes(ref);
-                }
-              }}
-            >
-              {' '}
-            </StyledChipLabel>
+              dangerouslySetInnerHTML={{ __html: draggedLabel || '' }}
+            />
           )}
         </React.Fragment>
       }
@@ -243,9 +236,7 @@ function BlankContent({
         incorrect: correct !== undefined && !correct,
       })}
       variant={disabled ? 'outlined' : undefined}
-      style={{
-        ...getRootDimensions(),
-      }}
+      style={style}
     />
   );
 }
@@ -270,16 +261,16 @@ BlankContent.propTypes = {
 };
 
 // New functional component using @dnd-kit hooks
-function DragDropBlank({ 
-  id, 
-  disabled, 
-  duplicates, 
-  choice, 
-  correct, 
-  onChange, 
-  emptyResponseAreaWidth, 
+function DragDropBlank({
+  id,
+  disabled,
+  duplicates,
+  choice,
+  correct,
+  onChange,
+  emptyResponseAreaWidth,
   emptyResponseAreaHeight,
-  instanceId 
+  instanceId
 }) {
   // Setup draggable functionality
   const {
@@ -326,7 +317,7 @@ function DragDropBlank({
   };
 
   return (
-    <StyledContent 
+    <StyledContent
       ref={setNodeRef}
       style={style}
       className={isOver ? 'over' : ''}

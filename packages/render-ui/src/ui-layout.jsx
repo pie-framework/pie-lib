@@ -20,40 +20,13 @@ const theme = createTheme({
         root: { fontFamily: 'inherit' },
       },
     },
-    MuiRadio: {
+    MuiButton: {
       styleOverrides: {
-        root: {
-          '&.Mui-checked': {
-            color: '#3f51b5 !important',
-          },
-        },
-      },
-    },
-    MuiCheckbox: {
-      styleOverrides: {
-        root: {
-          '&.Mui-checked': {
-            color: '#3f51b5 !important',
-          },
-        },
-      },
-    },
-    MuiTabs: {
-      styleOverrides: {
-        root: {
-          borderBottom: '1px solid #eee',
-        },
-      },
-    },
-    MuiSwitch: {
-      styleOverrides: {
-        root: {
-          '&.Mui-checked': {
-            color: '#3f51b5 !important',
-            '& + .MuiSwitch-track': {
-              backgroundColor: '#3f51b5 !important',
-              opacity: 0.5,
-            },
+        contained: {
+          backgroundColor: '#e0e0e0',
+          color: '#000000',
+          '&:hover': {
+            backgroundColor: '#bdbdbd',
           },
         },
       },

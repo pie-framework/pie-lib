@@ -66,10 +66,16 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
   );
 
   let popoverEl;
+  let popoverRoot;
 
   const closePopOver = () => {
+    if (popoverRoot) {
+      popoverRoot.unmount();
+      popoverRoot = null;
+    }
     if (popoverEl) {
       popoverEl.remove();
+      popoverEl = null;
     }
 
     removePopOvers();
@@ -85,7 +91,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
     closePopOver();
 
     popoverEl = document.createElement('div');
-    const popoverRoot = createRoot(popoverEl);
+    popoverRoot = createRoot(popoverEl);
     popoverRoot.render(
       <CustomPopper onClose={closePopOver} anchorEl={event.currentTarget}>
         <div>{el.label}</div>
@@ -93,7 +99,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
         <div style={infoStyle}>{el.description}</div>
 
         <div style={infoStyle}>{el.unicode}</div>
-      </CustomPopper>
+      </CustomPopper>,
     );
 
     document.body.appendChild(newEl);
@@ -175,8 +181,8 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
   const dialogRoot = createRoot(newEl);
   dialogRoot.render(el);
 
-  // Layout callback - executed after render
-  requestAnimationFrame(() => {
+  // Use setTimeout to ensure the element is rendered before positioning
+  setTimeout(() => {
     const cursorItem = document.querySelector(`[data-key="${value.anchorKey}"]`);
 
     if (cursorItem) {
@@ -220,7 +226,7 @@ const insertDialog = ({ editorDOM, value, callback, opts }) => {
 
       document.body.addEventListener('click', listener);
     }
-  });
+  }, 0);
 };
 
 const CharacterIcon = ({ letter }) => (

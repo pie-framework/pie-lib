@@ -3,41 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [11.22.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.21.0-mui-update.0...@pie-lib/editable-html@11.22.0-mui-update.0) (2025-11-05)
+# [11.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.32.0-mui-update.0...@pie-lib/editable-html@11.33.0-mui-update.0) (2025-12-17)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+# [11.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.31.0-mui-update.0...@pie-lib/editable-html@11.32.0-mui-update.0) (2025-12-17)
 
 
 ### Bug Fixes
 
-* add missing dependencies for dnd-kit ([c50ec8e](https://github.com/pie-framework/pie-lib/commit/c50ec8e0a839e574aa61db78ecd121c6fdbc70c9))
+* choice render for both img and math ([39bc638](https://github.com/pie-framework/pie-lib/commit/39bc638070fc5e9c5f2b50d0d70698f80a32ecb9))
+* fix math rendering issues after React, mui and drag upgrade for drag-in-the-blank ([6dc3c95](https://github.com/pie-framework/pie-lib/commit/6dc3c95c041be02015a9005133fe750e1ff78842))
+* prevent math re-rendering issues when dragging choices over blanks ([b316544](https://github.com/pie-framework/pie-lib/commit/b316544f0d574f7f57b70e2de4d8bab2086a4151))
 
 
 
 
 
-# [11.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.20.0-mui-update.0...@pie-lib/editable-html@11.21.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
-
-# [11.20.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.18.0-mui-update.0...@pie-lib/editable-html@11.20.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/editable-html
-
-
-
-
-
-# [11.18.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.17.2...@pie-lib/editable-html@11.18.0-mui-update.0) (2025-10-31)
+# [11.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.30.0-mui-update.0...@pie-lib/editable-html@11.31.0-mui-update.0) (2025-12-11)
 
 
 ### Features
 
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* drag library update ([fb7a4d0](https://github.com/pie-framework/pie-lib/commit/fb7a4d0ce761f2f4c1a122854cfa306abb8ea7c8))
-* packages/editable-html mui update PD-5268 ([6b8d201](https://github.com/pie-framework/pie-lib/commit/6b8d201cfc0bf7e26eea58e296109c463544075f))
+* updates for drag-in-the-blank ([0c096d8](https://github.com/pie-framework/pie-lib/commit/0c096d887f97edecd2dac68cda136b2d265dc7d5))
+
+
+
+
+
+# [11.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.29.0-mui-update.0...@pie-lib/editable-html@11.30.0-mui-update.0) (2025-12-02)
+
+
+### Features
+
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [11.21.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.21.1...@pie-lib/editable-html@11.21.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+## [11.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.17.2...@pie-lib/editable-html@11.21.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+# [11.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.20.0...@pie-lib/editable-html@11.21.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+# [11.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.17.0...@pie-lib/editable-html@11.20.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+# [11.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.17.0...@pie-lib/editable-html@11.19.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+
+
+
+
+# [11.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.17.0...@pie-lib/editable-html@11.18.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/editable-html
 
 
 

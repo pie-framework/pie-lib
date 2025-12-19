@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Tabs from '../tabs';
-import classNames from 'classnames';
 
 const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -16,7 +15,7 @@ const StyledFlow = styled('div')(() => ({
 }));
 
 const StyledContentContainer = styled('div')(({ theme }) => ({
-  padding: `${theme.spacing(2)}px 0`,
+  padding: `${theme.spacing(2)} 0`,
 }));
 
 const StyledConfigContainer = styled('div')(() => ({
@@ -98,12 +97,12 @@ class RawLayoutContents extends React.Component {
 
         {mode === 'tabbed' && hasSettingsPanel && (
           <Tabs onChange={this.onTabsChange} contentClassName="content-container" indicatorColor="primary">
-            <div title="Design" className="design-container">
+            <StyledContentContainer title="Design" className="design-container">
               {children}
-            </div>
-            <div title="Settings" className="settings-container">
+            </StyledContentContainer>
+            <StyledContentContainer title="Settings" className="settings-container">
               {secondary}
-            </div>
+            </StyledContentContainer>
           </Tabs>
         )}
 

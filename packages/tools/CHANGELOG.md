@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.29.0-mui-update.0...@pie-lib/tools@0.30.0-mui-update.0) (2025-11-05)
+# [0.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.40.0-mui-update.0...@pie-lib/tools@0.41.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/tools
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.28.0-mui-update.0...@pie-lib/tools@0.29.0-mui-update.0) (2025-11-03)
+# [0.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.39.0-mui-update.0...@pie-lib/tools@0.40.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/tools
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.26.0-mui-update.0...@pie-lib/tools@0.28.0-mui-update.0) (2025-11-03)
+# [0.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.38.0-mui-update.0...@pie-lib/tools@0.39.0-mui-update.0) (2025-12-11)
 
 **Note:** Version bump only for package @pie-lib/tools
 
@@ -27,14 +27,55 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.1...@pie-lib/tools@0.26.0-mui-update.0) (2025-10-31)
+# [0.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.37.0-mui-update.0...@pie-lib/tools@0.38.0-mui-update.0) (2025-12-02)
 
 
 ### Features
 
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* packages/charting  mui update PD-5268 ([9619c34](https://github.com/pie-framework/pie-lib/commit/9619c3437ad7ae762daa04350e1110cb429c7166))
-* packages/tools  mui update PD-5268 ([acbdc9a](https://github.com/pie-framework/pie-lib/commit/acbdc9a7354db19e4671bcbe182878c1d5791bc1))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [0.29.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.1...@pie-lib/tools@0.29.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+
+
+
+
+# [0.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.0...@pie-lib/tools@0.29.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+# [0.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.0...@pie-lib/tools@0.28.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+# [0.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.0...@pie-lib/tools@0.27.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+# [0.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.25.0...@pie-lib/tools@0.26.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/tools
 
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/mask-markup",
-  "version": "1.34.0-mui-update.0",
+  "version": "1.45.0-mui-update.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -12,10 +12,10 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/drag": "^2.23.0-mui-update.0",
-    "@pie-lib/editable-html": "^11.22.0-mui-update.0",
-    "@pie-lib/math-rendering": "^3.27.0-mui-update.0",
-    "@pie-lib/render-ui": "^4.36.0-mui-update.0",
+    "@pie-lib/drag": "2.34.0-mui-update.0",
+    "@pie-lib/editable-html": "11.33.0-mui-update.0",
+    "@pie-lib/math-rendering": "3.38.0-mui-update.0",
+    "@pie-lib/render-ui": "4.47.0-mui-update.0",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
     "immutable": "^4.0.0-rc.12",
@@ -33,5 +33,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "c0e988917115177798e7686c1f5585f0af1728fc"
 }

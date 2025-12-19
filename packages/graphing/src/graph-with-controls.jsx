@@ -66,7 +66,7 @@ export const filterByVisibleToolTypes = (toolbarTools, marks) =>
 const getDefaultCurrentTool = (toolType) => toolsArr.find((tool) => tool.type === toolType) || null;
 
 const Collapsible = ({ children, title }) => (
-  <StyledAccordion elevation={0} disableGutters={true} square={true}>
+  <StyledAccordion elevation={0} disableGutters={true} square={true} TransitionProps={{ timeout: { enter: 225, exit: 195 } }}>
     <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
       <Typography variant="subheading">{title}</Typography>
     </StyledAccordionSummary>

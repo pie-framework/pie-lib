@@ -21,7 +21,7 @@ const AxisDefaultProps = {
   },
 };
 
-const StyledAxis = styled(Axis)(({ theme }) => ({
+const StyledAxesGroup = styled('g')(() => ({
   '& .vx-axis-line': {
     stroke: '#8a92c0',
     strokeWidth: 4,
@@ -125,8 +125,8 @@ export class RawXAxis extends React.Component {
     const necessaryWidth = amountToIncreaseWidth(longestWord) + 2;
 
     return (
-      <React.Fragment>
-        <StyledAxis
+      <StyledAxesGroup>
+        <Axis
           scale={scale.x}
           top={scale.y(0)}
           left={0}
@@ -147,7 +147,7 @@ export class RawXAxis extends React.Component {
             <LabelContainer dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
           </foreignObject>
         )}
-      </React.Fragment>
+      </StyledAxesGroup>
     );
   }
 }
@@ -170,8 +170,8 @@ export class RawYAxis extends React.Component {
     const customTickFormat = (value) => (skipValues && skipValues.indexOf(value) >= 0 ? '' : value);
 
     return (
-      <React.Fragment>
-        <StyledAxis
+      <StyledAxesGroup>
+        <Axis
           orientation={'left'}
           scale={scale.y}
           top={0}
@@ -209,7 +209,7 @@ export class RawYAxis extends React.Component {
             </Readable>
           </foreignObject>
         )}
-      </React.Fragment>
+      </StyledAxesGroup>
     );
   }
 }
@@ -278,7 +278,7 @@ export default class Axes extends React.Component {
 
     // each axis has to be displayed only if the domain & range include it
     return (
-      <React.Fragment>
+      <StyledAxesGroup>
         {range.min <= 0 ? (
           <XAxis
             {...this.props}
@@ -296,7 +296,7 @@ export default class Axes extends React.Component {
             distanceFromOriginToFirstNegativeX={distanceFromOriginToFirstNegativeX}
           />
         ) : null}
-      </React.Fragment>
+      </StyledAxesGroup>
     );
   }
 }

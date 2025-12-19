@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderMath } from '@pie-lib/math-rendering';
 import { DragProvider } from '@pie-lib/drag';
+import { DragOverlay, closestCenter } from '@dnd-kit/core';
+
 import Choices from './choices';
+import Choice from './choices/choice';
 import Blank from './components/blank';
 import { withMask } from './with-mask';
 
@@ -19,6 +21,7 @@ const Masked = withMask('blank', (props) => (node, data, onChange) => {
       emptyResponseAreaWidth,
       emptyResponseAreaHeight,
       instanceId,
+      isDragging
     } = props;
     const choiceId = showCorrectAnswer ? correctResponse[dataset.id] : data[dataset.id];
     // eslint-disable-next-line react/prop-types
@@ -44,12 +47,20 @@ const Masked = withMask('blank', (props) => (node, data, onChange) => {
           onChange(newData);
         }}
         instanceId={instanceId}
+        isDragging={isDragging}
       />
     );
   }
 });
 
 export default class DragInTheBlank extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeDragItem: null,
+    };
+  }
+
   static propTypes = {
     markup: PropTypes.string,
     layout: PropTypes.object,
@@ -71,57 +82,69 @@ export default class DragInTheBlank extends React.Component {
     instanceId: 'drag-in-the-blank',
   };
 
+  handleDragStart = (event) => {
+    const { active } = event;
+
+    if (active?.data?.current) {
+      this.setState({
+        activeDragItem: active.data.current,
+      });
+    }
+  };
+
+  renderDragOverlay = () => {
+    const { activeDragItem } = this.state;
+    if (!activeDragItem) return null;
+
+    if (activeDragItem.type === 'MaskBlank') {
+      return (
+        <Choice
+          disabled={activeDragItem.disabled}
+          choice={activeDragItem.choice}
+          instanceId={activeDragItem.instanceId}
+        />
+      );
+    }
+
+    return null;
+  };
+
   handleDragEnd = (event) => {
-    console.log('Drag End Event:', event);
     const { active, over } = event;
     const { onChange, value } = this.props;
 
     if (!over || !active || !onChange) {
-      console.log('Early return - missing data:', { over: !!over, active: !!active, onChange: !!onChange });
       return;
     }
 
     const draggedData = active.data.current;
     const dropData = over.data.current;
 
-    console.log('Drag data:', draggedData);
-    console.log('Drop data:', dropData);
-
-    // Handle drop from choice to blank or blank to blank
     if (draggedData?.type === 'MaskBlank' && dropData?.accepts?.includes('MaskBlank')) {
-      console.log('Valid drag/drop types');
       const draggedItem = draggedData;
       const targetId = dropData.id;
 
-      if (draggedItem.instanceId === dropData.instanceId) {
-        console.log('Instance IDs match');
-
-        // Handle drop from choice to blank
-        if (draggedItem.fromChoice === true) {
-          console.log('Dropping from choice to blank:', targetId);
-          const newValue = { ...value };
-          newValue[targetId] = draggedItem.choice.id;
-          onChange(newValue);
-        }
-        // Handle drop from blank to blank
-        else if (draggedItem.id !== targetId) {
-          console.log('Moving from blank to blank:', draggedItem.id, '->', targetId);
-          const newValue = { ...value };
-          newValue[targetId] = draggedItem.choice.id;
-          delete newValue[draggedItem.id];
-          onChange(newValue);
-        }
-      } else {
-        console.log('Instance ID mismatch:', draggedItem.instanceId, 'vs', dropData.instanceId);
+      // drop from choice to blank (placing choice into response)
+      if (draggedItem.fromChoice === true) {
+        const newValue = { ...value };
+        newValue[targetId] = draggedItem.choice.id;
+        onChange(newValue);
+      } else if (dropData.toChoiceBoard === true) {
+        // handle drop from blank to choice board (removal from blank)
+        const newValue = { ...value };
+        delete newValue[draggedItem.id];
+        onChange(newValue);
       }
-    } else {
-      console.log('Invalid drag/drop types:', draggedData?.type, dropData?.accepts);
+      // handle drop from blank to blank (changing position)
+      else if (draggedItem.id !== targetId) {
+        const newValue = { ...value };
+        newValue[targetId] = draggedItem.choice.id;
+        delete newValue[draggedItem.id];
+        onChange(newValue);
+      }
     }
+    this.setState({ activeDragItem: null });
   };
-
-  componentDidUpdate() {
-    if (this.rootRef) renderMath(this.rootRef);
-  }
 
   getPositionDirection = (choicePosition) => {
     let flexDirection;
@@ -172,7 +195,11 @@ export default class DragInTheBlank extends React.Component {
     const style = { display: 'flex', minWidth: '100px', ...this.getPositionDirection(choicePosition) };
 
     return (
-      <DragProvider onDragEnd={this.handleDragEnd}>
+      <DragProvider
+        onDragStart={this.handleDragStart}
+        onDragEnd={this.handleDragEnd}
+        collisionDetection={closestCenter}
+      >
         <div ref={(ref) => (this.rootRef = ref)} style={style}>
           <Choices
             choicePosition={choicePosition}
@@ -197,7 +224,11 @@ export default class DragInTheBlank extends React.Component {
             emptyResponseAreaWidth={emptyResponseAreaWidth}
             emptyResponseAreaHeight={emptyResponseAreaHeight}
             instanceId={instanceId}
+            isDragging={!!this.state.activeDragItem}
           />
+          <DragOverlay style={{ pointerEvents: "none" }}>
+            {this.renderDragOverlay()}
+          </DragOverlay>
         </div>
       </DragProvider>
     );

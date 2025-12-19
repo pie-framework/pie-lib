@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.27.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.26.0-mui-update.0...@pie-lib/scoring-config@3.27.0-mui-update.0) (2025-11-05)
+# [3.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.37.0-mui-update.0...@pie-lib/scoring-config@3.38.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/scoring-config
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [3.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.25.0-mui-update.0...@pie-lib/scoring-config@3.26.0-mui-update.0) (2025-11-03)
+# [3.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.36.0-mui-update.0...@pie-lib/scoring-config@3.37.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/scoring-config
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [3.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.23.0-mui-update.0...@pie-lib/scoring-config@3.25.0-mui-update.0) (2025-11-03)
+# [3.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.35.0-mui-update.0...@pie-lib/scoring-config@3.36.0-mui-update.0) (2025-12-11)
 
 **Note:** Version bump only for package @pie-lib/scoring-config
 
@@ -27,13 +27,63 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [3.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.22.2...@pie-lib/scoring-config@3.23.0-mui-update.0) (2025-10-31)
+# [3.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.34.0-mui-update.0...@pie-lib/scoring-config@3.35.0-mui-update.0) (2025-12-02)
 
 
 ### Features
 
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* packages/scoring-config mui update PD-5268 ([7ca6f32](https://github.com/pie-framework/pie-lib/commit/7ca6f32cf8bbd7b5d79479d80b8d2edfe86f2fb3))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [3.26.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.26.1...@pie-lib/scoring-config@3.26.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+## [3.26.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.22.2...@pie-lib/scoring-config@3.26.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+
+
+
+
+# [3.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.25.0...@pie-lib/scoring-config@3.26.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+# [3.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.22.0...@pie-lib/scoring-config@3.25.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+# [3.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.22.0...@pie-lib/scoring-config@3.24.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
+
+
+
+
+
+# [3.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/scoring-config@3.22.0...@pie-lib/scoring-config@3.23.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/scoring-config
 
 
 

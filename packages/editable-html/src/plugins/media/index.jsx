@@ -44,8 +44,8 @@ export const insertDialog = (props) => {
     />
   );
 
-  const root = createRoot(newEl);
-  root.render(el);
+  const dialogRoot = createRoot(newEl);
+  dialogRoot.render(el);
 
   document.body.appendChild(newEl);
 };

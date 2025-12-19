@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.25.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.24.0-mui-update.0...@pie-lib/feedback@0.25.0-mui-update.0) (2025-11-05)
+# [0.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.35.0-mui-update.0...@pie-lib/feedback@0.36.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/feedback
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.24.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.23.0-mui-update.0...@pie-lib/feedback@0.24.0-mui-update.0) (2025-11-03)
+# [0.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.34.0-mui-update.0...@pie-lib/feedback@0.35.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/feedback
 
@@ -19,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.23.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.21.0-mui-update.0...@pie-lib/feedback@0.23.0-mui-update.0) (2025-11-03)
+# [0.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.33.0-mui-update.0...@pie-lib/feedback@0.34.0-mui-update.0) (2025-12-11)
 
 **Note:** Version bump only for package @pie-lib/feedback
 
@@ -27,7 +27,50 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.21.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.20.0...@pie-lib/feedback@0.21.0-mui-update.0) (2025-10-31)
+# [0.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.32.0-mui-update.0...@pie-lib/feedback@0.33.0-mui-update.0) (2025-12-02)
+
+
+### Features
+
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [0.24.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.20.0...@pie-lib/feedback@0.24.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+# [0.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.23.0...@pie-lib/feedback@0.24.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+# [0.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.20.0...@pie-lib/feedback@0.23.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+# [0.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.20.0...@pie-lib/feedback@0.22.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/feedback
+
+
+
+
+
+# [0.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/feedback@0.20.0...@pie-lib/feedback@0.21.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/feedback
 

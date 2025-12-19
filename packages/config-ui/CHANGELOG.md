@@ -3,27 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [11.30.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.29.0-mui-update.0...@pie-lib/config-ui@11.30.0-mui-update.0) (2025-11-05)
+# [11.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.40.0-mui-update.0...@pie-lib/config-ui@11.41.0-mui-update.0) (2025-12-17)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [11.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.39.0-mui-update.0...@pie-lib/config-ui@11.40.0-mui-update.0) (2025-12-17)
 
 
 ### Bug Fixes
 
-* label positioning in input render-ui ([8012817](https://github.com/pie-framework/pie-lib/commit/80128173dc596181de296633e9413bba8b79db81))
-* remove parantheses ([07c8d13](https://github.com/pie-framework/pie-lib/commit/07c8d1366d768b1e22e31fb930a7d41a2a31d5ca))
+* number fields in settings panel ([babde84](https://github.com/pie-framework/pie-lib/commit/babde844bffe8efdc4a2622bbfc0e372a0d33806))
+* settings panel label size ([c3606b9](https://github.com/pie-framework/pie-lib/commit/c3606b9319e771284415177bee48ffa49fb72fc6))
 
 
 
 
 
-# [11.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.28.0-mui-update.0...@pie-lib/config-ui@11.29.0-mui-update.0) (2025-11-03)
-
-**Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
-
-# [11.28.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.26.0-mui-update.0...@pie-lib/config-ui@11.28.0-mui-update.0) (2025-11-03)
+# [11.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.38.0-mui-update.0...@pie-lib/config-ui@11.39.0-mui-update.0) (2025-12-11)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
@@ -31,13 +31,63 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [11.26.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.2...@pie-lib/config-ui@11.26.0-mui-update.0) (2025-10-31)
+# [11.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.37.0-mui-update.0...@pie-lib/config-ui@11.38.0-mui-update.0) (2025-12-02)
 
 
 ### Features
 
-* **config-ui:** migrate to material v5 PD-5258 ([3ea0799](https://github.com/pie-framework/pie-lib/commit/3ea0799ce78ca20c938c7765b7af5a47194c39d1))
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [11.30.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.30.1...@pie-lib/config-ui@11.30.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+## [11.30.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.2...@pie-lib/config-ui@11.30.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* avoid redundant re-renders by guarding layoutMode setState ([3f4aecd](https://github.com/pie-framework/pie-lib/commit/3f4aecd1c862b94a9faf3e058086da30995ae60d))
+
+
+
+
+
+# [11.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.28.0...@pie-lib/config-ui@11.29.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [11.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.28.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [11.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.27.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
+
+
+
+
+# [11.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.26.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/config-ui
 
 
 

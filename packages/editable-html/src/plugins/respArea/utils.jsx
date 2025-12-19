@@ -25,12 +25,13 @@ export const insertSnackBar = (message) => {
     />
   );
 
-  const root = createRoot(newEl);
-  root.render(el);
+  const snackbarRoot = createRoot(newEl);
+  snackbarRoot.render(el);
 
   document.body.appendChild(newEl);
 
   setTimeout(() => {
+    snackbarRoot.unmount();
     newEl.remove();
   }, 2000);
 };

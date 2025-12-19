@@ -9,8 +9,29 @@ const log = debug('@pie-lib:config-ui:number-text-field');
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   marginRight: theme.spacing(1),
-  '& label': {
-    width: 'max-content',
+  '& .MuiInputLabel-root': {
+    width: 'auto',
+    minWidth: 'max-content',
+    maxWidth: 'none',
+    whiteSpace: 'nowrap',
+    overflow: 'visible',
+    transform: 'translate(0, 8px) scale(0.75)',
+    transformOrigin: 'top left',
+    position: 'relative',
+  },
+  '& .MuiInputBase-root, & .MuiInput-root, & .MuiFilledInput-root, & .MuiOutlinedInput-root': {
+    height: 'auto',
+    minHeight: 'auto',
+  },
+  '& .MuiInputBase-input': {
+    height: 'auto',
+    minHeight: 'auto',
+    padding: '8px 12px',
+  },
+  '& .MuiInput-root, & .MuiFilledInput-root': {
+    '&:before, &:after, &:hover:not(.Mui-disabled):before': {
+      display: 'none',
+    },
   },
 }));
 
@@ -162,6 +183,9 @@ export class NumberTextField extends React.Component {
         }}
         disabled={disabled}
         label={label}
+        InputLabelProps={{
+          shrink: true,
+        }}
         value={this.state.value}
         error={!!error}
         helperText={error}

@@ -1061,6 +1061,14 @@
     "@dnd-kit/utilities" "^3.2.2"
     tslib "^2.0.0"
 
+"@dnd-kit/modifiers@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@dnd-kit/modifiers/-/modifiers-9.0.0.tgz#96a0280c77b10c716ef79d9792ce7ad04370771d"
+  integrity sha512-ybiLc66qRGuZoC20wdSSG6pDXFikui/dCNGthxv4Ndy8ylErY0N3KVxY2bgo7AWwIbxDmXDg3ylAFmnrjcbVvw==
+  dependencies:
+    "@dnd-kit/utilities" "^3.2.2"
+    tslib "^2.0.0"
+
 "@dnd-kit/sortable@8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@dnd-kit/sortable/-/sortable-8.0.0.tgz#086b7ac6723d4618a4ccb6f0227406d8a8862a96"
@@ -2830,6 +2838,42 @@
     parse-latin "^4.0.0"
     unist-util-modify-children "^1.0.0"
     unist-util-visit-children "^1.0.0"
+
+"@pie-lib/charting@5.48.0-mui-update.0":
+  version "5.48.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/charting/-/charting-5.48.0-mui-update.0.tgz#218263604c454d8d6de71ae662e274cb9ca5f33d"
+  integrity sha512-0TURXSEAeMz7C87ziNxVd0p8kclXvpXOHT+c9UKDmNha0yjoMOyBGvKv1AP7nu0uU+QKyt0hnywZvyZSY4Tb1Q==
+  dependencies:
+    "@emotion/react" "^11.14.0"
+    "@emotion/style" "^0.8.0"
+    "@mapbox/point-geometry" "^0.1.0"
+    "@mui/icons-material" "^7.3.4"
+    "@mui/material" "^7.3.4"
+    "@pie-lib/math-rendering" "3.38.0-mui-update.0"
+    "@pie-lib/plot" "2.39.0-mui-update.0"
+    "@pie-lib/render-ui" "4.47.0-mui-update.0"
+    "@pie-lib/translator" "2.36.0-mui-update.0"
+    "@vx/axis" "^0.0.183"
+    "@vx/event" "^0.0.182"
+    "@vx/grid" "^0.0.183"
+    "@vx/group" "^0.0.183"
+    "@vx/point" "^0.0.182"
+    "@vx/scale" "^0.0.182"
+    "@vx/shape" "^0.0.183"
+    classnames "^2.2.6"
+    d3-scale "^2.1.2"
+    d3-selection "^1.3.2"
+    debug "^4.1.1"
+    invariant "^2.2.4"
+    lodash "^4.17.11"
+    react "^18.2.0"
+    react-draggable "^3.1.1"
+    react-input-autosize "^2.2.1"
+
+"@pie-lib/test-utils@^0.23.0-mui-update.0":
+  version "0.23.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.23.0-mui-update.0.tgz#c4097e32e57ba38b37dd625ce973c6df4f9c5619"
+  integrity sha512-xNMwOABgRvvYJUGuRkSiinWuQYcGa4DUaQ/Vqso5KSqOAIIgy7Cmau4QB7C+BJIXoPmNnc+aSkYQCio/u1aHSw==
 
 "@pie-lib/test-utils@^0.8.0":
   version "0.8.0"

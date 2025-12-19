@@ -50,6 +50,8 @@ export class ImageToolbar extends React.Component {
     disableImageAlignmentButtons: PropTypes.bool,
   };
 
+  dialogRoot = null;
+
   onAltTextDone = (newAlt) => {
     log('[onAltTextDone]: alt:', newAlt);
 
@@ -67,8 +69,8 @@ export class ImageToolbar extends React.Component {
 
     const el = <AltDialog alt={alt} onDone={this.onAltTextDone} />;
 
-    const root = createRoot(popoverEl);
-    root.render(el);
+    this.dialogRoot = createRoot(popoverEl);
+    this.dialogRoot.render(el);
 
     document.body.appendChild(popoverEl);
   };

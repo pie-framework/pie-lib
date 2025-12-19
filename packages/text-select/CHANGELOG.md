@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.32.0-mui-update.0...@pie-lib/text-select@1.33.0-mui-update.0) (2025-11-05)
+# [1.44.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.43.0-mui-update.0...@pie-lib/text-select@1.44.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.31.0-mui-update.0...@pie-lib/text-select@1.32.0-mui-update.0) (2025-11-03)
+# [1.43.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.42.0-mui-update.0...@pie-lib/text-select@1.43.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
@@ -19,29 +19,71 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.29.0-mui-update.0...@pie-lib/text-select@1.31.0-mui-update.0) (2025-11-03)
+# [1.42.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.41.0-mui-update.0...@pie-lib/text-select@1.42.0-mui-update.0) (2025-12-11)
 
-
-### Bug Fixes
-
-* refactor text select as renderAsString not used anymore ([9a1aea9](https://github.com/pie-framework/pie-lib/commit/9a1aea9c9cc709a803e30a8477b42ae2136a5061))
+**Note:** Version bump only for package @pie-lib/text-select
 
 
 
 
 
-# [1.29.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.2...@pie-lib/text-select@1.29.0-mui-update.0) (2025-10-31)
-
-
-### Bug Fixes
-
-* **correct-answer-toggle, text-select:** change logic to corresp to material v5 PD-5269 PD-5271 ([e992861](https://github.com/pie-framework/pie-lib/commit/e992861c6d964340bf7afc8e5ac9007816d510ef))
+# [1.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.40.0-mui-update.0...@pie-lib/text-select@1.41.0-mui-update.0) (2025-12-02)
 
 
 ### Features
 
-* **correct-answe-toggle, legend:** delete unused files and imports PD-5258 ([261638d](https://github.com/pie-framework/pie-lib/commit/261638d9ceff79163eb858696a4c8eb7a7a3006c))
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
+## [1.32.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.32.1...@pie-lib/text-select@1.32.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+## [1.32.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.2...@pie-lib/text-select@1.32.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+
+
+
+
+# [1.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.31.0...@pie-lib/text-select@1.32.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+# [1.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.0...@pie-lib/text-select@1.31.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+# [1.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.0...@pie-lib/text-select@1.30.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+
+
+
+
+# [1.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.0...@pie-lib/text-select@1.29.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/text-select
 
 
 

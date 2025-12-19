@@ -3,8 +3,7 @@ import { styled } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import { Select } from '@mui/material';
 
 const StyledContainer = styled('div')(() => ({
   width: '160px',
@@ -26,9 +25,12 @@ const ChartType = ({ onChange, value, availableChartTypes, chartTypeLabel }) => 
       </StyledInputLabel>
       <Select
         labelId="type-helper-label"
+        id="type-helper-label-select"
+        name="chartType"
         value={value}
         onChange={onChange}
-        input={<OutlinedInput labelWidth={75} name="type" />}
+        label={chartTypeLabel}
+        MenuProps={{transitionDuration: { enter: 225, exit: 195 }}}
       >
         {availableChartTypes?.histogram && <MenuItem value={'histogram'}>{availableChartTypes.histogram}</MenuItem>}
         {availableChartTypes?.bar && <MenuItem value={'bar'}>{availableChartTypes.bar}</MenuItem>}
