@@ -5,7 +5,27 @@ const links = loadLinks();
 const packageInfo = require('./config/package-info');
 
 const withTM = require('next-transpile-modules')([
-  '@pie-framework/mathquill', // 👈 your package name
+  '@pie-framework/mathquill',
+  '@pie-lib/charting',
+  '@pie-lib/config-ui',
+  '@pie-lib/correct-answer-toggle',
+  '@pie-lib/drag',
+  '@pie-lib/editable-html',
+  '@pie-lib/graphing',
+  '@pie-lib/icons',
+  '@pie-lib/mask-markup',
+  '@pie-lib/math-evaluator',
+  '@pie-lib/math-input',
+  '@pie-lib/math-rendering',
+  '@pie-lib/math-toolbar',
+  '@pie-lib/plot',
+  '@pie-lib/render-ui',
+  '@pie-lib/rubric',
+  '@pie-lib/scoring-config',
+  '@pie-lib/style-utils',
+  '@pie-lib/text-select',
+  '@pie-lib/tools',
+  '@pie-lib/translator',
 ]);
 
 const getAssetPrefix = () => {
