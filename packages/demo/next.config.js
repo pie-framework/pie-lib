@@ -24,6 +24,13 @@ const nextConfig = {
 
     config.resolve.mainFields = ['browser', 'main'];
 
+    // Ensure all modules use the same React instance
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'react': path.resolve(__dirname, '../../node_modules/react'),
+      'react-dom': path.resolve(__dirname, '../../node_modules/react-dom'),
+    };
+
     // Optional: keep url-loader rule if you still want inlined assets
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|otf)$/,
