@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { types } from '@pie-lib/plot';
 import { disabled, correct, incorrect, missing, disabledSecondary } from '../styles';
-import * as vx from '@vx/shape';
+import * as vx from '@visx/shape';
 import { color } from '@pie-lib/render-ui';
 
 const dragging = () => ({

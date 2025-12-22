@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Circle } from '@vx/shape';
+import { Circle } from '@visx/shape';
 
 import { types } from '@pie-lib/plot';
 import { dataToXBand } from '../utils';

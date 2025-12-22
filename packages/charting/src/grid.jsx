@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { GridRows, GridColumns } from '@vx/grid';
+import { GridRows, GridColumns } from '@visx/grid';
 
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';

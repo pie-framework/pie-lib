@@ -1,5 +1,5 @@
 import React from 'react';
-import { Axis } from '@vx/axis';
+import { Axis } from '@visx/axis';
 import { types } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import Arrow from './arrow';
@@ -41,11 +41,11 @@ const StyledAxisLabelHolder = styled('div')(({ theme }) => ({
 }));
 
 const StyledAxesGroup = styled('g')(() => ({
-  '& .vx-axis-line': {
+  '& .visx-axis-line': {
     stroke: color.defaults.PRIMARY,
     strokeWidth: 3,
   },
-  '& .vx-axis-tick': {
+  '& .visx-axis-tick': {
     fill: color.defaults.PRIMARY,
     '& line': {
       stroke: color.defaults.PRIMARY,
@@ -102,12 +102,6 @@ export class RawXAxis extends React.Component {
     } = this.props;
     const { scale, domain, size, range } = graphProps || {};
 
-    // Having 0 as a number in columnTicksValues does not make 0 to show up
-    // so we use this trick, by defining it as a string:
-    const tickValues =
-      (domain.labelStep || range.labelStep) && domain.min <= 0 ? ['0', ...columnTicksValues] : columnTicksValues;
-    // However, the '0' has to be displayed only if other tick labels (y-axis or x-axis) are displayed
-
     const labelProps = (label) => {
       const y = skipValues && skipValues[0] === label ? distanceFromOriginToFirstNegativeY + 4 : dy;
 
@@ -115,8 +109,8 @@ export class RawXAxis extends React.Component {
         ...tickLabelStyles,
         textAnchor: 'middle',
         y: y,
-        dx: label === '0' ? -10 : 0,
-        dy: label === '0' ? -7 : 0,
+        dx: label === 0 ? -10 : 0,
+        dy: label === 0 ? -7 : 0,
       };
     };
 
@@ -134,7 +128,8 @@ export class RawXAxis extends React.Component {
           rangePadding={8}
           tickFormat={(value) => value}
           tickLabelProps={labelProps}
-          tickValues={tickValues}
+          tickValues={columnTicksValues}
+          hideZero={!(domain.labelStep || range.labelStep) && domain.min <= 0}
         />
         {includeArrows && includeArrows.left && (
           <StyledArrow direction="left" x={domain.min} y={0} scale={scale} />

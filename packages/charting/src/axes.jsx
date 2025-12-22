@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { AxisLeft, AxisBottom } from '@vx/axis';
+import { AxisLeft, AxisBottom } from '@visx/axis';
 import Checkbox from '@mui/material/Checkbox';
 
 import { types } from '@pie-lib/plot';
