@@ -1,4 +1,4 @@
-import { scaleBand, scalePoint } from '@vx/scale';
+import { scaleBand, scalePoint } from '@visx/scale';
 import { utils } from '@pie-lib/plot';
 
 export const tickCount = utils.tickCount;
@@ -8,38 +8,42 @@ export const point = utils.point;
 export const bandKey = (d, index) => `${index}-${d.label || '-'}`;
 
 export const dataToXBand = (scaleX, data, width, type) => {
+  const chartWidth = width || 400; // fallback
+  const domain = data && data.length ? data.map(bandKey) : ['default'];
+
   switch (type) {
     case 'bar':
     case 'dotPlot':
     case 'linePlot':
       return scaleBand({
-        rangeRound: [0, width],
-        domain: data && data.map(bandKey),
+        range: [0, chartWidth],
+        domain,
         padding: 0.2,
       });
 
     case 'histogram':
       return scaleBand({
-        rangeRound: [0, width],
-        domain: data && data.map(bandKey),
+        range: [0, chartWidth],
+        domain,
         padding: 0,
       });
 
     case 'lineCross':
     case 'lineDot':
       return scalePoint({
-        domain: data && data.map(bandKey),
-        rangeRound: [0, width],
+        domain,
+        range: [0, chartWidth],
       });
 
     default:
       return scaleBand({
-        range: [0, width],
-        domain: data && data.map(bandKey),
+        range: [0, chartWidth],
+        domain,
         padding: 0,
       });
   }
 };
+
 
 export const getTickValues = (prop = {}) => {
   const tickValues = [];

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Check from '@mui/icons-material/Check';
 import { styled } from '@mui/material/styles';
-import { Group } from '@vx/group';
+import { Group } from '@visx/group';
 import debug from 'debug';
 
 import { types } from '@pie-lib/plot';

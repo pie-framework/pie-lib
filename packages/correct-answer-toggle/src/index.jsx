@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import CSSTransition from 'react-transition-group/CSSTransition';
+import { CSSTransition } from 'react-transition-group';
 import { CorrectResponse } from '@pie-lib/icons';
 import { Readable } from '@pie-lib/render-ui';
 import Expander from './expander';

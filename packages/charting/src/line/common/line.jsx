@@ -1,6 +1,6 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import { LinePath } from '@vx/shape';
+import { Group } from '@visx/group';
+import { LinePath } from '@visx/shape';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import DraggableHandle, { DragHandle } from './drag-handle';
@@ -89,7 +89,6 @@ export class RawLine extends React.Component {
     const { scale } = graphProps;
     const lineToUse = dragging ? lineState : getData(data, graphProps.domain);
 
-    console.log('defineChart', lineToUse);
     return (
       <React.Fragment>
         <StyledLinePath

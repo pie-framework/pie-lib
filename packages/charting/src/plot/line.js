@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LinePath } from '@vx/shape';
-import { Group } from '@vx/group';
+import { LinePath } from '@visx/shape';
+import { Group } from '@visx/group';
 import { styled } from '@mui/material/styles';
 
 import { types } from '@pie-lib/plot';

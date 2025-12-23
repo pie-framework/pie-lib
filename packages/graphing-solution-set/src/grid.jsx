@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as vx from '@vx/grid';
+import * as vx from '@visx/grid';
 import { types } from '@pie-lib/plot';
 import { getTickValues } from './utils';
 

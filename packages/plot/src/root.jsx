@@ -2,7 +2,6 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
-import cn from 'classnames';
 
 import { color, Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html';
@@ -316,7 +315,7 @@ export class Root extends React.Component {
           ) : (
             <div ref={(r) => (this.titleRef = r)}>
               {isChart ? (
-                <ChartTitle className={cn({ rightMargin: showPixelGuides })}>
+                <ChartTitle className={showPixelGuides ? 'rightMargin' : ''}>
                   <EditableHtml
                     style={
                       isChart && {
@@ -335,7 +334,7 @@ export class Root extends React.Component {
                   />
                 </ChartTitle>
               ) : (
-                <GraphTitle className={cn({ rightMargin: showPixelGuides })}>
+                <GraphTitle className={showPixelGuides ? 'rightMargin' : ''}>
                   <EditableHtml
                     style={
                       isChart && {

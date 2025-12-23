@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Group } from '@vx/group';
-import { Bar as VxBar } from '@vx/shape';
+import { Group } from '@visx/group';
+import { Bar as VisxBar } from '@visx/shape';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
 
@@ -51,7 +51,7 @@ const calculateFillColor = (isHovered, barColor, index, hoverHistogramColors, al
   return barColor || null;
 };
 
-const StyledVxBar = styled(VxBar)(() => ({
+const StyledVisxBar = styled(VisxBar)(() => ({
   fill: color.defaults.TERTIARY,
 }));
 
@@ -91,17 +91,14 @@ export class RawBar extends React.Component {
   }
 
   handleMouseMove = (e) => {
-    // Update mouse position
     this.mouseX = e.clientX;
     this.mouseY = e.clientY;
-    // Check if the mouse is inside the <g> element
     const isMouseInside = this.isMouseInsideSvgElement();
     this.setState({ isHovered: isMouseInside });
   };
 
   isMouseInsideSvgElement = () => {
     const gBoundingBox = this.gRef.getBoundingClientRect();
-    // Check if the mouse position is within the bounding box
     return (
       this.mouseX >= gBoundingBox.left &&
       this.mouseX <= gBoundingBox.right &&
@@ -110,13 +107,8 @@ export class RawBar extends React.Component {
     );
   };
 
-  handleMouseEnter = () => {
-    this.setState({ isHovered: true });
-  };
-
-  handleMouseLeave = () => {
-    this.setState({ isHovered: false });
-  };
+  handleMouseEnter = () => this.setState({ isHovered: true });
+  handleMouseLeave = () => this.setState({ isHovered: false });
 
   setDragValue = (dragValue) => this.setState({ dragValue });
 
@@ -163,7 +155,6 @@ export class RawBar extends React.Component {
     const rawY = range.max - v;
     const yy = range.max - rawY;
     const correctValue = correctData ? correctData.find((d) => d.label === label) : null;
-    log('label:', label, 'barX:', barX, 'v: ', v, 'barHeight:', barHeight, 'barWidth: ', barWidth);
 
     const Component = interactive ? DraggableHandle : DragHandle;
     const isHistogram = !!barColor;
@@ -176,46 +167,43 @@ export class RawBar extends React.Component {
         onTouchStart={this.handleMouseEnter}
         onTouchEnd={this.handleMouseLeave}
       >
-        <StyledVxBar
+        <StyledVisxBar
           x={barX}
           y={scale.y(yy)}
           width={barWidth}
           height={barHeight}
           style={{ fill: fillColor }}
         />
-        {correctness &&
-          correctness.value === 'incorrect' &&
-          (() => {
-            const correctVal = parseFloat(correctValue && correctValue.value);
-            if (isNaN(correctVal)) return null;
-            const correctPxHeight = scale.y(range.max - correctVal);
-            const actualPxHeight = barHeight;
-            const diffPx = Math.abs(correctPxHeight - actualPxHeight);
-            const yDiff = scale.y(correctVal);
-            const indicatorBarColor = correctPxHeight > actualPxHeight ? color.borderGray() : color.defaults.WHITE;
-            const yToRender = correctPxHeight > actualPxHeight ? yDiff : yDiff - diffPx;
+        {correctness && correctness.value === 'incorrect' && (() => {
+          const correctVal = parseFloat(correctValue && correctValue.value);
+          if (isNaN(correctVal)) return null;
+          const correctPxHeight = scale.y(range.max - correctVal);
+          const actualPxHeight = barHeight;
+          const diffPx = Math.abs(correctPxHeight - actualPxHeight);
+          const yDiff = scale.y(correctVal);
+          const indicatorBarColor = correctPxHeight > actualPxHeight ? color.borderGray() : color.defaults.WHITE;
+          const yToRender = correctPxHeight > actualPxHeight ? yDiff : yDiff - diffPx;
 
-            return (
-              <>
-                <StyledVxBar
-                  x={barX + 2} // add 2px for the stroke (the dashed border)
-                  y={yToRender}
-                  width={barWidth - 4} // substract 4px for the total stroke
-                  height={diffPx}
-                  style={{
-                    stroke: indicatorBarColor,
-                    strokeWidth: 2,
-                    strokeDasharray: '5,2',
-                    fill: 'none',
-                  }}
-                />
-                {/* adjust the position based on whether it's a histogram or not, because the histogram does not have space for the icon on the side */}
-                <foreignObject x={barX + barWidth - (isHistogram ? 24 : 14)} y={yDiff - 12} width={24} height={24}>
-                  <CorrectCheckIcon dashColor={indicatorBarColor} />
-                </foreignObject>
-              </>
-            );
-          })()}
+          return (
+            <>
+              <StyledVisxBar
+                x={barX + 2}
+                y={yToRender}
+                width={barWidth - 4}
+                height={diffPx}
+                style={{ stroke: indicatorBarColor, strokeWidth: 2, strokeDasharray: '5,2', fill: 'none' }}
+              />
+              <foreignObject
+                x={barX + barWidth - (isHistogram ? 24 : 14)}
+                y={yDiff - 12}
+                width={24}
+                height={24}
+              >
+                <CorrectCheckIcon dashColor={indicatorBarColor} />
+              </foreignObject>
+            </>
+          );
+        })()}
         <Component
           x={barX}
           y={v}
@@ -266,8 +254,7 @@ export class Bars extends React.Component {
             correctness={d.correctness}
             correctData={correctData}
             barColor={
-              histogram &&
-              (histogramColors[index] ? histogramColors[index] : histogramColors[index % histogramColors.length])
+              histogram && (histogramColors[index] ? histogramColors[index] : histogramColors[index % histogramColors.length])
             }
           />
         ))}
