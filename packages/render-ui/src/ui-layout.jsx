@@ -2,7 +2,6 @@ import React from 'react';
 import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import AppendCSSRules from './append-css-rules';
 
 const theme = createTheme({

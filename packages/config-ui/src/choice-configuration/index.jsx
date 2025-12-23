@@ -5,7 +5,6 @@ import TextField from '@mui/material/TextField';
 import ActionDelete from '@mui/icons-material/Delete';
 import ArrowRight from '@mui/icons-material/SubdirectoryArrowRight';
 import IconButton from '@mui/material/IconButton';
-import classNames from 'classnames';
 import { InputContainer } from '@pie-lib/render-ui';
 // import EditableHtml from '@pie-lib/editable-html';
 import { InputCheckbox, InputRadio } from '../inputs';
@@ -39,10 +38,9 @@ const EditableHtmlContainer = ({
   uploadSoundSupport,
   mathMlOptions = {},
 }) => {
-  const names = classNames(className);
 
   return (
-    <InputContainer label={label} className={names}>
+    <InputContainer label={label} className={className}>
       <StyledEditorHolder>
         <EditableHtml
           markup={value || ''}

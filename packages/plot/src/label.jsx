@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { color, Readable } from '@pie-lib/render-ui';
+import { Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 import { extractTextFromHTML, isEmptyString } from './utils';
 
 const styles = {
