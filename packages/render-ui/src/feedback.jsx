@@ -1,12 +1,7 @@
-/**
- * Lifted from multiple-choice - TODO: create a shared package for it.
- */
-import { styled } from '@mui/material/styles';
-
 import React from 'react';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import * as color from './color';
 
 const FeedbackContainer = styled('div')({
@@ -36,25 +31,18 @@ const FeedbackContent = styled('div')({
   },
 });
 
-const transitionClasses = {
-  feedbackEnter: 'feedback-enter',
-  feedbackEnterActive: 'feedback-enter-active',
-  feedbackLeave: 'feedback-leave',
-  feedbackLeaveActive: 'feedback-leave-active',
-};
-
 const TransitionWrapper = styled('div')({
-  [`&.${transitionClasses.feedbackEnter}`]: {
+  '&.feedback-enter': {
     height: '1px',
   },
-  [`&.${transitionClasses.feedbackEnterActive}`]: {
+  '&.feedback-enter-active': {
     height: '45px',
     transition: 'height 500ms',
   },
-  [`&.${transitionClasses.feedbackLeave}`]: {
+  '&.feedback-exit': {
     height: '45px',
   },
-  [`&.${transitionClasses.feedbackLeaveActive}`]: {
+  '&.feedback-exit-active': {
     height: '1px',
     transition: 'height 200ms',
   },
@@ -66,28 +54,38 @@ export class Feedback extends React.Component {
     feedback: PropTypes.string,
   };
 
-  render() {
+  nodeRef = React.createRef();
+
+  renderFeedback() {
     const { correctness, feedback } = this.props;
 
-    function chooseFeedback(correctness) {
-      if (correctness && feedback) {
-        return (
-          <CSSTransition classNames={transitionClasses} key="hasFeedback" timeout={{ enter: 500, exit: 300 }}>
-            <TransitionWrapper>
-              <FeedbackContainer>
-                <FeedbackContent className={classNames(correctness)} dangerouslySetInnerHTML={{ __html: feedback }} />
-              </FeedbackContainer>
-            </TransitionWrapper>
-          </CSSTransition>
-        );
-      } else {
-        return null;
-      }
-    }
+    if (!correctness || !feedback) return null;
 
     return (
+      <CSSTransition
+        key="hasFeedback"
+        nodeRef={this.nodeRef}
+        timeout={{ enter: 500, exit: 200 }}
+        classNames="feedback"
+      >
+        <TransitionWrapper ref={this.nodeRef}>
+          <FeedbackContainer>
+            <FeedbackContent
+              className={correctness}
+              dangerouslySetInnerHTML={{ __html: feedback }}
+            />
+          </FeedbackContainer>
+        </TransitionWrapper>
+      </CSSTransition>
+    );
+  }
+
+  render() {
+    return (
       <div>
-        <TransitionGroup>{chooseFeedback(correctness)}</TransitionGroup>
+        <TransitionGroup>
+          {this.renderFeedback()}
+        </TransitionGroup>
       </div>
     );
   }

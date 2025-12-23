@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { CSSTransition } from 'react-transition-group';
@@ -43,13 +43,15 @@ const StyledExpander = styled('div')(() => ({
 
 const Expander = (props) => {
   const { show, children, className } = props;
+  const nodeRef = useRef(null);
 
   return (
-    <CSSTransition 
-      in={show} 
-      appear={true} 
-      mountOnEnter={false} 
-      timeout={300} 
+    <CSSTransition
+      nodeRef={nodeRef}
+      in={show}
+      appear={true}
+      mountOnEnter={false}
+      timeout={300}
       classNames={{
         enter: 'enter',
         enterDone: 'enter-done',
