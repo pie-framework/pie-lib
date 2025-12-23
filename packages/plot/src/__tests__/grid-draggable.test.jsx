@@ -151,7 +151,8 @@ describe('gridDraggable', () => {
       it('calls onDrag callback with result from fromDelta', () => {
         const onDrag = jest.fn();
         const fromDelta = jest.fn().mockReturnValue('delta-result');
-        const options = { ...defaultOptions, fromDelta };
+        const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
+        const options = { ...defaultOptions, fromDelta, bounds };
         const props = { ...defaultProps, onDrag };
 
         const Comp = gridDraggable(options)(() => <div>Test</div>);
@@ -182,8 +183,7 @@ describe('gridDraggable', () => {
       describe('bounds checking', () => {
         it('does not call onDrag when dragging left beyond left bound', () => {
           const onDrag = jest.fn();
-          // Return bounds with interval = 1 so scaled bounds = raw bounds
-          const bounds = jest.fn().mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0, interval: 1 });
+          const bounds = jest.fn().mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0 });
           const fromDelta = jest.fn().mockReturnValue('result');
           const options = { ...defaultOptions, bounds, fromDelta };
           const props = { ...defaultProps, onDrag };
@@ -200,7 +200,7 @@ describe('gridDraggable', () => {
 
         it('does not call onDrag when dragging right beyond right bound', () => {
           const onDrag = jest.fn();
-          const bounds = jest.fn().mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0, interval: 1 });
+          const bounds = jest.fn().mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0 });
           const fromDelta = jest.fn().mockReturnValue('result');
           const options = { ...defaultOptions, bounds, fromDelta };
           const props = { ...defaultProps, onDrag };
@@ -217,7 +217,7 @@ describe('gridDraggable', () => {
 
         it('does not call onDrag when dragging up beyond top bound', () => {
           const onDrag = jest.fn();
-          const bounds = jest.fn().mockReturnValue({ left: -100, top: 0, bottom: 0, right: 100, interval: 1 });
+          const bounds = jest.fn().mockReturnValue({ left: -100, top: 0, bottom: 0, right: 100 });
           const fromDelta = jest.fn().mockReturnValue('result');
           const options = { ...defaultOptions, bounds, fromDelta };
           const props = { ...defaultProps, onDrag };
@@ -234,7 +234,7 @@ describe('gridDraggable', () => {
 
         it('does not call onDrag when dragging down beyond bottom bound', () => {
           const onDrag = jest.fn();
-          const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 0, right: 100, interval: 1 });
+          const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 0, right: 100 });
           const fromDelta = jest.fn().mockReturnValue('result');
           const options = { ...defaultOptions, bounds, fromDelta };
           const props = { ...defaultProps, onDrag };
@@ -251,7 +251,7 @@ describe('gridDraggable', () => {
 
         it('calls onDrag when dragging within bounds', () => {
           const onDrag = jest.fn();
-          const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100, interval: 1 });
+          const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
           const fromDelta = jest.fn().mockReturnValue('result');
           const options = { ...defaultOptions, bounds, fromDelta };
           const props = { ...defaultProps, onDrag };
@@ -368,7 +368,7 @@ describe('gridDraggable', () => {
           graphProps.scale.y.invert = jest.fn().mockReturnValue(2); // Within bounds
 
           const props = { ...defaultProps, graphProps, onDrag };
-          const bounds = jest.fn().mockReturnValue({ left: 100, top: 100, bottom: 100, right: 100 });
+          const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
           const options = { ...defaultOptions, bounds };
 
           const Comp = gridDraggable(options)(() => <div>Test</div>);
@@ -387,8 +387,10 @@ describe('gridDraggable', () => {
         getDelta.mockClear();
         const onDrag = jest.fn();
         const props = { ...defaultProps, onDrag };
+        const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
+        const options = { ...defaultOptions, bounds };
 
-        const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
+        const Comp = gridDraggable(options)(() => <div>Test</div>);
         render(<Comp {...props} />);
 
         mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
@@ -400,7 +402,8 @@ describe('gridDraggable', () => {
       it('calls fromDelta with result from getDelta', () => {
         const fromDelta = jest.fn();
         getDelta.mockReturnValue({ x: 5, y: 5 });
-        const options = { ...defaultOptions, fromDelta };
+        const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
+        const options = { ...defaultOptions, fromDelta, bounds };
         const props = { ...defaultProps, onDrag: jest.fn() };
 
         const Comp = gridDraggable(options)(() => <div>Test</div>);

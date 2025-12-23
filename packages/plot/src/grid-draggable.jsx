@@ -94,16 +94,12 @@ export const gridDraggable = (opts) => (Comp) => {
       const bounds = opts.bounds(this.props, this.props.graphProps);
       log('bounds: ', bounds);
       const grid = this.grid();
-      console.log('[getScaledBounds] grid:', grid);
-      console.log('[getScaledBounds] grid.interval:', grid.interval);
-      console.log('[getScaledBounds] bounds:', bounds);
-      console.log('[getScaledBounds] bounds.interval:', bounds.interval);
 
       const scaled = {
-        left: (bounds.left / grid.interval) * grid.x,
-        right: (bounds.right / grid.interval) * grid.x,
-        top: (bounds.top / grid.interval) * grid.y,
-        bottom: (bounds.bottom / grid.interval) * grid.y,
+        left: bounds.left * grid.x,
+        right: bounds.right * grid.x,
+        top: bounds.top * grid.y,
+        bottom: bounds.bottom * grid.y,
       };
       log('[getScaledBounds]: ', scaled);
       return scaled;
