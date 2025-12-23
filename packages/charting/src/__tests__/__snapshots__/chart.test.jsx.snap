@@ -19,12 +19,11 @@ exports[`ChartAxes snapshot renders 1`] = `
         class="css-g2toj0"
       >
         <div
-          class="css-15eibe2"
           data-pie-readable="false"
-          style="width: 232px; top: 170px; left: 0px;"
+          style="width: 232px; top: 170px; left: 0px; font-size: 16px; text-align: center; margin: 4px; padding: 4px 0px; transform: rotate(-90deg); transform-origin: 0 0; position: absolute;"
         >
           <div
-            class="css-n9g6dv"
+            style="pointer-events: none; width: 100%;"
           />
         </div>
         <svg
@@ -579,12 +578,11 @@ exports[`ChartAxes snapshot renders 1`] = `
         </svg>
       </div>
       <div
-        class="css-8cbtgb"
         data-pie-readable="false"
-        style="width: 232px; top: 180px; left: -10px;"
+        style="width: 232px; top: 180px; left: -10px; font-size: 16px; text-align: center; margin: 4px; padding: 4px 0px; position: absolute;"
       >
         <div
-          class="css-n9g6dv"
+          style="pointer-events: none; width: 100%;"
         />
       </div>
     </div>
@@ -611,12 +609,11 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
         class="css-g2toj0"
       >
         <div
-          class="css-15eibe2"
           data-pie-readable="false"
-          style="width: 612px; top: 550px; left: 0px;"
+          style="width: 612px; top: 550px; left: 0px; font-size: 16px; text-align: center; margin: 4px; padding: 4px 0px; transform: rotate(-90deg); transform-origin: 0 0; position: absolute;"
         >
           <div
-            class="css-n9g6dv"
+            style="pointer-events: none; width: 100%;"
           />
         </div>
         <svg
@@ -1171,12 +1168,11 @@ exports[`ChartAxes snapshot renders if size is not defined 1`] = `
         </svg>
       </div>
       <div
-        class="css-8cbtgb"
         data-pie-readable="false"
-        style="width: 612px; top: 560px; left: -10px;"
+        style="width: 612px; top: 560px; left: -10px; font-size: 16px; text-align: center; margin: 4px; padding: 4px 0px; position: absolute;"
       >
         <div
-          class="css-n9g6dv"
+          style="pointer-events: none; width: 100%;"
         />
       </div>
     </div>
@@ -1207,12 +1203,11 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
         class="css-g2toj0"
       >
         <div
-          class="css-15eibe2"
           data-pie-readable="false"
-          style="width: 232px; top: 170px; left: 0px;"
+          style="width: 232px; top: 170px; left: 0px; font-size: 16px; text-align: center; margin: 4px; padding: 4px 0px; transform: rotate(-90deg); transform-origin: 0 0; position: absolute;"
         >
           <div
-            class="css-n9g6dv"
+            style="pointer-events: none; width: 100%;"
           />
         </div>
         <svg
@@ -1767,12 +1762,11 @@ exports[`ChartAxes snapshot renders without chartType property 1`] = `
         </svg>
       </div>
       <div
-        class="css-8cbtgb"
         data-pie-readable="false"
-        style="width: 232px; top: 180px; left: -10px;"
+        style="width: 232px; top: 180px; left: -10px; font-size: 16px; text-align: center; margin: 4px; padding: 4px 0px; position: absolute;"
       >
         <div
-          class="css-n9g6dv"
+          style="pointer-events: none; width: 100%;"
         />
       </div>
     </div>
