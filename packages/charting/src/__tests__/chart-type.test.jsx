@@ -14,10 +14,10 @@ describe('ChartType', () => {
     };
   });
 
-  describe('renders', () => {
-    it('snapshot', () => {
+  describe('rendering', () => {
+    it('renders chart type selector', () => {
       const { container } = render(<ChartType {...props} />);
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

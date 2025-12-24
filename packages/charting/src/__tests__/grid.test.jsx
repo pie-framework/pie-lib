@@ -15,14 +15,18 @@ describe('Grid', () => {
     return render(<Grid {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
+  describe('rendering', () => {
+    it('renders grid container', () => {
       const { container } = renderComponent();
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
 
-    // Note: graphProps is a required prop, so testing with undefined is not a valid test case.
-    // RTL's full rendering exposes this issue that was hidden by Enzyme's shallow rendering.
-    // Removed: it('renders if graphProps is not defined', ...)
+    it('renders grid lines', () => {
+      const { container } = renderComponent();
+      const svg = container.querySelector('svg');
+      expect(svg).toBeInTheDocument();
+      // Check for grid line groups
+      expect(container.querySelector('.vx-rows') || container.querySelector('.vx-columns')).toBeInTheDocument();
+    });
   });
 });

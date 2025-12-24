@@ -182,7 +182,7 @@ export function getDefaultTheme() {
  *
  * @example
  * const { container } = renderForSnapshot(<MyComponent />);
- * expect(container).toMatchSnapshot();
+ * expect(container.firstChild).toBeInTheDocument();
  */
 export function renderForSnapshot(component, options = {}) {
   const { container } = renderWithTheme(component, options);

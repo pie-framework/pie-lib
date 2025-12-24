@@ -84,7 +84,7 @@ export const MarkLabel = (props) => {
   const _ref = useCallback((node) => setInput(node), null);
 
   const {
-    mark,
+    mark = {},
     disabled,
     inputRef: externalInputRef,
     barWidth,

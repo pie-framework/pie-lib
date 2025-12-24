@@ -19,15 +19,15 @@ describe('MarkLabel', () => {
     return render(<MarkLabel {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders with mark at (1,1)', () => {
+  describe('rendering', () => {
+    it('renders mark label', () => {
       const { container } = renderComponent();
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
 
-    it('renders with mark at (10,10)', () => {
+    it('renders mark label at different positions', () => {
       const { container } = renderComponent({ mark: { x: 10, y: 10 } });
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

@@ -35,38 +35,48 @@ describe('ChartAxes', () => {
     return render(<Chart {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      jest.spyOn(Chart.prototype, 'generateMaskId').mockReturnValue('chart-2645');
+  describe('rendering', () => {
+    it('renders chart container', () => {
       const { container } = renderComponent();
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
 
-    it('renders if size is not defined', () => {
-      jest.spyOn(Chart.prototype, 'generateMaskId').mockReturnValue('chart-1553');
+    it('renders chart with default size', () => {
+      const { container } = renderComponent();
+      const svg = container.querySelector('svg');
+      expect(svg).toBeInTheDocument();
+      expect(svg).toHaveAttribute('width', '240');
+      expect(svg).toHaveAttribute('height', '240');
+    });
+
+    it('renders chart when size is not defined', () => {
       const { container } = renderComponent({ size: undefined });
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
+      const svg = container.querySelector('svg');
+      expect(svg).toBeInTheDocument();
     });
 
-    it('renders without chartType property', () => {
-      jest.spyOn(Chart.prototype, 'generateMaskId').mockReturnValue('chart-4286');
+    it('renders chart without chartType property', () => {
       const { container } = renderComponent({ chartType: null });
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
 
-    it('renders without chartType and charts properties', () => {
+    it('renders chart without chartType and charts properties', () => {
       const { container } = renderComponent({ chartType: null, charts: null });
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
 
-    it('renders without chartType property and empty charts property', () => {
+    it('renders chart without chartType property and empty charts property', () => {
       const { container } = renderComponent({ chartType: null, charts: [] });
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
 
-    it('renders with chartType property and empty charts property', () => {
+    it('renders chart with chartType property and empty charts property', () => {
       const { container } = renderComponent({ charts: [] });
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
   });
 

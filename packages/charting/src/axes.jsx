@@ -199,7 +199,7 @@ export class TickComponent extends React.Component {
       const lengthB = b && b.label ? b.label.length : 0;
 
       return lengthA > lengthB ? a : b;
-    });
+    }, { label: '' });
     const distinctMessages = error ? [...new Set(Object.values(error))].join(' ') : '';
 
     return (
@@ -528,6 +528,6 @@ export class RawChartAxes extends React.Component {
   }
 }
 
-const ChartAxes = styled(RawChartAxes)(({ theme }) => ({}));
+const ChartAxes = styled(RawChartAxes)({});
 
 export default ChartAxes;

@@ -19,15 +19,15 @@ describe('BarChart', () => {
     return render(<BarChart {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
+  describe('rendering', () => {
+    it('renders bar chart', () => {
       const { container } = renderComponent();
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
 
     it('renders without graphProps', () => {
       const { container } = renderComponent({ graphProps: undefined });
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 

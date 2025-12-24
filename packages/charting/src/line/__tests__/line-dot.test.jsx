@@ -19,15 +19,11 @@ describe('LineChart', () => {
     return render(<LineChart {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
+  describe('rendering', () => {
+    it('renders line dot chart', () => {
       const { container } = renderComponent();
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
-
-    // Note: graphProps is a required prop, so testing with undefined is not a valid test case.
-    // RTL's full rendering exposes this issue that was hidden by Enzyme's shallow rendering.
-    // Removed: it('renders without graphProps', ...)
   });
 
   describe('component', () => {

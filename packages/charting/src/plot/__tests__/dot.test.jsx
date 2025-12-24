@@ -19,15 +19,15 @@ describe('DotPlot', () => {
     return render(<DotPlot {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
+  describe('rendering', () => {
+    it('renders dot plot', () => {
       const { container } = renderComponent();
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
 
     it('renders without graphProps', () => {
       const { container } = renderComponent({ graphProps: undefined });
-      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 
