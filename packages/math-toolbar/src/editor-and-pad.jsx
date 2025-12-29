@@ -1,7 +1,6 @@
 import React from 'react';
 import debug from 'debug';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
@@ -11,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
 import { HorizontalKeypad, mq, updateSpans } from '@pie-lib/math-input';
-import { color, InputContainer } from '@pie-lib/render-ui';
+import { color } from '@pie-lib/render-ui';
 import { markFractionBaseSuperscripts } from './utils';
 
 const { commonMqFontStyles, commonMqKeyboardStyles, longdivStyles, supsubStyles } = mq.CommonMqStyles;
@@ -162,7 +161,6 @@ const StyledFormControl = styled(FormControl)({
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
   },
 });
-
 
 const StyledInputLabel = styled(InputLabel)(() => ({
   backgroundColor: 'transparent',
@@ -423,13 +421,11 @@ export class EditorAndPad extends React.Component {
     log('[render]', latex);
 
     return (
-      <MathToolbarContainer className={cx(classNames.mathToolbar)}>
+      <MathToolbarContainer className={classNames.mathToolbar}>
         <InputAndTypeContainer hide={hideInput}>
           {controlledKeypadMode && (
             <StyledFormControl variant={'standard'}>
-              <StyledInputLabel id="equation-editor-label">
-                {'Equation Editor'}
-              </StyledInputLabel>
+              <StyledInputLabel id="equation-editor-label">{'Equation Editor'}</StyledInputLabel>
               <Select
                 labelId="equation-editor-label"
                 id="equation-editor-select"
@@ -464,7 +460,7 @@ export class EditorAndPad extends React.Component {
                 this.updateDisable(false);
                 onBlur && onBlur(event);
               }}
-              className={cx(classNames.editor)}
+              className={(classNames && classNames.editor) || ''}
               controlledKeypadMode={controlledKeypadMode}
               ref={(r) => (this.input = r)}
               latex={latex}

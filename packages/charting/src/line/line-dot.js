@@ -8,10 +8,7 @@ import { dataToXBand } from '../utils';
 import RawLine from './common/line';
 import { CorrectnessIndicator, SmallCorrectPointIndicator } from '../common/correctness-indicators';
 
-
-const StyledHandle = styled('circle')(({ correctness, interactive }) => ({
-}));
-
+const StyledHandle = styled('circle')(({ correctness, interactive }) => ({}));
 
 const StyledTransparentHandle = styled('circle')(() => ({
   height: '20px',
@@ -20,18 +17,7 @@ const StyledTransparentHandle = styled('circle')(() => ({
   pointerEvents: 'auto', // allow drag events
 }));
 
-const DraggableComponent = ({
-  scale,
-  x,
-  y,
-  className,
-  r,
-  correctness,
-  interactive,
-  correctData,
-  label,
-  ...rest
-}) => {
+const DraggableComponent = ({ scale, x, y, r, correctness, interactive, correctData, label, ...rest }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const allowRolloverEvent = !correctness && interactive;
 
@@ -46,7 +32,6 @@ const DraggableComponent = ({
         cx={scale.x(x)}
         cy={scale.y(y)}
         r={r * 3}
-        className={className}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         {...rest}
@@ -55,20 +40,12 @@ const DraggableComponent = ({
         cx={scale.x(x)}
         cy={scale.y(y)}
         r={r}
-        className={className}
         correctness={correctness}
         interactive={interactive}
         {...rest}
       />
       {/* show correctness indicators */}
-      <CorrectnessIndicator
-        scale={scale}
-        x={x}
-        y={y}
-        r={r}
-        correctness={correctness}
-        interactive={interactive}
-      />
+      <CorrectnessIndicator scale={scale} x={x} y={y} r={r} correctness={correctness} interactive={interactive} />
 
       {/* show correct point if answer was incorrect */}
       <SmallCorrectPointIndicator
@@ -101,7 +78,6 @@ DraggableComponent.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   r: PropTypes.number,
-  className: PropTypes.string,
   correctness: PropTypes.shape({
     value: PropTypes.string,
     label: PropTypes.string,

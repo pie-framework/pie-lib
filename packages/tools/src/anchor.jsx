@@ -15,6 +15,6 @@ const StyledAnchor = styled('div')(({ theme }) => ({
   },
 }));
 
-const Anchor = ({ className, ...props }) => <StyledAnchor className={className} {...props} />;
+const Anchor = ({ ...props }) => <StyledAnchor {...props} />;
 
 export default Anchor;

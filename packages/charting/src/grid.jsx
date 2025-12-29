@@ -22,7 +22,7 @@ export class Grid extends React.Component {
   static defaultProps = {};
 
   render() {
-    const { className, graphProps, xBand, rowTickValues, columnTickValues } = this.props;
+    const { graphProps, xBand, rowTickValues, columnTickValues } = this.props;
     const { scale = {}, size = {}, range = {} } = graphProps || {};
     const { step = 0, labelStep = 0 } = range;
     const highlightNonLabel = step && labelStep && step < labelStep;
@@ -40,7 +40,7 @@ export class Grid extends React.Component {
     );
 
     return (
-      <StyledGridGroup className={className}>
+      <StyledGridGroup>
         <GridRows
           scale={scale.y}
           width={size.width}

@@ -6,7 +6,6 @@ import { words, sentences, paragraphs } from './builder';
 import clone from 'lodash/clone';
 import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';
-import classNames from 'classnames';
 import { noSelect } from '@pie-lib/style-utils';
 import TokenText from './token-text';
 
@@ -123,8 +122,6 @@ export class Tokenizer extends React.Component {
     const { text, tokens, className } = this.props;
     const { setCorrectMode } = this.state;
 
-    const tokenClassName = classNames('text', setCorrectMode && 'noselect');
-
     return (
       <StyledTokenizer className={className}>
         <Controls
@@ -136,7 +133,7 @@ export class Tokenizer extends React.Component {
           onToggleCorrectMode={this.toggleCorrectMode}
         />
         <StyledText
-          className={tokenClassName}
+          className={setCorrectMode ? 'noselect' : ''}
           as={TokenText}
           text={text}
           tokens={tokens}

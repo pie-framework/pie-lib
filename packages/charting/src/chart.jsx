@@ -212,7 +212,6 @@ export class Chart extends React.Component {
 
   render() {
     const {
-      className,
       domain = {},
       range = {},
       chartingOptions,
@@ -280,7 +279,7 @@ export class Chart extends React.Component {
     }
 
     return (
-      <StyledChartContainer className={className}>
+      <StyledChartContainer>
         <Root
           title={title}
           onChangeTitle={onChangeTitle}

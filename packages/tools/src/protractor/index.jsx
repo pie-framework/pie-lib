@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Graphic from './graphic';
 import Anchor from '../anchor';
 import Rotatable from '../rotatable';
-import classNames from 'classnames';
 
 const StyledProtractor = styled('div')(() => ({
   position: 'relative',
@@ -38,10 +37,10 @@ export class Protractor extends React.Component {
   };
 
   render() {
-    const { width, className, startPosition } = this.props;
+    const { width, startPosition } = this.props;
+
     return (
       <Rotatable
-        className={className}
         startPosition={startPosition}
         handle={[
           {
@@ -57,8 +56,8 @@ export class Protractor extends React.Component {
         <StyledProtractor style={{ width: `${width}px` }}>
           <Graphic />
 
-          <StyledLeftAnchor className={classNames('leftAnchor')} />
-          <StyledRightAnchor className={classNames('rightAnchor')} />
+          <StyledLeftAnchor className="leftAnchor" />
+          <StyledRightAnchor className="rightAnchor" />
         </StyledProtractor>
       </Rotatable>
     );

@@ -69,14 +69,14 @@ class RawCustomToken extends React.Component {
   }
 }
 
-const CustomToken = styled(RawCustomToken)(({ theme }) => ({
+const CustomToken = styled(RawCustomToken)({
   '&.correct': {
     backgroundColor: green[500],
   },
   '&.incorrect': {
     backgroundColor: orange[500],
   },
-}));
+});
 
 class Demo extends React.Component {
   static propTypes = {};

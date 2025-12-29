@@ -1,7 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import Rotatable from '../rotatable';
-import classNames from 'classnames';
 import RulerGraphic from './graphic';
 import PropTypes from 'prop-types';
 import Anchor from '../anchor';
@@ -30,7 +29,6 @@ export class Ruler extends React.Component {
     height: PropTypes.number,
     units: PropTypes.number.isRequired,
     measure: PropTypes.oneOf(['imperial', 'metric']).isRequired,
-    className: PropTypes.string,
     startPosition: PropTypes.shape({
       left: PropTypes.number.isRequired,
       top: PropTypes.number.isRequired,
@@ -47,7 +45,7 @@ export class Ruler extends React.Component {
   };
 
   render() {
-    const { width, height, units, measure, className, startPosition, label, tickCount } = this.props;
+    const { width, height, units, measure, startPosition, label, tickCount } = this.props;
 
     const unit =
       measure === 'imperial'
@@ -61,7 +59,6 @@ export class Ruler extends React.Component {
           };
     return (
       <Rotatable
-        className={className}
         startPosition={startPosition}
         handle={[
           { class: 'leftAnchor', origin: 'bottom right' },
@@ -70,8 +67,8 @@ export class Ruler extends React.Component {
       >
         <StyledRuler style={{ width: `${width}px`, height: `${height}px` }}>
           <RulerGraphic width={width} height={height} units={units} unit={unit} />
-          <StyledLeftAnchor className={classNames('leftAnchor')} />
-          <StyledRightAnchor className={classNames('rightAnchor')} />
+          <StyledLeftAnchor className="leftAnchor" />
+          <StyledRightAnchor className="rightAnchor" />
         </StyledRuler>
       </Rotatable>
     );

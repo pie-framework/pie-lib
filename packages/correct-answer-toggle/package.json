@@ -24,7 +24,6 @@
     "@pie-lib/icons": "2.36.0-mui-update.0",
     "@pie-lib/render-ui": "4.47.0-mui-update.0",
     "@pie-lib/translator": "2.36.0-mui-update.0",
-    "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react-transition-group": "^4.4.5"
