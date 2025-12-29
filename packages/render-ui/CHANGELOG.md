@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.48.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.47.0-mui-update.0...@pie-lib/render-ui@4.48.0-mui-update.0) (2025-12-29)
+
+
+### Bug Fixes
+
+* **render-ui:** handle invalid values for fontSizeFactor PD-5412 ([39b13c0](https://github.com/pie-framework/pie-lib/commit/39b13c0583f3f83575e4c32ed2873eecfd4903cd))
+
+
+
+
+
 # [4.47.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.46.0-mui-update.0...@pie-lib/render-ui@4.47.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/render-ui

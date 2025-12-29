@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.47.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.46.0-mui-update.0...@pie-lib/graphing@2.47.0-mui-update.0) (2025-12-29)
+
+
+### Features
+
+* migrate from [@vx](https://github.com/vx) library to [@visx](https://github.com/visx) ([135bf60](https://github.com/pie-framework/pie-lib/commit/135bf605161bfbd0070ac181892df20931691ce3))
+
+
+
+
+
 # [2.46.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@2.45.0-mui-update.0...@pie-lib/graphing@2.46.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/graphing

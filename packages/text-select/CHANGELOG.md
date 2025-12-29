@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.45.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.44.0-mui-update.0...@pie-lib/text-select@1.45.0-mui-update.0) (2025-12-29)
+
+
+### Bug Fixes
+
+* **text-select:** remove html tags from rendering ([71201bc](https://github.com/pie-framework/pie-lib/commit/71201bce2535668769047ea3db8405c6b49fe615))
+
+
+
+
+
 # [1.44.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.43.0-mui-update.0...@pie-lib/text-select@1.44.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/text-select
