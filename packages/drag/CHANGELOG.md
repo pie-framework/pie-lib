@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.35.0-mui-update.0...@pie-lib/drag@2.36.0-mui-update.0) (2025-12-29)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
 # [2.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.34.0-mui-update.0...@pie-lib/drag@2.35.0-mui-update.0) (2025-12-29)
 
 

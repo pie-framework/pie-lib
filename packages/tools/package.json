@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.42.0-mui-update.0",
+  "version": "0.43.0-mui-update.0",
   "description": "Some interactive tools",
   "keywords": [
     "react",
@@ -22,7 +22,7 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/style-utils": "0.34.0-mui-update.0",
+    "@pie-lib/style-utils": "0.35.0-mui-update.0",
     "assert": "^1.4.1",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
