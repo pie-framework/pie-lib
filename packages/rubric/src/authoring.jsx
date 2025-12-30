@@ -70,22 +70,27 @@ const MaxPoints = (props) => {
 // if the value is '', the Sample Answer input field will be empty
 const checkSampleAnswer = (sampleAnswer) => sampleAnswer === null || sampleAnswer === 'null';
 
-const PCContainer = styled('div')(() => ({}));
 const Row = styled('div')(() => ({ display: 'flex', width: '100%', position: 'relative' }));
+
 const EditorDiv = styled('div')(({ theme }) => ({ width: '100%', backgroundColor: `${theme.palette.common.white}` }));
+
 const DragIndicatorStyled = styled(DragIndicator)(({ theme }) => ({ paddingTop: theme.spacing(1), color: grey[500] }));
+
 const PointsLabel = styled(Typography)(({ theme }) => ({
   color: grey[500],
   paddingBottom: theme.spacing(1),
   textTransform: 'uppercase',
 }));
+
 const SampleAnswersEditor = styled('div')(({ theme }) => ({ paddingLeft: theme.spacing(3) }));
+
 const ErrorText = styled('div')(({ theme }) => ({
   fontSize: theme.typography.fontSize - 2,
   color: theme.palette.error.main,
   paddingLeft: theme.spacing(3),
   paddingTop: theme.spacing(1),
 }));
+
 const PointMenuWrapper = styled('div')(() => ({ position: 'absolute', right: 0 }));
 
 export const PointConfig = (props) => {
@@ -94,7 +99,7 @@ export const PointConfig = (props) => {
   const showSampleAnswer = checkSampleAnswer(sampleAnswer);
 
   return (
-    <PCContainer>
+    <div>
       <PointsLabel variant="overline">{pointsLabel}</PointsLabel>
       <Row>
         <DragIndicatorStyled />
@@ -127,7 +132,7 @@ export const PointConfig = (props) => {
           </EditorDiv>
         </SampleAnswersEditor>
       )}
-    </PCContainer>
+    </div>
   );
 };
 

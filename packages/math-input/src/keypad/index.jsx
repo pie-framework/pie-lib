@@ -12,7 +12,7 @@ import { baseSet } from '../keys';
 import editableHtmlConstants from '../../../editable-html/src/constants';
 import { commonMqKeyboardStyles } from '../mq/common-mq-styles';
 import { sortKeys } from './keys-layout';
-import { green, indigo, pink } from '@mui/material/colors';
+import { indigo, pink } from '@mui/material/colors';
 import { color } from '@pie-lib/render-ui';
 
 const log = debug('pie-lib:math-inline:keypad');

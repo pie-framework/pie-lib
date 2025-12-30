@@ -9,13 +9,12 @@ import differenceWith from 'lodash/differenceWith';
 import { noSelect } from '@pie-lib/style-utils';
 import TokenText from './token-text';
 
-const StyledTokenizer = styled('div')(() => ({}));
-
-const StyledText = styled('div')(() => ({
+const StyledText = styled('div')(({ disabled }) => ({
   whiteSpace: 'pre-wrap',
-  '&.noselect': {
+
+  ...(disabled && {
     ...noSelect(),
-  },
+  }),
 }));
 
 export class Tokenizer extends React.Component {
@@ -29,7 +28,6 @@ export class Tokenizer extends React.Component {
         end: PropTypes.number,
       }),
     ),
-    className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
   };
 
@@ -119,11 +117,11 @@ export class Tokenizer extends React.Component {
   };
 
   render() {
-    const { text, tokens, className } = this.props;
+    const { text, tokens } = this.props;
     const { setCorrectMode } = this.state;
 
     return (
-      <StyledTokenizer className={className}>
+      <div>
         <Controls
           onClear={this.clear}
           onWords={() => this.buildTokens('words', words)}
@@ -133,14 +131,14 @@ export class Tokenizer extends React.Component {
           onToggleCorrectMode={this.toggleCorrectMode}
         />
         <StyledText
-          className={setCorrectMode ? 'noselect' : ''}
+          disabled={setCorrectMode}
           as={TokenText}
           text={text}
           tokens={tokens}
           onTokenClick={this.tokenClick}
           onSelectToken={this.selectToken}
         />
-      </StyledTokenizer>
+      </div>
     );
   }
 }

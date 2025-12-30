@@ -6,7 +6,7 @@ import withRoot from '../../source/withRoot';
 import Typography from '@mui/material/Typography';
 import Tab from '@mui/material/Tab';
 import Button from '@mui/material/Button';
-import { marks, backgroundMarks } from './demo-data';
+import { marks } from './demo-data';
 import { Checkbox, FormControlLabel } from '@mui/material';
 
 import { Tabs, Tab0, Tab1 } from './components/tabs';

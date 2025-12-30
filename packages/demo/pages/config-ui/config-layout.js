@@ -50,9 +50,6 @@ const CodeBlock = styled('pre')({
   position: 'fixed',
 });
 
-const NumberFieldContainer = styled('div')({
-  width: '270px',
-});
 
 class Container extends React.Component {
   constructor(props) {

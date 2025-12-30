@@ -528,6 +528,4 @@ export class RawChartAxes extends React.Component {
   }
 }
 
-const ChartAxes = styled(RawChartAxes)(({ theme }) => ({}));
-
-export default ChartAxes;
+export default RawChartAxes;

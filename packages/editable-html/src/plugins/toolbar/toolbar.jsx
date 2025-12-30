@@ -3,7 +3,6 @@ import { Change } from 'slate';
 import Delete from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 import debounce from 'lodash/debounce';

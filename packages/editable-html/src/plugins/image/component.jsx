@@ -1,7 +1,6 @@
 import LinearProgress from '@mui/material/LinearProgress';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
 import debug from 'debug';
 import { styled } from '@mui/material/styles';
 import SlatePropTypes from 'slate-prop-types';
@@ -10,28 +9,27 @@ const log = debug('@pie-lib:editable-html:plugins:image:component');
 
 const size = (s) => (s ? `${s}px` : 'auto');
 
-const StyledImageRoot = styled('div')(({ theme }) => ({
+const StyledImageRoot = styled('div')(({ theme, loading }) => ({
   position: 'relative',
   border: `solid 1px ${theme.palette.common.white}`,
   display: 'flex',
   transition: 'opacity 200ms linear',
-  '&.loading': {
+
+  ...(loading && {
     opacity: 0.3,
-  },
-  '&.pendingDelete': {
-    opacity: 0.3,
-  },
+  }),
 }));
 
-const StyledProgress = styled(LinearProgress)(() => ({
+const StyledProgress = styled(LinearProgress)(({ hide }) => ({
   position: 'absolute',
   left: '0',
   width: 'fit-content',
   top: '0%',
   transition: 'opacity 200ms linear',
-  '&.hideProgress': {
+
+  ...(hide && {
     opacity: 0,
-  },
+  }),
 }));
 
 const StyledImageContainer = styled('div')(() => ({
@@ -44,10 +42,10 @@ const StyledImageContainer = styled('div')(() => ({
   },
 }));
 
-const StyledImage = styled('img')(({ theme }) => ({
-  '&.active': {
+const StyledImage = styled('img')(({ theme, active }) => ({
+  ...(active && {
     border: `solid 1px ${theme.palette.primary.main}`,
-  },
+  }),
 }));
 
 const StyledResize = styled('div')(({ theme }) => ({
@@ -284,21 +282,19 @@ export class Component extends React.Component {
 
     log('[render] style:', size);
 
-    const className = classNames(
-      !loaded && 'loading',
-      deleteStatus === 'pending' && 'pendingDelete',
-    );
-
-    const progressClasses = classNames(loaded && 'hideProgress');
-
     return [
       <span key={'sp1'}>&nbsp;</span>,
-      <StyledImageRoot key={'comp'} onFocus={onFocus} className={className} style={{ justifyContent }}>
-        <StyledProgress mode="determinate" value={percent > 0 ? percent : 0} className={progressClasses} />
+      <StyledImageRoot
+        key={'comp'}
+        onFocus={onFocus}
+        style={{ justifyContent }}
+        loading={!loaded || deleteStatus === 'pending'}
+      >
+        <StyledProgress mode="determinate" value={percent > 0 ? percent : 0} hide={loaded} />
         <StyledImageContainer>
           <StyledImage
             {...attributes}
-            className={classNames(active && 'active')}
+            active={active}
             ref={(ref) => {
               this.img = ref;
             }}
