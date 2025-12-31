@@ -5,11 +5,21 @@ import PropTypes from 'prop-types';
 const ExplicitConstructedResponse = (props) => {
   const { editor, node, getPos, options, selected } = props;
   const { attrs: attributes } = node;
-  const { value, error } = attributes;
+  const { value } = attributes;
+  const { respAreaToolbar, error: errorFn } = options;
   const pos = getPos();
   const [showToolbar, setShowToolbar] = useState(false);
-  const EcrToolbar = options.respAreaToolbar(node, editor, () => {});
+  const EcrToolbar = respAreaToolbar(node, editor, () => {});
   const toolbarRef = useRef(null);
+
+  let error;
+
+  if (errorFn) {
+    const errorValue = errorFn();
+    const respIndex = parseInt(attributes.index, 10);
+
+    error = !!errorValue?.[respIndex]?.[0];
+  }
 
   const handleDone = (newLatex) => {
     updateAttributes({ latex: newLatex });
@@ -75,6 +85,7 @@ const ExplicitConstructedResponse = (props) => {
           overflow: 'hidden',
           padding: '12px 21px',
           margin: '0 4px',
+          minWidth: '178px',
           visibility: showToolbar ? 'hidden' : 'visible',
         }}
         onClick={() => setShowToolbar(true)}

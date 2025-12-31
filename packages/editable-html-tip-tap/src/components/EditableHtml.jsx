@@ -139,7 +139,7 @@ export const EditableHtml = (props) => {
     TableRow,
     TableHeader,
     TableCell,
-    ResponseAreaExtension,
+    ResponseAreaExtension.configure(props.responseAreaProps),
     ExplicitConstructedResponseNode.configure(props.responseAreaProps),
     DragInTheBlankNode.configure(props.responseAreaProps),
     InlineDropdownNode.configure(props.responseAreaProps),
@@ -240,7 +240,15 @@ export const EditableHtml = (props) => {
     },
     editable: !props.disabled,
     content: props.markup,
-    onUpdate: ({ editor, transaction }) => transaction.isDone && props.onChange?.(editor.getHTML()),
+    onUpdate: ({ editor, transaction }) => {
+      if (transaction.isDone) {
+        props.onChange?.(editor.getHTML());
+      }
+
+      if (props.responseAreaProps?.onHandleAreaChange) {
+        // props.responseAreaProps.onHandleAreaChange(editor.getHTML());
+      }
+    },
     onBlur: ({ editor }) => {
       if (toolbarOptsToUse.doneOn === 'blur') {
         props.onDone?.(editor.getHTML());
