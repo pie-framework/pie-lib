@@ -886,7 +886,7 @@
     "@babel/plugin-transform-react-jsx-development" "^7.27.1"
     "@babel/plugin-transform-react-pure-annotations" "^7.27.1"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.2.0", "@babel/runtime@^7.20.6", "@babel/runtime@^7.26.7", "@babel/runtime@^7.28.3", "@babel/runtime@^7.28.4", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.2.0", "@babel/runtime@^7.20.6", "@babel/runtime@^7.26.7", "@babel/runtime@^7.28.3", "@babel/runtime@^7.28.4", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.28.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.28.4.tgz#a70226016fabe25c5783b2f22d3e1c9bc5ca3326"
   integrity sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==
@@ -2672,10 +2672,189 @@
     react-draggable "^3.1.1"
     react-input-autosize "^2.2.1"
 
+"@pie-lib/drag@2.34.0-mui-update.0":
+  version "2.34.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/drag/-/drag-2.34.0-mui-update.0.tgz#748bf06387f7ea6eefdb99c53d443e097ea949ac"
+  integrity sha512-/AbrMPIfwduoaNLRF7lYd7ONIjNAs/QMufX2hJKJexNJBObW3QVleUcxIpyL+7r46bVV/WrzN3LbMvNbv1/Mmg==
+  dependencies:
+    "@dnd-kit/core" "6.1.0"
+    "@dnd-kit/sortable" "8.0.0"
+    "@dnd-kit/utilities" "3.2.2"
+    "@emotion/react" "^11.14.0"
+    "@emotion/style" "^0.8.0"
+    "@mui/icons-material" "^7.3.4"
+    "@mui/material" "^7.3.4"
+    "@pie-lib/math-rendering" "3.38.0-mui-update.0"
+    "@pie-lib/render-ui" "4.47.0-mui-update.0"
+    classnames "^2.2.6"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
+    react "^18.2.0"
+
+"@pie-lib/editable-html@11.33.0-mui-update.0":
+  version "11.33.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/editable-html/-/editable-html-11.33.0-mui-update.0.tgz#0cee9e11443f3027079eba052a07aac53b4dc568"
+  integrity sha512-++EmVc4mEnFtHY5nz0VMfZmYV6sMejvvZDP/Yt+eHC0t+Csf3FIPfeGo/tfvZZkGQVLNcWE0pwqZGBX2UC4/8A==
+  dependencies:
+    "@dnd-kit/core" "6.1.0"
+    "@dnd-kit/modifiers" "9.0.0"
+    "@dnd-kit/utilities" "3.2.2"
+    "@emotion/react" "^11.14.0"
+    "@emotion/style" "^0.8.0"
+    "@mui/icons-material" "^7.3.4"
+    "@mui/material" "^7.3.4"
+    "@pie-lib/drag" "2.34.0-mui-update.0"
+    "@pie-lib/math-input" "6.43.0-mui-update.0"
+    "@pie-lib/math-rendering" "3.38.0-mui-update.0"
+    "@pie-lib/math-toolbar" "1.43.0-mui-update.0"
+    "@pie-lib/render-ui" "4.47.0-mui-update.0"
+    change-case "^3.0.2"
+    classnames "^2.2.6"
+    debug "^4.1.1"
+    immutable "^4.0.0-rc.12"
+    keycode "^2.2.0"
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+    react-attr-converter "^0.3.1"
+    react-jss "^8.6.1"
+    react-portal "^4.2.0"
+    slate "^0.36.2"
+    slate-dev-environment "^0.2.0"
+    slate-edit-list "^0.11.3"
+    slate-edit-table "^0.17.0"
+    slate-html-serializer "^0.6.12"
+    slate-plain-serializer "^0.5.26"
+    slate-prop-types "^0.4.38"
+    slate-react "^0.14.3"
+    slate-schema-violations "^0.1.39"
+    slate-soft-break "^0.8.1"
+    to-style "^1.3.3"
+
+"@pie-lib/icons@2.36.0-mui-update.0":
+  version "2.36.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/icons/-/icons-2.36.0-mui-update.0.tgz#e01d67f4ab5633702fda894f2edefcb6879b98c8"
+  integrity sha512-zleuOBiH643OnqTkSNDr3zTJFaIWU1ItO+AtL6HHptEKT/xTiC9nODUW6uXJXPZ57ZtjtJvoNDy3eWCTN5LuaQ==
+  dependencies:
+    "@emotion/react" "^11.14.0"
+    "@emotion/style" "^0.8.0"
+    "@mui/icons-material" "^7.3.4"
+    "@mui/material" "^7.3.4"
+    classnames "^2.2.6"
+    prop-types "^15.6.2"
+
+"@pie-lib/math-input@6.43.0-mui-update.0":
+  version "6.43.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/math-input/-/math-input-6.43.0-mui-update.0.tgz#13eece0092922c13eedcd04a75d23455c14e4f2c"
+  integrity sha512-t/zx2H43oBILvVE0f7Rmjn7m4G5DpcjKcKugAMtYn2G8DifubxJwv3UyCp7fOwOiB8GnN6j+p9MSm/YmaPGlIA==
+  dependencies:
+    "@emotion/react" "^11.14.0"
+    "@emotion/style" "^0.8.0"
+    "@mui/icons-material" "^7.3.4"
+    "@mui/material" "^7.3.4"
+    "@pie-framework/mathquill" "^1.1.3"
+    classnames "^2.2.6"
+    debug "^4.1.1"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
+    react-portal "^4.2.0"
+
+"@pie-lib/math-rendering@3.38.0-mui-update.0":
+  version "3.38.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/math-rendering/-/math-rendering-3.38.0-mui-update.0.tgz#32289b3fce744d490ebcf5640028c7a95500624d"
+  integrity sha512-clqQwuRHqFPNj/eqwVyU68tWBv1EA2OBuY1PZL89zSL3ONVd7iAXHZx+8yLBeNkFu0Rg3AOoa29jmpIZ43ItXg==
+  dependencies:
+    "@pie-framework/mathml-to-latex" "1.4.4"
+    debug "^4.1.1"
+    lodash "^4.17.11"
+    mathjax-full "3.2.2"
+    react "^18.2.0"
+
+"@pie-lib/math-toolbar@1.43.0-mui-update.0":
+  version "1.43.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/math-toolbar/-/math-toolbar-1.43.0-mui-update.0.tgz#b9964dbd1c182608395c080dd2136a60b9fe6b3c"
+  integrity sha512-D9GS8nN6L2D8U4sIIYSTgwuGU7IvLjd/RD5ER2OaQnuSpv13xPkqZxTeW0ZTEpoE9GZyF2BfFRypt+fVr47dOA==
+  dependencies:
+    "@emotion/react" "^11.14.0"
+    "@emotion/style" "^0.8.0"
+    "@mui/icons-material" "^7.3.4"
+    "@mui/material" "^7.3.4"
+    "@pie-lib/math-input" "6.43.0-mui-update.0"
+    "@pie-lib/render-ui" "4.47.0-mui-update.0"
+    classnames "^2.2.6"
+    debug "^4.1.1"
+    keycode "^2.2.0"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
+
+"@pie-lib/plot@2.39.0-mui-update.0":
+  version "2.39.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/plot/-/plot-2.39.0-mui-update.0.tgz#1b68179e6e116de31291a8bfdf965f52b48459c6"
+  integrity sha512-KsHUlDgfRahzr6WcilD2G9fE+3EGgn0ZV1POKJ5bErOHL/hqKtwLPsHx8DpwW7cnRqhh4KLv2ueRpBdlJjedpQ==
+  dependencies:
+    "@emotion/react" "^11.14.0"
+    "@emotion/style" "^0.8.0"
+    "@mapbox/point-geometry" "^0.1.0"
+    "@mui/icons-material" "^7.3.4"
+    "@mui/material" "^7.3.4"
+    "@pie-lib/editable-html" "11.33.0-mui-update.0"
+    "@pie-lib/render-ui" "4.47.0-mui-update.0"
+    "@vx/axis" "^0.0.183"
+    "@vx/event" "^0.0.182"
+    "@vx/grid" "^0.0.183"
+    "@vx/point" "^0.0.182"
+    "@vx/shape" "^0.0.183"
+    assert "^1.4.1"
+    classnames "^2.2.6"
+    d3-scale "^2.1.2"
+    d3-selection "^1.3.2"
+    debug "^4.1.1"
+    invariant "^2.2.4"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
+    react "^18.2.0"
+    react-draggable "^3.1.1"
+    react-redux "^6.0.0"
+    redux "^4.0.1"
+
+"@pie-lib/render-ui@4.47.0-mui-update.0":
+  version "4.47.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/render-ui/-/render-ui-4.47.0-mui-update.0.tgz#0f9de4844ea670e58f3e43012598bfb14c7fa2de"
+  integrity sha512-iNUxqogmmXBvEeEglrbarBFrvY8Pg5uegCZyvgXzs6DGNw1xWZjvjMt9tAbqzkfKao9dY/NKhSj3H0w4H0ZcZg==
+  dependencies:
+    "@emotion/react" "^11.14.0"
+    "@emotion/styled" "^11.14.1"
+    "@mui/icons-material" "^7.3.4"
+    "@mui/material" "^7.3.4"
+    "@pie-lib/icons" "2.36.0-mui-update.0"
+    "@pie-lib/math-rendering" "3.38.0-mui-update.0"
+    "@pie-lib/test-utils" "0.34.0-mui-update.0"
+    classnames "^2.2.6"
+    debug "^4.1.1"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
+    react-transition-group "^2.5.2"
+
+"@pie-lib/test-utils@0.34.0-mui-update.0":
+  version "0.34.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.34.0-mui-update.0.tgz#1402ac0670dd5244963ce33c6f8af9784117c939"
+  integrity sha512-Oq3x+nq5SixXbjCjJmuYT60QfzIjmVjWlyUxdiScq6rlXasUjLKbAh6AXRFgDfZ18MN4hmckdJ9I8iHEMnAlJw==
+
 "@pie-lib/test-utils@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@pie-lib/test-utils/-/test-utils-0.8.0.tgz#29f60bfd277906297f841532c4d5c2769847489c"
   integrity sha512-gN0ssH49ey/8qseSgMgqEEpD+Egieaz0k2zI8UQkgYuF5bRha2/tvmbcsmOq92v6H2LJCiiJOI/9pmwS20ll/A==
+
+"@pie-lib/translator@2.36.0-mui-update.0":
+  version "2.36.0-mui-update.0"
+  resolved "https://registry.yarnpkg.com/@pie-lib/translator/-/translator-2.36.0-mui-update.0.tgz#61ffb23a91eda51529f65d80be1b494da6c570a2"
+  integrity sha512-IQTkMK89uYoY/X8CoiwfERCFdl9TMtbR8Kk8sDYOW8Vlc5T+yNSOtaI1/8OZLDcGCUmOZrX8AwInG9E8cpDW1Q==
+  dependencies:
+    debug "^4.1.1"
+    i18next "^22.5.0"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
+    react "^18.2.0"
+    react-dom "^18.2.0"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
@@ -6506,6 +6685,13 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+dom-helpers@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
+  integrity sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
 
 dom-helpers@^5.0.1:
   version "5.2.1"
@@ -13886,6 +14072,11 @@ react-jss@^8.6.1:
     prop-types "^15.6.0"
     theming "^1.3.0"
 
+react-lifecycles-compat@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+  integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
 react-measure@^2.2.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/react-measure/-/react-measure-2.5.2.tgz#4ffc410e8b9cb836d9455a9ff18fc1f0fca67f89"
@@ -13939,6 +14130,16 @@ react-test-renderer@^16.0.0-0:
     prop-types "^15.6.2"
     react-is "^16.8.6"
     scheduler "^0.19.1"
+
+react-transition-group@^2.5.2:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
+  integrity sha512-+HzNTCHpeQyl4MJ/bdE0u6XRMe9+XG/+aL4mCxVN4DnPBQ0/5bfHWPDuOZUzYdMj94daZaZdCCc1Dzt9R/xSSg==
+  dependencies:
+    dom-helpers "^3.4.0"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
+    react-lifecycles-compat "^3.0.4"
 
 react-transition-group@^4.4.5:
   version "4.4.5"
