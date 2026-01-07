@@ -1,22 +1,20 @@
-// choices/Choice.js
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDraggable } from '@dnd-kit/core';
 import { styled } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
-import classnames from 'classnames';
 import { renderMath } from '@pie-lib/math-rendering';
 import { color } from '@pie-lib/render-ui';
 
 export const DRAG_TYPE = 'MaskBlank';
 
-const StyledChoice = styled('span')(({ theme }) => ({
+const StyledChoice = styled('span')(({ theme, disabled }) => ({
   border: `solid 0px ${theme.palette.primary.main}`,
   borderRadius: theme.spacing(2),
   margin: theme.spacing(0.5),
   transform: 'translate(0, 0)',
   display: 'inline-flex',
-  '&.disabled': { opacity: 0.6 },
+  ...(disabled && {}),
 }));
 
 const StyledChip = styled(Chip)(() => ({
@@ -37,6 +35,10 @@ const StyledChip = styled(Chip)(() => ({
   borderRadius: '3px',
   paddingTop: '12px',
   paddingBottom: '12px',
+
+  '&.Mui-disabled': {
+    opacity: 1,
+  },
 }));
 
 const StyledChipLabel = styled('span')(() => ({
@@ -69,12 +71,12 @@ export default function Choice({ choice, disabled, instanceId }) {
       style={
         isDragging
           ? {
-            width: rootRef.current?.offsetWidth,
-            height: rootRef.current?.offsetHeight,
-          }
+              width: rootRef.current?.offsetWidth,
+              height: rootRef.current?.offsetHeight,
+            }
           : {}
       }
-      className={classnames({ disabled })}
+      disabled={disabled}
       {...listeners}
       {...attributes}
     >
@@ -82,9 +84,7 @@ export default function Choice({ choice, disabled, instanceId }) {
         clickable={false}
         disabled={disabled}
         ref={rootRef}
-        label={
-          <StyledChipLabel dangerouslySetInnerHTML={{ __html: choice.value }} />
-        }
+        label={<StyledChipLabel dangerouslySetInnerHTML={{ __html: choice.value }} />}
       />
     </StyledChoice>
   );

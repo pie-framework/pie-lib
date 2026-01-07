@@ -12,16 +12,20 @@ import { grey } from '@mui/material/colors';
 
 const log = debug('pie-lib:mask-markup:blank');
 
-const StyledContent = styled('span')(() => ({
+const StyledContent = styled('span')(({ dragged, over }) => ({
   border: `solid 0px ${color.primary()}`,
   minWidth: '200px',
   touchAction: 'none',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
-  '&.over': {
+  opacity: 1,
+  ...(over && {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-  },
+  }),
+  ...(dragged && {
+    opacity: 0.5,
+  }),
 }));
 
 const StyledChip = styled(Chip)(() => ({
@@ -45,6 +49,9 @@ const StyledChip = styled(Chip)(() => ({
   },
   '&.incorrect': {
     border: `solid 1px ${color.incorrect()}`,
+  },
+  '&.Mui-disabled': {
+    opacity: 1,
   },
 }));
 
@@ -131,7 +138,7 @@ function BlankContent({
       const adjustedWidth = widthWithPadding <= responseAreaWidth ? responseAreaWidth : widthWithPadding;
       const adjustedHeight = heightWithPadding <= responseAreaHeight ? responseAreaHeight : heightWithPadding;
 
-      setDimensions(prevState => ({
+      setDimensions((prevState) => ({
         width: adjustedWidth > responseAreaWidth ? adjustedWidth : prevState.width,
         height: adjustedHeight > responseAreaHeight ? adjustedHeight : prevState.height,
       }));
@@ -143,12 +150,8 @@ function BlankContent({
 
   const getRootDimensions = () => {
     // Handle potential non-numeric values
-    const responseAreaWidth = !isNaN(parseFloat(emptyResponseAreaWidth))
-      ? parseFloat(emptyResponseAreaWidth)
-      : 0;
-    const responseAreaHeight = !isNaN(parseFloat(emptyResponseAreaHeight))
-      ? parseFloat(emptyResponseAreaHeight)
-      : 0;
+    const responseAreaWidth = !isNaN(parseFloat(emptyResponseAreaWidth)) ? parseFloat(emptyResponseAreaWidth) : 0;
+    const responseAreaHeight = !isNaN(parseFloat(emptyResponseAreaHeight)) ? parseFloat(emptyResponseAreaHeight) : 0;
 
     const rootStyle = {
       height: dimensions.height || responseAreaHeight,
@@ -193,12 +196,13 @@ function BlankContent({
 
   const draggedLabel = dragItem && isOver && dragItem.choice && dragItem.choice.value;
   const label = choice && choice.value;
-  const style = (isOver || isDragging)
-    ? {
-      width: frozenRef.current?.width,
-      height: frozenRef.current?.height,
-    }
-    : getRootDimensions();
+  const style =
+    isOver || isDragging
+      ? {
+          width: frozenRef.current?.width,
+          height: frozenRef.current?.height,
+        }
+      : getRootDimensions();
 
   return (
     <StyledChip
@@ -209,9 +213,9 @@ function BlankContent({
       label={
         <React.Fragment>
           <StyledChipLabel
-              ref={spanRef}
-              draggable={true}
-              className={classnames({
+            ref={spanRef}
+            draggable={true}
+            className={classnames({
               over: isOver,
               hidden: draggedLabel,
             })}
@@ -270,7 +274,7 @@ function DragDropBlank({
   onChange,
   emptyResponseAreaWidth,
   emptyResponseAreaHeight,
-  instanceId
+  instanceId,
 }) {
   // Setup draggable functionality
   const {
@@ -292,11 +296,7 @@ function DragDropBlank({
   });
 
   // Setup droppable functionality
-  const {
-    setNodeRef: setDropNodeRef,
-    isOver,
-    active: dragItem,
-  } = useDroppable({
+  const { setNodeRef: setDropNodeRef, isOver, active: dragItem } = useDroppable({
     id: `mask-blank-drop-${id}`,
     data: {
       id: id,
@@ -313,14 +313,14 @@ function DragDropBlank({
 
   const style = {
     transform: CSS.Translate.toString(transform),
-    opacity: isDragging ? 0.5 : 1,
   };
 
   return (
     <StyledContent
       ref={setNodeRef}
       style={style}
-      className={isOver ? 'over' : ''}
+      dragged={isDragging}
+      over={isOver}
       {...dragAttributes}
       {...dragListeners}
     >
