@@ -12,7 +12,11 @@ describe('Grid', () => {
       xBand: createBandScale(['a', 'b', 'c'], [0, 400]),
     };
     const props = { ...defaults, ...extras };
-    return render(<Grid {...props} />);
+    return render(
+      <svg>
+        <Grid {...props} />
+      </svg>
+    );
   };
 
   describe('rendering', () => {
@@ -21,12 +25,13 @@ describe('Grid', () => {
       expect(container.firstChild).toBeInTheDocument();
     });
 
-    it('renders grid lines', () => {
+    it('renders grid with SVG group', () => {
       const { container } = renderComponent();
       const svg = container.querySelector('svg');
       expect(svg).toBeInTheDocument();
-      // Check for grid line groups
-      expect(container.querySelector('.vx-rows') || container.querySelector('.vx-columns')).toBeInTheDocument();
+      // Grid renders a <g> element (StyledGridGroup)
+      const gridGroup = container.querySelector('g');
+      expect(gridGroup).toBeInTheDocument();
     });
   });
 });

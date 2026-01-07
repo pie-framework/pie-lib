@@ -401,7 +401,7 @@ export class RawChartAxes extends React.Component {
   componentDidMount() {
     if (this.hiddenLabelRef) {
       const boundingClientRect = this.hiddenLabelRef.getBoundingClientRect();
-      const hiddenEl = this.hiddenLabelRef.current;
+      const hiddenEl = this.hiddenLabelRef;
 
       // same logic used in dropdown.jsx for hidden labels width calculation
       if (hiddenEl) {

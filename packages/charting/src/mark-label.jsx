@@ -144,7 +144,9 @@ export const MarkLabel = (props) => {
         <StyledMathInput
           ref={(r) => {
             root = r;
-            externalInputRef(r);
+            if (typeof externalInputRef === 'function') {
+              externalInputRef(r);
+            }
           }}
           dangerouslySetInnerHTML={{ __html: getLabelMathFormat(label) }}
           className={classNames({
@@ -167,7 +169,9 @@ export const MarkLabel = (props) => {
         <AutosizeInput
           inputRef={(r) => {
             _ref(r);
-            externalInputRef(r);
+            if (typeof externalInputRef === 'function') {
+              externalInputRef(r);
+            }
           }}
           name='mark-label-input'
           autoFocus={isEditing || autoFocus}

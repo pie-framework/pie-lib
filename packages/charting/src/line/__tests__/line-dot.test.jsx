@@ -9,6 +9,7 @@ describe('LineChart', () => {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
+      data: [],
       xBand: () => {
         return {
           bandwidth: () => {},

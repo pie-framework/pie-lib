@@ -36,7 +36,11 @@ describe('BasePoint', () => {
       width: 100,
     };
     const props = { ...defaults, ...extras };
-    return render(<DragHandle {...props} />);
+    return render(
+      <svg>
+        <DragHandle {...props} />
+      </svg>
+    );
   };
 
   describe('rendering', () => {

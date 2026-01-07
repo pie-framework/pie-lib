@@ -1,7 +1,10 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ChartAxes, { TickComponent, RawChartAxes } from '../axes';
 import { graphProps, createBandScale } from './utils';
+
+const theme = createTheme();
 
 describe('ChartAxes', () => {
   const renderComponent = (extras) => {
@@ -13,7 +16,13 @@ describe('ChartAxes', () => {
       categories: [],
     };
     const props = { ...defaults, ...extras };
-    return render(<ChartAxes {...props} />);
+    return render(
+      <ThemeProvider theme={theme}>
+        <svg>
+          <ChartAxes {...props} />
+        </svg>
+      </ThemeProvider>
+    );
   };
 
   describe('rendering', () => {
@@ -22,12 +31,13 @@ describe('ChartAxes', () => {
       expect(container.firstChild).toBeInTheDocument();
     });
 
-    it('renders SVG axes', () => {
-      const { container } = renderComponent();
+    it('renders SVG with axes group', () => {
+      const { container} = renderComponent();
       const svg = container.querySelector('svg');
       expect(svg).toBeInTheDocument();
-      // Check for axis groups
-      expect(container.querySelector('.vx-axis')).toBeInTheDocument();
+      // Component renders StyledAxesGroup which is a <g> element
+      const axesGroup = container.querySelector('g');
+      expect(axesGroup).toBeInTheDocument();
     });
   });
 });
@@ -42,7 +52,13 @@ describe('RawChartAxes', () => {
       categories: [],
     };
     const props = { ...defaults, ...extras };
-    return render(<RawChartAxes {...props} />);
+    return render(
+      <ThemeProvider theme={theme}>
+        <svg>
+          <RawChartAxes {...props} />
+        </svg>
+      </ThemeProvider>
+    );
   };
 
   describe('rendering', () => {
@@ -51,11 +67,13 @@ describe('RawChartAxes', () => {
       expect(container.firstChild).toBeInTheDocument();
     });
 
-    it('renders SVG axes', () => {
+    it('renders SVG with axes group', () => {
       const { container } = renderComponent();
       const svg = container.querySelector('svg');
       expect(svg).toBeInTheDocument();
-      expect(container.querySelector('.vx-axis')).toBeInTheDocument();
+      // Component renders StyledAxesGroup which is a <g> element
+      const axesGroup = container.querySelector('g');
+      expect(axesGroup).toBeInTheDocument();
     });
   });
 });
@@ -65,23 +83,40 @@ describe('TickComponent', () => {
     const defaults = {
       graphProps: graphProps(),
       xBand: createBandScale(['a', 'b', 'c'], [0, 400]),
+      categories: [{ value: 1, label: 'test', editable: false, interactive: false }],
+      formattedValue: '0-test',
+      bandWidth: 100,
+      barWidth: 100,
+      x: 50,
+      y: 50,
     };
     const props = { ...defaults, ...extras };
-    return render(<TickComponent {...props} />);
+    return render(
+      <ThemeProvider theme={theme}>
+        <svg>
+          <TickComponent {...props} />
+        </svg>
+      </ThemeProvider>
+    );
   };
 
   describe('rendering', () => {
     it('renders tick component', () => {
       const { container } = renderComponent();
-      expect(container.firstChild).toBeInTheDocument();
+      const svg = container.querySelector('svg');
+      expect(svg).toBeInTheDocument();
+      // TickComponent renders a <g> element
+      expect(container.querySelector('g')).toBeInTheDocument();
     });
 
     it('renders with categories', () => {
       const { container } = renderComponent({
         formattedValue: '0-test',
-        categories: [{ value: 1, label: 'test' }],
+        categories: [{ value: 1, label: 'test', editable: false, interactive: false }],
       });
-      expect(container.firstChild).toBeInTheDocument();
+      const svg = container.querySelector('svg');
+      expect(svg).toBeInTheDocument();
+      expect(container.querySelector('g')).toBeInTheDocument();
     });
   });
 

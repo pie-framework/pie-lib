@@ -75,6 +75,51 @@ if (!Element.prototype.scrollIntoView) {
   Element.prototype.scrollIntoView = jest.fn();
 }
 
+// Mock SVG methods (required for charting components)
+if (typeof SVGElement !== 'undefined') {
+  SVGElement.prototype.getBBox = jest.fn(() => ({
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 100,
+  }));
+
+  SVGElement.prototype.getScreenCTM = jest.fn(() => ({
+    a: 1,
+    b: 0,
+    c: 0,
+    d: 1,
+    e: 0,
+    f: 0,
+  }));
+
+  SVGElement.prototype.createSVGMatrix = jest.fn(() => ({
+    a: 1,
+    b: 0,
+    c: 0,
+    d: 1,
+    e: 0,
+    f: 0,
+    inverse: jest.fn(),
+    multiply: jest.fn(),
+  }));
+}
+
+// Mock getBoundingClientRect for all elements if not present
+if (typeof Element !== 'undefined' && !Element.prototype.getBoundingClientRect) {
+  Element.prototype.getBoundingClientRect = jest.fn(() => ({
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 100,
+    top: 0,
+    right: 100,
+    bottom: 100,
+    left: 0,
+    toJSON: () => {},
+  }));
+}
+
 // Mock createRange (required for @testing-library/user-event)
 if (!document.createRange) {
   document.createRange = () => ({

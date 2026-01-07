@@ -256,10 +256,6 @@ export class Chart extends React.Component {
     const { scale } = common.graphProps;
     const xBand = dataToXBand(scale.x, categories, width, chartType);
 
-    if (!ChartComponent) {
-      return null;
-    }
-
     const bandWidth = xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || scale.x(correctValues.domain.max) / categories.length;
@@ -334,15 +330,17 @@ export class Chart extends React.Component {
             <rect {...maskSize} fill="white" />
           </mask>
           <g id="marks" mask={`url('#${this.maskUid}')`}>
-            <ChartComponent
-              {...common}
-              data={categories}
-              height={rootCommon.graphProps.size.height}
-              defineChart={defineChart}
-              onChange={this.changeData}
-              onChangeCategory={this.changeCategory}
-              correctData={correctData}
-            />
+            {ChartComponent && (
+              <ChartComponent
+                {...common}
+                data={categories}
+                height={rootCommon.graphProps.size.height}
+                defineChart={defineChart}
+                onChange={this.changeData}
+                onChangeCategory={this.changeCategory}
+                correctData={correctData}
+              />
+            )}
           </g>
         </Root>
         <AlertDialog
