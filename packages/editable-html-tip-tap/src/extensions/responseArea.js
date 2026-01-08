@@ -186,8 +186,9 @@ export const ResponseAreaExtension = Extension.create({
         // tr.setSelection(NodeSelection.create(tr.doc, usedPos))
 
         // --- Cursor move behavior for certain types (Slate: moveFocusTo next text) ---
-
-        if (typeName === 'drag_in_the_blank' || typeName === 'inline_dropdown' || typeName === 'math_templated') {
+        if (
+          ['math_templated', 'inline_dropdown', 'drag_in_the_blank', 'explicit_constructed_response'].includes(typeName)
+        ) {
           tr.setSelection(NodeSelection.create(tr.doc, usedPos));
         } else {
           // Default: put cursor after inserted node

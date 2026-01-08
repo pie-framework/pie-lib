@@ -28,7 +28,7 @@ import { CSSMark } from '../extensions/css';
 import EditorContainer from './TiptapContainer';
 import { valueToSize } from '../utils/size';
 import { buildExtensions } from '../extensions';
-import { htmlToValue } from "@pie-lib/editable-html";
+import { htmlToValue } from '@pie-lib/editable-html';
 
 const defaultToolbarOpts = {
   position: 'bottom',
@@ -133,7 +133,7 @@ export const EditableHtml = (props) => {
   const extensions = [
     TextStyleKit,
     CharacterCount.configure({
-      limit: props.charactersLimit,
+      limit: props.charactersLimit || 1000000,
     }),
     StarterKit,
     ExtendedTable,
@@ -226,40 +226,46 @@ export const EditableHtml = (props) => {
     }),
   ];
 
-  const editor = useEditor({
-    extensions,
-    immediatelyRender: false,
-    editorProps: {
-      handleKeyDown(view, event) {
-        if (props.onKeyDown) {
-          return props.onKeyDown(event);
+  const editor = useEditor(
+    {
+      extensions,
+      immediatelyRender: false,
+      editorProps: {
+        handleKeyDown(view, event) {
+          if (props.onKeyDown) {
+            return props.onKeyDown(event);
+          }
+
+          // Return false to let default behavior continue
+          return false;
+        },
+      },
+      editable: !props.disabled,
+      content: props.markup,
+      onUpdate: ({ editor, transaction }) => {
+        if (transaction.isDone) {
+          props.onChange?.(editor.getHTML());
+        }
+      },
+      onBlur: ({ editor }) => {
+        const respAreaToolbarActive =
+          editor.isActive('inline_dropdown') || editor.isActive('explicit_constructed_response');
+
+        if (respAreaToolbarActive) {
+          return;
         }
 
-        // Return false to let default behavior continue
-        return false;
+        if (props.markup !== editor.getHTML()) {
+          props.onChange?.(editor.getHTML());
+        }
+
+        if (toolbarOptsToUse.doneOn === 'blur') {
+          props.onDone?.(editor.getHTML());
+        }
       },
     },
-    editable: !props.disabled,
-    content: props.markup,
-    onUpdate: ({ editor, transaction }) => {
-      if (transaction.isDone) {
-        props.onChange?.(editor.getHTML());
-      }
-
-      if (props.responseAreaProps?.onHandleAreaChange) {
-        // props.responseAreaProps.onHandleAreaChange(editor.getHTML());
-      }
-    },
-    onBlur: ({ editor }) => {
-      if (props.markup !== editor.getHTML()) {
-        props.onChange?.(editor.getHTML());
-      }
-
-      if (toolbarOptsToUse.doneOn === 'blur') {
-        props.onDone?.(editor.getHTML());
-      }
-    },
-  });
+    [props.charactersLimit],
+  );
 
   useEffect(() => {
     editor?.setEditable(!props.disabled);
