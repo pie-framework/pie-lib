@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plugin, PluginKey, TextSelection } from 'prosemirror-state';
+import { Plugin, PluginKey, TextSelection, NodeSelection } from 'prosemirror-state';
 import { Extension } from '@tiptap/core';
 import { Node, ReactNodeViewRenderer } from '@tiptap/react';
 import ExplicitConstructedResponse from '../components/respArea/ExplicitConstructedResponse';
@@ -186,14 +186,29 @@ export const ResponseAreaExtension = Extension.create({
         // tr.setSelection(NodeSelection.create(tr.doc, usedPos))
 
         // --- Cursor move behavior for certain types (Slate: moveFocusTo next text) ---
-        if (typeName === 'drag_in_the_blank' || typeName === 'math_templated') {
-          const after = usedPos + newInline.nodeSize;
-          tr.setSelection(selectionAfterPos(tr.doc, after));
+
+        if (typeName === 'drag_in_the_blank' || typeName === 'inline_dropdown' || typeName === 'math_templated') {
+          tr.setSelection(NodeSelection.create(tr.doc, usedPos));
         } else {
           // Default: put cursor after inserted node
           const after = usedPos + newInline.nodeSize;
           tr.setSelection(selectionAfterPos(tr.doc, after));
         }
+
+        if (dispatch) {
+          commands.focus();
+          dispatch(tr);
+        }
+
+        return true;
+      },
+      refreshResponseArea: () => ({ tr, state, commands, dispatch }) => {
+        const { selection } = state;
+        const node = selection.$from.nodeAfter;
+        const nodePos = selection.from;
+
+        tr.setNodeMarkup(nodePos, undefined, { ...node.attrs, updated: `${Date.now()}` });
+        tr.setSelection(NodeSelection.create(tr.doc, nodePos));
 
         if (dispatch) {
           commands.focus();
@@ -218,6 +233,7 @@ export const ExplicitConstructedResponseNode = Node.create({
     return {
       index: { default: null },
       value: { default: '' },
+      updated: { default: '' },
     };
   },
   parseHTML() {
@@ -258,6 +274,7 @@ export const MathTemplatedNode = Node.create({
     return {
       index: { default: null },
       value: { default: '' },
+      updated: { default: '' },
     };
   },
   parseHTML() {
@@ -300,6 +317,7 @@ export const DragInTheBlankNode = Node.create({
       id: { default: null },
       value: { default: '' },
       inTable: { default: null },
+      updated: { default: '' },
     };
   },
   parseHTML() {
@@ -344,6 +362,7 @@ export const InlineDropdownNode = Node.create({
     return {
       index: { default: null },
       value: { default: '' },
+      updated: { default: '' },
     };
   },
   parseHTML() {

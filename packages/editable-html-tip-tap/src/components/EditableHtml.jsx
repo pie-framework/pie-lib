@@ -28,6 +28,7 @@ import { CSSMark } from '../extensions/css';
 import EditorContainer from './TiptapContainer';
 import { valueToSize } from '../utils/size';
 import { buildExtensions } from '../extensions';
+import { htmlToValue } from "@pie-lib/editable-html";
 
 const defaultToolbarOpts = {
   position: 'bottom',
@@ -250,10 +251,12 @@ export const EditableHtml = (props) => {
       }
     },
     onBlur: ({ editor }) => {
+      if (props.markup !== editor.getHTML()) {
+        props.onChange?.(editor.getHTML());
+      }
+
       if (toolbarOptsToUse.doneOn === 'blur') {
         props.onDone?.(editor.getHTML());
-      } else {
-        props.onChange?.(editor.getHTML());
       }
     },
   });

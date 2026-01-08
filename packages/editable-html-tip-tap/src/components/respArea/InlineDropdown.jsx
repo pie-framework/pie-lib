@@ -84,6 +84,7 @@ const InlineDropdown = (props) => {
           position: 'relative',
           alignItems: 'center',
         }}
+        onClick={() => setShowToolbar(true)}
       >
         <div
           style={{
