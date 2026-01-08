@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/mask-markup",
-  "version": "1.33.2-beta-16",
+  "version": "1.33.2-beta-17",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -11,7 +11,7 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "@pie-lib/drag": "^2.22.2",
-    "@pie-lib/editable-html-tip-tap": "^1.0.15",
+    "@pie-lib/editable-html-tip-tap": "^1.0.16",
     "@pie-lib/math-rendering": "^3.22.1",
     "@pie-lib/render-ui": "^4.35.2",
     "classnames": "^2.2.6",
