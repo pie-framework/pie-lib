@@ -28,7 +28,6 @@ import { CSSMark } from '../extensions/css';
 import EditorContainer from './TiptapContainer';
 import { valueToSize } from '../utils/size';
 import { buildExtensions } from '../extensions';
-import { htmlToValue } from '@pie-lib/editable-html';
 
 const defaultToolbarOpts = {
   position: 'bottom',
