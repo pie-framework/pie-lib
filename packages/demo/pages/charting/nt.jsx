@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 const StyledTextField = styled(TextField)(({ theme, styleVariant }) => ({
   marginTop: theme.spacing(2),
   paddingRight: theme.spacing(1),
-  // Add variant-specific styles if needed
+
   ...(styleVariant === 'thin' &&
     {
       // maxWidth: '100px'

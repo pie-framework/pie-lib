@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.46.0-mui-update.0",
+  "version": "2.48.0-mui-update.0",
   "description": "Graphing components",
   "keywords": [
     "react",
@@ -22,12 +22,12 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/drag": "2.34.0-mui-update.0",
-    "@pie-lib/editable-html": "11.33.0-mui-update.0",
-    "@pie-lib/graphing-utils": "1.33.0-mui-update.0",
-    "@pie-lib/plot": "2.39.0-mui-update.0",
-    "@pie-lib/render-ui": "4.47.0-mui-update.0",
-    "@pie-lib/translator": "2.36.0-mui-update.0",
+    "@pie-lib/drag": "2.36.0-mui-update.0",
+    "@pie-lib/editable-html": "11.35.0-mui-update.0",
+    "@pie-lib/graphing-utils": "1.35.0-mui-update.0",
+    "@pie-lib/plot": "2.41.0-mui-update.0",
+    "@pie-lib/render-ui": "4.49.0-mui-update.0",
+    "@pie-lib/translator": "2.38.0-mui-update.0",
     "@visx/axis": "^3.0.0",
     "@visx/clip-path": "^3.0.0",
     "@visx/curve": "^3.0.0",
@@ -54,6 +54,6 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "gitHead": "c0e988917115177798e7686c1f5585f0af1728fc",
+  "gitHead": "1e3f5fd7812b0a334d3b2719026a01c3102398c9",
   "scripts": {}
 }

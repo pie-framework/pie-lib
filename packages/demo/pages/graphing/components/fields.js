@@ -26,10 +26,6 @@ const MinMaxContainer = styled('div')({
   flex: '0 0 auto',
 });
 
-const FillWidth = styled('div')({
-  width: '100%',
-});
-
 const FillTextField = styled(TextField)({
   width: '100%',
 });
@@ -55,16 +51,8 @@ class MinMax extends React.Component {
           <Nt label="min" value={model.min} variant="thin" onChange={(n) => this.change('min', n)} />
           <Nt label="max" value={model.max} variant="thin" onChange={(n) => this.change('max', n)} />
         </MinMaxContainer>
-        <Nt
-          label="tick frequency"
-          value={model.step}
-          onChange={(n) => this.change('step', n)}
-        />
-        <Nt
-          label="tick label frequency"
-          value={model.labelStep}
-          onChange={(n) => this.change('labelStep', n)}
-        />
+        <Nt label="tick frequency" value={model.step} onChange={(n) => this.change('step', n)} />
+        <Nt label="tick label frequency" value={model.labelStep} onChange={(n) => this.change('labelStep', n)} />
         <FillTextField
           label="axis label"
           value={model.axisLabel}
@@ -132,12 +120,7 @@ export class LabelsConfig extends React.Component {
             value={value.left}
             onChange={(e) => this.change('left', e)}
           />
-          <RightField
-            variant="outlined"
-            label="top label"
-            value={value.top}
-            onChange={(e) => this.change('top', e)}
-          />
+          <RightField variant="outlined" label="top label" value={value.top} onChange={(e) => this.change('top', e)} />
         </LabelsRow>
         <LabelsRow>
           <LabelsField
@@ -179,7 +162,7 @@ export class Options extends React.Component {
     graphTitle: PropTypes.bool,
     labels: PropTypes.bool,
   };
-  
+
   change = (name, value) => {
     const { model, onChange } = this.props;
     onChange({ ...model, [name]: value });

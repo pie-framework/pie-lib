@@ -15,14 +15,14 @@ import ChangelogDialog from './changelog-dialog';
 
 const drawerWidth = 240;
 
-const RootContainer = styled('div')(({ theme }) => ({
+const RootContainer = styled('div')({
   flexGrow: 1,
   zIndex: 1,
   overflow: 'hidden',
   position: 'relative',
   display: 'flex',
   fontFamily: '"Roboto", sans-serif',
-}));
+});
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { IconRoot } from './icon-root';
-import IconBase from './icon-base';
 
 // Exclamation mark
 const Exclamation = ({ fill }) => (

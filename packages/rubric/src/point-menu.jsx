@@ -10,7 +10,6 @@ export class IconMenu extends React.Component {
   static propTypes = {
     opts: PropTypes.object,
     onClick: PropTypes.func.isRequired,
-    classes: PropTypes.object,
   };
 
   constructor(props) {
@@ -26,7 +25,7 @@ export class IconMenu extends React.Component {
   handleRequestClose = () => this.setState({ open: false });
 
   render() {
-    const { opts, onClick, classes = {} } = this.props;
+    const { opts, onClick } = this.props;
     const { open, anchorEl } = this.state;
     const keys = Object.keys(opts) || [];
 
@@ -40,7 +39,7 @@ export class IconMenu extends React.Component {
     return (
       <div>
         <div onClick={this.handleClick}>
-          <IconButton className={classes.icon} size="large">
+          <IconButton size="large">
             {open ? <MoreVertIcon color={iconColor} /> : <MoreHorizIcon color={iconColor} />}
           </IconButton>
         </div>
@@ -69,16 +68,11 @@ export class IconMenu extends React.Component {
 export default class PointMenu extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    classes: PropTypes.object,
     showSampleAnswer: PropTypes.bool.isRequired,
   };
 
-  static defaultProps = {
-    classes: {},
-  };
-
   render() {
-    const { onChange, classes, showSampleAnswer } = this.props;
+    const { onChange, showSampleAnswer } = this.props;
     const sampleText = showSampleAnswer ? 'Provide Sample Response' : 'Remove Sample Response';
 
     return (
@@ -87,7 +81,6 @@ export default class PointMenu extends React.Component {
         opts={{
           sample: sampleText,
         }}
-        classes={classes}
       />
     );
   }

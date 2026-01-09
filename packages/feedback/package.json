@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/feedback",
-  "version": "0.36.0-mui-update.0",
+  "version": "0.38.0-mui-update.0",
   "description": "Feedback utilities",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -10,5 +10,5 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
-  "gitHead": "d164dea06f2f9e284798fe8558219778dd3df942"
+  "gitHead": "0289459c8e8c23e6a3dd3c9a27a7996e4f4ce5f1"
 }

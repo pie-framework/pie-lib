@@ -96,14 +96,12 @@ export class ToggleBar extends React.Component {
   moveTool = (dragIndex, hoverIndex) => {
     const { options, onChangeToolsOrder } = this.props;
     const newOptions = arrayMove(options, dragIndex, hoverIndex);
-    console.log('New Options Order:', newOptions);
     onChangeToolsOrder(newOptions);
   };
 
   handleDragEnd = (event) => {
     const { active, over } = event;
-    
-    console.log('Drag End Event:', event);
+
     if (!over || !active) return;
 
     const activeData = active.data.current;
@@ -112,7 +110,7 @@ export class ToggleBar extends React.Component {
     if (activeData?.type === 'tool' && overData?.type === 'tool') {
       const dragIndex = activeData.index;
       const hoverIndex = overData.index;
-      
+
       if (dragIndex !== hoverIndex) {
         this.moveTool(dragIndex, hoverIndex);
       }
@@ -158,22 +156,8 @@ export class ToggleBar extends React.Component {
 }
 
 // DragTool functional component using @dnd-kit hooks
-function DragTool({ 
-  children, 
-  index, 
-  draggable, 
-  moveTool, 
-  toolRef, 
-  value 
-}) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef: setDragNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useDraggable({
+function DragTool({ children, index, draggable, toolRef, value }) {
+  const { attributes, listeners, setNodeRef: setDragNodeRef, transform, transition, isDragging } = useDraggable({
     id: `tool-${value}-${index}`,
     disabled: !draggable,
     data: {
@@ -183,10 +167,7 @@ function DragTool({
     },
   });
 
-  const {
-    setNodeRef: setDropNodeRef,
-    isOver,
-  } = useDroppable({
+  const { setNodeRef: setDropNodeRef } = useDroppable({
     id: `drop-tool-${value}-${index}`,
     data: {
       type: 'tool',

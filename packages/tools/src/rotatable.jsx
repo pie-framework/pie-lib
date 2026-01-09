@@ -50,7 +50,6 @@ export class Rotatable extends React.Component {
         origin: PropTypes.string,
       }),
     ),
-    className: PropTypes.string,
     startPosition: PropTypes.shape({
       left: PropTypes.number,
       top: PropTypes.number,
@@ -262,7 +261,7 @@ export class Rotatable extends React.Component {
   };
 
   render() {
-    const { children, showAnchor, className } = this.props;
+    const { children, showAnchor } = this.props;
     const { rotation, anchor, origin, translate, position } = this.state;
 
     const t = translate ? `translate(${translate.x}px, ${translate.y}px)` : '';
@@ -276,7 +275,6 @@ export class Rotatable extends React.Component {
 
     return (
       <RotatableContainer
-        className={className}
         style={style}
         ref={(r) => (this.rotatable = r)}
         onMouseDown={this.mouseDown}

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.44.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.43.0-mui-update.0...@pie-lib/demo@8.44.0-mui-update.0) (2025-12-29)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+
+
+
+
+# [8.43.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.42.0-mui-update.0...@pie-lib/demo@8.43.0-mui-update.0) (2025-12-29)
+
+
+### Bug Fixes
+
+* demo rendering issues ([354c924](https://github.com/pie-framework/pie-lib/commit/354c9243b4237e4b62ce6479d93090af7b1e6cad))
+* initial rendering of demo page, migrate from [@vx](https://github.com/vx) library to [@visx](https://github.com/visx) ([3d432b9](https://github.com/pie-framework/pie-lib/commit/3d432b94bbaef8e3ca3bc0ff57decbac878a979c))
+
+
+
+
+
 # [8.42.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.41.0-mui-update.0...@pie-lib/demo@8.42.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/demo

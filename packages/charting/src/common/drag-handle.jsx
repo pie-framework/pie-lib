@@ -47,7 +47,6 @@ const RawDragHandle = ({
   y,
   width,
   graphProps,
-  className,
   interactive,
   defineChart,
   isHovered,
@@ -71,7 +70,6 @@ const RawDragHandle = ({
           rx={width / 2}
           // the drag icon has a 22px fixed r value, so the ry value is 3 times that in order to cover all the area
           ry={66}
-          className={className}
           {...rest}
         />
       )}
@@ -107,7 +105,6 @@ RawDragHandle.propTypes = {
   y: PropTypes.number.isRequired,
   width: PropTypes.number,
   graphProps: types.GraphPropsType.isRequired,
-  className: PropTypes.string,
   interactive: PropTypes.bool,
   isHovered: PropTypes.bool,
   correctness: PropTypes.shape({

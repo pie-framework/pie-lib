@@ -9,10 +9,6 @@ import ChartType from './chart-type';
 import Category from './category';
 import Nt from './nt';
 
-const OptionsContainer = styled('div')({
-  // Add any base styles for options container if needed
-});
-
 const StyledTextField = styled(TextField)(({ theme }) => ({
   marginTop: theme.spacing(2),
   '&.title': {
@@ -25,13 +21,10 @@ const CategoriesHeader = styled('div')({
   justifyContent: 'space-between',
 });
 
-const RowContainer = styled('div')({
-  // Add row styles if needed
-});
+const RowContainer = styled('div')({});
 
 export class Options extends React.Component {
   static propTypes = {
-    className: PropTypes.string,
     model: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
   };
@@ -93,9 +86,9 @@ export class Options extends React.Component {
   };
 
   render() {
-    const { className, model } = this.props;
+    const { model } = this.props;
     return (
-      <OptionsContainer className={className}>
+      <div>
         <ChartType value={model.chartType} onChange={(e) => this.change('chartType', e.target.value)} />
         <StyledTextField
           variant="outlined"
@@ -178,7 +171,7 @@ export class Options extends React.Component {
             onChange={(label, value, interactive) => this.changeCategory(index, label, value, interactive)}
           />
         ))}
-      </OptionsContainer>
+      </div>
     );
   }
 }

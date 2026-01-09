@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.41.0-mui-update.0...@pie-lib/rubric@0.42.0-mui-update.0) (2025-12-29)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
+# [0.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.40.0-mui-update.0...@pie-lib/rubric@0.41.0-mui-update.0) (2025-12-29)
+
+**Note:** Version bump only for package @pie-lib/rubric
+
+
+
+
+
 # [0.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.39.0-mui-update.0...@pie-lib/rubric@0.40.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/rubric

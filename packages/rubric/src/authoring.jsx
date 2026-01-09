@@ -70,13 +70,27 @@ const MaxPoints = (props) => {
 // if the value is '', the Sample Answer input field will be empty
 const checkSampleAnswer = (sampleAnswer) => sampleAnswer === null || sampleAnswer === 'null';
 
-const PCContainer = styled('div')(() => ({}));
 const Row = styled('div')(() => ({ display: 'flex', width: '100%', position: 'relative' }));
+
 const EditorDiv = styled('div')(({ theme }) => ({ width: '100%', backgroundColor: `${theme.palette.common.white}` }));
+
 const DragIndicatorStyled = styled(DragIndicator)(({ theme }) => ({ paddingTop: theme.spacing(1), color: grey[500] }));
-const PointsLabel = styled(Typography)(({ theme }) => ({ color: grey[500], paddingBottom: theme.spacing(1), textTransform: 'uppercase' }));
+
+const PointsLabel = styled(Typography)(({ theme }) => ({
+  color: grey[500],
+  paddingBottom: theme.spacing(1),
+  textTransform: 'uppercase',
+}));
+
 const SampleAnswersEditor = styled('div')(({ theme }) => ({ paddingLeft: theme.spacing(3) }));
-const ErrorText = styled('div')(({ theme }) => ({ fontSize: theme.typography.fontSize - 2, color: theme.palette.error.main, paddingLeft: theme.spacing(3), paddingTop: theme.spacing(1) }));
+
+const ErrorText = styled('div')(({ theme }) => ({
+  fontSize: theme.typography.fontSize - 2,
+  color: theme.palette.error.main,
+  paddingLeft: theme.spacing(3),
+  paddingTop: theme.spacing(1),
+}));
+
 const PointMenuWrapper = styled('div')(() => ({ position: 'absolute', right: 0 }));
 
 export const PointConfig = (props) => {
@@ -85,7 +99,7 @@ export const PointConfig = (props) => {
   const showSampleAnswer = checkSampleAnswer(sampleAnswer);
 
   return (
-    <PCContainer>
+    <div>
       <PointsLabel variant="overline">{pointsLabel}</PointsLabel>
       <Row>
         <DragIndicatorStyled />
@@ -118,7 +132,7 @@ export const PointConfig = (props) => {
           </EditorDiv>
         </SampleAnswersEditor>
       )}
-    </PCContainer>
+    </div>
   );
 };
 
@@ -134,7 +148,7 @@ const InputContainerWrapper = styled('div')(({ theme }) => ({
   width: '100%',
   paddingTop: theme.spacing(2),
   marginBottom: theme.spacing(2),
-  '& MuiFormControl-root': { width: '100%' }
+  '& MuiFormControl-root': { width: '100%' },
 }));
 const Rubricless = styled('div')(() => ({ display: 'none' }));
 const ConfigHolder = styled('div')(({ theme }) => ({ paddingTop: theme.spacing(1), paddingBottom: theme.spacing(1) }));
@@ -142,7 +156,6 @@ const RubricTitle = styled(Typography)(({ theme }) => ({ paddingLeft: theme.spac
 
 export class RawAuthoring extends React.Component {
   static propTypes = {
-    className: PropTypes.string,
     value: RubricType,
     config: PropTypes.object,
     pluginOpts: PropTypes.object,
@@ -252,14 +265,7 @@ export class RawAuthoring extends React.Component {
   };
 
   render() {
-    const {
-      className,
-      value,
-      mathMlOptions = {},
-      config = {},
-      rubricless = false,
-      pluginOpts = {},
-    } = this.props;
+    const { value, mathMlOptions = {}, config = {}, rubricless = false, pluginOpts = {} } = this.props;
     let {
       excludeZeroEnabled = true,
       maxPointsEnabled = true,
@@ -279,10 +285,8 @@ export class RawAuthoring extends React.Component {
     const maxPointsValue = !rubricless ? value.points.length - 1 : maxPoints;
 
     return (
-      <div className={className}>
-        <RubricTitle variant="h5">
-          Rubric
-        </RubricTitle>
+      <div>
+        <RubricTitle variant="h5">Rubric</RubricTitle>
         <FormGroup row>
           {maxPointsEnabled && (
             <MaxPoints
@@ -316,7 +320,7 @@ export class RawAuthoring extends React.Component {
           </InputContainerWrapper>
         )}
 
-        <div className={rubricless ? undefined : undefined}>
+        <div>
           {rubricless ? (
             <Rubricless />
           ) : (
@@ -339,7 +343,8 @@ export class RawAuthoring extends React.Component {
                                     points={value.points.length - 1 - index}
                                     content={p}
                                     error={
-                                      pointsDescriptorsErrors && pointsDescriptorsErrors[value.points.length - 1 - index]
+                                      pointsDescriptorsErrors &&
+                                      pointsDescriptorsErrors[value.points.length - 1 - index]
                                     }
                                     sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
                                     onChange={(content) => this.changeContent(index, content, 'points')}
@@ -390,13 +395,7 @@ const Reverse = (props) => {
   };
 
   return (
-    <RawAuthoring
-      value={value}
-      config={config}
-      onChange={onChange}
-      rubricless={rubricless}
-      pluginOpts={pluginOpts}
-    />
+    <RawAuthoring value={value} config={config} onChange={onChange} rubricless={rubricless} pluginOpts={pluginOpts} />
   );
 };
 

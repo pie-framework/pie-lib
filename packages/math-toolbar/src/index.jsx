@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import EditorAndPad from './editor-and-pad';
 import { DoneButton } from './done-button';
 import { styled } from '@mui/material/styles';
@@ -186,7 +185,7 @@ export class RawPureToolbar extends React.Component {
     } = this.props;
 
     return (
-      <PureToolbarContainer className={cx((classNames || {}).toolbar)} ref={keyPadCharacterRef}>
+      <PureToolbarContainer className={(classNames && classNames.toolbar) || ''} ref={keyPadCharacterRef}>
         <div />
         <EditorAndPad
           autoFocus={autoFocus}

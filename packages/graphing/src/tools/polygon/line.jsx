@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { types, gridDraggable } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import * as utils from '../../utils';
-import { correct, disabled, disabledSecondary, incorrect, missing } from '../shared/styles';
+import { correct, disabled, incorrect, missing } from '../shared/styles';
 
 const StyledLine = styled('line')(({ theme, disabled: isDisabled, correctness }) => ({
   strokeWidth: 3,

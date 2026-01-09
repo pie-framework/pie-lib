@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.50.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.49.0-mui-update.0...@pie-lib/charting@5.50.0-mui-update.0) (2025-12-29)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+
+
+
+
+# [5.49.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.48.0-mui-update.0...@pie-lib/charting@5.49.0-mui-update.0) (2025-12-29)
+
+
+### Bug Fixes
+
+* charting issue after mui update ([19eb377](https://github.com/pie-framework/pie-lib/commit/19eb377ae63624402dce8118857c64e2da07c7ec))
+* charting style ([1e72103](https://github.com/pie-framework/pie-lib/commit/1e7210354c92a4f85da10043f42261e275894b69))
+* publish charting ([df5a64e](https://github.com/pie-framework/pie-lib/commit/df5a64e4287fe71b0da7838c14b19e72286c7e82))
+
+
+### Features
+
+* migrate from [@vx](https://github.com/vx) library to [@visx](https://github.com/visx) ([135bf60](https://github.com/pie-framework/pie-lib/commit/135bf605161bfbd0070ac181892df20931691ce3))
+
+
+
+
+
 # [5.48.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.47.0-mui-update.0...@pie-lib/charting@5.48.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/charting

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.40.0-mui-update.0...@pie-lib/plot@2.41.0-mui-update.0) (2025-12-29)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+# [2.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.39.0-mui-update.0...@pie-lib/plot@2.40.0-mui-update.0) (2025-12-29)
+
+
+### Features
+
+* migrate from [@vx](https://github.com/vx) library to [@visx](https://github.com/visx) ([135bf60](https://github.com/pie-framework/pie-lib/commit/135bf605161bfbd0070ac181892df20931691ce3))
+
+
+
+
+
 # [2.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.38.0-mui-update.0...@pie-lib/plot@2.39.0-mui-update.0) (2025-12-17)
 
 **Note:** Version bump only for package @pie-lib/plot

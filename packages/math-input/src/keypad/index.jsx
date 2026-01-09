@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { lighten, alpha, styled } from '@mui/material/styles';
-import classNames from 'classnames';
 import debug from 'debug';
 import _ from 'lodash';
 import MathQuill from '@pie-framework/mathquill';
@@ -13,7 +12,7 @@ import { baseSet } from '../keys';
 import editableHtmlConstants from '../../../editable-html/src/constants';
 import { commonMqKeyboardStyles } from '../mq/common-mq-styles';
 import { sortKeys } from './keys-layout';
-import { green, indigo, pink } from '@mui/material/colors';
+import { indigo, pink } from '@mui/material/colors';
 import { color } from '@pie-lib/render-ui';
 
 const log = debug('pie-lib:math-inline:keypad');
@@ -171,11 +170,7 @@ const LatexButton = (props) => {
   }
 
   return (
-    <StyledLatexButton
-      className={props.className}
-      onClick={props.onClick}
-      aria-label={props.ariaLabel}
-    >
+    <StyledLatexButton className={props.className} onClick={props.onClick} aria-label={props.ariaLabel}>
       <LatexButtonContent latex={props.latex} />
     </StyledLatexButton>
   );
@@ -220,14 +215,16 @@ const StyledButton = styled(Button)(({ theme, category, isDelete, isComma, isDot
   color: color.text(),
 
   backgroundColor:
-    category === 'operators' ? lighten(pink[300], 0.5) :
-      // this code with green seems to not be applied to current implementation, so I commented it out, but left it here just in case
-      // category === 'comparison' ? lighten(green[500], 0.5) :
+    category === 'operators'
+      ? lighten(pink[300], 0.5)
+      : // this code with green seems to not be applied to current implementation, so I commented it out, but left it here just in case
+        // category === 'comparison' ? lighten(green[500], 0.5) :
         lighten(indigo[300], 0.5),
   '&:hover': {
     backgroundColor:
-      category === 'operators' ? lighten(pink[300], 0.7) :
-        // category === 'comparison' ? lighten(green[500], 0.7) :
+      category === 'operators'
+        ? lighten(pink[300], 0.7)
+        : // category === 'comparison' ? lighten(green[500], 0.7) :
           lighten(indigo[300], 0.7),
   },
   borderRadius: 0,
@@ -238,31 +235,35 @@ const StyledButton = styled(Button)(({ theme, category, isDelete, isComma, isDot
   }),
 }));
 
-const StyledLatexButtonWrapper = styled(Button)(({ theme, category }) => ({
+const StyledLatexButtonWrapper = styled(Button)(({  category }) => ({
   minWidth: 'auto',
   borderRadius: 0,
   backgroundColor:
-    category === 'operators' ? lighten(pink[300], 0.5) :
-      // category === 'comparison' ? lighten(green[500], 0.5) :
+    category === 'operators'
+      ? lighten(pink[300], 0.5)
+      : // category === 'comparison' ? lighten(green[500], 0.5) :
         lighten(indigo[300], 0.5),
   '&:hover': {
     backgroundColor:
-      category === 'operators' ? lighten(pink[300], 0.7) :
-        // category === 'comparison' ? lighten(green[500], 0.7) :
+      category === 'operators'
+        ? lighten(pink[300], 0.7)
+        : // category === 'comparison' ? lighten(green[500], 0.7) :
           lighten(indigo[300], 0.7),
   },
 }));
 
-const StyledIconButton = styled(IconButton)(({ theme, category }) => ({
+const StyledIconButton = styled(IconButton)(({  category }) => ({
   minWidth: 'auto',
   backgroundColor:
-    category === 'operators' ? lighten(pink[300], 0.5) :
-      // category === 'comparison' ? lighten(green[500], 0.5) :
+    category === 'operators'
+      ? lighten(pink[300], 0.5)
+      : // category === 'comparison' ? lighten(green[500], 0.5) :
         lighten(indigo[300], 0.5),
   '&:hover': {
     backgroundColor:
-      category === 'operators' ? lighten(pink[300], 0.7) :
-        // category === 'comparison' ? lighten(green[500], 0.7) :
+      category === 'operators'
+        ? lighten(pink[300], 0.7)
+        : // category === 'comparison' ? lighten(green[500], 0.7) :
           lighten(indigo[300], 0.7),
   },
   borderRadius: 0,
@@ -388,7 +389,7 @@ export class KeyPad extends React.Component {
     return (
       <KeyPadContainer
         ref={this.keypadRef}
-        className={classNames(className, mode)}
+        className={[className, mode].filter(Boolean).join(' ')}
         style={style}
         onFocus={onFocus}
       >

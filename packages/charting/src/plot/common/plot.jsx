@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import Check from '@mui/icons-material/Check';
 import { styled } from '@mui/material/styles';
 import { Group } from '@visx/group';
@@ -82,7 +81,7 @@ export class RawPlot extends React.Component {
     return (
       <foreignObject x={barX + barWidth / 2 - ICON_SIZE / 2} y={iconY} width={ICON_SIZE} height={ICON_SIZE}>
         <Check
-          className={classNames('correctnessIcon', 'correctIcon', 'smallIcon')}
+          className="correctnessIcon correctIcon smallIcon"
           title={correctness.label}
         />
       </foreignObject>
