@@ -110,14 +110,18 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
-          const mockSelection = { _groups: [[mockNode]] };
+          const mockSelection = {
+            _groups: [[mockNode]],
+            node: () => mockNode,
+          };
 
           // Mock select to return our mockSelection
           select.mockReturnValue({
+            ...mockSelection,
             on: (event, handler) => {
               mockOn(event, handler);
               // When 'mousemove' is registered, immediately test it
-              if (event === 'mousemove') {
+              if (event === 'mousemove' && handler) {
                 mouse.mockReturnValue([10, 20]);
                 // Handler is bound with mockSelection as first arg, so call with no args
                 handler();
@@ -141,12 +145,16 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
-          const mockSelection = { _groups: [[mockNode]] };
+          const mockSelection = {
+            _groups: [[mockNode]],
+            node: () => mockNode,
+          };
 
           select.mockReturnValue({
+            ...mockSelection,
             on: (event, handler) => {
               mockOn(event, handler);
-              if (event === 'mousemove') {
+              if (event === 'mousemove' && handler) {
                 mouse.mockReturnValue([15, 25]);
                 handler();
               }
@@ -171,12 +179,16 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
-          const mockSelection = { _groups: [[mockNode]] };
+          const mockSelection = {
+            _groups: [[mockNode]],
+            node: () => mockNode,
+          };
 
           select.mockReturnValue({
+            ...mockSelection,
             on: (event, handler) => {
               mockOn(event, handler);
-              if (event === 'mousemove') {
+              if (event === 'mousemove' && handler) {
                 mouse.mockReturnValue([15, 25]);
                 handler();
               }
@@ -204,12 +216,16 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
-          const mockSelection = { _groups: [[mockNode]] };
+          const mockSelection = {
+            _groups: [[mockNode]],
+            node: () => mockNode,
+          };
 
           select.mockReturnValue({
+            ...mockSelection,
             on: (event, handler) => {
               mockOn(event, handler);
-              if (event === 'mousemove') {
+              if (event === 'mousemove' && handler) {
                 mouse.mockReturnValue([100, 200]);
                 handler();
               }
@@ -229,12 +245,16 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
-          const mockSelection = { _groups: [[mockNode]] };
+          const mockSelection = {
+            _groups: [[mockNode]],
+            node: () => mockNode,
+          };
 
           select.mockReturnValue({
+            ...mockSelection,
             on: (event, handler) => {
               mockOn(event, handler);
-              if (event === 'mousemove') {
+              if (event === 'mousemove' && handler) {
                 mouse.mockReturnValue([100, 200]);
                 // Should not throw error when onMouseMove is not provided
                 expect(() => handler()).not.toThrow();

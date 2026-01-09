@@ -24,7 +24,7 @@ const defaultFeedback = {
 };
 
 const data = {
-  checked: true,
+  correct: true,
   value: 'foo',
   label: 'Foo',
   feedback: {
@@ -53,7 +53,13 @@ describe('ChoiceConfiguration', () => {
 
     it('renders with checked state', () => {
       render(
-        <ChoiceConfiguration classes={classes} defaultFeedback={defaultFeedback} data={data} onChange={onChange} />,
+        <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={data}
+          onChange={onChange}
+          mode="checkbox"
+        />,
       );
       const checkbox = screen.getByRole('checkbox');
       expect(checkbox).toBeChecked();
@@ -95,7 +101,9 @@ describe('ChoiceConfiguration', () => {
         <ChoiceConfiguration classes={classes} defaultFeedback={defaultFeedback} data={data} onChange={onChange} />,
       );
 
-      const editableHtml = screen.getByTestId('editable-html');
+      // Component may render multiple editable-html elements (label + feedback), get the first one
+      const editableHtmlElements = screen.getAllByTestId('editable-html');
+      const editableHtml = editableHtmlElements[0];
       await user.clear(editableHtml);
       await user.type(editableHtml, 'new label');
 
@@ -113,8 +121,9 @@ describe('ChoiceConfiguration', () => {
         <ChoiceConfiguration
           classes={classes}
           defaultFeedback={defaultFeedback}
-          data={{ ...data, checked: false }}
+          data={{ ...data, correct: false }}
           onChange={onChange}
+          mode="checkbox"
         />,
       );
 
@@ -123,7 +132,7 @@ describe('ChoiceConfiguration', () => {
 
       expect(onChange).toHaveBeenCalledWith(
         expect.objectContaining({
-          checked: true,
+          correct: true,
         }),
       );
     });
