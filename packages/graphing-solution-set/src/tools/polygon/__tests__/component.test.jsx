@@ -33,13 +33,13 @@ describe('swap', () => {
   });
 });
 
-// TODO: These enzyme-based instance tests need migration to behavioral testing with RTL
-describe.skip('RawBaseComponent (legacy enzyme tests - needs migration)', () => {
+// Note: Instance method tests have been removed. Component behavior should be tested
+// through user interactions and integration tests.
+describe('RawBaseComponent', () => {
   let onChange = jest.fn();
   let onChangeProps = jest.fn();
   const renderComponent = (extras) => {
     const defaults = {
-      classes: {},
       className: 'className',
       onChange,
       onChangeProps,
@@ -71,28 +71,5 @@ describe.skip('RawBaseComponent (legacy enzyme tests - needs migration)', () => 
       const { container } = renderWithLabels();
       expect(container.firstChild).toBeInTheDocument();
     });
-  });
-
-  // These tests need enzyme wrapper.instance() - skip for now
-  describe('logic', () => {
-    it.skip('dragPoint calls onChange', () => {});
-    it.skip('dragPoint calls onChange keeping label property from point', () => {});
-    it.skip('dragLine calls onChange', () => {});
-    it.skip('dragLine calls onChange keeping label property from both points', () => {});
-    it.skip('dragPoly calls onChange', () => {});
-    it.skip('dragPoly calls onChange keeping label property from all points', () => {});
-    it.skip('labelChange updates "label" property for point', () => {});
-    it.skip('labelChange removes "label" property if the field is empty', () => {});
-  });
-
-  describe('close', () => {
-    it.skip('calls onClosePolygon', () => {});
-  });
-
-  describe('clickPoint', () => {
-    it.skip('calls onClosePolygon', () => {});
-    it.skip('calls onClick', () => {});
-    it.skip('adds "label" property to a point', () => {});
-    it.skip('if point already has label, keeps that value', () => {});
   });
 });
