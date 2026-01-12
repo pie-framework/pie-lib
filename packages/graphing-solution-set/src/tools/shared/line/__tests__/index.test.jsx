@@ -34,8 +34,9 @@ describe('lineTool', () => {
   });
 });
 
-// TODO: These enzyme-based instance tests need migration to behavioral testing with RTL
-describe.skip('lineToolComponent (legacy enzyme tests - needs migration)', () => {
+// Note: Instance method tests have been removed. Component behavior should be tested
+// through user interactions and integration tests.
+describe('lineToolComponent', () => {
   let Comp;
   let mark;
 
@@ -60,15 +61,11 @@ describe.skip('lineToolComponent (legacy enzyme tests - needs migration)', () =>
       expect(container.firstChild).toBeInTheDocument();
     });
   });
-  // These tests need enzyme wrapper.instance() - skip for now
-  describe('logic', () => {
-    it.skip('startDrag sets state', () => {});
-    it.skip('stopDrag/changeMark calls onChange', () => {});
-  });
 });
 
-// TODO: These enzyme-based instance tests need migration to behavioral testing with RTL
-describe.skip('lineBase (legacy enzyme tests - needs migration)', () => {
+// Note: Instance method tests have been removed. Component behavior should be tested
+// through user interactions and integration tests.
+describe('lineBase', () => {
   let Comp;
   let onChange = jest.fn();
   let changeMarkProps = jest.fn();
@@ -109,19 +106,5 @@ describe.skip('lineBase (legacy enzyme tests - needs migration)', () => {
       const { container } = renderWithLabels();
       expect(container.firstChild).toBeInTheDocument();
     });
-  });
-
-  // These tests need enzyme wrapper.instance() - skip for now
-  describe('logic', () => {
-    it.skip('dragComp calls onChange', () => {});
-    it.skip('dragComp keeps labels on both "from" and "to"', () => {});
-    it.skip('dragFrom', () => {});
-    it.skip('dragFrom keeps labels on "from"', () => {});
-    it.skip('dragTo', () => {});
-    it.skip('dragTo keeps labels on "to"', () => {});
-    it.skip('labelChange updates "label" property for point', () => {});
-    it.skip('labelChange removes "label" property if the field is empty', () => {});
-    it.skip('clickPoint adds "label" property to a point', () => {});
-    it.skip('clickPoint if point already has label, keeps that value', () => {});
   });
 });

@@ -1,6 +1,11 @@
 import { render } from '@pie-lib/test-utils';
 import React from 'react';
 
+// Mock DragProvider to avoid @dnd-kit React version conflicts
+jest.mock('@pie-lib/drag', () => ({
+  DragProvider: ({ children }) => <div data-testid="drag-provider">{children}</div>,
+}));
+
 import {
   GraphWithControls,
   setToolbarAvailability,
@@ -96,13 +101,15 @@ describe('filterByVisibleToolTypes', () => {
   });
 });
 
-// TODO: Component has nested styled components that need classes prop deep in tree
-describe.skip('GraphWithControls (needs proper classes prop setup)', () => {
+describe('GraphWithControls', () => {
   let onChangeMarks = jest.fn();
+
+  beforeEach(() => {
+    onChangeMarks.mockClear();
+  });
 
   const defaultProps = () => ({
     axesSettings: { includeArrows: true },
-    classes: {},
     className: '',
     coordinatesOnHover: false,
     domain: { min: 0, max: 10, step: 1 },
@@ -114,6 +121,7 @@ describe.skip('GraphWithControls (needs proper classes prop setup)', () => {
     size: { width: 500, height: 500 },
     title: 'Title',
     toolbarTools: allTools,
+    language: 'en',
   });
   const initialProps = defaultProps();
 
@@ -124,8 +132,13 @@ describe.skip('GraphWithControls (needs proper classes prop setup)', () => {
 
   describe('rendering', () => {
     it('renders without crashing', () => {
-      const { container} = renderComponent();
+      const { container } = renderComponent();
       expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders Graph component', () => {
+      const { container } = renderComponent();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
   });
 });

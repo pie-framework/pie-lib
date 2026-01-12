@@ -1,17 +1,38 @@
-import { render } from '@pie-lib/test-utils';
+import { render, screen } from '@pie-lib/test-utils';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import { ToggleBar } from '../toggle-bar';
 
-// TODO: Component uses drag-and-drop context that requires full component tree setup
-describe.skip('ToggleBar (needs proper RTL setup with providers)', () => {
+// Mock DragProvider to avoid @dnd-kit React version conflicts
+jest.mock('@pie-lib/drag', () => ({
+  DragProvider: ({ children }) => <div data-testid="drag-provider">{children}</div>,
+}));
+
+// Mock Translator to return the key as-is for testing
+jest.mock('@pie-lib/translator', () => ({
+  translator: {
+    t: (key) => {
+      // Extract tool name from key like "graphing.point" -> "point"
+      const parts = key.split('.');
+      return parts[parts.length - 1];
+    },
+  },
+}));
+
+describe('ToggleBar', () => {
   let onChange = jest.fn();
+
+  beforeEach(() => {
+    onChange.mockClear();
+  });
+
   const renderComponent = (extras) => {
     const defaults = {
-      classes: {},
       className: 'className',
       onChange,
-      options: ['one', 'two'],
+      options: ['line', 'polygon'],
+      language: 'en',
     };
     const props = { ...defaults, ...extras };
     return render(<ToggleBar {...props} />);
@@ -22,10 +43,23 @@ describe.skip('ToggleBar (needs proper RTL setup with providers)', () => {
       const { container } = renderComponent();
       expect(container.firstChild).toBeInTheDocument();
     });
+
+    it('renders tool buttons for valid tools', () => {
+      renderComponent({ options: ['line', 'polygon'] });
+      expect(screen.getByText(/line/i)).toBeInTheDocument();
+      expect(screen.getByText(/polygon/i)).toBeInTheDocument();
+    });
   });
 
-  // TODO: These enzyme-based instance tests need migration to behavioral testing with RTL
-  describe('logic (legacy enzyme tests - needs migration)', () => {
-    it.skip('select calls onChange', () => {});
+  describe('interactions', () => {
+    it('calls onChange when tool button is clicked', async () => {
+      const user = userEvent.setup();
+      renderComponent({ options: ['line', 'polygon'] });
+
+      const lineButton = screen.getByText(/line/i).closest('button');
+      await user.click(lineButton);
+
+      expect(onChange).toHaveBeenCalledWith('line');
+    });
   });
 });

@@ -13,8 +13,9 @@ jest.mock('../index', () => {
   return out;
 });
 
-// TODO: These enzyme-based prop tests need migration to behavioral testing with RTL
-describe.skip('rootEdgeToToFromWRapper (legacy enzyme tests - needs migration)', () => {
+// Note: Instance method tests have been removed. Component behavior should be tested
+// through user interactions and integration tests.
+describe('rootEdgeToToFromWRapper', () => {
   let Comp;
   let onChange = jest.fn();
   beforeEach(() => {
@@ -33,10 +34,6 @@ describe.skip('rootEdgeToToFromWRapper (legacy enzyme tests - needs migration)',
     const { container } = renderComponent();
     expect(container.firstChild).toBeInTheDocument();
   });
-
-  // These tests need enzyme wrapper.props() - skip for now
-  it.skip('has from/to mark', () => {});
-  it.skip('calls onChange with root edge ', () => {});
 });
 
 describe('rootEdgeComponent', () => {

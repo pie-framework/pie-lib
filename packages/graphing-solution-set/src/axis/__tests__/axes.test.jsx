@@ -75,65 +75,9 @@ const customScaleMock = (distance) => {
   return fn;
 };
 
-// TODO: These enzyme-based tests need migration to RTL with behavioral testing
-describe.skip('Axes (legacy enzyme tests - needs migration)', () => {
-  let w;
-  let onChange = jest.fn();
-
-  const customGraphProps = {
-    ...graphProps(),
-    domain: {
-      min: -2,
-      max: 2,
-      labelStep: 1,
-      step: 1,
-    },
-    range: {
-      min: -2,
-      max: 2,
-      step: 1,
-      labelStep: 1,
-    },
-    scale: {
-      x: customScaleMock(200),
-      y: customScaleMock(150),
-    },
-  };
-
-  const wrapper = (extras) => {
-    const defaults = {
-      classes: {},
-      className: 'className',
-      onChange,
-      graphProps: customGraphProps,
-    };
-
-    const props = { ...defaults, ...extras };
-    // return shallow(<Axes {...props} />);
-  };
-  describe('xValues', () => {
-    it('renders', () => {
-      // w = wrapper();
-      // const result = w.instance().xValues();
-      // expect(result).toEqual({
-      //   columnTicksValues: expect.arrayContaining([-2, -1, 0, 1, 2]),
-      //   distanceFromOriginToFirstNegativeX: 150,
-      //   firstNegativeX: -1,
-      // });
-    });
-  });
-  describe('yValues', () => {
-    it('renders', () => {
-      // w = wrapper();
-      // const result = w.instance().yValues();
-      // expect(result).toEqual({
-      //   rowTickValues: expect.arrayContaining([-2, -1, 0, 1, 2]),
-      //   distanceFromOriginToFirstNegativeY: 200,
-      //   firstNegativeY: -1,
-      // });
-    });
-  });
-});
+// Note: Instance method tests (xValues, yValues) have been removed.
+// These methods are internal implementation details and should be tested through
+// component rendering and integration tests that verify the axes render correctly.
 
 describe('firstNegativeValue', () => {
   it('should return undefined for undefined interval', () => {
