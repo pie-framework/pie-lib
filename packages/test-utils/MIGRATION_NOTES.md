@@ -17,7 +17,6 @@ This package has been migrated from Enzyme to React Testing Library (RTL) to sup
 - ✅ Added `renderWithTheme()` - Render with MUI ThemeProvider
 - ✅ Added `renderWithProviders()` - Render with multiple providers
 - ✅ Added `createTestTheme()` - Create custom MUI themes
-- ✅ Added `renderForSnapshot()` - Snapshot testing helper
 - ✅ Re-exported all RTL utilities (`render`, `screen`, `waitFor`, etc.)
 - ✅ Re-exported `userEvent` for user interactions
 - ✅ Re-exported `jest-dom` matchers for TypeScript support

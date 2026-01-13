@@ -1,14 +1,31 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BlankContent as Choice } from '../choice';
+import Choice from '../choice';
 import { choice } from '../../__tests__/utils';
 import Choices from '../index';
+
+// Mock @dnd-kit hooks to avoid DndContext requirement
+jest.mock('@dnd-kit/core', () => ({
+  useDraggable: jest.fn(() => ({
+    attributes: {},
+    listeners: {},
+    setNodeRef: jest.fn(),
+    isDragging: false,
+  })),
+  useDroppable: jest.fn(() => ({
+    setNodeRef: jest.fn(),
+    isOver: false,
+    active: null,
+  })),
+}));
 
 describe('index', () => {
   describe('Choices', () => {
     const defaultProps = {
       disabled: false,
       choices: [choice('Jumped', '0'), choice('Laughed', '1'), choice('Spoon', '2')],
+      choicePosition: 'below',
+      instanceId: 'test-instance',
     };
 
     it('renders correctly with default props', () => {
@@ -35,14 +52,11 @@ describe('index', () => {
     });
   });
 
-  // Skipping Choice tests due to @dnd-kit dependency conflicts
-  // Choice component uses useDraggable from @dnd-kit which requires DndContext
-  describe.skip('Choice', () => {
+  describe('Choice', () => {
     const defaultProps = {
       disabled: false,
-      value: '1',
-      label: 'Label',
-      targetId: '1',
+      choice: choice('Label', '1'),
+      instanceId: 'test-instance',
     };
 
     describe('render', () => {

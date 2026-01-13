@@ -14,9 +14,45 @@ const markup = `<div>
 </div>`;
 const choice = (v, id) => ({ value: v, id });
 
-// Skipping DragInTheBlank tests due to @dnd-kit dependency conflicts
-// These tests require DndContext setup which has React version conflicts
-describe.skip('DragInTheBlank', () => {
+// Mock DragProvider and DragDroppablePlaceholder to avoid DndContext requirement
+jest.mock('@pie-lib/drag', () => ({
+  DragProvider: ({ children, onDragStart, onDragEnd }) => {
+    // Simple wrapper that doesn't require DndContext
+    return <div data-testid="drag-provider">{children}</div>;
+  },
+  DragDroppablePlaceholder: ({ children, disabled, instanceId }) => {
+    // Simple wrapper that doesn't require useDroppable
+    return <div data-testid="drag-droppable-placeholder">{children}</div>;
+  },
+}));
+
+// Mock @dnd-kit/core components and hooks used by DragInTheBlank and child components
+jest.mock('@dnd-kit/core', () => ({
+  DragOverlay: ({ children }) => <div data-testid="drag-overlay">{children}</div>,
+  closestCenter: jest.fn(),
+  useDraggable: jest.fn(() => ({
+    attributes: {},
+    listeners: {},
+    setNodeRef: jest.fn(),
+    transform: null,
+    isDragging: false,
+  })),
+  useDroppable: jest.fn(() => ({
+    setNodeRef: jest.fn(),
+    isOver: false,
+    active: null,
+  })),
+}));
+
+jest.mock('@dnd-kit/utilities', () => ({
+  CSS: {
+    Translate: {
+      toString: jest.fn(() => 'translate3d(0, 0, 0)'),
+    },
+  },
+}));
+
+describe('DragInTheBlank', () => {
   const defaultProps = {
     disabled: false,
     feedback: {},

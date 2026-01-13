@@ -18,8 +18,8 @@ yarn add -D @pie-lib/test-utils
 - ✅ Custom theme creation for testing
 - ✅ All RTL exports in one place
 - ✅ userEvent and jest-dom matchers included
-- ✅ **NEW:** Keyboard helpers for keyCode-based components
-- ✅ **NEW:** Web component testing utilities (Shadow DOM support)
+- ✅ Keyboard helpers for keyCode-based components
+- ✅ Web component testing utilities (light DOM only)
 
 ## Usage
 
@@ -132,10 +132,10 @@ test('loads data', async () => {
 
 ### Web Component Testing
 
-**NEW:** Utilities for testing custom elements with Shadow DOM:
+**Note:** Utilities for testing custom elements with **light DOM** (no Shadow DOM). Standard React Testing Library queries work directly on these components.
 
 ```javascript
-import { renderWebComponent, withinShadow, dispatchCustomEvent } from '@pie-lib/test-utils';
+import { renderWebComponent, dispatchCustomEvent, screen } from '@pie-lib/test-utils';
 
 test('interacts with web component', async () => {
   const element = await renderWebComponent('my-custom-element', {
@@ -143,8 +143,8 @@ test('interacts with web component', async () => {
     value: '42'
   });
 
-  // Query within shadow DOM
-  const button = withinShadow(element, 'button');
+  // Query using standard RTL queries (light DOM)
+  const button = screen.getByRole('button');
   await user.click(button);
 
   // Dispatch custom events
@@ -188,16 +188,6 @@ Creates a MUI theme for testing.
 
 **Returns:** MUI theme object
 
-### `renderForSnapshot(component, options)`
-
-Renders a component for snapshot testing (use sparingly).
-
-**Parameters:**
-- `component` - React component to render
-- `options` - Same as `renderWithTheme`
-
-**Returns:** Object with `container` property
-
 ### `waitForRemoval(callback)`
 
 Alias for `waitForElementToBeRemoved` from RTL.
@@ -213,12 +203,12 @@ This package re-exports everything from:
 
 ## Keyboard Helpers API
 
-### `Keys` / `KeyCode`
+### `Keys`
 
 Constants for common keyboard key codes:
 
 ```javascript
-import { Keys, KeyCode } from '@pie-lib/test-utils';
+import { Keys } from '@pie-lib/test-utils';
 
 Keys.ENTER      // 13
 Keys.ESCAPE     // 27
@@ -259,16 +249,6 @@ await typeAndSubmit(input, 'search query');
 // Types "search query" and presses Enter
 ```
 
-### `typeAndPressKey(element, text, keyCode)`
-
-Type text and press any key:
-
-```javascript
-import { typeAndPressKey, Keys } from '@pie-lib/test-utils';
-
-await typeAndPressKey(input, 'value', Keys.TAB);
-```
-
 ### `clearAndType(element, text)`
 
 Clear input and type new text:
@@ -297,28 +277,7 @@ navigateWithKeys(tabs, -2, 'horizontal');
 
 ## Web Component Helpers API
 
-### `withinShadow(element, role, options)`
-
-Query within shadow DOM by ARIA role:
-
-```javascript
-import { withinShadow } from '@pie-lib/test-utils';
-
-const button = withinShadow(customElement, 'button');
-const input = withinShadow(customElement, 'textbox', { name: 'Username' });
-```
-
-### `queryInShadow(element)`
-
-Get all RTL queries scoped to shadow root:
-
-```javascript
-import { queryInShadow } from '@pie-lib/test-utils';
-
-const { getByRole, getByText, getAllByRole } = queryInShadow(element);
-const button = getByRole('button');
-const heading = getByText('Welcome');
-```
+**Note:** These utilities are for **light DOM web components only** (no Shadow DOM). For Shadow DOM components, use standard DOM queries or other testing libraries.
 
 ### `waitForCustomElement(tagName, timeout)`
 
@@ -367,27 +326,30 @@ const event = await promise;
 expect(event.detail).toEqual({ initialized: true });
 ```
 
-### `queryAllInShadow(element, selector)`
+### `isCustomElementDefined(tagName)`
 
-Query shadow DOM with CSS selector:
+Check if a custom element is defined:
 
 ```javascript
-import { queryAllInShadow } from '@pie-lib/test-utils';
+import { isCustomElementDefined } from '@pie-lib/test-utils';
 
-const buttons = queryAllInShadow(component, 'button');
-const inputs = queryAllInShadow(form, 'input[type="text"]');
+if (isCustomElementDefined('pie-chart')) {
+  // Element is ready to use
+}
 ```
 
-### `hasShadowRoot(element)`
+### `createCustomElement(tagName, props)`
 
-Check if element has shadow root:
+Create and configure a custom element:
 
 ```javascript
-import { hasShadowRoot } from '@pie-lib/test-utils';
+import { createCustomElement } from '@pie-lib/test-utils';
 
-if (hasShadowRoot(element)) {
-  // Test shadow DOM content
-}
+const chart = createCustomElement('pie-chart', {
+  data: [1, 2, 3],
+  type: 'bar'
+});
+document.body.appendChild(chart);
 ```
 
 ## Migration from Enzyme
