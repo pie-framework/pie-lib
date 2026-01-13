@@ -1,11 +1,33 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BlankContent as Blank } from '../blank';
+import Blank from '../blank';
 
-// Skipping Blank tests due to @dnd-kit dependency conflicts
-// BlankContent component uses useDraggable/useDroppable from @dnd-kit which requires DndContext
-describe.skip('Blank', () => {
+// Mock @dnd-kit hooks to avoid DndContext requirement
+jest.mock('@dnd-kit/core', () => ({
+  useDraggable: jest.fn(() => ({
+    attributes: {},
+    listeners: {},
+    setNodeRef: jest.fn(),
+    transform: null,
+    isDragging: false,
+  })),
+  useDroppable: jest.fn(() => ({
+    setNodeRef: jest.fn(),
+    isOver: false,
+    active: null,
+  })),
+}));
+
+jest.mock('@dnd-kit/utilities', () => ({
+  CSS: {
+    Translate: {
+      toString: jest.fn(() => 'translate3d(0, 0, 0)'),
+    },
+  },
+}));
+
+describe('Blank', () => {
   const onChange = jest.fn();
   const defaultProps = {
     disabled: false,
