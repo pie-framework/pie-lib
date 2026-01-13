@@ -199,7 +199,7 @@ export class TickComponent extends React.Component {
       const lengthB = b && b.label ? b.label.length : 0;
 
       return lengthA > lengthB ? a : b;
-    });
+    }, {});
     const distinctMessages = error ? [...new Set(Object.values(error))].join(' ') : '';
 
     return (
