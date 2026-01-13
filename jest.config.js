@@ -10,6 +10,8 @@ module.exports = {
     url: 'http://localhost',
   },
 
+  testRunner: 'jest-circus/runner',
+
   verbose: false,
   testPathIgnorePatterns: ig,
 
