@@ -111,12 +111,9 @@ export * from '@testing-library/jest-dom';
  */
 export {
   Keys,
-  KeyCode,
   pressKey,
   typeAndSubmit,
-  typeAndPressKey,
   clearAndType,
-  pressKeys,
   navigateWithKeys,
 } from './keyboard';
 
@@ -133,58 +130,3 @@ export {
   createCustomElement,
 } from './web-components';
 
-/**
- * Helper to create a mock function that can track calls
- * This is just an alias for jest.fn() for consistency
- *
- * @example
- * const onClick = createMockFn();
- * render(<Button onClick={onClick}>Click</Button>);
- * await user.click(screen.getByRole('button'));
- * expect(onClick).toHaveBeenCalledTimes(1);
- */
-export const createMockFn = () => jest.fn();
-
-/**
- * Helper for testing async operations with a timeout
- * Useful for operations that should happen within a specific time
- *
- * @param {Function} callback - The test callback
- * @param {number} timeout - Timeout in milliseconds
- * @returns {Promise} Promise that resolves when callback succeeds or timeout
- *
- * @example
- * await waitForWithTimeout(
- *   () => expect(screen.getByText('Loaded')).toBeInTheDocument(),
- *   5000
- * );
- */
-export async function waitForWithTimeout(callback, timeout = 3000) {
-  const { waitFor } = await import('@testing-library/react');
-  return waitFor(callback, { timeout });
-}
-
-/**
- * Helper to get a default MUI theme for testing
- * @returns {Object} Default MUI theme
- */
-export function getDefaultTheme() {
-  return defaultTheme;
-}
-
-/**
- * Helper to test component snapshots
- * Note: Snapshot testing should be used sparingly
- *
- * @param {React.ReactElement} component - Component to snapshot
- * @param {Object} options - Options including theme
- * @returns {Object} Container for snapshot
- *
- * @example
- * const { container } = renderForSnapshot(<MyComponent />);
- * expect(container.firstChild).toBeInTheDocument();
- */
-export function renderForSnapshot(component, options = {}) {
-  const { container } = renderWithTheme(component, options);
-  return { container };
-}

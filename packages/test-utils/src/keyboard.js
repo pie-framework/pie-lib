@@ -82,28 +82,6 @@ export async function typeAndSubmit(element, text) {
 }
 
 /**
- * Type text and then press a specific key
- * Flexible version of typeAndSubmit
- *
- * @param {HTMLElement} element - Input element
- * @param {string} text - Text to type
- * @param {number} keyCode - Key code to press after typing
- *
- * @example
- * // Type and press Escape
- * await typeAndPressKey(input, 'search term', Keys.ESCAPE);
- *
- * @example
- * // Type and press Tab
- * await typeAndPressKey(input, 'value', Keys.TAB);
- */
-export async function typeAndPressKey(element, text, keyCode) {
-  const user = userEvent.setup();
-  await user.type(element, text);
-  pressKey(element, keyCode);
-}
-
-/**
  * Clear input and type new text
  * Common pattern for updating form fields
  *
@@ -118,31 +96,6 @@ export async function clearAndType(element, text) {
   const user = userEvent.setup();
   await user.clear(element);
   await user.type(element, text);
-}
-
-/**
- * Press multiple keys in sequence
- * Useful for keyboard shortcuts
- *
- * @param {HTMLElement} element - Target element
- * @param {...number} keyCodes - Key codes to press in sequence
- *
- * @example
- * // Press Ctrl+Enter
- * pressKeys(input, Keys.ENTER, { ctrlKey: true });
- *
- * @example
- * // Navigate with arrow keys
- * pressKeys(list, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
- */
-export function pressKeys(element, ...keyCodes) {
-  keyCodes.forEach((keyCode) => {
-    if (typeof keyCode === 'object') {
-      // Last argument might be options
-      return;
-    }
-    pressKey(element, keyCode);
-  });
 }
 
 /**
@@ -171,24 +124,3 @@ export function navigateWithKeys(element, steps, direction = 'vertical') {
     pressKey(element, key);
   }
 }
-
-/**
- * Map of key names to key codes for convenience
- * Alternative to Keys constant with more readable names
- */
-export const KeyCode = {
-  Enter: 13,
-  Escape: 27,
-  Space: 32,
-  ArrowLeft: 37,
-  ArrowUp: 38,
-  ArrowRight: 39,
-  ArrowDown: 40,
-  Tab: 9,
-  Backspace: 8,
-  Delete: 46,
-  Home: 36,
-  End: 35,
-  PageUp: 33,
-  PageDown: 34,
-};
