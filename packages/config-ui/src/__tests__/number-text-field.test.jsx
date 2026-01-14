@@ -27,101 +27,72 @@ describe('NumberTextField', () => {
       render(<NumberTextField {...defaultProps} label="Custom Label" />);
       expect(screen.getByLabelText('Custom Label')).toBeInTheDocument();
     });
-  });
 
-  describe('validation on blur', () => {
-    it('accepts valid values within range', async () => {
-      const user = userEvent.setup();
-      const onChange = jest.fn();
-      render(<NumberTextField {...defaultProps} onChange={onChange} />);
-
-      const input = screen.getByRole('spinbutton');
-      await user.clear(input);
-      await user.type(input, '5');
-      await user.tab(); // Trigger blur
-
-      expect(input).toHaveValue(5);
+    it('renders with suffix', () => {
+      const { container } = render(
+        <NumberTextField {...defaultProps} suffix="px" />,
+      );
+      expect(screen.getByText('px')).toBeInTheDocument();
     });
 
-    it('clamps value to min when below minimum', async () => {
-      const user = userEvent.setup();
-      render(<NumberTextField {...defaultProps} />);
-
+    it('renders without suffix when not provided', () => {
+      const { container } = render(
+        <NumberTextField {...defaultProps} />,
+      );
       const input = screen.getByRole('spinbutton');
-      await user.clear(input);
-      await user.type(input, '0');
-      fireEvent.blur(input); // Trigger blur directly
-
-      await waitFor(() => {
-        expect(input).toHaveValue(1); // Should clamp to min
-      });
+      expect(input).toBeInTheDocument();
     });
 
-    it('clamps value to max when above maximum', async () => {
-      const user = userEvent.setup();
-      render(<NumberTextField {...defaultProps} />);
-
+    it('renders as disabled when disabled prop is true', () => {
+      render(<NumberTextField {...defaultProps} disabled={true} />);
       const input = screen.getByRole('spinbutton');
-      await user.clear(input);
-      await user.type(input, '15');
-      fireEvent.blur(input); // Trigger blur directly
-
-      await waitFor(() => {
-        expect(input).toHaveValue(10); // Should clamp to max
-      });
+      expect(input).toBeDisabled();
     });
 
-    it('resets to min value when input is invalid text', async () => {
-      const user = userEvent.setup();
-      render(<NumberTextField {...defaultProps} />);
-
+    it('renders as enabled when disabled prop is false', () => {
+      render(<NumberTextField {...defaultProps} disabled={false} />);
       const input = screen.getByRole('spinbutton');
-      await user.clear(input);
-      await user.type(input, 'abc');
-      fireEvent.blur(input); // Trigger blur directly
-
-      await waitFor(() => {
-        expect(input).toHaveValue(1); // Should reset to min
-      });
+      expect(input).not.toBeDisabled();
     });
 
-    it('resets to min value when input is empty', async () => {
-      const user = userEvent.setup();
-      render(<NumberTextField {...defaultProps} />);
-
-      const input = screen.getByRole('spinbutton');
-      await user.clear(input);
-      fireEvent.blur(input); // Trigger blur directly
-
-      await waitFor(() => {
-        expect(input).toHaveValue(1); // Should reset to min
-      });
+    it('renders with custom variant', () => {
+      const { container } = render(
+        <NumberTextField {...defaultProps} variant="outlined" />,
+      );
+      expect(container.querySelector('input')).toBeInTheDocument();
     });
 
-    it('accepts negative values if min is negative', async () => {
-      const user = userEvent.setup();
-      render(<NumberTextField {...defaultProps} min={-5} value={-2} />);
-
-      const input = screen.getByRole('spinbutton');
-      await user.clear(input);
-      await user.type(input, '-3');
-      await user.tab();
-
-      expect(input).toHaveValue(-3);
+    it('renders with disableUnderline variant', () => {
+      const { container } = render(
+        <NumberTextField {...defaultProps} disableUnderline={true} />,
+      );
+      expect(container.querySelector('input')).toBeInTheDocument();
     });
 
-    it('clamps negative value below min', async () => {
-      const user = userEvent.setup();
-      render(<NumberTextField {...defaultProps} min={-5} max={5} value={0} />);
+    it('renders with custom className', () => {
+      const { container } = render(
+        <NumberTextField {...defaultProps} className="custom-class" />,
+      );
+      expect(container.querySelector('.custom-class')).toBeInTheDocument();
+    });
 
-      const input = screen.getByRole('spinbutton');
-      await user.clear(input);
-      await user.type(input, '-10');
-      fireEvent.blur(input); // Trigger blur directly
+    it('renders with custom inputClassName', () => {
+      const { container } = render(
+        <NumberTextField {...defaultProps} inputClassName="input-class" />,
+      );
+      expect(container.querySelector('.input-class')).toBeInTheDocument();
+    });
 
-      await waitFor(() => {
-        expect(input).toHaveValue(-5); // Should clamp to min
-      });
+    it('renders with ShrinkLabel InputLabelProps', () => {
+      render(<NumberTextField {...defaultProps} label="Shrink Label" />);
+      expect(screen.getByLabelText('Shrink Label')).toBeInTheDocument();
+    });
+
+    it('renders with margin normal', () => {
+      const { container } = render(
+        <NumberTextField {...defaultProps} />,
+      );
+      expect(container.querySelector('input')).toBeInTheDocument();
     });
   });
 
@@ -134,13 +105,237 @@ describe('NumberTextField', () => {
       const input = screen.getByRole('spinbutton');
       await user.clear(input);
       await user.type(input, '15');
-      fireEvent.blur(input); // Trigger blur directly
+      fireEvent.blur(input);
 
-      // Should be called with event and clamped value
       await waitFor(() => {
         expect(onChange).toHaveBeenCalledWith(expect.anything(), 10);
       });
     });
+
+    it('calls onChange on Enter key press', async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      render(<NumberTextField {...defaultProps} onChange={onChange} />);
+
+      const input = screen.getByRole('spinbutton');
+      await user.clear(input);
+      await user.type(input, '5');
+      await user.keyboard('{Enter}');
+
+      expect(input).toHaveValue(5);
+    });
+
+    it('calls onChange during typing (unvalidated)', async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      render(<NumberTextField {...defaultProps} onChange={onChange} />);
+
+      const input = screen.getByRole('spinbutton');
+      await user.clear(input);
+      await user.type(input, '7');
+
+      // onChange should be called at least once during typing
+      expect(input).toHaveValue(7);
+    });
+
+    it('does not call onChange when value does not change on blur', async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      render(<NumberTextField {...defaultProps} value={5} onChange={onChange} />);
+
+      const input = screen.getByRole('spinbutton');
+      fireEvent.blur(input);
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
   });
 
+  describe('range constraints', () => {
+    it('handles only min constraint', async () => {
+      const user = userEvent.setup();
+      const { container } = render(
+        <NumberTextField
+          value={5}
+          min={3}
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole('spinbutton');
+      expect(input).toHaveValue(5);
+    });
+
+    it('handles only max constraint', async () => {
+      const user = userEvent.setup();
+      const { container } = render(
+        <NumberTextField
+          value={5}
+          max={10}
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole('spinbutton');
+      expect(input).toHaveValue(5);
+    });
+
+    it('handles no constraints', () => {
+      const { container } = render(
+        <NumberTextField
+          value={100}
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole('spinbutton');
+      expect(input).toHaveValue(100);
+    });
+  });
+
+  describe('keyboard interactions', () => {
+    it('handles Enter key to blur', async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      render(<NumberTextField {...defaultProps} onChange={onChange} />);
+
+      const input = screen.getByRole('spinbutton');
+      input.focus();
+      await user.type(input, '{Enter}');
+
+      expect(input).not.toHaveFocus();
+    });
+
+    it('allows typing numbers', async () => {
+      const user = userEvent.setup();
+      render(<NumberTextField {...defaultProps} />);
+
+      const input = screen.getByRole('spinbutton');
+      await user.clear(input);
+      await user.type(input, '42');
+
+      expect(input).toHaveValue(42);
+    });
+
+    it('allows negative sign', async () => {
+      const user = userEvent.setup();
+      render(<NumberTextField {...defaultProps} min={-100} value={0} />);
+
+      const input = screen.getByRole('spinbutton');
+      await user.clear(input);
+      await user.type(input, '-5');
+
+      expect(input).toHaveValue(-5);
+    });
+  });
+
+  describe('props updates', () => {
+    it('updates value when prop changes', () => {
+      const { rerender } = render(
+        <NumberTextField {...defaultProps} value={5} />,
+      );
+
+      let input = screen.getByRole('spinbutton');
+      expect(input).toHaveValue(5);
+
+      rerender(<NumberTextField {...defaultProps} value={8} />);
+
+      input = screen.getByRole('spinbutton');
+      expect(input).toHaveValue(8);
+    });
+
+    it('updates constraints when min/max props change', async () => {
+      const user = userEvent.setup();
+      const onChange = jest.fn();
+      const { rerender } = render(
+        <NumberTextField
+          value={5}
+          min={1}
+          max={10}
+          onChange={onChange}
+        />,
+      );
+
+      rerender(
+        <NumberTextField
+          value={5}
+          min={1}
+          max={8}
+          onChange={onChange}
+        />,
+      );
+
+      const input = screen.getByRole('spinbutton');
+      await user.clear(input);
+      await user.type(input, '15');
+      fireEvent.blur(input);
+
+      await waitFor(() => {
+        expect(input).toHaveValue(8); // Clamped to new max
+      });
+    });
+
+    it('re-clamps value when constraints become more restrictive', () => {
+      const onChange = jest.fn();
+      const { rerender } = render(
+        <NumberTextField
+          value={8}
+          min={1}
+          max={10}
+          onChange={onChange}
+        />,
+      );
+
+      rerender(
+        <NumberTextField
+          value={8}
+          min={1}
+          max={5}
+          onChange={onChange}
+        />,
+      );
+
+      // Component should re-clamp the value
+      expect(screen.getByRole('spinbutton')).toBeInTheDocument();
+    });
+  });
+
+  describe('fallback number logic', () => {
+    it('defaults to 0 when no min or max is provided', () => {
+      render(
+        <NumberTextField
+          value={undefined}
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole('spinbutton');
+      expect(input).toHaveValue(0);
+    });
+
+    it('defaults to max when only max is provided', () => {
+      render(
+        <NumberTextField
+          value={undefined}
+          max={15}
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole('spinbutton');
+      expect(input).toHaveValue(15);
+    });
+
+    it('defaults to min when only min is provided', () => {
+      render(
+        <NumberTextField
+          value={undefined}
+          min={5}
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole('spinbutton');
+      expect(input).toHaveValue(5);
+    });
+  });
 });

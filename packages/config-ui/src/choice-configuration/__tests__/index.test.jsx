@@ -3,9 +3,6 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ChoiceConfiguration } from '../index';
 
-// Mock editable-html to simplify testing
-// The component uses require('@pie-lib/editable-html')['default']
-// so we need to export default properly
 jest.mock('@pie-lib/editable-html', () => ({
   __esModule: true,
   default: ({ markup, onChange, disabled }) => (
@@ -75,7 +72,6 @@ describe('ChoiceConfiguration', () => {
           onChange={onChange}
         />,
       );
-      // Feedback menu should not be present
       expect(screen.queryByRole('button', { name: /feedback/i })).not.toBeInTheDocument();
     });
 
@@ -89,7 +85,6 @@ describe('ChoiceConfiguration', () => {
           onChange={onChange}
         />,
       );
-      // Delete button should not be present
       expect(screen.queryByRole('button', { name: /delete/i })).not.toBeInTheDocument();
     });
   });
@@ -101,7 +96,6 @@ describe('ChoiceConfiguration', () => {
         <ChoiceConfiguration classes={classes} defaultFeedback={defaultFeedback} data={data} onChange={onChange} />,
       );
 
-      // Component may render multiple editable-html elements (label + feedback), get the first one
       const editableHtmlElements = screen.getAllByTestId('editable-html');
       const editableHtml = editableHtmlElements[0];
       await user.clear(editableHtml);
@@ -135,6 +129,106 @@ describe('ChoiceConfiguration', () => {
           correct: true,
         }),
       );
+    });
+  });
+
+  describe('prop variations', () => {
+    it('renders with radio mode instead of checkbox', () => {
+      render(
+        <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={data}
+          onChange={onChange}
+          mode="radio"
+        />,
+      );
+      const radio = screen.getByRole('radio');
+      expect(radio).toBeInTheDocument();
+    });
+
+    it('renders with disabled state', () => {
+      render(
+        <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={data}
+          onChange={onChange}
+          disabled={true}
+          mode="checkbox"
+        />,
+      );
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).toBeInTheDocument();
+    });
+
+    it('renders with custom feedback type', () => {
+      render(
+        <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={{ ...data, feedback: { type: 'custom' } }}
+          onChange={onChange}
+          mode="checkbox"
+        />,
+      );
+      const editableElements = screen.getAllByTestId('editable-html');
+      expect(editableElements.length).toBeGreaterThan(0);
+    });
+
+    it('renders with incorrect answer', () => {
+      render(
+        <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={{ ...data, correct: false }}
+          onChange={onChange}
+          mode="checkbox"
+        />,
+      );
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).not.toBeChecked();
+    });
+  });
+
+  describe('edge cases', () => {
+    it('handles data with empty label', () => {
+      render(
+        <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={{ ...data, label: '' }}
+          onChange={onChange}
+        />,
+      );
+      const editableElements = screen.getAllByTestId('editable-html');
+      expect(editableElements.length).toBeGreaterThan(0);
+    });
+
+    it('handles multiple feedback types', () => {
+      const { rerender } = render(
+        <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={{ ...data, feedback: { type: 'default' } }}
+          onChange={onChange}
+        />,
+      );
+
+      let editableElements = screen.getAllByTestId('editable-html');
+      expect(editableElements.length).toBeGreaterThan(0);
+
+      rerender(
+        <ChoiceConfiguration
+          classes={classes}
+          defaultFeedback={defaultFeedback}
+          data={{ ...data, feedback: { type: 'custom' } }}
+          onChange={onChange}
+        />,
+      );
+
+      editableElements = screen.getAllByTestId('editable-html');
+      expect(editableElements.length).toBeGreaterThan(0);
     });
   });
 });
