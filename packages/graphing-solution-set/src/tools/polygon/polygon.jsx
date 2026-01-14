@@ -8,7 +8,7 @@ import { correct, incorrect } from '../shared/styles';
 
 const StyledPolygon = styled('polygon', {
   shouldForwardProp: (prop) => !['isSolution', 'correctness'].includes(prop),
-})(({ theme, isSolution, correctness }) => ({
+})(({ isSolution, correctness }) => ({
   fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'transparent',
   strokeWidth: 2,
   stroke: color.defaults.SECONDARY_LIGHT,
@@ -21,7 +21,7 @@ const StyledPolygon = styled('polygon', {
 
 const StyledPolyline = styled('polyline', {
   shouldForwardProp: (prop) => !['isSolution', 'correctness'].includes(prop),
-})(({ theme, isSolution, correctness }) => ({
+})(({ isSolution, correctness }) => ({
   fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'transparent',
   strokeWidth: 2,
   stroke: color.defaults.SECONDARY_LIGHT,

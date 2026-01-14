@@ -16,7 +16,7 @@ export class BaseArrow extends React.Component {
   };
 
   render() {
-    const { className, angle, x, y, disabled, correctness, graphProps, ...rest } = this.props;
+    const { className, angle, x, y, correctness, graphProps, ...rest } = this.props;
     const size = thinnerShapesNeeded(graphProps) ? 12 : 14;
     const { scale } = graphProps;
 

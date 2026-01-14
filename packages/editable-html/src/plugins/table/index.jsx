@@ -80,6 +80,14 @@ const TableCell = (props) => {
 };
 
 TableCell.propTypes = {
+  node: SlatePropTypes.node.isRequired,
+  attributes: PropTypes.object,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+};
+
+TableCell.propTypes = {
   attributes: PropTypes.object,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,

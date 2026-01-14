@@ -64,6 +64,7 @@ class RawLabel extends React.Component {
     placeholder: PropTypes.string,
     graphProps: types.GraphPropsType.isRequired,
     onChange: PropTypes.func,
+    mathMlOptions: PropTypes.object,
   };
 
   static defaultProps = {
@@ -138,6 +139,7 @@ export class Labels extends React.Component {
     value: PropTypes.shape(LabelType),
     graphProps: PropTypes.object,
     onChange: PropTypes.object,
+    mathMlOptions: PropTypes.object,
   };
 
   static defaultProps = {};

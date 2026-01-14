@@ -1144,7 +1144,7 @@ export class Editor extends React.Component {
 }
 
 // TODO color - hardcoded gray background and keypad colors will need to change too
-const StyledEditorWrapper = styled('div')(({ theme, scheduled }) => ({
+const StyledEditorWrapper = styled('div')(() => ({
   '&.withBg': {
     backgroundColor: 'rgba(0,0,0,0.06)',
   },

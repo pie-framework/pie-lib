@@ -15,6 +15,7 @@ const StyledContainer = styled('div')({
   alignItems: 'center',
 });
 
+// eslint-disable-next-line no-unused-vars
 const StyledInput = styled('input')(({ theme }) => ({
   float: 'right',
   fontFamily: theme.typography.fontFamily,

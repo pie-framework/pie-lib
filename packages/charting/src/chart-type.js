@@ -17,6 +17,8 @@ const StyledInputLabel = styled(InputLabel)(() => ({
   backgroundColor: 'transparent',
 }));
 
+import PropTypes from 'prop-types';
+
 const ChartType = ({ onChange, value, availableChartTypes, chartTypeLabel }) => (
   <StyledContainer>
     <StyledFormControl variant={'outlined'}>
@@ -42,5 +44,19 @@ const ChartType = ({ onChange, value, availableChartTypes, chartTypeLabel }) => 
     </StyledFormControl>
   </StyledContainer>
 );
+
+ChartType.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  availableChartTypes: PropTypes.shape({
+    histogram: PropTypes.string,
+    bar: PropTypes.string,
+    lineDot: PropTypes.string,
+    lineCross: PropTypes.string,
+    dotPlot: PropTypes.string,
+    linePlot: PropTypes.string,
+  }),
+  chartTypeLabel: PropTypes.string,
+};
 
 export default ChartType;

@@ -12,23 +12,23 @@ import { NumberTextFieldCustom, Toggle } from '@pie-lib/config-ui';
 import EditableHTML from '@pie-lib/editable-html';
 import { styled } from '@mui/material/styles';
 
-const Wrapper = styled('div')(({ theme }) => ({
+const Wrapper = styled('div')(() => ({
   width: '450px',
 }));
 
-const Content = styled('div')(({ theme }) => ({
+const Content = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
 }));
 
-const ColumnView = styled('div')(({ theme }) => ({
+const ColumnView = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
 }));
 
-const RowView = styled('div')(({ theme }) => ({
+const RowView = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
@@ -60,13 +60,13 @@ const ItalicText = styled(Typography)(({ theme }) => ({
   margin: `${theme.spacing(1)} 0`,
 }));
 
-const Dimensions = styled('div')(({ theme }) => ({
+const Dimensions = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
 }));
 
-const DisabledText = styled(Typography)(({ theme }) => ({
+const DisabledText = styled(Typography)(() => ({
   color: color.disabled(),
 }));
 

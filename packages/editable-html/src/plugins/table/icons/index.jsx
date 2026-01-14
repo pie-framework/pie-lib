@@ -9,11 +9,13 @@ const StyledPath = styled('path')({
 });
 
 const SvgIcon = (Component) => {
-  return (props) => (
+  const SvgIconComponent = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24">
       <Component {...props} />
     </svg>
   );
+  SvgIconComponent.displayName = `SvgIcon(${Component.displayName || Component.name || 'Component'})`;
+  return SvgIconComponent;
 };
 export const AddRow = SvgIcon((props) => (
   <StyledPath

@@ -28,6 +28,12 @@ export class RawPlot extends React.Component {
       value: PropTypes.string,
       label: PropTypes.string,
     }),
+    defineChart: PropTypes.bool,
+    correctData: PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      label: PropTypes.string,
+    })),
+    className: PropTypes.string,
   };
 
   constructor(props) {
@@ -315,6 +321,11 @@ export class Plot extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     defineChart: PropTypes.bool,
     CustomBarElement: PropTypes.func,
+    correctData: PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      label: PropTypes.string,
+    })),
+    className: PropTypes.string,
   };
 
   render() {

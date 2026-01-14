@@ -26,7 +26,7 @@ export async function waitForCustomElement(tagName, timeout = 3000) {
       reject(
         new Error(
           `Custom element '${tagName}' not defined within ${timeout}ms. ` +
-          `Make sure the element is registered with customElements.define().`
+          'Make sure the element is registered with customElements.define().'
         )
       );
     }, timeout);

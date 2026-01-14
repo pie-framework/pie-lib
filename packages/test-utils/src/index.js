@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { render } from '@testing-library/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -26,6 +27,9 @@ export function renderWithTheme(ui, options = {}) {
   function Wrapper({ children }) {
     return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
   }
+  Wrapper.propTypes = {
+    children: PropTypes.node,
+  };
 
   return render(ui, { wrapper: Wrapper, ...renderOptions });
 }
@@ -60,6 +64,9 @@ export function renderWithProviders(ui, options = {}) {
 
     return wrapped;
   }
+  Wrapper.propTypes = {
+    children: PropTypes.node,
+  };
 
   return render(ui, { wrapper: Wrapper, ...renderOptions });
 }

@@ -20,7 +20,7 @@ export class LearnMore extends React.Component {
   };
 
   render() {
-    const { classes, size } = this.props;
+    const { size } = this.props;
 
     if (this.props.open === true) {
       return (

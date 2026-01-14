@@ -48,10 +48,8 @@ const RawDragHandle = ({
   width,
   graphProps,
   interactive,
-  defineChart,
   isHovered,
   correctness,
-  color,
   isPlot,
   ...rest
 }) => {
@@ -111,7 +109,7 @@ RawDragHandle.propTypes = {
     value: PropTypes.string,
     label: PropTypes.string,
   }),
-  color: PropTypes.string,
+  isPlot: PropTypes.bool,
 };
 
 export const DragHandle = RawDragHandle;

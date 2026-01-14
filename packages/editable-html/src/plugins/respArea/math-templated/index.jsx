@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { mq } from '@pie-lib/math-input';
 
-const StyledSpanContainer = styled('span')(({ theme }) => ({
+const StyledSpanContainer = styled('span')(() => ({
   display: 'inline-flex',
   border: '1px solid #C0C3CF',
   margin: '1px 5px',

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const IncorrectSVG = ({ scale, x, y }) => (
   <svg
@@ -16,5 +17,14 @@ const IncorrectSVG = ({ scale, x, y }) => (
     <path d="M17.705 7.705l-1.41-1.41L12 10.59 7.705 6.295l-1.41 1.41L10.59 12l-4.295 4.295 1.41 1.41L12 13.41l4.295 4.295 1.41-1.41L13.41 12l4.295-4.295z"></path>
   </svg>
 );
+
+IncorrectSVG.propTypes = {
+  scale: PropTypes.shape({
+    x: PropTypes.func,
+    y: PropTypes.func,
+  }),
+  x: PropTypes.number,
+  y: PropTypes.number,
+};
 
 export default IncorrectSVG;

@@ -51,10 +51,6 @@ const StyledIconButton = styled(IconButton)({
   verticalAlign: 'top',
 });
 
-const StyledLabel = styled('div')({
-  color: 'var(--editable-html-toolbar-check, #00bb00)',
-});
-
 const getCustomToolbar = (plugin, node, value, handleDone, getFocusedValue, onDataChange) => {
   if (!plugin) {
     return;
@@ -94,6 +90,7 @@ export class Toolbar extends React.Component {
     getFocusedValue: PropTypes.func.isRequired,
     pluginProps: PropTypes.object,
     toolbarOpts: PropTypes.shape({
+      isHtmlMode: PropTypes.bool,
       position: PropTypes.oneOf(['bottom', 'top']),
       alignment: PropTypes.oneOf(['left', 'right']),
       alwaysVisible: PropTypes.bool,

@@ -38,7 +38,7 @@ const StyledInputMissing = styled('div')(({ theme }) => ({
   fontWeight: 'bold',
 }));
 
-const StyledIncorrect = styled('div')(({ theme }) => ({
+const StyledIncorrect = styled('div')(() => ({
   float: 'right',
   padding: 0,
   borderRadius: '4px',
@@ -115,6 +115,15 @@ const LabelInput = ({ _ref, externalInputRef, label, disabled, inputStyle, onCha
     onChange={onChange}
   />
 );
+
+LabelInput.propTypes = {
+  _ref: PropTypes.func,
+  externalInputRef: PropTypes.func,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  inputStyle: PropTypes.object,
+  onChange: PropTypes.func,
+};
 
 export const MarkLabel = (props) => {
   const [input, setInput] = useState(null);

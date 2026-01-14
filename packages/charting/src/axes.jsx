@@ -373,6 +373,7 @@ TickComponent.propTypes = {
   autoFocus: PropTypes.bool,
   onAutoFocusUsed: PropTypes.func,
   showCorrectness: PropTypes.bool,
+  hiddenLabelRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
 };
 
 export class RawChartAxes extends React.Component {
@@ -394,6 +395,7 @@ export class RawChartAxes extends React.Component {
     autoFocus: PropTypes.bool,
     onAutoFocusUsed: PropTypes.func,
     showCorrectness: PropTypes.bool,
+    hiddenLabelRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   };
 
   state = { height: 0, width: 0 };
@@ -421,7 +423,7 @@ export class RawChartAxes extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate() {
     if (this.hiddenLabelRef) {
       const width = Math.floor(this.hiddenLabelRef.getBoundingClientRect().width);
 

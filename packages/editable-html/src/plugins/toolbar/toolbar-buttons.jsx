@@ -31,6 +31,7 @@ export class RawButton extends React.Component {
     active: PropTypes.bool,
     disabled: PropTypes.bool,
     extraStyles: PropTypes.object,
+    ariaLabel: PropTypes.string,
   };
 
   constructor(props) {

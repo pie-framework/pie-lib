@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getAdjustedX, getScale } from '../utils';
 
 const DragIcon = ({ width, scaleValue, color }) => (
@@ -25,5 +26,11 @@ const DragIcon = ({ width, scaleValue, color }) => (
     </g>
   </svg>
 );
+
+DragIcon.propTypes = {
+  width: PropTypes.number.isRequired,
+  scaleValue: PropTypes.number.isRequired,
+  color: PropTypes.string,
+};
 
 export default DragIcon;

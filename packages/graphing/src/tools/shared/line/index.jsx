@@ -77,6 +77,13 @@ export const lineToolComponent = (Component) => {
     static propTypes = {
       ...types.ToolPropTypeFields,
       graphProps: types.GraphPropsType.isRequired,
+      limitLabeling: PropTypes.bool,
+      changeMarkProps: PropTypes.func,
+      disabled: PropTypes.bool,
+      from: types.PointType,
+      to: types.PointType,
+      labelModeEnabled: PropTypes.bool,
+      onClick: PropTypes.func,
     };
 
     constructor(props) {
@@ -218,9 +225,10 @@ export const lineBase = (Comp, opts) => {
       onClick: PropTypes.func,
       correctness: PropTypes.string,
       disabled: PropTypes.bool,
-      labelNode: PropTypes.object,
-      labelModeEnabled: PropTypes.bool,
+      limitLabeling: PropTypes.bool,
       changeMarkProps: PropTypes.func,
+      labelModeEnabled: PropTypes.bool,
+      labelNode: PropTypes.object,
     };
 
     onChangePoint = (point) => {
@@ -346,7 +354,7 @@ export const lineBase = (Comp, opts) => {
       let lineLabelNode = null;
 
       if (labelNode) {
-        if (from && from.hasOwnProperty('label')) {
+        if (from && Object.prototype.hasOwnProperty.call(from, 'label')) {
           fromLabelNode = ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input.from = r)}
@@ -359,7 +367,7 @@ export const lineBase = (Comp, opts) => {
           );
         }
 
-        if (to && to.hasOwnProperty('label')) {
+        if (to && Object.prototype.hasOwnProperty.call(to, 'label')) {
           toLabelNode = ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input.to = r)}
@@ -372,7 +380,7 @@ export const lineBase = (Comp, opts) => {
           );
         }
 
-        if (middle && middle.hasOwnProperty('label')) {
+        if (middle && Object.prototype.hasOwnProperty.call(middle, 'label')) {
           lineLabelNode = ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input.middle = r)}

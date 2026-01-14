@@ -259,6 +259,14 @@ const Group = (props) => {
   );
 };
 
+Group.propTypes = {
+  model: PropTypes.object,
+  label: PropTypes.string,
+  group: PropTypes.object,
+  configuration: PropTypes.object,
+  onChange: PropTypes.func,
+};
+
 export class Panel extends React.Component {
   static propTypes = {
     model: PropTypes.object,

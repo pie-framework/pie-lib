@@ -70,6 +70,7 @@ export class RawBar extends React.Component {
       label: PropTypes.string,
     }),
     correctData: PropTypes.array,
+    defineChart: PropTypes.bool,
   };
 
   constructor(props) {

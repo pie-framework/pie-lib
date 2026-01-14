@@ -179,7 +179,7 @@ export default function MediaPlugin(type, opts) {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               src={src}
-              editing={editing ? 1 : 0}
+              data-editing={editing ? 1 : 0}
               {...rest}
               {...style}
             />
