@@ -43,7 +43,7 @@ export default class Bg extends React.Component {
     const { scale } = graphProps;
 
     const padding = this.getRectPadding();
-    const coords = pointer(event, rect._groups[0][0]);
+    const coords = pointer(event, rect.node());
 
     // decrease the padding from coordinates to indicate the correct point clicked
     const x = scale.x.invert(coords[0] - padding);
