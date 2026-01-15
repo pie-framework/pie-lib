@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html';
 import PropTypes from 'prop-types';
@@ -64,7 +64,7 @@ const LabelComponent = (props) => {
     titleHeight,
   } = props;
 
-  const [rotatedToHorizontal, setRotatedToHorizontal] = useState(false);
+const [rotatedToHorizontal, setRotatedToHorizontal] = useState(false);
 
   const activePlugins = [
     'bold',
@@ -115,6 +115,15 @@ const LabelComponent = (props) => {
     }
   };
 
+  const exitEditMode = () => {
+    setRotatedToHorizontal(false);
+
+    // blur active element because rotation is causing editing issues on exit
+    requestAnimationFrame(() => {
+      document.activeElement?.blur?.();
+    });
+  };
+
   return (
     <Readable false>
       <div
@@ -155,7 +164,7 @@ const LabelComponent = (props) => {
             }}
             disableScrollbar
             activePlugins={activePlugins}
-            onDone={() => setRotatedToHorizontal(false)}
+            onDone={exitEditMode}
             mathMlOptions={mathMlOptions}
             charactersLimit={charactersLimit}
           />
