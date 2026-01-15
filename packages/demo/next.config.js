@@ -5,6 +5,15 @@ const links = loadLinks();
 const packageInfo = require('./config/package-info');
 
 const withTM = require('next-transpile-modules')([
+  'd3-array',
+  'd3-scale',
+  'd3-selection',
+  'd3-shape',
+  'd3-color',
+  'd3-interpolate',
+  'd3-format',
+  'd3-time',
+  'd3-time-format',
   '@pie-framework/mathquill',
   '@pie-lib/charting',
   '@pie-lib/config-ui',
@@ -38,7 +47,10 @@ const getAssetPrefix = () => {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config) => {
+  experimental: {
+    esmExternals: 'loose',
+  },
+  webpack: (config, { isServer }) => {
     config.cache = false;
     const publicPath = `${getAssetPrefix()}/_next/static`;
 
@@ -47,7 +59,7 @@ const nextConfig = {
     // Ensure all modules use the same React instance
     config.resolve.alias = {
       ...config.resolve.alias,
-      'react': path.resolve(__dirname, '../../node_modules/react'),
+      react: path.resolve(__dirname, '../../node_modules/react'),
       'react-dom': path.resolve(__dirname, '../../node_modules/react-dom'),
     };
 
