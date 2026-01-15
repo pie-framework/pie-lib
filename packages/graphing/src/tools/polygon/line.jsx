@@ -6,7 +6,7 @@ import { color } from '@pie-lib/render-ui';
 import * as utils from '../../utils';
 import { correct, disabled, incorrect, missing } from '../shared/styles';
 
-const StyledLine = styled('line')(({ theme, disabled: isDisabled, correctness }) => ({
+const StyledLine = styled('line')(({ disabled: isDisabled, correctness }) => ({
   strokeWidth: 3,
   transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
   stroke: 'transparent',
@@ -43,6 +43,7 @@ class RawLine extends React.Component {
   };
 
   render() {
+    // eslint-disable-next-line no-unused-vars
     const { graphProps, from, to, className, disabled, correctness, ...rest } = this.props;
     const { scale } = graphProps;
     return (

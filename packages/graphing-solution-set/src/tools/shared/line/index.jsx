@@ -313,7 +313,7 @@ export const lineBase = (Comp, opts) => {
       let lineLabelNode = null;
 
       if (labelNode) {
-        if (from && from.hasOwnProperty('label')) {
+        if (from && Object.prototype.hasOwnProperty.call(from, 'label')) {
           fromLabelNode = ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input.from = r)}
@@ -326,7 +326,7 @@ export const lineBase = (Comp, opts) => {
           );
         }
 
-        if (to && to.hasOwnProperty('label')) {
+        if (to && Object.prototype.hasOwnProperty.call(to, 'label')) {
           toLabelNode = ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input.to = r)}
@@ -339,7 +339,7 @@ export const lineBase = (Comp, opts) => {
           );
         }
 
-        if (middle && middle.hasOwnProperty('label')) {
+        if (middle && Object.prototype.hasOwnProperty.call(middle, 'label')) {
           lineLabelNode = ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input.middle = r)}

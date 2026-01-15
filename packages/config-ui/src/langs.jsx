@@ -102,4 +102,5 @@ LanguageControls.propTypes = {
   defaultLang: PropTypes.string.isRequired,
   onActiveLangChange: PropTypes.func.isRequired,
   onDefaultLangChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };

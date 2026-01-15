@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { color } from '@pie-lib/render-ui';
 
-const StyledContainer = styled('div')(({ theme }) => ({
+const StyledContainer = styled('div')(() => ({
   backgroundColor: color.defaults.WHITE,
   padding: '20px',
   width: '355px',

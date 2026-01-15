@@ -124,14 +124,16 @@ const insertDialog = ({ editorDOM, value, callback, opts, textNode, parentNode }
       editorDOM.parentElement.parentElement.parentElement.appendChild(newEl);
 
       // when height of toolbar exceeds screen - can happen in scrollable contexts
-      let additionalTopOffset = 0;
       if (boundRect.y < newEl.offsetHeight) {
-        additionalTopOffset = newEl.offsetHeight - boundRect.y + 10;
+        const additionalTopOffset = newEl.offsetHeight - boundRect.y + 10;
+        newEl.style.top = `${additionalTopOffset}px`;
       }
 
       newEl.style.maxWidth = '500px';
       newEl.style.position = 'absolute';
-      newEl.style.top = 0;
+      if (!newEl.style.top) {
+        newEl.style.top = '0';
+      }
       newEl.style.zIndex = 99999;
 
       const leftValue = `${boundRect.left + Math.abs(bodyRect.left) + cursorItem.offsetWidth + 10}px`;
@@ -184,6 +186,7 @@ const findParentNodeInfo = (value, textNode) => {
  * @param opts
  * @returns {*}
  */
+// eslint-disable-next-line no-unused-vars
 const getNodeWithClass = (value, opts) => {
   const blocksAtRange = value.document.getBlocksAtRangeAsArray(value.selection);
   const inlinesAtRange = value.document.getInlinesAtRangeAsArray(value.selection);

@@ -1,99 +1,91 @@
-import { mount, shallow, configure } from 'enzyme';
-
-import Expander from '../expander';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { CorrectAnswerToggle } from '../index';
-import Adapter from 'enzyme-adapter-react-16';
-
-configure({ adapter: new Adapter() });
 
 describe('CorrectAnswerToggle', () => {
   let onToggle;
-  let wrapper;
-  let sheet;
 
-  let mkWrapper = (toggled, msgs) => {
-    toggled = toggled === false ? false : true;
-    msgs = msgs || {};
-    return shallow(
+  const renderComponent = (toggled = true, msgs = {}) => {
+    return render(
       <CorrectAnswerToggle
+        show={true}
         toggled={toggled}
-        classes={{
-          root: 'root',
-          label: 'label',
-        }}
         onToggle={onToggle}
         hideMessage={msgs.hide}
         showMessage={msgs.show}
-        sheet={sheet}
       />,
-      {
-        context: {},
-      },
     );
   };
 
   beforeEach(() => {
-    let iconStub = {};
-
-    sheet = {
-      classes: {
-        root: 'root',
-        label: 'label',
-      },
-    };
     onToggle = jest.fn();
-    wrapper = mkWrapper();
   });
 
-  describe('render', () => {
-    it('has the hide message', () => {
-      let holder = wrapper.find('.label');
-      expect(holder.text()).toEqual('Hide correct answer');
+  describe('rendering', () => {
+    it('shows hide message when toggled is true', () => {
+      renderComponent(true);
+      expect(screen.getByText('Hide correct answer')).toBeInTheDocument();
     });
 
-    it('has show message when toggled is false', () => {
-      const w = mkWrapper(false);
-      let holder = w.find(`.label`);
-      expect(holder.text()).toEqual('Show correct answer');
+    it('shows show message when toggled is false', () => {
+      renderComponent(false);
+      expect(screen.getByText('Show correct answer')).toBeInTheDocument();
     });
 
-    it('sets a custom hide message', () => {
-      wrapper = mkWrapper(true, { hide: 'hide!' });
-      let holder = wrapper.find('.label');
-      expect(holder.text()).toEqual('hide!');
+    it('displays custom hide message', () => {
+      renderComponent(true, { hide: 'hide!' });
+      expect(screen.getByText('hide!')).toBeInTheDocument();
     });
 
-    it('sets a custom show message', () => {
-      wrapper = mkWrapper(false, { show: 'show!' });
-      let holder = wrapper.find('.label');
-      expect(holder.text()).toEqual('show!');
+    it('displays custom show message', () => {
+      renderComponent(false, { show: 'show!' });
+      expect(screen.getByText('show!')).toBeInTheDocument();
     });
   });
 
-  describe('onClick', () => {
-    it('calls onToggle', () => {
-      wrapper
-        .find(Expander)
-        .childAt(0)
-        .simulate('click');
-      expect(onToggle.mock.calls[0][0]).toEqual(false);
+  describe('user interactions', () => {
+    it('calls onToggle with false when clicked while toggled', async () => {
+      const user = userEvent.setup();
+      renderComponent(true);
+
+      const button = screen.getByText('Hide correct answer');
+      await user.click(button);
+
+      expect(onToggle).toHaveBeenCalledWith(false);
     });
 
-    it('calls onToggle with update state', () => {
-      onToggle.mockReset();
-      wrapper
-        .find(Expander)
-        .childAt(0)
-        .simulate('click');
-      expect(onToggle.mock.calls[0][0]).toEqual(false);
-      //simulate updating the toggled prop
-      wrapper.setProps({ toggled: false });
-      wrapper
-        .find(Expander)
-        .childAt(0)
-        .simulate('click');
-      expect(onToggle.mock.calls[1][0]).toEqual(true);
+    it('calls onToggle with true when clicked while not toggled', async () => {
+      const user = userEvent.setup();
+      renderComponent(false);
+
+      const button = screen.getByText('Show correct answer');
+      await user.click(button);
+
+      expect(onToggle).toHaveBeenCalledWith(true);
+    });
+
+    it('toggles correctly after prop update', async () => {
+      const user = userEvent.setup();
+      const { rerender } = renderComponent(true);
+
+      // First click - toggled is true, should call with false
+      await user.click(screen.getByText('Hide correct answer'));
+      expect(onToggle).toHaveBeenCalledWith(false);
+
+      // Simulate prop update to toggled=false
+      onToggle.mockClear();
+      rerender(
+        <CorrectAnswerToggle
+          show={true}
+          toggled={false}
+          onToggle={onToggle}
+        />
+      );
+
+      // Second click - toggled is false, should call with true
+      await user.click(screen.getByText('Show correct answer'));
+      expect(onToggle).toHaveBeenCalledWith(true);
     });
   });
 });

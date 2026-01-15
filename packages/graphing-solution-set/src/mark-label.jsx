@@ -66,7 +66,7 @@ export const MarkLabel = (props) => {
   const [input, setInput] = useState(null);
   const _ref = useCallback((node) => setInput(node));
 
-  const { mark, graphProps, disabled, inputRef: externalInputRef, theme } = props;
+  const { mark, graphProps, disabled, inputRef: externalInputRef } = props;
 
   const [label, setLabel] = useState(mark.label);
 

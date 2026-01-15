@@ -8,7 +8,7 @@ import { dataToXBand } from '../utils';
 import RawLine from './common/line';
 import { CorrectnessIndicator, SmallCorrectPointIndicator } from '../common/correctness-indicators';
 
-const StyledHandle = styled('circle')(({ correctness, interactive }) => ({}));
+const StyledHandle = styled('circle')(() => ({}));
 
 const StyledTransparentHandle = styled('circle')(() => ({
   height: '20px',

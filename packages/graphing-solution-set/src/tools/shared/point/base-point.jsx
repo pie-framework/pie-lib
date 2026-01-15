@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { thinnerShapesNeeded } from '../../../utils';
 import { color } from '@pie-lib/render-ui';
 import { styled } from '@mui/material/styles';
+import { disabled as disabledStyle, correct, incorrect, missing } from '../styles';
 
 const StyledPointGroup = styled('g')(({ disabled, correctness }) => ({
   cursor: 'pointer',
@@ -13,26 +14,25 @@ const StyledPointGroup = styled('g')(({ disabled, correctness }) => ({
     fill: 'currentColor',
   },
   ...(disabled && {
-    ...styles.disabled('fill'),
-    ...styles.disabled('color'),
+    ...disabledStyle('fill'),
+    ...disabledStyle('color'),
   }),
   ...(correctness === 'correct' && {
-    ...styles.correct('fill'),
-    ...styles.correct('color'),
+    ...correct('fill'),
+    ...correct('color'),
   }),
   ...(correctness === 'incorrect' && {
-    ...styles.incorrect('fill'),
-    ...styles.incorrect('color'),
+    ...incorrect('fill'),
+    ...incorrect('color'),
   }),
   ...(correctness === 'missing' && {
-    ...styles.missing('fill'),
-    ...styles.missing('color'),
+    ...missing('fill'),
+    ...missing('color'),
   }),
 }));
 
 export class RawBp extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     coordinatesOnHover: PropTypes.bool,
     correctness: PropTypes.string,
@@ -41,6 +41,9 @@ export class RawBp extends React.Component {
     x: PropTypes.number,
     y: PropTypes.number,
     graphProps: types.GraphPropsType.isRequired,
+    onClick: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    onTouchEnd: PropTypes.func,
   };
 
   constructor(props) {
@@ -50,7 +53,6 @@ export class RawBp extends React.Component {
 
   render() {
     const {
-      classes,
       className,
       coordinatesOnHover,
       x,

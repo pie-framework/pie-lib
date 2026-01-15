@@ -172,7 +172,7 @@ function DragDropChoice({
       onDrop: (draggedData, dropData) => {
         // check if we're dropping into a blank
         const isValidBlank =
-          dropData?.type === "drag-in-the-blank-drop-choice";
+          dropData?.type === 'drag-in-the-blank-drop-choice';
 
         if (!isValidBlank) return;
 
@@ -204,7 +204,7 @@ function DragDropChoice({
       onDrop: (draggedData, dropData) => {
         // check if we're dropping into a blank
         const isValidBlank =
-          dropData?.type === "drag-in-the-blank-drop-choice";
+          dropData?.type === 'drag-in-the-blank-drop-choice';
 
         if (!isValidBlank) return;
 
@@ -274,13 +274,15 @@ function DragDropChoice({
 DragDropChoice.propTypes = {
   value: PropTypes.object,
   disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  removeResponse: PropTypes.func,
   instanceId: PropTypes.string,
-  targetId: PropTypes.string,
-  duplicates: PropTypes.bool,
-  n: PropTypes.object,
   children: PropTypes.node,
+  n: PropTypes.object.isRequired,
+  nodeProps: PropTypes.object.isRequired,
+  opts: PropTypes.shape({
+    options: PropTypes.shape({
+      duplicates: PropTypes.bool,
+    }),
+  }).isRequired,
 };
 
 export default DragDropChoice;

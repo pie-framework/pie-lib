@@ -1,6 +1,5 @@
 import React from 'react';
 import Toolbar from './toolbar';
-import classNames from 'classnames';
 import debug from 'debug';
 import { primary } from '../../theme';
 import { styled } from '@mui/material/styles';

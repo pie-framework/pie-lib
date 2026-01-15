@@ -1,61 +1,112 @@
 import { TagsInput } from '../index';
-import toJson from 'enzyme-to-json';
-import { shallow, mount } from 'enzyme';
+import { render, screen, userEvent, pressKey, Keys } from '@pie-lib/test-utils';
 import React from 'react';
 
 describe('TagsInput', () => {
-  describe('snapshots', () => {
-    it('renders', () => {
-      const wrapper = mount(<TagsInput classes={{ tagsInput: 'tagsInput' }} tags={['foo']} onChange={jest.fn()} />);
-      expect(toJson(wrapper)).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders existing tags as chips', () => {
+      render(<TagsInput tags={['foo', 'bar']} onChange={jest.fn()} />);
+
+      expect(screen.getByText('foo')).toBeInTheDocument();
+      expect(screen.getByText('bar')).toBeInTheDocument();
+    });
+
+    it('renders input field', () => {
+      render(<TagsInput tags={['foo']} onChange={jest.fn()} />);
+
+      const input = screen.getByRole('textbox');
+      expect(input).toBeInTheDocument();
     });
   });
 
-  describe('logic', () => {
+  describe('user interactions', () => {
     let onChange;
-    const mkWrapper = () => {
+    const renderComponent = (tags = ['foo']) => {
       onChange = jest.fn();
-      return shallow(<TagsInput onChange={onChange} classes={{}} tags={['foo']} />);
+      return render(<TagsInput onChange={onChange} tags={tags} />);
     };
 
-    describe('onFocus', () => {
-      it('sets state.focused = true', () => {
-        const wrapper = mkWrapper();
-        wrapper.instance().onFocus();
-        expect(wrapper.state('focused')).toEqual(true);
+    describe('focus behavior', () => {
+      it('allows user to focus the input', async () => {
+        const user = userEvent.setup();
+        renderComponent();
+
+        const input = screen.getByRole('textbox');
+        await user.click(input);
+
+        expect(input).toHaveFocus();
+      });
+
+      it('allows user to blur the input', async () => {
+        const user = userEvent.setup();
+        renderComponent();
+
+        const input = screen.getByRole('textbox');
+        await user.click(input);
+        expect(input).toHaveFocus();
+
+        await user.tab();
+        expect(input).not.toHaveFocus();
       });
     });
 
-    describe('onBlur', () => {
-      it('sets state.focused = false', () => {
-        const wrapper = mkWrapper();
-        wrapper.instance().onFocus();
-        wrapper.instance().onBlur();
-        expect(wrapper.state('focused')).toEqual(false);
+    describe('typing in input', () => {
+      it('updates input value when user types', async () => {
+        const user = userEvent.setup();
+        renderComponent();
+
+        const input = screen.getByRole('textbox');
+        await user.type(input, 'boo');
+
+        expect(input).toHaveValue('boo');
       });
     });
 
-    describe('onChange', () => {
-      it('sets state.value  ', () => {
-        const wrapper = mkWrapper();
-        wrapper.instance().onChange({ target: { value: 'boo' } });
-        expect(wrapper.state('value')).toEqual('boo');
+    describe('adding tags', () => {
+      it('adds new tag when user presses Enter', async () => {
+        const user = userEvent.setup();
+        renderComponent();
+
+        const input = screen.getByRole('textbox');
+        await user.type(input, 'banana');
+        pressKey(input, Keys.ENTER);
+
+        expect(onChange).toHaveBeenCalledWith(['foo', 'banana']);
+      });
+
+      it('does not add duplicate tags', async () => {
+        const user = userEvent.setup();
+        renderComponent();
+
+        const input = screen.getByRole('textbox');
+        await user.type(input, 'foo');
+        pressKey(input, Keys.ENTER);
+
+        expect(onChange).not.toHaveBeenCalled();
+      });
+
+      it('clears input after adding tag', async () => {
+        const user = userEvent.setup();
+        renderComponent();
+
+        const input = screen.getByRole('textbox');
+        await user.type(input, 'banana');
+        pressKey(input, Keys.ENTER);
+
+        expect(input).toHaveValue('');
       });
     });
 
-    describe('onKeyDown', () => {
-      it('calls onChange on enter', () => {
-        const wrapper = mkWrapper();
-        wrapper.setState({ value: 'banana' });
-        wrapper.instance().onKeyDown({ keyCode: 13 });
-        expect(onChange).toBeCalledWith(['foo', 'banana']);
-      });
+    describe('deleting tags', () => {
+      it('removes tag when user clicks delete button', async () => {
+        const user = userEvent.setup();
+        renderComponent(['foo', 'bar']);
 
-      it('doesnt calls onChange on enter if the value is the same as a value in tags', () => {
-        const wrapper = mkWrapper();
-        wrapper.setState({ value: 'foo' });
-        wrapper.instance().onKeyDown({ keyCode: 13 });
-        expect(onChange).not.toBeCalled();
+        // Find the delete button for 'foo' tag
+        const deleteButtons = screen.getAllByTestId('CancelIcon');
+        await user.click(deleteButtons[0]);
+
+        expect(onChange).toHaveBeenCalledWith(['bar']);
       });
     });
   });

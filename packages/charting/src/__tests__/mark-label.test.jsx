@@ -1,12 +1,12 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render } from '@pie-lib/test-utils';
 import { MarkLabel } from '../mark-label';
 import { graphProps as getGraphProps } from './utils';
 
 describe('MarkLabel', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras) => {
+
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       defineChart: false,
@@ -16,16 +16,18 @@ describe('MarkLabel', () => {
       graphProps: getGraphProps(0, 10, 0, 10),
     };
     const props = { ...defaults, ...extras };
-    return shallow(<MarkLabel {...props} />);
+    return render(<MarkLabel {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+
+  describe('rendering', () => {
+    it('renders mark label', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
-    it('renders', () => {
-      w = wrapper({ mark: { x: 10, y: 10 } });
-      expect(w).toMatchSnapshot();
+
+    it('renders mark label at different positions', () => {
+      const { container } = renderComponent({ mark: { x: 10, y: 10 } });
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

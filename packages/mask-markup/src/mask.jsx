@@ -134,7 +134,7 @@ const MaskContainer = styled('div')(() => ({
 export default class Mask extends React.Component {
   constructor(props) {
     super(props);
-    this.containerRef = React.createRef();
+       this.internalContainerRef = React.createRef();
   }
 
   static propTypes = {
@@ -143,11 +143,16 @@ export default class Mask extends React.Component {
     value: PropTypes.object,
     onChange: PropTypes.func,
     elementType: PropTypes.string,
+    containerRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
   };
 
   componentDidMount() {
-    if (this.containerRef.current && typeof renderMath === 'function') {
-      renderMath(this.containerRef.current);
+    const containerRef = this.props.containerRef || this.internalContainerRef;
+    if (containerRef.current && typeof renderMath === 'function') {
+      renderMath(containerRef.current);
     }
   }
 
@@ -157,9 +162,10 @@ export default class Mask extends React.Component {
   };
 
   render() {
-    const { value, layout, elementType } = this.props;
+    const { value, layout, elementType, containerRef } = this.props;
     const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren, null, elementType);
+    const ref = containerRef || this.internalContainerRef;
 
-    return <MaskContainer ref={this.containerRef}>{children}</MaskContainer>;
+    return <MaskContainer ref={ref}>{children}</MaskContainer>;
   }
 }

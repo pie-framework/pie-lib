@@ -79,6 +79,10 @@ class RawDragHandle extends React.Component {
     } = this.props;
     const { scale } = graphProps;
 
+    if (!CustomDraggableComponent) {
+      return null;
+    }
+
     return (
       <StyledDragHandle>
         <CustomDraggableComponent

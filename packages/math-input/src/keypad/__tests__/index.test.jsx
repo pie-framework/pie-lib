@@ -1,24 +1,25 @@
-import { shallow } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
+import { render } from '@testing-library/react';
 import { KeyPad } from '../index';
 
 describe('Keypad', () => {
-  let w;
-  let onChange = jest.fn();
-  const wrapper = (extras) => {
-    const defaults = {
-      classes: {},
-      className: 'className',
-      onChange,
-      onPress: jest.fn(),
-    };
-    const props = { ...defaults, ...extras };
-    return shallow(<KeyPad {...props} />);
+  const onChange = jest.fn();
+  const defaultProps = {
+    classes: {},
+    className: 'className',
+    onChange,
+    onPress: jest.fn(),
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+
+  beforeEach(() => {
+    onChange.mockClear();
+  });
+
+  describe('rendering', () => {
+    it('renders with default props', () => {
+      const { container } = render(<KeyPad {...defaultProps} />);
+      expect(container.firstChild).toBeInTheDocument();
+      expect(container.firstChild).toHaveClass('className');
     });
   });
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
@@ -19,5 +20,12 @@ const FormSection = ({ className, label, children, labelExtraStyle }) => (
     {children}
   </StyledFormSection>
 );
+
+FormSection.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string,
+  children: PropTypes.node,
+  labelExtraStyle: PropTypes.object,
+};
 
 export default FormSection;

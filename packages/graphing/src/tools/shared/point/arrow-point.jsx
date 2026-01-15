@@ -27,7 +27,7 @@ export class RawArrow extends React.Component {
   };
 
   render() {
-    const { className, x, y, disabled, correctness, graphProps, from, to, ...rest } = this.props;
+    const { className, x, y, graphProps, from, to, ...rest } = this.props;
     const { scale } = graphProps;
 
     const angle = from && to ? getAngleDeg(from.x, from.y, to.x, to.y) : 0;

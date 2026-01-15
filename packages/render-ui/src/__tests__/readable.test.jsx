@@ -1,24 +1,23 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import Readable from '../readable';
 
 describe('Readable', () => {
-  let wrapper;
-
-  describe('renders fine', () => {
-    it('renders child unaltered', () => {
-      wrapper = mount(
+  describe('rendering', () => {
+    it('renders child with data-pie-readable attribute set to true', () => {
+      const { container } = render(
         <Readable>
           <div>text</div>
         </Readable>,
       );
-      expect(wrapper.find('div')).toHaveLength(1);
-      expect(wrapper.html().includes('data-pie-readable="true"')).toEqual(true);
-      expect(wrapper.html().includes('text')).toEqual(true);
-      expect(wrapper).toMatchSnapshot();
+
+      expect(screen.getByText('text')).toBeInTheDocument();
+      const div = container.querySelector('div');
+      expect(div).toHaveAttribute('data-pie-readable', 'true');
     });
-    it('renders children unaltered', () => {
-      wrapper = mount(
+
+    it('renders multiple children with data-pie-readable attribute', () => {
+      const { container } = render(
         <Readable>
           <div>
             <div>text1</div>
@@ -26,14 +25,17 @@ describe('Readable', () => {
           </div>
         </Readable>,
       );
-      expect(wrapper.find('div')).toHaveLength(3);
-      expect(wrapper.html().includes('data-pie-readable="true"')).toEqual(true);
-      expect(wrapper.html().includes('text1')).toEqual(true);
-      expect(wrapper.html().includes('text3')).toEqual(false);
-      expect(wrapper).toMatchSnapshot();
+
+      expect(screen.getByText('text1')).toBeInTheDocument();
+      expect(screen.getByText('text2')).toBeInTheDocument();
+      expect(screen.queryByText('text3')).not.toBeInTheDocument();
+
+      const parentDiv = container.querySelector('div');
+      expect(parentDiv).toHaveAttribute('data-pie-readable', 'true');
     });
-    it('renders with false tag', () => {
-      wrapper = mount(
+
+    it('renders with data-pie-readable set to false when false prop is provided', () => {
+      const { container } = render(
         <Readable false>
           <div>
             <div>text1</div>
@@ -41,14 +43,17 @@ describe('Readable', () => {
           </div>
         </Readable>,
       );
-      expect(wrapper.find('div')).toHaveLength(3);
-      expect(wrapper.html().includes('data-pie-readable="false"')).toEqual(true);
-      expect(wrapper.html().includes('text1')).toEqual(true);
-      expect(wrapper.html().includes('text3')).toEqual(false);
-      expect(wrapper).toMatchSnapshot();
+
+      expect(screen.getByText('text1')).toBeInTheDocument();
+      expect(screen.getByText('text2')).toBeInTheDocument();
+      expect(screen.queryByText('text3')).not.toBeInTheDocument();
+
+      const parentDiv = container.querySelector('div');
+      expect(parentDiv).toHaveAttribute('data-pie-readable', 'false');
     });
-    it('renders even with specific true tag', () => {
-      wrapper = mount(
+
+    it('renders with data-pie-readable set to false when false={true}', () => {
+      const { container } = render(
         <Readable false={true}>
           <div>
             <div>text1</div>
@@ -56,9 +61,9 @@ describe('Readable', () => {
           </div>
         </Readable>,
       );
-      expect(wrapper.find('div')).toHaveLength(3);
-      expect(wrapper.html().includes('data-pie-readable="false"')).toEqual(true);
-      expect(wrapper).toMatchSnapshot();
+
+      const parentDiv = container.querySelector('div');
+      expect(parentDiv).toHaveAttribute('data-pie-readable', 'false');
     });
   });
 });

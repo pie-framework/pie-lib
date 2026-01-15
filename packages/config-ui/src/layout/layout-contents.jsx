@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Tabs from '../tabs';
 
-const StyledContainer = styled('div')(({ theme }) => ({
+const StyledContainer = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
   position: 'relative',

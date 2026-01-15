@@ -11,7 +11,7 @@ const dragging = () => ({
   stroke: color.defaults.BLACK,
 });
 
-const StyledDrawLine = styled(vx.LinePath)(({ theme, disabled: isDisabled, correctness }) => ({
+const StyledDrawLine = styled(vx.LinePath)(({ disabled: isDisabled, correctness }) => ({
   fill: 'none',
   strokeWidth: 2,
   stroke: color.black(),

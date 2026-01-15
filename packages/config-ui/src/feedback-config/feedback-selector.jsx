@@ -65,6 +65,7 @@ export class FeedbackSelector extends React.Component {
     feedback: PropTypes.shape(FeedbackType).isRequired,
     onChange: PropTypes.func.isRequired,
     toolbarOpts: PropTypes.object,
+    mathMlOptions: PropTypes.object,
   };
 
   changeType = (type) => {

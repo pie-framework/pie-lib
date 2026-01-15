@@ -134,7 +134,7 @@ export class Root extends React.Component {
     }
 
     const { scale, snap } = graphProps;
-    const coords = mouse(g._groups[0][0]);
+    const coords = mouse(g.node());
     const x = scale.x.invert(coords[0]);
     const y = scale.y.invert(coords[1]);
 

@@ -37,13 +37,13 @@ export const filterByVisibleToolTypes = (toolbarTools, marks) =>
 const getDefaultCurrentTool = (toolType) =>
   toolsArr.find((tool) => tool.type === toolType) || null;
 
-const GraphWithControlsRoot = styled('div')(({ theme }) => ({
+const GraphWithControlsRoot = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
   width: 'min-content',
 }));
 
-const Controls = styled('div')(({ theme }) => ({
+const Controls = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-between',
   padding: 'calc(1.25rem - 12px) calc(1.25rem - 12px) 1.25rem',
@@ -56,7 +56,7 @@ const Controls = styled('div')(({ theme }) => ({
   },
 }));
 
-const StyledAccordion = styled(Accordion)(({ theme }) => ({
+const StyledAccordion = styled(Accordion)(() => ({
   backgroundColor: color.primaryLight(),
   width: '100%',
   boxShadow: 'none',

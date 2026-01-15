@@ -199,7 +199,7 @@ export class TickComponent extends React.Component {
       const lengthB = b && b.label ? b.label.length : 0;
 
       return lengthA > lengthB ? a : b;
-    }, {});
+    }, { label: '' });
     const distinctMessages = error ? [...new Set(Object.values(error))].join(' ') : '';
 
     return (
@@ -373,6 +373,7 @@ TickComponent.propTypes = {
   autoFocus: PropTypes.bool,
   onAutoFocusUsed: PropTypes.func,
   showCorrectness: PropTypes.bool,
+  hiddenLabelRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
 };
 
 export class RawChartAxes extends React.Component {
@@ -394,6 +395,7 @@ export class RawChartAxes extends React.Component {
     autoFocus: PropTypes.bool,
     onAutoFocusUsed: PropTypes.func,
     showCorrectness: PropTypes.bool,
+    hiddenLabelRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   };
 
   state = { height: 0, width: 0 };
@@ -401,7 +403,7 @@ export class RawChartAxes extends React.Component {
   componentDidMount() {
     if (this.hiddenLabelRef) {
       const boundingClientRect = this.hiddenLabelRef.getBoundingClientRect();
-      const hiddenEl = this.hiddenLabelRef.current;
+      const hiddenEl = this.hiddenLabelRef;
 
       // same logic used in dropdown.jsx for hidden labels width calculation
       if (hiddenEl) {
@@ -421,7 +423,7 @@ export class RawChartAxes extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate() {
     if (this.hiddenLabelRef) {
       const width = Math.floor(this.hiddenLabelRef.getBoundingClientRect().width);
 

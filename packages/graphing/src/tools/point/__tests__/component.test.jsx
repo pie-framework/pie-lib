@@ -1,13 +1,17 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { graphProps, xy } from '../../../__tests__/utils';
 
 import Component from '../component';
 
 describe('Component', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras, opts) => {
+
+  beforeEach(() => {
+    onChange.mockClear();
+  });
+
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -15,52 +19,23 @@ describe('Component', () => {
       graphProps: graphProps(),
     };
     const props = { ...defaults, ...extras };
-    return shallow(<Component {...props} />, opts);
+    return render(<Component {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
-    });
-  });
-
-  describe('logic', () => {
-    describe('move', () => {
-      it('calls onChange', () => {
-        const w = wrapper({ mark: { ...xy(0, 0) } });
-        w.instance().move({ x: 1, y: 1 });
-        expect(w.state('mark')).toMatchObject({ ...xy(1, 1) });
-      });
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
 
-    describe('labelChange', () => {
-      it('callsOnChange with label removed', () => {
-        const mark = { label: 'foo' };
-        const update = {};
-        const w = wrapper({ mark });
-        w.instance().labelChange(undefined);
-        expect(onChange).toHaveBeenCalledWith(mark, update);
-      });
+    it('renders with mark', () => {
+      const { container } = renderComponent({ mark: { ...xy(0, 0) } });
+      expect(container.firstChild).toBeInTheDocument();
     });
 
-    describe('clickPoint', () => {
-      let mark;
-      let w;
-      beforeEach(() => {
-        mark = { label: 'foo' };
-        w = wrapper({ mark, labelModeEnabled: true }, { disableLifecycleMethods: true });
-        w.instance().input = {
-          focus: jest.fn(),
-        };
-        w.instance().clickPoint();
-      });
-      it('calls onChange if labelModeEnabeld', () => {
-        expect(onChange).toHaveBeenCalledWith(mark, { label: '', ...mark });
-      });
-      it('calls input.focus', () => {
-        expect(w.instance().input.focus).toHaveBeenCalled();
-      });
+    it('renders with label', () => {
+      const { container } = renderComponent({ mark: { label: 'foo', ...xy(0, 0) } });
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

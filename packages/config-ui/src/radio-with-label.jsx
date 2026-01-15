@@ -1,6 +1,7 @@
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { color } from '@pie-lib/render-ui';
 
@@ -22,5 +23,12 @@ const RadioWithLabel = ({ label, value, checked, onChange }) => (
     label={label}
   />
 );
+
+RadioWithLabel.propTypes = {
+  label: PropTypes.string,
+  value: PropTypes.string,
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
+};
 
 export default RadioWithLabel;

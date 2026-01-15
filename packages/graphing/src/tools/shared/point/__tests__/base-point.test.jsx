@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme/build';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { BasePoint } from '../index';
 import { gridDraggable } from '@pie-lib/plot';
@@ -6,10 +6,11 @@ import { graphProps } from '../../../../__tests__/utils';
 import { bounds } from '../../../../utils';
 
 jest.mock('../../../../utils', () => {
-  const { point } = jest.requireActual('../../../../utils');
+  const { point, thinnerShapesNeeded } = jest.requireActual('../../../../utils');
   return {
     bounds: jest.fn(),
     point,
+    thinnerShapesNeeded,
   };
 });
 
@@ -23,25 +24,27 @@ jest.mock('@pie-lib/plot', () => {
 });
 
 describe('BasePoint', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
       graphProps: graphProps(),
+      x: 0,
+      y: 0,
     };
     const props = { ...defaults, ...extras };
-    return shallow(<BasePoint {...props} />);
+    return render(<BasePoint {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
+
   describe('gridDraggable options', () => {
     let opts;
     let domain;
@@ -57,8 +60,8 @@ describe('BasePoint', () => {
         max: 1,
         step: 1,
       };
-      const w = wrapper();
-      opts = gridDraggable.mock.calls[0][0];
+      renderComponent();
+      opts = gridDraggable.mock.calls[gridDraggable.mock.calls.length - 1][0];
     });
 
     describe('bounds', () => {

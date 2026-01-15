@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 
 const StyledHtmlIcon = styled('div')(({ theme }) => ({
@@ -13,5 +14,9 @@ const StyledHtmlIcon = styled('div')(({ theme }) => ({
 const HtmlModeIcon = ({ isHtmlMode }) => (
   <StyledHtmlIcon>{isHtmlMode ? 'Exit <HTML> mode' : '<HTML>'}</StyledHtmlIcon>
 );
+
+HtmlModeIcon.propTypes = {
+  isHtmlMode: PropTypes.bool.isRequired,
+};
 
 export default HtmlModeIcon;

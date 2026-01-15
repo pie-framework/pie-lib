@@ -17,6 +17,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+// eslint-disable-next-line react/prop-types
 export const getLabelPosition = (graphProps, x, y, labelLength) => {
   const { scale, domain, range } = graphProps;
   // treat corner cases for maximum and minimum
