@@ -3,223 +3,95 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.40.0-mui-update.0...@pie-lib/plot@2.41.0-mui-update.0) (2025-12-29)
-
-**Note:** Version bump only for package @pie-lib/plot
-
-
-
-
-
-# [2.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.39.0-mui-update.0...@pie-lib/plot@2.40.0-mui-update.0) (2025-12-29)
-
-
-### Features
-
-* migrate from [@vx](https://github.com/vx) library to [@visx](https://github.com/visx) ([135bf60](https://github.com/pie-framework/pie-lib/commit/135bf605161bfbd0070ac181892df20931691ce3))
-
-
-
-
-
-# [2.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.38.0-mui-update.0...@pie-lib/plot@2.39.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/plot
-
-
-
-
-
-# [2.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.37.0-mui-update.0...@pie-lib/plot@2.38.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/plot
-
-
-
-
-
-# [2.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.36.0-mui-update.0...@pie-lib/plot@2.37.0-mui-update.0) (2025-12-11)
-
-**Note:** Version bump only for package @pie-lib/plot
-
-
-
-
-
-# [2.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.35.0-mui-update.0...@pie-lib/plot@2.36.0-mui-update.0) (2025-12-02)
-
-
-### Features
-
-* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
-
-
-
-
-
 ## [2.27.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.27.1...@pie-lib/plot@2.27.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/plot
-
-
-
-
 
 ## [2.27.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.2...@pie-lib/plot@2.27.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/plot
 
-
-
-
-
 # [2.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.26.0...@pie-lib/plot@2.27.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/plot
 
-
-
-
-
 # [2.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.0...@pie-lib/plot@2.26.0) (2025-10-16)
-
 
 ### Bug Fixes
 
-* **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
-
-
-
-
+- **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
 
 # [2.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.0...@pie-lib/plot@2.25.0) (2025-10-16)
 
-
 ### Bug Fixes
 
-* **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
-
-
-
-
+- **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
 
 # [2.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.0...@pie-lib/plot@2.24.0) (2025-10-16)
 
-
 ### Bug Fixes
 
-* **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
-
-
-
-
+- **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
 
 ## [2.23.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.1...@pie-lib/plot@2.23.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/plot
 
-
-
-
-
 ## [2.23.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.23.0...@pie-lib/plot@2.23.1) (2025-10-09)
-
 
 ### Bug Fixes
 
-* **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
-
-
-
-
+- **plot/graphing:** add title height calculations through observer PD-5208 ([f993541](https://github.com/pie-framework/pie-lib/commit/f99354174b23dcd6a1f3524a15f9b64c4041d7e2))
 
 # [2.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.7.3...@pie-lib/plot@2.23.0) (2025-09-25)
 
-
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.21.0...@pie-lib/plot@2.22.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/plot
 
-
-
-
-
 # [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.20.0...@pie-lib/plot@2.21.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/plot
 
-
-
-
-
 # [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.7.3...@pie-lib/plot@2.20.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.18.0...@pie-lib/plot@2.19.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/plot
 
-
-
-
-
 # [2.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.17.0...@pie-lib/plot@2.18.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/plot
-
-
-
-
 
 # [2.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.16.1...@pie-lib/plot@2.17.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/plot
 
-
-
-
-
 ## [2.16.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.7.3...@pie-lib/plot@2.16.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.7.3...@pie-lib/plot@2.16.0) (2025-08-07)
 

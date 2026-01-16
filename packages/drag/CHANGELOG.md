@@ -3,221 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.35.0-mui-update.0...@pie-lib/drag@2.36.0-mui-update.0) (2025-12-29)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.34.0-mui-update.0...@pie-lib/drag@2.35.0-mui-update.0) (2025-12-29)
-
-
-### Bug Fixes
-
-* drag fixes ([d8920a2](https://github.com/pie-framework/pie-lib/commit/d8920a2b5e6e365c42f03368f9f235fed9090a88))
-
-
-
-
-
-# [2.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.33.0-mui-update.0...@pie-lib/drag@2.34.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.32.0-mui-update.0...@pie-lib/drag@2.33.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/drag
-
-
-
-
-
-# [2.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.31.0-mui-update.0...@pie-lib/drag@2.32.0-mui-update.0) (2025-12-11)
-
-
-### Features
-
-* drag changes for ditb ([fc79ecd](https://github.com/pie-framework/pie-lib/commit/fc79ecdacb5693f1b5dcf19c7114f9cd4bed83ba))
-* updates for drag-in-the-blank ([0c096d8](https://github.com/pie-framework/pie-lib/commit/0c096d887f97edecd2dac68cda136b2d265dc7d5))
-
-
-
-
-
-# [2.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.30.0-mui-update.0...@pie-lib/drag@2.31.0-mui-update.0) (2025-12-02)
-
-
-### Bug Fixes
-
-* drag components ([bea5eaa](https://github.com/pie-framework/pie-lib/commit/bea5eaaa54fc9060ac83bb7d6383b4c9e2491574))
-
-
-### Features
-
-* add drag provider onDragStart prop ([0879247](https://github.com/pie-framework/pie-lib/commit/087924747b02ceed710e971e8dbe0291071396af))
-* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
-
-
-
-
-
 ## [2.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.22.1...@pie-lib/drag@2.22.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/drag
-
-
-
-
 
 ## [2.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.2...@pie-lib/drag@2.22.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 # [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.21.0...@pie-lib/drag@2.22.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/drag
-
-
-
-
 
 # [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.21.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 # [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.20.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/drag
-
-
-
-
 
 # [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.19.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 ## [2.18.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.1...@pie-lib/drag@2.18.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/drag
-
-
-
-
 
 ## [2.18.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.18.0...@pie-lib/drag@2.18.1) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 # [2.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.9...@pie-lib/drag@2.18.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.16.0...@pie-lib/drag@2.17.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 # [2.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.15.0...@pie-lib/drag@2.16.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 # [2.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.9...@pie-lib/drag@2.15.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.13.0...@pie-lib/drag@2.14.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 # [2.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.12.0...@pie-lib/drag@2.13.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/drag
-
-
-
-
 
 # [2.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.11.1...@pie-lib/drag@2.12.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/drag
 
-
-
-
-
 ## [2.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.9...@pie-lib/drag@2.11.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.2.9...@pie-lib/drag@2.11.0) (2025-08-07)
 

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/render-ui",
-  "version": "4.49.0-mui-update.0",
+  "version": "4.35.2",
   "description": "Some shared ui elements when rendering - but not worthy of their own package yet.",
   "module": "src/index.js",
   "main": "lib/index.js",
@@ -30,5 +30,13 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "gitHead": "1e3f5fd7812b0a334d3b2719026a01c3102398c9"
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./src/index.js",
+      "default": "./lib/index.js"
+    },
+    "./esm": "./esm/index.js"
+  }
 }

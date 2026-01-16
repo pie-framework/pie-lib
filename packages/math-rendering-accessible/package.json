@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering-accessible",
-  "version": "3.36.0-mui-update.0",
+  "version": "3.22.1",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
@@ -19,6 +19,14 @@
     "react": "^18.2.0",
     "slate": "^0.36.2"
   },
-  "gitHead": "0289459c8e8c23e6a3dd3c9a27a7996e4f4ce5f1",
-  "scripts": {}
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "scripts": {},
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./src/index.js",
+      "default": "./lib/index.js"
+    },
+    "./esm": "./esm/index.js"
+  }
 }
