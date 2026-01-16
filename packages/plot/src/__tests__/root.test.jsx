@@ -98,7 +98,7 @@ describe('root', () => {
       });
 
       describe('mouseMove function', () => {
-        it('calls mouse with correct arguments', () => {
+        it('calls pointer with correct arguments', () => {
           const onMouseMove = jest.fn();
           const gp = graphProps();
           const props = {
@@ -108,6 +108,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 10, clientY: 20 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -121,8 +122,7 @@ describe('root', () => {
               // When 'mousemove' is registered, immediately test it
               if (event === 'mousemove' && handler) {
                 pointer.mockReturnValue([10, 20]);
-                // Handler receives event as first arg in v3
-                const mockEvent = { clientX: 10, clientY: 20 };
+                // Handler is bound with mockSelection as first arg, so call with event
                 handler(mockEvent);
               }
             },
@@ -130,8 +130,8 @@ describe('root', () => {
 
           render(<Root {...props}>hi</Root>);
 
-          // Verify pointer was called with event and node
-          expect(pointer).toHaveBeenCalled();
+          // Verify pointer was called with the event and node
+          expect(pointer).toHaveBeenCalledWith(mockEvent, mockNode);
         });
 
         it('calls scale.x.invert and scale.y.invert', () => {
@@ -144,6 +144,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 15, clientY: 25 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -155,7 +156,6 @@ describe('root', () => {
               mockOn(event, handler);
               if (event === 'mousemove' && handler) {
                 pointer.mockReturnValue([15, 25]);
-                const mockEvent = { clientX: 15, clientY: 25 };
                 handler(mockEvent);
               }
             },
@@ -179,6 +179,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 15, clientY: 25 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -190,7 +191,6 @@ describe('root', () => {
               mockOn(event, handler);
               if (event === 'mousemove' && handler) {
                 pointer.mockReturnValue([15, 25]);
-                const mockEvent = { clientX: 15, clientY: 25 };
                 handler(mockEvent);
               }
             },
@@ -217,6 +217,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 100, clientY: 200 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -228,7 +229,6 @@ describe('root', () => {
               mockOn(event, handler);
               if (event === 'mousemove' && handler) {
                 pointer.mockReturnValue([100, 200]);
-                const mockEvent = { clientX: 100, clientY: 200 };
                 handler(mockEvent);
               }
             },
@@ -247,6 +247,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 100, clientY: 200 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -258,7 +259,6 @@ describe('root', () => {
               mockOn(event, handler);
               if (event === 'mousemove' && handler) {
                 pointer.mockReturnValue([100, 200]);
-                const mockEvent = { clientX: 100, clientY: 200 };
                 // Should not throw error when onMouseMove is not provided
                 expect(() => handler(mockEvent)).not.toThrow();
               }

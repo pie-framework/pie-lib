@@ -32,16 +32,13 @@ const StyledSwitch = styled(Switch)(({ checked }) => ({
 const Toggle = ({ checked, disabled, label, toggle }) => (
   <StyledToggle>
     <StyledInputLabel>{label}</StyledInputLabel>
-    <StyledSwitch
-      checked={checked}
-      disabled={disabled}
-      onChange={(e) => toggle(e.target.checked)}
-    />
+    <StyledSwitch checked={checked} disabled={disabled} onChange={(e) => toggle(e.target.checked)} />
   </StyledToggle>
 );
 
 Toggle.propTypes = {
   checked: PropTypes.bool,
+  disabled: PropTypes.bool,
   label: PropTypes.string.isRequired,
   toggle: PropTypes.func.isRequired,
 };

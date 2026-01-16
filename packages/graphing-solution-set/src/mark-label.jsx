@@ -14,10 +14,12 @@ const StyledAutosizeInput = styled(AutosizeInput, {
     padding: theme.spacing(0.5),
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.fontSize,
-    border: `solid 1px ${disabled ? color.defaults.PRIMARY_DARK : markDisabled ? color.disabled() : color.defaults.SECONDARY}`,
+    border: `solid 1px ${
+      disabled ? color.defaults.PRIMARY_DARK : markDisabled ? color.disabled() : color.defaults.SECONDARY
+    }`,
     borderRadius: '3px',
     color: markDisabled ? color.disabled() : color.defaults.PRIMARY_DARK,
-    background: (disabled || markDisabled) ? theme.palette.background.paper : 'transparent',
+    background: disabled || markDisabled ? theme.palette.background.paper : 'transparent',
   },
 }));
 
@@ -66,7 +68,7 @@ export const MarkLabel = (props) => {
   const [input, setInput] = useState(null);
   const _ref = useCallback((node) => setInput(node));
 
-  const { mark, graphProps, disabled, inputRef: externalInputRef, theme } = props;
+  const { mark, graphProps, disabled, inputRef: externalInputRef } = props;
 
   const [label, setLabel] = useState(mark.label);
 

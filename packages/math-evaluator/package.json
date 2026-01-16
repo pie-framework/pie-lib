@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.35.0-mui-update.0",
+  "version": "2.21.1",
   "description": "Math evaluator tool for comparing expressions for equality",
   "keywords": [
     "math",
@@ -26,5 +26,13 @@
     "@pie-lib/test-utils": "0.36.0-mui-update.0"
   },
   "scripts": {},
-  "gitHead": "0289459c8e8c23e6a3dd3c9a27a7996e4f4ce5f1"
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./src/index.js",
+      "default": "./lib/index.js"
+    },
+    "./esm": "./esm/index.js"
+  }
 }

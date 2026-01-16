@@ -12,11 +12,12 @@ import isEmpty from 'lodash/isEmpty';
 import { color } from '@pie-lib/render-ui';
 import { styled, keyframes } from '@mui/material/styles';
 
-const opacityPulsate = (opacity) => keyframes({
-  '0%': { opacity: '0.0' },
-  '50%': { opacity },
-  '100%': { opacity: '0.0' },
-});
+const opacityPulsate = (opacity) =>
+  keyframes({
+    '0%': { opacity: '0.0' },
+    '50%': { opacity },
+    '100%': { opacity: '0.0' },
+  });
 
 const getRadius = (from, outer) => {
   const c = point(from);
@@ -91,10 +92,7 @@ export class RawBaseCircle extends React.Component {
       updated.middle = { ...middle, ...getMiddleOfTwoPoints(draggedFrom, draggedTo) };
     }
 
-    this.setState(
-      { draggedroot: undefined, draggedOuter: undefined, isCircleDrag: false },
-      () => onChange(updated),
-    );
+    this.setState({ draggedroot: undefined, draggedOuter: undefined, isCircleDrag: false }, () => onChange(updated));
   };
 
   labelChange = (point, type) => {
@@ -240,7 +238,7 @@ export class RawBaseCircle extends React.Component {
 }
 
 // MUI v5 styled() replaces withStyles
-const StyledBgCircle = styled(BgCircle)(({ theme }) => ({
+const StyledBgCircle = styled(BgCircle)(() => ({
   '&.outerLine': {
     fill: 'rgba(0,0,0,0)',
     stroke: color.defaults.BLACK,

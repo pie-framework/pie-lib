@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Popper from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
@@ -39,5 +40,9 @@ const CustomPopper = ({ children, ...props }) => (
     <StyledTypography>{children}</StyledTypography>
   </StyledPopper>
 );
+
+CustomPopper.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default CustomPopper;

@@ -17,12 +17,12 @@ const StyledInputLabel = styled(InputLabel)(() => ({
   backgroundColor: 'transparent',
 }));
 
+import PropTypes from 'prop-types';
+
 const ChartType = ({ onChange, value, availableChartTypes, chartTypeLabel }) => (
   <StyledContainer>
     <StyledFormControl variant={'outlined'}>
-      <StyledInputLabel id="type-helper-label">
-        {chartTypeLabel}
-      </StyledInputLabel>
+      <StyledInputLabel id="type-helper-label">{chartTypeLabel}</StyledInputLabel>
       <Select
         labelId="type-helper-label"
         id="type-helper-label-select"
@@ -30,7 +30,7 @@ const ChartType = ({ onChange, value, availableChartTypes, chartTypeLabel }) => 
         value={value}
         onChange={onChange}
         label={chartTypeLabel}
-        MenuProps={{transitionDuration: { enter: 225, exit: 195 }}}
+        MenuProps={{ transitionDuration: { enter: 225, exit: 195 } }}
       >
         {availableChartTypes?.histogram && <MenuItem value={'histogram'}>{availableChartTypes.histogram}</MenuItem>}
         {availableChartTypes?.bar && <MenuItem value={'bar'}>{availableChartTypes.bar}</MenuItem>}
@@ -42,5 +42,19 @@ const ChartType = ({ onChange, value, availableChartTypes, chartTypeLabel }) => 
     </StyledFormControl>
   </StyledContainer>
 );
+
+ChartType.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  availableChartTypes: PropTypes.shape({
+    histogram: PropTypes.string,
+    bar: PropTypes.string,
+    lineDot: PropTypes.string,
+    lineCross: PropTypes.string,
+    dotPlot: PropTypes.string,
+    linePlot: PropTypes.string,
+  }),
+  chartTypeLabel: PropTypes.string,
+};
 
 export default ChartType;

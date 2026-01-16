@@ -3,247 +3,107 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [5.50.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.49.0-mui-update.0...@pie-lib/charting@5.50.0-mui-update.0) (2025-12-29)
-
-**Note:** Version bump only for package @pie-lib/charting
-
-
-
-
-
-# [5.49.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.48.0-mui-update.0...@pie-lib/charting@5.49.0-mui-update.0) (2025-12-29)
-
-
-### Bug Fixes
-
-* charting issue after mui update ([19eb377](https://github.com/pie-framework/pie-lib/commit/19eb377ae63624402dce8118857c64e2da07c7ec))
-* charting style ([1e72103](https://github.com/pie-framework/pie-lib/commit/1e7210354c92a4f85da10043f42261e275894b69))
-* publish charting ([df5a64e](https://github.com/pie-framework/pie-lib/commit/df5a64e4287fe71b0da7838c14b19e72286c7e82))
-
-
-### Features
-
-* migrate from [@vx](https://github.com/vx) library to [@visx](https://github.com/visx) ([135bf60](https://github.com/pie-framework/pie-lib/commit/135bf605161bfbd0070ac181892df20931691ce3))
-
-
-
-
-
-# [5.48.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.47.0-mui-update.0...@pie-lib/charting@5.48.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/charting
-
-
-
-
-
-# [5.47.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.46.0-mui-update.0...@pie-lib/charting@5.47.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/charting
-
-
-
-
-
-# [5.46.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.45.0-mui-update.0...@pie-lib/charting@5.46.0-mui-update.0) (2025-12-11)
-
-**Note:** Version bump only for package @pie-lib/charting
-
-
-
-
-
-# [5.45.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.44.0-mui-update.0...@pie-lib/charting@5.45.0-mui-update.0) (2025-12-02)
-
-
-### Features
-
-* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
-
-
-
-
-
 ## [5.36.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.36.1...@pie-lib/charting@5.36.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/charting
-
-
-
-
 
 ## [5.36.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.7...@pie-lib/charting@5.36.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.36.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.35.0...@pie-lib/charting@5.36.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.35.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.35.0) (2025-10-16)
-
 
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 # [5.34.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.34.0) (2025-10-16)
 
-
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 # [5.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.33.0) (2025-10-16)
 
-
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 ## [5.32.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.6...@pie-lib/charting@5.32.7) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [5.32.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.0...@pie-lib/charting@5.32.6) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.32.0) (2025-10-09)
-
 
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 # [5.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.31.0) (2025-09-25)
 
-
 ### Bug Fixes
 
-* **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [5.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.29.0...@pie-lib/charting@5.30.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.28.0...@pie-lib/charting@5.29.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.28.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [5.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.26.0...@pie-lib/charting@5.27.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.25.0...@pie-lib/charting@5.26.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.24.1...@pie-lib/charting@5.25.0) (2025-09-17)
-
 
 ### Bug Fixes
 
-* **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
-
-
-
-
+- **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
 
 ## [5.24.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.24.1) (2025-08-11)
 
-
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [5.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.24.0) (2025-08-07)
 

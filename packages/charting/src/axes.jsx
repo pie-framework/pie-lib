@@ -194,12 +194,15 @@ export class TickComponent extends React.Component {
     const category = categories[index];
     const { editable, interactive, label, correctness } = category || {};
     const barX = xBand(bandKey({ label }, index));
-    const longestCategory = (categories || []).reduce((a, b) => {
-      const lengthA = a && a.label ? a.label.length : 0;
-      const lengthB = b && b.label ? b.label.length : 0;
+    const longestCategory = (categories || []).reduce(
+      (a, b) => {
+        const lengthA = a && a.label ? a.label.length : 0;
+        const lengthB = b && b.label ? b.label.length : 0;
 
-      return lengthA > lengthB ? a : b;
-    }, { label: '' });
+        return lengthA > lengthB ? a : b;
+      },
+      { label: '' },
+    );
     const distinctMessages = error ? [...new Set(Object.values(error))].join(' ') : '';
 
     return (
@@ -373,6 +376,7 @@ TickComponent.propTypes = {
   autoFocus: PropTypes.bool,
   onAutoFocusUsed: PropTypes.func,
   showCorrectness: PropTypes.bool,
+  hiddenLabelRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
 };
 
 export class RawChartAxes extends React.Component {
@@ -394,6 +398,7 @@ export class RawChartAxes extends React.Component {
     autoFocus: PropTypes.bool,
     onAutoFocusUsed: PropTypes.func,
     showCorrectness: PropTypes.bool,
+    hiddenLabelRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   };
 
   state = { height: 0, width: 0 };
@@ -421,7 +426,7 @@ export class RawChartAxes extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate() {
     if (this.hiddenLabelRef) {
       const width = Math.floor(this.hiddenLabelRef.getBoundingClientRect().width);
 

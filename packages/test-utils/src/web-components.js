@@ -26,8 +26,8 @@ export async function waitForCustomElement(tagName, timeout = 3000) {
       reject(
         new Error(
           `Custom element '${tagName}' not defined within ${timeout}ms. ` +
-          `Make sure the element is registered with customElements.define().`
-        )
+            'Make sure the element is registered with customElements.define().',
+        ),
       );
     }, timeout);
 
@@ -60,12 +60,7 @@ export async function waitForCustomElement(tagName, timeout = 3000) {
  *   { onClick: jest.fn() }
  * );
  */
-export async function renderWebComponent(
-  tagName,
-  attributes = {},
-  properties = {},
-  container = document.body
-) {
+export async function renderWebComponent(tagName, attributes = {}, properties = {}, container = document.body) {
   await waitForCustomElement(tagName);
 
   const element = document.createElement(tagName);
@@ -103,12 +98,7 @@ export async function renderWebComponent(
  * @example
  * dispatchCustomEvent(button, 'custom-click', null, { bubbles: false });
  */
-export function dispatchCustomEvent(
-  element,
-  eventName,
-  detail = null,
-  options = {}
-) {
+export function dispatchCustomEvent(element, eventName, detail = null, options = {}) {
   const event = new CustomEvent(eventName, {
     detail,
     bubbles: true,
@@ -142,9 +132,7 @@ export function waitForEvent(element, eventName, timeout = 3000) {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
       element.removeEventListener(eventName, handler);
-      reject(
-        new Error(`Event '${eventName}' not fired within ${timeout}ms`)
-      );
+      reject(new Error(`Event '${eventName}' not fired within ${timeout}ms`));
     }, timeout);
 
     const handler = (event) => {

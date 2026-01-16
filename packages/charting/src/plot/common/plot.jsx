@@ -28,6 +28,14 @@ export class RawPlot extends React.Component {
       value: PropTypes.string,
       label: PropTypes.string,
     }),
+    defineChart: PropTypes.bool,
+    correctData: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        label: PropTypes.string,
+      }),
+    ),
+    className: PropTypes.string,
   };
 
   constructor(props) {
@@ -80,10 +88,7 @@ export class RawPlot extends React.Component {
 
     return (
       <foreignObject x={barX + barWidth / 2 - ICON_SIZE / 2} y={iconY} width={ICON_SIZE} height={ICON_SIZE}>
-        <Check
-          className="correctnessIcon correctIcon smallIcon"
-          title={correctness.label}
-        />
+        <Check className="correctnessIcon correctIcon smallIcon" title={correctness.label} />
       </foreignObject>
     );
   };
@@ -100,7 +105,7 @@ export class RawPlot extends React.Component {
       correctness,
       defineChart,
       correctData,
-      className
+      className,
     } = this.props;
 
     const { scale, range, size } = graphProps;
@@ -315,6 +320,13 @@ export class Plot extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     defineChart: PropTypes.bool,
     CustomBarElement: PropTypes.func,
+    correctData: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        label: PropTypes.string,
+      }),
+    ),
+    className: PropTypes.string,
   };
 
   render() {

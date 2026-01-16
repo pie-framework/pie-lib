@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { render } from '@testing-library/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -26,6 +27,9 @@ export function renderWithTheme(ui, options = {}) {
   function Wrapper({ children }) {
     return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
   }
+  Wrapper.propTypes = {
+    children: PropTypes.node,
+  };
 
   return render(ui, { wrapper: Wrapper, ...renderOptions });
 }
@@ -60,6 +64,9 @@ export function renderWithProviders(ui, options = {}) {
 
     return wrapped;
   }
+  Wrapper.propTypes = {
+    children: PropTypes.node,
+  };
 
   return render(ui, { wrapper: Wrapper, ...renderOptions });
 }
@@ -109,13 +116,7 @@ export * from '@testing-library/jest-dom';
  * Keyboard helpers for testing keyboard interactions
  * Especially useful for components checking event.keyCode
  */
-export {
-  Keys,
-  pressKey,
-  typeAndSubmit,
-  clearAndType,
-  navigateWithKeys,
-} from './keyboard';
+export { Keys, pressKey, typeAndSubmit, clearAndType, navigateWithKeys } from './keyboard';
 
 /**
  * Web component testing utilities
@@ -129,4 +130,3 @@ export {
   isCustomElementDefined,
   createCustomElement,
 } from './web-components';
-

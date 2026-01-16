@@ -57,9 +57,7 @@ export class Langs extends React.Component {
     return (
       <StyledRoot>
         <StyledFormControl>
-          <StyledInputLabel htmlFor={this.uid}>
-            {label}
-          </StyledInputLabel>
+          <StyledInputLabel htmlFor={this.uid}>{label}</StyledInputLabel>
 
           <Select value={selected} onChange={this.choose} input={<Input id={this.uid} />}>
             {langs.map((l, index) => (
@@ -82,7 +80,14 @@ const StyledLanguageControls = styled('div')(() => ({
   gridGap: '8px',
 }));
 
-export const LanguageControls = ({ langs, activeLang, defaultLang, onActiveLangChange, onDefaultLangChange, className }) => {
+export const LanguageControls = ({
+  langs,
+  activeLang,
+  defaultLang,
+  onActiveLangChange,
+  onDefaultLangChange,
+  className,
+}) => {
   return (
     <StyledLanguageControls className={className}>
       <Langs
@@ -102,4 +107,5 @@ LanguageControls.propTypes = {
   defaultLang: PropTypes.string.isRequired,
   onActiveLangChange: PropTypes.func.isRequired,
   onDefaultLangChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };

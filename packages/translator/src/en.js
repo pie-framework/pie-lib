@@ -2,7 +2,7 @@ export default {
   translation: {
     categorize: {
       limitMaxChoicesPerCategory:
-        "You've reached the limit of {{maxChoicesPerCategory}} responses per area. To add another response, one must first be removed.",
+        'You\'ve reached the limit of {{maxChoicesPerCategory}} responses per area. To add another response, one must first be removed.',
       maxChoicesPerCategoryRestriction:
         'To change this value to {{maxChoicesPerCategory}}, each category must have {{maxChoicesPerCategory}} or fewer answer choice[s].',
     },
@@ -41,7 +41,7 @@ export default {
       add: 'Add',
       delete: 'Delete',
       newLabel: 'New label',
-      reachedLimit_other: "There can't be more than {{count}} categories.",
+      reachedLimit_other: 'There can\'t be more than {{count}} categories.',
       keyLegend: {
         incorrectAnswer: 'Student incorrect answer',
         correctAnswer: 'Student correct answer',

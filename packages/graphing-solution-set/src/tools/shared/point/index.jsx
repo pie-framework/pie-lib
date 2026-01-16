@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { gridDraggable } from '@pie-lib/plot';
 import * as utils from '../../../utils';
@@ -38,11 +39,21 @@ const StyledPointWrapper = styled('g', {
   },
 }));
 
-const withStyledWrapper = (WrappedComponent) => (props) => (
-  <StyledPointWrapper disabled={props.disabled} correctness={props.correctness}>
-    <WrappedComponent {...props} />
-  </StyledPointWrapper>
-);
+const withStyledWrapper = (WrappedComponent) => {
+  const WrappedComponentWithStyles = (props) => (
+    <StyledPointWrapper disabled={props.disabled} correctness={props.correctness}>
+      <WrappedComponent {...props} />
+    </StyledPointWrapper>
+  );
+  WrappedComponentWithStyles.displayName = `withStyledWrapper(${WrappedComponent.displayName ||
+    WrappedComponent.name ||
+    'Component'})`;
+  WrappedComponentWithStyles.propTypes = {
+    disabled: PropTypes.bool,
+    correctness: PropTypes.string,
+  };
+  return WrappedComponentWithStyles;
+};
 
 export const BasePoint = gridDraggable(opts)(withStyledWrapper(RawBp));
 export const ArrowPoint = gridDraggable(opts)(withStyledWrapper(RawArrow));

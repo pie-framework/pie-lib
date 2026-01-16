@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CorrectSVG = ({ scale, x, y }) => (
   <svg
@@ -18,5 +19,14 @@ const CorrectSVG = ({ scale, x, y }) => (
     />
   </svg>
 );
+
+CorrectSVG.propTypes = {
+  scale: PropTypes.shape({
+    x: PropTypes.func,
+    y: PropTypes.func,
+  }),
+  x: PropTypes.number,
+  y: PropTypes.number,
+};
 
 export default CorrectSVG;

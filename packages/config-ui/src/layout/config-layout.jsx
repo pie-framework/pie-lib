@@ -63,7 +63,7 @@ class MeasuredConfigLayout extends AppendCSSRules {
 
   render() {
     return (
-      // TODO: REVIEW MuiThemeProvider usage
+      // TODO: REVIEW MuiThemeProvider usage - is this still needed after mui update?
       // Different theme object identities will force theme consumers to re-render.
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>

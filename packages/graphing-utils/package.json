@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/graphing-utils",
-  "version": "1.35.0-mui-update.0",
+  "version": "1.21.1",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -14,6 +14,14 @@
     "debug": "^4.1.1",
     "lodash": "^4.17.11"
   },
-  "gitHead": "0289459c8e8c23e6a3dd3c9a27a7996e4f4ce5f1",
-  "scripts": {}
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "scripts": {},
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./src/index.js",
+      "default": "./lib/index.js"
+    },
+    "./esm": "./esm/index.js"
+  }
 }

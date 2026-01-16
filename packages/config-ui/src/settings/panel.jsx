@@ -137,7 +137,7 @@ const StyledNumberTextField = styled(NumberTextField)(({ theme }) => ({
   },
 }));
 
-const NumberField = ({ label, value, onChange = () => { }, suffix, min, max }) => {
+const NumberField = ({ label, value, onChange = () => {}, suffix, min, max }) => {
   return (
     <StyledNumberTextField
       variant={'standard'}
@@ -259,6 +259,14 @@ const Group = (props) => {
   );
 };
 
+Group.propTypes = {
+  model: PropTypes.object,
+  label: PropTypes.string,
+  group: PropTypes.object,
+  configuration: PropTypes.object,
+  onChange: PropTypes.func,
+};
+
 export class Panel extends React.Component {
   static propTypes = {
     model: PropTypes.object,
@@ -270,8 +278,8 @@ export class Panel extends React.Component {
   };
 
   static defaultProps = {
-    onChangeModel: () => { },
-    onChangeConfiguration: () => { },
+    onChangeModel: () => {},
+    onChangeConfiguration: () => {},
   };
 
   change = (key, value, isConfigProperty = false) => {

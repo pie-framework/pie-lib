@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "11.35.0-mui-update.0",
+  "version": "11.21.2",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -52,6 +52,14 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "1e3f5fd7812b0a334d3b2719026a01c3102398c9",
-  "scripts": {}
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "scripts": {},
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./src/index.jsx",
+      "default": "./lib/index.js"
+    },
+    "./esm": "./esm/index.js"
+  }
 }

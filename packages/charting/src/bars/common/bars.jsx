@@ -70,6 +70,7 @@ export class RawBar extends React.Component {
       label: PropTypes.string,
     }),
     correctData: PropTypes.array,
+    defineChart: PropTypes.bool,
   };
 
   constructor(props) {
@@ -167,43 +168,34 @@ export class RawBar extends React.Component {
         onTouchStart={this.handleMouseEnter}
         onTouchEnd={this.handleMouseLeave}
       >
-        <StyledVisxBar
-          x={barX}
-          y={scale.y(yy)}
-          width={barWidth}
-          height={barHeight}
-          style={{ fill: fillColor }}
-        />
-        {correctness && correctness.value === 'incorrect' && (() => {
-          const correctVal = parseFloat(correctValue && correctValue.value);
-          if (isNaN(correctVal)) return null;
-          const correctPxHeight = scale.y(range.max - correctVal);
-          const actualPxHeight = barHeight;
-          const diffPx = Math.abs(correctPxHeight - actualPxHeight);
-          const yDiff = scale.y(correctVal);
-          const indicatorBarColor = correctPxHeight > actualPxHeight ? color.borderGray() : color.defaults.WHITE;
-          const yToRender = correctPxHeight > actualPxHeight ? yDiff : yDiff - diffPx;
+        <StyledVisxBar x={barX} y={scale.y(yy)} width={barWidth} height={barHeight} style={{ fill: fillColor }} />
+        {correctness &&
+          correctness.value === 'incorrect' &&
+          (() => {
+            const correctVal = parseFloat(correctValue && correctValue.value);
+            if (isNaN(correctVal)) return null;
+            const correctPxHeight = scale.y(range.max - correctVal);
+            const actualPxHeight = barHeight;
+            const diffPx = Math.abs(correctPxHeight - actualPxHeight);
+            const yDiff = scale.y(correctVal);
+            const indicatorBarColor = correctPxHeight > actualPxHeight ? color.borderGray() : color.defaults.WHITE;
+            const yToRender = correctPxHeight > actualPxHeight ? yDiff : yDiff - diffPx;
 
-          return (
-            <>
-              <StyledVisxBar
-                x={barX + 2}
-                y={yToRender}
-                width={barWidth - 4}
-                height={diffPx}
-                style={{ stroke: indicatorBarColor, strokeWidth: 2, strokeDasharray: '5,2', fill: 'none' }}
-              />
-              <foreignObject
-                x={barX + barWidth - (isHistogram ? 24 : 14)}
-                y={yDiff - 12}
-                width={24}
-                height={24}
-              >
-                <CorrectCheckIcon dashColor={indicatorBarColor} />
-              </foreignObject>
-            </>
-          );
-        })()}
+            return (
+              <>
+                <StyledVisxBar
+                  x={barX + 2}
+                  y={yToRender}
+                  width={barWidth - 4}
+                  height={diffPx}
+                  style={{ stroke: indicatorBarColor, strokeWidth: 2, strokeDasharray: '5,2', fill: 'none' }}
+                />
+                <foreignObject x={barX + barWidth - (isHistogram ? 24 : 14)} y={yDiff - 12} width={24} height={24}>
+                  <CorrectCheckIcon dashColor={indicatorBarColor} />
+                </foreignObject>
+              </>
+            );
+          })()}
         <Component
           x={barX}
           y={v}
@@ -254,7 +246,8 @@ export class Bars extends React.Component {
             correctness={d.correctness}
             correctData={correctData}
             barColor={
-              histogram && (histogramColors[index] ? histogramColors[index] : histogramColors[index % histogramColors.length])
+              histogram &&
+              (histogramColors[index] ? histogramColors[index] : histogramColors[index % histogramColors.length])
             }
           />
         ))}

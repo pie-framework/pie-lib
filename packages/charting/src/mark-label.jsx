@@ -15,6 +15,7 @@ const StyledContainer = styled('div')({
   alignItems: 'center',
 });
 
+// eslint-disable-next-line no-unused-vars
 const StyledInput = styled('input')(({ theme }) => ({
   float: 'right',
   fontFamily: theme.typography.fontFamily,
@@ -173,7 +174,7 @@ export const MarkLabel = (props) => {
               externalInputRef(r);
             }
           }}
-          name='mark-label-input'
+          name="mark-label-input"
           autoFocus={isEditing || autoFocus}
           disabled={disabled}
           inputClassName={classNames(

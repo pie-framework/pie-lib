@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Check from '@mui/icons-material/Check';
 import Close from '@mui/icons-material/Close';
@@ -42,7 +43,7 @@ const StyledIncorrectIcon = styled(Close)(({ theme }) => ({
   },
 }));
 
-export const CorrectnessIndicator = ({ scale, x, y, r, correctness, interactive }) => {
+export const CorrectnessIndicator = ({ scale, x, y, correctness, interactive }) => {
   if (!correctness || !interactive) return null;
   const cx = scale ? scale.x(x) : x;
   const cy = scale ? scale.y(y) : y;
@@ -51,16 +52,12 @@ export const CorrectnessIndicator = ({ scale, x, y, r, correctness, interactive 
   // the icon is 16px + 2px padding + 1px border, so total size is 22px
   return (
     <foreignObject x={cx - 11} y={cy - 11} width={22} height={22}>
-      {isCorrect ? (
-        <StyledCorrectIcon title={correctness.label} />
-      ) : (
-        <StyledIncorrectIcon title={correctness.label} />
-      )}
+      {isCorrect ? <StyledCorrectIcon title={correctness.label} /> : <StyledIncorrectIcon title={correctness.label} />}
     </foreignObject>
   );
 };
 
-export const SmallCorrectPointIndicator = ({ scale, x, r, correctness, correctData, label }) => {
+export const SmallCorrectPointIndicator = ({ scale, x, correctness, correctData, label }) => {
   if (correctness && correctness.value === 'incorrect') {
     const correctVal = parseFloat(correctData.find((d) => d.label === label)?.value);
     if (isNaN(correctVal)) return null;
@@ -71,10 +68,7 @@ export const SmallCorrectPointIndicator = ({ scale, x, r, correctness, correctDa
     // small circle has 10px font + 2px padding + 1px border, so total size is 15px
     return (
       <foreignObject x={xToRender} y={yToRender} width={15} height={15}>
-        <StyledCorrectIcon
-          className="small"
-          title={correctness.label}
-        />
+        <StyledCorrectIcon className="small" title={correctness.label} />
       </foreignObject>
     );
   }
@@ -90,4 +84,45 @@ export const TickCorrectnessIndicator = ({ correctness, interactive }) => {
   ) : (
     <StyledIncorrectIcon title={correctness.label} />
   );
+};
+
+CorrectnessIndicator.propTypes = {
+  scale: PropTypes.shape({
+    x: PropTypes.func,
+    y: PropTypes.func,
+  }),
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  correctness: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }),
+  interactive: PropTypes.bool,
+};
+
+SmallCorrectPointIndicator.propTypes = {
+  scale: PropTypes.shape({
+    x: PropTypes.func,
+    y: PropTypes.func,
+  }).isRequired,
+  x: PropTypes.number.isRequired,
+  correctness: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }),
+  correctData: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }),
+  ),
+  label: PropTypes.string,
+};
+
+TickCorrectnessIndicator.propTypes = {
+  correctness: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }),
+  interactive: PropTypes.bool,
 };

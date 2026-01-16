@@ -3,215 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [11.43.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.42.0-mui-update.0...@pie-lib/config-ui@11.43.0-mui-update.0) (2025-12-29)
-
-**Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
-
-# [11.42.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.41.0-mui-update.0...@pie-lib/config-ui@11.42.0-mui-update.0) (2025-12-29)
-
-**Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
-
-# [11.41.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.40.0-mui-update.0...@pie-lib/config-ui@11.41.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
-
-# [11.40.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.39.0-mui-update.0...@pie-lib/config-ui@11.40.0-mui-update.0) (2025-12-17)
-
-
-### Bug Fixes
-
-* number fields in settings panel ([babde84](https://github.com/pie-framework/pie-lib/commit/babde844bffe8efdc4a2622bbfc0e372a0d33806))
-* settings panel label size ([c3606b9](https://github.com/pie-framework/pie-lib/commit/c3606b9319e771284415177bee48ffa49fb72fc6))
-
-
-
-
-
-# [11.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.38.0-mui-update.0...@pie-lib/config-ui@11.39.0-mui-update.0) (2025-12-11)
-
-**Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
-
-# [11.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.37.0-mui-update.0...@pie-lib/config-ui@11.38.0-mui-update.0) (2025-12-02)
-
-
-### Features
-
-* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
-
-
-
-
-
 ## [11.30.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.30.1...@pie-lib/config-ui@11.30.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.30.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.2...@pie-lib/config-ui@11.30.1) (2025-10-22)
-
 
 ### Bug Fixes
 
-* avoid redundant re-renders by guarding layoutMode setState ([3f4aecd](https://github.com/pie-framework/pie-lib/commit/3f4aecd1c862b94a9faf3e058086da30995ae60d))
-
-
-
-
+- avoid redundant re-renders by guarding layoutMode setState ([3f4aecd](https://github.com/pie-framework/pie-lib/commit/3f4aecd1c862b94a9faf3e058086da30995ae60d))
 
 # [11.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.28.0...@pie-lib/config-ui@11.29.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [11.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.28.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 # [11.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.27.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [11.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.26.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 ## [11.25.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.1...@pie-lib/config-ui@11.25.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.25.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.25.0...@pie-lib/config-ui@11.25.1) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [11.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.9.24...@pie-lib/config-ui@11.25.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [11.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.23.0...@pie-lib/config-ui@11.24.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [11.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.22.0...@pie-lib/config-ui@11.23.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [11.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.9.24...@pie-lib/config-ui@11.22.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [11.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.20.0...@pie-lib/config-ui@11.21.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 # [11.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.19.0...@pie-lib/config-ui@11.20.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/config-ui
-
-
-
-
 
 # [11.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.18.1...@pie-lib/config-ui@11.19.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/config-ui
 
-
-
-
-
 ## [11.18.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.9.24...@pie-lib/config-ui@11.18.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [11.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.9.24...@pie-lib/config-ui@11.18.0) (2025-08-07)
 

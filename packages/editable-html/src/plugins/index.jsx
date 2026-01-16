@@ -305,11 +305,13 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     }
 
     if (!isValidEventName(event)) {
+      // eslint-disable-next-line no-console
       console.error(`The event name: ${event} is not a valid event name!`);
       return;
     }
 
     if (!icon && !iconType && !iconAlt) {
+      // eslint-disable-next-line no-console
       console.error('Your custom button requires icon, iconType and iconAlt');
       return;
     }

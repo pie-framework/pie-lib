@@ -219,7 +219,7 @@ export class RawBaseComponent extends React.Component {
       isSolution = false,
     } = this.props;
     const polygonLabelIndex = (points && points.length) || 0;
-    if (labelNode && middle && middle.hasOwnProperty('label')) {
+    if (labelNode && middle && Object.prototype.hasOwnProperty.call(middle, 'label')) {
       ReactDOM.createPortal(
         <MarkLabel
           inputRef={(r) => (this.input[polygonLabelIndex] = r)}

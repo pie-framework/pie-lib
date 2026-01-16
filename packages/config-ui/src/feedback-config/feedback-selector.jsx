@@ -5,7 +5,6 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import Group from './group';
 
-
 // - mathquill error window not defined
 let EditableHtml;
 let StyledEditableHTML;
@@ -65,6 +64,7 @@ export class FeedbackSelector extends React.Component {
     feedback: PropTypes.shape(FeedbackType).isRequired,
     onChange: PropTypes.func.isRequired,
     toolbarOpts: PropTypes.object,
+    mathMlOptions: PropTypes.object,
   };
 
   changeType = (type) => {
@@ -86,10 +86,7 @@ export class FeedbackSelector extends React.Component {
 
     return (
       <StyledFeedbackSelector>
-        <StyledInputContainer
-          label={label}
-          extraClasses={{ label: { transform: 'translateY(-20%)' } }}
-        >
+        <StyledInputContainer label={label} extraClasses={{ label: { transform: 'translateY(-20%)' } }}>
           <StyledGroup
             keys={feedbackKeys}
             label={label}

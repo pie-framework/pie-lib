@@ -38,7 +38,7 @@ const StyledInputMissing = styled('div')(({ theme }) => ({
   fontWeight: 'bold',
 }));
 
-const StyledIncorrect = styled('div')(({ theme }) => ({
+const StyledIncorrect = styled('div')(() => ({
   float: 'right',
   padding: 0,
   borderRadius: '4px',
@@ -53,11 +53,11 @@ const getInputStyles = (theme, disabled, markDisabled) => ({
   padding: theme.spacing(0.5),
   fontFamily: theme.typography.fontFamily,
   fontSize: '10px',
-  border: disabled 
+  border: disabled
     ? `solid 1px ${color.defaults.PRIMARY_DARK}`
-    : markDisabled 
-      ? `solid 1px ${color.disabled()}`
-      : `solid 1px ${color.defaults.SECONDARY}`,
+    : markDisabled
+    ? `solid 1px ${color.disabled()}`
+    : `solid 1px ${color.defaults.SECONDARY}`,
   borderRadius: '3px',
   color: markDisabled ? color.disabled() : color.defaults.PRIMARY_DARK,
   backgroundColor: color.defaults.WHITE,
@@ -115,6 +115,15 @@ const LabelInput = ({ _ref, externalInputRef, label, disabled, inputStyle, onCha
     onChange={onChange}
   />
 );
+
+LabelInput.propTypes = {
+  _ref: PropTypes.func,
+  externalInputRef: PropTypes.func,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  inputStyle: PropTypes.object,
+  onChange: PropTypes.func,
+};
 
 export const MarkLabel = (props) => {
   const [input, setInput] = useState(null);
@@ -199,37 +208,20 @@ export const MarkLabel = (props) => {
             renderInput(studentInputStyle, label)
           )}
         </StyledInputIncorrect>
-        <StyledInputMissing style={secondLabelStyle}>
-          {renderInput(studentInputStyle, correctlabel)}
-        </StyledInputMissing>
+        <StyledInputMissing style={secondLabelStyle}>{renderInput(studentInputStyle, correctlabel)}</StyledInputMissing>
       </>
     );
   }
 
   if (correctness === 'missing') {
-    return (
-      <StyledInputMissing style={style}>
-        {renderInput(studentInputStyle, label)}
-      </StyledInputMissing>
-    );
+    return <StyledInputMissing style={style}>{renderInput(studentInputStyle, label)}</StyledInputMissing>;
   }
 
   if (correctness === 'incorrect') {
-    return (
-      <StyledIncorrect style={style}>
-        {renderInput(studentInputStyle, label)}
-      </StyledIncorrect>
-    );
+    return <StyledIncorrect style={style}>{renderInput(studentInputStyle, label)}</StyledIncorrect>;
   }
 
-  return (
-    <div style={style}>
-      {renderInput(
-        getInputStyles(theme, disabled, mark.disabled),
-        label,
-      )}
-    </div>
-  );
+  return <div style={style}>{renderInput(getInputStyles(theme, disabled, mark.disabled), label)}</div>;
 };
 
 MarkLabel.propTypes = {

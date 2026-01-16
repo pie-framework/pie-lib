@@ -28,15 +28,7 @@ const StyledContent = styled('span')(({ theme }) => ({
   },
 }));
 
-export function BlankContent({
-  n,
-  children,
-  isDragging,
-  isOver,
-  dragItem,
-  value,
-  style: externalStyle
-}) {
+export function BlankContent({ n, children, isDragging, isOver, dragItem, value, style: externalStyle }) {
   const [hoveredElementSize, setHoveredElementSize] = useState(null);
   const elementRef = useRef(null);
 
@@ -142,55 +134,39 @@ BlankContent.propTypes = {
   style: PropTypes.object,
 };
 
-function DragDropChoice({
-  value,
-  disabled,
-  instanceId,
-  children,
-  n,
-  nodeProps,
-  opts,
-}) {
-  const {
-    attributes: dragAttributes,
-    listeners: dragListeners,
-    setNodeRef: setDragNodeRef,
-    isDragging,
-  } = useDraggable({
-    id: `drag-${n.key}`,
-    disabled: disabled || !value?.value,
-    data: {
+function DragDropChoice({ value, disabled, instanceId, children, n, nodeProps, opts }) {
+  const { attributes: dragAttributes, listeners: dragListeners, setNodeRef: setDragNodeRef, isDragging } = useDraggable(
+    {
       id: `drag-${n.key}`,
-      value,
-      instanceId,
-      nodeProps,
-      n,
-      opts,
-      type: 'drag-in-the-blank-placed-choice',
-      fromChoice: !value,
-      onRemove: (draggedData) => onRemoveResponse(nodeProps, draggedData.value),
-      onDrop: (draggedData, dropData) => {
-        // check if we're dropping into a blank
-        const isValidBlank =
-          dropData?.type === "drag-in-the-blank-drop-choice";
+      disabled: disabled || !value?.value,
+      data: {
+        id: `drag-${n.key}`,
+        value,
+        instanceId,
+        nodeProps,
+        n,
+        opts,
+        type: 'drag-in-the-blank-placed-choice',
+        fromChoice: !value,
+        onRemove: (draggedData) => onRemoveResponse(nodeProps, draggedData.value),
+        onDrop: (draggedData, dropData) => {
+          // check if we're dropping into a blank
+          const isValidBlank = dropData?.type === 'drag-in-the-blank-drop-choice';
 
-        if (!isValidBlank) return;
+          if (!isValidBlank) return;
 
-        // place into blank
-        onValueChange(nodeProps, n, draggedData.value);
+          // place into blank
+          onValueChange(nodeProps, n, draggedData.value);
 
-        if (!opts.options.duplicates && draggedData.fromChoice) {
-          onRemoveResponse(nodeProps, draggedData.value);
-        }
-      }
-    }
-  });
+          if (!opts.options.duplicates && draggedData.fromChoice) {
+            onRemoveResponse(nodeProps, draggedData.value);
+          }
+        },
+      },
+    },
+  );
 
-  const {
-    setNodeRef: setDropNodeRef,
-    isOver,
-    active: dragItem,
-  } = useDroppable({
+  const { setNodeRef: setDropNodeRef, isOver, active: dragItem } = useDroppable({
     id: `drop-${n.key}`,
     data: {
       type: 'drag-in-the-blank-drop-choice',
@@ -203,8 +179,7 @@ function DragDropChoice({
       opts,
       onDrop: (draggedData, dropData) => {
         // check if we're dropping into a blank
-        const isValidBlank =
-          dropData?.type === "drag-in-the-blank-drop-choice";
+        const isValidBlank = dropData?.type === 'drag-in-the-blank-drop-choice';
 
         if (!isValidBlank) return;
 
@@ -232,8 +207,8 @@ function DragDropChoice({
           // clear original blank - slight delay to ensure state updates correctly
           setTimeout(() => onRemoveResponse(nodeProps, draggedData.value), 10);
         }
-      }
-    }
+      },
+    },
   });
 
   const setNodeRef = (node) => {
@@ -262,11 +237,7 @@ function DragDropChoice({
     </span>
   );
 
-  const content = (
-    <StyledContent className={classnames(isOver && 'over')}>
-      {dragEl}
-    </StyledContent>
-  );
+  const content = <StyledContent className={classnames(isOver && 'over')}>{dragEl}</StyledContent>;
 
   return content;
 }
@@ -274,13 +245,15 @@ function DragDropChoice({
 DragDropChoice.propTypes = {
   value: PropTypes.object,
   disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  removeResponse: PropTypes.func,
   instanceId: PropTypes.string,
-  targetId: PropTypes.string,
-  duplicates: PropTypes.bool,
-  n: PropTypes.object,
   children: PropTypes.node,
+  n: PropTypes.object.isRequired,
+  nodeProps: PropTypes.object.isRequired,
+  opts: PropTypes.shape({
+    options: PropTypes.shape({
+      duplicates: PropTypes.bool,
+    }),
+  }).isRequired,
 };
 
 export default DragDropChoice;

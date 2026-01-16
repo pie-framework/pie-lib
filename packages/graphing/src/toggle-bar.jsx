@@ -60,9 +60,10 @@ MiniButton.propTypes = {
   selected: PropTypes.bool,
   value: PropTypes.string,
   onClick: PropTypes.func,
+  language: PropTypes.string,
 };
 
-const StyledToolsContainer = styled('div')(({ theme }) => ({
+const StyledToolsContainer = styled('div')(() => ({
   display: 'flex',
   flexWrap: 'wrap',
 }));

@@ -3,208 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.39.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.38.0-mui-update.0...@pie-lib/correct-answer-toggle@2.39.0-mui-update.0) (2025-12-29)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.38.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.37.0-mui-update.0...@pie-lib/correct-answer-toggle@2.38.0-mui-update.0) (2025-12-29)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.37.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.36.0-mui-update.0...@pie-lib/correct-answer-toggle@2.37.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.35.0-mui-update.0...@pie-lib/correct-answer-toggle@2.36.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.34.0-mui-update.0...@pie-lib/correct-answer-toggle@2.35.0-mui-update.0) (2025-12-11)
-
-**Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
-
-# [2.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.33.0-mui-update.0...@pie-lib/correct-answer-toggle@2.34.0-mui-update.0) (2025-12-02)
-
-
-### Features
-
-* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
-
-
-
-
-
 ## [2.25.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.25.1...@pie-lib/correct-answer-toggle@2.25.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.25.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.2...@pie-lib/correct-answer-toggle@2.25.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 # [2.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.24.0...@pie-lib/correct-answer-toggle@2.25.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 # [2.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.0...@pie-lib/correct-answer-toggle@2.24.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 # [2.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.0...@pie-lib/correct-answer-toggle@2.23.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 # [2.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.0...@pie-lib/correct-answer-toggle@2.22.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.21.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.1...@pie-lib/correct-answer-toggle@2.21.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 ## [2.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.21.0...@pie-lib/correct-answer-toggle@2.21.1) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 # [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.5.11...@pie-lib/correct-answer-toggle@2.21.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.19.0...@pie-lib/correct-answer-toggle@2.20.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 # [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.18.0...@pie-lib/correct-answer-toggle@2.19.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 # [2.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.5.11...@pie-lib/correct-answer-toggle@2.18.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.16.0...@pie-lib/correct-answer-toggle@2.17.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 # [2.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.15.0...@pie-lib/correct-answer-toggle@2.16.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
-
-
-
-
 
 # [2.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.14.1...@pie-lib/correct-answer-toggle@2.15.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
 
-
-
-
-
 ## [2.14.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.5.11...@pie-lib/correct-answer-toggle@2.14.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@2.5.11...@pie-lib/correct-answer-toggle@2.14.0) (2025-08-07)
 

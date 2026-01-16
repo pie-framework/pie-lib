@@ -30,12 +30,7 @@ const Table = (props) => {
   const nodeAttributes = dataToAttributes(props.node.data);
 
   return (
-    <StyledTable
-      {...props.attributes}
-      {...nodeAttributes}
-      onFocus={props.onFocus}
-      onBlur={props.onBlur}
-    >
+    <StyledTable {...props.attributes} {...nodeAttributes} onFocus={props.onFocus} onBlur={props.onBlur}>
       <tbody>{props.children}</tbody>
     </StyledTable>
   );
@@ -77,6 +72,14 @@ const TableCell = (props) => {
       {props.children}
     </StyledTableCell>
   );
+};
+
+TableCell.propTypes = {
+  node: SlatePropTypes.node.isRequired,
+  attributes: PropTypes.object,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
 TableCell.propTypes = {

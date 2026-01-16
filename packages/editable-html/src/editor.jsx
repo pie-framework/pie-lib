@@ -33,8 +33,8 @@ const defaultToolbarOpts = {
 
 const defaultResponseAreaProps = {
   options: {},
-  respAreaToolbar: () => { },
-  onHandleAreaChange: () => { },
+  respAreaToolbar: () => {},
+  onHandleAreaChange: () => {},
 };
 
 const defaultLanguageCharactersProps = [];
@@ -199,10 +199,10 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => { },
-    onBlur: () => { },
-    onKeyDown: () => { },
-    runSerializationOnMarkup: () => { },
+    onFocus: () => {},
+    onBlur: () => {},
+    onKeyDown: () => {},
+    runSerializationOnMarkup: () => {},
     mathMlOptions: {
       mmlOutput: false,
       mmlEditing: false,
@@ -868,8 +868,8 @@ export class Editor extends React.Component {
     const isEditedInHtmlMode = !this.state.isHtmlMode
       ? false
       : this.state.value.document.text !== value.document.text
-        ? true
-        : this.state.isEditedInHtmlMode;
+      ? true
+      : this.state.isEditedInHtmlMode;
 
     if (isEditedInHtmlMode != this.state.isEditedInHtmlMode) {
       this.handlePlugins(this.props);
@@ -977,7 +977,7 @@ export class Editor extends React.Component {
         this.onChange(ch);
         const handler = new InsertImageHandler(
           inline,
-          () => { },
+          () => {},
           () => this.state.value,
           this.onChange,
           true,
@@ -1076,13 +1076,11 @@ export class Editor extends React.Component {
       >
         {scheduled && <StyledUploadingMessage>Uploading image and then saving...</StyledUploadingMessage>}
         <StyledSlateEditor
-          className={classNames(
-            {
-              noPadding: toolbarOpts?.noPadding,
-              showParagraph: showParagraphs && !showParagraphs.disabled,
-              separateParagraph: separateParagraphs && !separateParagraphs.disabled,
-            },
-          )}
+          className={classNames({
+            noPadding: toolbarOpts?.noPadding,
+            showParagraph: showParagraphs && !showParagraphs.disabled,
+            separateParagraph: separateParagraphs && !separateParagraphs.disabled,
+          })}
         >
           <SlateEditor
             plugins={this.plugins}
@@ -1120,7 +1118,7 @@ export class Editor extends React.Component {
               minHeight: sizeStyle.minHeight,
               height: sizeStyle.height,
               maxHeight: sizeStyle.maxHeight,
-              ...slateEditorExtraStyles
+              ...slateEditorExtraStyles,
             }}
             pluginProps={otherPluginProps}
             toolbarOpts={toolbarOpts}
@@ -1144,7 +1142,7 @@ export class Editor extends React.Component {
 }
 
 // TODO color - hardcoded gray background and keypad colors will need to change too
-const StyledEditorWrapper = styled('div')(({ theme, scheduled }) => ({
+const StyledEditorWrapper = styled('div')(() => ({
   '&.withBg': {
     backgroundColor: 'rgba(0,0,0,0.06)',
   },

@@ -1,34 +1,31 @@
 {
-  "parser": "babel-eslint",
-  "plugins": ["prettier"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "parser": "@babel/eslint-parser",
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "env": {
     "browser": true,
     "commonjs": true,
     "es6": true,
-    "node": false
+    "node": false,
+    "jest": true
   },
   "parserOptions": {
+    "requireConfigFile": false,
     "ecmaFeatures": {
       "jsx": true
+    },
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
     },
     "sourceType": "module"
   },
   "rules": {
-    "quotes": [
-      "warn",
-      "single"
-    ],
-    "prettier/prettier": "warn",
+    "quotes": ["warn", "single"],
     "strict": 0,
     "react/prop-types": "warn",
     "react/jsx-no-duplicate-props": "warn",
     "react/no-deprecated": "warn",
     "react/display-name": "warn",
+    "react/jsx-uses-vars": "warn",
     "no-extra-semi": "warn",
     "no-dupe-keys": "warn",
     "no-const-assign": "warn",
@@ -36,7 +33,6 @@
     "no-undef": "warn",
     "no-unreachable": "warn",
     "no-unused-vars": "warn",
-    "jsx-uses-vars": true,
     "constructor-super": "warn",
     "valid-typeof": "warn",
     "no-case-declarations": "warn",
@@ -44,10 +40,7 @@
   },
   "settings": {
     "react": {
-      "pragma": "React",  // Pragma to use, default to "React"
-      "version": "detect" // React version. "detect" automatically picks the version you have installed.
-      // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
-      // default to latest and warns if missing
+      "version": "detect"
     }
   }
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { color } from '@pie-lib/render-ui';
 
-const StyledContainer = styled('div')(({ theme }) => ({
+const StyledContainer = styled('div')(() => ({
   backgroundColor: color.defaults.WHITE,
   padding: '20px',
   width: '355px',
@@ -110,7 +110,8 @@ const KeyLegend = ({ className, isLabelAvailable }) => {
           <path
             d="M12.1953 4.46875C12.3125 4.35156 12.5 4.35156 12.5938 4.46875L13.2734 5.125C13.3672 5.24219 13.3672 5.42969 13.2734 5.52344L6.24219 12.5547C6.125 12.6719 5.96094 12.6719 5.84375 12.5547L2.70312 9.4375C2.60938 9.32031 2.60938 9.13281 2.70312 9.03906L3.38281 8.35938C3.47656 8.26562 3.66406 8.26562 3.78125 8.35938L6.03125 10.6328L12.1953 4.46875Z"
             fill="white"
-          />          </svg>
+          />{' '}
+        </svg>
       </StyledRow>
       {isLabelAvailable && (
         <StyledRow>

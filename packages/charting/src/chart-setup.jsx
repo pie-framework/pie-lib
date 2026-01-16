@@ -129,19 +129,17 @@ const ConfigureChartPanel = (props) => {
   );
 
   const handleAlertDialog = (openStatus) => {
-    setAlertDialog(
-      (prevState) => ({
-        ...prevState,
-        open: openStatus,
-      }),
-    );
+    setAlertDialog((prevState) => ({
+      ...prevState,
+      open: openStatus,
+    }));
 
     setOpen(openStatus);
   };
 
   const setPropertiesToFalse = (data, property) => {
     return data.map((obj) => {
-      if (obj.hasOwnProperty(property)) {
+      if (Object.prototype.hasOwnProperty.call(obj, property)) {
         obj[property] = property == 'interactive' ? true : false;
       }
       return obj;

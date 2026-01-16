@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.46.0-mui-update.0",
+  "version": "1.32.2",
   "description": "Some react components for text selection",
   "keywords": [
     "react",
@@ -40,6 +40,14 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "gitHead": "1e3f5fd7812b0a334d3b2719026a01c3102398c9",
-  "scripts": {}
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "scripts": {},
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./src/index.js",
+      "default": "./lib/index.js"
+    },
+    "./esm": "./esm/index.js"
+  }
 }

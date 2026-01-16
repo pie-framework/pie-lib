@@ -27,22 +27,21 @@ export class RawArrow extends React.Component {
   };
 
   render() {
-    const { className, x, y, disabled, correctness, graphProps, from, to, ...rest } = this.props;
+    const { className, x, y, graphProps, from, to, ...rest } = this.props;
     const { scale } = graphProps;
 
     const angle = from && to ? getAngleDeg(from.x, from.y, to.x, to.y) : 0;
 
     const points =
       from && to && (from.x !== to.x || from.y !== to.y)
-        ? `0,0 ${arrowDimensions.vector},${arrowDimensions.vector * 2} -${arrowDimensions.vector},${arrowDimensions.vector * 2}`
+        ? `0,0 ${arrowDimensions.vector},${arrowDimensions.vector * 2} -${
+            arrowDimensions.vector
+          },${arrowDimensions.vector * 2}`
         : '0,0 0,0 0,0';
 
     return (
       <g className={className} {...rest}>
-        <polygon
-          points={points}
-          transform={`translate(${scale.x(x)}, ${scale.y(y)}) rotate(${angle} 0 0)`}
-        />
+        <polygon points={points} transform={`translate(${scale.x(x)}, ${scale.y(y)}) rotate(${angle} 0 0)`} />
       </g>
     );
   }

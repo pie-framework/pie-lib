@@ -232,7 +232,7 @@ export class RawBaseComponent extends React.Component {
     const polygonLabelIndex = (points && points.length) || 0;
     let polygonLabelNode = null;
 
-    if (labelNode && middle && middle.hasOwnProperty('label')) {
+    if (labelNode && middle && Object.prototype.hasOwnProperty.call(middle, 'label')) {
       polygonLabelNode = ReactDOM.createPortal(
         <MarkLabel
           inputRef={(r) => (this.input[polygonLabelIndex] = r)}
@@ -284,7 +284,7 @@ export class RawBaseComponent extends React.Component {
               {...common}
               onClick={this.clickPoint.bind(this, p, index)}
             />,
-            labelNode && p.hasOwnProperty('label')
+            labelNode && Object.prototype.hasOwnProperty.call(p, 'label')
               ? ReactDOM.createPortal(
                   <MarkLabel
                     inputRef={(r) => (this.input[index] = r)}

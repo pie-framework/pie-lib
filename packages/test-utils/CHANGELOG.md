@@ -3,184 +3,75 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.36.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.35.0-mui-update.0...@pie-lib/test-utils@0.36.0-mui-update.0) (2025-12-29)
-
-**Note:** Version bump only for package @pie-lib/test-utils
-
-
-
-
-
-# [0.35.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.34.0-mui-update.0...@pie-lib/test-utils@0.35.0-mui-update.0) (2025-12-29)
-
-**Note:** Version bump only for package @pie-lib/test-utils
-
-
-
-
-
-# [0.34.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.33.0-mui-update.0...@pie-lib/test-utils@0.34.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/test-utils
-
-
-
-
-
-# [0.33.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.32.0-mui-update.0...@pie-lib/test-utils@0.33.0-mui-update.0) (2025-12-17)
-
-**Note:** Version bump only for package @pie-lib/test-utils
-
-
-
-
-
-# [0.32.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.31.0-mui-update.0...@pie-lib/test-utils@0.32.0-mui-update.0) (2025-12-11)
-
-**Note:** Version bump only for package @pie-lib/test-utils
-
-
-
-
-
-# [0.31.0-mui-update.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.30.0-mui-update.0...@pie-lib/test-utils@0.31.0-mui-update.0) (2025-12-02)
-
-
-### Features
-
-* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
-
-
-
-
-
 ## [0.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.18.0...@pie-lib/test-utils@0.22.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/test-utils
-
-
-
-
 
 # [0.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.18.0...@pie-lib/test-utils@0.22.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/test-utils
 
-
-
-
-
 # [0.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.18.0...@pie-lib/test-utils@0.21.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/test-utils
-
-
-
-
 
 # [0.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.18.0...@pie-lib/test-utils@0.20.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/test-utils
 
-
-
-
-
 # [0.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.18.0...@pie-lib/test-utils@0.19.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/test-utils
 
-
-
-
-
 # [0.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.33...@pie-lib/test-utils@0.18.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [0.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.16.0...@pie-lib/test-utils@0.17.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/test-utils
 
-
-
-
-
 # [0.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.15.0...@pie-lib/test-utils@0.16.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/test-utils
 
-
-
-
-
 # [0.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.33...@pie-lib/test-utils@0.15.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [0.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.13.0...@pie-lib/test-utils@0.14.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/test-utils
 
-
-
-
-
 # [0.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.12.0...@pie-lib/test-utils@0.13.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/test-utils
-
-
-
-
 
 # [0.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.11.1...@pie-lib/test-utils@0.12.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/test-utils
 
-
-
-
-
 ## [0.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.33...@pie-lib/test-utils@0.11.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [0.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@0.2.33...@pie-lib/test-utils@0.11.0) (2025-08-07)
 

@@ -46,6 +46,7 @@ export class RawLine extends React.Component {
       }),
     ),
     CustomDraggableComponent: PropTypes.func,
+    correctData: PropTypes.array,
   };
 
   static defaultProps = {
@@ -102,7 +103,7 @@ export class RawLine extends React.Component {
             const r = 6;
             const enableDraggable = defineChart || point.interactive;
             const Component = enableDraggable ? DraggableHandle : DragHandle;
-                        
+
             return (
               <Component
                 key={`point-${point.x}-${i}`}
@@ -141,6 +142,9 @@ export class Line extends React.Component {
     onChange: PropTypes.func,
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
+    CustomDraggableComponent: PropTypes.func,
+    defineChart: PropTypes.bool,
+    correctData: PropTypes.array,
   };
 
   changeLine = (index, category) => {

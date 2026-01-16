@@ -3,7 +3,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: cimg/node:18.12
+    - image: cimg/node:20.20
   resource_class: medium
 
 reg_auth: &reg_auth
@@ -52,15 +52,15 @@ jobs:
       - save_cache: *save_cache
       - run: scripts/build release --next --skipForcePublish --token $NPM_TOKEN
 
-#  beta_build:
-#    <<: *defaults
-#    steps:
-#      - checkout
-#      - run: *reg_auth
-#      - restore_cache: *restore_cache
-#      - run: yarn install
-#      - save_cache: *save_cache
-#      - run: scripts/build release --beta --skipForcePublish --token $NPM_TOKEN
+  #  beta_build:
+  #    <<: *defaults
+  #    steps:
+  #      - checkout
+  #      - run: *reg_auth
+  #      - restore_cache: *restore_cache
+  #      - run: yarn install
+  #      - save_cache: *save_cache
+  #      - run: scripts/build release --beta --skipForcePublish --token $NPM_TOKEN
 
   release_build:
     <<: *defaults
@@ -114,7 +114,6 @@ workflows:
             branches:
               only:
                 - master
-
 #  build_beta:
 #    jobs:
 #      - beta_build:
@@ -122,13 +121,13 @@ workflows:
 #            branches:
 #              only:
 #                - beta
-  # nightly:
-  #   triggers:
-  #     - schedule:
-  #         cron: '0 0 * * *'
-  #         filters:
-  #           branches:
-  #             only:
-  #               - develop
-  #   jobs:
-  #     - deploy_demo
+# nightly:
+#   triggers:
+#     - schedule:
+#         cron: '0 0 * * *'
+#         filters:
+#           branches:
+#             only:
+#               - develop
+#   jobs:
+#     - deploy_demo

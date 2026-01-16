@@ -34,6 +34,7 @@ export class TableToolbar extends React.Component {
     onToggleBorder: PropTypes.func.isRequired,
     hasBorder: PropTypes.bool,
     onDone: PropTypes.func.isRequired,
+    getFocusedValue: PropTypes.func.isRequired,
   };
 
   static defaultProps = {

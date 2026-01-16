@@ -42,19 +42,7 @@ const StyledIncorrectIcon = styled(Close)(() => ({
   boxSizing: 'unset', // to override the default border-box in IBX
 }));
 
-const RawDragHandle = ({
-  x,
-  y,
-  width,
-  graphProps,
-  interactive,
-  defineChart,
-  isHovered,
-  correctness,
-  color,
-  isPlot,
-  ...rest
-}) => {
+const RawDragHandle = ({ x, y, width, graphProps, interactive, isHovered, correctness, isPlot, ...rest }) => {
   const { scale } = graphProps;
   const scaleValue = getScale(width)?.scale;
 
@@ -111,7 +99,7 @@ RawDragHandle.propTypes = {
     value: PropTypes.string,
     label: PropTypes.string,
   }),
-  color: PropTypes.string,
+  isPlot: PropTypes.bool,
 };
 
 export const DragHandle = RawDragHandle;

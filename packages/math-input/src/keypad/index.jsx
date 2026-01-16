@@ -17,14 +17,14 @@ import { color } from '@pie-lib/render-ui';
 
 const log = debug('pie-lib:math-inline:keypad');
 
-const StyledLatexButton = styled(Button)(({}) => ({
+const StyledLatexButton = styled(Button)(() => ({
   textTransform: 'none',
   padding: 0,
   margin: 0,
   fontSize: '110% !important',
 }));
 
-const LatexButtonContent = styled(mq.Static)(({ theme, latex }) => {
+const LatexButtonContent = styled(mq.Static)(({ latex }) => {
   const baseStyles = {
     pointerEvents: 'none',
     textTransform: 'none !important',
@@ -155,26 +155,11 @@ const LatexButtonContent = styled(mq.Static)(({ theme, latex }) => {
   return baseStyles;
 });
 
-const LatexButton = (props) => {
-  try {
-    const MQ = MathQuill.getInterface(2);
-    const span = document.createElement('span');
-    span.innerHTML = '';
-    const mathField = MQ.StaticMath(span);
-
-    mathField.parseLatex(props.latex);
-    mathField.latex(props.latex);
-  } catch (e) {
-    // received latex has errors - do not create button
-    return <></>;
-  }
-
-  return (
-    <StyledLatexButton className={props.className} onClick={props.onClick} aria-label={props.ariaLabel}>
-      <LatexButtonContent latex={props.latex} />
-    </StyledLatexButton>
-  );
+LatexButtonContent.propTypes = {
+  latex: PropTypes.string.isRequired,
 };
+
+// LatexButton component removed - LatexButtonContent is used directly instead
 
 const createCustomLayout = (layoutObj) => {
   if (layoutObj) {
@@ -188,7 +173,7 @@ const createCustomLayout = (layoutObj) => {
   return {};
 };
 
-const KeyPadContainer = styled('div')(({}) => ({
+const KeyPadContainer = styled('div')(() => ({
   ...commonMqKeyboardStyles,
   width: '100%',
   display: 'grid',
@@ -208,7 +193,7 @@ const KeyPadContainer = styled('div')(({}) => ({
   },
 }));
 
-const StyledButton = styled(Button)(({ theme, category, isDelete, isComma, isDot }) => ({
+const StyledButton = styled(Button)(({ category, isDelete, isComma, isDot }) => ({
   minWidth: 'auto',
   fontSize: isComma || isDot ? '200% !important' : '140% !important',
   lineHeight: isComma || isDot ? '100%' : 'normal',
@@ -235,7 +220,7 @@ const StyledButton = styled(Button)(({ theme, category, isDelete, isComma, isDot
   }),
 }));
 
-const StyledLatexButtonWrapper = styled(Button)(({  category }) => ({
+const StyledLatexButtonWrapper = styled(Button)(({ category }) => ({
   minWidth: 'auto',
   borderRadius: 0,
   backgroundColor:
@@ -252,7 +237,7 @@ const StyledLatexButtonWrapper = styled(Button)(({  category }) => ({
   },
 }));
 
-const StyledIconButton = styled(IconButton)(({  category }) => ({
+const StyledIconButton = styled(IconButton)(({ category }) => ({
   minWidth: 'auto',
   backgroundColor:
     category === 'operators'
@@ -411,9 +396,13 @@ export class KeyPad extends React.Component {
           if (k.latex) {
             return (
               <StyledLatexButtonWrapper
-                {...common}
+                key={common.key}
+                onClick={common.onClick}
+                disabled={common.disabled}
                 category={!keysWithoutBaseSet ? k.category : undefined}
                 aria-label={k.ariaLabel ? k.ariaLabel : k.name || k.label}
+                {...(k.actions || {})}
+                {...(k.extraProps || {})}
               >
                 <LatexButtonContent latex={k.latex} />
               </StyledLatexButtonWrapper>
@@ -423,12 +412,16 @@ export class KeyPad extends React.Component {
           if (k.label) {
             return (
               <StyledButton
-                {...common}
+                key={common.key}
+                onClick={common.onClick}
+                disabled={common.disabled}
                 category={!keysWithoutBaseSet ? k.category : undefined}
                 isDelete={k.label === '⌫'}
                 isComma={k.label === ','}
                 isDot={k.label === '.'}
                 aria-label={k.ariaLabel ? k.ariaLabel : k.name || k.label}
+                {...(k.actions || {})}
+                {...(k.extraProps || {})}
               >
                 {k.label}
               </StyledButton>
@@ -438,10 +431,14 @@ export class KeyPad extends React.Component {
 
             return (
               <StyledIconButton
+                key={common.key}
                 tabIndex={'-1'}
-                {...common}
+                onClick={common.onClick}
+                disabled={common.disabled}
                 category={!keysWithoutBaseSet ? k.category : undefined}
                 size="large"
+                {...(k.actions || {})}
+                {...(k.extraProps || {})}
               >
                 <Icon className="icon" />
               </StyledIconButton>
