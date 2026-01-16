@@ -1,20 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { types } from '@pie-lib/plot';
 
-const style = (theme) => ({
-  root: {
-    fill: `var(--arrow-color, ${theme.palette.common.black})`,
-  },
-});
+const StyledPath = styled('path')(({ theme }) => ({
+  fill: `var(--arrow-color, ${theme.palette.common.black})`,
+}));
 
 export class Arrow extends React.Component {
   render() {
-    const { x, y, classes, className, scale } = this.props;
-    const names = classNames(classes.root, className);
+    const { x, y, className, scale } = this.props;
     let direction = this.props.direction || 'left';
 
     const xv = scale.x(x);
@@ -40,7 +36,7 @@ export class Arrow extends React.Component {
       transform = getTransform(xv, yv + 15, 270);
     }
 
-    return <path d="m 0,0 8,-5 0,10 -8,-5" transform={transform} className={names} />;
+    return <StyledPath d="m 0,0 8,-5 0,10 -8,-5" transform={transform} className={className} />;
   }
 }
 
@@ -48,7 +44,6 @@ Arrow.propTypes = {
   y: PropTypes.number,
   x: PropTypes.number,
   direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   scale: types.ScaleType.isRequired,
 };
@@ -59,4 +54,4 @@ Arrow.defaultProps = {
   direction: 'left',
 };
 
-export default withStyles(style)(Arrow);
+export default Arrow;

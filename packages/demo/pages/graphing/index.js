@@ -1,14 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import { GraphContainer as Graph, tools } from '@pie-lib/graphing';
 import withRoot from '../../source/withRoot';
-import Typography from '@material-ui/core/Typography';
-import Tab from '@material-ui/core/Tab';
-import Button from '@material-ui/core/Button';
-import { marks, backgroundMarks } from './demo-data';
-import { Checkbox, FormControlLabel } from '@material-ui/core';
+import Typography from '@mui/material/Typography';
+import Tab from '@mui/material/Tab';
+import Button from '@mui/material/Button';
+import { marks } from './demo-data';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
 import { Tabs, Tab0, Tab1 } from './components/tabs';
 
@@ -16,13 +15,13 @@ const { allTools } = tools;
 
 const log = debug('pie-lib:charting:graph-lines-demo');
 
-export class GridDemo extends React.PureComponent {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
+const DemoContainer = styled('div')({
+  width: '100%',
+  display: 'flex',
+});
 
+export class GridDemo extends React.PureComponent {
   state = {
-    tools: allTools,
     settings: {
       includeArrows: {
         left: true,
@@ -39,31 +38,43 @@ export class GridDemo extends React.PureComponent {
       },
     },
     model: {
-      labels: {
-        bottom: 'TEST FOR THE LABELS',
-        top: 'TEST FOR THE LABELS',
-        left: 'TEST FOR THE LABELS',
-        right: 'TEST FOR THE LABELS',
-      },
-      title: 'Title',
-      domain: {
-        axisLabel: '<i>domain</i>',
-        min: -4.3,
-        max: 5.9,
-        padding: 0,
-        step: 0.25,
-        labelStep: 0.5,
-      },
-      range: {
-        axisLabel: '<em>range</em>',
-        min: -6.2,
-        max: 5.1,
-        padding: 0,
-        step: 0.67,
-        labelStep: 0.67,
-      },
-      backgroundMarks: backgroundMarks,
-      marks: marks,
+      labels: {},
+      "promptEnabled": true,
+      "domain": { "min": -10, "max": 10, "step": 1, "labelStep": 0 },
+      "range": { "min": -10, "max": 10, "step": 1, "labelStep": 0 },
+      "backgroundMarks": [{ "type": "point", "x": 2, "y": 2 }],
+      "answers": { "correctAnswer": { "name": "Correct Answer", "marks": [] } },
+      "arrows": { "left": true, "right": true, "up": true, "down": true },
+      "coordinatesOnHover": false,
+      "defaultGridConfiguration": 0,
+      "graph": { "width": 500, "height": 500 },
+      "includeAxes": true,
+      "labelsEnabled": true,
+      "padding": true,
+      "prompt": "",
+      "rationale": "",
+      "rationaleEnabled": true,
+      "standardGrid": false,
+      "studentInstructionsEnabled": true,
+      "teacherInstructions": "",
+      "teacherInstructionsEnabled": true,
+      "title": "",
+      "titleEnabled": true,
+      "toolbarTools": [
+        "circle",
+        "line",
+        "label",
+        "parabola",
+        "point",
+        "polygon",
+        "ray",
+        "segment",
+        "sine",
+        "vector"
+      ],
+      "defaultTool": "circle",
+      "dimensionsEnabled": true,
+      "marks": marks,
     },
   };
 
@@ -88,6 +99,11 @@ export class GridDemo extends React.PureComponent {
     this.setState({ model: { ...this.state.model, title } });
   };
 
+  updateModel = (update) => {
+    console.log('Updating model with:', update);
+    this.setState({ model: { ...this.state.model, ...update } });
+  }
+
   addMark = (mark) => {
     const model = {
       ...this.state.model,
@@ -98,19 +114,18 @@ export class GridDemo extends React.PureComponent {
   };
 
   toggleToolDisplay = (tool) => {
-    const index = this.state.tools.findIndex((t) => t === tool);
+    const { model } = this.state;
+    const { toolbarTools } = model;
+    const index = toolbarTools.findIndex((t) => t === tool);
 
     if (index < 0) {
-      this.setState({ tools: [...this.state.tools, tool] });
-
+      this.updateModel({ toolbarTools: [...toolbarTools, tool] });
       return;
     }
 
-    const update = [...this.state.tools];
-
+    const update = [...toolbarTools];
     update.splice(index, 1);
-
-    this.setState({ tools: update });
+    this.updateModel({ toolbarTools: update });
   };
 
   setCorrectness = (correctness) => {
@@ -122,7 +137,8 @@ export class GridDemo extends React.PureComponent {
   };
 
   renderToolsSelector = () => {
-    const { hideLabel, tools } = this.state;
+    const { hideLabel, model } = this.state;
+    const { toolbarTools } = model;
 
     return (
       <div>
@@ -134,8 +150,8 @@ export class GridDemo extends React.PureComponent {
               label={t}
               control={
                 <Checkbox
-                  checked={!!tools.find((tool) => tool === t)}
-                  value={tools.find((tool) => tool === t)}
+                  checked={!!toolbarTools.find((tool) => tool === t)}
+                  value={toolbarTools.find((tool) => tool === t)}
                   onChange={() => this.toggleToolDisplay(t)}
                 />
               }
@@ -159,12 +175,11 @@ export class GridDemo extends React.PureComponent {
 
   render() {
     log('render..');
-    const { classes } = this.props;
-    const { model, settings, mounted, tabIndex = 0, hideLabel, tools: stateTools } = this.state;
+    const { model, settings, mounted, tabIndex = 0, hideLabel } = this.state;
 
     return mounted ? (
       <div>
-        <div className={classes.demo}>
+        <DemoContainer>
           <div>
             <Tabs value={tabIndex} onChange={this.changeTab}>
               <Tab label="Config" />
@@ -204,12 +219,13 @@ export class GridDemo extends React.PureComponent {
               size={settings.size}
               disabledTitle={!settings.graphTitle}
               title={settings.graphTitle && model.title}
-              toolbarTools={stateTools}
+              toolbarTools={model.toolbarTools}
               coordinatesOnHover={settings.coordinatesOnHover}
-              language={'es_ES'}
+              draggableTools={true}
+              onChangeTools={(toolbarTools) => this.updateModel({ toolbarTools })}
             />
           </div>
-        </div>
+        </DemoContainer>
       </div>
     ) : (
       <div>loading...</div>
@@ -217,13 +233,5 @@ export class GridDemo extends React.PureComponent {
   }
 }
 
-const styles = {
-  demo: {
-    width: '100%',
-    display: 'flex',
-  },
-};
-
-export const Styled = withStyles(styles)(GridDemo);
-const Demo = () => <Styled />;
+const Demo = () => <GridDemo />;
 export default withRoot(Demo);

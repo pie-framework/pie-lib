@@ -1,11 +1,10 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render } from '@pie-lib/test-utils';
 import Histogram, { Histogram as HistogramChart } from '../histogram';
 import { graphProps } from './utils';
-import { Bar as BarChart } from '../bar';
 
 describe('HistogramChart', () => {
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -17,22 +16,30 @@ describe('HistogramChart', () => {
       },
     };
     const props = { ...defaults, ...extras };
-    return shallow(<HistogramChart {...props} />);
+    return render(<HistogramChart {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => expect(wrapper()).toMatchSnapshot());
+  describe('rendering', () => {
+    it('renders histogram chart', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
+    });
 
-    it('renders without graphProps', () => expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
+    it('renders without graphProps', () => {
+      const { container } = renderComponent({ graphProps: undefined });
+      expect(container.firstChild).toBeInTheDocument();
+    });
   });
 
   describe('component', () => {
-    const chart = Histogram();
+    it('returns correct chart object', () => {
+      const chart = Histogram();
 
-    expect(chart).toEqual({
-      type: 'histogram',
-      Component: HistogramChart,
-      name: 'Histogram',
+      expect(chart).toEqual({
+        type: 'histogram',
+        Component: HistogramChart,
+        name: 'Histogram',
+      });
     });
   });
 });

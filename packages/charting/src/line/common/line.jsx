@@ -1,10 +1,10 @@
 import React from 'react';
-import { Group } from '@vx/group';
-import { LinePath } from '@vx/shape';
+import { Group } from '@visx/group';
+import { LinePath } from '@visx/shape';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import DraggableHandle, { DragHandle } from './drag-handle';
-import { withStyles } from '@material-ui/core/styles/index';
+import { styled } from '@mui/material/styles';
 import isEqual from 'lodash/isEqual';
 import { color } from '@pie-lib/render-ui';
 
@@ -23,11 +23,17 @@ const getData = (data, domain) => {
   }));
 };
 
+const StyledLinePath = styled(LinePath)(() => ({
+  fill: 'transparent',
+  stroke: color.defaults.TERTIARY,
+  strokeWidth: 3,
+  transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
+}));
+
 export class RawLine extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.number,
-    classes: PropTypes.object,
     label: PropTypes.string,
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
@@ -40,6 +46,7 @@ export class RawLine extends React.Component {
       }),
     ),
     CustomDraggableComponent: PropTypes.func,
+    correctData: PropTypes.array,
   };
 
   static defaultProps = {
@@ -78,25 +85,25 @@ export class RawLine extends React.Component {
   };
 
   render() {
-    const { graphProps, data, classes, CustomDraggableComponent, defineChart, correctData } = this.props;
+    const { graphProps, data, CustomDraggableComponent, defineChart, correctData } = this.props;
     const { line: lineState, dragging } = this.state;
     const { scale } = graphProps;
     const lineToUse = dragging ? lineState : getData(data, graphProps.domain);
 
     return (
       <React.Fragment>
-        <LinePath
+        <StyledLinePath
           data={lineToUse}
           x={(d) => scale.x(d.x)}
           y={(d) => scale.y(d.dragValue !== undefined ? d.dragValue : d.y)}
-          className={classes.line}
+          className="line"
         />
         {lineToUse &&
           lineToUse.map((point, i) => {
             const r = 6;
             const enableDraggable = defineChart || point.interactive;
             const Component = enableDraggable ? DraggableHandle : DragHandle;
-
+                        
             return (
               <Component
                 key={`point-${point.x}-${i}`}
@@ -120,14 +127,14 @@ export class RawLine extends React.Component {
   }
 }
 
-const StyledLine = withStyles(() => ({
-  line: {
+const StyledLine = styled(RawLine)(() => ({
+  '& .line': {
     fill: 'transparent',
     stroke: color.defaults.TERTIARY,
     strokeWidth: 3,
     transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
   },
-}))(RawLine);
+}));
 
 export class Line extends React.Component {
   static propTypes = {
@@ -135,6 +142,9 @@ export class Line extends React.Component {
     onChange: PropTypes.func,
     xBand: PropTypes.func,
     graphProps: types.GraphPropsType.isRequired,
+    CustomDraggableComponent: PropTypes.func,
+    defineChart: PropTypes.bool,
+    correctData: PropTypes.array,
   };
 
   changeLine = (index, category) => {

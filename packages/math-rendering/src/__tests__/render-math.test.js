@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import renderMath, { fixMathElement } from '../render-math';
 import _ from 'lodash';
 
@@ -141,12 +141,12 @@ describe('render-math', () => {
   });
 
   it('wraps the math containing element the right way', () => {
-    const wrapper = mount(
+    const { container } = render(
       <div>
         <span data-latex="">{'420\\text{ cm}=4.2\\text{ meters}'}</span>
       </div>,
     );
-    const spanElem = wrapper.instance();
+    const spanElem = container.querySelector('span[data-latex]');
 
     fixMathElement(spanElem);
 

@@ -7,153 +7,83 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.33.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.2...@pie-lib/mask-markup@1.33.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
-
-
-
-
 
 # [1.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.32.0...@pie-lib/mask-markup@1.33.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 # [1.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.0...@pie-lib/mask-markup@1.32.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
-
-
-
-
 
 # [1.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.0...@pie-lib/mask-markup@1.31.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 # [1.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.0...@pie-lib/mask-markup@1.30.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
-
-
-
-
 
 ## [1.29.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.1...@pie-lib/mask-markup@1.29.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.29.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.29.0...@pie-lib/mask-markup@1.29.1) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 # [1.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.46...@pie-lib/mask-markup@1.29.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [1.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.27.0...@pie-lib/mask-markup@1.28.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 # [1.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.26.0...@pie-lib/mask-markup@1.27.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 # [1.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.46...@pie-lib/mask-markup@1.26.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [1.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.24.0...@pie-lib/mask-markup@1.25.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 # [1.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.23.0...@pie-lib/mask-markup@1.24.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
-
-
-
-
 
 # [1.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.22.1...@pie-lib/mask-markup@1.23.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
 
-
-
-
-
 ## [1.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.46...@pie-lib/mask-markup@1.22.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [1.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.13.46...@pie-lib/mask-markup@1.22.0) (2025-08-07)
 

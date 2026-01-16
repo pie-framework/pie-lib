@@ -7,182 +7,103 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [5.36.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.7...@pie-lib/charting@5.36.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/charting
-
-
-
-
 
 # [5.36.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.35.0...@pie-lib/charting@5.36.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.35.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.35.0) (2025-10-16)
-
 
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 # [5.34.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.34.0) (2025-10-16)
 
-
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 # [5.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.33.0) (2025-10-16)
 
-
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 ## [5.32.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.6...@pie-lib/charting@5.32.7) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [5.32.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.0...@pie-lib/charting@5.32.6) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.32.0) (2025-10-09)
-
 
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 # [5.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.31.0) (2025-09-25)
 
-
 ### Bug Fixes
 
-* **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [5.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.29.0...@pie-lib/charting@5.30.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.28.0...@pie-lib/charting@5.29.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.28.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [5.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.26.0...@pie-lib/charting@5.27.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.25.0...@pie-lib/charting@5.26.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.24.1...@pie-lib/charting@5.25.0) (2025-09-17)
-
 
 ### Bug Fixes
 
-* **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
-
-
-
-
+- **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
 
 ## [5.24.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.24.1) (2025-08-11)
 
-
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [5.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.24.0) (2025-08-07)
 

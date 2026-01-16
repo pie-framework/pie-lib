@@ -1,158 +1,55 @@
-import { Circle, IconRoot, RoundFeedbackBox, Square, SquareFeedbackBox } from './icon-root';
-
+import { Circle, RoundFeedbackBox, Square, SquareFeedbackBox, IconRoot } from './icon-root';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 export default (Action, Emoji) => {
   class IconBase extends React.Component {
     static propTypes = {
-      classes: PropTypes.object.isRequired,
-      size: PropTypes.number,
+      iconSet: PropTypes.oneOf(['emoji', 'check']),
+      shape: PropTypes.oneOf(['round', 'square']),
+      category: PropTypes.oneOf(['feedback', undefined]),
+      open: PropTypes.bool,
+      size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      fg: PropTypes.string,
+      bg: PropTypes.string,
     };
-    constructor(props) {
-      super(props);
-      const { classes, size } = this.props;
 
-      this.icons = {
-        feedback: {
-          round: {
-            check: (
-              <IconRoot size={size}>
-                <RoundFeedbackBox className={classes.bg} />
-                <Action className={classes.fg} />
-              </IconRoot>
-            ),
-            emoji: (
-              <IconRoot size={size}>
-                <RoundFeedbackBox className={classes.bg} />
-                <Emoji className={classes.fg} />
-              </IconRoot>
-            ),
-            open: {
-              check: (
-                <IconRoot size={size}>
-                  <Action className={classes.bg} />
-                </IconRoot>
-              ),
-              emoji: (
-                <IconRoot size={size}>
-                  <Emoji className={classes.bg} />
-                </IconRoot>
-              ),
-            },
-          },
-          square: {
-            check: (
-              <IconRoot size={size}>
-                <SquareFeedbackBox className={classes.bg} />
-                <Action className={classes.fg} />
-              </IconRoot>
-            ),
-            emoji: (
-              <IconRoot size={size}>
-                <SquareFeedbackBox className={classes.bg} />
-                <Emoji className={classes.fg} />
-              </IconRoot>
-            ),
-            open: {
-              check: (
-                <IconRoot size={size}>
-                  <Action className={classes.bg} />
-                </IconRoot>
-              ),
-              emoji: (
-                <IconRoot size={size}>
-                  <Emoji className={classes.bg} />
-                </IconRoot>
-              ),
-            },
-          },
-        },
-        round: {
-          check: (
-            <IconRoot size={size}>
-              <Circle className={classes.bg} />
-              <Action className={classes.fg} />
-            </IconRoot>
-          ),
-          emoji: (
-            <IconRoot size={size}>
-              <Circle className={classes.bg} />
-              <Emoji className={classes.fg} />
-            </IconRoot>
-          ),
-          open: {
-            check: (
-              <IconRoot size={size}>
-                <Action className={classes.bg} />
-              </IconRoot>
-            ),
-            emoji: (
-              <IconRoot size={size}>
-                <Emoji className={classes.bg} />
-              </IconRoot>
-            ),
-          },
-        },
-        square: {
-          check: (
-            <IconRoot size={size}>
-              <Square className={classes.bg} />
-              <Action className={classes.fg} />
-            </IconRoot>
-          ),
-          emoji: (
-            <IconRoot size={size}>
-              <Square className={classes.bg} />
-              <Emoji className={classes.fg} />
-            </IconRoot>
-          ),
-          open: {
-            check: (
-              <IconRoot size={size}>
-                <Action className={classes.bg} />
-              </IconRoot>
-            ),
-            emoji: (
-              <IconRoot size={size}>
-                <Emoji className={classes.bg} />
-              </IconRoot>
-            ),
-          },
-        },
-      };
-    }
+    static defaultProps = {
+      iconSet: 'check',
+      shape: 'round',
+      category: undefined,
+      open: false,
+      size: 30,
+      fg: '#4aaf46',
+      bg: '#f8ffe2',
+    };
 
     render() {
-      if (this.props.category === undefined) {
-        if (this.props.open === true) {
-          return this.icons[this.props.shape].open[this.props.iconSet];
+      const { iconSet, shape, category, open, size, fg, bg } = this.props;
+
+      const Foreground = iconSet === 'check' ? <Action fill={fg} /> : <Emoji fill={fg} />;
+      const Background = iconSet === 'check' ? <Action fill={bg} /> : <Emoji fill={bg} />;
+
+      const getBox = () => {
+        if (category === 'feedback') {
+          return shape === 'round' ? <RoundFeedbackBox fill={bg} /> : <SquareFeedbackBox fill={bg} />;
         } else {
-          return this.icons[this.props.shape][this.props.iconSet];
+          return shape === 'round' ? <Circle fill={bg} /> : <Square fill={bg} />;
         }
-      } else {
-        if (this.props.open === true) {
-          return this.icons.feedback[this.props.shape].open[this.props.iconSet];
-        } else {
-          return this.icons.feedback[this.props.shape][this.props.iconSet];
-        }
+      };
+
+      if (open) {
+        return <IconRoot size={size}>{Background}</IconRoot>;
       }
+
+      return (
+        <IconRoot size={size}>
+          {getBox()}
+          {Foreground}
+        </IconRoot>
+      );
     }
   }
-
-  IconBase.propTypes = {
-    iconSet: PropTypes.oneOf(['emoji', 'check']),
-    shape: PropTypes.oneOf(['round', 'square']),
-    category: PropTypes.oneOf(['feedback', undefined]),
-    open: PropTypes.bool,
-  };
-
-  IconBase.defaultProps = {
-    iconSet: 'check',
-    shape: 'round',
-    category: undefined,
-    open: false,
-  };
 
   return IconBase;
 };

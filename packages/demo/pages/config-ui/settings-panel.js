@@ -1,16 +1,20 @@
 import { settings } from '@pie-lib/config-ui';
-import PropTypes from 'prop-types';
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import withRoot from '../../source/withRoot';
 
 const { Panel, toggle, radio, dropdown, numberFields, numberField } = settings;
 
-class RawContainer extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
+const RootContainer = styled('div')({});
+
+const SettingsPanel = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+});
+
+class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,11 +48,10 @@ class RawContainer extends React.Component {
   onChange = (model, resetSession, modelKey) => this.setState({ [modelKey]: { ...this.state[modelKey], ...model } });
 
   render() {
-    const { classes } = this.props;
     const { mounted, model, configuration } = this.state;
 
     return mounted ? (
-      <div className={classes.root}>
+      <RootContainer>
         <Typography>Settings panel</Typography>
         <br />
         <Typography>
@@ -60,7 +63,7 @@ class RawContainer extends React.Component {
           to be updated is found in configuration not in model, then toggle & radio require a new parameter that has to
           be set on true.
         </Typography>
-        <div className={classes.settingsPanel}>
+        <SettingsPanel>
           <pre>
             Model:
             {JSON.stringify(model, null, '  ')}
@@ -109,36 +112,12 @@ class RawContainer extends React.Component {
               },
             }}
           />
-        </div>
-      </div>
+        </SettingsPanel>
+      </RootContainer>
     ) : (
       <div>loading...</div>
     );
   }
 }
-
-const Container = withStyles((theme) => ({
-  root: {},
-  tabContent: {
-    padding: theme.spacing.unit,
-  },
-  left: {
-    flex: 1,
-  },
-  code: {
-    position: 'fixed',
-  },
-  right: {
-    flex: 0.3,
-  },
-  smallTextField: {
-    width: '100px',
-  },
-  settingsPanel: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-}))(RawContainer);
 
 export default withRoot(Container);

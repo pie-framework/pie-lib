@@ -467,7 +467,7 @@ export const reduceMultipleBrs = (markup) => {
     return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.log("Couldn't remove <br/> tags: ", e);
+    console.log('Couldn\'t remove <br/> tags: ', e);
   }
 
   return markup;
@@ -478,7 +478,7 @@ const reduceRedundantNewLineCharacters = (markup) => {
     return markup.replace(/\n/gi, '');
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.log("Couldn't remove <br/> tags: ", e);
+    console.log('Couldn\'t remove <br/> tags: ', e);
   }
 
   return markup;
@@ -605,7 +605,7 @@ export const htmlToValue = (html) => {
     return serializer.deserialize(handleHtml(html));
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.log("Couldn't parse html: ", e);
+    console.log('Couldn\'t parse html: ', e);
     return {};
   }
 };

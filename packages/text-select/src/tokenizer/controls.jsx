@@ -1,15 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { color } from '@pie-lib/render-ui';
-import classNames from 'classnames';
+
+const StyledControls = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  marginRight: theme.spacing(1),
+}));
+
+const StyledSwitch = styled(Switch)(() => ({
+  '& .MuiSwitch-thumb': {
+    '&.Mui-checked': {
+      color: `${color.tertiary()} !important`,
+    },
+  },
+  '& .MuiSwitch-track': {
+    '&.Mui-checked': {
+      backgroundColor: `${color.tertiaryLight()} !important`,
+    },
+  },
+}));
 
 export class Controls extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     onClear: PropTypes.func.isRequired,
     onWords: PropTypes.func.isRequired,
     onSentences: PropTypes.func.isRequired,
@@ -21,68 +42,45 @@ export class Controls extends React.Component {
   static defaultProps = {};
 
   render() {
-    const { classes, onClear, onWords, onSentences, onParagraphs, setCorrectMode, onToggleCorrectMode } = this.props;
+    const { onClear, onWords, onSentences, onParagraphs, setCorrectMode, onToggleCorrectMode } = this.props;
 
     return (
-      <div className={classes.controls}>
+      <StyledControls>
         <div>
-          <Button onClick={onWords} className={classes.button} size="small" color="primary" disabled={setCorrectMode}>
+          <StyledButton onClick={onWords} size="small" color="primary" disabled={setCorrectMode}>
             Words
-          </Button>
-          <Button
+          </StyledButton>
+          <StyledButton
             onClick={onSentences}
-            className={classes.button}
             size="small"
             color="primary"
             disabled={setCorrectMode}
           >
             Sentences
-          </Button>
-          <Button
+          </StyledButton>
+          <StyledButton
             onClick={onParagraphs}
-            className={classes.button}
             size="small"
             color="primary"
             disabled={setCorrectMode}
           >
             Paragraphs
-          </Button>
-          <Button className={classes.button} size="small" color="secondary" onClick={onClear} disabled={setCorrectMode}>
+          </StyledButton>
+          <StyledButton size="small" color="secondary" onClick={onClear} disabled={setCorrectMode}>
             Clear
-          </Button>
+          </StyledButton>
         </div>
         <FormControlLabel
           control={
-            <Switch
-              classes={{
-                checked: classes.checkedThumb,
-                bar: classNames({
-                  [classes.checkedBar]: setCorrectMode,
-                }),
-              }}
+            <StyledSwitch
               checked={setCorrectMode}
               onChange={onToggleCorrectMode}
             />
           }
           label="Set correct answers"
         />
-      </div>
+      </StyledControls>
     );
   }
 }
-export default withStyles((theme) => ({
-  button: {
-    marginRight: theme.spacing.unit,
-  },
-  controls: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  checkedThumb: {
-    color: `${color.tertiary()} !important`,
-  },
-  checkedBar: {
-    backgroundColor: `${color.tertiaryLight()} !important`,
-  },
-}))(Controls);
+export default Controls;

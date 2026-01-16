@@ -1,16 +1,20 @@
-import { classObject, mockIconButton, mockMathInput } from '../../../__tests__/utils';
-import { shallow } from 'enzyme';
-
+import { classObject, mockMathInput } from '../../../__tests__/utils';
 import { Data, Value, Inline } from 'slate';
-import { Toolbar, DefaultToolbar } from '../toolbar';
+import { Toolbar } from '../toolbar';
 import React from 'react';
-import debug from 'debug';
-import renderer from 'react-test-renderer';
+import { render, screen } from '@testing-library/react';
 
 mockMathInput();
 
-jest.mock('@material-ui/core/IconButton', () => {
-  return (props) => <div className={props.className} style={props.style} ariaLabel={props['aria-label']} />;
+jest.mock('@mui/material/IconButton', () => {
+  return (props) => {
+    const { children, onClick, buttonRef, ...rest } = props;
+    return (
+      <button onClick={onClick} {...rest}>
+        {children}
+      </button>
+    );
+  };
 });
 
 let node = Inline.fromJSON({ type: 'i' });
@@ -18,7 +22,6 @@ let parentNode = Inline.fromJSON({
   type: 'i',
 });
 let value;
-const log = debug('@pie-lib:editable-html:test:toolbar');
 
 describe('toolbar', () => {
   let onDelete, classes, document, toolbarOpts;
@@ -58,26 +61,25 @@ describe('toolbar', () => {
         deleteNode: () => true,
         toolbar: {
           supports: () => true,
-          customToolbar: () => () => <div> --------- custom toolbar ----------- </div>,
+          customToolbar: () => () => <div>custom toolbar content</div>,
         },
       },
     ];
 
-    const tree = renderer
-      .create(
-        <Toolbar
-          toolbarOpts={toolbarOpts}
-          plugins={plugins}
-          classes={classes}
-          value={value}
-          onDone={jest.fn()}
-          onChange={jest.fn()}
-        />,
-      )
-      .toJSON();
+    const { container } = render(
+      <Toolbar
+        toolbarOpts={toolbarOpts}
+        plugins={plugins}
+        classes={classes}
+        value={value}
+        onDone={jest.fn()}
+        onChange={jest.fn()}
+      />,
+    );
 
-    log('tree: ', JSON.stringify(tree, null, '  '));
-    expect(tree).toMatchSnapshot();
+    // Verify the custom toolbar content is rendered
+    expect(container.firstChild).toBeInTheDocument();
+    expect(screen.getByText('custom toolbar content')).toBeInTheDocument();
   });
 
   describe('default', () => {
@@ -88,19 +90,23 @@ describe('toolbar', () => {
     });
 
     test('renders default toolbar', () => {
-      const tree = renderer
-        .create(
-          <Toolbar
-            toolbarOpts={toolbarOpts}
-            plugins={plugins}
-            classes={classes}
-            value={value}
-            onDone={jest.fn()}
-            onChange={jest.fn()}
-          />,
-        )
-        .toJSON();
-      expect(tree).toMatchSnapshot();
+      const { container } = render(
+        <Toolbar
+          toolbarOpts={toolbarOpts}
+          plugins={plugins}
+          classes={classes}
+          value={value}
+          onDone={jest.fn()}
+          onChange={jest.fn()}
+        />,
+      );
+
+      // Verify the toolbar is rendered
+      expect(container.firstChild).toBeInTheDocument();
+
+      // The default toolbar should render the DefaultToolbar component
+      // which includes a Done button
+      expect(screen.getByLabelText('Done')).toBeInTheDocument();
     });
   });
 });

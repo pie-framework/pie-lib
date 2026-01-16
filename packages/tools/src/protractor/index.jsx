@@ -1,14 +1,28 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import Graphic from './graphic';
 import Anchor from '../anchor';
 import Rotatable from '../rotatable';
-import classNames from 'classnames';
+
+const StyledProtractor = styled('div')(() => ({
+  position: 'relative',
+}));
+
+const StyledLeftAnchor = styled(Anchor)(() => ({
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+}));
+
+const StyledRightAnchor = styled(Anchor)(() => ({
+  position: 'absolute',
+  right: 0,
+  bottom: 0,
+}));
 
 export class Protractor extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     width: PropTypes.number.isRequired,
     className: PropTypes.string,
     startPosition: PropTypes.shape({
@@ -23,10 +37,10 @@ export class Protractor extends React.Component {
   };
 
   render() {
-    const { classes, width, className, startPosition } = this.props;
+    const { width, startPosition } = this.props;
+
     return (
       <Rotatable
-        className={className}
         startPosition={startPosition}
         handle={[
           {
@@ -39,27 +53,15 @@ export class Protractor extends React.Component {
           },
         ]}
       >
-        <div className={classes.protractor} style={{ width: `${width}px` }}>
+        <StyledProtractor style={{ width: `${width}px` }}>
           <Graphic />
 
-          <Anchor className={classNames('leftAnchor', classes.leftAnchor)} />
-          <Anchor className={classNames('rightAnchor', classes.rightAnchor)} />
-        </div>
+          <StyledLeftAnchor className="leftAnchor" />
+          <StyledRightAnchor className="rightAnchor" />
+        </StyledProtractor>
       </Rotatable>
     );
   }
 }
 
-export default withStyles(() => ({
-  protractor: { position: 'relative' },
-  leftAnchor: {
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-  },
-  rightAnchor: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-  },
-}))(Protractor);
+export default Protractor;

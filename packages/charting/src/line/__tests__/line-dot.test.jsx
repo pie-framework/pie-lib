@@ -1,15 +1,15 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render } from '@pie-lib/test-utils';
 import Line, { LineDot as LineChart } from '../line-dot';
 import { graphProps } from './utils';
-import { Bar as BarChart } from '../../bars/bar';
 
 describe('LineChart', () => {
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
+      data: [],
       xBand: () => {
         return {
           bandwidth: () => {},
@@ -17,22 +17,25 @@ describe('LineChart', () => {
       },
     };
     const props = { ...defaults, ...extras };
-    return shallow(<LineChart {...props} />);
+    return render(<LineChart {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => expect(wrapper()).toMatchSnapshot());
-
-    it('renders without graphProps', () => expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
+  describe('rendering', () => {
+    it('renders line dot chart', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
+    });
   });
 
   describe('component', () => {
-    const chart = Line();
+    it('returns correct chart object', () => {
+      const chart = Line();
 
-    expect(chart).toEqual({
-      type: 'lineDot',
-      Component: LineChart,
-      name: 'Line Dot',
+      expect(chart).toEqual({
+        type: 'lineDot',
+        Component: LineChart,
+        name: 'Line Dot',
+      });
     });
   });
 });

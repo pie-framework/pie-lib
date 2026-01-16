@@ -1,27 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import uniq from 'lodash/uniq';
-import Chip from '@material-ui/core/Chip';
+import Chip from '@mui/material/Chip';
 import MuiBox from '../mui-box';
 
 const ENTER = 13;
 
-const Tag = withStyles(() => ({
-  tag: {
-    padding: '0px',
-    margin: '1px',
-  },
-}))(({ classes, label, onDelete }) => <Chip className={classes.tag} label={label} onDelete={onDelete} />);
+const StyledChip = styled(Chip)(() => ({
+  padding: '0px',
+  margin: '1px',
+}));
+
+const Tag = ({ label, onDelete }) => <StyledChip label={label} onDelete={onDelete} />;
 
 Tag.propTypes = {
   label: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
+const StyledTagsInput = styled('div')(({ theme }) => ({
+  border: `0px solid ${theme.palette.background.paper}`,
+  display: 'flex',
+  flexWrap: 'wrap',
+}));
+
+const StyledInput = styled('input')(({ theme }) => ({
+  padding: '2px',
+  margin: '1px',
+  minWidth: '30px',
+  width: '100%',
+  flex: '1',
+  border: `0px solid ${theme.palette.background.paper}`,
+  height: '28px',
+  fontSize: theme.typography.fontSize,
+  fontFamily: theme.typography.fontFamily,
+  outline: 'none',
+  '&:focus': {
+    outline: 'none',
+  },
+}));
+
 export class TagsInput extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     onChange: PropTypes.func.isRequired,
   };
@@ -70,50 +91,26 @@ export class TagsInput extends React.Component {
   };
 
   render() {
-    const { classes, tags } = this.props;
+    const { tags } = this.props;
     return (
       <MuiBox focused={this.state.focused}>
-        <div className={classes.tagsInput}>
+        <StyledTagsInput>
           {(tags || []).map((t, index) => (
             <Tag key={index} label={t} onDelete={() => this.deleteTag(t)} />
           ))}
-          <input
+          <StyledInput
             ref={(r) => (this.input = r)}
             onKeyDown={this.onKeyDown}
             onChange={this.onChange}
-            className={classes.input}
             value={this.state.value}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             type="text"
           />
-        </div>
+        </StyledTagsInput>
       </MuiBox>
     );
   }
 }
 
-const styles = (theme) => ({
-  tagsInput: {
-    border: `0px solid ${theme.palette.background.paper}`,
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  input: {
-    padding: '2px',
-    margin: '1px',
-    minWidth: '30px',
-    width: '100%',
-    flex: '1',
-    border: `0px solid ${theme.palette.background.paper}`,
-    height: '28px',
-    fontSize: theme.typography.fontSize,
-    fontFamily: theme.typography.fontFamily,
-    outline: 'none',
-    '&:focus': {
-      outline: 'none',
-    },
-  },
-});
-
-export default withStyles(styles)(TagsInput);
+export default TagsInput;

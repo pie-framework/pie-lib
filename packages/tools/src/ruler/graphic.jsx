@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import UnitType from './unit-type';
 import range from 'lodash/range';
 import Unit from './unit';
 import { strokeColor, fillColor } from '../style-utils';
 
-const Bg = ({ width, height, className }) => <rect width={width} height={height} cx={0} cy={0} className={className} />;
+const StyledBg = styled('rect')(({ theme }) => ({
+  stroke: strokeColor(theme),
+  strokeWidth: '2px',
+  fill: fillColor(theme),
+}));
+
+const Bg = ({ width, height }) => <StyledBg width={width} height={height} cx={0} cy={0} />;
 
 Bg.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  className: PropTypes.string.isRequired,
 };
 
 export class Graphic extends React.PureComponent {
@@ -20,18 +25,17 @@ export class Graphic extends React.PureComponent {
     height: PropTypes.number.isRequired,
     units: PropTypes.number.isRequired,
     unit: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired,
   };
 
   render() {
-    const { width, height, classes, units, unit } = this.props;
+    const { width, height, units, unit } = this.props;
     const viewBox = `0 0 ${width} ${height}`;
     const unitWidth = width / units;
     const unitHeight = height;
 
     return (
       <svg viewBox={viewBox}>
-        <Bg width={width} height={height} className={classes.bg} />
+        <Bg width={width} height={height} />
         <UnitType label={unit.type} />
         {range(1, units + 1).map((r) => (
           <Unit width={unitWidth} height={unitHeight} key={r} index={r} config={unit} last={r === units} />
@@ -40,12 +44,5 @@ export class Graphic extends React.PureComponent {
     );
   }
 }
-const styles = (theme) => ({
-  bg: {
-    stroke: strokeColor(theme),
-    strokeWidth: '2px',
-    fill: fillColor(theme),
-  },
-});
 
-export default withStyles(styles)(Graphic);
+export default Graphic;

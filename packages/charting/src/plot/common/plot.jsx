@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import Check from '@material-ui/icons/Check';
-import { withStyles } from '@material-ui/core/styles/index';
-import { Group } from '@vx/group';
+import Check from '@mui/icons-material/Check';
+import { styled } from '@mui/material/styles';
+import { Group } from '@visx/group';
 import debug from 'debug';
 
 import { types } from '@pie-lib/plot';
@@ -19,7 +18,6 @@ export class RawPlot extends React.Component {
   static propTypes = {
     onChangeCategory: PropTypes.func,
     value: PropTypes.number,
-    classes: PropTypes.object,
     label: PropTypes.string,
     xBand: PropTypes.func,
     index: PropTypes.number.isRequired,
@@ -30,6 +28,12 @@ export class RawPlot extends React.Component {
       value: PropTypes.string,
       label: PropTypes.string,
     }),
+    defineChart: PropTypes.bool,
+    correctData: PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      label: PropTypes.string,
+    })),
+    className: PropTypes.string,
   };
 
   constructor(props) {
@@ -68,7 +72,7 @@ export class RawPlot extends React.Component {
     this.setDragValue(next);
   };
 
-  renderCorrectnessIcon = (barX, barWidth, correctVal, correctness, classes, scale, pointHeight, pointDiameter) => {
+  renderCorrectnessIcon = (barX, barWidth, correctVal, correctness, scale, pointHeight, pointDiameter) => {
     let iconY;
 
     if (correctVal === 0) {
@@ -83,7 +87,7 @@ export class RawPlot extends React.Component {
     return (
       <foreignObject x={barX + barWidth / 2 - ICON_SIZE / 2} y={iconY} width={ICON_SIZE} height={ICON_SIZE}>
         <Check
-          className={classNames(classes.correctnessIcon, classes.correctIcon, classes.smallIcon)}
+          className="correctnessIcon correctIcon smallIcon"
           title={correctness.label}
         />
       </foreignObject>
@@ -95,7 +99,6 @@ export class RawPlot extends React.Component {
       graphProps,
       value,
       label,
-      classes,
       xBand,
       index,
       CustomBarElement,
@@ -103,6 +106,7 @@ export class RawPlot extends React.Component {
       correctness,
       defineChart,
       correctData,
+      className
     } = this.props;
 
     const { scale, range, size } = graphProps;
@@ -130,6 +134,7 @@ export class RawPlot extends React.Component {
     return (
       <React.Fragment>
         <g
+          className={className}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           onTouchStart={this.handleMouseEnter}
@@ -155,7 +160,6 @@ export class RawPlot extends React.Component {
               pointHeight,
               label,
               value,
-              classes,
               scale,
             }),
           )}
@@ -173,7 +177,6 @@ export class RawPlot extends React.Component {
                   barWidth,
                   correctVal,
                   correctness,
-                  classes,
                   scale,
                   pointHeight,
                   pointDiameter,
@@ -202,7 +205,6 @@ export class RawPlot extends React.Component {
                       pointHeight={pointHeight}
                       label={label}
                       value={value}
-                      classes={classes}
                       scale={scale}
                       dottedOverline={true}
                     />
@@ -211,7 +213,6 @@ export class RawPlot extends React.Component {
                       barWidth,
                       correctVal,
                       correctness,
-                      classes,
                       scale,
                       pointHeight,
                       pointDiameter,
@@ -235,7 +236,6 @@ export class RawPlot extends React.Component {
                       pointHeight,
                       label,
                       value,
-                      classes,
                       scale,
                       dottedOverline: true,
                     }),
@@ -245,7 +245,6 @@ export class RawPlot extends React.Component {
                     barWidth,
                     correctVal,
                     correctness,
-                    classes,
                     scale,
                     pointHeight,
                     pointDiameter,
@@ -273,30 +272,30 @@ export class RawPlot extends React.Component {
   }
 }
 
-const Bar = withStyles((theme) => ({
-  dot: {
+const Bar = styled(RawPlot)(({ theme }) => ({
+  '& .dot': {
     fill: color.visualElementsColors.PLOT_FILL_COLOR,
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke'),
   },
-  dotColor: {
+  '& .dotColor': {
     fill: color.visualElementsColors.PLOT_FILL_COLOR,
     '&.correct': correct('fill'),
     '&.incorrect': incorrect('fill'),
   },
-  line: {
+  '& .line': {
     stroke: color.visualElementsColors.PLOT_FILL_COLOR,
     '&.correct': correct('stroke'),
     '&.incorrect': incorrect('stroke'),
   },
-  correctIcon: {
+  '& .correctIcon': {
     backgroundColor: color.correct(),
   },
-  incorrectIcon: {
+  '& .incorrectIcon': {
     backgroundColor: color.incorrectWithIcon(),
   },
-  correctnessIcon: {
-    borderRadius: theme.spacing.unit * 2,
+  '& .correctnessIcon': {
+    borderRadius: theme.spacing(2),
     color: color.defaults.WHITE,
     fontSize: '16px',
     width: '16px',
@@ -305,13 +304,14 @@ const Bar = withStyles((theme) => ({
     border: `1px solid ${color.defaults.WHITE}`,
     stroke: 'initial',
     boxSizing: 'unset', // to override the default border-box in IBX
+    display: 'block',
   },
-  smallIcon: {
+  '& .smallIcon': {
     fontSize: '10px',
     width: '10px',
     height: '10px',
   },
-}))(RawPlot);
+}));
 
 export class Plot extends React.Component {
   static propTypes = {
@@ -321,6 +321,11 @@ export class Plot extends React.Component {
     graphProps: types.GraphPropsType.isRequired,
     defineChart: PropTypes.bool,
     CustomBarElement: PropTypes.func,
+    correctData: PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      label: PropTypes.string,
+    })),
+    className: PropTypes.string,
   };
 
   render() {

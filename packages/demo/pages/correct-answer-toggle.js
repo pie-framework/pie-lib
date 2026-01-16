@@ -1,12 +1,16 @@
-import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox from '@mui/material/Checkbox';
 import React from 'react';
 import Toggle from '@pie-lib/correct-answer-toggle';
-import { withStyles } from '@material-ui/core/styles';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Typography from '@material-ui/core/Typography';
+import { styled } from '@mui/material/styles';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Typography from '@mui/material/Typography';
 
 import withRoot from '../source/withRoot';
+
+const RedLabelToggle = styled(Toggle)({
+  '--correct-answer-toggle-label-color': 'red',
+});
 
 export class Wrapper extends React.Component {
   constructor(props) {
@@ -31,7 +35,6 @@ export class Wrapper extends React.Component {
     this.setState({ mounted: true });
   }
   render() {
-    const { classes } = this.props;
     const { mounted } = this.state;
     return mounted ? (
       <div>
@@ -52,12 +55,7 @@ export class Wrapper extends React.Component {
         <div hidden={!this.state.show}>
           You can set the color of the label by using <code>--correct-answer-toggle-label-color</code> css variable
         </div>
-        <Toggle
-          className={classes.redLabel}
-          show={this.state.show}
-          toggled={this.state.toggled}
-          onToggle={this.onToggle.bind(this)}
-        />
+        <RedLabelToggle show={this.state.show} toggled={this.state.toggled} onToggle={this.onToggle.bind(this)} />
 
         <div>
           <FormGroup row>
@@ -90,13 +88,4 @@ export class Wrapper extends React.Component {
   }
 }
 
-export default withRoot(
-  withStyles({
-    root: {
-      backgroundColor: 'blue',
-    },
-    redLabel: {
-      '--correct-answer-toggle-label-color': 'red',
-    },
-  })(Wrapper),
-);
+export default withRoot(Wrapper);

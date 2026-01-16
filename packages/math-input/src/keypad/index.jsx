@@ -1,33 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import { lighten, fade } from '@material-ui/core/styles/colorManipulator';
-import green from '@material-ui/core/colors/green';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import { lighten, alpha, styled } from '@mui/material/styles';
 import debug from 'debug';
 import _ from 'lodash';
 import MathQuill from '@pie-framework/mathquill';
-
 import * as mq from '../mq';
+
 import { baseSet } from '../keys';
 import editableHtmlConstants from '../../../editable-html/src/constants';
 import { commonMqKeyboardStyles } from '../mq/common-mq-styles';
 import { sortKeys } from './keys-layout';
+import { indigo, pink } from '@mui/material/colors';
+import { color } from '@pie-lib/render-ui';
 
 const log = debug('pie-lib:math-inline:keypad');
 
-const LatexButton = withStyles((theme) => ({
-  root: {
-    textTransform: 'none',
-    padding: 0,
-    margin: 0,
-    fontSize: '110% !important',
-  },
-  latexButton: {
+const StyledLatexButton = styled(Button)(() => ({
+  textTransform: 'none',
+  padding: 0,
+  margin: 0,
+  fontSize: '110% !important',
+}));
+
+const LatexButtonContent = styled(mq.Static)(({ latex }) => {
+  const baseStyles = {
     pointerEvents: 'none',
     textTransform: 'none !important',
+    color: color.text(),
     '& .mq-scaled.mq-sqrt-prefix': {
       transform: 'scale(1, 0.9) !important',
     },
@@ -35,25 +36,24 @@ const LatexButton = withStyles((theme) => ({
       marginBottom: '0.9px !important',
     },
     '& .mq-empty': {
-      backgroundColor: `${fade(theme.palette.secondary.main, 0.4)} !important`,
+      backgroundColor: `${alpha(pink[300], 0.4)} !important`,
     },
     '& .mq-overline .mq-overline-inner': {
       borderTop: '2px solid black',
     },
     '& .mq-non-leaf.mq-overline': {
-      borderTop: 'none !important', // fixing PD-4873 - in OT, it has border-top 1px and adds extra line
+      borderTop: 'none !important',
     },
     '& .mq-overarrow': {
       width: '30px',
       marginTop: '0 !important',
       borderTop: '2px solid black',
       fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-
       '&.mq-arrow-both': {
         top: '0px !important',
         '& *': {
           lineHeight: '1 !important',
-          borderTop: 'none !important', // fixing PD-4873 - in OT, it has border-top 1px and adds extra line,
+          borderTop: 'none !important',
         },
         '&:before': {
           fontSize: '80%',
@@ -119,63 +119,47 @@ const LatexButton = withStyles((theme) => ({
     '& .mq-overarc': {
       borderTop: '2px solid black !important',
       '& .mq-overline': {
-        borderTop: 'none !important', // fixing PD-4873 - in OT, it has border-top 1px and adds extra line
+        borderTop: 'none !important',
       },
       '& .mq-overline-inner': {
         borderTop: 'none !important',
         paddingTop: '0 !important',
       },
     },
-  },
-  parallelButton: {
-    fontStyle: 'italic !important',
-  },
-  leftRightArrowButton: {
-    '& .mq-overarrow.mq-arrow-both': {
-      '& .mq-overline-inner': {
-        borderTop: 'none !important',
-        paddingTop: '0 !important',
-      },
-      '&:after': {
-        position: 'absolute !important',
-        top: '0px !important',
-      },
-    },
-  },
-}))((props) => {
-  let buttonClass;
+  };
 
-  if (props.latex === '\\parallel') {
-    buttonClass = classNames(props.classes.latexButton, props.mqClassName, props.classes.parallelButton);
-  } else if (props.latex === '\\overleftrightarrow{\\overline{}}') {
-    buttonClass = classNames(props.classes.latexButton, props.mqClassName, props.classes.leftRightArrowButton);
-  } else {
-    buttonClass = classNames(props.classes.latexButton, props.mqClassName);
+  // Add specific styles based on latex content
+  if (latex === '\\parallel') {
+    return {
+      ...baseStyles,
+      fontStyle: 'italic !important',
+    };
   }
 
-  try {
-    const MQ = MathQuill.getInterface(2);
-    const span = document.createElement('span');
-    span.innerHTML = '';
-    const mathField = MQ.StaticMath(span);
-
-    mathField.parseLatex(props.latex);
-    mathField.latex(props.latex);
-  } catch (e) {
-    // received latex has errors - do not create button
-    return <></>;
+  if (latex === '\\overleftrightarrow{\\overline{}}') {
+    return {
+      ...baseStyles,
+      '& .mq-overarrow.mq-arrow-both': {
+        '& .mq-overline-inner': {
+          borderTop: 'none !important',
+          paddingTop: '0 !important',
+        },
+        '&:after': {
+          position: 'absolute !important',
+          top: '0px !important',
+        },
+      },
+    };
   }
 
-  return (
-    <Button
-      className={classNames(props.classes.root, props.className)}
-      onClick={props.onClick}
-      aria-label={props.ariaLabel}
-    >
-      <mq.Static className={buttonClass} latex={props.latex} />
-    </Button>
-  );
+  return baseStyles;
 });
+
+LatexButtonContent.propTypes = {
+  latex: PropTypes.string.isRequired,
+};
+
+// LatexButton component removed - LatexButtonContent is used directly instead
 
 const createCustomLayout = (layoutObj) => {
   if (layoutObj) {
@@ -189,9 +173,92 @@ const createCustomLayout = (layoutObj) => {
   return {};
 };
 
+const KeyPadContainer = styled('div')(() => ({
+  ...commonMqKeyboardStyles,
+  width: '100%',
+  display: 'grid',
+  gridTemplateRows: 'repeat(5, minmax(40px, 60px))',
+  gridRowGap: '0px',
+  gridColumnGap: '0px',
+  gridAutoFlow: 'column',
+  '&.character': {
+    textTransform: 'initial !important',
+    gridTemplateRows: 'repeat(5, minmax(40px, 50px)) !important',
+  },
+  '&.language': {
+    gridTemplateRows: 'repeat(4, minmax(40px, 50px)) !important',
+    '& *': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+    },
+  },
+}));
+
+const StyledButton = styled(Button)(({ category, isDelete, isComma, isDot }) => ({
+  minWidth: 'auto',
+  fontSize: isComma || isDot ? '200% !important' : '140% !important',
+  lineHeight: isComma || isDot ? '100%' : 'normal',
+  color: color.text(),
+
+  backgroundColor:
+    category === 'operators'
+      ? lighten(pink[300], 0.5)
+      : // this code with green seems to not be applied to current implementation, so I commented it out, but left it here just in case
+        // category === 'comparison' ? lighten(green[500], 0.5) :
+        lighten(indigo[300], 0.5),
+  '&:hover': {
+    backgroundColor:
+      category === 'operators'
+        ? lighten(pink[300], 0.7)
+        : // category === 'comparison' ? lighten(green[500], 0.7) :
+          lighten(indigo[300], 0.7),
+  },
+  borderRadius: 0,
+  ...(isDelete && {
+    '& > span': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+    },
+  }),
+}));
+
+const StyledLatexButtonWrapper = styled(Button)(({ category }) => ({
+  minWidth: 'auto',
+  borderRadius: 0,
+  backgroundColor:
+    category === 'operators'
+      ? lighten(pink[300], 0.5)
+      : // category === 'comparison' ? lighten(green[500], 0.5) :
+        lighten(indigo[300], 0.5),
+  '&:hover': {
+    backgroundColor:
+      category === 'operators'
+        ? lighten(pink[300], 0.7)
+        : // category === 'comparison' ? lighten(green[500], 0.7) :
+          lighten(indigo[300], 0.7),
+  },
+}));
+
+const StyledIconButton = styled(IconButton)(({ category }) => ({
+  minWidth: 'auto',
+  backgroundColor:
+    category === 'operators'
+      ? lighten(pink[300], 0.5)
+      : // category === 'comparison' ? lighten(green[500], 0.5) :
+        lighten(indigo[300], 0.5),
+  '&:hover': {
+    backgroundColor:
+      category === 'operators'
+        ? lighten(pink[300], 0.7)
+        : // category === 'comparison' ? lighten(green[500], 0.7) :
+          lighten(indigo[300], 0.7),
+  },
+  borderRadius: 0,
+  '& .icon': {
+    height: '30px',
+  },
+}));
+
 export class KeyPad extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     controlledKeypadMode: PropTypes.bool,
     baseSet: PropTypes.array,
@@ -289,14 +356,14 @@ export class KeyPad extends React.Component {
   };
 
   render() {
-    const { classes, className, baseSet, additionalKeys, layoutForKeyPad, onFocus, mode } = this.props;
+    const { className, baseSet, additionalKeys, layoutForKeyPad, onFocus, mode } = this.props;
 
     const noBaseSet = ['non-negative-integers', 'integers', 'decimals', 'fractions', 'item-authoring', 'language'];
 
     const keysWithoutBaseSet = noBaseSet.includes(mode);
     const allKeys = keysWithoutBaseSet
       ? this.flowKeys([], additionalKeys || [])
-      : this.flowKeys(baseSet, additionalKeys || []); //, ...sortKeys(additionalKeys)];
+      : this.flowKeys(baseSet, additionalKeys || []);
 
     const shift = allKeys.length % 5 ? 1 : 0;
     const style = {
@@ -305,9 +372,9 @@ export class KeyPad extends React.Component {
     };
 
     return (
-      <div
+      <KeyPadContainer
         ref={this.keypadRef}
-        className={classNames(classes.keys, className, classes[mode])}
+        className={[className, mode].filter(Boolean).join(' ')}
         style={style}
         onFocus={onFocus}
       >
@@ -320,13 +387,6 @@ export class KeyPad extends React.Component {
 
           const common = {
             onClick,
-            className: classNames(
-              classes.labelButton,
-              !keysWithoutBaseSet && classes[k.category],
-              classes[k.extraClass],
-              k.label === ',' && classes.comma,
-              k.label === '.' && classes.dot,
-            ),
             disabled: this.keyIsNotAllowed(k),
             key: `${k.label || k.latex || k.command}-${index}`,
             ...(k.actions || {}),
@@ -335,116 +395,59 @@ export class KeyPad extends React.Component {
 
           if (k.latex) {
             return (
-              <LatexButton
-                latex={k.latex}
-                key={index}
-                {...common}
-                className={classes.latexButton}
-                ariaLabel={k.ariaLabel ? k.ariaLabel : k.name || k.label}
-              />
+              <StyledLatexButtonWrapper
+                key={common.key}
+                onClick={common.onClick}
+                disabled={common.disabled}
+                category={!keysWithoutBaseSet ? k.category : undefined}
+                aria-label={k.ariaLabel ? k.ariaLabel : k.name || k.label}
+                {...(k.actions || {})}
+                {...(k.extraProps || {})}
+              >
+                <LatexButtonContent latex={k.latex} />
+              </StyledLatexButtonWrapper>
             );
           }
 
           if (k.label) {
             return (
-              <Button
-                key={index}
-                {...common}
-                className={classNames(common.className, { [classes.deleteButton]: k.label === '⌫' })}
+              <StyledButton
+                key={common.key}
+                onClick={common.onClick}
+                disabled={common.disabled}
+                category={!keysWithoutBaseSet ? k.category : undefined}
+                isDelete={k.label === '⌫'}
+                isComma={k.label === ','}
+                isDot={k.label === '.'}
                 aria-label={k.ariaLabel ? k.ariaLabel : k.name || k.label}
+                {...(k.actions || {})}
+                {...(k.extraProps || {})}
               >
                 {k.label}
-              </Button>
+              </StyledButton>
             );
           } else {
             const Icon = k.icon ? k.icon : 'div';
 
             return (
-              <IconButton tabIndex={'-1'} {...common} key={index}>
-                <Icon className={classes.icon} />
-              </IconButton>
+              <StyledIconButton
+                key={common.key}
+                tabIndex={'-1'}
+                onClick={common.onClick}
+                disabled={common.disabled}
+                category={!keysWithoutBaseSet ? k.category : undefined}
+                size="large"
+                {...(k.actions || {})}
+                {...(k.extraProps || {})}
+              >
+                <Icon className="icon" />
+              </StyledIconButton>
             );
           }
         })}
-      </div>
+      </KeyPadContainer>
     );
   }
 }
 
-const styles = (theme) => ({
-  keys: {
-    ...commonMqKeyboardStyles,
-    width: '100%',
-    display: 'grid',
-    gridTemplateRows: 'repeat(5, minmax(40px, 60px))',
-    gridRowGap: '0px',
-    gridColumnGap: '0px',
-    gridAutoFlow: 'column',
-  },
-  character: {
-    textTransform: 'initial !important',
-    gridTemplateRows: 'repeat(5, minmax(40px, 50px)) !important',
-  },
-  language: {
-    gridTemplateRows: 'repeat(4, minmax(40px, 50px)) !important',
-    '& *': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
-  },
-  holder: {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#cef',
-    borderRadius: 0,
-    padding: `${theme.spacing.unit}px 0 ${theme.spacing.unit}px 0`,
-  },
-  labelButton: {
-    minWidth: 'auto',
-    fontSize: '140% !important',
-    backgroundColor: lighten(theme.palette.primary.light, 0.5),
-    '&:hover': {
-      backgroundColor: lighten(theme.palette.primary.light, 0.7),
-    },
-    borderRadius: 0,
-  },
-  latexButton: {
-    minWidth: 'auto',
-    borderRadius: 0,
-    backgroundColor: lighten(theme.palette.primary.light, 0.5),
-    '&:hover': {
-      backgroundColor: lighten(theme.palette.primary.light, 0.7),
-    },
-  },
-  deleteButton: {
-    '& > span': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
-  },
-  base: {},
-  operators: {
-    backgroundColor: lighten(theme.palette.secondary.light, 0.5),
-    '&:hover': {
-      backgroundColor: lighten(theme.palette.secondary.light, 0.7),
-    },
-  },
-  comparison: {
-    backgroundColor: lighten(green[500], 0.5),
-    '&:hover': {
-      backgroundColor: lighten(green[500], 0.7),
-    },
-  },
-  comma: {
-    fontSize: '200% !important',
-    lineHeight: '100%',
-  },
-  dot: {
-    fontSize: '200% !important',
-    lineHeight: '100%',
-  },
-  icon: {
-    height: '30px',
-  },
-});
-
-export default withStyles(styles)(KeyPad);
+export default KeyPad;

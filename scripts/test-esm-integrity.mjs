@@ -79,9 +79,7 @@ async function main() {
   }
 
   // eslint-disable-next-line no-console
-  console.log(
-    `ESM integrity OK (${pkgs.length} packages checked, blacklist: ${[...blacklist].join(', ')})`
-  );
+  console.log(`ESM integrity OK (${pkgs.length} packages checked, blacklist: ${[...blacklist].join(', ')})`);
 }
 
 main().catch((e) => {
@@ -89,5 +87,3 @@ main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
-
-

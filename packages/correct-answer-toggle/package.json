@@ -6,7 +6,8 @@
   "keywords": [
     "react",
     "pie",
-    "material-ui"
+    "mui",
+    "@mui/material"
   ],
   "publishConfig": {
     "access": "public"
@@ -16,22 +17,24 @@
   "module": "src/index.jsx",
   "scripts": {},
   "dependencies": {
-    "@material-ui/core": "^3.8.3",
-    "@pie-lib/icons": "^2.24.1",
-    "@pie-lib/render-ui": "^4.35.2",
-    "@pie-lib/translator": "^2.23.1",
-    "classnames": "^2.2.6",
+    "@emotion/react": "^11.14.0",
+    "@emotion/style": "^0.8.0",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
+    "@pie-lib/icons": "2.38.0-mui-update.0",
+    "@pie-lib/render-ui": "4.49.0-mui-update.0",
+    "@pie-lib/translator": "2.38.0-mui-update.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
-    "react-transition-group": "^2.5.2"
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "react": "^16.8.1",
-    "react-dom": "^16.9.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "peerDependencies": {
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
   "exports": {

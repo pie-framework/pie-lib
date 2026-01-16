@@ -2,22 +2,19 @@ import { InputContainer } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
 import RadioWithLabel from './radio-with-label';
 import React from 'react';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
-const styles = (theme) => ({
-  group: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    paddingLeft: 0,
-    marginTop: theme.spacing.unit,
-  },
-  vertical: {
+const StyledGroup = styled('div')(({ theme, direction }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  paddingLeft: 0,
+  marginTop: theme.spacing(1),
+  ...(direction === 'vertical' && {
     flexDirection: 'column',
-  },
-});
+  }),
+}));
 
-class RawNChoice extends React.Component {
+class NChoice extends React.Component {
   static propTypes = {
     header: PropTypes.string.isRequired,
     className: PropTypes.string,
@@ -26,7 +23,6 @@ class RawNChoice extends React.Component {
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     direction: PropTypes.oneOf(['horizontal', 'vertical']),
-    classes: PropTypes.object.isRequired,
   };
 
   handleChange = (event) => {
@@ -34,7 +30,7 @@ class RawNChoice extends React.Component {
   };
 
   render() {
-    const { header, className, classes, customLabel, opts, value, direction } = this.props;
+    const { header, className, customLabel, opts, value, direction } = this.props;
 
     const preppedOpts = opts.map((o) => {
       return typeof o === 'string' ? { label: o, value: o } : o;
@@ -43,7 +39,7 @@ class RawNChoice extends React.Component {
 
     return (
       <InputContainer label={header} className={className}>
-        <div className={classNames(classes.group, classes[direction])}>
+        <StyledGroup direction={direction}>
           {preppedOpts.map((o, index) => (
             <LabelComponent
               value={o.value}
@@ -53,13 +49,13 @@ class RawNChoice extends React.Component {
               label={o.label}
             />
           ))}
-        </div>
+        </StyledGroup>
       </InputContainer>
     );
   }
 }
 
-export const NChoice = withStyles(styles)(RawNChoice);
+export { NChoice };
 
 const labelValue = PropTypes.shape({ label: PropTypes.string, value: PropTypes.string });
 
@@ -91,4 +87,4 @@ class TwoChoice extends React.Component {
   }
 }
 
-export default withStyles(styles)(TwoChoice);
+export default TwoChoice;

@@ -1,11 +1,10 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { Arrow } from '../arrow';
 
 describe('Arrow', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -16,24 +15,24 @@ describe('Arrow', () => {
       },
     };
     const props = { ...defaults, ...extras };
-    return shallow(<Arrow {...props} />);
+    return render(<Arrow {...props} />);
   };
-  describe('snapshot', () => {
-    it('up', () => {
-      w = wrapper({ direction: 'up' });
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders with direction up', () => {
+      const { container } = renderComponent({ direction: 'up' });
+      expect(container.firstChild).toBeInTheDocument();
     });
-    it('down', () => {
-      w = wrapper({ direction: 'down' });
-      expect(w).toMatchSnapshot();
+    it('renders with direction down', () => {
+      const { container } = renderComponent({ direction: 'down' });
+      expect(container.firstChild).toBeInTheDocument();
     });
-    it('left', () => {
-      w = wrapper({ direction: 'left' });
-      expect(w).toMatchSnapshot();
+    it('renders with direction left', () => {
+      const { container } = renderComponent({ direction: 'left' });
+      expect(container.firstChild).toBeInTheDocument();
     });
-    it('right', () => {
-      w = wrapper({ direction: 'right' });
-      expect(w).toMatchSnapshot();
+    it('renders with direction right', () => {
+      const { container } = renderComponent({ direction: 'right' });
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

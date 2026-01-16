@@ -1,10 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import List from '@material-ui/core/List';
-import { Leaf, Mark } from 'slate';
-import Immutable from 'immutable';
-import ListItem from '@material-ui/core/ListItem';
-import isEmpty from 'lodash/isEmpty';
+import { createRoot } from 'react-dom/client';
+import List from '@mui/material/List';
+import { Mark } from 'slate';
+import ListItem from '@mui/material/ListItem';
 import debug from 'debug';
 import CssIcon from './icons';
 
@@ -112,7 +110,11 @@ const insertDialog = ({ editorDOM, value, callback, opts, textNode, parentNode }
     </div>
   );
 
-  ReactDOM.render(el, newEl, () => {
+  const dialogRoot = createRoot(newEl);
+  dialogRoot.render(el);
+
+  // Use setTimeout to ensure the element is rendered before positioning
+  setTimeout(() => {
     const cursorItem = document.querySelector(`[data-key="${value.anchorKey}"]`);
 
     if (cursorItem) {
@@ -122,14 +124,16 @@ const insertDialog = ({ editorDOM, value, callback, opts, textNode, parentNode }
       editorDOM.parentElement.parentElement.parentElement.appendChild(newEl);
 
       // when height of toolbar exceeds screen - can happen in scrollable contexts
-      let additionalTopOffset = 0;
       if (boundRect.y < newEl.offsetHeight) {
-        additionalTopOffset = newEl.offsetHeight - boundRect.y + 10;
+        const additionalTopOffset = newEl.offsetHeight - boundRect.y + 10;
+        newEl.style.top = `${additionalTopOffset}px`;
       }
 
       newEl.style.maxWidth = '500px';
       newEl.style.position = 'absolute';
-      newEl.style.top = 0;
+      if (!newEl.style.top) {
+        newEl.style.top = '0';
+      }
       newEl.style.zIndex = 99999;
 
       const leftValue = `${boundRect.left + Math.abs(bodyRect.left) + cursorItem.offsetWidth + 10}px`;
@@ -156,7 +160,7 @@ const insertDialog = ({ editorDOM, value, callback, opts, textNode, parentNode }
 
       document.body.addEventListener('click', listener);
     }
-  });
+  }, 0);
 };
 
 const findParentNodeInfo = (value, textNode) => {
@@ -182,6 +186,7 @@ const findParentNodeInfo = (value, textNode) => {
  * @param opts
  * @returns {*}
  */
+// eslint-disable-next-line no-unused-vars
 const getNodeWithClass = (value, opts) => {
   const blocksAtRange = value.document.getBlocksAtRangeAsArray(value.selection);
   const inlinesAtRange = value.document.getInlinesAtRangeAsArray(value.selection);

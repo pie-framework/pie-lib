@@ -1,14 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Controls from './controls';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { words, sentences, paragraphs } from './builder';
 import clone from 'lodash/clone';
 import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';
-import classNames from 'classnames';
 import { noSelect } from '@pie-lib/style-utils';
 import TokenText from './token-text';
+
+const StyledText = styled('div')(({ disabled }) => ({
+  whiteSpace: 'pre-wrap',
+
+  ...(disabled && {
+    ...noSelect(),
+  }),
+}));
 
 export class Tokenizer extends React.Component {
   static propTypes = {
@@ -21,8 +28,6 @@ export class Tokenizer extends React.Component {
         end: PropTypes.number,
       }),
     ),
-    classes: PropTypes.object.isRequired,
-    className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
   };
 
@@ -112,15 +117,11 @@ export class Tokenizer extends React.Component {
   };
 
   render() {
-    const { text, tokens, classes, className } = this.props;
+    const { text, tokens } = this.props;
     const { setCorrectMode } = this.state;
 
-    const tokenClassName = classNames(classes.text, setCorrectMode && classes.noselect);
-
-    const rootName = classNames(classes.tokenizer, className);
-
     return (
-      <div className={rootName}>
+      <div>
         <Controls
           onClear={this.clear}
           onWords={() => this.buildTokens('words', words)}
@@ -129,8 +130,9 @@ export class Tokenizer extends React.Component {
           setCorrectMode={setCorrectMode}
           onToggleCorrectMode={this.toggleCorrectMode}
         />
-        <TokenText
-          className={tokenClassName}
+        <StyledText
+          disabled={setCorrectMode}
+          as={TokenText}
           text={text}
           tokens={tokens}
           onTokenClick={this.tokenClick}
@@ -141,9 +143,4 @@ export class Tokenizer extends React.Component {
   }
 }
 
-export default withStyles(() => ({
-  text: {
-    whiteSpace: 'pre-wrap',
-  },
-  noselect: { ...noSelect() },
-}))(Tokenizer);
+export default Tokenizer;

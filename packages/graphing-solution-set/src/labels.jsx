@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { types } from '@pie-lib/plot';
 import { color, Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html';
@@ -16,24 +16,15 @@ const rotations = {
 export const getTransform = (side, width, height) => {
   const t = (x, y, rotate) => `translate(${x}, ${y}), rotate(${rotate})`;
 
-  if (side === 'left') {
-    return t(-20, height / 2, rotations[side]);
-  }
-  if (side === 'right') {
-    return t(width + 30, height / 2, rotations[side]);
-  }
-  if (side === 'top') {
-    return t(width / 2, -20, rotations[side]);
-  }
-  if (side === 'bottom') {
-    return t(width / 2, height + 30, rotations[side]);
-  }
+  if (side === 'left') return t(-20, height / 2, rotations[side]);
+  if (side === 'right') return t(width + 30, height / 2, rotations[side]);
+  if (side === 'top') return t(width / 2, -20, rotations[side]);
+  if (side === 'bottom') return t(width / 2, height + 30, rotations[side]);
 };
 
 const getY = (side, height) => {
   switch (side) {
     case 'left':
-      return -height;
     case 'top':
       return -height;
     case 'right':
@@ -43,15 +34,40 @@ const getY = (side, height) => {
   }
 };
 
+const PREFIX = 'Label';
+const classes = {
+  label: `${PREFIX}-label`,
+  axisLabel: `${PREFIX}-axisLabel`,
+  disabledAxisLabel: `${PREFIX}-disabledAxisLabel`,
+  bottomLabel: `${PREFIX}-bottomLabel`,
+};
+
+const Root = styled('div')(({ theme }) => ({
+  [`& .${classes.label}`]: {
+    fill: color.defaults.SECONDARY,
+  },
+  [`& .${classes.axisLabel}`]: {
+    fontSize: theme.typography.fontSize - 2,
+    textAlign: 'center',
+    padding: '0 4px',
+  },
+  [`& .${classes.disabledAxisLabel}`]: {
+    pointerEvents: 'none',
+  },
+  [`& .${classes.bottomLabel}`]: {
+    marginTop: '44px',
+  },
+}));
+
 class RawLabel extends React.Component {
   static propTypes = {
     text: PropTypes.string,
     side: PropTypes.string,
-    classes: PropTypes.object,
     disabledLabel: PropTypes.bool,
     placeholder: PropTypes.string,
     graphProps: types.GraphPropsType.isRequired,
     onChange: PropTypes.func,
+    mathMlOptions: PropTypes.object,
   };
 
   static defaultProps = {
@@ -59,7 +75,7 @@ class RawLabel extends React.Component {
   };
 
   render() {
-    const { disabledLabel, placeholder, text, side, graphProps, classes, onChange, mathMlOptions = {} } = this.props;
+    const { disabledLabel, placeholder, text, side, graphProps, onChange, mathMlOptions = {} } = this.props;
     const { size, domain, range } = graphProps;
     const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
@@ -70,66 +86,44 @@ class RawLabel extends React.Component {
     const y = getY(side, height);
     const finalHeight = side === 'bottom' ? height + 22 : height + 18;
 
-    const activePlugins = [
-      'bold',
-      'italic',
-      'underline',
-      'strikethrough',
-      'math',
-      // 'languageCharacters'
-    ];
+    const activePlugins = ['bold', 'italic', 'underline', 'strikethrough', 'math'];
 
     return (
-      <foreignObject
-        x={-(width / 2)}
-        y={y}
-        width={width}
-        height={finalHeight}
-        transform={transform}
-        textAnchor="middle"
-      >
-        <Readable false>
-          <EditableHtml
-            className={cn(
-              {
-                [classes.bottomLabel]: side === 'bottom',
-                [classes.disabledAxisLabel]: disabledLabel,
-              },
-              classes.axisLabel,
-            )}
-            markup={text || ''}
-            onChange={onChange}
-            placeholder={!disabledLabel && placeholder}
-            toolbarOpts={{
-              position: side === 'bottom' ? 'top' : 'bottom',
-              noPadding: true,
-              noBorder: true,
-            }}
-            activePlugins={activePlugins}
-            mathMlOptions={mathMlOptions}
-          />
-        </Readable>
-      </foreignObject>
+      <Root>
+        <foreignObject
+          x={-(width / 2)}
+          y={y}
+          width={width}
+          height={finalHeight}
+          transform={transform}
+          textAnchor="middle"
+        >
+          <Readable>
+            <EditableHtml
+              className={cn(
+                {
+                  [classes.bottomLabel]: side === 'bottom',
+                  [classes.disabledAxisLabel]: disabledLabel,
+                },
+                classes.axisLabel,
+              )}
+              markup={text || ''}
+              onChange={onChange}
+              placeholder={!disabledLabel && placeholder}
+              toolbarOpts={{
+                position: side === 'bottom' ? 'top' : 'bottom',
+                noPadding: true,
+                noBorder: true,
+              }}
+              activePlugins={activePlugins}
+              mathMlOptions={mathMlOptions}
+            />
+          </Readable>
+        </foreignObject>
+      </Root>
     );
   }
 }
-
-const Label = withStyles((theme) => ({
-  label: {
-    fill: color.defaults.SECONDARY,
-  },
-  axisLabel: {
-    fontSize: theme.typography.fontSize - 2,
-    textAlign: 'center',
-    padding: '0 4px',
-  },
-  disabledAxisLabel: {
-    pointerEvents: 'none',
-  },
-  bottomLabel: {
-    marginTop: '44px',
-  },
-}))(RawLabel);
 
 export const LabelType = {
   left: PropTypes.string,
@@ -140,24 +134,17 @@ export const LabelType = {
 
 export class Labels extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
-    className: PropTypes.string,
     disabledLabels: PropTypes.bool,
     placeholders: PropTypes.object,
     value: PropTypes.shape(LabelType),
     graphProps: PropTypes.object,
-    onChange: PropTypes.object,
+    onChange: PropTypes.func,
+    mathMlOptions: PropTypes.object,
   };
-
-  static defaultProps = {};
 
   onChangeLabel = (newValue, side) => {
     const { value, onChange } = this.props;
-    const labels = {
-      ...value,
-      [side]: newValue,
-    };
-
+    const labels = { ...value, [side]: newValue };
     onChange(labels);
   };
 
@@ -165,50 +152,22 @@ export class Labels extends React.Component {
     const { disabledLabels, placeholders = {}, value = {}, graphProps, mathMlOptions = {} } = this.props;
 
     return (
-      <React.Fragment>
-        <Label
-          key="left"
-          side="left"
-          text={value.left}
-          disabledLabel={disabledLabels}
-          placeholder={placeholders.left}
-          graphProps={graphProps}
-          onChange={(value) => this.onChangeLabel(value, 'left')}
-          mathMlOptions={mathMlOptions}
-        />
-        <Label
-          key="top"
-          side="top"
-          text={value.top}
-          disabledLabel={disabledLabels}
-          placeholder={placeholders.top}
-          graphProps={graphProps}
-          onChange={(value) => this.onChangeLabel(value, 'top')}
-          mathMlOptions={mathMlOptions}
-        />
-        <Label
-          key="bottom"
-          side="bottom"
-          text={value.bottom}
-          disabledLabel={disabledLabels}
-          placeholder={placeholders.bottom}
-          graphProps={graphProps}
-          onChange={(value) => this.onChangeLabel(value, 'bottom')}
-          mathMlOptions={mathMlOptions}
-        />
-        <Label
-          key="right"
-          side="right"
-          text={value.right}
-          disabledLabel={disabledLabels}
-          placeholder={placeholders.right}
-          graphProps={graphProps}
-          onChange={(value) => this.onChangeLabel(value, 'right')}
-          mathMlOptions={mathMlOptions}
-        />
-      </React.Fragment>
+      <>
+        {['left', 'top', 'bottom', 'right'].map((side) => (
+          <RawLabel
+            key={side}
+            side={side}
+            text={value[side]}
+            disabledLabel={disabledLabels}
+            placeholder={placeholders[side]}
+            graphProps={graphProps}
+            onChange={(val) => this.onChangeLabel(val, side)}
+            mathMlOptions={mathMlOptions}
+          />
+        ))}
+      </>
     );
   }
 }
 
-export default Labels;
+export default RawLabel;

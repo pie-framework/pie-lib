@@ -101,7 +101,7 @@ export class Point extends React.Component {
           }}
         />
         {labelNode &&
-          mark.hasOwnProperty('label') &&
+          Object.prototype.hasOwnProperty.call(mark, 'label') &&
           ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input = r)}

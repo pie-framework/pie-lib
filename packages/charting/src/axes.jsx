@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { AxisLeft, AxisBottom } from '@vx/axis';
-import Checkbox from '@material-ui/core/Checkbox';
+import { styled } from '@mui/material/styles';
+import { AxisLeft, AxisBottom } from '@visx/axis';
+import Checkbox from '@mui/material/Checkbox';
 
 import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
@@ -12,6 +12,51 @@ import { renderMath } from '@pie-lib/math-rendering';
 import { TickCorrectnessIndicator } from './common/correctness-indicators';
 import { bandKey, getTickValues, getRotateAngle } from './utils';
 import MarkLabel from './mark-label';
+
+const StyledErrorText = styled('text')(({ theme }) => ({
+  fontSize: theme.typography.fontSize - 2,
+  fill: theme.palette.error.main,
+}));
+
+const StyledCheckbox = styled(Checkbox)(() => ({
+  color: `${color.tertiary()} !important`,
+}));
+
+const StyledAxesGroup = styled('g')(({ theme }) => ({
+  '& .vx-axis-line': {
+    stroke: color.visualElementsColors.AXIS_LINE_COLOR,
+    strokeWidth: 2,
+  },
+  '& .vx-axis-tick': {
+    fill: color.visualElementsColors.AXIS_TICK_COLOR,
+    '& line': {
+      stroke: color.visualElementsColors.AXIS_TICK_COLOR,
+      strokeWidth: 2,
+    },
+    fontFamily: theme.typography.body1?.fontFamily,
+    fontSize: theme.typography.fontSize,
+    textAnchor: 'middle',
+  },
+}));
+
+const correctnessIconStyles = (theme) => ({
+  borderRadius: theme.spacing(2),
+  color: color.defaults.WHITE,
+  fontSize: '16px',
+  width: '16px',
+  height: '16px',
+  padding: '2px',
+  border: `1px solid ${color.defaults.WHITE}`,
+  boxSizing: 'unset', // to override the default border-box in IBX
+});
+
+const incorrectIconStyles = {
+  backgroundColor: color.incorrectWithIcon(),
+};
+
+const correctIconStyles = {
+  backgroundColor: color.correct(),
+};
 
 export class TickComponent extends React.Component {
   static propTypes = {
@@ -112,7 +157,6 @@ export class TickComponent extends React.Component {
 
   render() {
     const {
-      classes,
       categories,
       xBand,
       bandWidth,
@@ -137,6 +181,13 @@ export class TickComponent extends React.Component {
       return null;
     }
 
+    // Create classes object for TickCorrectnessIndicator compatibility
+    const classes = {
+      correctnessIcon: correctnessIconStyles,
+      incorrectIcon: incorrectIconStyles,
+      correctIcon: correctIconStyles,
+    };
+
     const { dialog } = this.state;
     const { changeEditable, changeInteractive } = chartingOptions || {};
     const index = parseInt(formattedValue.split('-')[0], 10);
@@ -148,7 +199,7 @@ export class TickComponent extends React.Component {
       const lengthB = b && b.label ? b.label.length : 0;
 
       return lengthA > lengthB ? a : b;
-    });
+    }, { label: '' });
     const distinctMessages = error ? [...new Set(Object.values(error))].join(' ') : '';
 
     return (
@@ -193,9 +244,9 @@ export class TickComponent extends React.Component {
         </foreignObject>
 
         {error && index === 0 && (
-          <text className={classes.error} y={y + 23} height={6} textAnchor="start">
+          <StyledErrorText y={y + 23} height={6} textAnchor="start">
             {distinctMessages}
-          </text>
+          </StyledErrorText>
         )}
 
         {defineChart && index === 0 && (
@@ -257,8 +308,7 @@ export class TickComponent extends React.Component {
             height={4}
             style={{ pointerEvents: 'visible', overflow: 'visible' }}
           >
-            <Checkbox
-              className={classes.customColor}
+            <StyledCheckbox
               style={{ position: 'fixed' }}
               checked={interactive}
               onChange={(e) => this.changeInteractive(index, e.target.checked)}
@@ -274,8 +324,7 @@ export class TickComponent extends React.Component {
             height={4}
             style={{ pointerEvents: 'visible', overflow: 'visible' }}
           >
-            <Checkbox
-              className={classes.customColor}
+            <StyledCheckbox
               style={{ position: 'fixed' }}
               checked={editable}
               onChange={(e) => this.changeEditable(index, e.target.checked)}
@@ -316,7 +365,6 @@ TickComponent.propTypes = {
   formattedValue: PropTypes.string,
   onChangeCategory: PropTypes.func,
   onChange: PropTypes.func,
-  classes: PropTypes.object,
   error: PropTypes.object,
   defineChart: PropTypes.bool,
   chartingOptions: PropTypes.object,
@@ -325,12 +373,12 @@ TickComponent.propTypes = {
   autoFocus: PropTypes.bool,
   onAutoFocusUsed: PropTypes.func,
   showCorrectness: PropTypes.bool,
+  hiddenLabelRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
 };
 
 export class RawChartAxes extends React.Component {
   static propTypes = {
     bottomScale: PropTypes.func,
-    classes: PropTypes.object.isRequired,
     categories: PropTypes.array,
     defineChart: PropTypes.bool,
     error: PropTypes.any,
@@ -347,6 +395,7 @@ export class RawChartAxes extends React.Component {
     autoFocus: PropTypes.bool,
     onAutoFocusUsed: PropTypes.func,
     showCorrectness: PropTypes.bool,
+    hiddenLabelRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   };
 
   state = { height: 0, width: 0 };
@@ -354,7 +403,7 @@ export class RawChartAxes extends React.Component {
   componentDidMount() {
     if (this.hiddenLabelRef) {
       const boundingClientRect = this.hiddenLabelRef.getBoundingClientRect();
-      const hiddenEl = this.hiddenLabelRef.current;
+      const hiddenEl = this.hiddenLabelRef;
 
       // same logic used in dropdown.jsx for hidden labels width calculation
       if (hiddenEl) {
@@ -374,7 +423,7 @@ export class RawChartAxes extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate() {
     if (this.hiddenLabelRef) {
       const width = Math.floor(this.hiddenLabelRef.getBoundingClientRect().width);
 
@@ -386,7 +435,6 @@ export class RawChartAxes extends React.Component {
 
   render() {
     const {
-      classes,
       graphProps,
       xBand,
       leftAxis,
@@ -405,7 +453,6 @@ export class RawChartAxes extends React.Component {
       showCorrectness,
     } = this.props;
 
-    const { axis, axisLine, tick } = classes;
     const { scale = {}, range = {}, domain = {}, size = {} } = graphProps || {};
     const { height, width } = this.state;
 
@@ -432,7 +479,6 @@ export class RawChartAxes extends React.Component {
         hiddenLabelRef: (ref) => {
           this.hiddenLabelRef = ref;
         },
-        classes,
         categories,
         xBand,
         bandWidth,
@@ -459,22 +505,17 @@ export class RawChartAxes extends React.Component {
     };
 
     return (
-      <React.Fragment>
+      <StyledAxesGroup>
         {leftAxis && (
           <AxisLeft
             scale={scale.y}
-            className={axis}
-            axisLineClassName={axisLine}
             tickLength={10}
-            tickClassName={tick}
             tickFormat={(value) => value}
             tickValues={rowTickValues}
             tickLabelProps={getTickLabelProps}
           />
         )}
         <AxisBottom
-          axisLineClassName={axisLine}
-          tickClassName={tick}
           scale={bottomScale}
           labelProps={{ y: 60 + top }}
           top={scale.y && scale.y(range.min)}
@@ -484,64 +525,9 @@ export class RawChartAxes extends React.Component {
           autoFocus={autoFocus}
           onAutoFocusUsed={onAutoFocusUsed}
         />
-      </React.Fragment>
+      </StyledAxesGroup>
     );
   }
 }
 
-const ChartAxes = withStyles(
-  (theme) => ({
-    axis: {
-      stroke: color.primaryDark(),
-      strokeWidth: 2,
-    },
-    axisLine: {
-      stroke: color.visualElementsColors.AXIS_LINE_COLOR,
-      strokeWidth: 2,
-    },
-    tick: {
-      '& > line': {
-        stroke: color.primaryDark(),
-        strokeWidth: 2,
-      },
-      fontFamily: theme.typography.body1.fontFamily,
-      fontSize: theme.typography.fontSize,
-      textAnchor: 'middle',
-    },
-    dottedLine: {
-      stroke: color.primaryLight(),
-      opacity: 0.2,
-    },
-    error: {
-      fontSize: theme.typography.fontSize - 2,
-      fill: theme.palette.error.main,
-    },
-    customColor: {
-      color: `${color.tertiary()} !important`,
-    },
-    correctnessIcon: {
-      borderRadius: theme.spacing.unit * 2,
-      color: color.defaults.WHITE,
-      fontSize: '16px',
-      width: '16px',
-      height: '16px',
-      padding: '2px',
-      border: `1px solid ${color.defaults.WHITE}`,
-      boxSizing: 'unset', // to override the default border-box in IBX
-    },
-    incorrectIcon: {
-      backgroundColor: color.incorrectWithIcon(),
-    },
-    correctIcon: {
-      backgroundColor: color.correct(),
-    },
-    tickContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-  }),
-  { withTheme: true },
-)(RawChartAxes);
-
-export default ChartAxes;
+export default RawChartAxes;

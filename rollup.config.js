@@ -79,5 +79,3 @@ module.exports.default = function createConfig(input, outputFile) {
     plugins,
   };
 };
-
-

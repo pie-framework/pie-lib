@@ -13,13 +13,7 @@
 
 /* eslint-disable no-console */
 const { rollup } = require('rollup');
-const {
-  readdirSync,
-  pathExistsSync,
-  mkdirSync,
-  readJsonSync,
-  writeJsonSync,
-} = require('fs-extra');
+const { readdirSync, pathExistsSync, mkdirSync, readJsonSync, writeJsonSync } = require('fs-extra');
 const { resolve, join } = require('path');
 const createConfig = require('../rollup.config.js').default;
 
@@ -108,5 +102,3 @@ main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
-
-
