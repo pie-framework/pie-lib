@@ -124,6 +124,7 @@ export function CharacterPicker({ editor, opts, onClose }) {
             top: `${position.top}px`,
             left: `${position.left}px`,
             maxWidth: '500px',
+            zIndex: 99,
           }}
         >
           <div>
