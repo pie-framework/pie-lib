@@ -81,7 +81,7 @@ export function CharacterPicker({ editor, opts, onClose }) {
 
     let top = editorRect.top + Math.abs(bodyRect.top) + editorRect.height + 60;
 
-    if (top + containerRef.current.offsetHeight > window.outerHeight) {
+    if (editorRect.y > containerRef.current.offsetHeight) {
       top = top - (containerRef.current.offsetHeight + editorRect.height) - 80;
     }
 
