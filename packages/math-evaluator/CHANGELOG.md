@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.21.2-next.0...@pie-lib/math-evaluator@3.0.0-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+
+
+
+
+## [2.21.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.35.0-mui-update.0...@pie-lib/math-evaluator@2.21.2-next.0) (2026-01-19)
+
+
+### Bug Fixes
+
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+
+
+
+
 ## [2.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.1...@pie-lib/math-evaluator@2.21.1) (2025-10-22)
 
 ### Bug Fixes

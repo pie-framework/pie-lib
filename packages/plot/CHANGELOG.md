@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.27.3-next.0...@pie-lib/plot@3.0.0-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/plot
+
+
+
+
+
+## [2.27.3-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.41.0-mui-update.0...@pie-lib/plot@2.27.3-next.0) (2026-01-19)
+
+
+### Bug Fixes
+
+* **plot:** fix focus PD-5452 ([882207c](https://github.com/pie-framework/pie-lib/commit/882207c6a1155a8e5818f5c7966239f8f341a0a6))
+
+
+
+
+
 ## [2.27.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@2.27.1...@pie-lib/plot@2.27.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/plot
