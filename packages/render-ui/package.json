@@ -13,16 +13,16 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/icons": "2.24.2-next.16",
-    "@pie-lib/math-rendering": "3.22.2-next.16",
-    "@pie-lib/test-utils": "0.22.2-next.16",
+    "@pie-lib/icons": "2.24.2-next.164",
+    "@pie-lib/math-rendering": "3.22.2-next.164",
+    "@pie-lib/test-utils": "1.0.0-next.0",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
-    "@pie-lib/test-utils": "0.22.2-next.16",
+    "@pie-lib/test-utils": "1.0.0-next.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

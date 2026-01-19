@@ -23,7 +23,7 @@
     "mathjs": "^7.0.1"
   },
   "devDependencies": {
-    "@pie-lib/test-utils": "0.22.2-next.16"
+    "@pie-lib/test-utils": "0.22.2-next.164"
   },
   "scripts": {},
   "gitHead": "f104bab3116a65a39c55efc48387d8701c0c1d84",

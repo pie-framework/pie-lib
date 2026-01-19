@@ -21,9 +21,9 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/icons": "2.24.2-next.16",
-    "@pie-lib/render-ui": "4.35.3-next.15",
-    "@pie-lib/translator": "2.23.2-next.16",
+    "@pie-lib/icons": "2.24.2-next.164",
+    "@pie-lib/render-ui": "4.35.3-next.155",
+    "@pie-lib/translator": "2.23.2-next.164",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react-transition-group": "^4.4.5"

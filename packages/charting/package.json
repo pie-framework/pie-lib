@@ -22,10 +22,10 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/math-rendering": "3.22.2-next.16",
-    "@pie-lib/plot": "2.27.3-next.15",
-    "@pie-lib/render-ui": "4.35.3-next.15",
-    "@pie-lib/translator": "2.23.2-next.16",
+    "@pie-lib/math-rendering": "3.22.2-next.164",
+    "@pie-lib/plot": "2.27.3-next.155",
+    "@pie-lib/render-ui": "4.35.3-next.155",
+    "@pie-lib/translator": "2.23.2-next.164",
     "@visx/axis": "^3.0.0",
     "@visx/event": "^3.0.0",
     "@visx/grid": "^3.0.0",
@@ -47,7 +47,7 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@pie-lib/test-utils": "^0.22.2-next.16"
+    "@pie-lib/test-utils": "0.22.2-next.164"
   },
   "gitHead": "a6ae07ad459bbae1039b5a1a8b9c40e3c1f3af73",
   "exports": {

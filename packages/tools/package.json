@@ -22,7 +22,7 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/style-utils": "0.21.2-next.16",
+    "@pie-lib/style-utils": "0.21.2-next.164",
     "assert": "^1.4.1",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
