@@ -24,7 +24,7 @@
     "react-dom": "^18.2.0"
   },
   "scripts": {},
-  "gitHead": "e0f8f2250addd014938f4a631ab86cafe16b2730",
+  "gitHead": "a6ae07ad459bbae1039b5a1a8b9c40e3c1f3af73",
   "exports": {
     ".": {
       "require": "./lib/index.js",
