@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/rubric",
-  "version": "0.28.2",
+  "version": "0.28.3-next.0",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,7 @@
     "@hello-pangea/dnd": "^18.0.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/editable-html": "11.35.0-mui-update.0",
+    "@pie-lib/editable-html": "11.21.3-next.15",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",

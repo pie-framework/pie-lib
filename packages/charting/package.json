@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "5.36.2",
+  "version": "5.36.3-next.0",
   "description": "charting",
   "keywords": [
     "react",
@@ -22,10 +22,10 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/math-rendering": "3.40.0-mui-update.0",
-    "@pie-lib/plot": "2.41.0-mui-update.0",
-    "@pie-lib/render-ui": "4.49.0-mui-update.0",
-    "@pie-lib/translator": "2.38.0-mui-update.0",
+    "@pie-lib/math-rendering": "3.22.2-next.16",
+    "@pie-lib/plot": "2.27.3-next.15",
+    "@pie-lib/render-ui": "4.35.3-next.15",
+    "@pie-lib/translator": "2.23.2-next.16",
     "@visx/axis": "^3.0.0",
     "@visx/event": "^3.0.0",
     "@visx/grid": "^3.0.0",
@@ -47,7 +47,7 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@pie-lib/test-utils": "^0.23.0-mui-update.0"
+    "@pie-lib/test-utils": "^0.22.2-next.16"
   },
   "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
   "exports": {

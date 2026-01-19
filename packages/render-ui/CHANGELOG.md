@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.35.3-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.49.0-mui-update.0...@pie-lib/render-ui@4.35.3-next.0) (2026-01-19)
+
+
+### Bug Fixes
+
+* **render-ui:** change unneeded colors overwriting in theme provider PD-5274 ([dbfaed5](https://github.com/pie-framework/pie-lib/commit/dbfaed50feed9c059b14c9835468159858446af1))
+* **render-ui:** handle vertical striping only for tables with th first col PD-5211 ([d32502e](https://github.com/pie-framework/pie-lib/commit/d32502e496fc9a19a6444e537587017c91e87724))
+* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+
+
+
+
 ## [4.35.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.1...@pie-lib/render-ui@4.35.2) (2025-11-27)
 
 ### Bug Fixes
