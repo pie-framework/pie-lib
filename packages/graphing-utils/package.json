@@ -15,13 +15,5 @@
     "lodash": "^4.17.11"
   },
   "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
-  "scripts": {},
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.js",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "scripts": {}
 }

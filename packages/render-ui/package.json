@@ -13,16 +13,16 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/icons": "2.38.0-mui-update.0",
-    "@pie-lib/math-rendering": "3.40.0-mui-update.0",
-    "@pie-lib/test-utils": "0.36.0-mui-update.0",
+    "@pie-lib/icons": "2.24.2-next.164+09821f09",
+    "@pie-lib/math-rendering": "3.22.2-next.164+09821f09",
+    "@pie-lib/test-utils": "0.22.2-next.164+09821f09",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
-    "@pie-lib/test-utils": "0.20.0-mui-update.0",
+    "@pie-lib/test-utils": "0.22.2-next.164+09821f09",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -30,13 +30,5 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.js",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
 }
