@@ -19,7 +19,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "gitHead": "f104bab3116a65a39c55efc48387d8701c0c1d84",
+  "gitHead": "e0f8f2250addd014938f4a631ab86cafe16b2730",
   "exports": {
     ".": {
       "require": "./lib/index.js",
