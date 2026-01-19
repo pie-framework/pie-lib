@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/style-utils",
-  "version": "1.0.0-next.0",
+  "version": "0.21.3-next.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -10,13 +10,5 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
-  "gitHead": "e0f8f2250addd014938f4a631ab86cafe16b2730",
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.js",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "gitHead": "31368da9311d16744eb1293ff5f8495551427037"
 }

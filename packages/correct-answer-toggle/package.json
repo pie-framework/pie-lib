@@ -12,7 +12,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.0.0-next.0",
+  "version": "2.25.4-next.0",
   "main": "lib/index.js",
   "module": "src/index.jsx",
   "scripts": {},
@@ -21,9 +21,9 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/icons": "2.24.2-next.164",
-    "@pie-lib/render-ui": "4.35.3-next.155",
-    "@pie-lib/translator": "2.23.2-next.164",
+    "@pie-lib/icons": "2.24.3-next.0",
+    "@pie-lib/render-ui": "4.35.4-next.0",
+    "@pie-lib/translator": "2.23.3-next.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react-transition-group": "^4.4.5"
@@ -36,13 +36,5 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "gitHead": "f104bab3116a65a39c55efc48387d8701c0c1d84",
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.jsx",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering",
-  "version": "4.0.0-next.0",
+  "version": "3.22.3-next.0",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
@@ -19,14 +19,6 @@
   "resolutions": {
     "react": "^18.2.0"
   },
-  "gitHead": "f104bab3116a65a39c55efc48387d8701c0c1d84",
-  "scripts": {},
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.js",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516",
+  "scripts": {}
 }

@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.0.0-next.0",
+  "version": "2.27.4-next.0",
   "description": "Some underlying components for building charts/graphs",
   "keywords": [
     "react",
@@ -21,8 +21,8 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/editable-html": "11.21.3-next.155",
-    "@pie-lib/render-ui": "4.35.3-next.155",
+    "@pie-lib/editable-html": "11.21.4-next.0",
+    "@pie-lib/render-ui": "4.35.4-next.0",
     "assert": "^1.4.1",
     "d3-scale": "^2.1.2",
     "d3-selection": "^1.3.2",
@@ -38,14 +38,6 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "gitHead": "e0f8f2250addd014938f4a631ab86cafe16b2730",
-  "scripts": {},
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.js",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516",
+  "scripts": {}
 }

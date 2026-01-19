@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/graphing-utils",
-  "version": "2.0.0-next.0",
+  "version": "1.21.3-next.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -14,14 +14,6 @@
     "debug": "^4.1.1",
     "lodash": "^4.17.11"
   },
-  "gitHead": "f104bab3116a65a39c55efc48387d8701c0c1d84",
-  "scripts": {},
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.js",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "gitHead": "31368da9311d16744eb1293ff5f8495551427037",
+  "scripts": {}
 }

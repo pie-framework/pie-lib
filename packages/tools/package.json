@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.0-next.0",
+  "version": "0.29.3-next.0",
   "description": "Some interactive tools",
   "keywords": [
     "react",
@@ -22,7 +22,7 @@
     "@mapbox/point-geometry": "^0.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/style-utils": "0.21.2-next.164",
+    "@pie-lib/style-utils": "0.21.3-next.0",
     "assert": "^1.4.1",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
@@ -39,13 +39,5 @@
     "@mui/material": "^7.3.4",
     "react": "^18.2.0"
   },
-  "gitHead": "e0f8f2250addd014938f4a631ab86cafe16b2730",
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.js",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516"
 }

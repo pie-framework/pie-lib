@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "12.0.0-next.0",
+  "version": "11.21.4-next.0",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -14,11 +14,11 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/drag": "2.22.3-next.155",
-    "@pie-lib/math-input": "6.31.2-next.164",
-    "@pie-lib/math-rendering": "3.22.2-next.164",
-    "@pie-lib/math-toolbar": "1.31.3-next.155",
-    "@pie-lib/render-ui": "4.35.3-next.155",
+    "@pie-lib/drag": "2.22.4-next.0",
+    "@pie-lib/math-input": "6.31.3-next.0",
+    "@pie-lib/math-rendering": "3.22.3-next.0",
+    "@pie-lib/math-toolbar": "1.31.4-next.0",
+    "@pie-lib/render-ui": "4.35.4-next.0",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
     "debug": "^4.1.1",
@@ -52,14 +52,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "a6ae07ad459bbae1039b5a1a8b9c40e3c1f3af73",
-  "scripts": {},
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.jsx",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516",
+  "scripts": {}
 }

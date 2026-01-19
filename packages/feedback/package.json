@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/feedback",
-  "version": "1.0.0-next.0",
+  "version": "0.24.3-next.0",
   "description": "Feedback utilities",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -10,13 +10,5 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
-  "gitHead": "f104bab3116a65a39c55efc48387d8701c0c1d84",
-  "exports": {
-    ".": {
-      "require": "./lib/index.js",
-      "import": "./src/index.js",
-      "default": "./lib/index.js"
-    },
-    "./esm": "./esm/index.js"
-  }
+  "gitHead": "31368da9311d16744eb1293ff5f8495551427037"
 }
