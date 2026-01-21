@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dnd-kit/sortable": "8.0.0",
+    "@dnd-kit/sortable": "10.0.0",
     "@emotion/react": "^11.14.0",
     "@emotion/style": "^0.8.0",
     "@mapbox/point-geometry": "^0.1.0",
