@@ -1,23 +1,23 @@
 import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { NodeSelection } from 'prosemirror-state';
 
-import Bold from '@material-ui/icons/FormatBold';
-import Italic from '@material-ui/icons/FormatItalic';
-import Strikethrough from '@material-ui/icons/FormatStrikethrough';
-import Code from '@material-ui/icons/Code';
-import GridOn from '@material-ui/icons/GridOn';
-import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
-import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
-import Underline from '@material-ui/icons/FormatUnderlined';
-import Functions from '@material-ui/icons/Functions';
-import ImageIcon from '@material-ui/icons/Image';
-import Redo from '@material-ui/icons/Redo';
-import Undo from '@material-ui/icons/Undo';
-import TheatersIcon from '@material-ui/icons/Theaters';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
-import BorderAll from '@material-ui/icons/BorderAll';
+import Bold from '@mui/icons-material/FormatBold';
+import Italic from '@mui/icons-material/FormatItalic';
+import Strikethrough from '@mui/icons-material/FormatStrikethrough';
+import Code from '@mui/icons-material/Code';
+import GridOn from '@mui/icons-material/GridOn';
+import BulletedListIcon from '@mui/icons-material/FormatListBulleted';
+import NumberedListIcon from '@mui/icons-material/FormatListNumbered';
+import Underline from '@mui/icons-material/FormatUnderlined';
+import Functions from '@mui/icons-material/Functions';
+import ImageIcon from '@mui/icons-material/Image';
+import Redo from '@mui/icons-material/Redo';
+import Undo from '@mui/icons-material/Undo';
+import TheatersIcon from '@mui/icons-material/Theaters';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import BorderAll from '@mui/icons-material/BorderAll';
 
 import { EditorContent, useEditorState } from '@tiptap/react';
 
@@ -536,18 +536,49 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
   );
 }
 
-const style = (theme) => ({
-  defaultToolbar: {
+// Wrapper component that provides classes object using styled API
+const StyledMenuBar = (props) => {
+  const theme = useTheme();
+
+  const classes = {
+    defaultToolbar: 'defaultToolbar',
+    buttonsContainer: 'buttonsContainer',
+    button: 'button',
+    active: 'active',
+    disabled: 'disabled',
+    isActive: 'isActive',
+    toolbar: 'toolbar',
+    toolbarWithNoDone: 'toolbarWithNoDone',
+    toolbarTop: 'toolbarTop',
+    toolbarRight: 'toolbarRight',
+    fullWidth: 'fullWidth',
+    hidden: 'hidden',
+    autoWidth: 'autoWidth',
+    focused: 'focused',
+    iconRoot: 'iconRoot',
+    label: 'label',
+    shared: 'shared',
+  };
+
+  return (
+    <StyledMenuBarRoot>
+      <MenuBar {...props} classes={classes} />
+    </StyledMenuBarRoot>
+  );
+};
+
+const StyledMenuBarRoot = styled('div')(({ theme }) => ({
+  '& .defaultToolbar': {
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between',
   },
-  buttonsContainer: {
+  '& .buttonsContainer': {
     alignItems: 'center',
     display: 'flex',
     width: '100%',
   },
-  button: {
+  '& .button': {
     color: 'grey',
     display: 'inline-flex',
     padding: '2px',
@@ -561,21 +592,21 @@ const style = (theme) => ({
       outline: `2px solid ${theme.palette.grey[700]}`,
     },
   },
-  active: {
+  '& .active': {
     color: 'black',
   },
-  disabled: {
+  '& .disabled': {
     opacity: 0.7,
     cursor: 'not-allowed',
     '& :hover': {
       color: 'grey',
     },
   },
-  isActive: {
+  '& .isActive': {
     background: 'var(--purple)',
     color: 'var(--white)',
   },
-  toolbar: {
+  '& .toolbar': {
     position: 'absolute',
     zIndex: 20,
     cursor: 'pointer',
@@ -591,42 +622,40 @@ const style = (theme) => ({
     opacity: 0,
     pointerEvents: 'none',
   },
-  toolbarWithNoDone: {
+  '& .toolbarWithNoDone': {
     minWidth: '265px',
   },
-  toolbarTop: {
+  '& .toolbarTop': {
     top: '-45px',
   },
-  toolbarRight: {
+  '& .toolbarRight': {
     right: 0,
   },
-  fullWidth: {
+  '& .fullWidth': {
     width: '100%',
   },
-  hidden: {
+  '& .hidden': {
     visibility: 'hidden',
   },
-  autoWidth: {
+  '& .autoWidth': {
     width: 'auto',
   },
-  focused: {
+  '& .focused': {
     opacity: 1,
     pointerEvents: 'auto',
   },
-  iconRoot: {
+  '& .iconRoot': {
     width: '28px',
     height: '28px',
     padding: '4px',
     verticalAlign: 'top',
   },
-  label: {
+  '& .label': {
     color: 'var(--editable-html-toolbar-check, #00bb00)',
   },
-  shared: {
+  '& .shared': {
     display: 'flex',
   },
-});
-
-const StyledMenuBar = withStyles(style, { index: 1000 })(MenuBar);
+}));
 
 export default StyledMenuBar;

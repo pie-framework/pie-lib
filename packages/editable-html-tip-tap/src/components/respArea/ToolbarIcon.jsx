@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 export const Chevron = (props) => {
   const { direction, style } = props;
@@ -51,18 +51,16 @@ export const GripIcon = ({ style }) => (
   </span>
 );
 
-const styles = (theme) => ({
-  icon: {
-    fontFamily: 'Cerebri Sans !important',
-    fontSize: theme.typography.fontSize,
-    fontWeight: 'bold',
-    lineHeight: '14px',
-    position: 'relative',
-    top: '7px',
-    width: '110px',
-    height: '28px',
-    whiteSpace: 'nowrap',
-  },
-});
+const StyledToolbarIcon = styled('div')(({ theme }) => ({
+  fontFamily: 'Cerebri Sans !important',
+  fontSize: theme.typography.fontSize,
+  fontWeight: 'bold',
+  lineHeight: '14px',
+  position: 'relative',
+  top: '7px',
+  width: '110px',
+  height: '28px',
+  whiteSpace: 'nowrap',
+}));
 
-export const ToolbarIcon = withStyles(styles)(({ classes }) => <div className={classes.icon}>+ Response Area</div>);
+export const ToolbarIcon = () => <StyledToolbarIcon>+ Response Area</StyledToolbarIcon>;

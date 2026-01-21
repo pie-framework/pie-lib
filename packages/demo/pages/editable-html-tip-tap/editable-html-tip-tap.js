@@ -144,7 +144,14 @@ class RteDemo extends React.Component {
       mathEnabled: true,
       mmlOutput: false,
       mmlEditing: false,
-      languageCharactersProps: [],
+      languageCharactersProps: [
+        {
+          language: 'spanish',
+        },
+        {
+          language: 'special',
+        },
+      ],
       showMathTemplated: false,
     };
 

@@ -1,42 +1,33 @@
 import React from 'react';
 import debug from 'debug';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 
-const styles = (theme) => ({
-  button: {
-    color: 'grey',
-    display: 'inline-flex',
-    padding: '2px',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    '&:hover': {
-      color: 'black',
-    },
-    '&:focus': {
-      outline: `2px solid ${theme.palette.grey[700]}`,
-    },
+const StyledButton = styled('button', {
+  shouldForwardProp: (prop) => !['active', 'disabled', 'extraStyles'].includes(prop),
+})(({ theme, active, disabled }) => ({
+  color: active ? 'black' : 'grey',
+  display: 'inline-flex',
+  padding: '2px',
+  background: 'none',
+  border: 'none',
+  cursor: disabled ? 'not-allowed' : 'pointer',
+  '&:hover': {
+    color: disabled ? 'grey' : 'black',
   },
-  active: {
-    color: 'black',
+  '&:focus': {
+    outline: `2px solid ${theme.palette.grey[700]}`,
   },
-  disabled: {
+  ...(disabled && {
     opacity: 0.7,
-    cursor: 'not-allowed',
-    '& :hover': {
-      color: 'grey',
-    },
-  },
-});
+  }),
+}));
 
 const log = debug('pie-elements:editable-html:raw-button');
 
 export class RawButton extends React.Component {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     active: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -64,31 +55,26 @@ export class RawButton extends React.Component {
   };
 
   render() {
-    const { active, classes, children, disabled, extraStyles, ariaLabel } = this.props;
-
-    const names = classNames(classes.button, {
-      [classes.active]: active,
-      [classes.disabled]: disabled,
-    });
+    const { active, children, disabled, extraStyles, ariaLabel } = this.props;
 
     return (
-      <button
+      <StyledButton
         style={extraStyles}
-        className={names}
+        active={active}
+        disabled={disabled}
         onMouseDown={this.onClick}
         onKeyDown={this.onKeyDown}
-        disabled={disabled}
         aria-label={ariaLabel}
         aria-pressed={active}
         tabIndex={0}
       >
         {children}
-      </button>
+      </StyledButton>
     );
   }
 }
 
-export const Button = withStyles(styles)(RawButton);
+export const Button = RawButton;
 
 export class RawMarkButton extends React.Component {
   static propTypes = {
@@ -96,7 +82,6 @@ export class RawMarkButton extends React.Component {
     mark: PropTypes.string,
     label: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-    classes: PropTypes.object.isRequired,
     active: PropTypes.bool,
   };
 
@@ -117,12 +102,11 @@ export class RawMarkButton extends React.Component {
   };
 
   render() {
-    const { classes, children, active, label } = this.props;
+    const { children, active, label } = this.props;
 
-    const names = classNames(classes.button, active && classes.active);
     return (
-      <button
-        className={names}
+      <StyledButton
+        active={active}
         onMouseDown={this.onToggle}
         aria-pressed={active}
         onKeyDown={this.onKeyDown}
@@ -130,9 +114,9 @@ export class RawMarkButton extends React.Component {
         tabIndex={0}
       >
         {children}
-      </button>
+      </StyledButton>
     );
   }
 }
 
-export const MarkButton = withStyles(styles)(RawMarkButton);
+export const MarkButton = RawMarkButton;

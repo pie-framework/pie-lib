@@ -1,16 +1,15 @@
-//import EditableHTML from '@pie-lib/editable-html';
+//import EditableHTML from '@pie-lib/editable-html-tip-tap';
 import { InputContainer } from '@pie-lib/render-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import Group from './group';
 
-
 // - mathquill error window not defined
 let EditableHtml;
 let StyledEditableHTML;
 if (typeof window !== 'undefined') {
-  EditableHtml = require('@pie-lib/editable-html')['default'];
+  EditableHtml = require('@pie-lib/editable-html-tip-tap')['default'];
   StyledEditableHTML = styled(EditableHtml)(({ theme }) => ({
     fontFamily: theme.typography.fontFamily,
   }));
@@ -87,10 +86,7 @@ export class FeedbackSelector extends React.Component {
 
     return (
       <StyledFeedbackSelector>
-        <StyledInputContainer
-          label={label}
-          extraClasses={{ label: { transform: 'translateY(-20%)' } }}
-        >
+        <StyledInputContainer label={label} extraClasses={{ label: { transform: 'translateY(-20%)' } }}>
           <StyledGroup
             keys={feedbackKeys}
             label={label}

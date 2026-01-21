@@ -10,17 +10,17 @@ export const onValueChange = (editor, node, pos, choice) => {
   // Merge old and new attributes
   tr.setNodeMarkup(pos, undefined, {
     ...node.attrs,
-    ...choice,
+    ...choice.value,
   });
   tr.isDone = true;
   editor.view.dispatch(tr);
 };
 
-export const onRemoveResponse = (editor, node, pos) => {
+export const onRemoveResponse = (editor, node, choice) => {
   const { tr } = editor.state;
 
   // Merge old and new attributes
-  tr.setNodeMarkup(pos, undefined, omit(node.attrs, ['value', 'id']));
+  tr.setNodeMarkup(choice.pos, undefined, omit(node.attrs, ['value', 'id']));
   tr.isDone = true;
   editor.view.dispatch(tr);
 };
@@ -49,10 +49,11 @@ const DragDrop = (props) => {
           n={attributes}
           dragKey={attributes.id}
           targetId="0"
+          pos={pos}
           value={attributes}
           duplicates={options.duplicates}
           onChange={(choice) => onValueChange(editor, node, pos, choice)}
-          removeResponse={() => onRemoveResponse(editor, node, pos)}
+          removeResponse={(choice) => onRemoveResponse(editor, node, choice)}
         ></DragDropTile>
       </span>
     </NodeViewWrapper>

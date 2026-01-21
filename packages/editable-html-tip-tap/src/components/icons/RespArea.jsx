@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import MoreVert from '@material-ui/icons/MoreVert';
-import { withStyles } from '@material-ui/core/styles';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import MoreVert from '@mui/icons-material/MoreVert';
+import { styled } from '@mui/material/styles';
 
 const getRotate = (direction) => {
   switch (direction) {
@@ -56,16 +56,16 @@ GripIcon.propTypes = {
   style: PropTypes.object,
 };
 
-export const ToolbarIcon = withStyles((theme) => ({
-  icon: {
-    fontFamily: 'Cerebri Sans !important',
-    fontSize: theme.typography.fontSize,
-    fontWeight: 'bold',
-    lineHeight: '14px',
-    position: 'relative',
-    top: '7px',
-    width: '110px',
-    height: '28px',
-    whiteSpace: 'nowrap',
-  },
-}))(({ classes }) => <div className={classes.icon}>+ Response Area</div>);
+const StyledToolbarIcon = styled('div')(({ theme }) => ({
+  fontFamily: 'Cerebri Sans !important',
+  fontSize: theme.typography.fontSize,
+  fontWeight: 'bold',
+  lineHeight: '14px',
+  position: 'relative',
+  top: '7px',
+  width: '110px',
+  height: '28px',
+  whiteSpace: 'nowrap',
+}));
+
+export const ToolbarIcon = () => <StyledToolbarIcon>+ Response Area</StyledToolbarIcon>;

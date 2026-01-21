@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import classNames from 'classnames';
 import { EditorContent, useEditor, useEditorState } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { TextStyleKit } from '@tiptap/extension-text-style';
@@ -8,7 +7,7 @@ import SuperScript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
 import TextAlign from '@tiptap/extension-text-align';
 import Image from '@tiptap/extension-image';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 import ExtendedTable from '../extensions/extended-table';
 import { TableRow } from '@tiptap/extension-table-row';
@@ -93,7 +92,7 @@ export const EditableHtml = (props) => {
   const { showParagraphs, separateParagraphs } = props.pluginProps || {};
   const [pendingImages, setPendingImages] = useState([]);
   const [scheduled, setScheduled] = useState(false);
-  const { classes, toolbarOpts } = props;
+  const { toolbarOpts } = props;
 
   const toolbarOptsToUse = {
     ...defaultToolbarOpts,
@@ -317,19 +316,14 @@ export const EditableHtml = (props) => {
       editor={editor}
     >
       {editor && (
-        <EditorContent
+        <StyledEditorContent
           style={{
             minHeight: sizeStyle.minHeight,
             height: sizeStyle.height,
             maxHeight: sizeStyle.maxHeight,
           }}
-          className={classNames(
-            {
-              [classes.showParagraph]: showParagraphs && !showParagraphs.disabled,
-              [classes.separateParagraph]: separateParagraphs && !separateParagraphs.disabled,
-            },
-            classes.root,
-          )}
+          showParagraph={showParagraphs && !showParagraphs.disabled}
+          separateParagraph={separateParagraphs && !separateParagraphs.disabled}
           editor={editor}
         />
       )}
@@ -337,38 +331,32 @@ export const EditableHtml = (props) => {
   );
 };
 
-const StyledEditor = withStyles({
-  root: {
+const StyledEditorContent = styled(EditorContent, {
+  shouldForwardProp: (prop) => !['showParagraph', 'separateParagraph'].includes(prop),
+})(({ showParagraph, separateParagraph }) => ({
+  outline: 'none !important',
+  '& .ProseMirror': {
+    padding: '5px',
+    maxHeight: '500px',
     outline: 'none !important',
-    '& .ProseMirror': {
-      padding: '5px',
-      maxHeight: '500px',
-      outline: 'none !important',
-      position: 'initial',
-      '& > p': {
-        margin: '0',
-      },
+    position: 'initial',
+    '& > p': {
+      margin: '0',
     },
-  },
-  showParagraph: {
-    '& .ProseMirror': {
-      // a p that has a p after it
+    ...(showParagraph && {
       '& > p:has(+ p)::after': {
         display: 'block',
         content: '"¶"',
         fontSize: '1em',
         color: '#146EB3',
       },
-    },
-  },
-  separateParagraph: {
-    '& .ProseMirror': {
-      // a p that has a p after it
+    }),
+    ...(separateParagraph && {
       '& > div:has(+ div)': {
         marginBottom: '1em',
       },
-    },
+    }),
   },
-})(EditableHtml);
+}));
 
-export default StyledEditor;
+export default EditableHtml;

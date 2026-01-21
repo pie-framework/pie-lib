@@ -1,17 +1,15 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
-const styles = (theme) => ({
-  icon: {
-    fontFamily: 'Cerebri Sans, Arial, sans-serif',
-    fontSize: theme.typography.fontSize,
-    fontWeight: 'bold',
-    lineHeight: '14px',
-    position: 'relative',
-    whiteSpace: 'nowrap',
-  },
-});
+const StyledCssIcon = styled('div')(({ theme }) => ({
+  fontFamily: 'Cerebri Sans, Arial, sans-serif',
+  fontSize: theme.typography.fontSize,
+  fontWeight: 'bold',
+  lineHeight: '14px',
+  position: 'relative',
+  whiteSpace: 'nowrap',
+}));
 
-const CssIcon = ({ classes }) => <div className={classes.icon}>CSS</div>;
+const CssIcon = () => <StyledCssIcon>CSS</StyledCssIcon>;
 
-export default withStyles(styles)(CssIcon);
+export default CssIcon;

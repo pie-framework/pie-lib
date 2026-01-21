@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Mark, mergeAttributes } from '@tiptap/core';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
 export const removeDialogs = () => {
   const prevDialogs = document.querySelectorAll('.insert-css-dialog');
@@ -74,9 +74,10 @@ const insertDialog = ({ editor, callback, opts, selectedText, parentNode }) => {
         tag = 'div';
       }
 
-      html = `<${tag} class="${parentNodeClass}">${parentNode.text.slice(0, selection.$anchor.textOffset)}${html}${parentNode.text.slice(
-        selection.$head.textOffset,
-      )}</${tag}>`;
+      html = `<${tag} class="${parentNodeClass}">${parentNode.text.slice(
+        0,
+        selection.$anchor.textOffset,
+      )}${html}${parentNode.text.slice(selection.$head.textOffset)}</${tag}>`;
     }
 
     return html;

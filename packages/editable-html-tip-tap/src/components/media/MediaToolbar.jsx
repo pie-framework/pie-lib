@@ -1,56 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
-const useStyles = withStyles((theme) => ({
-  root: {
-    position: 'relative',
-    bottom: '5px',
-    left: 0,
-    width: '100%',
-    background: theme.palette.common.white,
-    display: 'inline-flex',
-    padding: '5px',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-  },
-  editContainer: {
-    cursor: 'pointer',
-    flex: 3,
-    border: `solid ${theme.palette.common.black}`,
-    textAlign: 'right',
-    borderWidth: '0 2px 0 0',
-    marginRight: '5px',
-    paddingRight: '5px',
-  },
-  removeContainer: {
-    cursor: 'pointer',
-  },
+const StyledRoot = styled('span')(({ theme }) => ({
+  position: 'relative',
+  bottom: '5px',
+  left: 0,
+  width: '100%',
+  background: theme.palette.common.white,
+  display: 'inline-flex',
+  padding: '5px',
+  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
 }));
+
+const StyledEditContainer = styled('span')(({ theme }) => ({
+  cursor: 'pointer',
+  flex: 3,
+  border: `solid ${theme.palette.common.black}`,
+  textAlign: 'right',
+  borderWidth: '0 2px 0 0',
+  marginRight: '5px',
+  paddingRight: '5px',
+}));
+
+const StyledRemoveContainer = styled('span')({
+  cursor: 'pointer',
+});
 
 class MediaToolbar extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     onEdit: PropTypes.func,
     hideEdit: PropTypes.bool,
     onRemove: PropTypes.func,
   };
 
   render() {
-    const { classes, hideEdit, onEdit, onRemove } = this.props;
+    const { hideEdit, onEdit, onRemove } = this.props;
 
     return (
-      <span className={classes.root}>
-        {hideEdit ? null : (
-          <span className={classes.editContainer} onClick={onEdit}>
-            Edit Settings
-          </span>
-        )}
-        <span className={classes.removeContainer} onClick={onRemove}>
-          Remove
-        </span>
-      </span>
+      <StyledRoot>
+        {hideEdit ? null : <StyledEditContainer onClick={onEdit}>Edit Settings</StyledEditContainer>}
+        <StyledRemoveContainer onClick={onRemove}>Remove</StyledRemoveContainer>
+      </StyledRoot>
     );
   }
 }
 
-export default useStyles(MediaToolbar);
+export default MediaToolbar;

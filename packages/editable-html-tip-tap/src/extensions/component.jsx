@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import isEqual from 'lodash/isEqual';
 import debug from 'debug';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { withStyles } from '@material-ui/core/styles';
+import LinearProgress from '@mui/material/LinearProgress';
+import { styled } from '@mui/material/styles';
 import { NodeViewWrapper } from '@tiptap/react';
 import InsertImageHandler from '../components/image/InsertImageHandler';
 import ImageToolbar from '../components/image/ImageToolbar';
@@ -12,13 +11,61 @@ import CustomToolbarWrapper from './custom-toolbar-wrapper';
 
 const log = debug('@pie-lib:editable-html:plugins:image:component');
 
+const StyledProgress = styled(LinearProgress, {
+  shouldForwardProp: (prop) => prop !== 'hideProgress',
+})(({ hideProgress }) => ({
+  position: 'absolute',
+  left: '0',
+  width: 'fit-content',
+  top: '0%',
+  transition: 'opacity 200ms linear',
+  ...(hideProgress && {
+    opacity: 0,
+  }),
+}));
+
+const StyledRoot = styled('div', {
+  shouldForwardProp: (prop) => !['active', 'loading', 'pendingDelete'].includes(prop),
+})(({ theme, active, loading, pendingDelete }) => ({
+  position: 'relative',
+  border: active ? `solid 1px ${theme.palette.primary.main}` : `solid 1px ${theme.palette.common.white}`,
+  display: 'flex',
+  transition: 'opacity 200ms linear',
+  ...(loading && {
+    opacity: 0.3,
+  }),
+  ...(pendingDelete && {
+    opacity: 0.3,
+  }),
+}));
+
+const StyledImageContainer = styled('div')(({ theme }) => ({
+  position: 'relative',
+  width: 'fit-content',
+  display: 'flex',
+  alignItems: 'center',
+  '&&:hover > .resize': {
+    display: 'block',
+  },
+}));
+
+const StyledResize = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  cursor: 'col-resize',
+  height: '35px',
+  width: '5px',
+  borderRadius: 8,
+  marginLeft: '5px',
+  marginRight: '10px',
+  display: 'none',
+}));
+
 const sizePx = (s) => (s ? `${s}px` : 'calc(20px)');
 
 function ImageComponent(props) {
   const {
     node,
     editor,
-    classes,
     attributes,
     onFocus,
     selected,
@@ -165,34 +212,27 @@ function ImageComponent(props) {
 
   return (
     <NodeViewWrapper>
-      <div
+      <StyledRoot
         onFocus={onFocus}
-        className={classNames(
-          classes.root,
-          !node.attrs.loaded && classes.loading,
-          node.attrs.deleteStatus === 'pending' && classes.pendingDelete,
-        )}
+        active={selected}
+        loading={!node.attrs.loaded}
+        pendingDelete={node.attrs.deleteStatus === 'pending'}
         style={{ justifyContent: flexAlign }}
       >
-        <LinearProgress
-          mode="determinate"
-          value={node.attrs.percent || 0}
-          className={classNames(classes.progress, node.attrs.loaded && classes.hideProgress)}
-        />
+        <StyledProgress mode="determinate" value={node.attrs.percent || 0} hideProgress={node.attrs.loaded} />
 
-        <div className={classes.imageContainer}>
+        <StyledImageContainer>
           <img
             {...attributes}
             ref={imgRef}
             src={node.attrs.src}
-            className={classNames(classes.image, selected && classes.active)}
             style={style}
             onLoad={loadImage}
             alt={node.attrs.alt}
           />
-          <div ref={resizeRef} className={classNames(classes.resize, 'resize')} />
-        </div>
-      </div>
+          <StyledResize ref={resizeRef} className="resize" />
+        </StyledImageContainer>
+      </StyledRoot>
 
       {showToolbar && (
         <div
@@ -234,78 +274,10 @@ function ImageComponent(props) {
 ImageComponent.propTypes = {
   node: PropTypes.object.isRequired,
   editor: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
   attributes: PropTypes.object,
   onFocus: PropTypes.func,
   maxImageWidth: PropTypes.number,
   maxImageHeight: PropTypes.number,
 };
 
-export default withStyles((theme) => ({
-  portal: {
-    position: 'absolute',
-    opacity: 0,
-    transition: 'opacity 200ms linear',
-  },
-  floatingButtonRow: {
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: '1px',
-    display: 'flex',
-    padding: '10px',
-    border: `solid 1px ${theme.palette.grey[200]}`,
-    boxShadow:
-      '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
-  },
-  progress: {
-    position: 'absolute',
-    left: '0',
-    width: 'fit-content',
-    top: '0%',
-    transition: 'opacity 200ms linear',
-  },
-  hideProgress: {
-    opacity: 0,
-  },
-  loading: {
-    opacity: 0.3,
-  },
-  pendingDelete: {
-    opacity: 0.3,
-  },
-  root: {
-    position: 'relative',
-    border: `solid 1px ${theme.palette.common.white}`,
-    display: 'flex',
-    transition: 'opacity 200ms linear',
-  },
-  delete: {
-    position: 'absolute',
-    right: 0,
-  },
-  imageContainer: {
-    position: 'relative',
-    width: 'fit-content',
-    display: 'flex',
-    alignItems: 'center',
-
-    '&&:hover > .resize': {
-      display: 'block',
-    },
-  },
-  active: {
-    border: `solid 1px ${theme.palette.primary.main}`,
-  },
-  resize: {
-    backgroundColor: theme.palette.primary.main,
-    cursor: 'col-resize',
-    height: '35px',
-    width: '5px',
-    borderRadius: 8,
-    marginLeft: '5px',
-    marginRight: '10px',
-    display: 'none',
-  },
-  drawableHeight: {
-    minHeight: 350,
-  },
-}))(ImageComponent);
+export default ImageComponent;

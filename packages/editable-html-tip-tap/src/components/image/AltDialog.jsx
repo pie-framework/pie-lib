@@ -1,10 +1,10 @@
 import React from 'react';
-import DialogContent from '@material-ui/core/DialogContent';
-import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
-import TextField from '@material-ui/core/TextField';
-import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import ArrowBackIos from '@mui/icons-material/ArrowBackIos';
+import TextField from '@mui/material/TextField';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
 import PropTypes from 'prop-types';
 
 export class AltDialog extends React.Component {
