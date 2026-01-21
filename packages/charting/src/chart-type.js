@@ -1,29 +1,38 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import { styled } from '@mui/material/styles';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import { Select } from '@mui/material';
 
-const ChartType = withStyles(() => ({
-  chartType: {
-    width: '160px',
-  },
-  chartTypeLabel: {
-    backgroundColor: 'transparent',
-  },
-}))(({ onChange, value, classes, availableChartTypes, chartTypeLabel }) => (
-  <div className={classes.chartType}>
-    <FormControl variant={'outlined'} className={classes.chartType}>
-      <InputLabel id="type-helper-label" className={classes.chartTypeLabel}>
+const StyledContainer = styled('div')(() => ({
+  width: '160px',
+}));
+
+const StyledFormControl = styled(FormControl)(() => ({
+  width: '160px',
+}));
+
+const StyledInputLabel = styled(InputLabel)(() => ({
+  backgroundColor: 'transparent',
+}));
+
+import PropTypes from 'prop-types';
+
+const ChartType = ({ onChange, value, availableChartTypes, chartTypeLabel }) => (
+  <StyledContainer>
+    <StyledFormControl variant={'outlined'}>
+      <StyledInputLabel id="type-helper-label">
         {chartTypeLabel}
-      </InputLabel>
+      </StyledInputLabel>
       <Select
         labelId="type-helper-label"
+        id="type-helper-label-select"
+        name="chartType"
         value={value}
         onChange={onChange}
-        input={<OutlinedInput labelWidth={75} name="type" />}
+        label={chartTypeLabel}
+        MenuProps={{transitionDuration: { enter: 225, exit: 195 }}}
       >
         {availableChartTypes?.histogram && <MenuItem value={'histogram'}>{availableChartTypes.histogram}</MenuItem>}
         {availableChartTypes?.bar && <MenuItem value={'bar'}>{availableChartTypes.bar}</MenuItem>}
@@ -32,8 +41,22 @@ const ChartType = withStyles(() => ({
         {availableChartTypes?.dotPlot && <MenuItem value={'dotPlot'}>{availableChartTypes.dotPlot}</MenuItem>}
         {availableChartTypes?.linePlot && <MenuItem value={'linePlot'}>{availableChartTypes.linePlot}</MenuItem>}
       </Select>
-    </FormControl>
-  </div>
-));
+    </StyledFormControl>
+  </StyledContainer>
+);
+
+ChartType.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  availableChartTypes: PropTypes.shape({
+    histogram: PropTypes.string,
+    bar: PropTypes.string,
+    lineDot: PropTypes.string,
+    lineCross: PropTypes.string,
+    dotPlot: PropTypes.string,
+    linePlot: PropTypes.string,
+  }),
+  chartTypeLabel: PropTypes.string,
+};
 
 export default ChartType;

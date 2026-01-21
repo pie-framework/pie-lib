@@ -1,6 +1,6 @@
 export default {
   types: {
-    ica: 'react-dnd-response',
+    ica: 'dnd-kit-response',
     ml: 'Answer',
     db: 'MaskBlank',
   },

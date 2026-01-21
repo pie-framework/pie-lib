@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/categorize",
-  "version": "0.28.1",
+  "version": "0.28.3-next.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -14,5 +14,5 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "31368da9311d16744eb1293ff5f8495551427037"
 }

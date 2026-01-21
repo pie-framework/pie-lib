@@ -1,21 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Token, { TokenTypes } from './token';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import clone from 'lodash/clone';
 import debug from 'debug';
 import { noSelect } from '@pie-lib/style-utils';
-import { renderToString } from 'react-dom/server';
 import isEqual from 'lodash/isEqual';
 
 const log = debug('@pie-lib:text-select:token-select');
+
+const StyledTokenSelect = styled('div')(() => ({
+  backgroundColor: 'none',
+  whiteSpace: 'pre',
+  ...noSelect(),
+  '& p': {
+    whiteSpace: 'break-spaces',
+    margin: 0,
+  },
+}));
+
+// strip HTML tags for plain text rendering
+const stripHtmlTags = (text) => {
+  if (!text) {
+    return text;
+  }
+
+  return text.replace(/<[^>]+>/g, '');
+};
 
 export class TokenSelect extends React.Component {
   static propTypes = {
     tokens: PropTypes.arrayOf(PropTypes.shape(TokenTypes)).isRequired,
     className: PropTypes.string,
-    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     highlightChoices: PropTypes.bool,
@@ -34,49 +50,36 @@ export class TokenSelect extends React.Component {
   canSelectMore = (selectedCount) => {
     const { maxNoOfSelections } = this.props;
 
-    if (maxNoOfSelections === 1) {
-      return true;
-    }
+    if (maxNoOfSelections === 1) return true;
 
     log('[canSelectMore] maxNoOfSelections: ', maxNoOfSelections, 'selectedCount: ', selectedCount);
     return maxNoOfSelections <= 0 || (isFinite(maxNoOfSelections) && selectedCount < maxNoOfSelections);
   };
 
-  /**
-   @function
-   @param { object } event
-
-   @description
-    each token is wrapped into a span that has Token.rootClassName class and indexkey attribute (represents the index of the token)
-    tokens are updated with the targeted token having the correct value set for 'selected' property
-   */
   toggleToken = (event) => {
     const { target } = event;
     const { tokens, animationsDisabled } = this.props;
     const tokensCloned = clone(tokens);
-    const targetSpanWrapper = target.closest(`.${Token.rootClassName}`);
-    const targetedTokenIndex = targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
-    const t = targetedTokenIndex && tokensCloned[targetedTokenIndex];
 
-    // don't toggle if we are in print mode, token correctness is defined or if it's missing
-    // (missing means that it was evaluated as correct and not selected)
+    const targetSpanWrapper = target.closest?.(`.${Token.rootClassName}`);
+    const targetedTokenIndex = targetSpanWrapper?.dataset?.indexkey;
+    const t = targetedTokenIndex !== undefined ? tokensCloned[targetedTokenIndex] : undefined;
+
+    // don't toggle if in print mode, correctness is defined, or is missing
     if (t && t.correct === undefined && !animationsDisabled && !t.isMissing) {
       const { onChange, maxNoOfSelections } = this.props;
       const selected = !t.selected;
 
       if (maxNoOfSelections === 1 && this.selectedCount() === 1) {
-        const selectedToken = (tokens || []).filter((t) => t.selected);
-
+        const selectedToken = (tokens || []).filter((tk) => tk.selected);
         const updatedTokens = tokensCloned.map((token) => {
           if (isEqual(token, selectedToken[0])) {
             return { ...token, selected: false };
           }
-
           return { ...token, selectable: true };
         });
 
-        const update = { ...t, selected: !t.selected };
-
+        const update = { ...t, selected };
         updatedTokens.splice(targetedTokenIndex, 1, update);
         onChange(updatedTokens);
       } else {
@@ -84,32 +87,42 @@ export class TokenSelect extends React.Component {
           log('skip toggle max reached');
           return;
         }
-
-        const update = { ...t, selected: !t.selected };
-
+        const update = { ...t, selected };
         tokensCloned.splice(targetedTokenIndex, 1, update);
         onChange(tokensCloned);
       }
     }
   };
 
-  generateTokensInHtml = () => {
+  /** Build a React tree instead of an HTML string so Emotion can inject CSS */
+  generateTokensNodes = () => {
     const { tokens, disabled, highlightChoices, animationsDisabled } = this.props;
     const selectedCount = this.selectedCount();
+
     const isLineBreak = (text) => text === '\n';
     const isNewParagraph = (text) => text === '\n\n';
 
-    const reducer = (accumulator, t, index) => {
+    const paragraphs = [];
+    let currentChildren = [];
+
+    const flushParagraph = () => {
+      // Always push a <p>, even if empty, to mirror previous behavior
+      paragraphs.push(<p key={`p-${paragraphs.length}`}>{currentChildren}</p>);
+      currentChildren = [];
+    };
+
+    (tokens || []).forEach((t, index) => {
       const selectable = t.selected || (t.selectable && this.canSelectMore(selectedCount));
       const showCorrectAnswer = t.correct !== undefined && (t.selectable || t.selected);
-      let finalAcc = accumulator;
 
       if (isNewParagraph(t.text)) {
-        return finalAcc + '</p><p>';
+        flushParagraph();
+        return;
       }
 
       if (isLineBreak(t.text)) {
-        return finalAcc + '<br>';
+        currentChildren.push(<br key={`br-${index}`} />);
+        return;
       }
 
       if (
@@ -117,48 +130,42 @@ export class TokenSelect extends React.Component {
         showCorrectAnswer ||
         t.selected ||
         t.isMissing ||
-        (animationsDisabled && t.predefined) // if we are in print mode
+        (animationsDisabled && t.predefined) // print mode
       ) {
-        return (
-          finalAcc +
-          renderToString(
-            <Token
-              key={index}
-              disabled={disabled}
-              index={index}
-              {...t}
-              selectable={selectable}
-              highlight={highlightChoices}
-              animationsDisabled={animationsDisabled}
-            />,
-          )
+        currentChildren.push(
+          <Token
+            key={index}
+            disabled={disabled}
+            index={index}
+            {...t}
+            text={stripHtmlTags(t.text)}
+            selectable={selectable}
+            highlight={highlightChoices}
+            animationsDisabled={animationsDisabled}
+          />,
         );
       } else {
-        return accumulator + t.text;
+        // raw text node – React will escape as needed
+        currentChildren.push(<React.Fragment key={index}>{stripHtmlTags(t.text)}</React.Fragment>);
       }
-    };
+    });
 
-    const reduceResult = (tokens || []).reduce(reducer, '<p>');
+    // flush last paragraph
+    flushParagraph();
 
-    return reduceResult + '</p>';
+    return paragraphs;
   };
 
   render() {
-    const { classes, className: classNameProp } = this.props;
-    const className = classNames(classes.tokenSelect, classNameProp);
-    const html = this.generateTokensInHtml();
+    const { className: classNameProp } = this.props;
+    const nodes = this.generateTokensNodes();
 
-    return <div className={className} dangerouslySetInnerHTML={{ __html: html }} onClick={this.toggleToken} />;
+    return (
+      <StyledTokenSelect className={classNameProp} onClick={this.toggleToken}>
+        {nodes}
+      </StyledTokenSelect>
+    );
   }
 }
 
-export default withStyles(() => ({
-  tokenSelect: {
-    backgroundColor: 'none',
-    whiteSpace: 'pre',
-    ...noSelect(),
-    '& p': {
-      whiteSpace: 'break-spaces',
-    },
-  },
-}))(TokenSelect);
+export default TokenSelect;

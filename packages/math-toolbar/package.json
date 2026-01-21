@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.31.2-beta.3",
+  "version": "1.31.4-next.0",
   "description": "Math toolbar for editing math equations",
   "keywords": [
     "math",
@@ -17,23 +17,23 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "^3.8.3",
-    "@material-ui/icons": "^3.0.2",
-    "@pie-lib/math-input": "6.31.1-beta-1",
-    "@pie-lib/render-ui": "^4.35.2",
-    "classnames": "^2.2.6",
+    "@emotion/react": "^11.14.0",
+    "@emotion/style": "^0.8.0",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
+    "@pie-lib/math-input": "6.31.3-next.0",
+    "@pie-lib/render-ui": "4.35.4-next.0",
     "debug": "^4.1.1",
-    "keycode": "^2.2.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@pie-lib/test-utils": "^0.22.1"
+    "@pie-lib/test-utils": "0.22.3-next.0"
   },
   "scripts": {},
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516"
 }

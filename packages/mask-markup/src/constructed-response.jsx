@@ -1,26 +1,31 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import classnames from 'classnames';
 
 import { color } from '@pie-lib/render-ui';
-import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import { withMask } from './with-mask';
+//import EditableHtml from '@pie-lib/editable-html';
 
-const styles = () => ({
-  editableHtmlCustom: {
+let EditableHtml;
+let StyledEditableHtml;
+
+// - mathquill error window not defined
+if (typeof window !== 'undefined') {
+  EditableHtml = require('@pie-lib/editable-html')['default'];
+  StyledEditableHtml = styled(EditableHtml)(() => ({
     display: 'inline-block',
     verticalAlign: 'middle',
     margin: '4px',
     borderRadius: '4px',
     border: `1px solid ${color.black()}`,
-  },
-  correct: {
-    border: `1px solid ${color.correct()}`,
-  },
-  incorrect: {
-    border: `1px solid ${color.incorrect()}`,
-  },
-});
+    '&.correct': {
+      border: `1px solid ${color.correct()}`,
+    },
+    '&.incorrect': {
+      border: `1px solid ${color.incorrect()}`,
+    },
+  }));
+} 
 
 const MaskedInput = (props) => (node, data) => {
   const {
@@ -30,7 +35,6 @@ const MaskedInput = (props) => (node, data) => {
     showCorrectAnswer,
     maxLength,
     spellCheck,
-    classes,
     pluginProps,
     onChange,
   } = props;
@@ -55,12 +59,12 @@ const MaskedInput = (props) => (node, data) => {
     const handleKeyDown = (event) => {
       // the keyCode value for the Enter/Return key is 13
       if (event.key === 'Enter' || event.keyCode === 13) {
-        return true;
+        return false;
       }
     };
 
     return (
-      <EditableHtml
+      <StyledEditableHtml
         id={dataset.id}
         key={`${node.type}-input-${dataset.id}`}
         disabled={showCorrectAnswer || disabled}
@@ -72,7 +76,7 @@ const MaskedInput = (props) => (node, data) => {
         pluginProps={pluginProps}
         languageCharactersProps={[{ language: 'spanish' }]}
         spellCheck={spellCheck}
-        width={`calc(${width}em + 32px)`} // added 32px for left and right padding of editable-html
+        width={`calc(${width}em + 42px)`} // added 42px for left and right padding of editable-html
         onKeyDown={handleKeyDown}
         autoWidthToolbar
         toolbarOpts={{
@@ -80,13 +84,13 @@ const MaskedInput = (props) => (node, data) => {
           noBorder: true,
           isHidden: !!pluginProps?.characters?.disabled,
         }}
-        className={classnames(classes.editableHtmlCustom, {
-          [classes.correct]: isCorrect,
-          [classes.incorrect]: isIncorrect,
+        className={classnames({
+          correct: isCorrect,
+          incorrect: isIncorrect,
         })}
       />
     );
   }
 };
 
-export default withStyles(styles)(withMask('input', MaskedInput));
+export default withMask('input', MaskedInput);

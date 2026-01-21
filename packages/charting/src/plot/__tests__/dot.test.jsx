@@ -1,11 +1,10 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render } from '@pie-lib/test-utils';
 import Dot, { DotPlot } from '../dot';
 import { graphProps } from './utils';
-import { Bar as BarChart } from '../../bars/bar';
 
 describe('DotPlot', () => {
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -17,22 +16,30 @@ describe('DotPlot', () => {
       },
     };
     const props = { ...defaults, ...extras };
-    return shallow(<DotPlot {...props} />);
+    return render(<DotPlot {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => expect(wrapper()).toMatchSnapshot());
+  describe('rendering', () => {
+    it('renders dot plot', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
+    });
 
-    it('renders without graphProps', () => expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
+    it('renders without graphProps', () => {
+      const { container } = renderComponent({ graphProps: undefined });
+      expect(container.firstChild).toBeInTheDocument();
+    });
   });
 
   describe('component', () => {
-    const chart = Dot();
+    it('returns correct chart object', () => {
+      const chart = Dot();
 
-    expect(chart).toEqual({
-      type: 'dotPlot',
-      Component: DotPlot,
-      name: 'Dot Plot',
+      expect(chart).toEqual({
+        type: 'dotPlot',
+        Component: DotPlot,
+        name: 'Dot Plot',
+      });
     });
   });
 });

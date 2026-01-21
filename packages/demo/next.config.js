@@ -5,9 +5,28 @@ const links = loadLinks();
 const packageInfo = require('./config/package-info');
 
 const withTM = require('next-transpile-modules')([
-  '@pie-framework/mathquill', // 👈 your package name
+  '@pie-framework/mathquill',
+  '@pie-lib/charting',
+  '@pie-lib/config-ui',
+  '@pie-lib/correct-answer-toggle',
+  '@pie-lib/drag',
+  '@pie-lib/editable-html',
+  '@pie-lib/graphing',
+  '@pie-lib/icons',
+  '@pie-lib/mask-markup',
+  '@pie-lib/math-evaluator',
+  '@pie-lib/math-input',
+  '@pie-lib/math-rendering',
+  '@pie-lib/math-toolbar',
+  '@pie-lib/plot',
+  '@pie-lib/render-ui',
+  '@pie-lib/rubric',
+  '@pie-lib/scoring-config',
+  '@pie-lib/style-utils',
+  '@pie-lib/text-select',
+  '@pie-lib/tools',
+  '@pie-lib/translator',
 ]);
-
 
 const getAssetPrefix = () => {
   if (process.env.NODE_ENV !== 'production') {
@@ -20,9 +39,17 @@ const getAssetPrefix = () => {
 const nextConfig = {
   reactStrictMode: true,
   webpack: (config) => {
+    config.cache = false;
     const publicPath = `${getAssetPrefix()}/_next/static`;
 
     config.resolve.mainFields = ['browser', 'main'];
+
+    // Ensure all modules use the same React instance
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'react': path.resolve(__dirname, '../../node_modules/react'),
+      'react-dom': path.resolve(__dirname, '../../node_modules/react-dom'),
+    };
 
     // Optional: keep url-loader rule if you still want inlined assets
     config.module.rules.push({
@@ -32,24 +59,6 @@ const nextConfig = {
         limit: 10000,
         outputPath: 'static',
         publicPath,
-      },
-    });
-
-    config.module.rules.push({
-      test: /\.[jt]sx?$/,
-      include: [
-        path.resolve(__dirname, '../../node_modules/@tiptap/core'),
-        path.resolve(__dirname, '../../node_modules/@tiptap/pm'),
-        path.resolve(__dirname, '../../node_modules/@tiptap/extension-color'),
-        path.resolve(__dirname, '../../node_modules/@tiptap/extension-text-style'),
-        path.resolve(__dirname, '../../node_modules/@tiptap/extension-list-item'),
-        path.resolve(__dirname, '../../node_modules/@tiptap/starter-kit'),
-      ],
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['next/babel'],
-        },
       },
     });
 
@@ -70,7 +79,7 @@ const nextConfig = {
         acc[l.path] = { page: l.path };
         return acc;
       },
-      { '/': { page: '/' } }
+      { '/': { page: '/' } },
     );
   },
 

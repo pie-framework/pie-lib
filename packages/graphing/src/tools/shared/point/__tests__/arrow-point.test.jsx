@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme/build';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { ArrowPoint } from '../index';
 import { graphProps } from '../../../../__tests__/utils';
@@ -7,10 +7,12 @@ import { gridDraggable, utils } from '@pie-lib/plot';
 
 const { xy } = utils;
 jest.mock('../../../../utils', () => {
-  const { point } = jest.requireActual('../../../../utils');
+  const { point, getAngleDeg, arrowDimensions } = jest.requireActual('../../../../utils');
   return {
     bounds: jest.fn(),
     point,
+    getAngleDeg,
+    arrowDimensions,
   };
 });
 
@@ -24,9 +26,8 @@ jest.mock('@pie-lib/plot', () => {
 });
 
 describe('ArrowPoint', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -34,17 +35,20 @@ describe('ArrowPoint', () => {
       graphProps: graphProps(),
       from: xy(0, 0),
       to: xy(1, 1),
+      x: 0,
+      y: 0,
     };
     const props = { ...defaults, ...extras };
-    return shallow(<ArrowPoint {...props} />);
+    return render(<ArrowPoint {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
+
   describe('gridDraggable options', () => {
     let opts;
     let domain;
@@ -60,8 +64,8 @@ describe('ArrowPoint', () => {
         max: 1,
         step: 1,
       };
-      const w = wrapper();
-      opts = gridDraggable.mock.calls[0][0];
+      renderComponent();
+      opts = gridDraggable.mock.calls[gridDraggable.mock.calls.length - 1][0];
     });
 
     describe('bounds', () => {

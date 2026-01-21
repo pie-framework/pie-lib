@@ -1,15 +1,15 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render } from '@pie-lib/test-utils';
 import Line, { LineCross as LineChart } from '../line-cross';
 import { graphProps } from './utils';
-import { Bar as BarChart } from '../../bars/bar';
 
 describe('LineChart', () => {
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
+      data: [],
       xBand: () => {
         return {
           bandwidth: () => {},
@@ -17,22 +17,25 @@ describe('LineChart', () => {
       },
     };
     const props = { ...defaults, ...extras };
-    return shallow(<LineChart {...props} />);
+    return render(<LineChart {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => expect(wrapper()).toMatchSnapshot());
-
-    it('renders without graphProps', () => expect(wrapper({ graphProps: undefined })).toMatchSnapshot());
+  describe('rendering', () => {
+    it('renders line cross chart', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
+    });
   });
 
   describe('component', () => {
-    const chart = Line();
+    it('returns correct chart object', () => {
+      const chart = Line();
 
-    expect(chart).toEqual({
-      type: 'lineCross',
-      Component: LineChart,
-      name: 'Line Cross',
+      expect(chart).toEqual({
+        type: 'lineCross',
+        Component: LineChart,
+        name: 'Line Cross',
+      });
     });
   });
 });

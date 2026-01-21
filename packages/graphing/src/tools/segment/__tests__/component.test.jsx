@@ -1,13 +1,12 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { Line } from '../component';
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
 import { utils } from '@pie-lib/plot';
 const { xy } = utils;
 describe('Line', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -17,12 +16,12 @@ describe('Line', () => {
       to: xy(1, 1),
     };
     const props = { ...defaults, ...extras };
-    return shallow(<Line {...props} />);
+    return render(<Line {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      const w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

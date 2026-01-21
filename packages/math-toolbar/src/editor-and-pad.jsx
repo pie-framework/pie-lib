@@ -1,21 +1,217 @@
 import React from 'react';
 import debug from 'debug';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import isEqual from 'lodash/isEqual';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 
 import { HorizontalKeypad, mq, updateSpans } from '@pie-lib/math-input';
-import { color, InputContainer } from '@pie-lib/render-ui';
+import { color } from '@pie-lib/render-ui';
 import { markFractionBaseSuperscripts } from './utils';
 
 const { commonMqFontStyles, commonMqKeyboardStyles, longdivStyles, supsubStyles } = mq.CommonMqStyles;
 const log = debug('@pie-lib:math-toolbar:editor-and-pad');
 
 const decimalRegex = /\.|,/g;
+
+const MathToolbarContainer = styled('div')(({ theme }) => ({
+  zIndex: 9,
+  position: 'relative',
+  textAlign: 'center',
+  width: 'auto',
+  '& > .mq-math-mode': {
+    border: 'solid 1px lightgrey',
+  },
+  '& > .mq-focused': {
+    outline: 'none',
+    boxShadow: 'none',
+    border: `dotted 1px ${theme.palette.primary.main}`,
+    borderRadius: '0px',
+  },
+  '& .mq-overarrow-inner': {
+    border: 'none !important',
+    paddingTop: '0 !important',
+  },
+  '& .mq-overarrow-inner-right': {
+    display: 'none !important',
+  },
+  '& .mq-overarrow-inner-left': {
+    display: 'none !important',
+  },
+  '& .mq-longdiv-inner': {
+    borderTop: '1px solid !important',
+    paddingTop: '1.5px !important',
+  },
+  '& .mq-overarrow.mq-arrow-both': {
+    top: '7.8px',
+    marginTop: '0px',
+    minWidth: '1.23em',
+  },
+  '& .mq-parallelogram': {
+    lineHeight: 0.85,
+  },
+}));
+
+const InputAndTypeContainer = styled('div')(({ theme, hide }) => ({
+  display: hide ? 'none' : 'flex',
+  alignItems: 'center',
+  '& .mq-editable-field .mq-cursor': {
+    top: '-4px',
+  },
+  '& .mq-math-mode .mq-selection, .mq-editable-field .mq-selection': {
+    paddingTop: '18px',
+  },
+  '& .mq-math-mode .mq-overarrow': {
+    fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+  },
+  '& .mq-math-mode .mq-overline .mq-overline-inner': {
+    paddingTop: '0.4em !important',
+  },
+  '& .mq-overarrow.mq-arrow-both': {
+    minWidth: '1.23em',
+    '& *': {
+      lineHeight: '1 !important',
+    },
+    '&:before': {
+      top: '-0.45em',
+      left: '-1px',
+    },
+    '&:after': {
+      position: 'absolute !important',
+      top: '0px !important',
+      right: '-2px',
+    },
+    '&.mq-empty:after': {
+      top: '-0.45em',
+    },
+  },
+  '& .mq-overarrow.mq-arrow-right': {
+    '&:before': {
+      top: '-0.4em',
+      right: '-1px',
+    },
+  },
+  '& *': {
+    ...commonMqFontStyles,
+    ...supsubStyles,
+    ...longdivStyles,
+    '& .mq-math-mode .mq-sqrt-prefix': {
+      verticalAlign: 'baseline !important',
+      top: '1px !important',
+      left: '-0.1em !important',
+    },
+    '& .mq-math-mode .mq-overarc ': {
+      paddingTop: '0.45em !important',
+    },
+    '& .mq-math-mode .mq-empty': {
+      padding: '9px 1px !important',
+    },
+    '& .mq-math-mode .mq-root-block': {
+      paddingTop: '10px',
+    },
+    '& .mq-scaled .mq-sqrt-prefix': {
+      top: '0 !important',
+    },
+    '& .mq-math-mode .mq-longdiv .mq-longdiv-inner': {
+      marginLeft: '4px !important',
+      paddingTop: '6px !important',
+      paddingLeft: '6px !important',
+    },
+    '& .mq-math-mode .mq-paren': {
+      verticalAlign: 'top !important',
+      padding: '1px 0.1em !important',
+    },
+    '& .mq-math-mode .mq-sqrt-stem': {
+      borderTop: '0.07em solid',
+      marginLeft: '-1.5px',
+      marginTop: '-2px !important',
+      paddingTop: '5px !important',
+    },
+    '& .mq-math-mode .mq-denominator': {
+      marginTop: '-5px !important',
+      padding: '0.5em 0.1em 0.1em !important',
+    },
+    '& .mq-math-mode .mq-numerator, .mq-math-mode .mq-over': {
+      padding: '0 0.1em !important',
+      paddingBottom: '0 !important',
+      marginBottom: '-2px',
+    },
+  },
+  '& span[data-prime="true"]': {
+    fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+  },
+}));
+
+const StyledFormControl = styled(FormControl)({
+  flex: 'initial',
+  width: '25%',
+  minWidth: '100px',
+  marginLeft: '15px',
+  marginTop: '5px',
+  marginBottom: '5px',
+  marginRight: '5px',
+  '& label': {
+    fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+  },
+  '& div': {
+    fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+  },
+});
+
+const StyledInputLabel = styled(InputLabel)(() => ({
+  backgroundColor: 'transparent',
+}));
+
+const InputContainerDiv = styled('div')(({ theme, error }) => ({
+  minWidth: '500px',
+  maxWidth: '900px',
+  minHeight: '30px',
+  width: '100%',
+  display: 'flex',
+  marginTop: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+  ...(error && {
+    border: '2px solid red',
+  }),
+  '& .mq-sqrt-prefix .mq-scaled': {
+    verticalAlign: 'middle !important',
+  },
+}));
+
+const MathEditor = styled(mq.Input)(({ controlledKeypadMode }) => ({
+  maxWidth: controlledKeypadMode ? '400px' : '500px',
+  color: color.text(),
+  backgroundColor: color.background(),
+  padding: '2px',
+}));
+
+const AddAnswerBlockButton = styled(Button)({
+  position: 'absolute',
+  right: '12px',
+  border: '1px solid lightgrey',
+  color: color.text(),
+});
+
+const StyledHr = styled('hr')(({ theme }) => ({
+  padding: 0,
+  margin: 0,
+  height: '1px',
+  border: 'none',
+  borderBottom: `solid 1px ${theme.palette.primary.main}`,
+}));
+
+const KeyboardContainer = styled(HorizontalKeypad)(({ mode }) => ({
+  ...commonMqKeyboardStyles,
+  ...(mode === 'language' && {
+    '& *': {
+      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
+    },
+  }),
+}));
 
 const toNodeData = (data) => {
   if (!data) {
@@ -56,7 +252,6 @@ export class EditorAndPad extends React.Component {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func.isRequired,
-    classes: PropTypes.object,
     setKeypadInteraction: PropTypes.func,
   };
 
@@ -218,7 +413,6 @@ export class EditorAndPad extends React.Component {
       latex,
       onFocus,
       onBlur,
-      classes,
       error,
     } = this.props;
     const shouldShowKeypad = !controlledKeypad || (controlledKeypad && showKeypad);
@@ -227,11 +421,20 @@ export class EditorAndPad extends React.Component {
     log('[render]', latex);
 
     return (
-      <div className={cx(classes.mathToolbar, classNames.mathToolbar)}>
-        <div className={cx(classes.inputAndTypeContainer, { [classes.hide]: hideInput })}>
+      <MathToolbarContainer className={classNames.mathToolbar}>
+        <InputAndTypeContainer hide={hideInput}>
           {controlledKeypadMode && (
-            <InputContainer label="Equation Editor" className={classes.selectContainer}>
-              <Select className={classes.select} onChange={this.onEditorTypeChange} value={this.state.equationEditor}>
+            <StyledFormControl variant={'standard'}>
+              <StyledInputLabel id="equation-editor-label">{'Equation Editor'}</StyledInputLabel>
+              <Select
+                labelId="equation-editor-label"
+                id="equation-editor-select"
+                name="equationEditor"
+                label={'Equation Editor'}
+                onChange={this.onEditorTypeChange}
+                value={this.state.equationEditor}
+                MenuProps={{ transitionDuration: { enter: 225, exit: 195 } }}
+              >
                 <MenuItem value="non-negative-integers">Numeric - Non-Negative Integers</MenuItem>
                 <MenuItem value="integers">Numeric - Integers</MenuItem>
                 <MenuItem value="decimals">Numeric - Decimals</MenuItem>
@@ -245,10 +448,10 @@ export class EditorAndPad extends React.Component {
                 <MenuItem value={'statistics'}>Statistics</MenuItem>
                 <MenuItem value={'item-authoring'}>Item Authoring</MenuItem>
               </Select>
-            </InputContainer>
+            </StyledFormControl>
           )}
-          <div className={cx(classes.inputContainer, error ? classes.error : '')}>
-            <mq.Input
+          <InputContainerDiv error={error}>
+            <MathEditor
               onFocus={() => {
                 onFocus && onFocus();
                 this.updateDisable(false);
@@ -257,243 +460,39 @@ export class EditorAndPad extends React.Component {
                 this.updateDisable(false);
                 onBlur && onBlur(event);
               }}
-              className={cx(classes.mathEditor, classNames.editor, !controlledKeypadMode ? classes.longMathEditor : '')}
-              innerRef={(r) => (this.input = r)}
+              className={(classNames && classNames.editor) || ''}
+              controlledKeypadMode={controlledKeypadMode}
+              ref={(r) => (this.input = r)}
               latex={latex}
               onChange={this.onEditorChange}
             />
-          </div>
-        </div>
+          </InputContainerDiv>
+        </InputAndTypeContainer>
         {allowAnswerBlock && (
-          <Button
-            className={classes.addAnswerBlockButton}
+          <AddAnswerBlockButton
             type="primary"
             style={{ bottom: shouldShowKeypad ? '320px' : '20px' }}
             onClick={this.onAnswerBlockClick}
             disabled={addDisabled}
           >
             + Response Area
-          </Button>
+          </AddAnswerBlockButton>
         )}
-        <hr className={classes.hr} />
+        <StyledHr />
         {shouldShowKeypad && (
-          <HorizontalKeypad
-            className={cx(classes[keypadMode], classes.keyboard)}
+          <KeyboardContainer
+            mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
             controlledKeypadMode={controlledKeypadMode}
             layoutForKeyPad={layoutForKeyPad}
             additionalKeys={additionalKeys}
-            mode={controlledKeypadMode ? this.state.equationEditor : keypadMode}
             onClick={this.onClick}
             noDecimal={noDecimal}
             setKeypadInteraction={setKeypadInteraction}
           />
         )}
-      </div>
+      </MathToolbarContainer>
     );
   }
 }
 
-const styles = (theme) => ({
-  inputAndTypeContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    '& .mq-editable-field .mq-cursor': {
-      top: '-4px',
-    },
-    '& .mq-math-mode .mq-selection, .mq-editable-field .mq-selection': {
-      paddingTop: '18px',
-    },
-    '& .mq-math-mode .mq-overarrow': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
-    '& .mq-math-mode .mq-overline .mq-overline-inner': {
-      paddingTop: '0.4em !important',
-    },
-    '& .mq-overarrow.mq-arrow-both': {
-      minWidth: '1.23em',
-      '& *': {
-        lineHeight: '1 !important',
-      },
-      '&:before': {
-        top: '-0.45em',
-        left: '-1px',
-      },
-      '&:after': {
-        position: 'absolute !important',
-        top: '0px !important',
-        right: '-2px',
-      },
-      '&.mq-empty:after': {
-        top: '-0.45em',
-      },
-    },
-    '& .mq-overarrow.mq-arrow-right': {
-      '&:before': {
-        top: '-0.4em',
-        right: '-1px',
-      },
-    },
-
-    '& *': {
-      ...commonMqFontStyles,
-      ...supsubStyles,
-      ...longdivStyles,
-      '& .mq-math-mode .mq-sqrt-prefix': {
-        verticalAlign: 'baseline !important',
-        top: '1px !important',
-        left: '-0.1em !important',
-      },
-
-      '& .mq-math-mode .mq-overarc ': {
-        paddingTop: '0.45em !important',
-      },
-
-      '& .mq-math-mode .mq-empty': {
-        padding: '9px 1px !important',
-      },
-
-      '& .mq-math-mode .mq-root-block': {
-        paddingTop: '10px',
-      },
-
-      '& .mq-scaled .mq-sqrt-prefix': {
-        top: '0 !important',
-      },
-
-      '& .mq-math-mode .mq-longdiv .mq-longdiv-inner': {
-        marginLeft: '4px !important',
-        paddingTop: '6px !important',
-        paddingLeft: '6px !important',
-      },
-
-      '& .mq-math-mode .mq-paren': {
-        verticalAlign: 'top !important',
-        padding: '1px 0.1em !important',
-      },
-
-      '& .mq-math-mode .mq-sqrt-stem': {
-        borderTop: '0.07em solid',
-        marginLeft: '-1.5px',
-        marginTop: '-2px !important',
-        paddingTop: '5px !important',
-      },
-
-      '& .mq-math-mode .mq-denominator': {
-        marginTop: '-5px !important',
-        padding: '0.5em 0.1em 0.1em !important',
-      },
-
-      '& .mq-math-mode .mq-numerator, .mq-math-mode .mq-over': {
-        padding: '0 0.1em !important',
-        paddingBottom: '0 !important',
-        marginBottom: '-2px',
-      },
-    },
-
-    '& span[data-prime="true"]': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
-  },
-  hide: {
-    display: 'none',
-  },
-  selectContainer: {
-    flex: 'initial',
-    width: '25%',
-    minWidth: '100px',
-    marginLeft: '15px',
-    marginTop: '5px',
-    marginBottom: '5px',
-    marginRight: '5px',
-
-    '& label': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
-
-    '& div': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
-  },
-  mathEditor: {
-    maxWidth: '400px',
-    color: color.text(),
-    backgroundColor: color.background(),
-    padding: '2px',
-  },
-  longMathEditor: {
-    maxWidth: '500px',
-  },
-  addAnswerBlockButton: {
-    position: 'absolute',
-    right: '12px',
-    border: '1px solid lightgrey',
-  },
-  hr: {
-    padding: 0,
-    margin: 0,
-    height: '1px',
-    border: 'none',
-    borderBottom: `solid 1px ${theme.palette.primary.main}`,
-  },
-  mathToolbar: {
-    zIndex: 9,
-    position: 'relative',
-    textAlign: 'center',
-    width: 'auto',
-    '& > .mq-math-mode': {
-      border: 'solid 1px lightgrey',
-    },
-    '& > .mq-focused': {
-      outline: 'none',
-      boxShadow: 'none',
-      border: `dotted 1px ${theme.palette.primary.main}`,
-      borderRadius: '0px',
-    },
-    '& .mq-overarrow-inner': {
-      border: 'none !important',
-      paddingTop: '0 !important',
-    },
-    '& .mq-overarrow-inner-right': {
-      display: 'none !important',
-    },
-    '& .mq-overarrow-inner-left': {
-      display: 'none !important',
-    },
-    '& .mq-longdiv-inner': {
-      borderTop: '1px solid !important',
-      paddingTop: '1.5px !important',
-    },
-    '& .mq-overarrow.mq-arrow-both': {
-      top: '7.8px',
-      marginTop: '0px',
-      minWidth: '1.23em',
-    },
-    '& .mq-parallelogram': {
-      lineHeight: 0.85,
-    },
-  },
-  inputContainer: {
-    minWidth: '500px',
-    maxWidth: '900px',
-    minHeight: '30px',
-    width: '100%',
-    display: 'flex',
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-
-    '& .mq-sqrt-prefix .mq-scaled': {
-      verticalAlign: 'middle !important',
-    },
-  },
-  error: {
-    border: '2px solid red',
-  },
-  keyboard: commonMqKeyboardStyles,
-  language: {
-    '& *': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
-  },
-});
-
-export default withStyles(styles)(EditorAndPad);
+export default EditorAndPad;

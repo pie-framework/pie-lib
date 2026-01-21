@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import NumberTextField from '../number-text-field';
 
-const DisplaySize = withStyles((theme) => ({
-  displaySize: {
-    display: 'flex',
-    paddingTop: theme.spacing.unit,
-  },
-}))(({ size, label, classes, onChange }) => {
+const StyledDisplaySize = styled('div')(({ theme }) => ({
+  display: 'flex',
+  paddingTop: theme.spacing(1),
+}));
+
+const DisplaySize = ({ size, label, onChange }) => {
   const updateSize = (key, v) => {
     onChange({ ...size, [key]: v });
   };
+  
   return (
     <div>
       <Typography>{label}</Typography>
-      <div className={classes.displaySize}>
+      <StyledDisplaySize>
         <NumberTextField
           label="Width"
           type="number"
@@ -35,10 +36,10 @@ const DisplaySize = withStyles((theme) => ({
           value={size.height}
           onChange={(e, v) => updateSize('height', v)}
         />
-      </div>
+      </StyledDisplaySize>
     </div>
   );
-});
+};
 
 DisplaySize.propTypes = {
   size: PropTypes.shape({

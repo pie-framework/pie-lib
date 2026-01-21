@@ -1,33 +1,31 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
 import isFinite from 'lodash/isFinite';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Remove from '@material-ui/icons/Remove';
-import Add from '@material-ui/icons/Add';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Remove from '@mui/icons-material/Remove';
+import Add from '@mui/icons-material/Add';
 import * as math from 'mathjs';
 
-const styles = () => ({
-  input: {
-    '& input[type=number]': {
-      '-moz-appearance': 'textfield',
-    },
-    '& input[type=number]::-webkit-outer-spin-button': {
-      '-webkit-appearance': 'none',
-      margin: 0,
-    },
-    '& input[type=number]::-webkit-inner-spin-button': {
-      '-webkit-appearance': 'none',
-      margin: 0,
-    },
+const StyledTextField = styled(TextField)(() => ({
+  '& input[type=number]': {
+    MozAppearance: 'textfield',
   },
-  iconButton: {
-    padding: '2px',
+  '& input[type=number]::-webkit-outer-spin-button': {
+    WebkitAppearance: 'none',
+    margin: 0,
   },
-});
+  '& input[type=number]::-webkit-inner-spin-button': {
+    WebkitAppearance: 'none',
+    margin: 0,
+  },
+}));
+
+const StyledIconButton = styled(IconButton)(() => ({
+  padding: '2px',
+}));
 
 const fallbackNumber = (min, max) => {
   if (!isFinite(min) && !isFinite(max)) {
@@ -45,7 +43,6 @@ const fallbackNumber = (min, max) => {
 
 export class NumberTextFieldCustom extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     customValues: PropTypes.array,
     disabled: PropTypes.bool,
@@ -242,7 +239,6 @@ export class NumberTextFieldCustom extends React.Component {
   render() {
     const {
       className,
-      classes,
       label,
       disabled,
       error,
@@ -257,7 +253,7 @@ export class NumberTextFieldCustom extends React.Component {
       type = 'number',
     } = this.props;
     const { value } = this.state;
-    const names = classNames(className, classes.input);
+    const names = className;
     //Logic to disable the increment and decrement buttons
     let disabledStart = false;
     let disabledEnd = false;
@@ -270,7 +266,7 @@ export class NumberTextFieldCustom extends React.Component {
     }
 
     return (
-      <TextField
+      <StyledTextField
         variant={variant}
         inputRef={(ref) => (this.inputRef = ref)}
         disabled={disabled}
@@ -303,24 +299,22 @@ export class NumberTextFieldCustom extends React.Component {
           disableUnderline: disableUnderline,
           startAdornment: (
             <InputAdornment position="start">
-              <IconButton
-                className={classes.iconButton}
+              <StyledIconButton
                 disabled={disabled ? disabled : disabledStart}
                 onClick={(e) => this.changeValue(e, -1, true)}
-              >
+                size="large">
                 <Remove fontSize="small" />
-              </IconButton>
+              </StyledIconButton>
             </InputAdornment>
           ),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton
-                className={classes.iconButton}
+              <StyledIconButton
                 disabled={disabled ? disabled : disabledEnd}
                 onClick={(e) => this.changeValue(e, 1, true)}
-              >
+                size="large">
                 <Add fontSize="small" />
-              </IconButton>
+              </StyledIconButton>
             </InputAdornment>
           ),
         }}
@@ -334,4 +328,4 @@ export class NumberTextFieldCustom extends React.Component {
   }
 }
 
-export default withStyles(styles)(NumberTextFieldCustom);
+export default NumberTextFieldCustom;

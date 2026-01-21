@@ -156,6 +156,7 @@ export default class Static extends React.Component {
 
   announceLatexConversion = (newLatex) => {
     if (!this.state) {
+      // eslint-disable-next-line no-console
       console.error('State is not initialized');
       return;
     }
@@ -178,7 +179,9 @@ export default class Static extends React.Component {
             this.announceMessage(announcement);
           }
         } catch (e) {
+          // eslint-disable-next-line no-console
           console.warn('Error parsing latex:', e.message);
+          // eslint-disable-next-line no-console
           console.warn(e);
         }
       }

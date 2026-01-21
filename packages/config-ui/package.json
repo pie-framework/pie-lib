@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "11.30.2-beta-14",
+  "version": "11.30.4-next.0",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -8,14 +8,14 @@
   },
   "scripts": {},
   "dependencies": {
-    "@material-ui/core": "^3.8.3",
-    "@material-ui/icons": "^3.0.2",
-    "@pie-lib/editable-html-tip-tap": "^1.0.20",
-    "@pie-lib/icons": "^2.24.1",
-    "@pie-lib/render-ui": "^4.35.2",
+    "@emotion/react": "^11.14.0",
+    "@emotion/style": "^0.8.0",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
+    "@pie-lib/editable-html": "11.21.4-next.0",
+    "@pie-lib/icons": "2.24.3-next.0",
+    "@pie-lib/render-ui": "4.35.4-next.0",
     "assert": "^1.4.1",
-    "classnames": "^2.2.6",
-    "complex.js": "2.1.1",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "mathjs": "^7.0.1",
@@ -23,11 +23,11 @@
     "react-measure": "^2.2.2"
   },
   "devDependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "peerDependencies": {
-    "react": "18.2.0"
+    "react": "^18.2.0"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516"
 }

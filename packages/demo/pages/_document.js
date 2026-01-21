@@ -1,53 +1,57 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
-import flush from 'styled-jsx/server';
+import createEmotionServer from '@emotion/server/create-instance';
+import { createEmotionCache } from '../source/createEmotionCache';
 import getPageContext from '../source/getPageContext';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const pageContext = getPageContext();
+    const cache = createEmotionCache(); // New cache per request
+    const { extractCriticalToChunks } = createEmotionServer(cache);
 
     const originalRenderPage = ctx.renderPage;
+    const pageContext = getPageContext();
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) => <App pageContext={pageContext} {...props} />,
+        enhanceApp: (App) =>
+          function EnhanceApp(props) {
+            return <App emotionCache={cache} pageContext={pageContext} {...props} />;
+          },
       });
 
     const initialProps = await Document.getInitialProps(ctx);
+    const emotionStyles = extractCriticalToChunks(initialProps.html);
+    const emotionStyleTags = emotionStyles.styles.map((style) => (
+      <style
+        data-emotion={`${style.key} ${style.ids.join(' ')}`}
+        key={style.key}
+        dangerouslySetInnerHTML={{ __html: style.css }}
+      />
+    ));
 
     return {
       ...initialProps,
       pageContext,
-      styles: (
-        <>
-          <style
-            id="jss-server-side"
-            dangerouslySetInnerHTML={{
-              __html: pageContext.sheetsRegistry.toString(),
-            }}
-          />
-          {flush() || null}
-        </>
-      ),
+      emotionStyleTags,
     };
   }
 
   render() {
-    const { pageContext, path } = this.props;
+    const { pageContext, emotionStyleTags } = this.props;
 
     return (
       <Html lang="en" dir="ltr">
         <Head>
-          <title>{path}</title>
           <meta charSet="utf-8" />
-          {/* Use minimum-scale=1 to enable GPU rasterization */}
-          <meta
-            name="viewport"
-            content="user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height"
-          />
+
           {/* PWA primary color */}
-          <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          {pageContext?.theme?.palette?.primary?.main && (
+            <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          )}
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+          {/* Inject MUI styles */}
+          <meta name="emotion-insertion-point" content="" />
+          {emotionStyleTags}
 
           {/* MathJax Script for rendering mathematical expressions */}
           {/*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>*/}

@@ -1,20 +1,22 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { Grid } from '../grid';
 import { graphProps } from './utils';
 
 describe('Grid', () => {
-  let w;
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       graphProps: graphProps(),
     };
     const props = { ...defaults, ...extras };
-    return shallow(<Grid {...props} />);
+    return render(<Grid {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => expect(wrapper()).toMatchSnapshot());
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
+    });
   });
 });

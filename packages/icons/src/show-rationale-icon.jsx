@@ -1,32 +1,33 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import { normalizeSize } from './sized';
 
-const Info = ({ fg }) => (
+// Info icon
+const Info = ({ fill }) => (
   <g>
-    <rect x="-115" y="136.7" className={fg} width="3" height="3" />
+    <rect x="-115" y="136.7" width="3" height="3" fill={fill} />
     <polygon
-      className={fg}
       points="-112,147.7 -112,141.7 -115.8,141.7 -115.8,143.7 -114,143.7 -114,147.7 -116.2,147.7 -116.2,149.7 -109.8,149.7 -109.8,147.7"
+      fill={fill}
     />
   </g>
 );
 
-Info.propTypes = {
-  fg: PropTypes.string,
-};
+Info.propTypes = { fill: PropTypes.string.isRequired };
 
-const Border = ({ className }) => (
+// Border path
+const Border = ({ fill }) => (
   <path
-    className={className}
-    d="M-113,158.5c-8,0-14.5-6.5-14.5-14.5s6.5-14.5,14.5-14.5s14.5,6.5,14.5,14.5S-105,158.5-113,158.5zM-113,130.5c-7.4,0-13.5,6.1-13.5,13.5s6.1,13.5,13.5,13.5s13.5-6.1,13.5-13.5S-105.6,130.5-113,130.5z"
+    d="M-113,158.5c-8,0-14.5-6.5-14.5-14.5s6.5-14.5,14.5-14.5s14.5,6.5,14.5,14.5S-105,158.5-113,158.5z
+       M-113,130.5c-7.4,0-13.5,6.1-13.5,13.5s6.1,13.5,13.5,13.5s13.5-6.1,13.5-13.5S-105.6,130.5-113,130.5z"
+    fill={fill}
   />
 );
-Border.propTypes = {
-  className: PropTypes.string,
-};
-const Circle = () => (
+
+Border.propTypes = { fill: PropTypes.string.isRequired };
+
+// Circle background
+const Circle = ({ fill = '#FFFFFF' }) => (
   <g>
     <path
       style={{
@@ -46,19 +47,21 @@ const Circle = () => (
       }}
       d="M-112,159.5c-8,0-14.5-6.5-14.5-14.5s6.5-14.5,14.5-14.5s14.5,6.5,14.5,14.5S-104,159.5-112,159.5z"
     />
-    <circle style={{ fill: '#FFFFFF' }} cx="-113" cy="144" r="14" />
+    <circle cx="-113" cy="144" r="14" fill={fill} />
   </g>
 );
 
+Circle.propTypes = { fill: PropTypes.string };
+
+// Root wrapper for sizing
 const Root = ({ children, size }) => {
-  size = normalizeSize(size);
+  const normalizedSize = normalizeSize(size);
   const style = {
-    height: size,
-    width: size,
+    height: normalizedSize,
+    width: normalizedSize,
     display: 'inline-block',
     position: 'relative',
   };
-
   return (
     <div style={style}>
       <svg preserveAspectRatio="xMinYMin meet" viewBox="-129 128 34 34">
@@ -67,74 +70,56 @@ const Root = ({ children, size }) => {
     </div>
   );
 };
+
 Root.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-const styles = {
-  fg: {
-    fill: '#1a9cff',
-  },
-  bg: {
-    fill: '#bce2ff',
-  },
-  border: {
-    fill: '#bbe3fd',
-  },
-  whiteBorder: {
-    fill: 'white',
-  },
-};
-
+// Main ShowRationale component
 export class ShowRationale extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const { classes } = this.props;
+    const { iconSet, open, fg = '#1a9cff', bg = '#bce2ff', border = '#bbe3fd' } = this.props;
 
-    const info = <Info fg={classes.fg} />;
+    const info = <Info fill={fg} />;
+
     const icons = {
       check: (
-        <Root>
+        <Root size={this.props.size}>
           <Circle />
           {info}
-          <Border className={classes.border} />
+          <Border fill={border} />
         </Root>
       ),
       emoji: (
-        <Root>
+        <Root size={this.props.size}>
           <Circle />
           {info}
-          <Border className={classes.border} />
+          <Border fill={border} />
         </Root>
       ),
       open: {
         check: (
-          <Root>
-            <circle style={{ fill: '#FFFFFF' }} cx="-113" cy="144" r="14" />
-            <Info fg={classes.bg} border={classes.whiteBorder} />
+          <Root size={this.props.size}>
+            <circle cx="-113" cy="144" r="14" fill="#FFFFFF" />
+            <Info fill={bg} />
+            <Border fill="#FFFFFF" />
           </Root>
         ),
         emoji: (
-          <Root>
-            <circle style={{ fill: '#FFFFFF' }} cx="-113" cy="144" r="14" />
-            <Info fg={classes.bg} border={classes.border} />
+          <Root size={this.props.size}>
+            <circle cx="-113" cy="144" r="14" fill="#FFFFFF" />
+            <Info fill={bg} />
+            <Border fill={border} />
           </Root>
         ),
       },
     };
 
-    if (this.props.open === true) {
-      return icons.open[this.props.iconSet];
+    if (open === true) {
+      return icons.open[iconSet];
     } else {
-      return icons[this.props.iconSet];
+      return icons[iconSet];
     }
   }
 }
@@ -142,11 +127,19 @@ export class ShowRationale extends React.Component {
 ShowRationale.propTypes = {
   iconSet: PropTypes.oneOf(['emoji', 'check']),
   open: PropTypes.bool,
+  fg: PropTypes.string,
+  bg: PropTypes.string,
+  border: PropTypes.string,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 ShowRationale.defaultProps = {
   iconSet: 'check',
   open: false,
+  fg: '#1a9cff',
+  bg: '#bce2ff',
+  border: '#bbe3fd',
+  size: 30,
 };
 
-export default withStyles(styles)(ShowRationale);
+export default ShowRationale;

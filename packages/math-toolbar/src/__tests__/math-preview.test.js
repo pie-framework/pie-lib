@@ -1,31 +1,22 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-
+import { render } from '@testing-library/react';
 import MathPreview from '../math-preview';
 
-describe('snapshot', () => {
-  let wrapper;
+describe('MathPreview', () => {
+  const defaultProps = {
+    node: {
+      data: {
+        get: jest.fn().mockReturnValue('sqrt(5)'),
+      },
+    },
+    classes: {},
+    isSelected: false,
+    onFocus: jest.fn(),
+    onBlur: jest.fn(),
+  };
 
-  beforeAll(() => {
-    wrapper = (extras) => {
-      const defaults = {
-        node: {
-          data: {
-            get: jest.fn().mockReturnValue('sqrt(5)'),
-          },
-        },
-        classes: {},
-        isSelected: false,
-        onFocus: jest.fn(),
-        onBlur: jest.fn(),
-      };
-      const props = { ...defaults, ...extras };
-
-      return shallow(<MathPreview {...props} />);
-    };
-  });
-
-  it('renders', () => {
-    expect(wrapper()).toMatchSnapshot();
+  it('renders with default props', () => {
+    const { container } = render(<MathPreview {...defaultProps} />);
+    expect(container.firstChild).toBeInTheDocument();
   });
 });

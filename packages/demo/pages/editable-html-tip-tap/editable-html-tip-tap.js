@@ -1,23 +1,21 @@
 import EditableHtml, { ALL_PLUGINS } from '@pie-lib/editable-html-tip-tap';
-import grey from '@material-ui/core/colors/grey';
 import React from 'react';
 import _ from 'lodash';
 import debug from 'debug';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Input from '@material-ui/core/Input';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Input from '@mui/material/Input';
 import withRoot from '../../source/withRoot';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import InputChooser from '../../source/editable-html/input-chooser';
 import { hasText } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
-import { Button } from '@material-ui/core';
+import { grey } from '@mui/material/colors';
 
 const Latex = '\\(2x\\ \\le4y\\ +\\ 8\\)';
 
@@ -97,39 +95,40 @@ const inputOptions = [
 
 const html = inputOptions[1].html;
 
-class RawMarkupPreview extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-    markup: PropTypes.string.isRequired,
-  };
+const PrettyPrint = styled('pre')({
+  whiteSpace: 'normal',
+  width: '100%',
+});
 
+class MarkupPreview extends React.Component {
   render() {
-    const { markup, classes } = this.props;
+    const { markup } = this.props;
     return (
       <div>
         <Typography variant="h6">Markup</Typography>
         <div ref={(r) => (this.preview = r)} dangerouslySetInnerHTML={{ __html: markup }} />
         <hr />
         <Typography variant="subtitle1">Raw</Typography>
-        <pre className={classes.prettyPrint}>{markup}</pre>
+        <PrettyPrint>{markup}</PrettyPrint>
         <hr />
       </div>
     );
   }
 }
 
-const MarkupPreview = withStyles(() => ({
-  prettyPrint: {
-    whiteSpace: 'normal',
-    width: '100%',
-  },
-}))(RawMarkupPreview);
+const Controls = styled('div')(({ theme }) => ({
+  backgroundColor: grey[200],
+  padding: theme.spacing(1),
+  marginTop: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+}));
+
+const SizeInput = styled(TextField)(({ theme }) => ({
+  width: '60px',
+  paddingLeft: theme.spacing(2),
+}));
 
 class RteDemo extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -303,7 +302,6 @@ class RteDemo extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     const {
       markup,
       showHighlight,
@@ -337,7 +335,6 @@ class RteDemo extends React.Component {
           respAreaToolbar: null,
           onHandleAreaChange: this.onHandleAreaChange,
         }}
-        className={classes.markup}
         markup={markup}
         onChange={this.onChange}
         imageSupport={imageSupport}
@@ -352,7 +349,7 @@ class RteDemo extends React.Component {
         <br />
         <br />
         <InputChooser inputOptions={inputOptions} onChange={(markup) => this.setState({ markup })} />
-        <div className={classes.controls}>
+        <Controls>
           <Typography variant="headline">Runtime Options</Typography>
           <FormGroup row>
             <FormControlLabel
@@ -399,14 +396,12 @@ class RteDemo extends React.Component {
               }
               label="disabled"
             />
-            <TextField
-              className={classes.sizeInput}
+            <SizeInput
               placeholder={'width'}
               value={width}
               onChange={(event) => this.setState({ width: event.target.value })}
             />
-            <TextField
-              className={classes.sizeInput}
+            <SizeInput
               placeholder={'height'}
               value={height}
               onChange={(event) => this.setState({ height: event.target.value })}
@@ -469,7 +464,7 @@ class RteDemo extends React.Component {
               label="special enabled"
             />
           </FormGroup>
-        </div>
+        </Controls>
         <EditableHtml
           markup={markup}
           onChange={this.onChange}
@@ -557,17 +552,4 @@ class RteDemo extends React.Component {
   }
 }
 
-const styles = (theme) => ({
-  controls: {
-    backgroundColor: grey[200],
-    padding: theme.spacing.unit,
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-  },
-  sizeInput: {
-    width: '60px',
-    paddingLeft: theme.spacing.unit * 2,
-  },
-});
-
-export default withRoot(withStyles(styles)(RteDemo));
+export default withRoot(RteDemo);

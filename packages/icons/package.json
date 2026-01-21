@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/icons",
-  "version": "2.24.1",
+  "version": "2.24.3-next.0",
   "description": "Some simple icons",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -8,21 +8,27 @@
   "keywords": [
     "pie",
     "react",
-    "material-ui"
+    "mui"
   ],
   "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "classnames": "^2.2.6",
+    "@emotion/react": "^11.14.0",
+    "@emotion/style": "^0.8.0",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
     "prop-types": "^15.6.2"
   },
   "peerDependencies": {
-    "@material-ui/core": "^3.8.3",
-    "react": "18.2.0"
+    "@mui/material": "^7.3.4",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@pie-lib/test-utils": "0.22.3-next.0"
   },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "31368da9311d16744eb1293ff5f8495551427037"
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { default as MaterialInput } from '@material-ui/core/Input';
+import { default as MaterialInput } from '@mui/material/Input';
 import { InputContainer } from '@pie-lib/render-ui';
 
 export default class Input extends React.Component {

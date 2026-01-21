@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { ToolPropTypeFields } from '../shared/types';
 import { BasePoint } from '../shared/point';
 import chunk from 'lodash/chunk';
@@ -233,7 +232,7 @@ export class RawBaseComponent extends React.Component {
     const polygonLabelIndex = (points && points.length) || 0;
     let polygonLabelNode = null;
 
-    if (labelNode && middle && middle.hasOwnProperty('label')) {
+    if (labelNode && middle && Object.prototype.hasOwnProperty.call(middle, 'label')) {
       polygonLabelNode = ReactDOM.createPortal(
         <MarkLabel
           inputRef={(r) => (this.input[polygonLabelIndex] = r)}
@@ -285,7 +284,7 @@ export class RawBaseComponent extends React.Component {
               {...common}
               onClick={this.clickPoint.bind(this, p, index)}
             />,
-            labelNode && p.hasOwnProperty('label')
+            labelNode && Object.prototype.hasOwnProperty.call(p, 'label')
               ? ReactDOM.createPortal(
                   <MarkLabel
                     inputRef={(r) => (this.input[index] = r)}
@@ -304,7 +303,7 @@ export class RawBaseComponent extends React.Component {
   }
 }
 
-export const BaseComponent = withStyles(() => ({}))(RawBaseComponent);
+export const BaseComponent = RawBaseComponent;
 
 export default class Component extends React.Component {
   static propTypes = {

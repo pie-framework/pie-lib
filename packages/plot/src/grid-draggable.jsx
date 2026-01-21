@@ -38,6 +38,15 @@ export const gridDraggable = (opts) => (Comp) => {
       onMove: PropTypes.func,
       graphProps: GraphPropsType.isRequired,
     };
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        startX: null,
+        startY: null,
+      };
+    }
+
     grid = () => {
       const { graphProps } = this.props;
       const { scale, domain, range } = graphProps;
@@ -87,10 +96,10 @@ export const gridDraggable = (opts) => (Comp) => {
       const grid = this.grid();
 
       const scaled = {
-        left: (bounds.left / grid.interval) * grid.x,
-        right: (bounds.right / grid.interval) * grid.x,
-        top: (bounds.top / grid.interval) * grid.y,
-        bottom: (bounds.bottom / grid.interval) * grid.y,
+        left: bounds.left * grid.x,
+        right: bounds.right * grid.x,
+        top: bounds.top * grid.y,
+        bottom: bounds.bottom * grid.y,
       };
       log('[getScaledBounds]: ', scaled);
       return scaled;

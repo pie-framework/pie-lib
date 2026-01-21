@@ -1,8 +1,5 @@
 import React from 'react';
-import debug from 'debug';
 import TextAlignIcon from './icons';
-
-const log = debug('@pie-lib:editable-html:plugins:characters');
 
 /**
  * Plugin in order to be able to change alignment for the selected text(s) element(s).

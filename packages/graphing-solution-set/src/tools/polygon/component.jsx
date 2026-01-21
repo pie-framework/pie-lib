@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { ToolPropTypeFields } from '../shared/types';
 import chunk from 'lodash/chunk';
 import initial from 'lodash/initial';
@@ -64,7 +63,6 @@ export const swap = (arr, ...rest) => {
 
 export class RawBaseComponent extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     correctness: PropTypes.string,
@@ -221,7 +219,7 @@ export class RawBaseComponent extends React.Component {
       isSolution = false,
     } = this.props;
     const polygonLabelIndex = (points && points.length) || 0;
-    if (labelNode && middle && middle.hasOwnProperty('label')) {
+    if (labelNode && middle && Object.prototype.hasOwnProperty.call(middle, 'label')) {
       ReactDOM.createPortal(
         <MarkLabel
           inputRef={(r) => (this.input[polygonLabelIndex] = r)}
@@ -249,7 +247,7 @@ export class RawBaseComponent extends React.Component {
   }
 }
 
-export const BaseComponent = withStyles(() => ({}))(RawBaseComponent);
+export const BaseComponent = RawBaseComponent;
 
 export default class Component extends React.Component {
   static propTypes = {

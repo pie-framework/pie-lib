@@ -1,31 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as icons from '@pie-lib/icons';
-import Popover from '@material-ui/core/Popover';
-import { withStyles } from '@material-ui/core/styles';
+import Popover from '@mui/material/Popover';
+import { styled } from '@mui/material/styles';
 import Feedback from './feedback';
 import debug from 'debug';
 
 const log = debug('pie-libs:render-ui:response-indicators');
 
-const styles = () => ({
-  responseIndicator: {
-    cursor: 'pointer',
-  },
-  paper: {
-    padding: '0',
-    borderRadius: '4px',
-  },
-  popover: {
-    cursor: 'pointer',
-  },
-  popperClose: {
-    cursor: 'pointer',
-  },
+const ResponseIndicatorContainer = styled('div')(({ hasFeedback }) => ({
+  cursor: hasFeedback ? 'pointer' : 'default',
+}));
+
+const StyledPopover = styled(Popover)({
+  cursor: 'pointer',
+});
+
+const PopoverPaper = styled('div')({
+  padding: '0',
+  borderRadius: '4px',
 });
 
 const BuildIndicator = (Icon, correctness) => {
-  class RawIndicator extends React.Component {
+  class Indicator extends React.Component {
     constructor(props) {
       super(props);
       this.state = {};
@@ -41,20 +38,17 @@ const BuildIndicator = (Icon, correctness) => {
     };
 
     render() {
-      const { feedback, classes } = this.props;
+      const { feedback } = this.props;
       const { anchorEl } = this.state;
       return (
-        <div className={feedback && classes.responseIndicator}>
+        <ResponseIndicatorContainer hasFeedback={!!feedback}>
           <span ref={(r) => (this.icon = r)} onClick={this.handlePopoverOpen}>
             <Icon />
           </span>
 
           {feedback && (
-            <Popover
-              className={classes.popover}
-              classes={{
-                paper: classes.paper,
-              }}
+            <StyledPopover
+              PaperComponent={PopoverPaper}
               open={!!anchorEl}
               anchorEl={anchorEl}
               anchorOrigin={{
@@ -68,19 +62,18 @@ const BuildIndicator = (Icon, correctness) => {
               onClose={this.handlePopoverClose}
             >
               <Feedback feedback={feedback} correctness={correctness} />
-            </Popover>
+            </StyledPopover>
           )}
-        </div>
+        </ResponseIndicatorContainer>
       );
     }
   }
 
-  RawIndicator.propTypes = {
+  Indicator.propTypes = {
     feedback: PropTypes.string,
-    classes: PropTypes.object.isRequired,
   };
 
-  return withStyles(styles)(RawIndicator);
+  return Indicator;
 };
 
 export const Correct = BuildIndicator(icons.Correct, 'correct');

@@ -1,8 +1,4 @@
-import green from '@material-ui/core/colors/green';
-import orange from '@material-ui/core/colors/orange';
-import pink from '@material-ui/core/colors/pink';
-import indigo from '@material-ui/core/colors/indigo';
-import red from '@material-ui/core/colors/red';
+import { green, orange, pink, indigo, red } from '@mui/material/colors';
 
 export const defaults = {
   TEXT: 'black',

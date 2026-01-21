@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [8.31.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.31.1...@pie-lib/demo@8.31.2) (2025-11-27)
+# [9.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.31.3-next.0...@pie-lib/demo@9.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/demo
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [8.31.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.3...@pie-lib/demo@8.31.1) (2025-10-22)
+## [8.31.3-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.44.0-mui-update.0...@pie-lib/demo@8.31.3-next.0) (2026-01-19)
 
 
 ### Bug Fixes
@@ -22,150 +22,95 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [8.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.30.0...@pie-lib/demo@8.31.0) (2025-10-16)
+## [8.31.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.31.1...@pie-lib/demo@8.31.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/demo
 
+## [8.31.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.3...@pie-lib/demo@8.31.1) (2025-10-22)
 
+### Bug Fixes
 
+- bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
 
+# [8.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.30.0...@pie-lib/demo@8.31.0) (2025-10-16)
+
+**Note:** Version bump only for package @pie-lib/demo
 
 # [8.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.0...@pie-lib/demo@8.30.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.0...@pie-lib/demo@8.29.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 # [8.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.0...@pie-lib/demo@8.28.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.27.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.2...@pie-lib/demo@8.27.3) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.27.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.1...@pie-lib/demo@8.27.2) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 ## [8.27.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.27.0...@pie-lib/demo@8.27.1) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.3.12...@pie-lib/demo@8.27.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [8.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.25.0...@pie-lib/demo@8.26.0) (2025-09-18)
+
 ## [8.3.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.3.11...@pie-lib/demo@8.3.12) (2025-09-11)
 
 **Note:** Version bump only for package @pie-lib/demo
-
-
-
-
 
 ## [8.3.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.3.10...@pie-lib/demo@8.3.11) (2025-09-09)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.24.0...@pie-lib/demo@8.25.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.3.11...@pie-lib/demo@8.24.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [8.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.22.0...@pie-lib/demo@8.23.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.21.0...@pie-lib/demo@8.22.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/demo
 
-
-
-
-
 # [8.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.3.11...@pie-lib/demo@8.21.0) (2025-09-17)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 ## [8.20.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.1.16...@pie-lib/demo@8.20.1) (2025-08-11)
 

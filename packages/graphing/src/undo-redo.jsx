@@ -1,16 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
 import { color } from '@pie-lib/render-ui';
 import Translator from '@pie-lib/translator';
 
 const { translator } = Translator;
 
+const StyledButton = styled(Button)(({ theme }) => ({
+  color: color.text(),
+  fontWeight: 'bold',
+  marginBottom: theme.spacing(0.5),
+  '&:not(:last-of-type)': {
+    marginRight: theme.spacing(0.5),
+  },
+}));
+
 export class UndoRedo extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     onUndo: PropTypes.func.isRequired,
     onRedo: PropTypes.func.isRequired,
@@ -20,31 +28,21 @@ export class UndoRedo extends React.Component {
   static defaultProps = {};
 
   render() {
-    const { classes, className, onUndo, onRedo, onReset, language } = this.props;
+    const { className, onUndo, onRedo, onReset, language } = this.props;
     return (
       <div className={classNames(className)}>
-        <Button classes={{ root: classes.button }} onClick={() => onUndo(true)}>
+        <StyledButton onClick={() => onUndo(true)}>
           {translator.t('common:undo', { lng: language })}
-        </Button>
-        <Button classes={{ root: classes.button }} onClick={() => onRedo(true)}>
+        </StyledButton>
+        <StyledButton onClick={() => onRedo(true)}>
           {translator.t('graphing.redo', { lng: language })}
-        </Button>
-        <Button classes={{ root: classes.button }} onClick={() => onReset()}>
+        </StyledButton>
+        <StyledButton onClick={() => onReset()}>
           {translator.t('graphing.reset', { lng: language })}
-        </Button>
+        </StyledButton>
       </div>
     );
   }
 }
 
-const styles = (theme) => ({
-  button: {
-    color: color.text(),
-    marginBottom: theme.spacing.unit / 2,
-    '&:not(:last-of-type)': {
-      marginRight: theme.spacing.unit / 2,
-    },
-  },
-});
-
-export default withStyles(styles)(UndoRedo);
+export default UndoRedo;

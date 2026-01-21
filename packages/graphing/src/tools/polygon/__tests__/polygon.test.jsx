@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { Polygon, getPointString } from '../polygon';
 import { graphProps } from '../../../__tests__/utils';
@@ -6,8 +6,7 @@ import { graphProps } from '../../../__tests__/utils';
 const xy = (x, y) => ({ x, y });
 
 describe('Polygon', () => {
-  let w;
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -15,13 +14,13 @@ describe('Polygon', () => {
       closed: false,
     };
     const props = { ...defaults, ...extras };
-    return shallow(<Polygon {...props} />);
+    return render(<Polygon {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper({ points: [{ x: 1, y: 1 }] });
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent({ points: [{ x: 1, y: 1 }] });
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

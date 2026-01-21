@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import * as mq from './mq';
 import { baseSet } from './keys';
 import KeyPad from './keypad';
@@ -9,9 +8,35 @@ import debug from 'debug';
 
 const log = debug('pie-lib:math-input');
 
+const grey = 'rgba(0, 0, 0, 0.23)';
+
+const MathInputContainer = styled('div')(({ theme, focused }) => ({
+  borderRadius: '4px',
+  border: `solid 1px ${focused ? theme.palette.primary.main : grey}`,
+  marginTop: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+  transition: 'border 200ms linear',
+}));
+
+const PadContainer = styled('div')({
+  width: '100%',
+  display: 'flex',
+});
+
+const StyledMqInput = styled(mq.Input)(({ theme }) => ({
+  width: '100%',
+  border: `solid 0px ${theme.palette.primary.light}`,
+  transition: 'border 200ms linear',
+  padding: theme.spacing(1),
+  '&.mq-focused': {
+    outline: 'none',
+    boxShadow: 'none',
+    border: `solid 0px ${theme.palette.primary.dark}`,
+  },
+}));
+
 export class MathInput extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     keyset: PropTypes.array,
     displayMode: PropTypes.oneOf(['block', 'block-on-focus']),
@@ -67,15 +92,14 @@ export class MathInput extends React.Component {
   };
 
   render() {
-    const { classes, className, keyset, latex } = this.props;
+    const { className, keyset, latex } = this.props;
     const { focused } = this.state;
 
     const showKeypad = true; // TODO: add support for different displayModes - displayMode === 'block' || focused;
 
     return (
-      <div className={classNames(classes.mathInput, className, focused && classes.focused)}>
-        <mq.Input
-          className={classes.mqInput}
+      <MathInputContainer className={className} focused={focused}>
+        <StyledMqInput
           innerRef={(r) => (this.input = r)}
           onFocus={this.inputFocus}
           onBlur={this.inputBlur}
@@ -83,46 +107,13 @@ export class MathInput extends React.Component {
           onChange={this.changeLatex}
         />
         {showKeypad && (
-          <div className={classes.pad}>
+          <PadContainer>
             <KeyPad baseSet={baseSet} additionalKeys={keyset} onPress={this.keypadPress} />
-          </div>
+          </PadContainer>
         )}
-      </div>
+      </MathInputContainer>
     );
   }
 }
 
-const grey = 'rgba(0, 0, 0, 0.23)';
-const styles = (theme) => ({
-  formGroup: {
-    display: 'flex',
-    textAlign: 'right',
-    float: 'right',
-  },
-  pad: {
-    width: '100%',
-    display: 'flex',
-  },
-  mathInput: {
-    borderRadius: '4px',
-    border: `solid 1px ${grey}`,
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-    transition: 'border 200ms linear',
-  },
-  focused: {
-    border: `solid 1px ${theme.palette.primary.main}`,
-  },
-  mqInput: {
-    width: '100%',
-    border: `solid 0px ${theme.palette.primary.light}`,
-    transition: 'border 200ms linear',
-    padding: theme.spacing.unit,
-    '&.mq-focused': {
-      outline: 'none',
-      boxShadow: 'none',
-      border: `solid 0px ${theme.palette.primary.dark}`,
-    },
-  },
-});
-export default withStyles(styles)(MathInput);
+export default MathInput;

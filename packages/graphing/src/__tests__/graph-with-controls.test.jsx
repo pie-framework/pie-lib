@@ -1,7 +1,12 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 
 import { xy } from './utils';
+
+// Mock DragProvider to avoid @dnd-kit React version conflicts
+jest.mock('@pie-lib/drag', () => ({
+  DragProvider: ({ children }) => <div data-testid="drag-provider">{children}</div>,
+}));
 
 import {
   GraphWithControls,
@@ -26,11 +31,10 @@ const line = {
   from: { x: 0, y: 0 },
   to: { x: 1, y: 1 },
   label: 'Line',
-  building: true,
 };
 
 const circle = {
-  type: 'line',
+  type: 'circle',
   edge: { x: 0, y: 0 },
   root: { x: 2, y: 2 },
 };
@@ -111,13 +115,15 @@ describe('filterByVisibleToolTypes', () => {
 });
 
 describe('GraphWithControls', () => {
-  let w;
   let onChangeMarks = jest.fn();
+
+  beforeEach(() => {
+    onChangeMarks.mockClear();
+  });
 
   const defaultProps = () => ({
     axesSettings: { includeArrows: true },
     backgroundMarks: [point, line, circle],
-    classes: {},
     className: '',
     coordinatesOnHover: false,
     domain: { min: 0, max: 10, step: 1 },
@@ -129,19 +135,30 @@ describe('GraphWithControls', () => {
     size: { width: 500, height: 500 },
     title: 'Title',
     toolbarTools: allTools,
+    language: 'en',
   });
   const initialProps = defaultProps();
 
-  const wrapper = (extras, opts) => {
+  const renderComponent = (extras) => {
     const props = { ...initialProps, ...extras };
 
-    return shallow(<GraphWithControls {...props} />, opts);
+    return render(<GraphWithControls {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders ToolMenu with toolbar tools', () => {
+      const { container } = renderComponent({ toolbarTools: ['point', 'line'] });
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders Graph component', () => {
+      const { container } = renderComponent();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
   });
 });

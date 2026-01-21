@@ -3,133 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [6.31.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.31.1) (2025-10-22)
+# [7.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.31.2-next.0...@pie-lib/math-input@7.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
 
 
 
+
+## [6.31.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.45.0-mui-update.0...@pie-lib/math-input@6.31.2-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+## [6.31.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.31.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/math-input
 
 # [6.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.31.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.30.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
 
 # [6.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.29.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.27.0...@pie-lib/math-input@6.28.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.11.4...@pie-lib/math-input@6.27.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [6.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.25.0...@pie-lib/math-input@6.26.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.24.0...@pie-lib/math-input@6.25.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.11.4...@pie-lib/math-input@6.24.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [6.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.22.0...@pie-lib/math-input@6.23.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 # [6.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.21.0...@pie-lib/math-input@6.22.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/math-input
-
-
-
-
 
 # [6.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.20.1...@pie-lib/math-input@6.21.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/math-input
 
-
-
-
-
 ## [6.20.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.11.4...@pie-lib/math-input@6.20.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [6.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.11.4...@pie-lib/math-input@6.20.0) (2025-08-07)
 

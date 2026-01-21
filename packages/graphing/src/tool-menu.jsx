@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import ToggleBar, { MiniButton } from './toggle-bar';
+import ToggleBar from './toggle-bar';
 
 export class ToolMenu extends React.Component {
   static propTypes = {

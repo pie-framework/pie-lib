@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { usePreview } from 'react-dnd-multi-backend';
+import React, { useEffect, useRef, useState } from 'react';
+import { DragOverlay, useDndContext } from '@dnd-kit/core';
 import { PreviewPrompt, color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
 
@@ -54,99 +54,91 @@ const styles = {
   },
 };
 
-const getPrompt = (itemType, item) => {
-  switch (itemType) {
-    // DRAG-IN-THE-BLANK
+const getPrompt = (dragData) => {
+  if (!dragData) return undefined;
+
+  // Handle different drag data structures based on the component type
+  if (dragData.choiceId) {
+    // DraggableChoice format
+    return dragData.value;
+  }
+  
+  // Legacy format support
+  switch (dragData.itemType) {
     case 'MaskBlank':
-      return item?.choice?.value;
-    // IMAGE-CLOZE-ASSOCIATION
-    case 'react-dnd-response':
-      return item?.value;
-    // MATCH-LIST
+      return dragData.choice?.value;
+    case 'dnd-kit-response':
+      return dragData.value;
     case 'Answer':
-      return item?.value;
-    // PLACEMENT-ORDERING
+      return dragData.value;
     case 'Tile':
-      return item?.value;
+      return dragData.value;
+    case 'categorize':
+      return dragData.value;
     default:
-      return item?.itemType === 'categorize' ? item?.value : undefined;
+      return dragData.value;
   }
 };
 
-const getCustomStyle = (itemType, item, touchPosition, style) => {
-  const transform = `translate(${touchPosition.x}px, ${touchPosition.y}px)`;
-  const top = style?.top || 0;
-  const left = style?.left || 0;
-  const position = style?.position || 'fixed';
+const getCustomStyle = (dragData) => {
+  if (!dragData) return {};
 
-  return {
-    position,
-    top,
-    left,
-    transform,
-    ...(itemType === 'MaskBlank' ? styles.maskBlank : {}),
-    ...(item?.itemType === 'categorize' ? styles.categorize : {}),
-    ...(itemType === 'Answer' ? styles.matchList : {}),
-    ...(itemType === 'Tile' ? styles.placementOrdering : {}),
-    ...(itemType === 'react-dnd-response' ? styles.ica : {}),
+  const baseStyle = {
+    cursor: 'grabbing',
+    opacity: 0.8,
+    transform: 'rotate(5deg)', // Slight rotation for visual feedback
   };
+
+  // Apply specific styles based on item type
+  if (dragData.itemType === 'MaskBlank') {
+    return { ...baseStyle, ...styles.maskBlank };
+  }
+  if (dragData.itemType === 'categorize') {
+    return { ...baseStyle, ...styles.categorize };
+  }
+  if (dragData.itemType === 'Answer') {
+    return { ...baseStyle, ...styles.matchList };
+  }
+  if (dragData.itemType === 'Tile') {
+    return { ...baseStyle, ...styles.placementOrdering };
+  }
+  if (dragData.itemType === 'dnd-kit-response') {
+    return { ...baseStyle, ...styles.ica };
+  }
+
+  // Default style for choice items
+  return { ...baseStyle, ...styles.categorize };
 };
 
 const PreviewComponent = () => {
-  const preview = usePreview();
-  const { itemType, item, style, display } = preview;
-  const [touchPosition, setTouchPosition] = useState({ x: 0, y: 0 });
+  const { active } = useDndContext();
   const [zoomLevel, setZoomLevel] = useState(1);
-
-  const handleTouchMove = useCallback(
-    (event) => {
-      if (event.touches.length > 0) {
-        const touch = event.touches[0];
-        const touchOffset = 1;
-        setTouchPosition({
-          x: (touch.clientX + touchOffset) / zoomLevel,
-          y: (touch.clientY + touchOffset) / zoomLevel,
-        });
-      }
-    },
-    [zoomLevel],
-  );
-
   const root = useRef(null);
 
+  const dragData = active?.data?.current;
+  const isActive = !!active;
+
   useEffect(() => {
-    if (display && root.current) {
+    if (isActive && root.current) {
       renderMath(root.current);
 
       // Adjusted for precise zoom level calculation in Online Testing, targeting the specific class pattern .asmt-zoomable.asmt-zoom-NR .asmt-question .padding
       const zoomAffectedElement = document.querySelector('.padding') || document.body;
-
       setZoomLevel(parseFloat(getComputedStyle(zoomAffectedElement).zoom) || 1);
     }
-  }, [display, item?.choice?.value, item?.value, itemType, item]);
+  }, [isActive, dragData]);
 
-  useEffect(() => {
-    const touchMoveListener = (event) => handleTouchMove(event);
-    if (display) {
-      window.addEventListener('touchmove', touchMoveListener);
-    }
-    return () => {
-      window.removeEventListener('touchmove', touchMoveListener);
-    };
-  }, [display, handleTouchMove]);
-
-  if (!display) {
-    return null;
-  }
-
-  const customStyle = getCustomStyle(itemType, item, touchPosition, style);
-
-  const prompt = getPrompt(itemType, item);
+  const customStyle = getCustomStyle(dragData);
+  const prompt = getPrompt(dragData);
 
   return (
-    <div ref={root} style={customStyle}>
-      <PreviewPrompt className="label" prompt={prompt} tagName="span" />
-    </div>
+    <DragOverlay>
+      {isActive && prompt && (
+        <div ref={root} style={customStyle}>
+          <PreviewPrompt className="label" prompt={prompt} tagName="span" />
+        </div>
+      )}
+    </DragOverlay>
   );
 };
 

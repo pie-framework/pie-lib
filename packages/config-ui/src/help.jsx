@@ -1,42 +1,34 @@
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 import PropTypes from 'prop-types';
 
-import Button from '@material-ui/core/Button';
-import HelpIcon from '@material-ui/icons/Help';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@mui/material/Button';
+import HelpIcon from '@mui/icons-material/Help';
+import IconButton from '@mui/material/IconButton';
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
-const RawHelpButton = ({ onClick, classes }) => (
-  <IconButton
-    classes={{
-      label: classes.icon,
-    }}
-    onClick={onClick}
-  >
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  '&:hover': {
+    color: theme.palette.grey[300],
+  },
+}));
+
+export const HelpButton = ({ onClick }) => (
+  <StyledIconButton onClick={onClick} size="large">
     <HelpIcon />
-  </IconButton>
+  </StyledIconButton>
 );
 
-RawHelpButton.propTypes = {
+HelpButton.propTypes = {
   onClick: PropTypes.func,
-  classes: PropTypes.object.isRequired,
 };
 
-export const HelpButton = withStyles((theme) => ({
-  icon: {
-    '&:hover': {
-      color: theme.palette.grey[300],
-    },
-  },
-}))(RawHelpButton);
-
 export const HelpDialog = ({ open, onClose, children, title }) => (
-  <Dialog open={open} onRequestClose={onClose}>
+  <Dialog open={open} onClose={onClose}>
     <DialogTitle>{title}</DialogTitle>
     <DialogContent>
       <DialogContentText>{children}</DialogContentText>
