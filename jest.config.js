@@ -17,7 +17,7 @@ module.exports = {
 
   // Transform ES modules from these packages
   transformIgnorePatterns: [
-    'node_modules/(?!(@mui|@emotion|@testing-library|@dnd-kit|@tiptap)/)',
+    'node_modules/(?!(@mui|@emotion|@testing-library|@dnd-kit|@tiptap|@mapbox)/)',
   ],
 
   // Custom resolver to handle node: protocol imports

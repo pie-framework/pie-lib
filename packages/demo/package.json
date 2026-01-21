@@ -8,7 +8,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
     "@emotion/style": "^0.8.0",
-    "@mapbox/point-geometry": "^0.1.0",
+    "@mapbox/point-geometry": "^1.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@pie-framework/math-expressions": "^3.0.0",
