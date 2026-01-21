@@ -2,7 +2,7 @@
   "packages/**/!(lib)/**/*.{js,jsx}": [
     "pretty-quick --staged",
     "eslint --fix",
-    "jest --bail --findRelatedTests",
+    "jest --bail --findRelatedTests --passWithNoTests",
     "git add"
   ]
 }
