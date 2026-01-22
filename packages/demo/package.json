@@ -42,7 +42,6 @@
     "@visx/point": "^3.0.0",
     "@visx/scale": "^3.0.0",
     "@visx/shape": "^3.0.0",
-    "assert": "^1.4.1",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
     "d3-scale": "^2.1.2",

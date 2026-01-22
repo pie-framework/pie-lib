@@ -1,4 +1,3 @@
-import { AssertionError } from 'assert';
 import * as utils from '../utils';
 
 const xy = utils.xy;

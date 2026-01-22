@@ -15,7 +15,6 @@
     "@pie-lib/editable-html": "11.21.4-next.0",
     "@pie-lib/icons": "2.24.3-next.0",
     "@pie-lib/render-ui": "4.35.4-next.0",
-    "assert": "^1.4.1",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "mathjs": "^7.0.1",
