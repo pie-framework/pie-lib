@@ -48,7 +48,7 @@ const processFile = (filePath, pkgName, pkgRoot, libRoot) => {
     const normalizedPath = './' + relativePath.replace(/\\/g, '/').replace(/\.(js|jsx)$/, '');
     const newRequirePath = normalizedPath;
 
-    console.log(`[${pkgName}] ✅ require("${requirePath}") → require("${newRequirePath}")`);
+    // console.log(`[${pkgName}] ✅ require("${requirePath}") → require("${newRequirePath}")`);
     modified = true;
 
     return `require("${newRequirePath}")`;

@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { color, InputContainer } from '@pie-lib/render-ui';
-import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Typography,
-} from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { NumberTextFieldCustom, Toggle } from '@pie-lib/config-ui';
-import EditableHTML from '@pie-lib/editable-html';
+import EditableHTML from '@pie-lib/editable-html-tip-tap';
 import { styled } from '@mui/material/styles';
 
 const Wrapper = styled('div')(() => ({
@@ -158,7 +153,7 @@ const AxisConfig = (props) => {
       )}
       {axisLabel && axisLabel.enabled && (
         <TextFieldMedium>
-          <InputContainer label={axisLabel.label || ''} >
+          <InputContainer label={axisLabel.label || ''}>
             <AxisLabel>
               <EditableHTML
                 onChange={(value) => onChange('axisLabel', value)}
@@ -325,32 +320,31 @@ const GridSetup = (props) => {
     </>
   );
 
-  const gridlinesConfig =
-    max.enabled ? (
-      <ColumnView>
-        <TextFieldLarge>
-          <NumberTextFieldCustom
-            label="Number of Vertical Gridlines"
-            value={domain.max}
-            min={!includeAxes && gridProps.min}
-            max={!includeAxes && gridProps.max}
-            variant="outlined"
-            onChange={(e, v) => onDomainChanged('max', v)}
-          />
-        </TextFieldLarge>
-        <TextFieldLarge>
-          <NumberTextFieldCustom
-            label="Number of Horizontal Gridlines"
-            value={range.max}
-            min={!includeAxes && gridProps.min}
-            max={!includeAxes && gridProps.max}
-            variant="outlined"
-            disabled={standardGrid}
-            onChange={(e, v) => onRangeChanged('max', v)}
-          />
-        </TextFieldLarge>
-      </ColumnView>
-    ) : null;
+  const gridlinesConfig = max.enabled ? (
+    <ColumnView>
+      <TextFieldLarge>
+        <NumberTextFieldCustom
+          label="Number of Vertical Gridlines"
+          value={domain.max}
+          min={!includeAxes && gridProps.min}
+          max={!includeAxes && gridProps.max}
+          variant="outlined"
+          onChange={(e, v) => onDomainChanged('max', v)}
+        />
+      </TextFieldLarge>
+      <TextFieldLarge>
+        <NumberTextFieldCustom
+          label="Number of Horizontal Gridlines"
+          value={range.max}
+          min={!includeAxes && gridProps.min}
+          max={!includeAxes && gridProps.max}
+          variant="outlined"
+          disabled={standardGrid}
+          onChange={(e, v) => onRangeChanged('max', v)}
+        />
+      </TextFieldLarge>
+    </ColumnView>
+  ) : null;
 
   return (
     <Wrapper>

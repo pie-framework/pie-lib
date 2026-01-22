@@ -6,14 +6,14 @@ import ActionDelete from '@mui/icons-material/Delete';
 import ArrowRight from '@mui/icons-material/SubdirectoryArrowRight';
 import IconButton from '@mui/material/IconButton';
 import { InputContainer } from '@pie-lib/render-ui';
-// import EditableHtml from '@pie-lib/editable-html';
+// import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import { InputCheckbox, InputRadio } from '../inputs';
 import FeedbackMenu from './feedback-menu';
 
 // - mathquill error window not defined
 let EditableHtml;
 if (typeof window !== 'undefined') {
-  EditableHtml = require('@pie-lib/editable-html')['default'];
+  EditableHtml = require('@pie-lib/editable-html-tip-tap')['default'];
 }
 
 const StyledEditorHolder = styled('div')(({ theme }) => ({
@@ -38,7 +38,6 @@ const EditableHtmlContainer = ({
   uploadSoundSupport,
   mathMlOptions = {},
 }) => {
-
   return (
     <InputContainer label={label} className={className}>
       <StyledEditorHolder>
@@ -288,81 +287,75 @@ export class ChoiceConfiguration extends React.Component {
     const InputToggle = mode === 'checkbox' ? InputCheckbox : InputRadio;
 
     return (
-        <StyledTopRow>
-          {index > 0 && (
-            <StyledIndex type="title">
-              {useLetterOrdering ? String.fromCharCode(96 + index).toUpperCase() : index}
-            </StyledIndex>
-          )}
+      <StyledTopRow>
+        {index > 0 && (
+          <StyledIndex type="title">
+            {useLetterOrdering ? String.fromCharCode(96 + index).toUpperCase() : index}
+          </StyledIndex>
+        )}
 
-          <StyledToggle>
-            <InputToggle
-              onChange={this.onCheckedChange}
-              label={!noLabels ? 'Correct' : ''}
-              checked={!!data.correct}
-              error={noCorrectAnswerError}
-            />
-          </StyledToggle>
+        <StyledToggle>
+          <InputToggle
+            onChange={this.onCheckedChange}
+            label={!noLabels ? 'Correct' : ''}
+            checked={!!data.correct}
+            error={noCorrectAnswerError}
+          />
+        </StyledToggle>
 
-          <StyledMiddleColumn>
-              <EditableHtmlContainer
-                label={!noLabels ? 'Label' : ''}
-                value={data.label}
-                onChange={this.onLabelChange}
-                imageSupport={imageSupport}
-                disableImageAlignmentButtons={disableImageAlignmentButtons}
-                disabled={disabled}
-                spellCheck={spellCheck}
-                nonEmpty={nonEmpty}
-                pluginOpts={pluginOpts}
-                toolbarOpts={toolbarOpts}
-                error={error}
-                uploadSoundSupport={uploadSoundSupport}
-                mathMlOptions={mathMlOptions}
-                maxImageWidth={maxImageWidth}
-                maxImageHeight={maxImageHeight}
-              />
-            {error && <StyledErrorText>{error}</StyledErrorText>}
-
-            {allowFeedBack && (
-              <Feedback
-                {...data.feedback}
-                correct={data.correct}
-                defaults={defaultFeedback}
-                onChange={this.onFeedbackValueChange}
-                toolbarOpts={toolbarOpts}
-              />
-            )}
-          </StyledMiddleColumn>
+        <StyledMiddleColumn>
+          <EditableHtmlContainer
+            label={!noLabels ? 'Label' : ''}
+            value={data.label}
+            onChange={this.onLabelChange}
+            imageSupport={imageSupport}
+            disableImageAlignmentButtons={disableImageAlignmentButtons}
+            disabled={disabled}
+            spellCheck={spellCheck}
+            nonEmpty={nonEmpty}
+            pluginOpts={pluginOpts}
+            toolbarOpts={toolbarOpts}
+            error={error}
+            uploadSoundSupport={uploadSoundSupport}
+            mathMlOptions={mathMlOptions}
+            maxImageWidth={maxImageWidth}
+            maxImageHeight={maxImageHeight}
+          />
+          {error && <StyledErrorText>{error}</StyledErrorText>}
 
           {allowFeedBack && (
-            <StyledFeedback>
-              <InputContainer label={!noLabels ? 'Feedback' : ''}>
-                <StyledFeedbackIcon>
-                  <FeedbackMenu
-                    onChange={this.onFeedbackTypeChange}
-                    value={data.feedback}
-                  />
-                </StyledFeedbackIcon>
-              </InputContainer>
-            </StyledFeedback>
+            <Feedback
+              {...data.feedback}
+              correct={data.correct}
+              defaults={defaultFeedback}
+              onChange={this.onFeedbackValueChange}
+              toolbarOpts={toolbarOpts}
+            />
           )}
+        </StyledMiddleColumn>
 
-          {allowDelete && (
-            <StyledDelete>
-              <InputContainer label={!noLabels ? 'Delete' : ''}>
-                <StyledDeleteIcon>
-                  <IconButton
-                    aria-label="delete"
-                    onClick={onDelete}
-                    size="large">
-                    <ActionDelete />
-                  </IconButton>
-                </StyledDeleteIcon>
-              </InputContainer>
-            </StyledDelete>
-          )}
-        </StyledTopRow>
+        {allowFeedBack && (
+          <StyledFeedback>
+            <InputContainer label={!noLabels ? 'Feedback' : ''}>
+              <StyledFeedbackIcon>
+                <FeedbackMenu onChange={this.onFeedbackTypeChange} value={data.feedback} />
+              </StyledFeedbackIcon>
+            </InputContainer>
+          </StyledFeedback>
+        )}
+
+        {allowDelete && (
+          <StyledDelete>
+            <InputContainer label={!noLabels ? 'Delete' : ''}>
+              <StyledDeleteIcon>
+                <IconButton aria-label="delete" onClick={onDelete} size="large">
+                  <ActionDelete />
+                </IconButton>
+              </StyledDeleteIcon>
+            </InputContainer>
+          </StyledDelete>
+        )}
+      </StyledTopRow>
     );
   }
 }

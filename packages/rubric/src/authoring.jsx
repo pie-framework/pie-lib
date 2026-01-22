@@ -18,7 +18,7 @@ import debug from 'debug';
 import takeRight from 'lodash/takeRight';
 import PointMenu from './point-menu';
 import range from 'lodash/range';
-import EditableHtml from '@pie-lib/editable-html';
+import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import { InputContainer } from '@pie-lib/config-ui';
 import { grey } from '@mui/material/colors';
 

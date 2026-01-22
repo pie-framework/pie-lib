@@ -4,15 +4,11 @@ import React from 'react';
 import { FeedbackSelector } from '../feedback-selector';
 
 // Mock the editable-html component to avoid window dependencies in tests
-jest.mock('@pie-lib/editable-html', () => {
+jest.mock('@pie-lib/editable-html-tip-tap', () => {
   return {
     __esModule: true,
     default: ({ markup, onChange }) => (
-      <textarea
-        data-testid="editable-html"
-        defaultValue={markup || ''}
-        onChange={(e) => onChange(e.target.value)}
-      />
+      <textarea data-testid="editable-html" defaultValue={markup || ''} onChange={(e) => onChange(e.target.value)} />
     ),
   };
 });
@@ -21,13 +17,7 @@ describe('feedback-selector', () => {
   let onChange;
 
   const renderComponent = (feedback = { type: 'default', default: 'hi' }) => {
-    return render(
-      <FeedbackSelector
-        label={'Feedback'}
-        onChange={onChange}
-        feedback={feedback}
-      />
-    );
+    return render(<FeedbackSelector label={'Feedback'} onChange={onChange} feedback={feedback} />);
   };
 
   beforeEach(() => {

@@ -4,14 +4,14 @@ import classnames from 'classnames';
 
 import { color } from '@pie-lib/render-ui';
 import { withMask } from './with-mask';
-//import EditableHtml from '@pie-lib/editable-html';
+//import EditableHtml from '@pie-lib/editable-html-tip-tap';
 
 let EditableHtml;
 let StyledEditableHtml;
 
 // - mathquill error window not defined
 if (typeof window !== 'undefined') {
-  EditableHtml = require('@pie-lib/editable-html')['default'];
+  EditableHtml = require('@pie-lib/editable-html-tip-tap')['default'];
   StyledEditableHtml = styled(EditableHtml)(() => ({
     display: 'inline-block',
     verticalAlign: 'middle',
@@ -25,19 +25,10 @@ if (typeof window !== 'undefined') {
       border: `1px solid ${color.incorrect()}`,
     },
   }));
-} 
+}
 
 const MaskedInput = (props) => (node, data) => {
-  const {
-    adjustedLimit,
-    disabled,
-    feedback,
-    showCorrectAnswer,
-    maxLength,
-    spellCheck,
-    pluginProps,
-    onChange,
-  } = props;
+  const { adjustedLimit, disabled, feedback, showCorrectAnswer, maxLength, spellCheck, pluginProps, onChange } = props;
   const dataset = node.data?.dataset || {};
 
   if (dataset.component === 'input') {
@@ -59,7 +50,7 @@ const MaskedInput = (props) => (node, data) => {
     const handleKeyDown = (event) => {
       // the keyCode value for the Enter/Return key is 13
       if (event.key === 'Enter' || event.keyCode === 13) {
-        return false;
+        return true;
       }
     };
 
@@ -76,7 +67,7 @@ const MaskedInput = (props) => (node, data) => {
         pluginProps={pluginProps}
         languageCharactersProps={[{ language: 'spanish' }]}
         spellCheck={spellCheck}
-        width={`calc(${width}em + 42px)`} // added 42px for left and right padding of editable-html
+        width={`calc(${width}em + 32px)`} // added 32px for left and right padding of editable-html
         onKeyDown={handleKeyDown}
         autoWidthToolbar
         toolbarOpts={{

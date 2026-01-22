@@ -9,7 +9,6 @@ import MathQuill from '@pie-framework/mathquill';
 import * as mq from '../mq';
 
 import { baseSet } from '../keys';
-import editableHtmlConstants from '../../../editable-html/src/constants';
 import { commonMqKeyboardStyles } from '../mq/common-mq-styles';
 import { sortKeys } from './keys-layout';
 import { indigo, pink } from '@mui/material/colors';
@@ -282,7 +281,7 @@ export class KeyPad extends React.Component {
 
   componentDidMount() {
     const keyPadElement = this.keypadRef?.current;
-    const mainContainer = keyPadElement?.closest(`.${editableHtmlConstants.MAIN_CONTAINER_CLASS}`);
+    const mainContainer = keyPadElement?.closest('.main-container');
     const currentToolbar = keyPadElement?.closest('.pie-toolbar');
 
     // need only for math keyboard so we need also controlledKeypadMode
@@ -312,7 +311,7 @@ export class KeyPad extends React.Component {
     const keyPadElement = this.keypadRef?.current;
     // need only for math keyboard
     if (this.props.controlledKeypadMode && keyPadElement) {
-      const mainContainer = keyPadElement.closest(`.${editableHtmlConstants.MAIN_CONTAINER_CLASS}`);
+      const mainContainer = keyPadElement.closest('.main-container');
 
       if (mainContainer) {
         mainContainer.style.height = 'unset';

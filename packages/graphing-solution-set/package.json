@@ -23,7 +23,7 @@
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@pie-lib/drag": "2.22.4-next.0",
-    "@pie-lib/editable-html": "11.21.4-next.0",
+    "@pie-lib/editable-html-tip-tap": "^1.0.20",
     "@pie-lib/graphing-utils": "1.21.3-next.0",
     "@pie-lib/plot": "2.27.4-next.0",
     "@pie-lib/render-ui": "4.35.4-next.0",

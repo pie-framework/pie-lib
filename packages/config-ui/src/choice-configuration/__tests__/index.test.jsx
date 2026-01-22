@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ChoiceConfiguration } from '../index';
 
-jest.mock('@pie-lib/editable-html', () => ({
+jest.mock('@pie-lib/editable-html-tip-tap', () => ({
   __esModule: true,
   default: ({ markup, onChange, disabled }) => (
     <textarea
