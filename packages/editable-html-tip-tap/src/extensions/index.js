@@ -30,12 +30,12 @@ export const ALL_PLUGINS = [
   'subscript',
 ];
 
-export const DEFAULT_EXTENSIONS = ALL_PLUGINS.filter((plug) => !['responseArea', 'h3', 'blockquote'].includes(plug));
+export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => !['responseArea', 'h3', 'blockquote'].includes(plug));
 
 export const buildExtensions = (activeExtensions, customExtensions, opts) => {
   log('[buildPlugins] opts: ', opts);
 
-  activeExtensions = activeExtensions || DEFAULT_EXTENSIONS;
+  activeExtensions = activeExtensions || DEFAULT_PLUGINS;
 
   const addIf = (key, shouldAdd = true) => activeExtensions.includes(key) && shouldAdd && key;
 
