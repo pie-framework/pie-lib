@@ -40,6 +40,6 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "gitHead": "c79c2c7a2369b07e6515972578cb1940ff4ae0df",
+  "gitHead": "d33251d33967cfc861dfe0ac05a1cac7b91bb7e1",
   "scripts": {}
 }
