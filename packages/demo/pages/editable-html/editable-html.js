@@ -1,4 +1,4 @@
-import EditableHtml, { ALL_PLUGINS } from '@pie-lib/editable-html';
+import EditableHtml, { ALL_PLUGINS } from '@pie-lib/editable-html-tip-tap';
 import React from 'react';
 import _ from 'lodash';
 import debug from 'debug';
