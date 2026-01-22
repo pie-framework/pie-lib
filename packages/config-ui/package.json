@@ -12,7 +12,7 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/editable-html-tip-tap": "^1.0.20",
+    "@pie-lib/editable-html-tip-tap": "^1.0.21-next.6053",
     "@pie-lib/icons": "2.24.3-next.0",
     "@pie-lib/render-ui": "4.35.4-next.0",
     "assert": "^1.4.1",
