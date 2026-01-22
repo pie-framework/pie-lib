@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "3.26.4-next.0",
+  "version": "4.1.0-next.0",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.jsx",
@@ -26,5 +26,5 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "gitHead": "31368da9311d16744eb1293ff5f8495551427037"
+  "gitHead": "dfd077c558a3173f1bebcd62b660ad4055402d7c"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/render-ui",
-  "version": "4.35.4-next.0",
+  "version": "5.1.0-next.0",
   "description": "Some shared ui elements when rendering - but not worthy of their own package yet.",
   "module": "src/index.js",
   "main": "lib/index.js",
@@ -13,16 +13,16 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/icons": "2.24.3-next.0",
-    "@pie-lib/math-rendering": "3.22.3-next.0",
-    "@pie-lib/test-utils": "0.22.3-next.0",
+    "@pie-lib/icons": "3.1.0-next.0",
+    "@pie-lib/math-rendering": "4.1.0-next.0",
+    "@pie-lib/test-utils": "1.1.0-next.0",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
-    "@pie-lib/test-utils": "0.22.3-next.0",
+    "@pie-lib/test-utils": "1.1.0-next.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -30,5 +30,5 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516"
+  "gitHead": "d33251d33967cfc861dfe0ac05a1cac7b91bb7e1"
 }

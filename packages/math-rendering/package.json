@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering",
-  "version": "3.22.3-next.0",
+  "version": "4.1.0-next.0",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
@@ -19,6 +19,6 @@
   "resolutions": {
     "react": "^18.2.0"
   },
-  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516",
+  "gitHead": "c79c2c7a2369b07e6515972578cb1940ff4ae0df",
   "scripts": {}
 }

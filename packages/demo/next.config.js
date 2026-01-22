@@ -10,7 +10,7 @@ const withTM = require('next-transpile-modules')([
   '@pie-lib/config-ui',
   '@pie-lib/correct-answer-toggle',
   '@pie-lib/drag',
-  '@pie-lib/editable-html',
+  '@pie-lib/editable-html-tip-tap',
   '@pie-lib/graphing',
   '@pie-lib/icons',
   '@pie-lib/mask-markup',
@@ -47,7 +47,7 @@ const nextConfig = {
     // Ensure all modules use the same React instance
     config.resolve.alias = {
       ...config.resolve.alias,
-      'react': path.resolve(__dirname, '../../node_modules/react'),
+      react: path.resolve(__dirname, '../../node_modules/react'),
       'react-dom': path.resolve(__dirname, '../../node_modules/react-dom'),
     };
 

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/feedback",
-  "version": "0.24.3-next.0",
+  "version": "1.1.0-next.0",
   "description": "Feedback utilities",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -10,5 +10,5 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
-  "gitHead": "31368da9311d16744eb1293ff5f8495551427037"
+  "gitHead": "ea48997dd3060761b741790f27d70f750ee0e2a8"
 }

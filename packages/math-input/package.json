@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "6.31.3-next.0",
+  "version": "7.1.0-next.0",
   "main": "lib/index.js",
   "module": "src/index.jsx",
   "dependencies": {
@@ -24,5 +24,5 @@
     "react-dom": "^18.2.0"
   },
   "scripts": {},
-  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516"
+  "gitHead": "d33251d33967cfc861dfe0ac05a1cac7b91bb7e1"
 }
