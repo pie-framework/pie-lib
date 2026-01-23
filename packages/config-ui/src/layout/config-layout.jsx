@@ -5,7 +5,6 @@ import { withContentRect } from 'react-measure';
 import PropTypes from 'prop-types';
 import LayoutContents from './layout-contents';
 import SettingsBox from './settings-box';
-import { AppendCSSRules } from '@pie-lib/render-ui';
 
 const theme = createTheme({
   typography: {
@@ -26,7 +25,7 @@ const theme = createTheme({
   },
 });
 
-class MeasuredConfigLayout extends AppendCSSRules {
+class MeasuredConfigLayout extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
     className: PropTypes.string,
@@ -34,6 +33,10 @@ class MeasuredConfigLayout extends AppendCSSRules {
     settings: PropTypes.element,
     sidePanelMinWidth: PropTypes.number,
     hideSettings: PropTypes.bool,
+    extraCSSRules: PropTypes.shape({
+      names: PropTypes.arrayOf(PropTypes.string),
+      rules: PropTypes.string,
+    }),
   };
 
   static defaultProps = {
@@ -69,16 +72,20 @@ class MeasuredConfigLayout extends AppendCSSRules {
         <ThemeProvider theme={theme}>
           <Measure bounds onResize={this.onResize}>
             {({ measureRef }) => {
-              const { children, settings, hideSettings, dimensions } = this.props;
+              const { children, settings, hideSettings, dimensions, extraCSSRules } = this.props;
               const { layoutMode } = this.state;
 
               const settingsPanel =
                 layoutMode === 'inline' ? <SettingsBox className="settings-box">{settings}</SettingsBox> : settings;
               const secondaryContent = hideSettings ? null : settingsPanel;
-              const finalClass = 'main-container';
+              const finalClass = 'main-container extraCSSRules';
 
               return (
                 <div ref={measureRef} className={finalClass}>
+                  {extraCSSRules?.rules ? (
+                    <style dangerouslySetInnerHTML={{ __html: `.extraCSSRules { ${extraCSSRules.rules} }` }} />
+                  ) : null}
+
                   <LayoutContents mode={layoutMode} secondary={secondaryContent} dimensions={dimensions}>
                     {children}
                   </LayoutContents>
