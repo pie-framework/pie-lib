@@ -1,6 +1,5 @@
 import React from 'react';
 import debug from 'debug';
-import { Data } from 'slate';
 import { BracketTypes, wrapMath, unWrapMath } from '../normalization';
 
 const log = debug('@pie-lib:math-rendering:test:normalization');
