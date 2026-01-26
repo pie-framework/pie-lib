@@ -8,7 +8,10 @@ defaults: &defaults
 
 reg_auth: &reg_auth
   name: Authenticate with registry
-  command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+  command: |
+    echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+    echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+    npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
 
 restore_cache: &restore_cache
   keys:
@@ -47,6 +50,7 @@ jobs:
     steps:
       - checkout
       - run: *reg_auth
+      - run: npm whoami || (echo "npm authentication failed" && exit 1)
       - restore_cache: *restore_cache
       - run: yarn install
       - save_cache: *save_cache
