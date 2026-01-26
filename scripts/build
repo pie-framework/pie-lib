@@ -61,17 +61,14 @@ class LibCommands extends Commands {
     await this.runCmd(`${lernaCmd} ${versionArgs.join(' ')}`);
     
     // Step 2: Publish the bumped versions
+    // Note: Authentication is handled via .npmrc (configured in CircleCI)
     const publishArgs = ['publish', 'from-package', '--yes'];
     
     if (args.next) {
       publishArgs.push('--dist-tag', 'next');
     }
-    if (args.skipForcePublish) {
-      publishArgs.push('--skip-force-publish');
-    }
-    if (args.token) {
-      publishArgs.push('--registry-auth-token', args.token);
-    }
+    // --skip-force-publish doesn't exist in Lerna 3.x, and --registry-auth-token
+    // is not needed since auth is handled via .npmrc
     
     console.log('Publishing packages with bumped versions...');
     await this.runCmd(`${lernaCmd} ${publishArgs.join(' ')}`);
