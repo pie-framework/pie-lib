@@ -40,6 +40,14 @@ class LibCommands extends Commands {
   }
 
   async release() {
+    // Configure git user for CI environments (needed for lerna version commits)
+    try {
+      await this.runCmd('git config user.email "ci@pie-framework.org"');
+      await this.runCmd('git config user.name "CircleCI"');
+    } catch (e) {
+      // Git config might already be set or not in git repo, continue
+    }
+    
     // Step 1: Bump versions based on conventional commits, using current package.json
     // versions as the base (e.g., 6.1.0-next.0 -> 6.1.0-next.1)
     const lernaCmd = this.bin('lerna');
