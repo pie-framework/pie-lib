@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.1.0-next.1...@pie-lib/config-ui@12.1.0-next.2) (2026-01-26)
+
+
+### Bug Fixes
+
+* removed slate-html-serializer from markup, and fixed extracss rules functionality ([1ac30a3](https://github.com/pie-framework/pie-lib/commit/1ac30a362202b9c063920642382cce8234b9de85))
+
+
+
+
+
 # [12.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@11.30.2...@pie-lib/config-ui@12.1.0-next.1) (2026-01-26)
 
 

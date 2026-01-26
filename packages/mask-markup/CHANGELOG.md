@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.1.0-next.1...@pie-lib/mask-markup@2.1.0-next.2) (2026-01-26)
+
+
+### Bug Fixes
+
+* removed slate-html-serializer from markup, and fixed extracss rules functionality ([1ac30a3](https://github.com/pie-framework/pie-lib/commit/1ac30a362202b9c063920642382cce8234b9de85))
+
+
+
+
+
 # [2.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.33.2...@pie-lib/mask-markup@2.1.0-next.1) (2026-01-26)
 
 
