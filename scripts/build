@@ -62,7 +62,8 @@ class LibCommands extends Commands {
     
     // Step 2: Publish the bumped versions
     // Note: Authentication is handled via .npmrc (configured in CircleCI)
-    const publishArgs = ['publish', 'from-package', '--yes'];
+    // Use --no-verify-access to skip credential verification which fails with granular tokens
+    const publishArgs = ['publish', 'from-package', '--yes', '--no-verify-access'];
     
     if (args.next) {
       publishArgs.push('--dist-tag', 'next');
