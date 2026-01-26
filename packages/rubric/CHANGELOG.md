@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.28.2...@pie-lib/rubric@1.1.0-next.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+* rubric - rubricless style ([57701b2](https://github.com/pie-framework/pie-lib/commit/57701b28d49f88f785ef1367e5b658bcf85c79ea))
+* updated tip-tap with mui instead of material-ui [PD-5141] ([880d3ab](https://github.com/pie-framework/pie-lib/commit/880d3ab1d63aa12c7e975c882f50624200565737))
+* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* PD-5258 rubric fix ([de878e0](https://github.com/pie-framework/pie-lib/commit/de878e0b02a3181985f93f1cea16f93c36d826a4))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+* **rubric:** migrate rubric package to material-ui 5 PD-5258 ([1b33f99](https://github.com/pie-framework/pie-lib/commit/1b33f99c073eaaa32eac36f848a814ade4c97593))
+
+
+
+
+
 # [1.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@0.28.3-next.0...@pie-lib/rubric@1.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/rubric

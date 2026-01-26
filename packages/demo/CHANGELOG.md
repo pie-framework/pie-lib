@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.32.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.31.2...@pie-lib/demo@8.32.0-next.0) (2026-01-26)
+
+
+### Bug Fixes
+
+* bumped versions [PD-5141] ([c2a8c1b](https://github.com/pie-framework/pie-lib/commit/c2a8c1ba27a86f73d32c1e53279b5fcadb52d7d7))
+* charting cleanup ([4f8b14f](https://github.com/pie-framework/pie-lib/commit/4f8b14f59cf6d977af04feaa75f78f65fe4ffbb8))
+* charting issues ([fb42cac](https://github.com/pie-framework/pie-lib/commit/fb42cacad4753b1aaf501969bde0a489fd223a1e))
+* charting ux fixes after mui update PD-5258 ([38ee1dc](https://github.com/pie-framework/pie-lib/commit/38ee1dc3810760794690534821f78672906a4981))
+* demo rendering issues ([354c924](https://github.com/pie-framework/pie-lib/commit/354c9243b4237e4b62ce6479d93090af7b1e6cad))
+* fix the update attributes code in the image extension [PD-5141] ([6e95af5](https://github.com/pie-framework/pie-lib/commit/6e95af50c9b2446f0b200a52b4f33866e5363380))
+* fixed circular dependencies and bumped versions, plus image upload handling [PD-5141] ([7b5fbc9](https://github.com/pie-framework/pie-lib/commit/7b5fbc9126446916d42d6b3597232a231567b2d8))
+* fixed some of the issues [PD-5141] ([46326ec](https://github.com/pie-framework/pie-lib/commit/46326ecef920698e942a47c6fc756b9e16878797))
+* fixed some responseArea problems and general tip-tap improvements [PD-5141] ([eab7870](https://github.com/pie-framework/pie-lib/commit/eab7870d0e1a24bf5868c058f2a7522d68870a04))
+* fixed toolbar not focusing [PD-5141] ([cc01875](https://github.com/pie-framework/pie-lib/commit/cc01875fee48b853f49e9f37ab343d1013cc2372))
+* initial rendering of demo page, migrate from [@vx](https://github.com/vx) library to [@visx](https://github.com/visx) ([3d432b9](https://github.com/pie-framework/pie-lib/commit/3d432b94bbaef8e3ca3bc0ff57decbac878a979c))
+* made sure characterpicker is over the editor ([921c6d3](https://github.com/pie-framework/pie-lib/commit/921c6d31baf2ce14a59d6a3222124753ebd91482))
+* made sure inline-dropdown works properly, fixed pluginprops use [PD-5141] ([0516164](https://github.com/pie-framework/pie-lib/commit/05161642349eb9cc0a088211b8fc17e4c0c9a94c))
+* made sure insert special characters works properly [PD-5409] ([5a61688](https://github.com/pie-framework/pie-lib/commit/5a61688c7327112bb1f5cb557f3c84dfc9f084f9))
+* made sure onChange is called when needed [PD-5141] ([f1e737c](https://github.com/pie-framework/pie-lib/commit/f1e737c6aa5aada6645d29b7139116dd13316103))
+* missing declaration ([0c906d1](https://github.com/pie-framework/pie-lib/commit/0c906d139a075f0a9e5c91c25df44840375349ab))
+* next link error ([51ad4e9](https://github.com/pie-framework/pie-lib/commit/51ad4e9e88e62b4fbf918608245c2cb524f84460))
+* refactored tip-tap editor, made sure response area works [PD-5141] ([e97d80a](https://github.com/pie-framework/pie-lib/commit/e97d80a28eb97f86d85ba7525ce5936314e76abc))
+* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+* removed faulty import [PD-5141] ([efb7db1](https://github.com/pie-framework/pie-lib/commit/efb7db12c9637f01bb5e9459adadcde0f31aa7d1))
+* removed horizontal line, fixed math and characters dialog positioning [PD-5141] ([7df8a11](https://github.com/pie-framework/pie-lib/commit/7df8a1151d420333303b9efb48e864b403a0cbb4))
+* update graphing components - styling and correctness handling PD-5258 ([7f1d3ba](https://github.com/pie-framework/pie-lib/commit/7f1d3bade7271c8f95bb9a67352fc9a52888ffda))
+* updated tip-tap with mui instead of material-ui [PD-5141] ([880d3ab](https://github.com/pie-framework/pie-lib/commit/880d3ab1d63aa12c7e975c882f50624200565737))
+* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* drag library update ([fb7a4d0](https://github.com/pie-framework/pie-lib/commit/fb7a4d0ce761f2f4c1a122854cfa306abb8ea7c8))
+* drag library update in graphing packages ([6638af8](https://github.com/pie-framework/pie-lib/commit/6638af83235a13b983b95587ba042bbdff61c4df))
+* drag library update in mask-markup and demo packages ([c8a5c17](https://github.com/pie-framework/pie-lib/commit/c8a5c17b0cb16d0c9debb876b4fdba13fbdf5404))
+* initial work for tiptap changes [PD-5141] ([d73e617](https://github.com/pie-framework/pie-lib/commit/d73e6179c01e1497688c630da98213b31e9f4938))
+* packages/demo mui update PD-5268 ([6557a9b](https://github.com/pie-framework/pie-lib/commit/6557a9bac4f00622b1354f08635bfaec1175cff6))
+* packages/math-input mui update PD-5268 ([b2603ad](https://github.com/pie-framework/pie-lib/commit/b2603ad0901b4b1611b7cd06ae3610c5822090b0))
+* packages/math-toolbar & packages/icons  mui update PD-5268 ([8a18bc1](https://github.com/pie-framework/pie-lib/commit/8a18bc1a79cd3ca3baa7ff7a94b050ec20371649))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+* **rubric:** migrate rubric package to material-ui 5 PD-5258 ([1b33f99](https://github.com/pie-framework/pie-lib/commit/1b33f99c073eaaa32eac36f848a814ade4c97593))
+* packages/charting  mui update PD-5268 ([9619c34](https://github.com/pie-framework/pie-lib/commit/9619c3437ad7ae762daa04350e1110cb429c7166))
+* PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
+
+
+
+
+
 # [9.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.31.3-next.0...@pie-lib/demo@9.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/demo

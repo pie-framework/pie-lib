@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.22.1...@pie-lib/math-rendering@4.1.0-next.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* prevent speech-rule-engine errors by skipping accessibility features until ready ([e17c4d2](https://github.com/pie-framework/pie-lib/commit/e17c4d2e7d4454571b82a788d100b6ab2002d20a))
+* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
 # [4.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.22.2-next.0...@pie-lib/math-rendering@4.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
