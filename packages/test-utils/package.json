@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/test-utils",
-  "version": "1.1.0-next.3",
+  "version": "1.1.0-next.4",
   "description": "Testing utilities for pie-lib packages with React Testing Library and MUI support",
   "main": "lib/index.js",
   "module": "src/index.js",
