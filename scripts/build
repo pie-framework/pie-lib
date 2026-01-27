@@ -12,6 +12,8 @@ class LibCommands extends Commands {
     await this.runCmds([`${next} build`, `${next} export`], { cwd: demoDir });
 
     const alias = `pie-lib${args.next ? '-next' : ''}`;
+     // Override to use vercel instead of now (until build-helper is updated)
+     this.p.now = this.bin('vercel');
     return this.staticToNow(resolve(demoDir, 'out'), alias);
   }
 

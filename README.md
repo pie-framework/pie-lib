@@ -22,12 +22,12 @@ yarn install
 | build   | `npm run build`                     |                                                           |
 | release | `npm run release`                   |                                                           |
 | dev     | `scripts/dev --scope $package-name` | run the demo site on localhost:3000 `--scope` if optional |
-| static  | `scripts/wip $alias-name`           | build and deploy the static site tno now.sh               |
+| static  | `scripts/wip $alias-name`           | build and deploy the static site tno vercel.app               |
 
 ## Workflow
 
-- merging to `develop` releases `next` versions and deploys to `pie-lib-next.now.sh`
-- merging to `master` releases `latest` versions and deploys to `pie-lib.now.sh`
+- merging to `develop` releases `next` versions and deploys to `pie-lib-next.vercel.app`
+- merging to `master` releases `latest` versions and deploys to `pie-lib.vercel.app`
 
 ### test a single package
 
@@ -69,8 +69,8 @@ Sometimes the project test set up can get out of synch
 ./node_modules/.bin/next build packages/demo
 ./node_modules/.bin/next export packages/demo
 cd out
-# you can now deploy using now (or if you have another static site handler)
-now .
+# you can now deploy using vercel (or if you have another static site handler)
+vercel .
 ```
 
 #
