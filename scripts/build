@@ -38,67 +38,6 @@ class LibCommands extends Commands {
   build() {
     return super.build().then(() => this.sharedBuild());
   }
-
-  async release() {
-    // Configure git user for CI environments (needed for lerna version commits)
-    try {
-      await this.runCmd('git config user.email "ci@pie-framework.org"');
-      await this.runCmd('git config user.name "CircleCI"');
-    } catch (e) {
-      // Git config might already be set or not in git repo, continue
-    }
-    
-    // Step 1: Bump versions based on conventional commits, using current package.json
-    // versions as the base (e.g., 6.1.0-next.0 -> 6.1.0-next.1)
-    // This automatically updates internal @pie-lib/* dependencies in package.json files
-    const lernaCmd = this.bin('lerna');
-    const versionArgs = ['version', '--conventional-commits', '--yes', '--no-commit-hooks'];
-    
-    if (args.next) {
-      versionArgs.push('--conventional-prerelease');
-    }
-    
-    console.log('Bumping versions based on conventional commits (using package.json as base)...');
-    console.log('This will automatically update internal @pie-lib/* dependencies');
-    await this.runCmd(`${lernaCmd} ${versionArgs.join(' ')}`);
-    
-    // Step 1.5: Bump versions for packages that had dependency updates but weren't versioned
-    // This ensures dependent packages are republished when their dependencies change
-    console.log('Checking for dependent packages that need version bumps...');
-    try {
-      await this.runCmd('node scripts/bump-dependent-packages.js');
-      
-      // If any packages were bumped, commit those changes
-      // Check if there are uncommitted changes
-      const gitStatus = await this.runCmd('git status --porcelain', { silent: true }).catch(() => '');
-      if (gitStatus.trim()) {
-        console.log('Committing version bumps for dependent packages...');
-        await this.runCmd('git add packages/*/package.json');
-        await this.runCmd('git commit --amend --no-edit --no-verify');
-      }
-    } catch (e) {
-      // Script might fail if git history isn't available, continue anyway
-      console.log('Could not bump dependent packages:', e.message);
-    }
-    
-    // Step 2: Publish the bumped versions
-    // Note: Authentication is handled via .npmrc (configured in CircleCI)
-    // npm commands will automatically use credentials from .npmrc
-    // Use --no-verify-access to skip credential verification which fails with granular tokens
-    const publishArgs = ['publish', 'from-package', '--yes', '--no-verify-access'];
-    
-    if (args.next) {
-      publishArgs.push('--dist-tag', 'next');
-    }
-    // --skip-force-publish doesn't exist in Lerna 3.x, and --registry-auth-token
-    // is not needed since auth is handled via .npmrc
-    
-    console.log('Publishing packages with bumped versions...');
-    await this.runCmd(`${lernaCmd} ${publishArgs.join(' ')}`);
-    
-    // Lerna automatically updates internal dependencies during version bumping
-    // and handles dist-tag management during publishing
-  }
 }
 
 const cmds = new LibCommands(resolve(__dirname, '..'), args);
