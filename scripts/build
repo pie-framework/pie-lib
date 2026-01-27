@@ -50,18 +50,40 @@ class LibCommands extends Commands {
     
     // Step 1: Bump versions based on conventional commits, using current package.json
     // versions as the base (e.g., 6.1.0-next.0 -> 6.1.0-next.1)
+    // This automatically updates internal @pie-lib/* dependencies in package.json files
     const lernaCmd = this.bin('lerna');
-    const versionArgs = ['version', '--conventional-commits', '--yes'];
+    const versionArgs = ['version', '--conventional-commits', '--yes', '--no-commit-hooks'];
     
     if (args.next) {
       versionArgs.push('--conventional-prerelease');
     }
     
     console.log('Bumping versions based on conventional commits (using package.json as base)...');
+    console.log('This will automatically update internal @pie-lib/* dependencies');
     await this.runCmd(`${lernaCmd} ${versionArgs.join(' ')}`);
+    
+    // Step 1.5: Bump versions for packages that had dependency updates but weren't versioned
+    // This ensures dependent packages are republished when their dependencies change
+    console.log('Checking for dependent packages that need version bumps...');
+    try {
+      await this.runCmd('node scripts/bump-dependent-packages.js');
+      
+      // If any packages were bumped, commit those changes
+      // Check if there are uncommitted changes
+      const gitStatus = await this.runCmd('git status --porcelain', { silent: true }).catch(() => '');
+      if (gitStatus.trim()) {
+        console.log('Committing version bumps for dependent packages...');
+        await this.runCmd('git add packages/*/package.json');
+        await this.runCmd('git commit --amend --no-edit --no-verify');
+      }
+    } catch (e) {
+      // Script might fail if git history isn't available, continue anyway
+      console.log('Could not bump dependent packages:', e.message);
+    }
     
     // Step 2: Publish the bumped versions
     // Note: Authentication is handled via .npmrc (configured in CircleCI)
+    // npm commands will automatically use credentials from .npmrc
     // Use --no-verify-access to skip credential verification which fails with granular tokens
     const publishArgs = ['publish', 'from-package', '--yes', '--no-verify-access'];
     
@@ -74,39 +96,8 @@ class LibCommands extends Commands {
     console.log('Publishing packages with bumped versions...');
     await this.runCmd(`${lernaCmd} ${publishArgs.join(' ')}`);
     
-    // If publishing to 'next', ensure the 'next' tag points to the latest version
-    // This ensures @next always resolves to the newest next version
-    if (args.next) {
-      console.log('Ensuring @next tag points to latest versions...');
-      const { getPackages } = require('@pie-framework/build-helper');
-      const pkgs = getPackages(resolve(this.projectRoot, 'packages'));
-      const npmCmd = this.bin('npm');
-      
-      for (const pkg of pkgs) {
-        if (!pkg.pkg.private && pkg.pkg.name && pkg.pkg.version) {
-          try {
-            // Check if current version exists on npm (was just published)
-            const viewCmd = `${npmCmd} view ${pkg.pkg.name}@${pkg.pkg.version} version --json`;
-            const publishedVersion = await this.runCmd(viewCmd, { silent: true }).catch(() => '');
-            
-            if (publishedVersion && publishedVersion.trim() === `"${pkg.pkg.version}"`) {
-              // This version was just published, explicitly ensure 'next' tag points to it
-              // This guarantees @next resolves to the latest version
-              await this.runCmd(`${npmCmd} dist-tag add ${pkg.pkg.name}@${pkg.pkg.version} next`, { silent: true });
-              console.log(`  Ensured ${pkg.pkg.name}@next -> ${pkg.pkg.version}`);
-            }
-          } catch (e) {
-            // Package might not exist or wasn't published, skip
-          }
-        }
-      }
-    }
-    
-    // After publishing, update dependencies only in packages that depend on
-    // the newly published packages. This avoids triggering republishing of
-    // unchanged packages.
-    console.log('Updating dependencies in packages that depend on newly published packages...');
-    await this.runCmd('node scripts/update-internal-deps.js');
+    // Lerna automatically updates internal dependencies during version bumping
+    // and handles dist-tag management during publishing
   }
 }
 
