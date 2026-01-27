@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.1.0-next.1",
+  "version": "3.1.0-next.2",
   "description": "Math evaluator tool for comparing expressions for equality",
   "keywords": [
     "math",
@@ -23,7 +23,7 @@
     "mathjs": "^7.0.1"
   },
   "devDependencies": {
-    "@pie-lib/test-utils": "1.1.0-next.1"
+    "@pie-lib/test-utils": "1.1.0-next.2"
   },
   "scripts": {},
   "gitHead": "f712381d2cb985998863c1aed041ec05ee7b0249"
