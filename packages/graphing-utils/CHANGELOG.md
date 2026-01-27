@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@2.1.0-next.1...@pie-lib/graphing-utils@2.1.0-next.3) (2026-01-27)
+
+**Note:** Version bump only for package @pie-lib/graphing-utils
+
+
+
+
+
 # [2.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.21.1...@pie-lib/graphing-utils@2.1.0-next.1) (2026-01-26)
 
 
