@@ -8,8 +8,7 @@
   "command": {
     "publish": {
       "ignoreChanges": ["yarn.lock", "CHANGELOG.json", "CHANGELOG.md", "LICENSE.md"],
-      "message": "[ci skip] chore: publish",
-      "exact": true
+      "message": "[ci skip] chore: publish"
     }
   }
 }
