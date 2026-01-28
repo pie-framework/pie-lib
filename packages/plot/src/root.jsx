@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import { select, mouse } from 'd3-selection';
+import { select, pointer } from 'd3-selection';
 
 import { color, Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html-tip-tap';
@@ -126,7 +126,7 @@ export class Root extends React.Component {
     labelsCharactersLimit: PropTypes.number,
   };
 
-  mouseMove = (g) => {
+  mouseMove = (g, event) => {
     const { graphProps, onMouseMove } = this.props;
 
     if (!onMouseMove) {
@@ -134,7 +134,7 @@ export class Root extends React.Component {
     }
 
     const { scale, snap } = graphProps;
-    const coords = mouse(g.node());
+    const coords = pointer(event, g.node());
     const x = scale.x.invert(coords[0]);
     const y = scale.y.invert(coords[1]);
 

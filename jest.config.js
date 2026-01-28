@@ -16,9 +16,7 @@ module.exports = {
   testPathIgnorePatterns: ig,
 
   // Transform ES modules from these packages
-  transformIgnorePatterns: [
-    'node_modules/(?!(@mui|@emotion|@testing-library|@dnd-kit|@tiptap|@mapbox)/)',
-  ],
+  transformIgnorePatterns: ['node_modules/(?!(@mui|@emotion|@testing-library|@dnd-kit|@tiptap|@mapbox|d3-.*)(/|$))'],
 
   // Custom resolver to handle node: protocol imports
   resolver: '<rootDir>/jest-resolver.js',
@@ -32,6 +30,7 @@ module.exports = {
 
     // Workspace packages - map to source
     '^@pie-lib/(.*)$': '<rootDir>/packages/$1/src',
+    '^d3-array$': '<rootDir>/node_modules/d3-array/dist/d3-array.js',
   },
 
   // Collect coverage from source files

@@ -52,7 +52,7 @@ describe('utils', () => {
     let scaleFn;
 
     beforeEach(() => {
-      scaleFn = jest.fn(function(v) {
+      scaleFn = jest.fn(function (v) {
         return v;
       });
     });
