@@ -65,7 +65,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "jsdom": "26.1.0",
+    "jsdom": "27.4.0",
     "lerna": "^3.11.0",
     "lint-staged": "^15.0.0",
     "lodash": "^4.17.11",
