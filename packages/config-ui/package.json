@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "12.1.0-next.0",
+  "version": "12.1.0-next.5",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -12,9 +12,9 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/editable-html-tip-tap": "1.1.0-next.0",
-    "@pie-lib/icons": "3.1.0-next.0",
-    "@pie-lib/render-ui": "5.1.0-next.0",
+    "@pie-lib/editable-html-tip-tap": "^1.1.0-next.5",
+    "@pie-lib/icons": "^3.1.0-next.4",
+    "@pie-lib/render-ui": "^5.1.0-next.5",
     "assert": "^1.4.1",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
@@ -29,5 +29,5 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "gitHead": "3bfb890a88103e5e9ce9f531b9d2738c1c552c34"
+  "gitHead": "e51620791bab7434375dc0a101c39dc5926a457d"
 }

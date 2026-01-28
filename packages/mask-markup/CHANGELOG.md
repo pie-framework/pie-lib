@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.1.0-next.2...@pie-lib/mask-markup@2.1.0-next.4) (2026-01-27)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+
+
+
+
+# [2.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.1.0-next.1...@pie-lib/mask-markup@2.1.0-next.2) (2026-01-26)
+
+
+### Bug Fixes
+
+* removed slate-html-serializer from markup, and fixed extracss rules functionality ([1ac30a3](https://github.com/pie-framework/pie-lib/commit/1ac30a362202b9c063920642382cce8234b9de85))
+
+
+
+
+
+# [2.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.33.2...@pie-lib/mask-markup@2.1.0-next.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* fix math rendering issues after React, mui and drag upgrade for drag-in-the-blank ([6dc3c95](https://github.com/pie-framework/pie-lib/commit/6dc3c95c041be02015a9005133fe750e1ff78842))
+* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+* simplify math render logic ([de11ebe](https://github.com/pie-framework/pie-lib/commit/de11ebe7f2faeb9dce6215673a90b79e86cbc590))
+* updated tip-tap with mui instead of material-ui [PD-5141] ([880d3ab](https://github.com/pie-framework/pie-lib/commit/880d3ab1d63aa12c7e975c882f50624200565737))
+* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+* **config-ui, mask-markup:** replace deprecated props, externd AlerDialog with new props ([6e7a163](https://github.com/pie-framework/pie-lib/commit/6e7a16314944745154801010aa4973a03aa15dcc))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* drag changes for ditb ([fc79ecd](https://github.com/pie-framework/pie-lib/commit/fc79ecdacb5693f1b5dcf19c7114f9cd4bed83ba))
+* drag library update in mask-markup and demo packages ([c8a5c17](https://github.com/pie-framework/pie-lib/commit/c8a5c17b0cb16d0c9debb876b4fdba13fbdf5404))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+* updates for drag-in-the-blank ([0c096d8](https://github.com/pie-framework/pie-lib/commit/0c096d887f97edecd2dac68cda136b2d265dc7d5))
+
+
+
+
+
 # [2.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@1.33.3-next.0...@pie-lib/mask-markup@2.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
