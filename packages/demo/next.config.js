@@ -35,6 +35,7 @@ const withTM = require('next-transpile-modules')([
   '@pie-lib/text-select',
   '@pie-lib/tools',
   '@pie-lib/translator',
+  '@mapbox/point-geometry',
 ]);
 
 const getAssetPrefix = () => {

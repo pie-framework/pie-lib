@@ -16,7 +16,7 @@ module.exports = {
   testPathIgnorePatterns: ig,
 
   // Transform ES modules from these packages
-  transformIgnorePatterns: ['node_modules/(?!(@mui|@emotion|@testing-library|@dnd-kit|@tiptap|d3-.*)(/|$))'],
+  transformIgnorePatterns: ['node_modules/(?!(@mui|@emotion|@testing-library|@dnd-kit|@tiptap|@mapbox|d3-.*)(/|$))'],
 
   // Custom resolver to handle node: protocol imports
   resolver: '<rootDir>/jest-resolver.js',

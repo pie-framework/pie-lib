@@ -19,7 +19,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/style": "^0.8.0",
-    "@mapbox/point-geometry": "^0.1.0",
+    "@mapbox/point-geometry": "^1.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@pie-lib/math-rendering": "^4.1.0-next.4",
@@ -40,7 +40,7 @@
     "invariant": "^2.2.4",
     "lodash": "^4.17.11",
     "react": "^18.2.0",
-    "react-draggable": "^3.1.1",
+    "react-draggable": "^3.3.0",
     "react-input-autosize": "^2.2.1"
   },
   "peerDependencies": {
