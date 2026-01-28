@@ -56,10 +56,12 @@ const Expander = (props) => {
         enter: 'enter',
         enterDone: 'enter-done',
         exit: 'exit',
-        exitDone: 'exit-done'
+        exitDone: 'exit-done',
       }}
     >
-      <StyledExpander className={className}>{children}</StyledExpander>
+      <StyledExpander ref={nodeRef} className={className}>
+        {children}
+      </StyledExpander>
     </CSSTransition>
   );
 };

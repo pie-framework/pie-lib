@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.1.0-next.2...@pie-lib/drag@3.1.0-next.4) (2026-01-27)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [3.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.1.0-next.1...@pie-lib/drag@3.1.0-next.2) (2026-01-26)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+
+
+
+
+# [3.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.22.2...@pie-lib/drag@3.1.0-next.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* drag components ([bea5eaa](https://github.com/pie-framework/pie-lib/commit/bea5eaaa54fc9060ac83bb7d6383b4c9e2491574))
+* drag fixes ([d8920a2](https://github.com/pie-framework/pie-lib/commit/d8920a2b5e6e365c42f03368f9f235fed9090a88))
+* placehoder styles in drag ([431adbe](https://github.com/pie-framework/pie-lib/commit/431adbe6c020f32615910885dee5d4bd5efbe76a))
+* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+
+
+### Features
+
+* add drag provider onDragStart prop ([0879247](https://github.com/pie-framework/pie-lib/commit/087924747b02ceed710e971e8dbe0291071396af))
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* drag changes for ditb ([fc79ecd](https://github.com/pie-framework/pie-lib/commit/fc79ecdacb5693f1b5dcf19c7114f9cd4bed83ba))
+* drag library update ([fb7a4d0](https://github.com/pie-framework/pie-lib/commit/fb7a4d0ce761f2f4c1a122854cfa306abb8ea7c8))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+* updates for drag-in-the-blank ([0c096d8](https://github.com/pie-framework/pie-lib/commit/0c096d887f97edecd2dac68cda136b2d265dc7d5))
+* **drag:** update drag package to corresp to material v5 PD-5258 ([7400327](https://github.com/pie-framework/pie-lib/commit/740032735077939f4e05897aaf6b618bfa5b236d))
+
+
+
+
+
 # [3.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@2.22.3-next.0...@pie-lib/drag@3.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/drag

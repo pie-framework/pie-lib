@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@1.1.0-next.1...@pie-lib/tools@1.1.0-next.3) (2026-01-27)
+
+**Note:** Version bump only for package @pie-lib/tools
+
+
+
+
+
+# [1.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.29.1...@pie-lib/tools@1.1.0-next.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+* remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+* use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* packages/charting  mui update PD-5268 ([9619c34](https://github.com/pie-framework/pie-lib/commit/9619c3437ad7ae762daa04350e1110cb429c7166))
+* packages/tools  mui update PD-5268 ([acbdc9a](https://github.com/pie-framework/pie-lib/commit/acbdc9a7354db19e4671bcbe182878c1d5791bc1))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
 # [1.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@0.29.2-next.0...@pie-lib/tools@1.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/tools

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/test-utils",
-  "version": "0.22.3-next.0",
+  "version": "1.1.0-next.4",
   "description": "Testing utilities for pie-lib packages with React Testing Library and MUI support",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -21,6 +21,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^14.5.2"
   },
-  "gitHead": "31368da9311d16744eb1293ff5f8495551427037",
+  "gitHead": "e51620791bab7434375dc0a101c39dc5926a457d",
   "scripts": {}
 }

@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.34.4-next.0",
+  "version": "3.1.0-next.5",
   "description": "Graphing components",
   "keywords": [
     "react",
@@ -22,13 +22,13 @@
     "@mapbox/point-geometry": "^1.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/drag": "2.22.4-next.0",
-    "@pie-lib/editable-html": "11.21.4-next.0",
-    "@pie-lib/graphing-utils": "1.21.3-next.0",
-    "@pie-lib/plot": "2.27.4-next.0",
-    "@pie-lib/render-ui": "4.35.4-next.0",
-    "@pie-lib/tools": "0.29.3-next.0",
-    "@pie-lib/translator": "2.23.3-next.0",
+    "@pie-lib/drag": "^3.1.0-next.5",
+    "@pie-lib/editable-html-tip-tap": "^1.1.0-next.5",
+    "@pie-lib/graphing-utils": "^2.1.0-next.4",
+    "@pie-lib/plot": "^3.1.0-next.5",
+    "@pie-lib/render-ui": "^5.1.0-next.5",
+    "@pie-lib/tools": "^1.1.0-next.4",
+    "@pie-lib/translator": "^3.1.0-next.4",
     "@visx/axis": "^3.0.0",
     "@visx/clip-path": "^3.0.0",
     "@visx/curve": "^3.0.0",
@@ -50,11 +50,11 @@
     "react-input-autosize": "^2.2.1",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
-    "redux-undo": "beta"
+    "redux-undo": "^1.1.0"
   },
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "gitHead": "ad47e833acbaecca94eab8df2aee2a1ee9d90516",
+  "gitHead": "e51620791bab7434375dc0a101c39dc5926a457d",
   "scripts": {}
 }

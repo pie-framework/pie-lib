@@ -10,7 +10,7 @@ const withTM = require('next-transpile-modules')([
   '@pie-lib/config-ui',
   '@pie-lib/correct-answer-toggle',
   '@pie-lib/drag',
-  '@pie-lib/editable-html',
+  '@pie-lib/editable-html-tip-tap',
   '@pie-lib/graphing',
   '@pie-lib/icons',
   '@pie-lib/mask-markup',

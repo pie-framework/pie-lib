@@ -92,6 +92,8 @@ export class CorrectAnswerToggle extends React.Component {
     this.state = {
       show: props.show,
     };
+    this.openIconRef = React.createRef();
+    this.closedIconRef = React.createRef();
 
     CorrectAnswerToggle.defaultProps = {
       ...CorrectAnswerToggle.defaultProps,
@@ -130,41 +132,41 @@ export class CorrectAnswerToggle extends React.Component {
         <Expander show={this.state.show}>
           <StyledContent onClick={this.onClick.bind(this)} onTouchEnd={this.onTouch.bind(this)}>
             <StyledIconHolder>
-              <CSSTransition 
-                timeout={400} 
-                in={toggled} 
-                exit={!toggled} 
+              <CSSTransition
+                nodeRef={this.openIconRef}
+                timeout={400}
+                in={toggled}
+                exit={!toggled}
                 classNames={{
                   enter: 'enter',
                   enterActive: 'enter-active',
                   exit: 'exit',
-                  exitActive: 'exit-active'
+                  exitActive: 'exit-active',
                 }}
               >
-                <StyledIcon>
+                <StyledIcon ref={this.openIconRef}>
                   <CorrectResponse open={toggled} key="correct-open" />
                 </StyledIcon>
               </CSSTransition>
-              <CSSTransition 
-                timeout={5000} 
-                in={!toggled} 
-                exit={toggled} 
+              <CSSTransition
+                nodeRef={this.closedIconRef}
+                timeout={5000}
+                in={!toggled}
+                exit={toggled}
                 classNames={{
                   enter: 'enter',
                   enterActive: 'enter-active',
                   exit: 'exit',
-                  exitActive: 'exit-active'
+                  exitActive: 'exit-active',
                 }}
               >
-                <StyledIcon>
+                <StyledIcon ref={this.closedIconRef}>
                   <CorrectResponse open={toggled} key="correct-closed" />
                 </StyledIcon>
               </CSSTransition>
             </StyledIconHolder>
             <Readable false>
-              <StyledLabel aria-hidden={!this.state.show}>
-                {toggled ? hideMessage : showMessage}
-              </StyledLabel>
+              <StyledLabel aria-hidden={!this.state.show}>{toggled ? hideMessage : showMessage}</StyledLabel>
             </Readable>
           </StyledContent>
         </Expander>

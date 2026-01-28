@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 // Mock dependencies
-jest.mock('@pie-lib/editable-html', () => {
+jest.mock('@pie-lib/editable-html-tip-tap', () => {
   return function EditableHtml(props) {
     return <div data-testid="editable-html" data-markup={props.markup} />;
   };
@@ -23,9 +23,9 @@ jest.mock('@hello-pangea/dnd', () => ({
       {
         innerRef: () => {},
         draggableProps: { 'data-draggable-index': index },
-        dragHandleProps: {}
+        dragHandleProps: {},
       },
-      {}
+      {},
     ),
 }));
 
@@ -52,7 +52,7 @@ describe('Rubric', () => {
       ...render(
         <ThemeProvider theme={theme}>
           <RawAuthoring {...defaultProps} />
-        </ThemeProvider>
+        </ThemeProvider>,
       ),
       onChange: defaultProps.onChange,
       props: defaultProps,
@@ -126,7 +126,7 @@ describe('Rubric', () => {
             value: { excludeZero, points, sampleAnswers },
             onChange,
             classes: {},
-            className: 'className'
+            className: 'className',
           });
 
           component.changeMaxPoints(maxPoints);
@@ -157,7 +157,7 @@ describe('Rubric', () => {
             value: { excludeZero, points, sampleAnswers },
             onChange,
             classes: {},
-            className: 'className'
+            className: 'className',
           });
 
           component.onPointMenuChange(index, clickedItem);

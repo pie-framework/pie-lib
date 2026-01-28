@@ -2,7 +2,6 @@ import React from 'react';
 import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import AppendCSSRules from './append-css-rules';
 
 const theme = createTheme({
   typography: {
@@ -40,7 +39,7 @@ const StyledContainer = styled('div')({
   },
 });
 
-class UiLayout extends AppendCSSRules {
+class UiLayout extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.array,
@@ -48,15 +47,11 @@ class UiLayout extends AppendCSSRules {
       names: PropTypes.arrayOf(PropTypes.string),
       rules: PropTypes.string,
     }),
-    classes: PropTypes.shape({
-      extraCSSRules: PropTypes.string,
-    }),
     fontSizeFactor: PropTypes.number,
   };
 
   static defaultProps = {
     extraCSSRules: {},
-    classes: {},
     fontSizeFactor: 1,
   };
 
@@ -86,7 +81,11 @@ class UiLayout extends AppendCSSRules {
     return (
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <StyledContainer className={className} {...restProps} {...(style && { style })}>
+          {extraCSSRules?.rules ? (
+            <style dangerouslySetInnerHTML={{ __html: `.extraCSSRules { ${extraCSSRules.rules} }` }} />
+          ) : null}
+
+          <StyledContainer className={`${className} extraCSSRules`} {...restProps} {...(style && { style })}>
             {children}
           </StyledContainer>
         </ThemeProvider>

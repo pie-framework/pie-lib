@@ -9,6 +9,7 @@ const rawLinks = [
   { label: 'config-ui - tabs', path: '/config-ui/tabs' },
   { label: 'correct-answer-toggle', path: '/correct-answer-toggle' },
   { label: 'editable-html', path: '/editable-html' },
+  { label: 'editable-html-tip-tap', path: '/editable-html-tip-tap' },
   { label: 'graphing', path: '/graphing' },
   { label: 'charting', path: '/charting' },
   { label: 'icons', path: '/icons' },

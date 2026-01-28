@@ -1,4 +1,3 @@
-import Html from 'slate-html-serializer';
 import { object as toStyleObject } from 'to-style';
 import debug from 'debug';
 
@@ -8,6 +7,7 @@ const INLINE = ['span'];
 const MARK = ['em', 'strong', 'u'];
 const TEXT_NODE = 3;
 const COMMENT_NODE = 8;
+const ELEMENT_NODE = 1;
 
 const attr = (el) => {
   if (!el.attributes || el.attributes.length <= 0) {
@@ -102,69 +102,159 @@ export const MARK_TAGS = {
   strong: 'strong',
 };
 
-const marks = {
-  deserialize(el, next) {
-    const mark = MARK_TAGS[el.tagName.toLowerCase()];
-    if (!mark) return;
-    log('[deserialize] mark: ', mark);
+/**
+ * Recursively process DOM nodes and convert them to Slate JSON format
+ */
+const processNode = (node, marks = []) => {
+  // Skip comment nodes
+  if (node.nodeType === COMMENT_NODE) {
+    return null;
+  }
+
+  // Handle text nodes
+  if (node.nodeType === TEXT_NODE) {
+    const text = node.textContent;
+    const leaf = { text };
+
+    if (marks.length > 0) {
+      leaf.marks = marks.map((m) => ({ type: m, data: undefined }));
+    }
+
     return {
-      object: 'mark',
-      type: mark,
-      nodes: next(el.childNodes),
+      object: 'text',
+      leaves: [leaf],
     };
-  },
+  }
+
+  // Handle element nodes
+  if (node.nodeType === ELEMENT_NODE) {
+    const type = node.tagName.toLowerCase();
+
+    // Check if this is a mark tag
+    const markType = MARK_TAGS[type];
+    if (markType) {
+      log('[deserialize] mark: ', markType);
+      // Process children with this mark added and return them flattened
+      const childNodes = processNodes(node.childNodes, [...marks, markType]);
+      // Return an array indicator with the nodes (will be flattened by parent)
+      return { _flatten: true, nodes: childNodes };
+    }
+
+    // Handle math elements specially
+    if (type === 'math') {
+      return {
+        isMath: true,
+        nodes: [node],
+      };
+    }
+
+    // Process regular elements
+    const normalAttrs = attr(node) || {};
+
+    if (type === 'audio' && normalAttrs.controls === '') {
+      normalAttrs.controls = true;
+    }
+
+    const allAttrs = attributes.reduce(attributesToMap(node), { ...normalAttrs });
+    const object = getObject(type);
+
+    const childNodes = processNodes(node.childNodes, marks);
+
+    return {
+      object,
+      type,
+      data: { dataset: { ...node.dataset }, attributes: { ...allAttrs } },
+      nodes: childNodes,
+    };
+  }
+
+  return null;
 };
 
-const rules = [
-  marks,
-  {
-    /**
-     * deserialize everything, we're not fussy about the dom structure for now.
-     */
-    deserialize: (el, next) => {
-      if (el.nodeType === COMMENT_NODE) {
-        return undefined;
+/**
+ * Process a NodeList and convert to array of Slate nodes
+ */
+const processNodes = (nodeList, marks = []) => {
+  const nodes = [];
+  for (let i = 0; i < nodeList.length; i++) {
+    const result = processNode(nodeList[i], marks);
+    if (result !== null) {
+      // Handle flattening for mark nodes
+      if (result._flatten && result.nodes) {
+        nodes.push(...result.nodes);
+      } else {
+        nodes.push(result);
       }
-
-      if (el.nodeType === TEXT_NODE) {
-        return {
-          object: 'text',
-          leaves: [{ text: el.textContent }],
-        };
-      }
-
-      const type = el.tagName.toLowerCase();
-
-      const normalAttrs = attr(el) || {};
-
-      if (type == 'audio' && normalAttrs.controls == '') {
-        normalAttrs.controls = true;
-      }
-
-      const allAttrs = attributes.reduce(attributesToMap(el), { ...normalAttrs });
-      const object = getObject(type);
-
-      if (el.tagName.toLowerCase() === 'math') {
-        return {
-          isMath: true,
-          nodes: [el],
-        };
-      }
-
-      return {
-        object,
-        type,
-        data: { dataset: { ...el.dataset }, attributes: { ...allAttrs } },
-        nodes: next(el.childNodes),
-      };
-    },
-  },
-];
+    }
+  }
+  return nodes;
+};
 
 /**
- * Create a new serializer instance with our `rules` from above.
- * Having a default div block will just put every div on it's own line, which is not ideal.
+ * Deserialize HTML string to Slate JSON format
  */
-const html = new Html({ rules, defaultBlock: 'span' });
+export const deserialize = (htmlString) => {
+  // Handle empty or whitespace-only strings
+  if (!htmlString || !htmlString.trim()) {
+    return {
+      object: 'value',
+      document: {
+        object: 'document',
+        data: {},
+        nodes: [
+          {
+            object: 'block',
+            type: 'span',
+            data: {},
+            isVoid: false,
+            nodes: [],
+          },
+        ],
+      },
+    };
+  }
 
-export const deserialize = (s) => html.deserialize(s, { toJSON: true });
+  // Use DOMParser to parse the HTML
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlString, 'text/html');
+
+  // Process all nodes in the body
+  let nodes = processNodes(doc.body.childNodes);
+
+  // If we only have text nodes (no block elements), wrap in default span block
+  const hasBlockElements = nodes.some((node) => node.object === 'block' || node.object === 'inline');
+
+  if (!hasBlockElements && nodes.length > 0) {
+    nodes = [
+      {
+        object: 'block',
+        type: 'span',
+        data: {},
+        isVoid: false,
+        nodes: nodes,
+      },
+    ];
+  }
+
+  // If no nodes were produced, add a default span block
+  if (nodes.length === 0) {
+    nodes = [
+      {
+        object: 'block',
+        type: 'span',
+        data: {},
+        isVoid: false,
+        nodes: [],
+      },
+    ];
+  }
+
+  return {
+    object: 'value',
+    document: {
+      object: 'document',
+      data: {},
+      nodes,
+    },
+  };
+};

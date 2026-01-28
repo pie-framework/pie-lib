@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.1.0-next.1...@pie-lib/math-input@7.1.0-next.3) (2026-01-27)
+
+**Note:** Version bump only for package @pie-lib/math-input
+
+
+
+
+
+# [7.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.31.1...@pie-lib/math-input@7.1.0-next.1) (2026-01-26)
+
+
+### Bug Fixes
+
+* fixed circular dependencies and bumped versions, plus image upload handling [PD-5141] ([7b5fbc9](https://github.com/pie-framework/pie-lib/commit/7b5fbc9126446916d42d6b3597232a231567b2d8))
+* math toolbar colors ([1308b62](https://github.com/pie-framework/pie-lib/commit/1308b62031128b61952f299419bcbe46e914ee6f))
+* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+
+
+### Features
+
+* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+* initial work for tiptap changes [PD-5141] ([d73e617](https://github.com/pie-framework/pie-lib/commit/d73e6179c01e1497688c630da98213b31e9f4938))
+* packages/math-input mui update PD-5268 ([b2603ad](https://github.com/pie-framework/pie-lib/commit/b2603ad0901b4b1611b7cd06ae3610c5822090b0))
+* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+
+
+
+
 # [7.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@6.31.2-next.0...@pie-lib/math-input@7.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/math-input

@@ -112,7 +112,7 @@ module.exports = {
       {
         name: '@pie-lib/editable-html-module',
         imports: {
-          default: ['@pie-lib/editable-html'],
+          default: ['@pie-lib/editable-html-tip-tap'],
         },
       },
       {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { select, mouse } from 'd3-selection';
 
 import { color, Readable } from '@pie-lib/render-ui';
-import EditableHtml from '@pie-lib/editable-html';
+import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import { ChildrenType } from './types';
 import { GraphPropsType } from './types';
 import Label from './label';
@@ -282,7 +282,7 @@ export class Root extends React.Component {
     const nbOfHorizontalLines = parseInt(actualHeight / 100);
     const sideGridlinesPadding = parseInt(actualHeight % 100);
     const { titleHeight } = this.state;
-    
+
     return (
       <StyledRoot>
         {showPixelGuides && (
@@ -325,7 +325,8 @@ export class Root extends React.Component {
                     markup={title || ''}
                     onChange={onChangeTitle}
                     placeholder={
-                      (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
+                      (defineChart && titlePlaceholder) ||
+                      (!disabledTitle && 'Click here to add a title for this graph')
                     }
                     toolbarOpts={{ noPadding: true, noBorder: true }}
                     activePlugins={activeTitlePlugins}
@@ -344,7 +345,8 @@ export class Root extends React.Component {
                     markup={title || ''}
                     onChange={onChangeTitle}
                     placeholder={
-                      (defineChart && titlePlaceholder) || (!disabledTitle && 'Click here to add a title for this graph')
+                      (defineChart && titlePlaceholder) ||
+                      (!disabledTitle && 'Click here to add a title for this graph')
                     }
                     toolbarOpts={{ noPadding: true, noBorder: true }}
                     activePlugins={activeTitlePlugins}
