@@ -1,11 +1,11 @@
 import { render, cleanup } from '@testing-library/react';
 import React from 'react';
 import { Root } from '../root';
-import { select, mouse } from 'd3-selection';
+import { select, pointer } from 'd3-selection';
 
 jest.mock('d3-selection', () => ({
   select: jest.fn(),
-  mouse: jest.fn(),
+  pointer: jest.fn(),
 }));
 
 const scaleMock = () => {
@@ -48,7 +48,7 @@ describe('root', () => {
     select.mockReturnValue({
       on: mockOn,
     });
-    mouse.mockReturnValue([0, 0]);
+    pointer.mockReturnValue([0, 0]);
 
     defaultProps = {
       classes: {},
@@ -62,9 +62,7 @@ describe('root', () => {
   });
 
   it('renders with children', () => {
-    const { container, getByText } = render(
-      <Root {...defaultProps}>hi</Root>
-    );
+    const { container, getByText } = render(<Root {...defaultProps}>hi</Root>);
     expect(container.firstChild).toBeInTheDocument();
     expect(getByText('hi')).toBeInTheDocument();
   });
@@ -100,7 +98,7 @@ describe('root', () => {
       });
 
       describe('mouseMove function', () => {
-        it('calls mouse with correct arguments', () => {
+        it('calls pointer with correct arguments', () => {
           const onMouseMove = jest.fn();
           const gp = graphProps();
           const props = {
@@ -110,6 +108,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 10, clientY: 20 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -122,17 +121,17 @@ describe('root', () => {
               mockOn(event, handler);
               // When 'mousemove' is registered, immediately test it
               if (event === 'mousemove' && handler) {
-                mouse.mockReturnValue([10, 20]);
-                // Handler is bound with mockSelection as first arg, so call with no args
-                handler();
+                pointer.mockReturnValue([10, 20]);
+                // Handler is bound with mockSelection as first arg, so call with event
+                handler(mockEvent);
               }
             },
           });
 
           render(<Root {...props}>hi</Root>);
 
-          // Verify mouse was called with the correct node
-          expect(mouse).toHaveBeenCalledWith(mockNode);
+          // Verify pointer was called with the event and correct node
+          expect(pointer).toHaveBeenCalledWith(mockEvent, mockNode);
         });
 
         it('calls scale.x.invert and scale.y.invert', () => {
@@ -145,6 +144,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 15, clientY: 25 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -155,8 +155,8 @@ describe('root', () => {
             on: (event, handler) => {
               mockOn(event, handler);
               if (event === 'mousemove' && handler) {
-                mouse.mockReturnValue([15, 25]);
-                handler();
+                pointer.mockReturnValue([15, 25]);
+                handler(mockEvent);
               }
             },
           });
@@ -179,6 +179,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 100, clientY: 200 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -189,7 +190,7 @@ describe('root', () => {
             on: (event, handler) => {
               mockOn(event, handler);
               if (event === 'mousemove' && handler) {
-                mouse.mockReturnValue([15, 25]);
+                pointer.mockReturnValue([100, 200]);
                 handler();
               }
             },
@@ -216,6 +217,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 100, clientY: 200 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -226,8 +228,8 @@ describe('root', () => {
             on: (event, handler) => {
               mockOn(event, handler);
               if (event === 'mousemove' && handler) {
-                mouse.mockReturnValue([100, 200]);
-                handler();
+                pointer.mockReturnValue([100, 200]);
+                handler(mockEvent);
               }
             },
           });
@@ -245,6 +247,7 @@ describe('root', () => {
           };
 
           const mockNode = document.createElement('div');
+          const mockEvent = { clientX: 100, clientY: 200 };
           const mockSelection = {
             _groups: [[mockNode]],
             node: () => mockNode,
@@ -255,9 +258,9 @@ describe('root', () => {
             on: (event, handler) => {
               mockOn(event, handler);
               if (event === 'mousemove' && handler) {
-                mouse.mockReturnValue([100, 200]);
+                pointer.mockReturnValue([100, 200]);
                 // Should not throw error when onMouseMove is not provided
-                expect(() => handler()).not.toThrow();
+                expect(() => handler(mockEvent)).not.toThrow();
               }
             },
           });

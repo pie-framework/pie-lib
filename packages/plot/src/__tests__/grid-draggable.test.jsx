@@ -2,10 +2,10 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import { gridDraggable } from '../grid-draggable';
 import { getDelta } from '../utils';
-import { clientPoint } from 'd3-selection';
+import { pointer } from 'd3-selection';
 
 jest.mock('d3-selection', () => ({
-  clientPoint: jest.fn().mockReturnValue([0, 0]),
+  pointer: jest.fn().mockReturnValue([0, 0]),
 }));
 
 let mockDraggableCoreProps;
@@ -438,7 +438,7 @@ describe('gridDraggable', () => {
         const onDragStop = jest.fn();
         const props = { ...defaultProps, onClick, onDragStop };
 
-        clientPoint.mockReturnValue([0, 0]);
+        pointer.mockReturnValue([0, 0]);
 
         const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
         render(<Comp {...props} />);
@@ -460,7 +460,7 @@ describe('gridDraggable', () => {
         graphProps.snap.x = jest.fn().mockReturnValue(2);
         graphProps.snap.y = jest.fn().mockReturnValue(2);
 
-        clientPoint.mockReturnValue([1.7, 2.3]);
+        pointer.mockReturnValue([1.7, 2.3]);
 
         const propsWithGraphProps = { ...props, graphProps };
         const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);

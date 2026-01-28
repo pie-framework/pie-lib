@@ -6,7 +6,7 @@ import debug from 'debug';
 import * as utils from './utils';
 import isFunction from 'lodash/isFunction';
 import invariant from 'invariant';
-import { clientPoint } from 'd3-selection';
+import { pointer } from 'd3-selection';
 
 const log = debug('pie-lib:plot:grid-draggable');
 
@@ -235,7 +235,7 @@ export const gridDraggable = (opts) => (Comp) => {
           this.setState({ startX: null });
           const { graphProps } = this.props;
           const { scale, snap } = graphProps;
-          const [rawX, rawY] = clientPoint(e.target, e);
+          const [rawX, rawY] = pointer(e, e.target);
           let x = scale.x.invert(rawX);
           let y = scale.y.invert(rawY);
           x = snap.x(x);

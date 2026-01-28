@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { select, mouse } from 'd3-selection';
+import { select, pointer } from 'd3-selection';
 import { types, utils } from '@pie-lib/plot';
 import { getTickValues, thinnerShapesNeeded } from './utils';
 
@@ -17,7 +17,7 @@ export default class Bg extends React.Component {
   componentDidMount() {
     const rect = select(this.rect);
 
-    rect.on('click', this.onRectClick.bind(this, rect));
+    rect.on('click', (event) => this.onRectClick(rect, event));
   }
 
   shouldComponentUpdate(nextProps) {
@@ -35,15 +35,15 @@ export default class Bg extends React.Component {
   };
 
   /**
-   * Note: we use d3 click + mouse to give us domain values directly.
+   * Note: we use d3 click + pointer to give us domain values directly.
    * Saves us having to calculate them ourselves from a MouseEvent.
    */
-  onRectClick = (rect) => {
+  onRectClick = (rect, event) => {
     const { onClick, graphProps } = this.props;
     const { scale } = graphProps;
 
     const padding = this.getRectPadding();
-    const coords = mouse(rect._groups[0][0]);
+    const coords = pointer(event, rect.node());
 
     // decrease the padding from coordinates to indicate the correct point clicked
     const x = scale.x.invert(coords[0] - padding);
