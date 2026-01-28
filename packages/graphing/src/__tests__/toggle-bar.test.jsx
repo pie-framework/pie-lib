@@ -9,6 +9,47 @@ jest.mock('@pie-lib/drag', () => ({
   DragProvider: ({ children }) => <div data-testid="drag-provider">{children}</div>,
 }));
 
+// Mock @dnd-kit/core hooks to avoid DndContext requirement
+jest.mock('@dnd-kit/core', () => ({
+  useDraggable: jest.fn(() => ({
+    attributes: {
+      role: 'button',
+      tabIndex: 0,
+    },
+    listeners: {
+      onPointerDown: jest.fn(),
+    },
+    setNodeRef: jest.fn(),
+    transform: null,
+    transition: null,
+    isDragging: false,
+  })),
+  useDroppable: jest.fn(() => ({
+    setNodeRef: jest.fn(),
+    isOver: false,
+    active: null,
+  })),
+}));
+
+// Mock @dnd-kit/utilities for CSS transform
+jest.mock('@dnd-kit/utilities', () => ({
+  CSS: {
+    Transform: {
+      toString: jest.fn((transform) => (transform ? 'translate3d(0, 0, 0)' : '')),
+    },
+  },
+}));
+
+// Mock @dnd-kit/sortable for arrayMove
+jest.mock('@dnd-kit/sortable', () => ({
+  arrayMove: jest.fn((array, from, to) => {
+    const newArray = [...array];
+    const [removed] = newArray.splice(from, 1);
+    newArray.splice(to, 0, removed);
+    return newArray;
+  }),
+}));
+
 // Mock Translator to return the key as-is for testing
 jest.mock('@pie-lib/translator', () => ({
   translator: {

@@ -26,6 +26,7 @@ const withTM = require('next-transpile-modules')([
   '@pie-lib/text-select',
   '@pie-lib/tools',
   '@pie-lib/translator',
+  '@mapbox/point-geometry',
 ]);
 
 const getAssetPrefix = () => {
@@ -38,6 +39,9 @@ const getAssetPrefix = () => {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    esmExternals: 'loose',
+  },
   webpack: (config) => {
     config.cache = false;
     const publicPath = `${getAssetPrefix()}/_next/static`;
