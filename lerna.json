@@ -6,13 +6,9 @@
   "useWorkspaces": true,
   "verifyAccess": "false",
   "command": {
-    "version": {
-      "ignoreChanges": ["yarn.lock", "CHANGELOG.json", "CHANGELOG.md", "LICENSE.md", "scripts/**", "*.config.js", "*.config.yml", ".circleci/**"]
-    },
     "publish": {
       "ignoreChanges": ["yarn.lock", "CHANGELOG.json", "CHANGELOG.md", "LICENSE.md"],
-      "message": "[ci skip] chore: publish",
-      "exact": true
+      "message": "[ci skip] chore: publish"
     }
   }
 }

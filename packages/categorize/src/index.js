@@ -17,12 +17,10 @@ export const limitChoices = (choiceId, count, choices) => {
       if (id !== choiceId || foundCount < count) {
         acc.choices.push(id);
       }
-
       return acc;
     },
     { choices: [] },
   );
-
   return out.choices;
 };
 

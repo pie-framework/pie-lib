@@ -1,4 +1,3 @@
-import { AssertionError } from 'assert';
 import * as utils from '../utils';
 
 const xy = utils.xy;
@@ -53,7 +52,7 @@ describe('utils', () => {
     let scaleFn;
 
     beforeEach(() => {
-      scaleFn = jest.fn(function(v) {
+      scaleFn = jest.fn(function (v) {
         return v;
       });
     });

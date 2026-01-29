@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering-accessible",
-  "version": "4.1.0-next.1",
+  "version": "4.1.0-next.4",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
@@ -11,13 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@pie-framework/mathml-to-latex": "1.4.4",
-    "@pie-lib/math-rendering": "4.1.0-next.1",
+    "@pie-lib/math-rendering": "^4.1.0-next.4",
     "debug": "^4.1.1",
     "lodash": "^4.17.11",
     "mathjax-full": "3.2.2",
     "mathml-to-latex": "1.2.0",
     "react": "^18.2.0"
   },
-  "gitHead": "c79c2c7a2369b07e6515972578cb1940ff4ae0df",
+  "gitHead": "d2c8178decbc97a9b3deaf6739f8093209bda80e",
   "scripts": {}
 }

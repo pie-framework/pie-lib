@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/icons",
-  "version": "3.1.0-next.1",
+  "version": "3.1.0-next.4",
   "description": "Some simple icons",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -25,10 +25,10 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@pie-lib/test-utils": "1.1.0-next.1"
+    "@pie-lib/test-utils": "^1.1.0-next.4"
   },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "c79c2c7a2369b07e6515972578cb1940ff4ae0df"
+  "gitHead": "d2c8178decbc97a9b3deaf6739f8093209bda80e"
 }

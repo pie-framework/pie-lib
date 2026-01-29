@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/graphing-utils",
-  "version": "2.1.0-next.1",
+  "version": "2.1.0-next.4",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -10,10 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mapbox/point-geometry": "^0.1.0",
+    "@mapbox/point-geometry": "^1.1.0",
     "debug": "^4.1.1",
     "lodash": "^4.17.11"
   },
-  "gitHead": "f712381d2cb985998863c1aed041ec05ee7b0249",
+  "gitHead": "d2c8178decbc97a9b3deaf6739f8093209bda80e",
   "scripts": {}
 }
