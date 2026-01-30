@@ -18,12 +18,10 @@
     "release": "scripts/build release deploy",
     "release:next": "scripts/build release deploy --next",
     "build": "scripts/build build",
-    "prepare": "husky install",
-    "postinstall": "lerna bootstrap",
     "prepush": "npm run test",
     "prepack": "scripts/build changelog",
     "run-mathml": "cd node_modules/ && yarn link \"@pie-framework/mathml-to-latex\" && cd .. && ./scripts/dev",
-    "clean-install": "git clean -xdf . && yarn install && lerna bootstrap && ./scripts/build babel",
+    "clean-install": "git clean -xdf . && yarn install && ./scripts/build babel",
     "link-pslb": "cd node_modules/ && yarn link '@pslb/pslb'",
     "print-module": "time yarn pslb --config pslb/pslb.config.js --logLevel silly",
     "clean-print-module": "yarn clean-install && yarn print-module"
@@ -59,6 +57,7 @@
     "css-loader": "^2.1.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.0",
+    "fast-glob": "^3.3.3",
     "file-loader": "^3.0.1",
     "fs-extra": "^7.0.1",
     "husky": "^9.0.0",
@@ -66,7 +65,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "26.1.0",
-    "lerna": "^3.11.0",
+    "lerna": "^8.1.8",
     "lint-staged": "^15.0.0",
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",
@@ -79,7 +78,7 @@
     "regenerator-runtime": "^0.13.1",
     "semver": "^5.6.0",
     "url-loader": "^1.1.2",
-    "yarn": "^1.13.0"
+    "yarn": "^1.22.22"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.3",
