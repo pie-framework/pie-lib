@@ -38,7 +38,7 @@
     "debug": "^4.1.1",
     "immutable": "^4.0.0-rc.12",
     "keycode": "^2.2.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.23",
     "prop-types": "^15.6.2",
     "react-attr-converter": "^0.3.1",
     "react-jss": "^8.6.1",

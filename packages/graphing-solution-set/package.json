@@ -42,7 +42,7 @@
     "d3-selection": "^3.0.0",
     "debug": "^4.1.1",
     "invariant": "^2.2.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.23",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
