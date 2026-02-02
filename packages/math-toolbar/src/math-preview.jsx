@@ -130,7 +130,6 @@ const InsideOverlay = styled('span')({
 export class RawMathPreview extends React.Component {
   static propTypes = {
     latex: PropTypes.string,
-    node: PropTypes.object,
     isSelected: PropTypes.bool,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
@@ -142,15 +141,14 @@ export class RawMathPreview extends React.Component {
 
   componentDidUpdate(prevProps) {
     // Re-run only if LaTeX changed
-    if (this.props.node.data.get('latex') !== prevProps.node.data.get('latex')) {
+    if (this.props.latex !== prevProps.latex) {
       markFractionBaseSuperscripts();
     }
   }
 
   render() {
-    log('[render] data: ', this.props.node.data);
-    const latex = this.props.node.data.get('latex');
-    const { isSelected, onFocus, onBlur } = this.props;
+    const { isSelected, onFocus, onBlur, latex } = this.props;
+    log('[render] latex: ', latex);
     return (
       <MathPreviewContainer isSelected={isSelected}>
         {' '}
