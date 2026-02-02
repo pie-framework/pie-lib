@@ -4,11 +4,7 @@ import MathPreview from '../math-preview';
 
 describe('MathPreview', () => {
   const defaultProps = {
-    node: {
-      data: {
-        get: jest.fn().mockReturnValue('sqrt(5)'),
-      },
-    },
+    latex: 'sqrt(5)',
     classes: {},
     isSelected: false,
     onFocus: jest.fn(),
