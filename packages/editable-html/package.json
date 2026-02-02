@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html",
-  "version": "12.1.0-next.5",
+  "version": "12.1.0-next.6",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -17,7 +17,7 @@
     "@pie-lib/drag": "^3.1.0-next.5",
     "@pie-lib/math-input": "^7.1.0-next.4",
     "@pie-lib/math-rendering": "^4.1.0-next.4",
-    "@pie-lib/math-toolbar": "^2.1.0-next.5",
+    "@pie-lib/math-toolbar": "^2.1.0-next.6",
     "@pie-lib/render-ui": "^5.1.0-next.5",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",
@@ -50,6 +50,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "e51620791bab7434375dc0a101c39dc5926a457d",
+  "gitHead": "426bbdc78ebb5d6ef3c7c28cebaaecd82ea5c4f7",
   "scripts": {}
 }

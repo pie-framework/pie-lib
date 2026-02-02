@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html-tip-tap",
-  "version": "1.1.0-next.5",
+  "version": "1.1.0-next.6",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "@pie-lib/drag": "^3.1.0-next.5",
     "@pie-lib/math-input": "^7.1.0-next.4",
     "@pie-lib/math-rendering": "^4.1.0-next.4",
-    "@pie-lib/math-toolbar": "^2.1.0-next.5",
+    "@pie-lib/math-toolbar": "^2.1.0-next.6",
     "@pie-lib/render-ui": "^5.1.0-next.5",
     "@tiptap/core": "3.0.9",
     "@tiptap/extension-character-count": "3.0.9",
@@ -57,6 +57,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "e51620791bab7434375dc0a101c39dc5926a457d",
+  "gitHead": "ab9f87f1a5514b2960abc29a779030c584adab11",
   "scripts": {}
 }
