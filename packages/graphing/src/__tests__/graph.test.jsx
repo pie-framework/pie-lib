@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
 
-import { xy, graphProps } from './utils';
-
+import { graphProps } from './utils';
 import Graph, { removeBuildingToolIfCurrentToolDiffers } from '../graph';
 import { toolsArr } from '../tools';
 
@@ -106,7 +105,7 @@ describe('Graph', () => {
   describe('props handling', () => {
     it('calls onChangeMarks when marks prop changes', () => {
       const { rerender } = render(<Graph {...defaultProps} />);
-      
+
       const newMarks = [
         {
           type: 'point',
@@ -118,7 +117,7 @@ describe('Graph', () => {
       ];
 
       rerender(<Graph {...defaultProps} marks={newMarks} />);
-      
+
       // Component should render with new marks
       // Note: onChangeMarks is called internally when marks are changed through user interaction,
       // not when props change, so we just verify the component renders correctly

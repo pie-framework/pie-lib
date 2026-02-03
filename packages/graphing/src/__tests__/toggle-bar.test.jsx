@@ -4,12 +4,10 @@ import React from 'react';
 
 import { ToggleBar } from '../toggle-bar';
 
-// Mock DragProvider to avoid @dnd-kit React version conflicts
 jest.mock('@pie-lib/drag', () => ({
   DragProvider: ({ children }) => <div data-testid="drag-provider">{children}</div>,
 }));
 
-// Mock @dnd-kit/core hooks to avoid DndContext requirement
 jest.mock('@dnd-kit/core', () => ({
   useDraggable: jest.fn(() => ({
     attributes: {
@@ -31,7 +29,6 @@ jest.mock('@dnd-kit/core', () => ({
   })),
 }));
 
-// Mock @dnd-kit/utilities for CSS transform
 jest.mock('@dnd-kit/utilities', () => ({
   CSS: {
     Transform: {
@@ -40,7 +37,6 @@ jest.mock('@dnd-kit/utilities', () => ({
   },
 }));
 
-// Mock @dnd-kit/sortable for arrayMove
 jest.mock('@dnd-kit/sortable', () => ({
   arrayMove: jest.fn((array, from, to) => {
     const newArray = [...array];
@@ -50,11 +46,9 @@ jest.mock('@dnd-kit/sortable', () => ({
   }),
 }));
 
-// Mock Translator to return the key as-is for testing
 jest.mock('@pie-lib/translator', () => ({
   translator: {
     t: (key) => {
-      // Extract tool name from key like "graphing.point" -> "point"
       const parts = key.split('.');
       return parts[parts.length - 1];
     },

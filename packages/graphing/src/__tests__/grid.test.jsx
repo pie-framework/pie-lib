@@ -1,5 +1,5 @@
-import { render } from '@pie-lib/test-utils';
 import React from 'react';
+import { render } from '@pie-lib/test-utils';
 import { Grid } from '../grid';
 import { graphProps } from './utils';
 
