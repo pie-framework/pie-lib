@@ -67,7 +67,22 @@ describe('RawBaseComponent', () => {
     });
 
     it('renders with labels', () => {
-      const { container} = renderWithLabels();
+      const { container } = renderWithLabels();
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders with multiple points', () => {
+      const { container } = renderComponent({
+        points: [xy(0, 0, 0), xy(1, 1, 1), xy(2, 0, 2)],
+      });
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders with closed polygon', () => {
+      const { container } = renderComponent({
+        points: [xy(0, 0, 0), xy(1, 1, 1), xy(2, 0, 2)],
+        closed: true,
+      });
       expect(container.firstChild).toBeInTheDocument();
     });
   });

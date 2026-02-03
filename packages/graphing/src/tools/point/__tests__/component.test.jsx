@@ -37,5 +37,15 @@ describe('Component', () => {
       const { container } = renderComponent({ mark: { label: 'foo', ...xy(0, 0) } });
       expect(container.firstChild).toBeInTheDocument();
     });
+
+    it('renders with different coordinates', () => {
+      const { container } = renderComponent({ mark: { ...xy(5, -3) } });
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders with empty label', () => {
+      const { container } = renderComponent({ mark: { label: '', ...xy(1, 1) } });
+      expect(container.firstChild).toBeInTheDocument();
+    });
   });
 });
