@@ -21,7 +21,7 @@ const Masked = withMask('blank', (props) => (node, data, onChange) => {
       emptyResponseAreaWidth,
       emptyResponseAreaHeight,
       instanceId,
-      isDragging
+      isDragging,
     } = props;
     const choiceId = showCorrectAnswer ? correctResponse[dataset.id] : data[dataset.id];
     // eslint-disable-next-line react/prop-types
@@ -113,6 +113,9 @@ export default class DragInTheBlank extends React.Component {
     const { active, over } = event;
     const { onChange, value } = this.props;
 
+    // Always reset the active drag item state, even if drop is invalid
+    this.setState({ activeDragItem: null });
+
     if (!over || !active || !onChange) {
       return;
     }
@@ -124,26 +127,25 @@ export default class DragInTheBlank extends React.Component {
       const draggedItem = draggedData;
       const targetId = dropData.id;
 
-      // drop from choice to blank (placing choice into response)
-      if (draggedItem.fromChoice === true) {
-        const newValue = { ...value };
-        newValue[targetId] = draggedItem.choice.id;
-        onChange(newValue);
-      } else if (dropData.toChoiceBoard === true) {
-        // handle drop from blank to choice board (removal from blank)
-        const newValue = { ...value };
-        delete newValue[draggedItem.id];
-        onChange(newValue);
-      }
-      // handle drop from blank to blank (changing position)
-      else if (draggedItem.id !== targetId) {
+      if (dropData.toChoiceBoard === true) {
+        if (!draggedItem.fromChoice && draggedItem.id) {
+          const newValue = { ...value };
+          delete newValue[draggedItem.id];
+          onChange(newValue);
+        }
+      } else if (draggedItem.fromChoice === true) {
+        if (targetId && targetId !== 'drag-in-the-blank-droppable') {
+          const newValue = { ...value };
+          newValue[targetId] = draggedItem.choice.id;
+          onChange(newValue);
+        }
+      } else if (draggedItem.id && draggedItem.id !== targetId) {
         const newValue = { ...value };
         newValue[targetId] = draggedItem.choice.id;
         delete newValue[draggedItem.id];
         onChange(newValue);
       }
     }
-    this.setState({ activeDragItem: null });
   };
 
   getPositionDirection = (choicePosition) => {
@@ -188,7 +190,7 @@ export default class DragInTheBlank extends React.Component {
       emptyResponseAreaWidth,
       emptyResponseAreaHeight,
       layout,
-      instanceId
+      instanceId,
     } = this.props;
 
     const choicePosition = choicesPosition || 'below';
@@ -226,9 +228,7 @@ export default class DragInTheBlank extends React.Component {
             instanceId={instanceId}
             isDragging={!!this.state.activeDragItem}
           />
-          <DragOverlay style={{ pointerEvents: "none" }}>
-            {this.renderDragOverlay()}
-          </DragOverlay>
+          <DragOverlay style={{ pointerEvents: 'none' }}>{this.renderDragOverlay()}</DragOverlay>
         </div>
       </DragProvider>
     );
