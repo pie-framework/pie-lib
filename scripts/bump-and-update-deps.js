@@ -19,6 +19,12 @@ async function bumpVersionsAndUpdateDeps() {
     const pkgJson = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 
     const currentVersion = pkgJson.version;
+
+    if (!semver.valid(currentVersion)) {
+      console.log(`Invalid semver for ${pkgJson.name}: ${currentVersion}`);
+      continue;
+    }
+
     // Increment prerelease version (e.g., 6.1.0-next.4 -> 6.1.0-next.5)
     const newVersion = semver.inc(currentVersion, 'prerelease');
 
@@ -31,7 +37,7 @@ async function bumpVersionsAndUpdateDeps() {
       oldVersion: currentVersion,
       newVersion: newVersion,
       pkgPath: pkgPath,
-      pkgJson: pkgJson
+      pkgJson: pkgJson,
     });
 
     pkgJson.version = newVersion;
@@ -87,7 +93,7 @@ async function bumpVersionsAndUpdateDeps() {
   console.log(`   - Updated ${updatedCount} internal dependency references`);
 }
 
-bumpVersionsAndUpdateDeps().catch(err => {
+bumpVersionsAndUpdateDeps().catch((err) => {
   console.error('Error:', err);
   process.exit(1);
 });
