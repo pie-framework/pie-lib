@@ -10,10 +10,11 @@ const StyledPromptContainer = styled('div')(({ theme, tagName }) => ({
     borderCollapse: 'collapse',
   },
   // Apply vertical striping when first column is a header (th) and NOT mixed with td
-  '&:not(.MathJax) > table:has(tbody tr > th:first-child):not(:has(tbody tr > td:first-child)) tbody td:nth-child(even)': {
-    backgroundColor: '#f6f8fa',
-    color: theme.palette.common.black,
-  },
+  '&:not(.MathJax) > table:has(tbody tr > th:first-child):not(:has(tbody tr > td:first-child)) tbody td:nth-child(even)':
+    {
+      backgroundColor: '#f6f8fa',
+      color: theme.palette.common.black,
+    },
   // Apply horizontal striping for tables where first element is a data cell (td)
   '&:not(.MathJax) > table:has(tbody tr > td:first-child) tbody tr:nth-child(even) td': {
     backgroundColor: '#f6f8fa',
@@ -42,7 +43,7 @@ const StyledPromptContainer = styled('div')(({ theme, tagName }) => ({
     paddingLeft: theme.spacing(4),
     paddingBottom: theme.spacing(1),
   },
-  '&.label': {
+  '&.prompt-label': {
     color: `${color.text()} !important`,
     display: 'flex',
     flexDirection: 'column',
