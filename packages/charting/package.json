@@ -49,5 +49,5 @@
   "devDependencies": {
     "@pie-lib/test-utils": "^1.1.1-next.0"
   },
-  "gitHead": "e51620791bab7434375dc0a101c39dc5926a457d"
+  "gitHead": "f32536b3520ed05f34957d3c64193f4bb95d53e9"
 }
