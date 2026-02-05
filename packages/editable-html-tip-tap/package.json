@@ -19,7 +19,7 @@
     "@pie-lib/render-ui": "^5.1.1-next.0",
     "@tiptap/core": "3.0.9",
     "@tiptap/extension-character-count": "3.0.9",
-    "@tiptap/extension-color": "3.0.9",
+    "@tiptap/extension-color": "3.19.0",
     "@tiptap/extension-image": "3.0.9",
     "@tiptap/extension-list-item": "3.0.9",
     "@tiptap/extension-subscript": "3.0.9",
