@@ -9174,10 +9174,10 @@ markdown-it@^14.0.0:
     punycode.js "^2.3.1"
     uc.micro "^2.1.0"
 
-markdown-to-jsx@^7.7.15:
-  version "7.7.17"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.7.17.tgz#6e997d6aa4dbe2e69c423c65745541846777483c"
-  integrity sha512-7mG/1feQ0TX5I7YyMZVDgCC/y2I3CiEhIRQIhyov9nGBP5eoVrOXXHuL5ZP8GRfxVZKRiXWJgwXkb9It+nQZfQ==
+markdown-to-jsx@^9.7.2:
+  version "9.7.2"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-9.7.2.tgz#acc29999887513f2e423b92777d14c77a2da07e8"
+  integrity sha512-DTWRWPPyTVww//5s/dZgq1Pl6i5CclnKvx847Hpj6/GQDpYzM1xkD/Z84PzaVPk/zWfEdJKZSr2G/Y7RTYw7Fw==
 
 math-expression-evaluator@^1.2.14:
   version "1.4.0"
