@@ -14,7 +14,7 @@
     "@mui/material": "^7.3.4",
     "@pie-lib/editable-html-tip-tap": "^1.1.0-next.6",
     "debug": "^4.1.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.23",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

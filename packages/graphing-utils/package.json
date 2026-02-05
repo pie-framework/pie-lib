@@ -12,7 +12,7 @@
   "dependencies": {
     "@mapbox/point-geometry": "^1.1.0",
     "debug": "^4.1.1",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.23"
   },
   "gitHead": "d2c8178decbc97a9b3deaf6739f8093209bda80e",
   "scripts": {}

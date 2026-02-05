@@ -15,10 +15,15 @@ pkgs.forEach((p) => {
     // console.log('buffer:', buffer);
     const s = buffer.toString().trim();
 
-    const arr = JSON.parse(s);
+    const arr = [].concat(JSON.parse(s));
     const greaterThan = arr.filter((v) => {
-      const isNewer = semver.gt(v, p.pkg.version) > 0;
+      if (!semver.valid(v)) {
+        return false;
+      }
+
+      const isNewer = semver.gt(v, p.pkg.version);
       const isPrerelease = semver.prerelease(v) !== null;
+
       return isNewer && !isPrerelease;
     });
 
