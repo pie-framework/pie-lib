@@ -82,8 +82,7 @@
     "yarn": "^1.22.22"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6",
-    "core-js": "^3.48.0"
+    "@babel/runtime": "^7.28.6"
   },
   "workspaces": [
     "packages/*"
