@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/editable-html-tip-tap",
-  "version": "1.1.0-next.6",
+  "version": "1.1.1-next.0",
   "description": "",
   "license": "ISC",
   "main": "lib/index.js",
@@ -12,11 +12,11 @@
     "@dnd-kit/utilities": "3.2.2",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/drag": "^3.1.0-next.5",
-    "@pie-lib/math-input": "^7.1.0-next.4",
-    "@pie-lib/math-rendering": "^4.1.0-next.4",
-    "@pie-lib/math-toolbar": "^2.1.0-next.6",
-    "@pie-lib/render-ui": "^5.1.0-next.5",
+    "@pie-lib/drag": "^3.1.1-next.0",
+    "@pie-lib/math-input": "^7.1.1-next.0",
+    "@pie-lib/math-rendering": "^4.1.1-next.0",
+    "@pie-lib/math-toolbar": "^2.1.1-next.0",
+    "@pie-lib/render-ui": "^5.1.1-next.0",
     "@tiptap/core": "3.0.9",
     "@tiptap/extension-character-count": "3.0.9",
     "@tiptap/extension-color": "3.0.9",
@@ -57,6 +57,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "ab9f87f1a5514b2960abc29a779030c584adab11",
+  "gitHead": "7bb08145106e65c83a8f4a51902cf669d1be19ac",
   "scripts": {}
 }
