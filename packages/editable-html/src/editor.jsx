@@ -4,8 +4,7 @@ import SlateTypes from 'slate-prop-types';
 import { Value, Block, Inline } from 'slate';
 import Plain from 'slate-plain-serializer';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
-import isEqual from 'lodash/isEqual';
+import { debounce, isEqual } from 'lodash-es';
 import classNames from 'classnames';
 import debug from 'debug';
 import { styled } from '@mui/material/styles';
@@ -33,8 +32,8 @@ const defaultToolbarOpts = {
 
 const defaultResponseAreaProps = {
   options: {},
-  respAreaToolbar: () => { },
-  onHandleAreaChange: () => { },
+  respAreaToolbar: () => {},
+  onHandleAreaChange: () => {},
 };
 
 const defaultLanguageCharactersProps = [];
@@ -199,10 +198,10 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => { },
-    onBlur: () => { },
-    onKeyDown: () => { },
-    runSerializationOnMarkup: () => { },
+    onFocus: () => {},
+    onBlur: () => {},
+    onKeyDown: () => {},
+    runSerializationOnMarkup: () => {},
     mathMlOptions: {
       mmlOutput: false,
       mmlEditing: false,
@@ -977,7 +976,7 @@ export class Editor extends React.Component {
         this.onChange(ch);
         const handler = new InsertImageHandler(
           inline,
-          () => { },
+          () => {},
           () => this.state.value,
           this.onChange,
           true,
@@ -1076,13 +1075,11 @@ export class Editor extends React.Component {
       >
         {scheduled && <StyledUploadingMessage>Uploading image and then saving...</StyledUploadingMessage>}
         <StyledSlateEditor
-          className={classNames(
-            {
-              noPadding: toolbarOpts?.noPadding,
-              showParagraph: showParagraphs && !showParagraphs.disabled,
-              separateParagraph: separateParagraphs && !separateParagraphs.disabled,
-            },
-          )}
+          className={classNames({
+            noPadding: toolbarOpts?.noPadding,
+            showParagraph: showParagraphs && !showParagraphs.disabled,
+            separateParagraph: separateParagraphs && !separateParagraphs.disabled,
+          })}
         >
           <SlateEditor
             plugins={this.plugins}
@@ -1120,7 +1117,7 @@ export class Editor extends React.Component {
               minHeight: sizeStyle.minHeight,
               height: sizeStyle.height,
               maxHeight: sizeStyle.maxHeight,
-              ...slateEditorExtraStyles
+              ...slateEditorExtraStyles,
             }}
             pluginProps={otherPluginProps}
             toolbarOpts={toolbarOpts}

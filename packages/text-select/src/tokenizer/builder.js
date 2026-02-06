@@ -1,6 +1,5 @@
-import compact from 'lodash/compact';
+import { clone, compact } from 'lodash-es';
 import English from '@pie-framework/parse-english';
-import clone from 'lodash/clone';
 
 const g = (str, node) => {
   if (node.children) {

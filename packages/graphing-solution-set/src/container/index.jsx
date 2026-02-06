@@ -5,7 +5,7 @@ import { applyMiddleware, createStore } from 'redux';
 import reducer from './reducer';
 import { changeMarks } from './actions';
 import PropTypes from 'prop-types';
-import isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash-es';
 import { ActionCreators } from 'redux-undo';
 import GraphWithControls from '../graph-with-controls';
 import { lastActionMiddleware, getLastAction } from './middleware';

@@ -2,7 +2,7 @@ import Html from 'slate-html-serializer';
 import React from 'react';
 import debug from 'debug';
 import { object as toStyleObject } from 'to-style';
-import isEmpty from 'lodash/isEmpty';
+import { isEmpty } from 'lodash-es';
 
 import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';

@@ -8,7 +8,7 @@ import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
 
 import { BLOCK_TAGS } from '../../block-tags';
-import isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash-es';
 
 const log = debug('@pie-lib:editable-html:plugins:math');
 

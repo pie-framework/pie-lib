@@ -4,7 +4,7 @@ import { GraphPropsType } from './types';
 import { DraggableCore } from './draggable';
 import debug from 'debug';
 import * as utils from './utils';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from 'lodash-es';
 import invariant from 'invariant';
 import { pointer } from 'd3-selection';
 

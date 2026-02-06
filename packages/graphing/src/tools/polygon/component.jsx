@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ToolPropTypeFields } from '../shared/types';
 import { BasePoint } from '../shared/point';
-import chunk from 'lodash/chunk';
-import initial from 'lodash/initial';
+import { chunk, initial, isEmpty } from 'lodash-es';
 import debug from 'debug';
 import Line from './line';
 import DraggablePolygon, { Polygon } from './polygon';
@@ -11,7 +10,6 @@ import { types } from '@pie-lib/plot';
 import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
-import isEmpty from 'lodash/isEmpty';
 import { getMiddleOfTwoPoints, getRightestPoints, equalPoints } from '../../utils';
 
 const log = debug('pie-lib:graphing:polygon');
@@ -366,16 +364,8 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const {
-      coordinatesOnHover,
-      mark,
-      graphProps,
-      onClick,
-      isToolActive,
-      labelNode,
-      labelModeEnabled,
-      limitLabeling,
-    } = this.props;
+    const { coordinatesOnHover, mark, graphProps, onClick, isToolActive, labelNode, labelModeEnabled, limitLabeling } =
+      this.props;
     const { mark: stateMark } = this.state;
 
     return (

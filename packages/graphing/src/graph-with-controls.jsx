@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import uniq from 'lodash/uniq';
-import isString from 'lodash/isString';
+import { isString, uniq } from 'lodash-es';
 import { color } from '@pie-lib/render-ui';
 
 import ToolMenu from './tool-menu';
@@ -66,7 +65,12 @@ export const filterByVisibleToolTypes = (toolbarTools, marks) =>
 const getDefaultCurrentTool = (toolType) => toolsArr.find((tool) => tool.type === toolType) || null;
 
 const Collapsible = ({ children, title }) => (
-  <StyledAccordion elevation={0} disableGutters={true} square={true} TransitionProps={{ timeout: { enter: 225, exit: 195 } }}>
+  <StyledAccordion
+    elevation={0}
+    disableGutters={true}
+    square={true}
+    TransitionProps={{ timeout: { enter: 225, exit: 195 } }}
+  >
     <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
       <Typography variant="subheading">{title}</Typography>
     </StyledAccordionSummary>
@@ -193,9 +197,7 @@ export class GraphWithControls extends React.Component {
       <StyledGraphContainer className={className}>
         <StyledControls>
           {collapsibleToolbar ? (
-            <Collapsible title={collapsibleToolbarTitle}>
-              {graphActions}
-            </Collapsible>
+            <Collapsible title={collapsibleToolbarTitle}>{graphActions}</Collapsible>
           ) : (
             graphActions
           )}

@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 
 import { DoneButton } from './done-button';
 

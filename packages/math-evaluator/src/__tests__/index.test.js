@@ -1,5 +1,5 @@
 import areValuesEqual, { ave, latexToText } from '../index';
-import _ from 'lodash';
+import { chunk } from 'lodash-es';
 
 describe('math-evaluator', () => {
   describe('latexToText', () => {
@@ -23,9 +23,9 @@ describe('math-evaluator', () => {
   });
 
   const assert = (isEqual, opts) => (label) =>
-    function() {
+    function () {
       const args = Array.from(arguments);
-      const pairs = _.chunk(args, 2);
+      const pairs = chunk(args, 2);
 
       describe(label, () => {
         pairs.forEach(([a, b]) => {

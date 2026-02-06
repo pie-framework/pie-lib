@@ -12,7 +12,7 @@ import {
   getAllPossibleResponses,
   moveChoiceToAlternate,
 } from '../index';
-import range from 'lodash/range';
+import { range } from 'lodash-es';
 import util from 'util';
 import debug from 'debug';
 import { cat, cats, choice, answer } from './utils';

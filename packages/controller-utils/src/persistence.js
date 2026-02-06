@@ -1,6 +1,4 @@
-import get from 'lodash/get';
-import shuffle from 'lodash/shuffle';
-import isEmpty from 'lodash/isEmpty';
+import { get, isEmpty, shuffle } from 'lodash-es';
 
 // eslint-disable-next-line no-console
 const lg = (n) => console[n].bind(console, 'controller-utils:');

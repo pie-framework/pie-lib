@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep } from 'lodash-es';
 
 import { Root, createGraphProps } from '@pie-lib/plot';
 import { AlertDialog } from '@pie-lib/config-ui';

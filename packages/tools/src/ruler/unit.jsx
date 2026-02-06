@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { noSelect, strokeColor } from '../style-utils';
-import range from 'lodash/range';
+import { range } from 'lodash-es';
 
 const StyledTick = styled('line')(({ theme }) => ({
   stroke: strokeColor(theme),

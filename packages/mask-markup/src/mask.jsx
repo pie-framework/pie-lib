@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 import { styled } from '@mui/material/styles';
 import { renderMath } from '@pie-lib/math-rendering';
 import { MARK_TAGS } from './serialization';

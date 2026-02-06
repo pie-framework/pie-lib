@@ -1,6 +1,6 @@
 import { xPoints, sinY, buildDataPoints, pointsToABC, parabola, parabolaFromTwoPoints } from '../index';
 
-import _ from 'lodash';
+import { range } from 'lodash-es';
 
 const xy = (x, y) => ({ x, y });
 
@@ -30,7 +30,7 @@ describe('utils', () => {
       });
     };
     const shift = (phase, vertical) => ({ phase, vertical });
-    const rng = (start, end, step) => _.range(start, end + step, step);
+    const rng = (start, end, step) => range(start, end + step, step);
 
     describe('amp: 1, freq: 1', () => {
       assertSin(1, 1, shift(0, 0))(0, 0);

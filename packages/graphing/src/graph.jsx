@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEqual from 'lodash/isEqual';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep, isEqual } from 'lodash-es';
 import { Root, types, createGraphProps } from '@pie-lib/plot';
 import debug from 'debug';
 

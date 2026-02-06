@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import range from 'lodash/range';
+import { range } from 'lodash-es';
 import { strokeColor, noSelect } from '../style-utils';
 
 const StyledLine = styled('line')(({ theme }) => ({

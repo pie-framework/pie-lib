@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
-import isFinite from 'lodash/isFinite';
+import { isFinite } from 'lodash-es';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Remove from '@mui/icons-material/Remove';

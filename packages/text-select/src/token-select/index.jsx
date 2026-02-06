@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Token, { TokenTypes } from './token';
 import { styled } from '@mui/material/styles';
-import clone from 'lodash/clone';
+import { clone, isEqual } from 'lodash-es';
 import debug from 'debug';
 import { noSelect } from '@pie-lib/style-utils';
-import isEqual from 'lodash/isEqual';
 
 const log = debug('@pie-lib:text-select:token-select');
 

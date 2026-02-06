@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { lighten, alpha, styled } from '@mui/material/styles';
 import debug from 'debug';
-import _ from 'lodash';
+import { flatten } from 'lodash-es';
 import MathQuill from '@pie-framework/mathquill';
 import * as mq from '../mq';
 
@@ -341,7 +341,7 @@ export class KeyPad extends React.Component {
 
   flowKeys = (base, extras) => {
     const transposed = [...sortKeys(base), ...sortKeys(extras)];
-    return _.flatten(transposed);
+    return flatten(transposed);
   };
 
   keyIsNotAllowed = (key) => {

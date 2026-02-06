@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import findKey from 'lodash/findKey';
+import { findKey } from 'lodash-es';
 import Choice from './choice';
 import { DragDroppablePlaceholder } from '@pie-lib/drag';
 
@@ -55,10 +55,10 @@ export default class Choices extends React.Component {
       <div style={elementStyle}>
         <DragDroppablePlaceholder disabled={disabled} instanceId={instanceId}>
           {filteredChoices.map((c, index) => (
-            <Choice 
-              key={`${c.value}-${index}`} 
-              disabled={disabled} 
-              choice={c} 
+            <Choice
+              key={`${c.value}-${index}`}
+              disabled={disabled}
+              choice={c}
               instanceId={instanceId}
             />
           ))}

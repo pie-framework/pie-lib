@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
 import DraggableHandle, { DragHandle } from './drag-handle';
 import { styled } from '@mui/material/styles';
-import isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash-es';
 import { color } from '@pie-lib/render-ui';
 
 const getData = (data, domain) => {
@@ -103,7 +103,7 @@ export class RawLine extends React.Component {
             const r = 6;
             const enableDraggable = defineChart || point.interactive;
             const Component = enableDraggable ? DraggableHandle : DragHandle;
-                        
+
             return (
               <Component
                 key={`point-${point.x}-${i}`}

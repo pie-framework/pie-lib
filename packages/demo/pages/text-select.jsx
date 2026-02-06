@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { Header, Body } from '../source/formatting';
 import classNames from 'classnames';
-import compact from 'lodash/compact';
+import { compact } from 'lodash-es';
 
 import { green, orange } from '@mui/material/colors';
 

@@ -3,7 +3,6 @@ const { getPackages } = require('@pie-framework/build-helper');
 const { resolve } = require('path');
 const { execSync } = require('child_process');
 const semver = require('semver');
-const _ = require('lodash');
 
 const pkgs = getPackages(resolve(__dirname, '..', 'packages'));
 

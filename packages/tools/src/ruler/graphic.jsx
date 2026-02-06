@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import UnitType from './unit-type';
-import range from 'lodash/range';
+import { range } from 'lodash-es';
 import Unit from './unit';
 import { strokeColor, fillColor } from '../style-utils';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import isFinite from 'lodash/isFinite';
+import { isFinite } from 'lodash-es';
 import InputAdornment from '@mui/material/InputAdornment';
 const log = debug('@pie-lib:config-ui:number-text-field');
 

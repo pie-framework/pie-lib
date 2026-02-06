@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 const path = require('path');
 const fs = require('fs-extra');
-const _ = require('lodash');
 
 const commonJs = {};
 
@@ -9,18 +8,15 @@ const packagesDir = path.resolve(__dirname, '../packages');
 const listPackages = () => {
   const files = fs.readdirSync(packagesDir);
 
-  return _.compact(
-    files
-      .filter((f) => !f.includes('@'))
-      .filter((f) => fs.lstatSync(path.join(packagesDir, f)).isDirectory())
-      .map((f) => {
-        const p = fs.readJsonSync(path.join(packagesDir, f, 'package.json'));
-        if (!p.module) {
-          return;
-        }
-        return p.name;
-      }),
-  );
+  return files
+    .filter((f) => !f.includes('@'))
+    .filter((f) => fs.lstatSync(path.join(packagesDir, f)).isDirectory())
+    .map((f) => {
+      const p = fs.readJsonSync(path.join(packagesDir, f, 'package.json'));
+
+      return p.module ? p.name : null;
+    })
+    .filter(Boolean);
 };
 
 /**
@@ -78,7 +74,6 @@ module.exports = {
             'react',
             'prop-types',
             '@pie-lib/correct-answer-toggle',
-            'lodash',
             'classnames',
             'debug',
           ],
