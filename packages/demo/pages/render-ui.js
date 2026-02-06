@@ -1,9 +1,9 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { indicators, Feedback } from '@pie-lib/render-ui';
-import { Collapsible, color } from '@pie-lib/render-ui';
+import { Collapsible, color, Feedback, indicators } from '@pie-lib/render-ui';
 import withRoot from '../source/withRoot';
 import { Typography } from '@mui/material';
+
 const { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } = indicators;
 
 const SectionContainer = styled('div')(({ theme }) => ({

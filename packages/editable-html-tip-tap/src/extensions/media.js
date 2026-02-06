@@ -78,12 +78,16 @@ export const Media = Node.create({
 
   addCommands() {
     return {
-      insertMedia: (attrs) => ({ commands }) => {
-        return commands.insertContent({ type: this.name, attrs });
-      },
-      updateMedia: (attrs) => ({ commands }) => {
-        return commands.updateAttributes(this.name, attrs);
-      },
+      insertMedia:
+        (attrs) =>
+        ({ commands }) => {
+          return commands.insertContent({ type: this.name, attrs });
+        },
+      updateMedia:
+        (attrs) =>
+        ({ commands }) => {
+          return commands.updateAttributes(this.name, attrs);
+        },
     };
   },
 
@@ -143,10 +147,7 @@ export default function MediaNodeView({ editor, node, updateAttributes, deleteNo
           updateAttributes(data);
         }
 
-        editor
-          .chain()
-          .focus()
-          .run();
+        editor.chain().focus().run();
       },
     });
   };
@@ -163,10 +164,7 @@ export default function MediaNodeView({ editor, node, updateAttributes, deleteNo
           deleteNode();
         }
 
-        editor
-          .chain()
-          .focus()
-          .run();
+        editor.chain().focus().run();
       },
     });
   }, []);

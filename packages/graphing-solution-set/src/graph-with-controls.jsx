@@ -8,12 +8,7 @@ import ToolMenu from './tool-menu';
 import Graph, { graphPropTypes } from './graph';
 import UndoRedo from './undo-redo';
 import { allTools, toolsArr } from './tools';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const setToolbarAvailability = (toolbarTools) =>
@@ -33,8 +28,7 @@ export const filterByValidToolTypes = (backgroundMarks) =>
 export const filterByVisibleToolTypes = (toolbarTools, marks) =>
   marks.filter((bM) => !!toolbarTools.find((tool) => tool === bM.type));
 
-const getDefaultCurrentTool = (toolType) =>
-  toolsArr.find((tool) => tool.type === toolType) || null;
+const getDefaultCurrentTool = (toolType) => toolsArr.find((tool) => tool.type === toolType) || null;
 
 const GraphWithControlsRoot = styled('div')(() => ({
   display: 'flex',
@@ -132,11 +126,9 @@ export class GraphWithControls extends React.Component {
     }
   }
 
-  changeCurrentTool = (tool, tools) =>
-    this.setState({ currentTool: tools.find((t) => t.type === tool) });
+  changeCurrentTool = (tool, tools) => this.setState({ currentTool: tools.find((t) => t.type === tool) });
 
-  toggleLabelMode = () =>
-    this.setState((state) => ({ labelModeEnabled: !state.labelModeEnabled }));
+  toggleLabelMode = () => this.setState((state) => ({ labelModeEnabled: !state.labelModeEnabled }));
 
   render() {
     let { currentTool, labelModeEnabled } = this.state;
@@ -199,12 +191,7 @@ export class GraphWithControls extends React.Component {
         />
         {!disabled && (
           <UndoRedoOuterDiv>
-            <UndoRedo
-              onUndo={onUndo}
-              onRedo={onRedo}
-              onReset={onCustomReset}
-              language={language}
-            />
+            <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onCustomReset} language={language} />
           </UndoRedoOuterDiv>
         )}
       </>
@@ -214,11 +201,7 @@ export class GraphWithControls extends React.Component {
       <GraphWithControlsRoot className={classNames(className)}>
         {!disableToolbar && (
           <Controls>
-            {collapsibleToolbar ? (
-              <Collapsible title={collapsibleToolbarTitle}>{gssActions}</Collapsible>
-            ) : (
-              gssActions
-            )}
+            {collapsibleToolbar ? <Collapsible title={collapsibleToolbarTitle}>{gssActions}</Collapsible> : gssActions}
           </Controls>
         )}
 

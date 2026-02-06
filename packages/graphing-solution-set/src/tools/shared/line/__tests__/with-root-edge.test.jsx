@@ -1,9 +1,9 @@
 import { render } from '@pie-lib/test-utils';
 import React from 'react';
-import { rootEdgeComponent, withRootEdge, rootEdgeToFromToWrapper } from '../with-root-edge';
+import { rootEdgeComponent, rootEdgeToFromToWrapper } from '../with-root-edge';
 import { graphProps as getGraphProps } from '../../../../__tests__/utils';
 import { utils } from '@pie-lib/plot';
-import { lineToolComponent, LineToolMockComponent } from '../index';
+
 const { xy } = utils;
 jest.mock('../index', () => {
   const out = {

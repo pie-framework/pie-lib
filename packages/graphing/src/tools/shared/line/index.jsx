@@ -1,13 +1,13 @@
 import React from 'react';
 import { cloneDeep, isEmpty, isEqual } from 'lodash-es';
 import { BasePoint } from '../point';
-import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
+import { gridDraggable, trig, types, utils } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
-import { disabled, disabledSecondary, correct, incorrect, missing } from '../styles';
+import { correct, disabled, disabledSecondary, incorrect, missing } from '../styles';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
 import { color } from '@pie-lib/render-ui';
-import { getMiddleOfTwoPoints, equalPoints, sameAxes } from '../../../utils';
+import { equalPoints, getMiddleOfTwoPoints, sameAxes } from '../../../utils';
 import { styled } from '@mui/material/styles';
 
 const StyledLineGroup = styled('g')(({ disabled, correctness }) => ({

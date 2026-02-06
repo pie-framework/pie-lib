@@ -12,6 +12,15 @@ import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
 import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
 import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
 import { engineReady } from 'speech-rule-engine/js/common/system';
+// import pkg from '../../package.json';
+import { chtmlNodes, mmlNodes } from './mstack';
+import debug from 'debug';
+import { unWrapMath, wrapMath } from './normalization';
+import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
+import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
+import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
+import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
+import { HTMLDomStrings } from 'mathjax-full/js/handlers/html/HTMLDomStrings';
 
 if (typeof window !== 'undefined') {
   RegisterHTMLHandler(browserAdaptor());
@@ -22,16 +31,6 @@ let sreReady = false;
 engineReady().then(() => {
   sreReady = true;
 });
-
-// import pkg from '../../package.json';
-import { mmlNodes, chtmlNodes } from './mstack';
-import debug from 'debug';
-import { wrapMath, unWrapMath } from './normalization';
-import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
-import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
-import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
-import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
-import { HTMLDomStrings } from 'mathjax-full/js/handlers/html/HTMLDomStrings';
 
 const visitor = new SerializedMmlVisitor();
 const toMMl = (node) => visitor.visitTree(node);
@@ -151,7 +150,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
       };
 
   const mmlConfig = {
-    parseError: function(node) {
+    parseError: function (node) {
       // function to process parsing errors
       // eslint-disable-next-line no-console
       console.log('error:', node);
@@ -199,7 +198,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
       // eslint-disable-next-line no-console
       console.error(err);
     },
-    typesetError: function(doc, math, err) {
+    typesetError: function (doc, math, err) {
       // eslint-disable-next-line no-console
       console.log('typeset error');
       // eslint-disable-next-line no-console
@@ -253,7 +252,7 @@ const bootstrap = (opts) => {
   return {
     version: mathjax.version,
     html: html,
-    Typeset: function(...elements) {
+    Typeset: function (...elements) {
       const attemptRender = (temporary = false) => {
         let updatedDocument = this.html.findMath(elements.length ? { elements } : {}).compile();
 
@@ -268,16 +267,12 @@ const bootstrap = (opts) => {
           }
         }
 
-        updatedDocument = updatedDocument
-          .getMetrics()
-          .typeset();
+        updatedDocument = updatedDocument.getMetrics().typeset();
 
         // Only add assistive MML and speech if speech-rule-engine is ready and not in temporary mode
         if (!temporary && sreReady) {
           try {
-            updatedDocument = updatedDocument
-              .assistiveMml()
-              .attachSpeech();
+            updatedDocument = updatedDocument.assistiveMml().attachSpeech();
           } catch (e) {
             // If this fails, speech-rule-engine isn't ready
             // eslint-disable-next-line no-console
@@ -286,9 +281,7 @@ const bootstrap = (opts) => {
           }
         }
 
-        updatedDocument = updatedDocument
-          .addMenu()
-          .updateDocument();
+        updatedDocument = updatedDocument.addMenu().updateDocument();
 
         if (!enrichSpeechInitialized && typeof updatedDocument.math.list?.next?.data === 'object') {
           enrichSpeechInitialized = true;
@@ -351,12 +344,7 @@ const renderMath = (el, renderOpts) => {
   if (isString) {
     const html = createMathMLInstance(undefined, executeOn);
 
-    const updatedDocument = html
-      .findMath()
-      .compile()
-      .getMetrics()
-      .typeset()
-      .updateDocument();
+    const updatedDocument = html.findMath().compile().getMetrics().typeset().updateDocument();
 
     const list = updatedDocument.math.list;
     const item = list.next;

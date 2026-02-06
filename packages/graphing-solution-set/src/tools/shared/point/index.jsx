@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { gridDraggable } from '@pie-lib/plot';
 import * as utils from '../../../utils';
-import { disabled, correct, incorrect, missing } from '../styles';
+import { correct, disabled, incorrect, missing } from '../styles';
 import { RawBp } from './base-point';
 import { RawArrow } from './arrow-point';
 import { color } from '@pie-lib/render-ui';

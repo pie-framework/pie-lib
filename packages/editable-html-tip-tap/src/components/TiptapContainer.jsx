@@ -62,7 +62,7 @@ const StyledRoot = styled('div', {
     background: 'var(--black)',
     borderRadius: '0.5rem',
     color: 'var(--white)',
-    fontFamily: '\'JetBrainsMono\', monospace',
+    fontFamily: "'JetBrainsMono', monospace",
     margin: '1.5rem 0',
     padding: '0.75rem 1rem',
     '& code': {

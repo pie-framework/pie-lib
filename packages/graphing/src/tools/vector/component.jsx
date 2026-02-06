@@ -1,4 +1,4 @@
-import { lineToolComponent, lineBase, styles } from '../shared/line';
+import { lineBase, lineToolComponent, styles } from '../shared/line';
 import { Arrow } from '../shared/point';
 import React from 'react';
 import PropTypes from 'prop-types';

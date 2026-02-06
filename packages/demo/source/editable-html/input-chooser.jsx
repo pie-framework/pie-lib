@@ -66,10 +66,7 @@ export class InputChooser extends React.Component {
         </StyledFormControl>
         <br />
         <br />
-        <StyledTextArea
-          onChange={(e) => this.setState({ userHtml: e.target.value })}
-          value={userHtml}
-        />
+        <StyledTextArea onChange={(e) => this.setState({ userHtml: e.target.value })} value={userHtml} />
         <Button variant="contained" color="primary" onClick={() => this.props.onChange(this.state.userHtml)}>
           Update Editor
         </Button>

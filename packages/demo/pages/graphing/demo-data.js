@@ -1,4 +1,5 @@
 import { utils } from '@pie-lib/plot';
+
 const { xy } = utils;
 const fromTo = (fx, fy, tx, ty) => ({ from: xy(fx, fy), to: xy(tx, ty) });
 

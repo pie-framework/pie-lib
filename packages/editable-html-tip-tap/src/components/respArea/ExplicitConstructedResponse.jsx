@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NodeViewWrapper } from '@tiptap/react';
 import PropTypes from 'prop-types';
 

@@ -31,15 +31,9 @@ export class UndoRedo extends React.Component {
     const { className, onUndo, onRedo, onReset, language } = this.props;
     return (
       <div className={classNames(className)}>
-        <StyledButton onClick={() => onUndo(true)}>
-          {translator.t('common:undo', { lng: language })}
-        </StyledButton>
-        <StyledButton onClick={() => onRedo(true)}>
-          {translator.t('graphing.redo', { lng: language })}
-        </StyledButton>
-        <StyledButton onClick={() => onReset()}>
-          {translator.t('graphing.reset', { lng: language })}
-        </StyledButton>
+        <StyledButton onClick={() => onUndo(true)}>{translator.t('common:undo', { lng: language })}</StyledButton>
+        <StyledButton onClick={() => onRedo(true)}>{translator.t('graphing.redo', { lng: language })}</StyledButton>
+        <StyledButton onClick={() => onReset()}>{translator.t('graphing.reset', { lng: language })}</StyledButton>
       </div>
     );
   }

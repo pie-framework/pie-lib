@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { AxisLeft, AxisBottom } from '@visx/axis';
+import { AxisBottom, AxisLeft } from '@visx/axis';
 import Checkbox from '@mui/material/Checkbox';
 
 import { types } from '@pie-lib/plot';
@@ -10,7 +10,7 @@ import { AlertDialog } from '@pie-lib/config-ui';
 import { renderMath } from '@pie-lib/math-rendering';
 
 import { TickCorrectnessIndicator } from './common/correctness-indicators';
-import { bandKey, getTickValues, getRotateAngle } from './utils';
+import { bandKey, getRotateAngle, getTickValues } from './utils';
 import MarkLabel from './mark-label';
 
 const StyledErrorText = styled('text')(({ theme }) => ({
@@ -194,12 +194,15 @@ export class TickComponent extends React.Component {
     const category = categories[index];
     const { editable, interactive, label, correctness } = category || {};
     const barX = xBand(bandKey({ label }, index));
-    const longestCategory = (categories || []).reduce((a, b) => {
-      const lengthA = a && a.label ? a.label.length : 0;
-      const lengthB = b && b.label ? b.label.length : 0;
+    const longestCategory = (categories || []).reduce(
+      (a, b) => {
+        const lengthA = a && a.label ? a.label.length : 0;
+        const lengthB = b && b.label ? b.label.length : 0;
 
-      return lengthA > lengthB ? a : b;
-    }, { label: '' });
+        return lengthA > lengthB ? a : b;
+      },
+      { label: '' },
+    );
     const distinctMessages = error ? [...new Set(Object.values(error))].join(' ') : '';
 
     return (

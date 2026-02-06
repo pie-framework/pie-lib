@@ -1,10 +1,10 @@
 import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { graphProps as getGraphProps } from '../../../../__tests__/utils';
-import { gridDraggable, utils } from '@pie-lib/plot';
-const { xy } = utils;
-
+import { utils } from '@pie-lib/plot';
 import * as lineUtils from '../../../../utils';
+
+const { xy } = utils;
 
 const { bounds, pointsToArea } = lineUtils;
 jest.mock('../../../../utils', () => {
@@ -39,7 +39,10 @@ describe('LinePath', () => {
       graphProps: getGraphProps(),
       from: xy(0, 0, 0),
       to: xy(1, 1, 0),
-      data: [[0, 0], [1, 1]],
+      data: [
+        [0, 0],
+        [1, 1],
+      ],
     };
     const props = { ...defaults, ...extras };
     return render(<LinePath {...props} />);

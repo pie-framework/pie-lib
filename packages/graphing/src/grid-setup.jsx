@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { color, InputContainer } from '@pie-lib/render-ui';
-import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { NumberTextFieldCustom, Toggle } from '@pie-lib/config-ui';
 import EditableHTML from '@pie-lib/editable-html-tip-tap';

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
-import { color } from '@pie-lib/render-ui';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -23,7 +22,8 @@ const matchYoutubeUrl = (url) => {
     return false;
   }
 
-  const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+  const p =
+    /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
   if (url.match(p)) {
     return url.match(p)[1];
   }
@@ -434,19 +434,8 @@ export class MediaDialog extends React.Component {
 
   render() {
     const { open, disablePortal, type, edit, uploadSoundSupport } = this.props;
-    const {
-      ends,
-      height,
-      invalid,
-      starts,
-      width,
-      url,
-      mimeType,
-      formattedUrl,
-      updating,
-      tabValue,
-      fileUpload,
-    } = this.state;
+    const { ends, height, invalid, starts, width, url, mimeType, formattedUrl, updating, tabValue, fileUpload } =
+      this.state;
     const isYoutube = matchYoutubeUrl(url);
     const isInsertURL = tabValue === tabsTypeMap.insertUrl;
     const isUploadMedia = tabValue === tabsTypeMap.uploadFile;

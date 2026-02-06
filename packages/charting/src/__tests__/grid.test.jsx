@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
 import { Grid } from '../grid';
-import { graphProps, createBandScale } from './utils';
+import { createBandScale, graphProps } from './utils';
 
 describe('Grid', () => {
   const renderComponent = (extras) => {
@@ -15,7 +15,7 @@ describe('Grid', () => {
     return render(
       <svg>
         <Grid {...props} />
-      </svg>
+      </svg>,
     );
   };
 

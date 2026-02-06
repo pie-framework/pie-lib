@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Ruler } from '../index';
-import RulerGraphic from '../graphic';
 import React from 'react';
 
 // Mock the Rotatable component to avoid complex DOM interactions
@@ -31,7 +30,7 @@ describe('ruler', () => {
     return render(
       <ThemeProvider theme={theme}>
         <Ruler {...defaultProps} />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 

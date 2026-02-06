@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { hasText } from '../has-text';
 
 describe('has-text', () => {

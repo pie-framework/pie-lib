@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { RawAuthoring } from '../authoring';
 import { takeRight } from 'lodash-es';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Mock dependencies
 jest.mock('@pie-lib/editable-html-tip-tap', () => {

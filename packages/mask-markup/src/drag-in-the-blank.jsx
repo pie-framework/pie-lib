@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragProvider } from '@pie-lib/drag';
-import { DragOverlay, closestCenter } from '@dnd-kit/core';
+import { closestCenter, DragOverlay } from '@dnd-kit/core';
 
 import Choices from './choices';
 import Choice from './choices/choice';

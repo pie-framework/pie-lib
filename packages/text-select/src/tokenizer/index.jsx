@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Controls from './controls';
 import { styled } from '@mui/material/styles';
-import { words, sentences, paragraphs } from './builder';
+import { paragraphs, sentences, words } from './builder';
 import { clone, differenceWith, isEqual } from 'lodash-es';
 import { noSelect } from '@pie-lib/style-utils';
 import TokenText from './token-text';

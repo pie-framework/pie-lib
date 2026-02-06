@@ -111,25 +111,19 @@ describe('feedback-menu', () => {
 
   describe('feedback type indicators', () => {
     it('shows correct icon color for default feedback', () => {
-      const { container } = render(
-        <FeedbackMenu onChange={onChange} value={{ type: 'default' }} classes={{}} />
-      );
+      const { container } = render(<FeedbackMenu onChange={onChange} value={{ type: 'default' }} classes={{}} />);
       // Icon should be present with primary color
       expect(container.querySelector('svg')).toBeInTheDocument();
     });
 
     it('shows correct icon color for custom feedback', () => {
-      const { container } = render(
-        <FeedbackMenu onChange={onChange} value={{ type: 'custom' }} classes={{}} />
-      );
+      const { container } = render(<FeedbackMenu onChange={onChange} value={{ type: 'custom' }} classes={{}} />);
       // Icon should be present with primary color
       expect(container.querySelector('svg')).toBeInTheDocument();
     });
 
     it('shows correct icon color for disabled feedback', () => {
-      const { container } = render(
-        <FeedbackMenu onChange={onChange} value={{ type: 'none' }} classes={{}} />
-      );
+      const { container } = render(<FeedbackMenu onChange={onChange} value={{ type: 'none' }} classes={{}} />);
       // Icon should be present with disabled color
       expect(container.querySelector('svg')).toBeInTheDocument();
     });
@@ -137,25 +131,19 @@ describe('feedback-menu', () => {
 
   describe('aria labels', () => {
     it('has aria-label on button for default feedback', () => {
-      render(
-        <FeedbackMenu onChange={onChange} value={{ type: 'default' }} classes={{}} />
-      );
+      render(<FeedbackMenu onChange={onChange} value={{ type: 'default' }} classes={{}} />);
       const button = screen.getByRole('button', { name: /Default Feedback/i });
       expect(button).toBeInTheDocument();
     });
 
     it('has aria-label on button for custom feedback', () => {
-      render(
-        <FeedbackMenu onChange={onChange} value={{ type: 'custom' }} classes={{}} />
-      );
+      render(<FeedbackMenu onChange={onChange} value={{ type: 'custom' }} classes={{}} />);
       const button = screen.getByRole('button', { name: /Custom Feedback/i });
       expect(button).toBeInTheDocument();
     });
 
     it('has aria-label on button for disabled feedback', () => {
-      render(
-        <FeedbackMenu onChange={onChange} value={{ type: 'none' }} classes={{}} />
-      );
+      render(<FeedbackMenu onChange={onChange} value={{ type: 'none' }} classes={{}} />);
       const button = screen.getByRole('button', { name: /Feedback disabled/i });
       expect(button).toBeInTheDocument();
     });

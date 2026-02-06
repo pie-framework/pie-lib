@@ -1,4 +1,5 @@
 import { v } from '../color';
+
 describe('v', () => {
   it.each`
     args                                 | expected

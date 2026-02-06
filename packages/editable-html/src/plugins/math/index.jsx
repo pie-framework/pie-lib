@@ -1,7 +1,7 @@
 import Functions from '@mui/icons-material/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
-import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';
+import { mmlToLatex, renderMath, unWrapMath, wrapMath } from '@pie-lib/math-rendering';
 import React from 'react';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';

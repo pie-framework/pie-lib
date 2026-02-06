@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Check from '@mui/icons-material/Check';
 import Close from '@mui/icons-material/Close';
 
-import { gridDraggable, utils, types } from '@pie-lib/plot';
+import { gridDraggable, types, utils } from '@pie-lib/plot';
 import { color as enumColor } from '@pie-lib/render-ui';
 import { getScale } from '../utils';
 import DragIcon from './drag-icon';
@@ -42,17 +42,7 @@ const StyledIncorrectIcon = styled(Close)(() => ({
   boxSizing: 'unset', // to override the default border-box in IBX
 }));
 
-const RawDragHandle = ({
-  x,
-  y,
-  width,
-  graphProps,
-  interactive,
-  isHovered,
-  correctness,
-  isPlot,
-  ...rest
-}) => {
+const RawDragHandle = ({ x, y, width, graphProps, interactive, isHovered, correctness, isPlot, ...rest }) => {
   const { scale } = graphProps;
   const scaleValue = getScale(width)?.scale;
 

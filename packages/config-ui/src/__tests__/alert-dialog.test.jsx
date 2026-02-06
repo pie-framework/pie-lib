@@ -14,15 +14,7 @@ describe('AlertDialog Component', () => {
 
   describe('Rendering when open', () => {
     it('should render dialog when open is true', () => {
-      render(
-        <AlertDialog
-          open={true}
-          title="Confirm"
-          text="Are you sure?"
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Confirm" text="Are you sure?" onClose={onClose} onConfirm={onConfirm} />);
 
       expect(screen.getByText('Confirm')).toBeInTheDocument();
       expect(screen.getByText('Are you sure?')).toBeInTheDocument();
@@ -30,13 +22,7 @@ describe('AlertDialog Component', () => {
 
     it('should not render dialog when open is false', () => {
       const { container } = render(
-        <AlertDialog
-          open={false}
-          title="Confirm"
-          text="Are you sure?"
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
+        <AlertDialog open={false} title="Confirm" text="Are you sure?" onClose={onClose} onConfirm={onConfirm} />,
       );
 
       const dialogs = container.querySelectorAll('[role="dialog"]');
@@ -62,15 +48,7 @@ describe('AlertDialog Component', () => {
 
     it('should handle text as object', () => {
       const textObj = <div>Rich text content</div>;
-      render(
-        <AlertDialog
-          open={true}
-          title="Rich Content"
-          text={textObj}
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Rich Content" text={textObj} onClose={onClose} onConfirm={onConfirm} />);
 
       expect(screen.getByText('Rich text content')).toBeInTheDocument();
     });
@@ -78,43 +56,19 @@ describe('AlertDialog Component', () => {
 
   describe('Buttons', () => {
     it('should render close button when onClose is provided', () => {
-      render(
-        <AlertDialog
-          open={true}
-          title="Dialog"
-          text="Content"
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Dialog" text="Content" onClose={onClose} onConfirm={onConfirm} />);
 
       expect(screen.getByRole('button', { name: 'CANCEL' })).toBeInTheDocument();
     });
 
     it('should render confirm button when onConfirm is provided', () => {
-      render(
-        <AlertDialog
-          open={true}
-          title="Dialog"
-          text="Content"
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Dialog" text="Content" onClose={onClose} onConfirm={onConfirm} />);
 
       expect(screen.getByRole('button', { name: 'OK' })).toBeInTheDocument();
     });
 
     it('should have default button text', () => {
-      render(
-        <AlertDialog
-          open={true}
-          title="Dialog"
-          text="Content"
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Dialog" text="Content" onClose={onClose} onConfirm={onConfirm} />);
 
       expect(screen.getByRole('button', { name: 'CANCEL' })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'OK' })).toBeInTheDocument();
@@ -124,15 +78,7 @@ describe('AlertDialog Component', () => {
   describe('User interactions', () => {
     it('should call onClose when close button is clicked', async () => {
       const user = userEvent.setup();
-      render(
-        <AlertDialog
-          open={true}
-          title="Dialog"
-          text="Content"
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Dialog" text="Content" onClose={onClose} onConfirm={onConfirm} />);
 
       const closeButton = screen.getByRole('button', { name: 'CANCEL' });
       await user.click(closeButton);
@@ -142,15 +88,7 @@ describe('AlertDialog Component', () => {
 
     it('should call onConfirm when confirm button is clicked', async () => {
       const user = userEvent.setup();
-      render(
-        <AlertDialog
-          open={true}
-          title="Dialog"
-          text="Content"
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Dialog" text="Content" onClose={onClose} onConfirm={onConfirm} />);
 
       const confirmButton = screen.getByRole('button', { name: 'OK' });
       await user.click(confirmButton);
@@ -161,15 +99,7 @@ describe('AlertDialog Component', () => {
 
   describe('Focus management', () => {
     it('should have autoFocus on confirm button by default', () => {
-      render(
-        <AlertDialog
-          open={true}
-          title="Dialog"
-          text="Content"
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Dialog" text="Content" onClose={onClose} onConfirm={onConfirm} />);
 
       const confirmButton = screen.getByRole('button', { name: 'OK' });
       expect(confirmButton).toBeInTheDocument();
@@ -224,57 +154,27 @@ describe('AlertDialog Component', () => {
   describe('Edge cases', () => {
     it('should handle very long title', () => {
       const longTitle = 'This is a very long title that should wrap properly in the dialog';
-      render(
-        <AlertDialog
-          open={true}
-          title={longTitle}
-          text="Content"
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title={longTitle} text="Content" onClose={onClose} onConfirm={onConfirm} />);
 
       expect(screen.getByText(longTitle)).toBeInTheDocument();
     });
 
     it('should handle very long text', () => {
       const longText = 'This is a very long text that should wrap properly in the dialog. '.repeat(10);
-      render(
-        <AlertDialog
-          open={true}
-          title="Dialog"
-          text={longText}
-          onClose={onClose}
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Dialog" text={longText} onClose={onClose} onConfirm={onConfirm} />);
 
       expect(screen.getByText(new RegExp(longText.slice(0, 50)))).toBeInTheDocument();
     });
 
     it('should handle only close callback', () => {
-      render(
-        <AlertDialog
-          open={true}
-          title="Close Only"
-          text="Content"
-          onClose={onClose}
-        />,
-      );
+      render(<AlertDialog open={true} title="Close Only" text="Content" onClose={onClose} />);
 
       expect(screen.getByRole('button', { name: 'CANCEL' })).toBeInTheDocument();
       expect(screen.queryByRole('button', { name: 'OK' })).not.toBeInTheDocument();
     });
 
     it('should handle only confirm callback', () => {
-      render(
-        <AlertDialog
-          open={true}
-          title="Confirm Only"
-          text="Content"
-          onConfirm={onConfirm}
-        />,
-      );
+      render(<AlertDialog open={true} title="Confirm Only" text="Content" onConfirm={onConfirm} />);
 
       expect(screen.getByRole('button', { name: 'OK' })).toBeInTheDocument();
       expect(screen.queryByRole('button', { name: 'CANCEL' })).not.toBeInTheDocument();

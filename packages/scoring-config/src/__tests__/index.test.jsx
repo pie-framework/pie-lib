@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { PartialScoringConfig } from '../index';
 
 describe('PartialScoringConfig', () => {
@@ -19,7 +19,7 @@ describe('PartialScoringConfig', () => {
       ...render(
         <ThemeProvider theme={theme}>
           <PartialScoringConfig {...defaultProps} />
-        </ThemeProvider>
+        </ThemeProvider>,
       ),
       onChange: defaultProps.onChange,
     };
@@ -30,7 +30,9 @@ describe('PartialScoringConfig', () => {
       renderComponent();
 
       expect(screen.getByText('Partial Scoring Rules')).toBeInTheDocument();
-      expect(screen.getByText('Each correct response is worth 1/X where X is the number of correct answer selections.')).toBeInTheDocument();
+      expect(
+        screen.getByText('Each correct response is worth 1/X where X is the number of correct answer selections.'),
+      ).toBeInTheDocument();
     });
 
     it('renders checkbox', () => {
@@ -46,7 +48,9 @@ describe('PartialScoringConfig', () => {
       renderComponent({ label: customLabel });
 
       expect(screen.getByText(customLabel)).toBeInTheDocument();
-      expect(screen.queryByText('Each correct response is worth 1/X where X is the number of correct answer selections.')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Each correct response is worth 1/X where X is the number of correct answer selections.'),
+      ).not.toBeInTheDocument();
     });
 
     it('renders checkbox as checked when partialScoring is true', () => {

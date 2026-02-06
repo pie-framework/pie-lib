@@ -21,10 +21,11 @@ const StyledLinePath = styled(LinePath)(() => ({
 const StyledGroup = styled(Group)(({ correctness, interactive }) => ({
   stroke: color.defaults.TEXT,
   transition: 'fill 200ms linear, height 200ms linear',
-  ...(correctness && !interactive && {
-    fill: `${color.defaults.BLACK} !important`,
-    stroke: `${color.defaults.BLACK} !important`,
-  }),
+  ...(correctness &&
+    !interactive && {
+      fill: `${color.defaults.BLACK} !important`,
+      stroke: `${color.defaults.BLACK} !important`,
+    }),
   '&.non-interactive': {
     stroke: color.disabled?.() || '#ccc',
   },
@@ -44,7 +45,7 @@ const DraggableComponent = (props) => {
   const squareHalf = squareSize / 2;
   const cx = scale.x(x);
   const cy = scale.y(y);
-  
+
   return (
     <StyledGroup className={className} correctness={correctness} interactive={interactive}>
       <StyledLinePath
@@ -90,14 +91,7 @@ const DraggableComponent = (props) => {
         {...rest}
       />
       {/* show correctness indicators */}
-      <CorrectnessIndicator
-        scale={scale}
-        x={x}
-        y={y}
-        r={r}
-        correctness={correctness}
-        interactive={interactive}
-      />
+      <CorrectnessIndicator scale={scale} x={x} y={y} r={r} correctness={correctness} interactive={interactive} />
       {/* show correct point if answer was incorrect */}
       <SmallCorrectPointIndicator
         scale={scale}

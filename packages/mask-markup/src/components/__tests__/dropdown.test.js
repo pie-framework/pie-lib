@@ -68,7 +68,7 @@ describe('Dropdown', () => {
 
       // Find the option by getting all options and selecting the one with "Laughed" text
       const options = screen.getAllByRole('option');
-      const laughedOption = options.find(opt => opt.textContent.includes('Laughed'));
+      const laughedOption = options.find((opt) => opt.textContent.includes('Laughed'));
       await user.click(laughedOption);
 
       expect(onChange).toHaveBeenCalledWith('1', 'Laughed');
@@ -84,7 +84,7 @@ describe('Dropdown', () => {
 
       // Find the option by getting all options and selecting the one with "Smiled" text
       const options = screen.getAllByRole('option');
-      const smiledOption = options.find(opt => opt.textContent.includes('Smiled'));
+      const smiledOption = options.find((opt) => opt.textContent.includes('Smiled'));
       await user.click(smiledOption);
 
       expect(onChange).toHaveBeenCalledWith('1', 'Smiled');

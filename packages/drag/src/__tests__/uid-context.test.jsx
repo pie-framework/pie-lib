@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { withUid, Provider as UidProvider } from '../uid-context';
+import { Provider as UidProvider, withUid } from '../uid-context';
 
 describe('uid-context', () => {
   describe('withUid', () => {

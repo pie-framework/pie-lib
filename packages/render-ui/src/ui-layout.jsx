@@ -1,6 +1,5 @@
 import React from 'react';
-import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
+import { createTheme, styled, StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 
 const theme = createTheme({

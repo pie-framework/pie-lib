@@ -10,7 +10,7 @@ import { types } from '@pie-lib/plot';
 import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
-import { getMiddleOfTwoPoints, getRightestPoints, equalPoints } from '../../utils';
+import { equalPoints, getMiddleOfTwoPoints, getRightestPoints } from '../../utils';
 
 const log = debug('pie-lib:graphing:polygon');
 

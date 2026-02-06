@@ -1,5 +1,5 @@
 /* global MathJax */
-import { wrapMath, unWrapMath } from './normalization';
+import { unWrapMath, wrapMath } from './normalization';
 import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
 import TexError from 'mathjax-full/js/input/tex/TexError';
 

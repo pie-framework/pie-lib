@@ -50,20 +50,10 @@ export class Controls extends React.Component {
           <StyledButton onClick={onWords} size="small" color="primary" disabled={setCorrectMode}>
             Words
           </StyledButton>
-          <StyledButton
-            onClick={onSentences}
-            size="small"
-            color="primary"
-            disabled={setCorrectMode}
-          >
+          <StyledButton onClick={onSentences} size="small" color="primary" disabled={setCorrectMode}>
             Sentences
           </StyledButton>
-          <StyledButton
-            onClick={onParagraphs}
-            size="small"
-            color="primary"
-            disabled={setCorrectMode}
-          >
+          <StyledButton onClick={onParagraphs} size="small" color="primary" disabled={setCorrectMode}>
             Paragraphs
           </StyledButton>
           <StyledButton size="small" color="secondary" onClick={onClear} disabled={setCorrectMode}>
@@ -71,12 +61,7 @@ export class Controls extends React.Component {
           </StyledButton>
         </div>
         <FormControlLabel
-          control={
-            <StyledSwitch
-              checked={setCorrectMode}
-              onChange={onToggleCorrectMode}
-            />
-          }
+          control={<StyledSwitch checked={setCorrectMode} onChange={onToggleCorrectMode} />}
           label="Set correct answers"
         />
       </StyledControls>

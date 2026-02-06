@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Keys, pressKey, typeAndSubmit, clearAndType, navigateWithKeys } from '../keyboard';
+import { clearAndType, Keys, navigateWithKeys, pressKey, typeAndSubmit } from '../keyboard';
 
 describe('Keyboard helpers', () => {
   describe('Keys constant', () => {

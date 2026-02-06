@@ -26,7 +26,12 @@ class PreviewLayout extends React.Component {
     const accessibility = ariaLabel ? { 'aria-label': ariaLabel, role } : {};
 
     return (
-      <StyledUiLayout {...accessibility} extraCSSRules={extraCSSRules} fontSizeFactor={fontSizeFactor} classes={classes}>
+      <StyledUiLayout
+        {...accessibility}
+        extraCSSRules={extraCSSRules}
+        fontSizeFactor={fontSizeFactor}
+        classes={classes}
+      >
         {children}
       </StyledUiLayout>
     );

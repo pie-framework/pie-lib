@@ -11,9 +11,7 @@ const StyledHtmlIcon = styled('div')(({ theme }) => ({
   whiteSpace: 'nowrap',
 }));
 
-const HtmlModeIcon = ({ isHtmlMode }) => (
-  <StyledHtmlIcon>{isHtmlMode ? 'Exit <HTML> mode' : '<HTML>'}</StyledHtmlIcon>
-);
+const HtmlModeIcon = ({ isHtmlMode }) => <StyledHtmlIcon>{isHtmlMode ? 'Exit <HTML> mode' : '<HTML>'}</StyledHtmlIcon>;
 
 HtmlModeIcon.propTypes = {
   isHtmlMode: PropTypes.bool.isRequired,

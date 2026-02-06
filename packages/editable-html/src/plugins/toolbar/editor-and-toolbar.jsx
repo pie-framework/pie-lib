@@ -193,19 +193,14 @@ export class EditorAndToolbar extends React.Component {
     log('[render] inFocus: ', inFocus, 'value.isFocused:', value.isFocused, 'focused node: ', focusedNode);
 
     return (
-      <Root
-        noBorder={toolbarOpts && toolbarOpts.noBorder}
-        error={toolbarOpts && toolbarOpts.error}
-      >
+      <Root noBorder={toolbarOpts && toolbarOpts.noBorder} error={toolbarOpts && toolbarOpts.error}>
         <EditorHolder
           inFocus={inFocus}
           readOnly={readOnly}
           disableUnderline={disableUnderline}
           disableScrollbar={disableScrollbar}
         >
-          <ChildrenContainer noPadding={toolbarOpts && toolbarOpts.noPadding}>
-            {clonedChildren}
-          </ChildrenContainer>
+          <ChildrenContainer noPadding={toolbarOpts && toolbarOpts.noPadding}>{clonedChildren}</ChildrenContainer>
         </EditorHolder>
 
         <Toolbar

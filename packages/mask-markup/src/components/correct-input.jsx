@@ -46,16 +46,7 @@ const StyledOutlinedInput = styled(OutlinedInput)(() => ({
 }));
 
 const CorrectInput = (props) => {
-  const {
-    correct,
-    charactersLimit,
-    disabled,
-    isBox,
-    isConstructedResponse,
-    width,
-    spellCheck,
-    ...rest
-  } = props;
+  const { correct, charactersLimit, disabled, isBox, isConstructedResponse, width, spellCheck, ...rest } = props;
 
   const label = typeof correct === 'boolean' ? (correct ? 'correct' : 'incorrect') : undefined;
   const inputProps = charactersLimit
@@ -89,4 +80,3 @@ const CorrectInput = (props) => {
 };
 
 export default CorrectInput;
-

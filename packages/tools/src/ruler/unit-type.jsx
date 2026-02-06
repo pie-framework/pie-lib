@@ -12,14 +12,7 @@ export const UnitType = (props) => {
   const { label, x, y, textAlign, fill, fontSize, stroke } = props;
 
   return (
-    <StyledText
-      x={x}
-      y={y}
-      textAnchor={textAlign}
-      stroke={stroke}
-      fill={fill}
-      fontSize={fontSize}
-    >
+    <StyledText x={x} y={y} textAnchor={textAlign} stroke={stroke} fill={fill} fontSize={fontSize}>
       {label}
     </StyledText>
   );

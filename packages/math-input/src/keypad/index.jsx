@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { lighten, alpha, styled } from '@mui/material/styles';
+import { alpha, lighten, styled } from '@mui/material/styles';
 import debug from 'debug';
 import { flatten } from 'lodash-es';
-import MathQuill from '@pie-framework/mathquill';
 import * as mq from '../mq';
 
 import { baseSet } from '../keys';

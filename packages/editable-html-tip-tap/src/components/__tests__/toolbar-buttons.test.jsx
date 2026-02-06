@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { RawButton, Button, RawMarkButton, MarkButton } from '../common/toolbar-buttons';
+import { fireEvent, render } from '@testing-library/react';
+import { Button, MarkButton, RawButton, RawMarkButton } from '../common/toolbar-buttons';
 
 describe('RawButton', () => {
   it('renders without crashing', () => {

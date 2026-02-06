@@ -1,4 +1,4 @@
-import { withMask, buildLayoutFromMarkup } from './with-mask';
+import { buildLayoutFromMarkup, withMask } from './with-mask';
 import DragInTheBlank from './drag-in-the-blank';
 import ConstructedResponse from './constructed-response';
 import Customizable from './customizable';

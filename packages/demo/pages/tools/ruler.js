@@ -37,9 +37,7 @@ class Demo extends React.Component {
         <Ruler measure={'imperial'} width={480} units={6} />
         <br />
         <br />
-        <Link href="/tools/rotatable">
-          Ruler uses Rotatable
-        </Link>
+        <Link href="/tools/rotatable">Ruler uses Rotatable</Link>
       </div>
     ) : (
       <div>loading...</div>

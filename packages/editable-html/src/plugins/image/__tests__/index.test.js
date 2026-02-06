@@ -1,6 +1,3 @@
-import MockChange, { MockDocument } from './mock-change';
-
-import { Data } from 'slate';
 import ImageToolbar from '../';
 
 describe('image plugin', () => {

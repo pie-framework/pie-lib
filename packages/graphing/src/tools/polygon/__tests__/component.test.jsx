@@ -2,7 +2,7 @@ import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { graphProps, xy } from '../../../__tests__/utils';
 
-import { RawBaseComponent, buildLines, swap } from '../component';
+import { buildLines, RawBaseComponent, swap } from '../component';
 
 const xyLabel = (x, y, index, label) => ({
   ...xy(x, y, index),
@@ -67,7 +67,7 @@ describe('RawBaseComponent', () => {
     });
 
     it('renders with labels', () => {
-      const { container} = renderWithLabels();
+      const { container } = renderWithLabels();
       expect(container.firstChild).toBeInTheDocument();
     });
   });

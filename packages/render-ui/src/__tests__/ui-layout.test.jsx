@@ -23,7 +23,9 @@ describe('UiLayout', () => {
   });
 
   it('applies the correct classes', () => {
-    const { container } = render(<UiLayout className="custom-class" classes={mockClasses} fontSizeFactor={fontSizeFactor} />);
+    const { container } = render(
+      <UiLayout className="custom-class" classes={mockClasses} fontSizeFactor={fontSizeFactor} />,
+    );
     const div = container.querySelector('.custom-class');
     expect(div).toBeInTheDocument();
   });

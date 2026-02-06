@@ -26,7 +26,7 @@ export class AltDialog extends React.Component {
   closeDialog = () => {
     const allDialogs = document.querySelectorAll('#text-dialog');
 
-    allDialogs.forEach(function(s) {
+    allDialogs.forEach(function (s) {
       return s.remove();
     });
   };
@@ -55,8 +55,9 @@ export class AltDialog extends React.Component {
         hideBackdrop
         disableScrollLock
         TransitionProps={{
-          onEntered: this.handleOverflow
-        }}>
+          onEntered: this.handleOverflow,
+        }}
+      >
         <DialogContent>
           <div style={{ display: 'flex' }}>
             <ArrowBackIos style={{ paddingTop: '6px' }} />

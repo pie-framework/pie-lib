@@ -12,51 +12,26 @@ describe('Checkbox Component', () => {
 
   describe('Rendering', () => {
     it('should render checkbox with label', () => {
-      render(
-        <Checkbox 
-          checked={false} 
-          onChange={onChange} 
-          label="Accept terms" 
-        />,
-      );
+      render(<Checkbox checked={false} onChange={onChange} label="Accept terms" />);
 
       expect(screen.getByText('Accept terms')).toBeInTheDocument();
       expect(screen.getByRole('checkbox')).toBeInTheDocument();
     });
 
     it('should render checkbox in checked state', () => {
-      render(
-        <Checkbox 
-          checked={true} 
-          onChange={onChange} 
-          label="Accept terms" 
-        />,
-      );
+      render(<Checkbox checked={true} onChange={onChange} label="Accept terms" />);
 
       expect(screen.getByRole('checkbox')).toBeChecked();
     });
 
     it('should render checkbox in unchecked state', () => {
-      render(
-        <Checkbox 
-          checked={false} 
-          onChange={onChange} 
-          label="Accept terms" 
-        />,
-      );
+      render(<Checkbox checked={false} onChange={onChange} label="Accept terms" />);
 
       expect(screen.getByRole('checkbox')).not.toBeChecked();
     });
 
     it('should render mini checkbox with reduced styling', () => {
-      render(
-        <Checkbox 
-          checked={false} 
-          onChange={onChange} 
-          label="Mini" 
-          mini={true}
-        />,
-      );
+      render(<Checkbox checked={false} onChange={onChange} label="Mini" mini={true} />);
 
       expect(screen.getByRole('checkbox')).toBeInTheDocument();
       expect(screen.getByText('Mini')).toBeInTheDocument();
@@ -66,13 +41,7 @@ describe('Checkbox Component', () => {
   describe('User interaction', () => {
     it('should call onChange when checkbox is clicked', async () => {
       const user = userEvent.setup();
-      render(
-        <Checkbox 
-          checked={false} 
-          onChange={onChange} 
-          label="Accept" 
-        />,
-      );
+      render(<Checkbox checked={false} onChange={onChange} label="Accept" />);
 
       const checkbox = screen.getByRole('checkbox');
       await user.click(checkbox);
@@ -82,13 +51,7 @@ describe('Checkbox Component', () => {
 
     it('should call onChange when label is clicked', async () => {
       const user = userEvent.setup();
-      render(
-        <Checkbox 
-          checked={false} 
-          onChange={onChange} 
-          label="Click label" 
-        />,
-      );
+      render(<Checkbox checked={false} onChange={onChange} label="Click label" />);
 
       const label = screen.getByText('Click label');
       await user.click(label);
@@ -99,27 +62,13 @@ describe('Checkbox Component', () => {
 
   describe('Props', () => {
     it('should handle value prop', () => {
-      render(
-        <Checkbox 
-          checked={true} 
-          onChange={onChange} 
-          label="With value"
-          value="option1"
-        />,
-      );
+      render(<Checkbox checked={true} onChange={onChange} label="With value" value="option1" />);
 
       expect(screen.getByRole('checkbox')).toBeInTheDocument();
     });
 
     it('should display error styling when error is true', () => {
-      render(
-        <Checkbox 
-          checked={false} 
-          onChange={onChange} 
-          label="Error state"
-          error={true}
-        />,
-      );
+      render(<Checkbox checked={false} onChange={onChange} label="Error state" error={true} />);
 
       expect(screen.getByRole('checkbox')).toBeInTheDocument();
       expect(screen.getByText('Error state')).toBeInTheDocument();
@@ -128,37 +77,19 @@ describe('Checkbox Component', () => {
 
   describe('Default props', () => {
     it('should have mini default to false', () => {
-      const { container } = render(
-        <Checkbox 
-          checked={true} 
-          onChange={onChange} 
-          label="Test"
-        />,
-      );
+      const { container } = render(<Checkbox checked={true} onChange={onChange} label="Test" />);
 
       expect(screen.getByRole('checkbox')).toBeInTheDocument();
     });
 
     it('should have error default to false', () => {
-      const { container } = render(
-        <Checkbox 
-          checked={true} 
-          onChange={onChange} 
-          label="Test"
-        />,
-      );
+      const { container } = render(<Checkbox checked={true} onChange={onChange} label="Test" />);
 
       expect(screen.getByRole('checkbox')).toBeInTheDocument();
     });
 
     it('should have value default to empty string', () => {
-      render(
-        <Checkbox 
-          checked={true} 
-          onChange={onChange} 
-          label="Test"
-        />,
-      );
+      render(<Checkbox checked={true} onChange={onChange} label="Test" />);
 
       expect(screen.getByRole('checkbox')).toBeInTheDocument();
     });
@@ -166,26 +97,14 @@ describe('Checkbox Component', () => {
 
   describe('Accessibility', () => {
     it('should have proper label association', () => {
-      render(
-        <Checkbox 
-          checked={false} 
-          onChange={onChange} 
-          label="Accessible label"
-        />,
-      );
+      render(<Checkbox checked={false} onChange={onChange} label="Accessible label" />);
 
       expect(screen.getByLabelText('Accessible label')).toBeInTheDocument();
     });
 
     it('should be keyboard accessible', async () => {
       const user = userEvent.setup();
-      render(
-        <Checkbox 
-          checked={false} 
-          onChange={onChange} 
-          label="Keyboard test"
-        />,
-      );
+      render(<Checkbox checked={false} onChange={onChange} label="Keyboard test" />);
 
       const checkbox = screen.getByRole('checkbox');
       checkbox.focus();
@@ -203,16 +122,8 @@ describe('Checkbox Component', () => {
 
       render(
         <>
-          <Checkbox 
-            checked={true} 
-            onChange={onChange1} 
-            label="Option 1"
-          />
-          <Checkbox 
-            checked={false} 
-            onChange={onChange2} 
-            label="Option 2"
-          />
+          <Checkbox checked={true} onChange={onChange1} label="Option 1" />
+          <Checkbox checked={false} onChange={onChange2} label="Option 2" />
         </>,
       );
 
@@ -227,16 +138,8 @@ describe('Checkbox Component', () => {
 
       render(
         <>
-          <Checkbox 
-            checked={true} 
-            onChange={onChange1} 
-            label="Option 1"
-          />
-          <Checkbox 
-            checked={false} 
-            onChange={onChange2} 
-            label="Option 2"
-          />
+          <Checkbox checked={true} onChange={onChange1} label="Option 1" />
+          <Checkbox checked={false} onChange={onChange2} label="Option 2" />
         </>,
       );
 

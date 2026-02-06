@@ -1,4 +1,3 @@
-import React from 'react';
 // import Input from './components/input';
 import { withMask } from './with-mask';
 

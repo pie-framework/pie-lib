@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { types } from '@pie-lib/plot';
-import { getAngleDeg, arrowDimensions } from '../../../utils';
+import { arrowDimensions, getAngleDeg } from '../../../utils';
 
 export class RawArrow extends React.Component {
   static propTypes = {
@@ -39,10 +39,7 @@ export class RawArrow extends React.Component {
 
     return (
       <g className={className} {...rest}>
-        <polygon
-          points={points}
-          transform={`translate(${scale.x(x)}, ${scale.y(y)}) rotate(${angle} 0 0)`}
-        />
+        <polygon points={points} transform={`translate(${scale.x(x)}, ${scale.y(y)}) rotate(${angle} 0 0)`} />
       </g>
     );
   }

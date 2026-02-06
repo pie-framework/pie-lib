@@ -1,7 +1,7 @@
 import React from 'react';
 import { Editor as SlateEditor, findNode, getEventRange, getEventTransfer } from 'slate-react';
 import SlateTypes from 'slate-prop-types';
-import { Value, Block, Inline } from 'slate';
+import { Block, Inline, Value } from 'slate';
 import Plain from 'slate-plain-serializer';
 import PropTypes from 'prop-types';
 import { debounce, isEqual } from 'lodash-es';
@@ -9,14 +9,13 @@ import classNames from 'classnames';
 import debug from 'debug';
 import { styled } from '@mui/material/styles';
 
-import { color } from '@pie-lib/render-ui';
+import { color, PreviewPrompt } from '@pie-lib/render-ui';
 import AlertDialog from '../../config-ui/src/alert-dialog';
-import { PreviewPrompt } from '@pie-lib/render-ui';
 
+import * as serialization from './serialization';
 import { getBase64, htmlToValue } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
-import * as serialization from './serialization';
-import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
+import { ALL_PLUGINS, buildPlugins, DEFAULT_PLUGINS } from './plugins';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 

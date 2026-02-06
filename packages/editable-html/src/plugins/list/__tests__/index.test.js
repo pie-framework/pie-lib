@@ -1,5 +1,3 @@
-import React from 'react';
-
 import List, { serialization } from '../index';
 import debug from 'debug';
 

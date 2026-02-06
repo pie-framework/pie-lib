@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderWithTheme, renderWithProviders, screen, createTestTheme } from '../index';
+import { createTestTheme, renderWithProviders, renderWithTheme, screen } from '../index';
 import { Button } from '@mui/material';
 
 describe('@pie-lib/test-utils', () => {
@@ -42,9 +42,7 @@ describe('@pie-lib/test-utils', () => {
     });
 
     it('renders with additional providers', () => {
-      const TestProvider = ({ children }) => (
-        <div data-testid="test-provider">{children}</div>
-      );
+      const TestProvider = ({ children }) => <div data-testid="test-provider">{children}</div>;
 
       renderWithProviders(<Button>Multi Provider</Button>, {
         providers: [TestProvider],

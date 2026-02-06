@@ -1,6 +1,6 @@
 import { render } from '@pie-lib/test-utils';
 import React from 'react';
-import { MarkLabel, position, coordinates } from '../mark-label';
+import { coordinates, MarkLabel, position } from '../mark-label';
 import { graphProps as getGraphProps } from './utils';
 
 describe('MarkLabel', () => {

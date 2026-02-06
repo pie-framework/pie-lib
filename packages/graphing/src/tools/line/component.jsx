@@ -1,10 +1,10 @@
-import { lineToolComponent, lineBase, styles } from '../shared/line';
+import { lineBase, lineToolComponent, styles } from '../shared/line';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { trig, types } from '@pie-lib/plot';
 import classNames from 'classnames';
 import { ArrowMarker, genUid } from '../shared/arrow-head';
-import { thinnerShapesNeeded, getAdjustedGraphLimits } from '../../utils';
+import { getAdjustedGraphLimits, thinnerShapesNeeded } from '../../utils';
 import { styled } from '@mui/material/styles';
 
 const StyledArrowedLineRoot = styled('g')(({ theme }) => ({
@@ -37,9 +37,7 @@ export const ArrowedLine = (props) => {
           size={thinnerShapesNeeded(graphProps) ? 4 : 5}
           id={`${finalMarkerId}-${suffix}`}
           className={classNames(
-            suffix === 'enabled' ? 'enabledArrow' :
-            suffix === 'disabled' ? 'disabledArrow' :
-            `${suffix}Arrow`
+            suffix === 'enabled' ? 'enabledArrow' : suffix === 'disabled' ? 'disabledArrow' : `${suffix}Arrow`,
           )}
         />
       </defs>
@@ -48,12 +46,7 @@ export const ArrowedLine = (props) => {
         y1={scale.y(eFrom.y)}
         x2={scale.x(eTo.x)}
         y2={scale.y(eTo.y)}
-        className={classNames(
-          'line',
-          disabled && 'disabledSecondary',
-          correctness,
-          className
-        )}
+        className={classNames('line', disabled && 'disabledSecondary', correctness, className)}
         markerEnd={`url(#${finalMarkerId}-${suffix})`}
         markerStart={`url(#${finalMarkerId}-${suffix})`}
         {...rest}

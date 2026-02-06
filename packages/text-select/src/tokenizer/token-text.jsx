@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { normalize, intersection } from './builder';
+import { intersection, normalize } from './builder';
 import debug from 'debug';
 import classNames from 'classnames';
 
 import { clearSelection, getCaretCharacterOffsetWithin } from './selection-utils';
 
-import { yellow, green } from '@mui/material/colors';
+import { green, yellow } from '@mui/material/colors';
 
 const log = debug('@pie-lib:text-select:token-text');
 

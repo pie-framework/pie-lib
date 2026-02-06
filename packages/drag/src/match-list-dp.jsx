@@ -5,17 +5,11 @@ import { DroppablePlaceholder } from './droppable-placeholder';
 // With @dnd-kit, the drop logic is handled in the DragProvider's onDragEnd callback
 // This component now just wraps DroppablePlaceholder with match-list specific logic
 
-export function MatchListDroppable({ 
-  id, 
-  children, 
-  disabled, 
-  onRemoveAnswer,
-  ...rest 
-}) {
+export function MatchListDroppable({ id, children, disabled, onRemoveAnswer, ...rest }) {
   // The actual drop handling will be managed by the parent component
   // through the DragProvider's onDragEnd callback
   // The onRemoveAnswer logic should be handled in the parent's onDragEnd:
-  // 
+  //
   // const handleDragEnd = (event) => {
   //   if (event.over && event.active) {
   //     const item = event.active.data.current;
@@ -24,13 +18,9 @@ export function MatchListDroppable({
   //     }
   //   }
   // };
-  
+
   return (
-    <DroppablePlaceholder
-      id={id}
-      disabled={disabled}
-      {...rest}
-    >
+    <DroppablePlaceholder id={id} disabled={disabled} {...rest}>
       {children}
     </DroppablePlaceholder>
   );

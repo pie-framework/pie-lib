@@ -1,4 +1,4 @@
-import { green, orange, pink, indigo, red } from '@mui/material/colors';
+import { green, indigo, orange, pink, red } from '@mui/material/colors';
 
 export const defaults = {
   TEXT: 'black',
@@ -49,12 +49,14 @@ export const defaults = {
 
 Object.freeze(defaults);
 
-export const v = (prefix) => (...args) => {
-  const fallback = args.pop();
-  return args.reduceRight((acc, v) => {
-    return `var(--${prefix}-${v}, ${acc})`;
-  }, fallback);
-};
+export const v =
+  (prefix) =>
+  (...args) => {
+    const fallback = args.pop();
+    return args.reduceRight((acc, v) => {
+      return `var(--${prefix}-${v}, ${acc})`;
+    }, fallback);
+  };
 
 const pv = v('pie');
 

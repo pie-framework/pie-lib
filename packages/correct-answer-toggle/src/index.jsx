@@ -1,12 +1,11 @@
 import { styled } from '@mui/material/styles';
 import { CSSTransition } from 'react-transition-group';
 import { CorrectResponse } from '@pie-lib/icons';
-import { Readable } from '@pie-lib/render-ui';
+import { color, Readable } from '@pie-lib/render-ui';
 import Expander from './expander';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Translator from '@pie-lib/translator';
-import { color } from '@pie-lib/render-ui';
 
 const { translator } = Translator;
 

@@ -1,8 +1,6 @@
 import { render } from '@pie-lib/test-utils';
 import React from 'react';
 
-import { xy } from './utils';
-
 import Graph, { removeBuildingToolIfCurrentToolDiffers } from '../graph';
 import { toolsArr } from '../tools';
 

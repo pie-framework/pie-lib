@@ -8,11 +8,7 @@ export const normalizeSize = (size) => {
 
 export const IconRoot = ({ size, children, sx }) => (
   <Sized size={size}>
-    <svg
-      preserveAspectRatio="xMinYMin meet"
-      viewBox="0 0 44 40"
-      style={{ enableBackground: 'new 0 0 44 40', ...sx }}
-    >
+    <svg preserveAspectRatio="xMinYMin meet" viewBox="0 0 44 40" style={{ enableBackground: 'new 0 0 44 40', ...sx }}>
       {children}
     </svg>
   </Sized>

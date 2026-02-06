@@ -1,6 +1,5 @@
 import React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import Root from '../source/root';
@@ -36,13 +35,13 @@ class HomePage extends React.Component {
       React.createElement(CssBaseline),
       React.createElement(
         Root,
-        { 
-          gitInfo: process.env.gitInfo, 
-          links: process.env.links, 
-          packageInfo: process.env.packageInfo 
+        {
+          gitInfo: process.env.gitInfo,
+          links: process.env.links,
+          packageInfo: process.env.packageInfo,
         },
-        React.createElement(StyledTypography, { variant: 'h4' }, 'Welcome to the @pie-libs demo')
-      )
+        React.createElement(StyledTypography, { variant: 'h4' }, 'Welcome to the @pie-libs demo'),
+      ),
     );
   }
 }

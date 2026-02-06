@@ -1,21 +1,21 @@
 import {
-  countChosen,
-  buildState,
-  moveChoiceToCategory,
-  removeChoiceFromCategory,
-  ensureNoExtraChoicesInAnswer,
-  limitInArray,
-  limitInArrays,
-  removeAllChoices,
   buildCategories,
   buildChoices,
+  buildState,
+  countChosen,
+  ensureNoExtraChoicesInAnswer,
   getAllPossibleResponses,
+  limitInArray,
+  limitInArrays,
   moveChoiceToAlternate,
+  moveChoiceToCategory,
+  removeAllChoices,
+  removeChoiceFromCategory,
 } from '../index';
 import { range } from 'lodash-es';
 import util from 'util';
 import debug from 'debug';
-import { cat, cats, choice, answer } from './utils';
+import { answer, cat, cats, choice } from './utils';
 
 const log = debug('@pie-lib:drag:test');
 

@@ -1,6 +1,6 @@
 import EditTable from 'slate-edit-table';
-import TablePlugin, { serialization, parseStyleString, reactAttributes } from '../index';
-import { Data, Block, PathUtils } from 'slate';
+import TablePlugin, { parseStyleString, reactAttributes, serialization } from '../index';
+import { Block, Data, PathUtils } from 'slate';
 import React from 'react';
 
 jest.mock('slate-edit-table', () => {
@@ -8,14 +8,14 @@ jest.mock('slate-edit-table', () => {
     default: jest.fn().mockReturnThis(),
     utils: {
       isSelectionInTable: jest.fn().mockReturnValue(true),
-      createTable: jest.fn(function(c) {
+      createTable: jest.fn(function (c) {
         return {
           toJSON: jest.fn().mockReturnValue({ object: 'block', type: 'table' }),
         };
       }),
     },
     changes: {
-      insertTable: jest.fn(function(c) {
+      insertTable: jest.fn(function (c) {
         return c;
       }),
     },
@@ -328,7 +328,7 @@ describe('serialization', () => {
       const el = {
         tagName: 'td',
         childNodes: [],
-        getAttribute: jest.fn(function(name) {
+        getAttribute: jest.fn(function (name) {
           const o = {
             class: 'class name',
             colspan: '1',

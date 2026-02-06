@@ -1,5 +1,5 @@
 import { CHTMLmstack } from './chtml';
-import { MmlNone, MmlMsline, MmlMstack, MmlMsrow } from './mml';
+import { MmlMsline, MmlMsrow, MmlMstack, MmlNone } from './mml';
 
 export const chtmlNodes = {
   mstack: CHTMLmstack,

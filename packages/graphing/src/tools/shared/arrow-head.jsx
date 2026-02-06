@@ -38,8 +38,8 @@ const StyledMarker = styled('marker')(({ disabled, correctness }) => ({
 }));
 
 export const ArrowHead = ({ size, transform, points, disabled, correctness }) => (
-  <StyledArrowHead 
-    points={points || `0,0 ${size},${size / 2} 0,${size}`} 
+  <StyledArrowHead
+    points={points || `0,0 ${size},${size / 2} 0,${size}`}
     transform={transform}
     disabled={disabled}
     correctness={correctness}
@@ -64,10 +64,15 @@ export const genUid = () => {
 export const ArrowMarker = ({ id, size, className, disabled, correctness }) => {
   // Parse styling info from className if provided (for backward compatibility)
   const isDisabled = disabled || className?.includes('disabled');
-  const parsedCorrectness = correctness || 
-    (className?.includes('incorrect') ? 'incorrect' : 
-     className?.includes('correct') ? 'correct' : 
-     className?.includes('missing') ? 'missing' : null);
+  const parsedCorrectness =
+    correctness ||
+    (className?.includes('incorrect')
+      ? 'incorrect'
+      : className?.includes('correct')
+        ? 'correct'
+        : className?.includes('missing')
+          ? 'missing'
+          : null);
 
   return (
     <StyledMarker

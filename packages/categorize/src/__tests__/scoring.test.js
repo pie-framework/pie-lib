@@ -1,5 +1,4 @@
 import { score } from '../scoring';
-import util from 'util';
 
 describe('scoring', () => {
   describe('score', () => {

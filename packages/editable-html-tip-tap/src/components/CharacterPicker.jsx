@@ -105,11 +105,7 @@ export function CharacterPicker({ editor, opts, onClose }) {
 
   const handleChange = (val) => {
     if (typeof val === 'string') {
-      editor
-        .chain()
-        .focus()
-        .insertContent(val)
-        .run();
+      editor.chain().focus().insertContent(val).run();
     }
   };
 

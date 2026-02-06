@@ -12,41 +12,20 @@ describe('RadioWithLabel Component', () => {
 
   describe('Rendering', () => {
     it('should render radio button with label', () => {
-      render(
-        <RadioWithLabel 
-          label="Option 1" 
-          value="option1" 
-          checked={false}
-          onChange={onChange}
-        />,
-      );
+      render(<RadioWithLabel label="Option 1" value="option1" checked={false} onChange={onChange} />);
 
       expect(screen.getByText('Option 1')).toBeInTheDocument();
       expect(screen.getByRole('radio')).toBeInTheDocument();
     });
 
     it('should render checked radio button', () => {
-      render(
-        <RadioWithLabel 
-          label="Selected" 
-          value="selected" 
-          checked={true}
-          onChange={onChange}
-        />,
-      );
+      render(<RadioWithLabel label="Selected" value="selected" checked={true} onChange={onChange} />);
 
       expect(screen.getByRole('radio')).toBeChecked();
     });
 
     it('should render unchecked radio button', () => {
-      render(
-        <RadioWithLabel 
-          label="Unselected" 
-          value="unselected" 
-          checked={false}
-          onChange={onChange}
-        />,
-      );
+      render(<RadioWithLabel label="Unselected" value="unselected" checked={false} onChange={onChange} />);
 
       expect(screen.getByRole('radio')).not.toBeChecked();
     });
@@ -55,14 +34,7 @@ describe('RadioWithLabel Component', () => {
   describe('User interaction', () => {
     it('should call onChange when radio button is clicked', async () => {
       const user = userEvent.setup();
-      render(
-        <RadioWithLabel 
-          label="Option" 
-          value="option" 
-          checked={false}
-          onChange={onChange}
-        />,
-      );
+      render(<RadioWithLabel label="Option" value="option" checked={false} onChange={onChange} />);
 
       const radio = screen.getByRole('radio');
       await user.click(radio);
@@ -72,14 +44,7 @@ describe('RadioWithLabel Component', () => {
 
     it('should call onChange when label is clicked', async () => {
       const user = userEvent.setup();
-      render(
-        <RadioWithLabel 
-          label="Click me" 
-          value="test" 
-          checked={false}
-          onChange={onChange}
-        />,
-      );
+      render(<RadioWithLabel label="Click me" value="test" checked={false} onChange={onChange} />);
 
       const label = screen.getByText('Click me');
       await user.click(label);
@@ -91,21 +56,11 @@ describe('RadioWithLabel Component', () => {
   describe('Props', () => {
     it('should accept different value types', () => {
       const { container: stringContainer } = render(
-        <RadioWithLabel 
-          label="String value" 
-          value="string" 
-          checked={false}
-          onChange={onChange}
-        />,
+        <RadioWithLabel label="String value" value="string" checked={false} onChange={onChange} />,
       );
 
       const { container: numberContainer } = render(
-        <RadioWithLabel 
-          label="Number value" 
-          value={123} 
-          checked={false}
-          onChange={onChange}
-        />,
+        <RadioWithLabel label="Number value" value={123} checked={false} onChange={onChange} />,
       );
 
       expect(stringContainer.querySelector('input[type="radio"]')).toBeInTheDocument();
@@ -115,18 +70,8 @@ describe('RadioWithLabel Component', () => {
     it('should display different labels', () => {
       render(
         <>
-          <RadioWithLabel 
-            label="Label A" 
-            value="a" 
-            checked={false}
-            onChange={onChange}
-          />
-          <RadioWithLabel 
-            label="Label B" 
-            value="b" 
-            checked={false}
-            onChange={onChange}
-          />
+          <RadioWithLabel label="Label A" value="a" checked={false} onChange={onChange} />
+          <RadioWithLabel label="Label B" value="b" checked={false} onChange={onChange} />
         </>,
       );
 
@@ -139,24 +84,9 @@ describe('RadioWithLabel Component', () => {
     it('should allow multiple radio buttons to be rendered', () => {
       render(
         <>
-          <RadioWithLabel 
-            label="Option 1" 
-            value="opt1" 
-            checked={true}
-            onChange={onChange}
-          />
-          <RadioWithLabel 
-            label="Option 2" 
-            value="opt2" 
-            checked={false}
-            onChange={onChange}
-          />
-          <RadioWithLabel 
-            label="Option 3" 
-            value="opt3" 
-            checked={false}
-            onChange={onChange}
-          />
+          <RadioWithLabel label="Option 1" value="opt1" checked={true} onChange={onChange} />
+          <RadioWithLabel label="Option 2" value="opt2" checked={false} onChange={onChange} />
+          <RadioWithLabel label="Option 3" value="opt3" checked={false} onChange={onChange} />
         </>,
       );
 
@@ -175,29 +105,14 @@ describe('RadioWithLabel Component', () => {
 
       render(
         <>
-          <RadioWithLabel 
-            label="Option 1" 
-            value="opt1" 
-            checked={true}
-            onChange={onChange1}
-          />
-          <RadioWithLabel 
-            label="Option 2" 
-            value="opt2" 
-            checked={false}
-            onChange={onChange2}
-          />
-          <RadioWithLabel 
-            label="Option 3" 
-            value="opt3" 
-            checked={false}
-            onChange={onChange3}
-          />
+          <RadioWithLabel label="Option 1" value="opt1" checked={true} onChange={onChange1} />
+          <RadioWithLabel label="Option 2" value="opt2" checked={false} onChange={onChange2} />
+          <RadioWithLabel label="Option 3" value="opt3" checked={false} onChange={onChange3} />
         </>,
       );
 
       const radios = screen.getAllByRole('radio');
-      
+
       await user.click(radios[1]);
       expect(onChange2).toHaveBeenCalled();
       expect(onChange1).not.toHaveBeenCalled();
@@ -215,12 +130,7 @@ describe('RadioWithLabel Component', () => {
   describe('Styling', () => {
     it('should render with correct styling classes', () => {
       const { container } = render(
-        <RadioWithLabel 
-          label="Styled" 
-          value="styled" 
-          checked={false}
-          onChange={onChange}
-        />,
+        <RadioWithLabel label="Styled" value="styled" checked={false} onChange={onChange} />,
       );
 
       expect(container.querySelector('[class*="MuiFormControlLabel"]')).toBeInTheDocument();
@@ -230,28 +140,14 @@ describe('RadioWithLabel Component', () => {
 
   describe('Edge cases', () => {
     it('should handle empty string label', () => {
-      render(
-        <RadioWithLabel 
-          label="" 
-          value="empty" 
-          checked={false}
-          onChange={onChange}
-        />,
-      );
+      render(<RadioWithLabel label="" value="empty" checked={false} onChange={onChange} />);
 
       expect(screen.getByRole('radio')).toBeInTheDocument();
     });
 
     it('should handle long labels', () => {
       const longLabel = 'This is a very long label that should wrap properly and not break the layout';
-      render(
-        <RadioWithLabel 
-          label={longLabel} 
-          value="long" 
-          checked={false}
-          onChange={onChange}
-        />,
-      );
+      render(<RadioWithLabel label={longLabel} value="long" checked={false} onChange={onChange} />);
 
       expect(screen.getByText(longLabel)).toBeInTheDocument();
     });

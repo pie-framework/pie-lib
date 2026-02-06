@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import ChartAxes, { TickComponent, RawChartAxes } from '../axes';
-import { graphProps, createBandScale } from './utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ChartAxes, { RawChartAxes, TickComponent } from '../axes';
+import { createBandScale, graphProps } from './utils';
 
 const theme = createTheme();
 
@@ -21,7 +21,7 @@ describe('ChartAxes', () => {
         <svg>
           <ChartAxes {...props} />
         </svg>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 
@@ -32,7 +32,7 @@ describe('ChartAxes', () => {
     });
 
     it('renders SVG with axes group', () => {
-      const { container} = renderComponent();
+      const { container } = renderComponent();
       const svg = container.querySelector('svg');
       expect(svg).toBeInTheDocument();
       // Component renders StyledAxesGroup which is a <g> element
@@ -57,7 +57,7 @@ describe('RawChartAxes', () => {
         <svg>
           <RawChartAxes {...props} />
         </svg>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 
@@ -96,7 +96,7 @@ describe('TickComponent', () => {
         <svg>
           <TickComponent {...props} />
         </svg>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 

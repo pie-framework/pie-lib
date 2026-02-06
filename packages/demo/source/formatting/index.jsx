@@ -14,11 +14,7 @@ const comp = (variant, styles = {}) => {
     };
   });
 
-  const Component = ({ children }) => (
-    <StyledTypography variant={variant}>
-      {children}
-    </StyledTypography>
-  );
+  const Component = ({ children }) => <StyledTypography variant={variant}>{children}</StyledTypography>;
 
   Component.propTypes = {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,

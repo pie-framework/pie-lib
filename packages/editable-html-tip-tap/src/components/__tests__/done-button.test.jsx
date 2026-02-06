@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { RawDoneButton, DoneButton } from '../common/done-button';
+import { fireEvent, render } from '@testing-library/react';
+import { DoneButton, RawDoneButton } from '../common/done-button';
 
 describe('RawDoneButton', () => {
   it('renders without crashing', () => {

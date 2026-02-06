@@ -4,7 +4,7 @@ import { types } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
 import Arrow from './arrow';
 import { styled } from '@mui/material/styles';
-import { countWords, findLongestWord, amountToIncreaseWidth, getTickValues } from '../utils';
+import { amountToIncreaseWidth, countWords, findLongestWord, getTickValues } from '../utils';
 import { color, Readable } from '@pie-lib/render-ui';
 
 export const AxisPropTypes = {
@@ -92,14 +92,8 @@ export class RawXAxis extends React.Component {
   static defaultProps = AxisDefaultProps;
 
   render() {
-    const {
-      includeArrows,
-      graphProps,
-      columnTicksValues,
-      skipValues,
-      distanceFromOriginToFirstNegativeY,
-      dy,
-    } = this.props;
+    const { includeArrows, graphProps, columnTicksValues, skipValues, distanceFromOriginToFirstNegativeY, dy } =
+      this.props;
     const { scale, domain, size, range } = graphProps || {};
 
     const labelProps = (label) => {
@@ -131,12 +125,8 @@ export class RawXAxis extends React.Component {
           tickValues={columnTicksValues}
           hideZero={!(domain.labelStep || range.labelStep) && domain.min <= 0}
         />
-        {includeArrows && includeArrows.left && (
-          <StyledArrow direction="left" x={domain.min} y={0} scale={scale} />
-        )}
-        {includeArrows && includeArrows.right && (
-          <StyledArrow direction="right" x={domain.max} y={0} scale={scale} />
-        )}
+        {includeArrows && includeArrows.left && <StyledArrow direction="left" x={domain.min} y={0} scale={scale} />}
+        {includeArrows && includeArrows.right && <StyledArrow direction="right" x={domain.max} y={0} scale={scale} />}
         {domain.axisLabel && (
           <foreignObject x={size.width + 17} y={scale.y(0) - 9} width={necessaryWidth} height={20 * necessaryRows}>
             <LabelContainer dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
@@ -191,12 +181,8 @@ export class RawYAxis extends React.Component {
           tickTextAnchor={'bottom'}
           tickValues={rowTickValues}
         />
-        {includeArrows && includeArrows.down && (
-          <StyledArrow direction="down" x={0} y={range.min} scale={scale} />
-        )}
-        {includeArrows && includeArrows.up && (
-          <StyledArrow direction="up" x={0} y={range.max} scale={scale} />
-        )}
+        {includeArrows && includeArrows.down && <StyledArrow direction="down" x={0} y={range.min} scale={scale} />}
+        {includeArrows && includeArrows.up && <StyledArrow direction="up" x={0} y={range.max} scale={scale} />}
         {range.axisLabel && (
           <foreignObject x={scale.x(0) - necessaryWidth / 2} y={-33} width={necessaryWidth} height="20">
             <Readable false>

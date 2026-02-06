@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography, Button, Radio } from '@mui/material';
+import { Button, Radio, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export class ToolMenu extends React.Component {

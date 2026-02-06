@@ -1,4 +1,4 @@
-import { buildExtensions, ALL_PLUGINS, DEFAULT_PLUGINS } from '../extensions';
+import { ALL_PLUGINS, buildExtensions, DEFAULT_PLUGINS } from '../extensions';
 
 describe('Extensions', () => {
   describe('ALL_PLUGINS', () => {

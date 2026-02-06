@@ -28,9 +28,7 @@ export class UndoRedo extends React.Component {
     const { className, onReset = false, language } = this.props;
     return (
       <div className={className}>
-        <StyledButton onClick={() => onReset()}>
-          {translator.t('graphing.reset', { lng: language })}
-        </StyledButton>
+        <StyledButton onClick={() => onReset()}>{translator.t('graphing.reset', { lng: language })}</StyledButton>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Correct, Incorrect, PartiallyCorrect, NothingSubmitted } from '../response-indicators';
+import { Correct, Incorrect, NothingSubmitted, PartiallyCorrect } from '../response-indicators';
 
 // Mock the icons
 jest.mock('@pie-lib/icons', () => ({

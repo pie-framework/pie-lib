@@ -12,7 +12,7 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
 }));
 
 const StyledInputLabel = styled(InputLabel)(() => ({
- fontSize: 'inherit',
+  fontSize: 'inherit',
   whiteSpace: 'nowrap',
   margin: 0,
   padding: 0,
@@ -41,10 +41,7 @@ const InputContainer = ({ label, className, children }) => (
 InputContainer.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 };
 
 export default InputContainer;

@@ -8,11 +8,7 @@ jest.mock('../alt-dialog', () => {
   return function AltDialog({ alt, onDone }) {
     return (
       <div data-testid="alt-dialog">
-        <input
-          data-testid="alt-input"
-          defaultValue={alt}
-          onChange={(e) => onDone(e.target.value)}
-        />
+        <input data-testid="alt-input" defaultValue={alt} onChange={(e) => onDone(e.target.value)} />
       </div>
     );
   };

@@ -1,7 +1,6 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Delete from '@mui/icons-material/Delete';
-import classNames from 'classnames';
 import { PIE_TOOLBAR__CLASS } from '../constants';
 import { styled } from '@mui/material/styles';
 import { DoneButton } from '../components/common/done-button';

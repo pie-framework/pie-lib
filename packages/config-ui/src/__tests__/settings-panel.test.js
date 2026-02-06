@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Panel } from '../settings/panel';
-import { toggle, radio, dropdown, numberField, numberFields } from '../settings';
+import { dropdown, numberField, numberFields, radio, toggle } from '../settings';
 
 describe('Settings Panel', () => {
   let onChange;

@@ -3,20 +3,21 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { BasePoint } from '../shared/point';
 import BgCircle from './bg-circle';
-import { getMiddleOfTwoPoints, point, equalPoints } from '../../utils';
+import { equalPoints, getMiddleOfTwoPoints, point } from '../../utils';
 import { types } from '@pie-lib/plot';
 import { rootEdgeComponent } from '../shared/line/with-root-edge';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
 import { isEmpty } from 'lodash-es';
 import { color } from '@pie-lib/render-ui';
-import { styled, keyframes } from '@mui/material/styles';
+import { keyframes, styled } from '@mui/material/styles';
 
-const opacityPulsate = (opacity) => keyframes({
-  '0%': { opacity: '0.0' },
-  '50%': { opacity },
-  '100%': { opacity: '0.0' },
-});
+const opacityPulsate = (opacity) =>
+  keyframes({
+    '0%': { opacity: '0.0' },
+    '50%': { opacity },
+    '100%': { opacity: '0.0' },
+  });
 
 const getRadius = (from, outer) => {
   const c = point(from);
@@ -91,10 +92,7 @@ export class RawBaseCircle extends React.Component {
       updated.middle = { ...middle, ...getMiddleOfTwoPoints(draggedFrom, draggedTo) };
     }
 
-    this.setState(
-      { draggedroot: undefined, draggedOuter: undefined, isCircleDrag: false },
-      () => onChange(updated),
-    );
+    this.setState({ draggedroot: undefined, draggedOuter: undefined, isCircleDrag: false }, () => onChange(updated));
   };
 
   labelChange = (point, type) => {

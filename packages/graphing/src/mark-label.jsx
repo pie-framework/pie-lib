@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
 import AutosizeInput from 'react-input-autosize';
@@ -53,9 +53,9 @@ const getInputStyles = (theme, disabled, markDisabled) => ({
   padding: theme.spacing(0.5),
   fontFamily: theme.typography.fontFamily,
   fontSize: '10px',
-  border: disabled 
+  border: disabled
     ? `solid 1px ${color.defaults.PRIMARY_DARK}`
-    : markDisabled 
+    : markDisabled
       ? `solid 1px ${color.disabled()}`
       : `solid 1px ${color.defaults.SECONDARY}`,
   borderRadius: '3px',
@@ -208,37 +208,20 @@ export const MarkLabel = (props) => {
             renderInput(studentInputStyle, label)
           )}
         </StyledInputIncorrect>
-        <StyledInputMissing style={secondLabelStyle}>
-          {renderInput(studentInputStyle, correctlabel)}
-        </StyledInputMissing>
+        <StyledInputMissing style={secondLabelStyle}>{renderInput(studentInputStyle, correctlabel)}</StyledInputMissing>
       </>
     );
   }
 
   if (correctness === 'missing') {
-    return (
-      <StyledInputMissing style={style}>
-        {renderInput(studentInputStyle, label)}
-      </StyledInputMissing>
-    );
+    return <StyledInputMissing style={style}>{renderInput(studentInputStyle, label)}</StyledInputMissing>;
   }
 
   if (correctness === 'incorrect') {
-    return (
-      <StyledIncorrect style={style}>
-        {renderInput(studentInputStyle, label)}
-      </StyledIncorrect>
-    );
+    return <StyledIncorrect style={style}>{renderInput(studentInputStyle, label)}</StyledIncorrect>;
   }
 
-  return (
-    <div style={style}>
-      {renderInput(
-        getInputStyles(theme, disabled, mark.disabled),
-        label,
-      )}
-    </div>
-  );
+  return <div style={style}>{renderInput(getInputStyles(theme, disabled, mark.disabled), label)}</div>;
 };
 
 MarkLabel.propTypes = {

@@ -55,12 +55,7 @@ export default class Choices extends React.Component {
       <div style={elementStyle}>
         <DragDroppablePlaceholder disabled={disabled} instanceId={instanceId}>
           {filteredChoices.map((c, index) => (
-            <Choice
-              key={`${c.value}-${index}`}
-              disabled={disabled}
-              choice={c}
-              instanceId={instanceId}
-            />
+            <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} instanceId={instanceId} />
           ))}
         </DragDroppablePlaceholder>
       </div>

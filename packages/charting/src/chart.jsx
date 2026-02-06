@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import { cloneDeep } from 'lodash-es';
 
-import { Root, createGraphProps } from '@pie-lib/plot';
+import { createGraphProps, Root } from '@pie-lib/plot';
 import { AlertDialog } from '@pie-lib/config-ui';
 import ChartGrid from './grid';
 import ChartAxes from './axes';

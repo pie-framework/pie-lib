@@ -188,31 +188,33 @@ export const CSSMark = Mark.create({
 
   addCommands() {
     return {
-      setCSSClass: (className) => ({ commands }) => {
-        return commands.setMark(this.name, { class: className });
-      },
+      setCSSClass:
+        (className) =>
+        ({ commands }) => {
+          return commands.setMark(this.name, { class: className });
+        },
 
-      unsetCSSClass: () => ({ commands }) => {
-        return commands.unsetMark(this.name);
-      },
+      unsetCSSClass:
+        () =>
+        ({ commands }) => {
+          return commands.unsetMark(this.name);
+        },
 
-      openCSSClassDialog: () => ({ editor }) => {
-        insertDialog({
-          editor,
-          selectedText: editor.state.doc.textBetween(editor.state.selection.from, editor.state.selection.to),
-          parentNode: editor.state.selection.$from.nodeAfter,
-          opts: this.options.extraCSSRules,
-          callback: (className) => {
-            if (className) {
-              editor
-                .chain()
-                .focus()
-                .setCSSClass(className)
-                .run();
-            }
-          },
-        });
-      },
+      openCSSClassDialog:
+        () =>
+        ({ editor }) => {
+          insertDialog({
+            editor,
+            selectedText: editor.state.doc.textBetween(editor.state.selection.from, editor.state.selection.to),
+            parentNode: editor.state.selection.$from.nodeAfter,
+            opts: this.options.extraCSSRules,
+            callback: (className) => {
+              if (className) {
+                editor.chain().focus().setCSSClass(className).run();
+              }
+            },
+          });
+        },
     };
   },
 });

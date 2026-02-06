@@ -1,4 +1,4 @@
-import { Media, insertDialog } from '../media';
+import { insertDialog, Media } from '../media';
 
 jest.mock('@tiptap/core', () => ({
   Node: { create: jest.fn((config) => config) },

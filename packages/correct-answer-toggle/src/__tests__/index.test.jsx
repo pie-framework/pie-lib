@@ -75,13 +75,7 @@ describe('CorrectAnswerToggle', () => {
 
       // Simulate prop update to toggled=false
       onToggle.mockClear();
-      rerender(
-        <CorrectAnswerToggle
-          show={true}
-          toggled={false}
-          onToggle={onToggle}
-        />
-      );
+      rerender(<CorrectAnswerToggle show={true} toggled={false} onToggle={onToggle} />);
 
       // Second click - toggled is false, should call with true
       await user.click(screen.getByText('Show correct answer'));

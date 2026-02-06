@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@pie-lib/test-utils';
+import { render } from '@pie-lib/test-utils';
 import {
   Correct,
   CorrectResponse,
@@ -209,7 +209,7 @@ describe('@pie-lib/icons', () => {
           <Correct />
           <Incorrect />
           <PartiallyCorrect />
-        </div>
+        </div>,
       );
 
       const svgs = container.querySelectorAll('svg');

@@ -30,12 +30,7 @@ const Table = (props) => {
   const nodeAttributes = dataToAttributes(props.node.data);
 
   return (
-    <StyledTable
-      {...props.attributes}
-      {...nodeAttributes}
-      onFocus={props.onFocus}
-      onBlur={props.onBlur}
-    >
+    <StyledTable {...props.attributes} {...nodeAttributes} onFocus={props.onFocus} onBlur={props.onBlur}>
       <tbody>{props.children}</tbody>
     </StyledTable>
   );

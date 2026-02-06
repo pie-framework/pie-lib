@@ -1,18 +1,7 @@
-import {
-  angle,
-  edge,
-  edges,
-  maxEdge,
-  minEdge,
-  toRadians,
-  toDegrees,
-  acuteXAngle,
-  acuteYAngle,
-  diffEdge,
-} from '../trig';
+import { acuteXAngle, acuteYAngle, angle, diffEdge, edges, getOpposingSide, toDegrees, toRadians } from '../trig';
 import { xy } from '../utils';
 import debug from 'debug';
-import { getOpposingSide } from '../trig';
+
 const log = debug('pie-lib:plot:trig:test');
 
 const vs = (v) => {

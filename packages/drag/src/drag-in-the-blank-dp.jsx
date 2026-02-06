@@ -23,18 +23,18 @@ export function DragInTheBlankDroppable({
   // The actual drop handling will be managed by the parent component
   // through the DragProvider's onDragEnd callback
   const { setNodeRef, isOver } = useDroppable({
-     id: 'drag-in-the-blank-droppable',
+    id: 'drag-in-the-blank-droppable',
     data: {
       type: 'MaskBlank',
       accepts: ['MaskBlank'],
       id: 'drag-in-the-blank-droppable',
       toChoiceBoard: true,
-      instanceId
-    }
+      instanceId,
+    },
   });
 
   return (
-    <div ref={setNodeRef} >
+    <div ref={setNodeRef}>
       <DroppablePlaceholderContainer>
         <PlaceHolder
           isOver={isOver}

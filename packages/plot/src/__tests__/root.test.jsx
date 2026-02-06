@@ -1,7 +1,7 @@
-import { render, cleanup } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import React from 'react';
 import { Root } from '../root';
-import { select, pointer } from 'd3-selection';
+import { pointer, select } from 'd3-selection';
 
 jest.mock('d3-selection', () => ({
   select: jest.fn(),

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 
-import { gridDraggable, utils, types } from '@pie-lib/plot';
+import { gridDraggable, types, utils } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import { disabled } from '../../common/styles';
 
@@ -67,16 +67,7 @@ class RawDragHandle extends React.Component {
   };
 
   render() {
-    const {
-      x,
-      y,
-      graphProps,
-      className,
-      interactive,
-      CustomDraggableComponent,
-      correctness,
-      ...rest
-    } = this.props;
+    const { x, y, graphProps, className, interactive, CustomDraggableComponent, correctness, ...rest } = this.props;
     const { scale } = graphProps;
 
     if (!CustomDraggableComponent) {

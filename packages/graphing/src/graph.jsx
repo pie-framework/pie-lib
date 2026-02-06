@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { cloneDeep, isEqual } from 'lodash-es';
-import { Root, types, createGraphProps } from '@pie-lib/plot';
+import { createGraphProps, Root, types } from '@pie-lib/plot';
 import debug from 'debug';
 
 import { Axes, AxisPropTypes } from './axis';

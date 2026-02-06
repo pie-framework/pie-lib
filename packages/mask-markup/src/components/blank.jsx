@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
 import debug from 'debug';
@@ -296,7 +296,11 @@ function DragDropBlank({
   });
 
   // Setup droppable functionality
-  const { setNodeRef: setDropNodeRef, isOver, active: dragItem } = useDroppable({
+  const {
+    setNodeRef: setDropNodeRef,
+    isOver,
+    active: dragItem,
+  } = useDroppable({
     id: `mask-blank-drop-${id}`,
     data: {
       id: id,

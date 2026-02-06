@@ -2,6 +2,7 @@ import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { ArrowedLine } from '../component';
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
+
 jest.mock('@pie-lib/plot', () => {
   const a = jest.requireActual('@pie-lib/plot');
   return {

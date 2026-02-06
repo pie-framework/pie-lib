@@ -1,5 +1,5 @@
 import { classObject } from '../../../__tests__/utils';
-import { RawMarkButton, RawButton } from '../toolbar-buttons';
+import { RawButton, RawMarkButton } from '../toolbar-buttons';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

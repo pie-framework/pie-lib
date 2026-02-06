@@ -91,10 +91,7 @@ class Demo extends React.Component {
         <hr />
         <Holder>
           <Child>
-            <TextArea
-              value={this.state.mathml}
-              onChange={(e) => this.updateMathMl(e.target.value)}
-            />
+            <TextArea value={this.state.mathml} onChange={(e) => this.updateMathMl(e.target.value)} />
             <br />
             <Button variant="contained" onClick={this.updateMathJax}>
               Update

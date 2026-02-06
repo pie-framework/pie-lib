@@ -1,4 +1,4 @@
-import { xPoints, sinY, buildDataPoints, pointsToABC, parabola, parabolaFromTwoPoints } from '../index';
+import { buildDataPoints, parabola, parabolaFromTwoPoints, pointsToABC, sinY, xPoints } from '../index';
 
 import { range } from 'lodash-es';
 

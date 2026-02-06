@@ -1,4 +1,3 @@
-import React from 'react';
 import { compact, isEmpty } from 'lodash-es';
 import debug from 'debug';
 

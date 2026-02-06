@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import UnitType from './unit-type';
 import { range } from 'lodash-es';
 import Unit from './unit';
-import { strokeColor, fillColor } from '../style-utils';
+import { fillColor, strokeColor } from '../style-utils';
 
 const StyledBg = styled('rect')(({ theme }) => ({
   stroke: strokeColor(theme),
