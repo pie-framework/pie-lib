@@ -1,14 +1,7 @@
 {
-  "name": "@pie-lib/pie-lib",
-  "description": "the pie-libs mono repo",
+  "name": "pie-lib",
   "private": true,
   "license": "MIT",
-  "config": {
-    "scope": "none"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "scripts": {
     "static": "./scripts/static",
     "test": "./scripts/test",
@@ -25,6 +18,10 @@
     "link-pslb": "cd node_modules/ && yarn link '@pslb/pslb'",
     "print-module": "time yarn pslb --config pslb/pslb.config.js --logLevel silly",
     "clean-print-module": "yarn clean-install && yarn print-module"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.28.6",
+    "core-js": "^3.48.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.6",
@@ -81,9 +78,11 @@
     "url-loader": "^1.1.2",
     "yarn": "^1.22.22"
   },
-  "dependencies": {
-    "@babel/runtime": "^7.28.6",
-    "core-js": "^3.48.0"
+  "config": {
+    "scope": "none"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "workspaces": [
     "packages/*"
