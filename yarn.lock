@@ -2462,10 +2462,10 @@
   dependencies:
     "@octokit/openapi-types" "^24.2.0"
 
-"@pie-framework/build-helper@^5.2.10":
-  version "5.2.10"
-  resolved "https://registry.yarnpkg.com/@pie-framework/build-helper/-/build-helper-5.2.10.tgz#52298a55977eab44fbf38f79c75ddf0c93c53ca2"
-  integrity sha512-asOe4zcGLXYxb9BZ06wQMorTGRvzQ2zsaXRgQeSPkIaxPPhl/3+/wJgZQ9gKug/yDFcchRCvFOZix5xduv9dKA==
+"@pie-framework/build-helper@^5.2.11":
+  version "5.2.11"
+  resolved "https://registry.yarnpkg.com/@pie-framework/build-helper/-/build-helper-5.2.11.tgz#aea0911641f58b0512edd3d8468c8ed055908d4d"
+  integrity sha512-MbS9TB/NOT0reAR+Uz5NHd5lAgD8EZd3pt27Zf5GtClzLFVivdfG9kuWnBVSrjayN3vQrbcL5YgDHc8343LYoQ==
   dependencies:
     conventional-changelog-core "^4.1.7"
     conventional-changelog-writer "^4.0.16"
