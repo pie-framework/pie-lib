@@ -9,7 +9,7 @@ jest.mock('@tiptap/react', () => ({
   ReactNodeViewRenderer: jest.fn((component) => component),
 }));
 
-jest.mock('../component', () => ({
+jest.mock('../image-component', () => ({
   __esModule: true,
   default: jest.fn(() => <div data-testid="image-component" />),
 }));
