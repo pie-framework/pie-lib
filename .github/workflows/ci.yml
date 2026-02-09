@@ -25,7 +25,9 @@ jobs:
 
   build-next:
     needs: test
-    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -42,7 +44,9 @@ jobs:
 
   build-release:
     needs: test
-    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:
       contents: read
