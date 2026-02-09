@@ -87,6 +87,8 @@ const StyledChipLabel = styled('span')(() => ({
     position: 'absolute',
     left: 16,
     maxWidth: '60px',
+    top: '50%',
+    transform: 'translateY(-50%)',
   },
 }));
 
@@ -296,7 +298,11 @@ function DragDropBlank({
   });
 
   // Setup droppable functionality
-  const { setNodeRef: setDropNodeRef, isOver, active: dragItem } = useDroppable({
+  const {
+    setNodeRef: setDropNodeRef,
+    isOver,
+    active: dragItem,
+  } = useDroppable({
     id: `mask-blank-drop-${id}`,
     data: {
       id: id,
