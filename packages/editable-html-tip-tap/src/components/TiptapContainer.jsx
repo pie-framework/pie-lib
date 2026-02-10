@@ -82,6 +82,9 @@ const StyledRoot = styled('div', {
     borderTop: '1px solid var(--gray-2)',
     margin: '2rem 0',
   },
+  '& p': {
+    margin: '0',
+  },
   '& table': {
     tableLayout: 'fixed',
     width: '100%',
