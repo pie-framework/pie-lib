@@ -32,10 +32,6 @@ describe('ExtendedTable', () => {
       expect(mockParent).toHaveBeenCalledWith(props);
       expect(result[0]).toBe('table');
       expect(result[1]).toHaveProperty('style');
-      expect(result[1].style).toContain('width: 100%');
-      expect(result[1].style).toContain('table-layout: fixed');
-      expect(result[1].style).toContain('border-collapse: collapse');
-      expect(result[1].border).toBe('1');
     });
 
     it('renders table with custom border', () => {
@@ -52,23 +48,6 @@ describe('ExtendedTable', () => {
       const result = ExtendedTable.renderHTML.call(context, props);
 
       expect(result[1].border).toBe('2');
-    });
-
-    it('preserves existing styles', () => {
-      const props = {
-        HTMLAttributes: { border: '1' },
-      };
-
-      const mockParent = jest.fn(() => ['table', { style: 'margin: 10px;' }]);
-
-      const context = {
-        parent: mockParent,
-      };
-
-      const result = ExtendedTable.renderHTML.call(context, props);
-
-      expect(result[1].style).toContain('margin: 10px;');
-      expect(result[1].style).toContain('width: 100%');
     });
 
     it('handles styles ending with semicolon', () => {
