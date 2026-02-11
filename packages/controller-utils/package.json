@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/controller-utils",
-  "version": "1.1.1-next.0",
+  "version": "1.1.1-next.1",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -14,5 +14,5 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
-  "gitHead": "7bb08145106e65c83a8f4a51902cf669d1be19ac"
+  "gitHead": "87d7d9ee63abeb5eff95f888cc2b80683c81ea13"
 }
