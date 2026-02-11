@@ -196,7 +196,7 @@ describe('PreviewComponent', () => {
 
       render(<PreviewComponent />);
       const previewPrompt = screen.getByTestId('preview-prompt');
-      expect(previewPrompt).toHaveAttribute('data-class', 'label');
+      expect(previewPrompt).toHaveAttribute('data-class', 'prompt-label');
       expect(previewPrompt).toHaveAttribute('data-tag', 'span');
     });
 
