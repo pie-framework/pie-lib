@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@pie-lib/test-utils';
+import { fireEvent, render } from '@pie-lib/test-utils';
 import React from 'react';
 
 import ToolMenu from '../tool-menu';

@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { fireEvent, render } from '@testing-library/react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ActionsButton } from '../actions-button';
 
 jest.mock('@pie-lib/translator', () => ({

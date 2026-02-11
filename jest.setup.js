@@ -6,7 +6,8 @@ import '@testing-library/jest-dom';
 
 // Polyfill TextEncoder/TextDecoder for Jest 29 + jsdom
 // Required for slate-html-serializer and other packages using encoding APIs
-import { TextEncoder, TextDecoder } from 'util';
+import { TextDecoder, TextEncoder } from 'util';
+
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
 

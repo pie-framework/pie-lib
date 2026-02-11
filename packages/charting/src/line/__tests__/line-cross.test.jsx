@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@pie-lib/test-utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { render } from '@pie-lib/test-utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Line, { LineCross as LineChart } from '../line-cross';
 import { graphProps } from './utils';
 

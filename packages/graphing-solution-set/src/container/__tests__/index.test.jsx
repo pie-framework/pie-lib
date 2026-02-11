@@ -1,7 +1,6 @@
 import React from 'react';
-import { render, waitFor } from '@pie-lib/test-utils';
+import { render } from '@pie-lib/test-utils';
 import Root, { GraphContainer } from '../index';
-import { changeMarks } from '../actions';
 
 jest.mock('../../graph-with-controls', () => {
   return function GraphWithControls({ marks, onChangeMarks, onUndo, onRedo, onReset, disabled }) {

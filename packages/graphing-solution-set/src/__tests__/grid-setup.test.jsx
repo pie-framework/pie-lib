@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@pie-lib/test-utils';
+import { fireEvent, render, waitFor } from '@pie-lib/test-utils';
 import GridSetup from '../grid-setup';
 
 const mockOnChange = jest.fn();

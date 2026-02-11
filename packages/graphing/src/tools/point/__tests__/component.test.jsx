@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@pie-lib/test-utils';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { graphProps, xy } from '../../../__tests__/utils';
 

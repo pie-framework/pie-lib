@@ -2,13 +2,12 @@ import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import Arrow from '../arrow';
 import { graphProps } from '../../../../__tests__/utils';
+import { thinnerShapesNeeded } from '../../../../utils';
 
 jest.mock('../../../../utils', () => ({
   ...jest.requireActual('../../../../utils'),
   thinnerShapesNeeded: jest.fn(() => false),
 }));
-
-import { thinnerShapesNeeded } from '../../../../utils';
 
 describe('Arrow', () => {
   let onChange = jest.fn();

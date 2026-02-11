@@ -1,18 +1,18 @@
 import {
-  xPoints,
-  sinY,
-  buildDataPoints,
-  pointsToABC,
-  parabola,
-  parabolaFromTwoPoints,
-  getAmplitudeAndFreq,
-  parabolaFromThreePoints,
-  pointsToAForAbsolute,
   absolute,
   absoluteFromTwoPoints,
-  pointsToABForExponential,
+  buildDataPoints,
   exponential,
   exponentialFromTwoPoints,
+  getAmplitudeAndFreq,
+  parabola,
+  parabolaFromThreePoints,
+  parabolaFromTwoPoints,
+  pointsToABC,
+  pointsToABForExponential,
+  pointsToAForAbsolute,
+  sinY,
+  xPoints,
 } from '../index';
 
 import { range } from 'lodash-es';

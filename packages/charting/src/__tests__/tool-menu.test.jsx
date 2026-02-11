@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { ToolMenu, MiniButton } from '../tool-menu';
+import { fireEvent, render } from '@testing-library/react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { MiniButton, ToolMenu } from '../tool-menu';
 
 jest.mock('@pie-lib/translator', () => ({
   __esModule: true,

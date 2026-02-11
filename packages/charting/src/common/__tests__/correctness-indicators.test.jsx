@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CorrectnessIndicator, SmallCorrectPointIndicator, TickCorrectnessIndicator } from '../correctness-indicators';
 
 jest.mock('@pie-lib/render-ui', () => ({
