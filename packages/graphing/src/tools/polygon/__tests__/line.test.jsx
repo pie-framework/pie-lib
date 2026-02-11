@@ -18,5 +18,18 @@ describe('Line', () => {
       const { container } = renderComponent();
       expect(container.firstChild).toBeInTheDocument();
     });
+
+    it('renders with from and to points', () => {
+      const { container } = renderComponent({
+        from: { x: 0, y: 0 },
+        to: { x: 5, y: 5 },
+      });
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders with className', () => {
+      const { container } = renderComponent({ className: 'custom-line' });
+      expect(container.firstChild).toBeInTheDocument();
+    });
   });
 });

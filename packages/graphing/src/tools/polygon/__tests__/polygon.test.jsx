@@ -22,6 +22,24 @@ describe('Polygon', () => {
       const { container } = renderComponent({ points: [{ x: 1, y: 1 }] });
       expect(container.firstChild).toBeInTheDocument();
     });
+
+    it('renders multiple points', () => {
+      const points = [xy(0, 0), xy(1, 1), xy(2, 0)];
+      const { container } = renderComponent({ points });
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders closed polygon', () => {
+      const points = [xy(0, 0), xy(1, 1), xy(2, 0)];
+      const { container } = renderComponent({ points, closed: true });
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders open polygon', () => {
+      const points = [xy(0, 0), xy(1, 1)];
+      const { container } = renderComponent({ points, closed: false });
+      expect(container.firstChild).toBeInTheDocument();
+    });
   });
 });
 
