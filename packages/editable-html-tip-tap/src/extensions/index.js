@@ -28,6 +28,10 @@ export const ALL_PLUGINS = [
   'subscript',
 ];
 
+export const PLUGINS_MAP = {
+  'text-align': 'textAlign',
+};
+
 export const DEFAULT_PLUGINS = ALL_PLUGINS.filter((plug) => !['responseArea', 'h3', 'blockquote'].includes(plug));
 
 export const buildExtensions = (activeExtensions, customExtensions, opts) => {
@@ -37,7 +41,7 @@ export const buildExtensions = (activeExtensions, customExtensions, opts) => {
 
   const addIf = (key, shouldAdd = true) => activeExtensions.includes(key) && shouldAdd && key;
 
-  const imagePlugin = opts.image && opts.image.onDelete;
+  const imagePlugin = opts.image && opts.image.delete;
   const mathPlugin = opts.math;
   const respAreaPlugin = opts.responseArea && opts.responseArea.type;
   const cssPlugin = !isEmpty(opts.extraCSSRules);

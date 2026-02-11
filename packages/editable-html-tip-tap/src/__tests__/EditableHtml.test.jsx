@@ -126,6 +126,7 @@ jest.mock('../components/TiptapContainer', () => ({
 }));
 
 jest.mock('../extensions', () => ({
+  ...jest.requireActual('../extensions'),
   buildExtensions: jest.fn(() => []),
 }));
 

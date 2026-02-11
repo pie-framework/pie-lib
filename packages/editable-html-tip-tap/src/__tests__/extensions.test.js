@@ -63,9 +63,9 @@ describe('Extensions', () => {
       expect(result).not.toContain('image');
     });
 
-    it('includes image plugin when opts.image.onDelete is provided', () => {
+    it('includes image plugin when opts.image.delete is provided', () => {
       const activeExtensions = ['image'];
-      const opts = { image: { onDelete: jest.fn() } };
+      const opts = { image: { delete: jest.fn() } };
       const result = buildExtensions(activeExtensions, [], opts);
       expect(result).toContain('image');
     });

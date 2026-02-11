@@ -129,7 +129,9 @@ describe('CharacterPicker', () => {
     render(<CharacterPicker editor={mockEditor} opts={opts} onClose={onClose} />);
 
     await waitFor(() => {
-      fireEvent.mouseDown(document.body);
+      setTimeout(() => {
+        fireEvent.click(document.body);
+      }, 0);
     });
 
     expect(onClose).toHaveBeenCalled();

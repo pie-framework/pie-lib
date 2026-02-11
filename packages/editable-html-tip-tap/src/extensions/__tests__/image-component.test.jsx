@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
-import ImageComponent from '../component';
+import ImageComponent from '../image-component';
 
 jest.mock('@tiptap/react', () => ({
   NodeViewWrapper: ({ children }) => <div data-testid="node-view-wrapper">{children}</div>,
@@ -66,6 +66,7 @@ describe('ImageComponent', () => {
     imageHandling: {
       insertImageRequested: jest.fn(),
       onDone: jest.fn(),
+      onDelete: jest.fn(),
     },
     disableImageAlignmentButtons: false,
   };

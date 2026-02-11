@@ -64,9 +64,10 @@ module.exports = {
           namespace: ['@pie-lib/math-rendering'],
         },
       },
-      // core shared module lib
+      // core shared module lib - bundles MUI for other modules to use
       {
         name: '@pie-lib/shared-module',
+        excludeFromBundling: [], // Bundle MUI here (override default exclusions)
         imports: {
           default: [
             'react-dom',
@@ -110,16 +111,16 @@ module.exports = {
           default: ['@pie-lib/editable-html-tip-tap'],
         },
       },
+      // Uses MUI from shared-module (default exclusions apply)
       {
         name: '@pie-lib/config-module',
         imports: {
           namespace: ['@pie-lib/config-ui'],
         },
       },
+      // Uses MUI from shared-module (default exclusions apply)
       {
         name: '@pie-lib/graphing-module',
-        // add dependency here? or use the order?
-        // output: path.resolve(__dirname, '../packages'),
         imports: {
           default: [],
           namespace: ['@pie-lib/plot', '@pie-lib/graphing'],

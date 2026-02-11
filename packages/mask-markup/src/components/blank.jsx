@@ -87,6 +87,8 @@ const StyledChipLabel = styled('span')(() => ({
     position: 'absolute',
     left: 16,
     maxWidth: '60px',
+    top: '50%',
+    transform: 'translateY(-50%)',
   },
 }));
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragProvider } from '@pie-lib/drag';
-import { closestCenter, DragOverlay } from '@dnd-kit/core';
-
+import { DragOverlay, rectIntersection } from '@dnd-kit/core';
 import Choices from './choices';
 import Choice from './choices/choice';
 import Blank from './components/blank';
@@ -200,7 +199,7 @@ export default class DragInTheBlank extends React.Component {
       <DragProvider
         onDragStart={this.handleDragStart}
         onDragEnd={this.handleDragEnd}
-        collisionDetection={closestCenter}
+        collisionDetection={rectIntersection}
       >
         <div ref={(ref) => (this.rootRef = ref)} style={style}>
           <Choices

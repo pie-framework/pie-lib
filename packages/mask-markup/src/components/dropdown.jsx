@@ -70,9 +70,19 @@ const StyledMenu = styled(Menu)(() => ({
 }));
 
 const StyledMenuItem = styled(MenuItem)(() => ({
+  // base text/layout styles (from old JSS - before mui v5 migration)
+  height: 24,
+  overflow: 'hidden',
+  fontSize: '1rem',
+  fontWeight: 400,
+  fontFamily: 'inherit',
+  lineHeight: '1.5em',
+  whiteSpace: 'nowrap',
+
+  // custom styles
   color: color.text(),
   backgroundColor: color.background(),
-  '&.Mui-focused': {
+  '&.Mui-focusVisible': {
     outline: `3px solid ${color.tertiary()}`,
     outlineOffset: '-1px', // keeps it inside the item
     color: color.text(),

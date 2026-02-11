@@ -97,8 +97,14 @@ export function CharacterPicker({ editor, opts, onClose }) {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    const timeoutId = setTimeout(() => {
+      document.addEventListener('click', handleClickOutside);
+    });
+
+    return () => {
+      clearTimeout(timeoutId);
+      document.removeEventListener('click', handleClickOutside);
+    };
   }, [editor, onClose]);
 
   const renderPopOver = (event, el) => setPopover({ anchorEl: event.currentTarget, el });
@@ -116,6 +122,7 @@ export function CharacterPicker({ editor, opts, onClose }) {
           ref={containerRef}
           className="insert-character-dialog"
           style={{
+            visibility: position.top === 0 && position.left === 0 ? 'hidden' : 'initial',
             position: 'absolute',
             top: `${position.top}px`,
             left: `${position.left}px`,
