@@ -103,7 +103,7 @@ describe('DragInTheBlank', () => {
               correct: 'Spoon',
             },
           }}
-        />
+        />,
       );
       expect(container.firstChild).toBeInTheDocument();
     });

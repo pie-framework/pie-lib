@@ -21,12 +21,8 @@ export const create = (domain, range, size, getRootNode) => {
   const rangeMinMax = createSnapMinAndMax(range);
 
   const scale = {
-    x: scaleLinear()
-      .domain([domain.min, domain.max])
-      .range([0, size.width]),
-    y: scaleLinear()
-      .domain([range.max, range.min])
-      .range([0, size.height]),
+    x: scaleLinear().domain([domain.min, domain.max]).range([0, size.width]),
+    y: scaleLinear().domain([range.max, range.min]).range([0, size.height]),
   };
 
   const snap = {

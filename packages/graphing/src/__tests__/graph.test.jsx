@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
-
 import { graphProps } from './utils';
 import Graph, { removeBuildingToolIfCurrentToolDiffers } from '../graph';
 import { toolsArr } from '../tools';

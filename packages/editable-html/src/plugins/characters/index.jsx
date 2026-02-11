@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import debug from 'debug';
-import get from 'lodash/get';
+import { debug } from 'debug';
+import { get } from 'lodash-es';
 
 import { PureToolbar } from '@pie-lib/math-toolbar';
 

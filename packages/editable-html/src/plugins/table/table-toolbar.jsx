@@ -5,7 +5,7 @@ import { DoneButton } from '../toolbar/done-button';
 import BorderAll from '@mui/icons-material/BorderAll';
 import { ToolbarButton } from '../toolbar/default-toolbar';
 
-import { AddRow, AddColumn, RemoveColumn, RemoveRow, RemoveTable } from './icons';
+import { AddColumn, AddRow, RemoveColumn, RemoveRow, RemoveTable } from './icons';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 

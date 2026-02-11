@@ -1,4 +1,4 @@
-import StyledEditor, { EditableHtml, ALL_PLUGINS, DEFAULT_PLUGINS } from '../index';
+import StyledEditor, { ALL_PLUGINS, DEFAULT_PLUGINS, EditableHtml } from '../index';
 
 // Mock TipTap and dependencies
 jest.mock('@tiptap/react', () => ({

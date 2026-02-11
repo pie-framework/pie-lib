@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { lighten, alpha, styled } from '@mui/material/styles';
+import { alpha, lighten, styled } from '@mui/material/styles';
 import debug from 'debug';
-import _ from 'lodash';
-import MathQuill from '@pie-framework/mathquill';
+import { flatten } from 'lodash-es';
 import * as mq from '../mq';
 
 import { baseSet } from '../keys';
@@ -341,7 +340,7 @@ export class KeyPad extends React.Component {
 
   flowKeys = (base, extras) => {
     const transposed = [...sortKeys(base), ...sortKeys(extras)];
-    return _.flatten(transposed);
+    return flatten(transposed);
   };
 
   keyIsNotAllowed = (key) => {

@@ -1,23 +1,21 @@
 import React from 'react';
 import { Editor as SlateEditor, findNode, getEventRange, getEventTransfer } from 'slate-react';
 import SlateTypes from 'slate-prop-types';
-import { Value, Block, Inline } from 'slate';
+import { Block, Inline, Value } from 'slate';
 import Plain from 'slate-plain-serializer';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
-import isEqual from 'lodash/isEqual';
+import { debounce, isEqual } from 'lodash-es';
 import classNames from 'classnames';
 import debug from 'debug';
 import { styled } from '@mui/material/styles';
 
-import { color } from '@pie-lib/render-ui';
+import { color, PreviewPrompt } from '@pie-lib/render-ui';
 import AlertDialog from '../../config-ui/src/alert-dialog';
-import { PreviewPrompt } from '@pie-lib/render-ui';
 
+import * as serialization from './serialization';
 import { getBase64, htmlToValue } from './serialization';
 import InsertImageHandler from './plugins/image/insert-image-handler';
-import * as serialization from './serialization';
-import { buildPlugins, ALL_PLUGINS, DEFAULT_PLUGINS } from './plugins';
+import { ALL_PLUGINS, buildPlugins, DEFAULT_PLUGINS } from './plugins';
 
 export { ALL_PLUGINS, DEFAULT_PLUGINS, serialization };
 
@@ -33,8 +31,8 @@ const defaultToolbarOpts = {
 
 const defaultResponseAreaProps = {
   options: {},
-  respAreaToolbar: () => { },
-  onHandleAreaChange: () => { },
+  respAreaToolbar: () => {},
+  onHandleAreaChange: () => {},
 };
 
 const defaultLanguageCharactersProps = [];
@@ -199,10 +197,10 @@ export class Editor extends React.Component {
 
   static defaultProps = {
     disableUnderline: true,
-    onFocus: () => { },
-    onBlur: () => { },
-    onKeyDown: () => { },
-    runSerializationOnMarkup: () => { },
+    onFocus: () => {},
+    onBlur: () => {},
+    onKeyDown: () => {},
+    runSerializationOnMarkup: () => {},
     mathMlOptions: {
       mmlOutput: false,
       mmlEditing: false,
@@ -977,7 +975,7 @@ export class Editor extends React.Component {
         this.onChange(ch);
         const handler = new InsertImageHandler(
           inline,
-          () => { },
+          () => {},
           () => this.state.value,
           this.onChange,
           true,
@@ -1076,13 +1074,11 @@ export class Editor extends React.Component {
       >
         {scheduled && <StyledUploadingMessage>Uploading image and then saving...</StyledUploadingMessage>}
         <StyledSlateEditor
-          className={classNames(
-            {
-              noPadding: toolbarOpts?.noPadding,
-              showParagraph: showParagraphs && !showParagraphs.disabled,
-              separateParagraph: separateParagraphs && !separateParagraphs.disabled,
-            },
-          )}
+          className={classNames({
+            noPadding: toolbarOpts?.noPadding,
+            showParagraph: showParagraphs && !showParagraphs.disabled,
+            separateParagraph: separateParagraphs && !separateParagraphs.disabled,
+          })}
         >
           <SlateEditor
             plugins={this.plugins}
@@ -1120,7 +1116,7 @@ export class Editor extends React.Component {
               minHeight: sizeStyle.minHeight,
               height: sizeStyle.height,
               maxHeight: sizeStyle.maxHeight,
-              ...slateEditorExtraStyles
+              ...slateEditorExtraStyles,
             }}
             pluginProps={otherPluginProps}
             toolbarOpts={toolbarOpts}

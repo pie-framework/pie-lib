@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { RawAuthoring } from '../authoring';
-import _ from 'lodash';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { takeRight } from 'lodash-es';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Mock dependencies
 jest.mock('@pie-lib/editable-html-tip-tap', () => {
@@ -140,10 +140,10 @@ describe('Rubric', () => {
         });
       };
 
-      testChangeMaxPoints(1, false, _.takeRight(points, 2), _.takeRight(sampleAnswers, 2));
-      testChangeMaxPoints(1, true, _.takeRight(points, 2), _.takeRight(sampleAnswers, 2));
-      testChangeMaxPoints(2, true, _.takeRight(points, 3), _.takeRight(sampleAnswers, 3));
-      testChangeMaxPoints(2, false, _.takeRight(points, 3), _.takeRight(sampleAnswers, 3));
+      testChangeMaxPoints(1, false, takeRight(points, 2), takeRight(sampleAnswers, 2));
+      testChangeMaxPoints(1, true, takeRight(points, 2), takeRight(sampleAnswers, 2));
+      testChangeMaxPoints(2, true, takeRight(points, 3), takeRight(sampleAnswers, 3));
+      testChangeMaxPoints(2, false, takeRight(points, 3), takeRight(sampleAnswers, 3));
       testChangeMaxPoints(5, false, ['', ''].concat(points), [null, null].concat(sampleAnswers));
     });
 

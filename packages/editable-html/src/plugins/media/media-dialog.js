@@ -22,7 +22,8 @@ const matchYoutubeUrl = (url) => {
     return false;
   }
 
-  const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+  const p =
+    /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
   if (url.match(p)) {
     return url.match(p)[1];
   }
@@ -433,19 +434,8 @@ export class MediaDialog extends React.Component {
 
   render() {
     const { open, disablePortal, type, edit, uploadSoundSupport } = this.props;
-    const {
-      ends,
-      height,
-      invalid,
-      starts,
-      width,
-      url,
-      mimeType,
-      formattedUrl,
-      updating,
-      tabValue,
-      fileUpload,
-    } = this.state;
+    const { ends, height, invalid, starts, width, url, mimeType, formattedUrl, updating, tabValue, fileUpload } =
+      this.state;
     const isYoutube = matchYoutubeUrl(url);
     const isInsertURL = tabValue === tabsTypeMap.insertUrl;
     const isUploadMedia = tabValue === tabsTypeMap.uploadFile;
@@ -568,10 +558,7 @@ export class MediaDialog extends React.Component {
                         <audio controls="controls" controlsList="nodownload">
                           <source type={mimeType} src={fileUpload.url} />
                         </audio>
-                        <StyledDeleteIcon
-                          aria-label="delete"
-                          onClick={this.handleRemoveFile}
-                          size="large">
+                        <StyledDeleteIcon aria-label="delete" onClick={this.handleRemoveFile} size="large">
                           <ActionDelete />
                         </StyledDeleteIcon>
                       </StyledRow>
@@ -587,11 +574,7 @@ export class MediaDialog extends React.Component {
                   ) : !fileUpload.loading ? (
                     <input accept="audio/*" onChange={this.handleUploadFile} type="file" />
                   ) : null}
-                  {!!fileUpload.error && (
-                    <StyledError variant="caption">
-                      {fileUpload.error}
-                    </StyledError>
-                  )}
+                  {!!fileUpload.error && <StyledError variant="caption">{fileUpload.error}</StyledError>}
                 </div>
               </StyledUploadInput>
             )}

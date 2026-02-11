@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { NodeViewWrapper } from '@tiptap/react';
 import { Chevron } from '../icons/RespArea';
-import ReactDOM from "react-dom";
-import { MathToolbar } from "@pie-lib/math-toolbar";
+import ReactDOM from 'react-dom';
 
 const InlineDropdown = (props) => {
   const { editor, node, getPos, options, selected } = props;

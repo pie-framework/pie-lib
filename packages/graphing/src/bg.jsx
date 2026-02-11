@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { select, pointer } from 'd3-selection';
+import { pointer, select } from 'd3-selection';
 import { types, utils } from '@pie-lib/plot';
 import { getTickValues, thinnerShapesNeeded } from './utils';
 

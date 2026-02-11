@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDebounce } from '../use-debounce';
 
 jest.useFakeTimers();

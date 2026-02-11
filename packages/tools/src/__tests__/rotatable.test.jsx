@@ -28,13 +28,13 @@ describe('rotatable', () => {
     // We patch the prototype to fix this for testing.
     beforeAll(() => {
       const originalInit = Rotatable.prototype.initHandles;
-      Rotatable.prototype.initHandles = function() {
+      Rotatable.prototype.initHandles = function () {
         this.handles = this.handles || [];
         return originalInit.call(this);
       };
 
       const originalUnmount = Rotatable.prototype.componentWillUnmount;
-      Rotatable.prototype.componentWillUnmount = function() {
+      Rotatable.prototype.componentWillUnmount = function () {
         this.handles = this.handles || [];
         return originalUnmount.call(this);
       };
@@ -49,7 +49,7 @@ describe('rotatable', () => {
       const { container } = render(
         <Rotatable handle={[{ class: 'handle', origin: 'bottom left' }]} classes={{}}>
           <div className="handle">foo</div>
-        </Rotatable>
+        </Rotatable>,
       );
       expect(container).toHaveTextContent('foo');
       expect(container.querySelector('.handle')).toBeInTheDocument();
@@ -59,7 +59,7 @@ describe('rotatable', () => {
       const { container } = render(
         <Rotatable classes={{}} startPosition={{ left: 50, top: 100 }}>
           foo
-        </Rotatable>
+        </Rotatable>,
       );
       expect(container).toHaveTextContent('foo');
     });

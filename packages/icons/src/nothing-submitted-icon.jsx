@@ -14,10 +14,7 @@ Exclamation.propTypes = { fill: PropTypes.string.isRequired };
 
 // Octagon background
 const Octagon = ({ fill }) => (
-  <polygon
-    points="14.8,4.5 5.6,13.8 5.6,27 14.8,36.5 28.1,36.5 37.6,27 37.6,13.8 28.1,4.5"
-    fill={fill}
-  />
+  <polygon points="14.8,4.5 5.6,13.8 5.6,27 14.8,36.5 28.1,36.5 37.6,27 37.6,13.8 28.1,4.5" fill={fill} />
 );
 
 Octagon.propTypes = { fill: PropTypes.string.isRequired };
@@ -44,17 +41,55 @@ export class NothingSubmitted extends React.Component {
     const { fg = '#464146', bg = 'white' } = this.props;
 
     this.icons = {
-      check: <IconRoot><Octagon fill={bg} /><Exclamation fill={fg} /></IconRoot>,
-      emoji: <IconRoot><Octagon fill={bg} /><Emoji fill={fg} /></IconRoot>,
+      check: (
+        <IconRoot>
+          <Octagon fill={bg} />
+          <Exclamation fill={fg} />
+        </IconRoot>
+      ),
+      emoji: (
+        <IconRoot>
+          <Octagon fill={bg} />
+          <Emoji fill={fg} />
+        </IconRoot>
+      ),
       feedback: {
-        check: <IconRoot><Octagon fill={bg} /><Emoji fill={fg} /></IconRoot>,
-        emoji: <IconRoot><Octagon fill={bg} /><Emoji fill={fg} /></IconRoot>,
+        check: (
+          <IconRoot>
+            <Octagon fill={bg} />
+            <Emoji fill={fg} />
+          </IconRoot>
+        ),
+        emoji: (
+          <IconRoot>
+            <Octagon fill={bg} />
+            <Emoji fill={fg} />
+          </IconRoot>
+        ),
         square: {
-          check: <IconRoot><Octagon fill={bg} /><Exclamation fill={fg} /></IconRoot>,
-          emoji: <IconRoot><Octagon fill={bg} /><Emoji fill={fg} /></IconRoot>,
+          check: (
+            <IconRoot>
+              <Octagon fill={bg} />
+              <Exclamation fill={fg} />
+            </IconRoot>
+          ),
+          emoji: (
+            <IconRoot>
+              <Octagon fill={bg} />
+              <Emoji fill={fg} />
+            </IconRoot>
+          ),
           open: {
-            check: <IconRoot><Exclamation fill={bg} /></IconRoot>,
-            emoji: <IconRoot><Emoji fill={bg} /></IconRoot>,
+            check: (
+              <IconRoot>
+                <Exclamation fill={bg} />
+              </IconRoot>
+            ),
+            emoji: (
+              <IconRoot>
+                <Emoji fill={bg} />
+              </IconRoot>
+            ),
           },
         },
       },
@@ -95,7 +130,7 @@ NothingSubmitted.defaultProps = {
   category: undefined,
   open: false,
   fg: '#464146', // foreground color
-  bg: 'white',   // background color
+  bg: 'white', // background color
 };
 
 export default NothingSubmitted;

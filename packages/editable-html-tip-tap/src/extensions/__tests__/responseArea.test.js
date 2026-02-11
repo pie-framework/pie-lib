@@ -1,8 +1,8 @@
 import {
-  ResponseAreaExtension,
-  ExplicitConstructedResponseNode,
   DragInTheBlankNode,
+  ExplicitConstructedResponseNode,
   InlineDropdownNode,
+  ResponseAreaExtension,
 } from '../responseArea';
 
 jest.mock('@tiptap/core', () => ({

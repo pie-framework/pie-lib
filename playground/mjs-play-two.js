@@ -1,5 +1,4 @@
 const { create, all, expression } = require('mathjs');
-const _ = require('lodash');
 /**
  *
  * Notes:
@@ -103,6 +102,7 @@ const constantNode = (v) => new expression.node.ConstantNode(v);
 
 const parse = (s) => {
   const tree = math.parse(s);
+
   return tree.transform((node, path, parent) => {
     // console.log('node:', node.name, node.fn); // JSON.stringify(node));
     if (node.name === 'percent') {
@@ -123,6 +123,7 @@ const parse = (s) => {
       // args are 10,a
       return multiplyNode(multiplyNode(node.args[0], constantNode(0.01)), node.args[1]);
     }
+
     return node;
   });
 };
@@ -132,11 +133,13 @@ const isCommutativeOperator = (n) => n && n.type === 'OperatorNode' && COMMUTATI
 
 const liftArgs = (op) => (node) => {
   if (isCommutativeOperator(node) && node.op === op) {
-    return _.flatten(node.args.map(liftArgs(op)));
+    return node.args.map(liftArgs(op)).flat();
   }
+
   if (node.type === 'ParenthesisNode') {
     return liftArgs(op)(node.content);
   }
+
   return [node];
 };
 
@@ -159,7 +162,7 @@ const sort = (n) => {
     if (isCommutativeOperator(node)) {
       // console.log(node.toString(), 'operator node + multiply');
       // console.log(node.fn, 'is commutative', node.toString());
-      const args = _.flatten(node.args.map(liftArgs(node.op)));
+      const args = node.args.map(liftArgs(node.op)).flat();
 
       // console.log('args:', args);
 
@@ -172,6 +175,7 @@ const sort = (n) => {
         // console.log('now sort args:', n.toString());
         return sort(n);
       });
+
       return new expression.node.OperatorNode(node.op, node.fn, sorted);
     }
 

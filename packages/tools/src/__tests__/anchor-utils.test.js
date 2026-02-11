@@ -1,4 +1,4 @@
-import { getAnchor, normalizeAngle, getAngleAndHypotenuse, getTranslateXY } from '../anchor-utils';
+import { getAnchor, getAngleAndHypotenuse, normalizeAngle } from '../anchor-utils';
 
 const o = (strings, ...exp) => {
   return strings.reduce((acc, v, index) => {

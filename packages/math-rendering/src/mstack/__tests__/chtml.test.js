@@ -1,4 +1,4 @@
-import { getStackData, Line, Row, CHTMLmstack } from '../chtml';
+import { CHTMLmstack, getStackData, Line, Row } from '../chtml';
 // import { CHTMLWrapper, instance } from 'mathjax-full/js/output/chtml/Wrapper';
 import { JSDOM } from 'jsdom';
 

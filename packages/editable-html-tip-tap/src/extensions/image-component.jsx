@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash-es';
 import debug from 'debug';
 import LinearProgress from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';

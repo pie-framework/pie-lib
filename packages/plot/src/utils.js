@@ -1,9 +1,6 @@
 import invariant from 'invariant';
-import range from 'lodash/range';
+import { head, isEqual, range, tail } from 'lodash-es';
 import Point from '@mapbox/point-geometry';
-import head from 'lodash/head';
-import tail from 'lodash/tail';
-import isEqual from 'lodash/isEqual';
 
 export const xy = (x, y) => ({ x, y });
 

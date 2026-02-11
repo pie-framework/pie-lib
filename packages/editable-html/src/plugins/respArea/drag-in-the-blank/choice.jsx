@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { useDraggable, useDroppable } from '@dnd-kit/core';
@@ -7,7 +7,7 @@ import { renderMath } from '@pie-lib/math-rendering';
 import { styled } from '@mui/material/styles';
 
 import { GripIcon } from '../icons';
-import { onValueChange, onRemoveResponse } from './utils';
+import { onRemoveResponse, onValueChange } from './utils';
 
 const StyledContent = styled('span')(({ theme }) => ({
   border: `solid 0px ${theme.palette.primary.main}`,
@@ -28,15 +28,7 @@ const StyledContent = styled('span')(({ theme }) => ({
   },
 }));
 
-export function BlankContent({
-  n,
-  children,
-  isDragging,
-  isOver,
-  dragItem,
-  value,
-  style: externalStyle
-}) {
+export function BlankContent({ n, children, isDragging, isOver, dragItem, value, style: externalStyle }) {
   const [hoveredElementSize, setHoveredElementSize] = useState(null);
   const elementRef = useRef(null);
 
@@ -142,15 +134,7 @@ BlankContent.propTypes = {
   style: PropTypes.object,
 };
 
-function DragDropChoice({
-  value,
-  disabled,
-  instanceId,
-  children,
-  n,
-  nodeProps,
-  opts,
-}) {
+function DragDropChoice({ value, disabled, instanceId, children, n, nodeProps, opts }) {
   const {
     attributes: dragAttributes,
     listeners: dragListeners,
@@ -171,8 +155,7 @@ function DragDropChoice({
       onRemove: (draggedData) => onRemoveResponse(nodeProps, draggedData.value),
       onDrop: (draggedData, dropData) => {
         // check if we're dropping into a blank
-        const isValidBlank =
-          dropData?.type === 'drag-in-the-blank-drop-choice';
+        const isValidBlank = dropData?.type === 'drag-in-the-blank-drop-choice';
 
         if (!isValidBlank) return;
 
@@ -182,8 +165,8 @@ function DragDropChoice({
         if (!opts.options.duplicates && draggedData.fromChoice) {
           onRemoveResponse(nodeProps, draggedData.value);
         }
-      }
-    }
+      },
+    },
   });
 
   const {
@@ -203,8 +186,7 @@ function DragDropChoice({
       opts,
       onDrop: (draggedData, dropData) => {
         // check if we're dropping into a blank
-        const isValidBlank =
-          dropData?.type === 'drag-in-the-blank-drop-choice';
+        const isValidBlank = dropData?.type === 'drag-in-the-blank-drop-choice';
 
         if (!isValidBlank) return;
 
@@ -232,8 +214,8 @@ function DragDropChoice({
           // clear original blank - slight delay to ensure state updates correctly
           setTimeout(() => onRemoveResponse(nodeProps, draggedData.value), 10);
         }
-      }
-    }
+      },
+    },
   });
 
   const setNodeRef = (node) => {
@@ -262,11 +244,7 @@ function DragDropChoice({
     </span>
   );
 
-  const content = (
-    <StyledContent className={classnames(isOver && 'over')}>
-      {dragEl}
-    </StyledContent>
-  );
+  const content = <StyledContent className={classnames(isOver && 'over')}>{dragEl}</StyledContent>;
 
   return content;
 }

@@ -1,4 +1,4 @@
-import { scaleLinear, scaleBand } from 'd3-scale';
+import { scaleBand, scaleLinear } from 'd3-scale';
 
 export const scaleMock = () => {
   const fn = jest.fn((n) => n);

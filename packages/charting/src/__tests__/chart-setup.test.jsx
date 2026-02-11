@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ConfigureChartPanel, { resetValues } from '../chart-setup';
 
 jest.mock('../chart-type', () => {

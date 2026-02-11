@@ -1,4 +1,5 @@
-import { getFeedbackForCorrectness, getFeedback, defaults } from '../index';
+import { defaults, getFeedback, getFeedbackForCorrectness } from '../index';
+
 describe('feedback', () => {
   describe('getFeedback', () => {
     const assert = (config, fallback, expected) => {

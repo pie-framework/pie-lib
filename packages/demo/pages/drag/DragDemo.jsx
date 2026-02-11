@@ -1,12 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { 
-  PlaceHolder, 
-  DraggableChoice, 
-  DragProvider, 
-  DragDroppablePlaceholder,
-  uid 
-} from '@pie-lib/drag';
+import { DragDroppablePlaceholder, DraggableChoice, DragProvider, PlaceHolder, uid } from '@pie-lib/drag';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -36,10 +30,10 @@ const StyledPlaceHolder = styled(PlaceHolder)(({ theme }) => ({
 const Choice = ({ children }) => {
   const choiceId = uid.generateId();
   return (
-    <DraggableChoice 
-      choice={{ 
+    <DraggableChoice
+      choice={{
         id: choiceId,
-        value: children
+        value: children,
       }}
     >
       {children}
@@ -66,11 +60,7 @@ export function DragDemoContent({ containerVal, onDropItem }) {
           <p>foo</p>
         </Choice>
         <Choice>
-          <img
-            width="200"
-            src="https://placedog.net/500/280?id=1"
-            alt="dog 1"
-          />
+          <img width="200" src="https://placedog.net/500/280?id=1" alt="dog 1" />
         </Choice>
       </PlaceHolder>
 
@@ -81,11 +71,7 @@ export function DragDemoContent({ containerVal, onDropItem }) {
           <p>foo</p>
         </Choice>
         <Choice>
-          <img
-            width="200"
-            src="https://placedog.net/500/280?id=2"
-            alt="dog 2"
-          />
+          <img width="200" src="https://placedog.net/500/280?id=2" alt="dog 2" />
         </Choice>
       </StyledPlaceHolder>
 
@@ -96,11 +82,7 @@ export function DragDemoContent({ containerVal, onDropItem }) {
           <p>foo</p>
         </Choice>
         <Choice>
-          <img
-            width="200"
-            src="https://placedog.net/500/280?id=3"
-            alt="dog 3"
-          />
+          <img width="200" src="https://placedog.net/500/280?id=3" alt="dog 3" />
         </Choice>
       </StyledPlaceHolder>
 
@@ -138,7 +120,7 @@ export class DragDemo extends React.Component {
 
   handleDragEnd = (event) => {
     const { active, over } = event;
-    
+
     if (over && over.id === 'drop-container') {
       // Get the dragged content from the active item's data
       const draggedValue = active.data.current?.value;
@@ -161,10 +143,7 @@ export class DragDemo extends React.Component {
     return (
       <IdProvider value={this.uid}>
         <DragProvider onDragEnd={this.handleDragEnd}>
-          <DragDemoContent 
-            containerVal={containerVal} 
-            onDropItem={this.handleDropItem}
-          />
+          <DragDemoContent containerVal={containerVal} onDropItem={this.handleDropItem} />
         </DragProvider>
       </IdProvider>
     );

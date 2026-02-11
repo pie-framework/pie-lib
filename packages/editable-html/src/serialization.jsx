@@ -2,7 +2,7 @@ import Html from 'slate-html-serializer';
 import React from 'react';
 import debug from 'debug';
 import { object as toStyleObject } from 'to-style';
-import isEmpty from 'lodash/isEmpty';
+import { isEmpty } from 'lodash-es';
 
 import { serialization as imgSerialization } from './plugins/image';
 import { serialization as mathSerialization } from './plugins/math';
@@ -368,7 +368,7 @@ const serializer = new Html({
 
 const _extends =
   Object.assign ||
-  function(target) {
+  function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
 
@@ -403,7 +403,7 @@ serializer.deserialize = function deserialize(html) {
   let nodes = this.deserializeElements(children);
 
   // COMPAT: ensure that all top-level inline nodes are wrapped into a block.
-  nodes = nodes.reduce(function(memo, node, i, original) {
+  nodes = nodes.reduce(function (memo, node, i, original) {
     if (node.object === 'block') {
       memo.push(node);
       return memo;
@@ -467,7 +467,7 @@ export const reduceMultipleBrs = (markup) => {
     return markup.replace(/(<br\s*\/?>){3,}/gi, '<br>');
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.log('Couldn\'t remove <br/> tags: ', e);
+    console.log("Couldn't remove <br/> tags: ", e);
   }
 
   return markup;
@@ -478,7 +478,7 @@ const reduceRedundantNewLineCharacters = (markup) => {
     return markup.replace(/\n/gi, '');
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.log('Couldn\'t remove <br/> tags: ', e);
+    console.log("Couldn't remove <br/> tags: ", e);
   }
 
   return markup;
@@ -605,7 +605,7 @@ export const htmlToValue = (html) => {
     return serializer.deserialize(handleHtml(html));
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.log('Couldn\'t parse html: ', e);
+    console.log("Couldn't parse html: ", e);
     return {};
   }
 };

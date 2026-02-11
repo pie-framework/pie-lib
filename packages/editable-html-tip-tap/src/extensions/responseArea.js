@@ -1,11 +1,10 @@
 import React from 'react';
-import { Plugin, PluginKey, TextSelection, NodeSelection } from 'prosemirror-state';
+import { NodeSelection, Plugin, PluginKey, TextSelection } from 'prosemirror-state';
 import { Extension } from '@tiptap/core';
 import { Node, ReactNodeViewRenderer } from '@tiptap/react';
 import ExplicitConstructedResponse from '../components/respArea/ExplicitConstructedResponse';
 import DragInTheBlank from '../components/respArea/DragInTheBlank/DragInTheBlank';
 import InlineDropdown from '../components/respArea/InlineDropdown';
-import PropTypes from 'prop-types';
 
 const lastIndexMap = {};
 
@@ -130,94 +129,100 @@ export const ResponseAreaExtension = Extension.create({
 
   addCommands() {
     return {
-      insertResponseArea: (type) => ({ tr, state, dispatch, commands }) => {
-        const typeName = normalizeType(type);
+      insertResponseArea:
+        (type) =>
+        ({ tr, state, dispatch, commands }) => {
+          const typeName = normalizeType(type);
 
-        // --- Slate: currentRespAreaList + max check ---
-        const currentCount = countNodesOfType(state.doc, typeName);
-        if (currentCount >= this.options.maxResponseAreas) {
-          return false;
-        }
-
-        // --- Slate: indexing logic (kept identical) ---
-        if (lastIndexMap[typeName] === undefined) lastIndexMap[typeName] = 0;
-
-        const prevIndex = lastIndexMap[typeName];
-        const newIndex = prevIndex === 0 ? prevIndex : prevIndex + 1;
-
-        // Slate increments map even if newIndex === 0
-        lastIndexMap[typeName] += 1;
-
-        const newInline = getDefaultNode({
-          schema: state.schema,
-          typeName,
-          index: newIndex,
-        });
-
-        if (!newInline) return false;
-
-        // --- Insert logic ---
-        const { selection } = state;
-        let insertPos = selection.from;
-
-        // If we're in a NodeSelection, insert before/after is ambiguous;
-        // We'll insert at its "from" (like your current code).
-        // If insertion fails, we fallback to end of doc.
-        const tryInsertAt = (pos) => {
-          try {
-            tr.insert(pos, newInline);
-            return pos;
-          } catch (e) {
-            return null;
+          // --- Slate: currentRespAreaList + max check ---
+          const currentCount = countNodesOfType(state.doc, typeName);
+          if (currentCount >= this.options.maxResponseAreas) {
+            return false;
           }
-        };
 
-        let usedPos = tryInsertAt(insertPos);
+          // --- Slate: indexing logic (kept identical) ---
+          if (lastIndexMap[typeName] === undefined) lastIndexMap[typeName] = 0;
 
-        // Slate branch: "markup empty and there's no focus"
-        // ProseMirror doesn't expose "no focus" the same way, so the closest
-        // equivalent fallback is inserting at end of document.
-        if (usedPos == null) {
-          usedPos = tryInsertAt(tr.doc.content.size);
-        }
-        if (usedPos == null) return false;
+          const prevIndex = lastIndexMap[typeName];
+          const newIndex = prevIndex === 0 ? prevIndex : prevIndex + 1;
 
-        // Optionally select the node you just inserted (like your original command)
-        // tr.setSelection(NodeSelection.create(tr.doc, usedPos))
+          // Slate increments map even if newIndex === 0
+          lastIndexMap[typeName] += 1;
 
-        // --- Cursor move behavior for certain types (Slate: moveFocusTo next text) ---
-        if (
-          ['math_templated', 'inline_dropdown', 'drag_in_the_blank', 'explicit_constructed_response'].includes(typeName)
-        ) {
-          tr.setSelection(NodeSelection.create(tr.doc, usedPos));
-        } else {
-          // Default: put cursor after inserted node
-          const after = usedPos + newInline.nodeSize;
-          tr.setSelection(selectionAfterPos(tr.doc, after));
-        }
+          const newInline = getDefaultNode({
+            schema: state.schema,
+            typeName,
+            index: newIndex,
+          });
 
-        if (dispatch) {
-          commands.focus();
-          dispatch(tr);
-        }
+          if (!newInline) return false;
 
-        return true;
-      },
-      refreshResponseArea: () => ({ tr, state, commands, dispatch }) => {
-        const { selection } = state;
-        const node = selection.$from.nodeAfter;
-        const nodePos = selection.from;
+          // --- Insert logic ---
+          const { selection } = state;
+          let insertPos = selection.from;
 
-        tr.setNodeMarkup(nodePos, undefined, { ...node.attrs, updated: `${Date.now()}` });
-        tr.setSelection(NodeSelection.create(tr.doc, nodePos));
+          // If we're in a NodeSelection, insert before/after is ambiguous;
+          // We'll insert at its "from" (like your current code).
+          // If insertion fails, we fallback to end of doc.
+          const tryInsertAt = (pos) => {
+            try {
+              tr.insert(pos, newInline);
+              return pos;
+            } catch (e) {
+              return null;
+            }
+          };
 
-        if (dispatch) {
-          commands.focus();
-          dispatch(tr);
-        }
+          let usedPos = tryInsertAt(insertPos);
 
-        return true;
-      },
+          // Slate branch: "markup empty and there's no focus"
+          // ProseMirror doesn't expose "no focus" the same way, so the closest
+          // equivalent fallback is inserting at end of document.
+          if (usedPos == null) {
+            usedPos = tryInsertAt(tr.doc.content.size);
+          }
+          if (usedPos == null) return false;
+
+          // Optionally select the node you just inserted (like your original command)
+          // tr.setSelection(NodeSelection.create(tr.doc, usedPos))
+
+          // --- Cursor move behavior for certain types (Slate: moveFocusTo next text) ---
+          if (
+            ['math_templated', 'inline_dropdown', 'drag_in_the_blank', 'explicit_constructed_response'].includes(
+              typeName,
+            )
+          ) {
+            tr.setSelection(NodeSelection.create(tr.doc, usedPos));
+          } else {
+            // Default: put cursor after inserted node
+            const after = usedPos + newInline.nodeSize;
+            tr.setSelection(selectionAfterPos(tr.doc, after));
+          }
+
+          if (dispatch) {
+            commands.focus();
+            dispatch(tr);
+          }
+
+          return true;
+        },
+      refreshResponseArea:
+        () =>
+        ({ tr, state, commands, dispatch }) => {
+          const { selection } = state;
+          const node = selection.$from.nodeAfter;
+          const nodePos = selection.from;
+
+          tr.setNodeMarkup(nodePos, undefined, { ...node.attrs, updated: `${Date.now()}` });
+          tr.setSelection(NodeSelection.create(tr.doc, nodePos));
+
+          if (dispatch) {
+            commands.focus();
+            dispatch(tr);
+          }
+
+          return true;
+        },
     };
   },
 });

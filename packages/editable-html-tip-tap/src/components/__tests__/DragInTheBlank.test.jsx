@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import DragDrop, { onValueChange, onRemoveResponse } from '../respArea/DragInTheBlank/DragInTheBlank';
+import DragDrop, { onRemoveResponse, onValueChange } from '../respArea/DragInTheBlank/DragInTheBlank';
 
 jest.mock('@tiptap/react', () => ({
   NodeViewWrapper: ({ children, ...props }) => (

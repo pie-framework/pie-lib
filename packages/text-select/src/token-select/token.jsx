@@ -209,11 +209,7 @@ export class Token extends React.Component {
     const TokenComponent = Component || StyledToken;
 
     return (
-      <Wrapper
-        useWrapper={correct !== undefined || isMissing}
-        Container={Container}
-        Icon={Icon}
-      >
+      <Wrapper useWrapper={correct !== undefined || isMissing} Container={Container} Icon={Icon}>
         <TokenComponent
           className={className}
           dangerouslySetInnerHTML={{ __html: (text || '').replace(/\n/g, '<br>') }}

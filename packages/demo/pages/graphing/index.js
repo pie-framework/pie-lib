@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import { marks } from './demo-data';
 import { Checkbox, FormControlLabel } from '@mui/material';
 
-import { Tabs, Tab0, Tab1 } from './components/tabs';
+import { Tab0, Tab1, Tabs } from './components/tabs';
 
 const { allTools } = tools;
 
@@ -39,42 +39,31 @@ export class GridDemo extends React.PureComponent {
     },
     model: {
       labels: {},
-      "promptEnabled": true,
-      "domain": { "min": -10, "max": 10, "step": 1, "labelStep": 0 },
-      "range": { "min": -10, "max": 10, "step": 1, "labelStep": 0 },
-      "backgroundMarks": [{ "type": "point", "x": 2, "y": 2 }],
-      "answers": { "correctAnswer": { "name": "Correct Answer", "marks": [] } },
-      "arrows": { "left": true, "right": true, "up": true, "down": true },
-      "coordinatesOnHover": false,
-      "defaultGridConfiguration": 0,
-      "graph": { "width": 500, "height": 500 },
-      "includeAxes": true,
-      "labelsEnabled": true,
-      "padding": true,
-      "prompt": "",
-      "rationale": "",
-      "rationaleEnabled": true,
-      "standardGrid": false,
-      "studentInstructionsEnabled": true,
-      "teacherInstructions": "",
-      "teacherInstructionsEnabled": true,
-      "title": "",
-      "titleEnabled": true,
-      "toolbarTools": [
-        "circle",
-        "line",
-        "label",
-        "parabola",
-        "point",
-        "polygon",
-        "ray",
-        "segment",
-        "sine",
-        "vector"
-      ],
-      "defaultTool": "circle",
-      "dimensionsEnabled": true,
-      "marks": marks,
+      promptEnabled: true,
+      domain: { min: -10, max: 10, step: 1, labelStep: 0 },
+      range: { min: -10, max: 10, step: 1, labelStep: 0 },
+      backgroundMarks: [{ type: 'point', x: 2, y: 2 }],
+      answers: { correctAnswer: { name: 'Correct Answer', marks: [] } },
+      arrows: { left: true, right: true, up: true, down: true },
+      coordinatesOnHover: false,
+      defaultGridConfiguration: 0,
+      graph: { width: 500, height: 500 },
+      includeAxes: true,
+      labelsEnabled: true,
+      padding: true,
+      prompt: '',
+      rationale: '',
+      rationaleEnabled: true,
+      standardGrid: false,
+      studentInstructionsEnabled: true,
+      teacherInstructions: '',
+      teacherInstructionsEnabled: true,
+      title: '',
+      titleEnabled: true,
+      toolbarTools: ['circle', 'line', 'label', 'parabola', 'point', 'polygon', 'ray', 'segment', 'sine', 'vector'],
+      defaultTool: 'circle',
+      dimensionsEnabled: true,
+      marks: marks,
     },
   };
 
@@ -102,7 +91,7 @@ export class GridDemo extends React.PureComponent {
   updateModel = (update) => {
     console.log('Updating model with:', update);
     this.setState({ model: { ...this.state.model, ...update } });
-  }
+  };
 
   addMark = (mark) => {
     const model = {

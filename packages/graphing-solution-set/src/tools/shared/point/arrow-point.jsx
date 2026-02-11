@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
-import isEqual from 'lodash/isEqual';
-import { getAngleDeg, arrowDimensions } from '../../../utils';
+import { isEqual } from 'lodash-es';
+import { arrowDimensions, getAngleDeg } from '../../../utils';
 
 export class RawArrow extends React.Component {
   static propTypes = {

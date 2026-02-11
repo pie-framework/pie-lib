@@ -2,19 +2,19 @@ import {
   AlertDialog,
   ChoiceConfiguration,
   FeedbackConfig,
+  feedbackConfigDefaults,
   FeedbackSelector,
-  InputContainer,
-  InputSwitch,
   InputCheckbox,
+  InputContainer,
   InputRadio,
+  InputSwitch,
   Langs,
   LanguageControls,
+  MuiBox,
   NChoice,
   NumberTextField,
   TagsInput,
   TwoChoice,
-  feedbackConfigDefaults,
-  MuiBox,
 } from '@pie-lib/config-ui';
 
 import React from 'react';

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
-import set from 'lodash/set';
+import { get, set } from 'lodash-es';
 import { styled } from '@mui/material/styles';
 import Select from '@mui/material/Select';
 import Input from '@mui/material/Input';
@@ -137,7 +136,7 @@ const StyledNumberTextField = styled(NumberTextField)(({ theme }) => ({
   },
 }));
 
-const NumberField = ({ label, value, onChange = () => { }, suffix, min, max }) => {
+const NumberField = ({ label, value, onChange = () => {}, suffix, min, max }) => {
   return (
     <StyledNumberTextField
       variant={'standard'}
@@ -278,8 +277,8 @@ export class Panel extends React.Component {
   };
 
   static defaultProps = {
-    onChangeModel: () => { },
-    onChangeConfiguration: () => { },
+    onChangeModel: () => {},
+    onChangeConfiguration: () => {},
   };
 
   change = (key, value, isConfigProperty = false) => {

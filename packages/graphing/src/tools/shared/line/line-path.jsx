@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { types } from '@pie-lib/plot';
-import { disabled, correct, incorrect, missing, disabledSecondary } from '../styles';
+import { correct, disabled, disabledSecondary, incorrect, missing } from '../styles';
 import * as vx from '@visx/shape';
 import { color } from '@pie-lib/render-ui';
 
@@ -72,13 +72,7 @@ export class RawLinePath extends React.Component {
 
     return (
       <React.Fragment>
-        <StyledDrawLine
-          data={data}
-          className={className}
-          disabled={disabled}
-          correctness={correctness}
-          {...rest}
-        />
+        <StyledDrawLine data={data} className={className} disabled={disabled} correctness={correctness} {...rest} />
         <StyledLine
           data={data}
           className={className}

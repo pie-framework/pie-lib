@@ -1,5 +1,4 @@
-import { PIE_TOOLBAR__CLASS } from '../constants';
-import constants from '../constants';
+import constants, { PIE_TOOLBAR__CLASS } from '../constants';
 
 describe('Constants', () => {
   describe('PIE_TOOLBAR__CLASS', () => {

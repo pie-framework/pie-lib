@@ -50,7 +50,6 @@ const CodeBlock = styled('pre')({
   position: 'fixed',
 });
 
-
 class Container extends React.Component {
   constructor(props) {
     super(props);

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isFunction } from 'lodash-es';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import _ from 'lodash';
 
 const comp = (variant, styles = {}) => {
   const StyledTypography = styled(Typography)(({ theme }) => {
-    const resolvedStyles = _.isFunction(styles) ? styles(theme) : styles;
+    const resolvedStyles = isFunction(styles) ? styles(theme) : styles;
     return {
       paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(1),
@@ -14,11 +14,7 @@ const comp = (variant, styles = {}) => {
     };
   });
 
-  const Component = ({ children }) => (
-    <StyledTypography variant={variant}>
-      {children}
-    </StyledTypography>
-  );
+  const Component = ({ children }) => <StyledTypography variant={variant}>{children}</StyledTypography>;
 
   Component.propTypes = {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import AutosizeInput from 'react-input-autosize';
@@ -17,7 +17,7 @@ const StyledAutosizeInput = styled(AutosizeInput, {
     border: `solid 1px ${disabled ? color.defaults.PRIMARY_DARK : markDisabled ? color.disabled() : color.defaults.SECONDARY}`,
     borderRadius: '3px',
     color: markDisabled ? color.disabled() : color.defaults.PRIMARY_DARK,
-    background: (disabled || markDisabled) ? theme.palette.background.paper : 'transparent',
+    background: disabled || markDisabled ? theme.palette.background.paper : 'transparent',
   },
 }));
 

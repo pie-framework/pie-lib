@@ -2,7 +2,7 @@ import React from 'react';
 import debug from 'debug';
 import MockChange from '../../image/__tests__/mock-change';
 import { Data } from 'slate';
-import MathPlugin, { serialization, inlineMath, CustomToolbarComp } from '../index';
+import MathPlugin, { CustomToolbarComp, inlineMath, serialization } from '../index';
 import { render, screen } from '@testing-library/react';
 
 jest.mock('@pie-framework/mathquill', () => ({

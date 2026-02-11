@@ -4,8 +4,7 @@ import { ToolPropTypeFields } from '../shared/types';
 import { types } from '@pie-lib/plot';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
-import isEqual from 'lodash/isEqual';
-import isEmpty from 'lodash/isEmpty';
+import { isEmpty, isEqual } from 'lodash-es';
 
 export class Point extends React.Component {
   static propTypes = {

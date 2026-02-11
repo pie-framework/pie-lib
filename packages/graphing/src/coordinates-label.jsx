@@ -51,13 +51,7 @@ export const CoordinatesLabel = ({ x, y, graphProps }) => {
     ...labelPosition,
   };
 
-  return (
-    <StyledInputBase
-      style={style}
-      value={label}
-      inputProps={{ ariaLabel: 'naked' }}
-    />
-  );
+  return <StyledInputBase style={style} value={label} inputProps={{ ariaLabel: 'naked' }} />;
 };
 
 CoordinatesLabel.propTypes = {

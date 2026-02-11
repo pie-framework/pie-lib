@@ -1,5 +1,5 @@
 import { CHTMLWrapper } from 'mathjax-full/js/output/chtml/Wrapper';
-import _ from 'lodash';
+import { compact, first, flatten, tail, times } from 'lodash-es';
 
 const reduceText = (acc, n) => {
   if (n.node && n.node.kind === 'text') {
@@ -32,7 +32,7 @@ export class Row {
 
     const diff = count - this.columns.length;
 
-    const padding = _.times(diff).map(() => '__pad__');
+    const padding = times(diff).map(() => '__pad__');
     return direction === 'right' ? [...padding, ...this.columns] : [...this.columns, ...padding];
   }
 }
@@ -88,10 +88,10 @@ const rowStack = (child) => {
     if (!child.childNodes || child.childNodes.length === 0) {
       return new Row([]);
     }
-    const f = _.first(child.childNodes);
-    const nodes = f && f.kind === 'mo' ? _.tail(child.childNodes) : child.childNodes;
+    const f = first(child.childNodes);
+    const nodes = f && f.kind === 'mo' ? tail(child.childNodes) : child.childNodes;
 
-    const columns = _.flatten(nodes.map(toColumnArray));
+    const columns = flatten(nodes.map(toColumnArray));
 
     return new Row(columns, f.kind === 'mo' ? f : undefined);
   }
@@ -125,7 +125,7 @@ export const getStackData = (mstack) => {
   if (!mstack || !mstack.childNodes) {
     return [];
   }
-  return _.compact(mstack.childNodes.map(rowStack));
+  return compact(mstack.childNodes.map(rowStack));
 };
 
 export class CHTMLmstack extends CHTMLWrapper {

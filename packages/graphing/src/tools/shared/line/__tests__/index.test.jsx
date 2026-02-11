@@ -1,4 +1,4 @@
-import { lineTool, lineToolComponent, lineBase } from '../index';
+import { lineBase, lineTool, lineToolComponent } from '../index';
 import { utils } from '@pie-lib/plot';
 import { render } from '@pie-lib/test-utils';
 import React from 'react';

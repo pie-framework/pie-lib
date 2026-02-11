@@ -230,9 +230,7 @@ describe('Translator', () => {
 
       return (
         <div>
-          <button data-testid="translate-btn">
-            {translated}
-          </button>
+          <button data-testid="translate-btn">{translated}</button>
         </div>
       );
     };

@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import TextAlignIcon, { AlignLeft, AlignRight, AlignCenter, AlignJustify } from '../icons/TextAlign';
+import { fireEvent, render } from '@testing-library/react';
+import TextAlignIcon, { AlignCenter, AlignJustify, AlignLeft, AlignRight } from '../icons/TextAlign';
 
 jest.mock('@mui/material/ListItem', () => ({
   __esModule: true,

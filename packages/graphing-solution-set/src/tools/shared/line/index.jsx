@@ -1,15 +1,13 @@
 import React from 'react';
-import isEqual from 'lodash/isEqual';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep, isEmpty, isEqual } from 'lodash-es';
 import { BasePoint } from '../point';
-import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
+import { gridDraggable, trig, types, utils } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
-import { disabled, correct, incorrect, missing } from '../styles';
+import { correct, disabled, incorrect, missing } from '../styles';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
-import isEmpty from 'lodash/isEmpty';
 import { color } from '@pie-lib/render-ui';
-import { getMiddleOfTwoPoints, equalPoints, sameAxes } from '../../../utils';
+import { equalPoints, getMiddleOfTwoPoints, sameAxes } from '../../../utils';
 
 export const lineTool = (type, Component) => () => ({
   type,

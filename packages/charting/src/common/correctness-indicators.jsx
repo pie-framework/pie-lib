@@ -52,11 +52,7 @@ export const CorrectnessIndicator = ({ scale, x, y, correctness, interactive }) 
   // the icon is 16px + 2px padding + 1px border, so total size is 22px
   return (
     <foreignObject x={cx - 11} y={cy - 11} width={22} height={22}>
-      {isCorrect ? (
-        <StyledCorrectIcon title={correctness.label} />
-      ) : (
-        <StyledIncorrectIcon title={correctness.label} />
-      )}
+      {isCorrect ? <StyledCorrectIcon title={correctness.label} /> : <StyledIncorrectIcon title={correctness.label} />}
     </foreignObject>
   );
 };
@@ -72,10 +68,7 @@ export const SmallCorrectPointIndicator = ({ scale, x, correctness, correctData,
     // small circle has 10px font + 2px padding + 1px border, so total size is 15px
     return (
       <foreignObject x={xToRender} y={yToRender} width={15} height={15}>
-        <StyledCorrectIcon
-          className="small"
-          title={correctness.label}
-        />
+        <StyledCorrectIcon className="small" title={correctness.label} />
       </foreignObject>
     );
   }
@@ -117,10 +110,12 @@ SmallCorrectPointIndicator.propTypes = {
     value: PropTypes.string,
     label: PropTypes.string,
   }),
-  correctData: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  })),
+  correctData: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }),
+  ),
   label: PropTypes.string,
 };
 

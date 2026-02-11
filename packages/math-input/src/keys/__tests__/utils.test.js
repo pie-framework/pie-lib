@@ -1,5 +1,5 @@
 import { extendKeySet } from '../utils';
-import { keysForGrade, gradeSets } from '../grades';
+import { gradeSets, keysForGrade } from '../grades';
 import * as comparison from '../../keys/comparison';
 
 describe('utils', () => {

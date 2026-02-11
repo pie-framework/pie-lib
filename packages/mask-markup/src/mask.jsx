@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 import { styled } from '@mui/material/styles';
 import { renderMath } from '@pie-lib/math-rendering';
 import { MARK_TAGS } from './serialization';
@@ -134,7 +134,7 @@ const MaskContainer = styled('div')(() => ({
 export default class Mask extends React.Component {
   constructor(props) {
     super(props);
-       this.internalContainerRef = React.createRef();
+    this.internalContainerRef = React.createRef();
   }
 
   static propTypes = {
@@ -143,10 +143,7 @@ export default class Mask extends React.Component {
     value: PropTypes.object,
     onChange: PropTypes.func,
     elementType: PropTypes.string,
-    containerRef: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-    ]),
+    containerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   };
 
   componentDidMount() {

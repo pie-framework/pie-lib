@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, fireEvent } from '@pie-lib/test-utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import ChartAxes, { TickComponent, RawChartAxes } from '../axes';
-import { graphProps, createBandScale } from './utils';
+import { fireEvent, render } from '@pie-lib/test-utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ChartAxes, { RawChartAxes, TickComponent } from '../axes';
+import { createBandScale, graphProps } from './utils';
 
 jest.mock('@visx/axis', () => ({
   AxisLeft: ({ children, ...props }) => (

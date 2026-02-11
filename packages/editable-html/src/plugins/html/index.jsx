@@ -6,11 +6,7 @@ const toggleToRichText = (value, onChange, dismiss) => {
   const plainText = value.document.text;
   const slateValue = dismiss ? value : htmlToValue(plainText);
 
-  const change = value
-    .change()
-    .selectAll()
-    .delete()
-    .insertFragment(slateValue.document);
+  const change = value.change().selectAll().delete().insertFragment(slateValue.document);
   onChange(change);
 };
 
@@ -37,11 +33,7 @@ export default function HtmlPlugin(opts) {
   };
 
   const handleHtmlModeOff = (value, onChange) => {
-    const change = value
-      .change()
-      .selectAll()
-      .delete()
-      .insertText(valueToHtml(value));
+    const change = value.change().selectAll().delete().insertText(valueToHtml(value));
     onChange(change);
   };
 

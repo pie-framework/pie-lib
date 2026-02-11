@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { thinnerShapesNeeded } from '../../../utils';
 import { color } from '@pie-lib/render-ui';
 import { styled } from '@mui/material/styles';
-import { disabled as disabledStyle, correct, incorrect, missing } from '../styles';
+import { correct, disabled as disabledStyle, incorrect, missing } from '../styles';
 
 const StyledPointGroup = styled('g')(({ disabled, correctness }) => ({
   cursor: 'pointer',

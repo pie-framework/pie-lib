@@ -1,5 +1,5 @@
 import React from 'react';
-import { DragInTheBlank, ConstructedResponse, InlineDropdown } from '@pie-lib/mask-markup';
+import { ConstructedResponse, DragInTheBlank, InlineDropdown } from '@pie-lib/mask-markup';
 
 import withRoot from '../../source/withRoot';
 import Section from '../../source/formatting/section';
@@ -153,16 +153,8 @@ class Demo extends React.Component {
   };
 
   render() {
-    const {
-      mounted,
-      markup,
-      value,
-      disabled,
-      evaluate,
-      dragInTheBlank,
-      constructedResponse,
-      inlineDropdown,
-    } = this.state;
+    const { mounted, markup, value, disabled, evaluate, dragInTheBlank, constructedResponse, inlineDropdown } =
+      this.state;
 
     const dragFeedback = this.getFeedback(dragInTheBlank);
     const crFeedback = this.getFeedback(constructedResponse);

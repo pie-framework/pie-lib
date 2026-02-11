@@ -1,4 +1,4 @@
-import { valueToSize, buildSizeStyle } from '../editor';
+import { buildSizeStyle, valueToSize } from '../editor';
 
 describe('Editor Utilities', () => {
   describe('valueToSize', () => {

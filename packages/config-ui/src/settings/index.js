@@ -23,7 +23,7 @@ const toChoice = (opt) => {
   }
 };
 
-export const radio = function() {
+export const radio = function () {
   const args = Array.prototype.slice.call(arguments);
   const [label, choices, isConfigProperty = false] = args;
 

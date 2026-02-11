@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Protractor } from '../index';
 import React from 'react';
 
@@ -29,7 +29,7 @@ describe('protractor', () => {
     return render(
       <ThemeProvider theme={theme}>
         <Protractor {...defaultProps} />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 

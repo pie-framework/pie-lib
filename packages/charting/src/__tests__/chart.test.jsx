@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@pie-lib/test-utils';
 import { Chart } from '../chart';
-import { graphProps, createBandScale } from './utils';
+import { createBandScale, graphProps } from './utils';
 
 describe('ChartAxes', () => {
   let onDataChange = jest.fn();

@@ -5,11 +5,11 @@ import IconButton from '@mui/material/IconButton';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash-es';
 
 import { DoneButton } from './done-button';
 
-import { findSingleNode, findParentNode } from '../utils';
+import { findParentNode, findSingleNode } from '../utils';
 import { styled } from '@mui/material/styles';
 import DefaultToolbar from './default-toolbar';
 import { removeDialogs as removeCharacterDialogs } from '../characters';
@@ -18,7 +18,8 @@ import { PIE_TOOLBAR__CLASS } from '../../constants';
 const log = debug('@pie-lib:editable-html:plugins:toolbar');
 
 const StyledToolbar = styled('div', {
-  shouldForwardProp: (prop) => !['hasDoneButton', 'position', 'alignment', 'focused', 'autoWidth', 'hidden'].includes(prop),
+  shouldForwardProp: (prop) =>
+    !['hasDoneButton', 'position', 'alignment', 'focused', 'autoWidth', 'hidden'].includes(prop),
 })(({ hasDoneButton, position, alignment, focused, autoWidth, hidden }) => ({
   position: 'absolute',
   zIndex: 10,

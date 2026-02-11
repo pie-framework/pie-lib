@@ -1,11 +1,11 @@
-import { TextSelect, TokenTypes, Tokenizer } from '@pie-lib/text-select';
+import { TextSelect, Tokenizer, TokenTypes } from '@pie-lib/text-select';
 import withRoot from '../source/withRoot';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { Header, Body } from '../source/formatting';
+import { Body, Header } from '../source/formatting';
 import classNames from 'classnames';
-import compact from 'lodash/compact';
+import { compact } from 'lodash-es';
 
 import { green, orange } from '@mui/material/colors';
 
@@ -61,10 +61,7 @@ class RawCustomToken extends React.Component {
 
   render() {
     const { text, correct, selected } = this.props;
-    const className = classNames(
-      correct && selected && 'correct',
-      !correct && selected && 'incorrect',
-    );
+    const className = classNames(correct && selected && 'correct', !correct && selected && 'incorrect');
     return <span className={className}>!!{text}</span>;
   }
 }

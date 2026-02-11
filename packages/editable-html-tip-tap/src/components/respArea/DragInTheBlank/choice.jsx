@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDraggable, useDroppable } from '@dnd-kit/core';
 import { color } from '@pie-lib/render-ui';
@@ -107,38 +107,45 @@ BlankContent.propTypes = {
 };
 
 function DragDropChoice({ value, disabled, instanceId, children, n, onChange, removeResponse, duplicates, pos }) {
-  const { attributes: dragAttributes, listeners: dragListeners, setNodeRef: setDragNodeRef, isDragging } = useDraggable(
-    {
+  const {
+    attributes: dragAttributes,
+    listeners: dragListeners,
+    setNodeRef: setDragNodeRef,
+    isDragging,
+  } = useDraggable({
+    id: `drag-${n.index}`,
+    disabled: disabled || !value?.value,
+    data: {
       id: `drag-${n.index}`,
-      disabled: disabled || !value?.value,
-      data: {
-        id: `drag-${n.index}`,
-        value,
-        instanceId,
-        n,
-        pos,
-        opts: { duplicates },
-        type: 'drag-in-the-blank-placed-choice',
-        fromChoice: !value,
-        onRemove: (draggedData) => removeResponse(draggedData),
-        onDrop: (draggedData, dropData) => {
-          // check if we're dropping into a blank
-          const isValidBlank = dropData?.type === 'drag-in-the-blank-drop-choice';
+      value,
+      instanceId,
+      n,
+      pos,
+      opts: { duplicates },
+      type: 'drag-in-the-blank-placed-choice',
+      fromChoice: !value,
+      onRemove: (draggedData) => removeResponse(draggedData),
+      onDrop: (draggedData, dropData) => {
+        // check if we're dropping into a blank
+        const isValidBlank = dropData?.type === 'drag-in-the-blank-drop-choice';
 
-          if (!isValidBlank) return;
+        if (!isValidBlank) return;
 
-          // place into blank
-          onChange(draggedData);
+        // place into blank
+        onChange(draggedData);
 
-          if (!duplicates && draggedData.fromChoice) {
-            removeResponse(draggedData);
-          }
-        },
+        if (!duplicates && draggedData.fromChoice) {
+          removeResponse(draggedData);
+        }
       },
     },
-  );
+  });
 
-  const { setNodeRef: setDropNodeRef, isOver, active: dragItem } = useDroppable({
+  const {
+    setNodeRef: setDropNodeRef,
+    isOver,
+    active: dragItem,
+  } = useDroppable({
     id: `drop-${n.index}`,
     data: {
       type: 'drag-in-the-blank-drop-choice',

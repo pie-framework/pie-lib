@@ -159,7 +159,14 @@ export class ToggleBar extends React.Component {
 
 // DragTool functional component using @dnd-kit hooks
 function DragTool({ children, index, draggable, toolRef, value }) {
-  const { attributes, listeners, setNodeRef: setDragNodeRef, transform, transition, isDragging } = useDraggable({
+  const {
+    attributes,
+    listeners,
+    setNodeRef: setDragNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useDraggable({
     id: `tool-${value}-${index}`,
     disabled: !draggable,
     data: {

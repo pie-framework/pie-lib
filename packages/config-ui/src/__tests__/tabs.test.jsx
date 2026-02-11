@@ -81,7 +81,6 @@ describe('Tabs Component', () => {
     expect(rootDiv).toBeInTheDocument();
   });
 
-
   it('handles tabs without title prop gracefully', () => {
     render(
       <Tabs>
@@ -178,16 +177,12 @@ describe('Tabs Component', () => {
   it('handles long tab titles', () => {
     render(
       <Tabs>
-        <div title="This is a very long tab title that should still render correctly">
-          Content 1
-        </div>
+        <div title="This is a very long tab title that should still render correctly">Content 1</div>
         <div title="Short">Content 2</div>
       </Tabs>,
     );
 
-    expect(
-      screen.getByText('This is a very long tab title that should still render correctly'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('This is a very long tab title that should still render correctly')).toBeInTheDocument();
     expect(screen.getByText('Short')).toBeInTheDocument();
   });
 });

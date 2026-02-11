@@ -64,7 +64,7 @@ export class RawPolygon extends React.Component {
     const { scale } = graphProps;
 
     const pointString = getPointString(points, scale);
-    
+
     if (closed) {
       return (
         <StyledPolygon

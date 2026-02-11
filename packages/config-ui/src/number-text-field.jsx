@@ -3,8 +3,9 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import isFinite from 'lodash/isFinite';
+import { isFinite } from 'lodash-es';
 import InputAdornment from '@mui/material/InputAdornment';
+
 const log = debug('@pie-lib:config-ui:number-text-field');
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -177,7 +178,7 @@ export class NumberTextField extends React.Component {
     const error = showErrorWhenOutsideRange && this.getError();
     return (
       <StyledTextField
-        variant={disableUnderline ? 'filled' : (variant || 'standard')}
+        variant={disableUnderline ? 'filled' : variant || 'standard'}
         inputRef={(ref) => {
           this.inputRef = ref;
         }}

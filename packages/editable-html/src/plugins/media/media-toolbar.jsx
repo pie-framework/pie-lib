@@ -39,14 +39,8 @@ class MediaToolbar extends React.Component {
 
     return (
       <StyledMediaToolbar>
-        {hideEdit ? null : (
-          <StyledEditContainer onClick={onEdit}>
-            Edit Settings
-          </StyledEditContainer>
-        )}
-        <StyledRemoveContainer onClick={onRemove}>
-          Remove
-        </StyledRemoveContainer>
+        {hideEdit ? null : <StyledEditContainer onClick={onEdit}>Edit Settings</StyledEditContainer>}
+        <StyledRemoveContainer onClick={onRemove}>Remove</StyledRemoveContainer>
       </StyledMediaToolbar>
     );
   }

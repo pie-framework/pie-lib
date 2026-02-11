@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import renderMath, { fixMathElement } from '../render-math';
 // import * as MathJaxModule from '../mathjax-script';
-import _ from 'lodash';
+import { times } from 'lodash-es';
 
 jest.mock('../mathjax-script', () => ({
   initializeMathJax: jest.fn(),
@@ -45,7 +45,7 @@ describe('render-math', () => {
     global.window.mathjaxLoadedP = Promise.resolve();
 
     // Call renderMath 9 more times
-    _.times(9).forEach((i) => renderMath(div));
+    times(9).forEach((i) => renderMath(div));
 
     // setTimeout(() => {
     //   expect(MathJaxModule.initializeMathJax).toHaveBeenCalledTimes(1);

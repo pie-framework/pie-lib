@@ -1,13 +1,14 @@
 import FeedbackSelector, { FeedbackType } from './feedback-selector';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { merge } from 'lodash-es';
+
 import { styled } from '@mui/material/styles';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import merge from 'lodash/merge';
 
 export { FeedbackSelector };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { types, gridDraggable } from '@pie-lib/plot';
+import { gridDraggable, types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import * as utils from '../../utils';
 import { correct, disabled, incorrect, missing } from '../shared/styles';

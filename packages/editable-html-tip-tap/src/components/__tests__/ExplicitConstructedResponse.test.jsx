@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import ExplicitConstructedResponse from '../respArea/ExplicitConstructedResponse';
 
 jest.mock('@tiptap/react', () => ({

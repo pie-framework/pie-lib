@@ -27,9 +27,7 @@ const SectionHeader = styled(Typography)(({ theme }) => ({
 
 const Section = ({ name, children }) => (
   <SectionContainer>
-    <SectionHeader variant="h5">
-      {name}
-    </SectionHeader>
+    <SectionHeader variant="h5">{name}</SectionHeader>
     {children}
   </SectionContainer>
 );

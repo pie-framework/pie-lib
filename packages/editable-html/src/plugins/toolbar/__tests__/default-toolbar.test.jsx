@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, screen, within, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { Value } from 'slate';
 import { DefaultToolbar } from '../default-toolbar';
 
@@ -50,10 +49,7 @@ describe('default-toolbar', () => {
 
     it('renders with 1 plugin', () => {
       const { container } = render(
-        <DefaultToolbar
-          {...defaultProps}
-          plugins={[{ toolbar: { icon: <span>Icon1</span> }, name: 'plugin-one' }]}
-        />,
+        <DefaultToolbar {...defaultProps} plugins={[{ toolbar: { icon: <span>Icon1</span> }, name: 'plugin-one' }]} />,
       );
 
       expect(container.firstChild).toBeInTheDocument();

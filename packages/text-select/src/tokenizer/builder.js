@@ -1,6 +1,5 @@
-import compact from 'lodash/compact';
+import { clone, compact } from 'lodash-es';
 import English from '@pie-framework/parse-english';
-import clone from 'lodash/clone';
 
 const g = (str, node) => {
   if (node.children) {
@@ -41,7 +40,7 @@ export const paragraphs = (text) => {
 export const handleSentence = (child, acc) => {
   const sentenceChilds = [];
   // we parse the children of the sentence
-  let newAcc = child.children.reduce(function(acc, child) {
+  let newAcc = child.children.reduce(function (acc, child) {
     // if we find a whitespace node that's \n, we end the sentence
     if (child.type === 'WhiteSpaceNode' && child.value === '\n') {
       if (sentenceChilds.length) {

@@ -1,5 +1,5 @@
 import { TagsInput } from '../index';
-import { render, screen, userEvent, pressKey, Keys } from '@pie-lib/test-utils';
+import { Keys, pressKey, render, screen, userEvent } from '@pie-lib/test-utils';
 import React from 'react';
 
 describe('TagsInput', () => {

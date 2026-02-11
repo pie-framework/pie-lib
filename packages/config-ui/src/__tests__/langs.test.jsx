@@ -103,13 +103,7 @@ describe('Langs Component', () => {
 
     it('does not call onChange if no onChange prop provided', async () => {
       const user = userEvent.setup();
-      const { container } = render(
-        <Langs
-          uid="1"
-          langs={['en-US', 'es-ES']}
-          selected="en-US"
-        />,
-      );
+      const { container } = render(<Langs uid="1" langs={['en-US', 'es-ES']} selected="en-US" />);
 
       const select = screen.getByRole('combobox');
       await user.click(select);
@@ -130,13 +124,7 @@ describe('Langs Component', () => {
     });
 
     it('generates random uid if not provided', () => {
-      const { container } = render(
-        <Langs
-          onChange={onChange}
-          langs={['en-US', 'es-ES']}
-          selected="en-US"
-        />,
-      );
+      const { container } = render(<Langs onChange={onChange} langs={['en-US', 'es-ES']} selected="en-US" />);
 
       const select = screen.getByRole('combobox');
       expect(select).toBeInTheDocument();
@@ -164,14 +152,7 @@ describe('Langs Component', () => {
       let select = screen.getByRole('combobox');
       expect(select).toHaveTextContent('en-US');
 
-      rerender(
-        <Langs
-          uid="1"
-          onChange={onChange}
-          langs={['en-US', 'es-ES']}
-          selected="es-ES"
-        />,
-      );
+      rerender(<Langs uid="1" onChange={onChange} langs={['en-US', 'es-ES']} selected="es-ES" />);
 
       select = screen.getByRole('combobox');
       expect(select).toHaveTextContent('es-ES');
@@ -184,14 +165,7 @@ describe('Langs Component', () => {
         selected: 'en-US',
       });
 
-      rerender(
-        <Langs
-          uid="1"
-          onChange={onChange}
-          langs={['en-US', 'es-ES', 'fr-FR']}
-          selected="en-US"
-        />,
-      );
+      rerender(<Langs uid="1" onChange={onChange} langs={['en-US', 'es-ES', 'fr-FR']} selected="en-US" />);
 
       const select = screen.getByRole('combobox');
       expect(select).toHaveTextContent('en-US');
@@ -266,9 +240,7 @@ describe('LanguageControls Component', () => {
     });
 
     it('applies custom className', () => {
-      const { container } = render(
-        <LanguageControls {...defaultProps} className="custom-class" />,
-      );
+      const { container } = render(<LanguageControls {...defaultProps} className="custom-class" />);
 
       expect(container.querySelector('.custom-class')).toBeInTheDocument();
     });
@@ -279,13 +251,7 @@ describe('LanguageControls Component', () => {
       const user = userEvent.setup();
       const onActiveLangChange = jest.fn();
 
-      render(
-        <LanguageControls
-          {...defaultProps}
-          activeLang="en-US"
-          onActiveLangChange={onActiveLangChange}
-        />,
-      );
+      render(<LanguageControls {...defaultProps} activeLang="en-US" onActiveLangChange={onActiveLangChange} />);
 
       const selects = screen.getAllByRole('combobox');
       const activeSelect = selects[0];
@@ -300,13 +266,7 @@ describe('LanguageControls Component', () => {
       const user = userEvent.setup();
       const onDefaultLangChange = jest.fn();
 
-      render(
-        <LanguageControls
-          {...defaultProps}
-          defaultLang="en-US"
-          onDefaultLangChange={onDefaultLangChange}
-        />,
-      );
+      render(<LanguageControls {...defaultProps} defaultLang="en-US" onDefaultLangChange={onDefaultLangChange} />);
 
       const selects = screen.getAllByRole('combobox');
       const defaultSelect = selects[1];
@@ -346,12 +306,7 @@ describe('LanguageControls Component', () => {
   describe('props handling', () => {
     it('displays correct language options', async () => {
       const user = userEvent.setup();
-      render(
-        <LanguageControls
-          {...defaultProps}
-          langs={['en-US', 'es-ES', 'fr-FR', 'de-DE']}
-        />,
-      );
+      render(<LanguageControls {...defaultProps} langs={['en-US', 'es-ES', 'fr-FR', 'de-DE']} />);
 
       const selects = screen.getAllByRole('combobox');
       await user.click(selects[0]);
@@ -364,13 +319,7 @@ describe('LanguageControls Component', () => {
 
     it('maintains different active and default languages', async () => {
       const user = userEvent.setup();
-      render(
-        <LanguageControls
-          {...defaultProps}
-          activeLang="es-ES"
-          defaultLang="en-US"
-        />,
-      );
+      render(<LanguageControls {...defaultProps} activeLang="es-ES" defaultLang="en-US" />);
 
       const selects = screen.getAllByRole('combobox');
       expect(selects[0]).toHaveTextContent('es-ES');
@@ -380,44 +329,24 @@ describe('LanguageControls Component', () => {
 
   describe('updates', () => {
     it('updates when activeLang prop changes', () => {
-      const { rerender } = render(
-        <LanguageControls
-          {...defaultProps}
-          activeLang="en-US"
-        />,
-      );
+      const { rerender } = render(<LanguageControls {...defaultProps} activeLang="en-US" />);
 
       let selects = screen.getAllByRole('combobox');
       expect(selects[0]).toHaveTextContent('en-US');
 
-      rerender(
-        <LanguageControls
-          {...defaultProps}
-          activeLang="es-ES"
-        />,
-      );
+      rerender(<LanguageControls {...defaultProps} activeLang="es-ES" />);
 
       selects = screen.getAllByRole('combobox');
       expect(selects[0]).toHaveTextContent('es-ES');
     });
 
     it('updates when defaultLang prop changes', () => {
-      const { rerender } = render(
-        <LanguageControls
-          {...defaultProps}
-          defaultLang="en-US"
-        />,
-      );
+      const { rerender } = render(<LanguageControls {...defaultProps} defaultLang="en-US" />);
 
       let selects = screen.getAllByRole('combobox');
       expect(selects[1]).toHaveTextContent('en-US');
 
-      rerender(
-        <LanguageControls
-          {...defaultProps}
-          defaultLang="fr-FR"
-        />,
-      );
+      rerender(<LanguageControls {...defaultProps} defaultLang="fr-FR" />);
 
       selects = screen.getAllByRole('combobox');
       expect(selects[1]).toHaveTextContent('fr-FR');
@@ -425,19 +354,9 @@ describe('LanguageControls Component', () => {
 
     it('updates when langs prop changes', async () => {
       const user = userEvent.setup();
-      const { rerender } = render(
-        <LanguageControls
-          {...defaultProps}
-          langs={['en-US', 'es-ES']}
-        />,
-      );
+      const { rerender } = render(<LanguageControls {...defaultProps} langs={['en-US', 'es-ES']} />);
 
-      rerender(
-        <LanguageControls
-          {...defaultProps}
-          langs={['en-US', 'es-ES', 'fr-FR']}
-        />,
-      );
+      rerender(<LanguageControls {...defaultProps} langs={['en-US', 'es-ES', 'fr-FR']} />);
 
       const selects = screen.getAllByRole('combobox');
       await user.click(selects[0]);

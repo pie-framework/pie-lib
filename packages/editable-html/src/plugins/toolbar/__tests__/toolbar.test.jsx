@@ -1,5 +1,5 @@
 import { classObject, mockMathInput } from '../../../__tests__/utils';
-import { Data, Value, Inline } from 'slate';
+import { Inline, Value } from 'slate';
 import { Toolbar } from '../toolbar';
 import React from 'react';
 import { render, screen } from '@testing-library/react';

@@ -46,15 +46,19 @@ const PlaygroundRoot = styled('div')({
   height: '150px',
 });
 
-const BaseBox = styled(Box)(square({
-  backgroundColor: 'pink',
-  transformOrigin: '50% 50%',
-}));
+const BaseBox = styled(Box)(
+  square({
+    backgroundColor: 'pink',
+    transformOrigin: '50% 50%',
+  }),
+);
 
-const FromBox = styled(Box)(square({
-  backgroundColor: 'green',
-  transformOrigin: '50% 50%',
-}));
+const FromBox = styled(Box)(
+  square({
+    backgroundColor: 'green',
+    transformOrigin: '50% 50%',
+  }),
+);
 
 const ToBox = styled(Box)({
   backgroundColor: 'none',

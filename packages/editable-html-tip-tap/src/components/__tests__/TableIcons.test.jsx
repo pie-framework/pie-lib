@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { AddRow, RemoveRow, AddColumn, RemoveColumn, RemoveTable } from '../icons/TableIcons';
+import { AddColumn, AddRow, RemoveColumn, RemoveRow, RemoveTable } from '../icons/TableIcons';
 
 describe('AddRow', () => {
   it('renders without crashing', () => {

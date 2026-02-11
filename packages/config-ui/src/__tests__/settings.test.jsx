@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Toggle from '../settings/toggle';
 import DisplaySize from '../settings/display-size';
@@ -121,9 +121,7 @@ describe('Settings Components', () => {
       let widthInput = screen.getByLabelText('Width');
       expect(widthInput).toHaveValue(500);
 
-      rerender(
-        <DisplaySize {...defaultProps} size={{ width: 800, height: 600 }} />
-      );
+      rerender(<DisplaySize {...defaultProps} size={{ width: 800, height: 600 }} />);
 
       widthInput = screen.getByLabelText('Width');
       expect(widthInput).toHaveValue(800);
@@ -232,13 +230,7 @@ describe('Settings Components', () => {
     });
 
     it('displays custom label text', () => {
-      render(
-        <DisplaySize
-          size={{ width: 500, height: 400 }}
-          label="Custom Size Settings"
-          onChange={jest.fn()}
-        />
-      );
+      render(<DisplaySize size={{ width: 500, height: 400 }} label="Custom Size Settings" onChange={jest.fn()} />);
 
       expect(screen.getByText('Custom Size Settings')).toBeInTheDocument();
     });
@@ -254,14 +246,7 @@ describe('Settings Components', () => {
   describe('SettingsRadioLabel', () => {
     it('renders radio label', () => {
       const onChange = jest.fn();
-      render(
-        <SettingsRadioLabel
-          label="Option 1"
-          value="option1"
-          checked={false}
-          onChange={onChange}
-        />
-      );
+      render(<SettingsRadioLabel label="Option 1" value="option1" checked={false} onChange={onChange} />);
 
       expect(screen.getByText('Option 1')).toBeInTheDocument();
       expect(screen.getByRole('radio')).toBeInTheDocument();
@@ -269,14 +254,7 @@ describe('Settings Components', () => {
 
     it('renders checked state', () => {
       const onChange = jest.fn();
-      render(
-        <SettingsRadioLabel
-          label="Option 1"
-          value="option1"
-          checked={true}
-          onChange={onChange}
-        />
-      );
+      render(<SettingsRadioLabel label="Option 1" value="option1" checked={true} onChange={onChange} />);
 
       const radio = screen.getByRole('radio');
       expect(radio).toBeChecked();
@@ -284,14 +262,7 @@ describe('Settings Components', () => {
 
     it('renders unchecked state', () => {
       const onChange = jest.fn();
-      render(
-        <SettingsRadioLabel
-          label="Option 1"
-          value="option1"
-          checked={false}
-          onChange={onChange}
-        />
-      );
+      render(<SettingsRadioLabel label="Option 1" value="option1" checked={false} onChange={onChange} />);
 
       const radio = screen.getByRole('radio');
       expect(radio).not.toBeChecked();
@@ -300,14 +271,7 @@ describe('Settings Components', () => {
     it('calls onChange when radio is clicked', async () => {
       const user = userEvent.setup();
       const onChange = jest.fn();
-      render(
-        <SettingsRadioLabel
-          label="Option 1"
-          value="option1"
-          checked={false}
-          onChange={onChange}
-        />
-      );
+      render(<SettingsRadioLabel label="Option 1" value="option1" checked={false} onChange={onChange} />);
 
       const radio = screen.getByRole('radio');
       await user.click(radio);
@@ -318,14 +282,7 @@ describe('Settings Components', () => {
     it('displays label text correctly', () => {
       const onChange = jest.fn();
       const labelText = 'Custom Option Label';
-      render(
-        <SettingsRadioLabel
-          label={labelText}
-          value="custom"
-          checked={false}
-          onChange={onChange}
-        />
-      );
+      render(<SettingsRadioLabel label={labelText} value="custom" checked={false} onChange={onChange} />);
 
       expect(screen.getByText(labelText)).toBeInTheDocument();
     });
@@ -357,34 +314,19 @@ describe('Settings Components', () => {
     });
 
     it('renders empty when groups is undefined', () => {
-      const { container } = render(
-        <Panel
-          {...defaultProps}
-          groups={undefined}
-        />
-      );
+      const { container } = render(<Panel {...defaultProps} groups={undefined} />);
       expect(container.firstChild.children.length).toBe(0);
     });
 
     it('renders empty when groups is empty', () => {
-      const { container } = render(
-        <Panel
-          {...defaultProps}
-          groups={{}}
-        />
-      );
+      const { container } = render(<Panel {...defaultProps} groups={{}} />);
       expect(container.firstChild.children.length).toBe(0);
     });
 
     it('calls onChangeModel when model changes', async () => {
       const user = userEvent.setup();
       const onChangeModel = jest.fn();
-      const { container } = render(
-        <Panel
-          {...defaultProps}
-          onChangeModel={onChangeModel}
-        />
-      );
+      const { container } = render(<Panel {...defaultProps} onChangeModel={onChangeModel} />);
 
       const switchElement = container.querySelector('input[type="checkbox"]');
       await user.click(switchElement);
@@ -408,7 +350,7 @@ describe('Settings Components', () => {
             },
           }}
           onChangeConfiguration={onChangeConfiguration}
-        />
+        />,
       );
 
       const switchElement = container.querySelector('input[type="checkbox"]');
@@ -419,12 +361,7 @@ describe('Settings Components', () => {
 
     it('renders with modal when provided', () => {
       const modal = <div data-testid="test-modal">Modal Content</div>;
-      render(
-        <Panel
-          {...defaultProps}
-          modal={modal}
-        />
-      );
+      render(<Panel {...defaultProps} modal={modal} />);
 
       expect(screen.getByTestId('test-modal')).toBeInTheDocument();
       expect(screen.getByText('Modal Content')).toBeInTheDocument();
@@ -449,7 +386,7 @@ describe('Settings Components', () => {
             },
           }}
           model={{ setting1: true, setting2: false }}
-        />
+        />,
       );
 
       expect(screen.getByText('Group One')).toBeInTheDocument();
@@ -465,7 +402,7 @@ describe('Settings Components', () => {
               test: { type: 'toggle', label: 'Test' },
             },
           }}
-        />
+        />,
       );
 
       expect(container.firstChild).toBeInTheDocument();
@@ -485,7 +422,7 @@ describe('Settings Components', () => {
             },
           }}
           model={{ toggleSetting: true }}
-        />
+        />,
       );
 
       expect(screen.getByText('General Settings')).toBeInTheDocument();
@@ -506,7 +443,7 @@ describe('Settings Components', () => {
             },
           }}
           onChangeModel={jest.fn()}
-        />
+        />,
       );
 
       expect(screen.getByText('General Settings')).toBeInTheDocument();

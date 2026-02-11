@@ -18,7 +18,7 @@ describe('draggable', () => {
       const { rerender, container } = render(
         <Draggable position={{ x: 100, y: 100 }}>
           <div data-testid="draggable-child">content</div>
-        </Draggable>
+        </Draggable>,
       );
 
       // Verify initial render
@@ -29,7 +29,7 @@ describe('draggable', () => {
       rerender(
         <Draggable position={{ x: 200, y: 200 }}>
           <div data-testid="draggable-child">content</div>
-        </Draggable>
+        </Draggable>,
       );
 
       // The component should still render correctly after prop change

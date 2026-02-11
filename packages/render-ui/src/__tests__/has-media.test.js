@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { hasMedia } from '../has-media'; // Assuming you have a hasMedia function
 
 describe('hasMedia', () => {

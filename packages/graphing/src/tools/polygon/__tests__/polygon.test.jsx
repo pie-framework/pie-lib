@@ -1,6 +1,6 @@
 import { render } from '@pie-lib/test-utils';
 import React from 'react';
-import { Polygon, getPointString } from '../polygon';
+import { getPointString, Polygon } from '../polygon';
 import { graphProps } from '../../../__tests__/utils';
 
 const xy = (x, y) => ({ x, y });

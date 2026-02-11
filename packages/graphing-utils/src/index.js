@@ -1,6 +1,7 @@
 import debug from 'debug';
+import { concat, range, rangeRight } from 'lodash-es';
 import Point from '@mapbox/point-geometry';
-import _ from 'lodash';
+
 const log = debug('pie-lib:graphing:tools:utils');
 
 export const FREQ_DIVIDER = 16;
@@ -27,10 +28,10 @@ export const getAmplitudeAndFreq = (root, edge) => {
 export const xPoints = (root, freq, min, max) => {
   freq = Math.abs(freq);
   log('[xPoints] root:', root, 'freq:', freq, ' min:', min, ' max:', max);
-  const leftpoints = _.rangeRight(root, min - freq, freq * -1);
-  const rightpoints = _.range(root + freq, max + freq, freq);
+  const leftpoints = rangeRight(root, min - freq, freq * -1);
+  const rightpoints = range(root + freq, max + freq, freq);
 
-  return _.concat(leftpoints, rightpoints);
+  return concat(leftpoints, rightpoints);
 };
 
 /**

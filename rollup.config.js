@@ -6,10 +6,7 @@ import commonjs from '@rollup/plugin-commonjs';
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 const outputDir = path.resolve(__dirname, 'dist');
-const input = path.resolve(
-  __dirname,
-  './packages/pie-toolbox/src/editable-html.js'
-);
+const input = path.resolve(__dirname, './packages/pie-toolbox/src/editable-html.js');
 
 export default () => ({
   input: input,
@@ -44,10 +41,7 @@ export default () => ({
           },
         ],
       ],
-      plugins: [
-        '@babel/plugin-transform-runtime',
-        '@babel/plugin-syntax-optional-catch-binding',
-      ],
+      plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-syntax-optional-catch-binding'],
     }),
   ],
 });

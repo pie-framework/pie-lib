@@ -14,10 +14,10 @@ describe('HelpButton', () => {
     const user = userEvent.setup();
     const onClick = jest.fn();
     render(<HelpButton onClick={onClick} />);
-    
+
     const button = screen.getByRole('button');
     await user.click(button);
-    
+
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
@@ -66,10 +66,10 @@ describe('HelpDialog', () => {
     const user = userEvent.setup();
     const onClose = jest.fn();
     render(<HelpDialog {...defaultProps} onClose={onClose} />);
-    
+
     const okButton = screen.getByRole('button', { name: /OK/i });
     await user.click(okButton);
-    
+
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
@@ -77,7 +77,7 @@ describe('HelpDialog', () => {
     const user = userEvent.setup();
     const onClose = jest.fn();
     render(<HelpDialog {...defaultProps} onClose={onClose} />);
-    
+
     // Simulate backdrop click by calling onClose (MUI Dialog prop)
     const dialog = screen.getByRole('dialog', { hidden: true });
     expect(dialog).toBeInTheDocument();
@@ -96,7 +96,7 @@ describe('HelpDialog', () => {
         {content.map((line, i) => (
           <div key={i}>{line}</div>
         ))}
-      </HelpDialog>
+      </HelpDialog>,
     );
     expect(screen.getByText('Line 1')).toBeInTheDocument();
     expect(screen.getByText('Line 2')).toBeInTheDocument();
@@ -123,10 +123,10 @@ describe('Help Component', () => {
   it('opens dialog when help button is clicked', async () => {
     const user = userEvent.setup();
     render(<Help {...defaultProps} />);
-    
+
     const button = screen.getByRole('button');
     await user.click(button);
-    
+
     expect(screen.getByText('Help Title')).toBeInTheDocument();
     expect(screen.getByText('Help content')).toBeInTheDocument();
   });
@@ -134,13 +134,13 @@ describe('Help Component', () => {
   it('closes dialog when OK button is clicked', async () => {
     const user = userEvent.setup();
     render(<Help {...defaultProps} />);
-    
+
     const helpButton = screen.getByRole('button', { name: '' });
     await user.click(helpButton);
-    
+
     const okButton = screen.getByRole('button', { name: /OK/i });
     await user.click(okButton);
-    
+
     await waitFor(() => {
       expect(screen.queryByText('Help Title')).not.toBeInTheDocument();
     });
@@ -155,29 +155,29 @@ describe('Help Component', () => {
   it('displays children prop', async () => {
     const user = userEvent.setup();
     render(<Help {...defaultProps} children="Custom help content" />);
-    
+
     const button = screen.getByRole('button');
     await user.click(button);
-    
+
     expect(screen.getByText('Custom help content')).toBeInTheDocument();
   });
 
   it('can open and close dialog multiple times', async () => {
     const user = userEvent.setup();
     render(<Help {...defaultProps} />);
-    
+
     const helpButton = screen.getByRole('button', { name: '' });
-    
+
     await user.click(helpButton);
     expect(screen.getByText('Help Title')).toBeInTheDocument();
-    
+
     let okButton = screen.getByRole('button', { name: /OK/i });
     await user.click(okButton);
-    
+
     await waitFor(() => {
       expect(screen.queryByText('Help Title')).not.toBeInTheDocument();
     });
-    
+
     await user.click(helpButton);
     expect(screen.getByText('Help Title')).toBeInTheDocument();
   });

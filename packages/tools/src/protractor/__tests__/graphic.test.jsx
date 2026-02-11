@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Graphic } from '../graphic';
 import React from 'react';
 
@@ -10,7 +10,7 @@ describe('graphic', () => {
     return render(
       <ThemeProvider theme={theme}>
         <Graphic {...props} />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
   };
 
@@ -55,7 +55,7 @@ describe('graphic', () => {
     it('renders correct angle labels', () => {
       const { container } = renderComponent();
       const texts = container.querySelectorAll('text');
-      const textContents = Array.from(texts).map(t => t.textContent);
+      const textContents = Array.from(texts).map((t) => t.textContent);
       expect(textContents).toContain('0');
       expect(textContents).toContain('90');
       expect(textContents).toContain('180');

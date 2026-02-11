@@ -14,12 +14,7 @@ const StyledIconButton = styled(IconButton)({
 });
 
 export const RawDoneButton = ({ onClick, doneButtonRef }) => (
-  <StyledIconButton
-    aria-label="Done"
-    buttonRef={doneButtonRef}
-    onClick={onClick}
-    size="large"
-  >
+  <StyledIconButton aria-label="Done" buttonRef={doneButtonRef} onClick={onClick} size="large">
     <Check />
   </StyledIconButton>
 );

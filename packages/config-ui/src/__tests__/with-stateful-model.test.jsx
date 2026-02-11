@@ -52,9 +52,7 @@ describe('withStatefulModel', () => {
     const updatedModel = { name: 'updated' };
     const onChange = jest.fn();
 
-    const { rerender } = render(
-      <WrappedComponent model={initialModel} onChange={onChange} />
-    );
+    const { rerender } = render(<WrappedComponent model={initialModel} onChange={onChange} />);
 
     expect(screen.getByText(JSON.stringify(initialModel))).toBeInTheDocument();
 
@@ -121,9 +119,7 @@ describe('withStatefulModel', () => {
 
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
 
-    render(
-      <WrappedComponent model={{ test: 'data' }} onChange={jest.fn()} />
-    );
+    render(<WrappedComponent model={{ test: 'data' }} onChange={jest.fn()} />);
 
     expect(screen.getByTestId('model-value')).toBeInTheDocument();
 
@@ -135,9 +131,7 @@ describe('withStatefulModel', () => {
     const model = { id: 1 };
     const onChange = jest.fn();
 
-    const { container } = render(
-      <WrappedComponent model={model} onChange={onChange} />
-    );
+    const { container } = render(<WrappedComponent model={model} onChange={onChange} />);
 
     expect(container.querySelector('[data-testid="model-value"]')).toBeInTheDocument();
     expect(container.querySelector('button')).toBeInTheDocument();

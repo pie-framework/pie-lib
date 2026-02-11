@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import { CharacterPicker, CharacterIcon } from '../CharacterPicker';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import { CharacterIcon, CharacterPicker } from '../CharacterPicker';
 
 jest.mock('react-dom', () => ({
   ...jest.requireActual('react-dom'),

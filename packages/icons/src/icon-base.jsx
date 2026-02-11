@@ -1,4 +1,4 @@
-import { Circle, RoundFeedbackBox, Square, SquareFeedbackBox, IconRoot } from './icon-root';
+import { Circle, IconRoot, RoundFeedbackBox, Square, SquareFeedbackBox } from './icon-root';
 import PropTypes from 'prop-types';
 import React from 'react';
 

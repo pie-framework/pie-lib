@@ -3,7 +3,6 @@ import React from 'react';
 import DragHandle from '../drag-handle';
 import { gridDraggable } from '@pie-lib/plot';
 import { graphProps } from './utils';
-import { bounds } from '../../utils';
 
 jest.mock('../../utils', () => {
   const { point } = jest.requireActual('../../utils');

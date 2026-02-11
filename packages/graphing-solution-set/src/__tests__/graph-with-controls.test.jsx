@@ -1,5 +1,14 @@
 import { render } from '@pie-lib/test-utils';
 import React from 'react';
+import {
+  filterByValidToolTypes,
+  filterByVisibleToolTypes,
+  getAvailableTool,
+  GraphWithControls,
+  setToolbarAvailability,
+  toolIsAvailable,
+} from '../graph-with-controls';
+import { allTools, line as lineTool, toolsArr } from '../tools';
 
 // Mock DragProvider to avoid @dnd-kit React version conflicts
 jest.mock('@pie-lib/drag', () => ({
@@ -46,16 +55,6 @@ jest.mock('@dnd-kit/sortable', () => ({
     return newArray;
   }),
 }));
-
-import {
-  GraphWithControls,
-  setToolbarAvailability,
-  toolIsAvailable,
-  getAvailableTool,
-  filterByValidToolTypes,
-  filterByVisibleToolTypes,
-} from '../graph-with-controls';
-import { toolsArr, allTools, line as lineTool } from '../tools';
 
 const line = {
   type: 'line',

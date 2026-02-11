@@ -1,12 +1,11 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import { select, pointer } from 'd3-selection';
+import { pointer, select } from 'd3-selection';
 
 import { color, Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html-tip-tap';
-import { ChildrenType } from './types';
-import { GraphPropsType } from './types';
+import { ChildrenType, GraphPropsType } from './types';
 import Label from './label';
 import { extractTextFromHTML, isEmptyObject, isEmptyString } from './utils';
 

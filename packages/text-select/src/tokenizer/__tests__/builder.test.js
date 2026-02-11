@@ -1,4 +1,4 @@
-import { normalize, sentences, words, paragraphs, sort, intersection } from '../builder';
+import { intersection, normalize, paragraphs, sentences, sort, words } from '../builder';
 
 const token = (start, end, text) => ({ start, end, text });
 

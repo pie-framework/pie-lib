@@ -1,5 +1,4 @@
 import { color } from '@pie-lib/render-ui';
-import { primary } from '../theme';
 
 const styles = (theme) => ({
   root: {

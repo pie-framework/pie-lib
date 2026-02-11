@@ -38,15 +38,7 @@ const StyledCheckbox = styled(MuiCheckbox)(({ theme, mini, error }) => ({
 const Checkbox = ({ mini, checked, onChange, value, label, error }) => (
   <StyledFormControlLabel
     mini={mini}
-    control={
-      <StyledCheckbox
-        checked={checked}
-        onChange={onChange}
-        value={value}
-        mini={mini}
-        error={error}
-      />
-    }
+    control={<StyledCheckbox checked={checked} onChange={onChange} value={value} mini={mini} error={error} />}
     label={label}
   />
 );

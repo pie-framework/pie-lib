@@ -72,16 +72,10 @@ export const PlaceHolder = (props) => {
     isCategorize,
     isVerticalPool,
     minHeight,
-    extraStyles
+    extraStyles,
   } = props;
 
-  const names = classNames(
-    'placeholder',
-    disabled && 'disabled',
-    isOver && 'over',
-    type,
-    className,
-  );
+  const names = classNames('placeholder', disabled && 'disabled', isOver && 'over', type, className);
 
   const style = {};
 
@@ -109,10 +103,7 @@ export const PlaceHolder = (props) => {
   return (
     <StyledPlaceholder
       style={{ ...style, minHeight: minHeight, ...extraStyles }}
-      className={classNames(
-        choiceBoard ? boardStyle : names,
-        isVerticalPool && 'verticalPool',
-      )}
+      className={classNames(choiceBoard ? boardStyle : names, isVerticalPool && 'verticalPool')}
     >
       {children}
     </StyledPlaceholder>

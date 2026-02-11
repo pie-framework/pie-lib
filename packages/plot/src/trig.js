@@ -1,6 +1,7 @@
 import { xy } from './utils';
 import Point from '@mapbox/point-geometry';
 import debug from 'debug';
+
 const log = debug('pie-lib:plot:trig');
 
 export const toDegrees = (radians) => radians * (180 / Math.PI);

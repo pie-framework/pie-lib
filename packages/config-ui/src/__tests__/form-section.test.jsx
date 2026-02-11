@@ -147,10 +147,7 @@ describe('FormSection Component', () => {
 
     it('should apply labelExtraStyle to the label', () => {
       const { container } = render(
-        <FormSection 
-          label="Styled Label" 
-          labelExtraStyle={{ color: 'red', fontWeight: 'bold' }}
-        >
+        <FormSection label="Styled Label" labelExtraStyle={{ color: 'red', fontWeight: 'bold' }}>
           <div>Content</div>
         </FormSection>,
       );
@@ -168,10 +165,7 @@ describe('FormSection Component', () => {
       };
 
       const { container } = render(
-        <FormSection 
-          label="Multi-styled" 
-          labelExtraStyle={extraStyle}
-        >
+        <FormSection label="Multi-styled" labelExtraStyle={extraStyle}>
           <div>Content</div>
         </FormSection>,
       );

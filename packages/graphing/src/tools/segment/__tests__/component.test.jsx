@@ -3,6 +3,7 @@ import React from 'react';
 import { Line } from '../component';
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
 import { utils } from '@pie-lib/plot';
+
 const { xy } = utils;
 describe('Line', () => {
   let onChange = jest.fn();

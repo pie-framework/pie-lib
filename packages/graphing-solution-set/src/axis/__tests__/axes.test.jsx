@@ -2,7 +2,7 @@ import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { graphProps } from '../../__tests__/utils';
 
-import Axes, { RawXAxis, RawYAxis, firstNegativeValue, sharedValues } from '../axes';
+import { firstNegativeValue, RawXAxis, RawYAxis, sharedValues } from '../axes';
 
 describe('RawXAxis', () => {
   let onChange = jest.fn();

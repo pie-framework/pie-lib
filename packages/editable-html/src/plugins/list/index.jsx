@@ -100,17 +100,17 @@ const createEditList = () => {
    * Wrap the blocks in the current selection in a new list. Selected
    * lists are merged together.
    */
-  core.changes.wrapInList = function(change, type, data) {
+  core.changes.wrapInList = function (change, type, data) {
     const selectedBlocks = getHighestSelectedBlocks(change.value);
 
     // Wrap in container
     change.wrapBlock({ type: type, data: Data.create(data) }, { normalize: false });
 
     // Wrap in list items
-    selectedBlocks.forEach(function(node) {
+    selectedBlocks.forEach(function (node) {
       if (core.utils.isList(node)) {
         // Merge its items with the created list
-        node.nodes.forEach(function(_ref) {
+        node.nodes.forEach(function (_ref) {
           const key = _ref.key;
           return change.unwrapNodeByKey(key, { normalize: false });
         });
@@ -156,7 +156,7 @@ const createEditList = () => {
     return change;
   }.bind(this, listOptions);
 
-  core.utils.getItemsAtRange = function(opts, value, range) {
+  core.utils.getItemsAtRange = function (opts, value, range) {
     range = range || value.selection;
 
     if (!range.startKey) {
@@ -188,13 +188,13 @@ const createEditList = () => {
     return Immutable.List();
   }.bind(this, listOptions);
 
-  core.utils.getListForItem = function(opts, value, item) {
+  core.utils.getListForItem = function (opts, value, item) {
     const { document } = value;
     const parent = document.getParent(item.key);
     return parent && core.utils.isList(parent) ? parent : null;
   }.bind(this, listOptions);
 
-  core.utils.isSelectionInList = function(opts, value, type) {
+  core.utils.isSelectionInList = function (opts, value, type) {
     const items = core.utils.getItemsAtRange(value);
     return (
       !items.isEmpty() &&
