@@ -57,8 +57,6 @@ describe('getStackData', () => {
     ${mstack(mn('1'), mn('1'))}                           | ${[new Row(['1']), new Row(['1'])]}
   `('$input => $expected', ({ input, expected }) => {
     const d = getStackData(input);
-    // console.log('d:', d);
-    // console.log('e:', expected);
     expect({ ...d }).toEqual({ ...expected });
   });
 });

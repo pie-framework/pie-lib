@@ -115,7 +115,6 @@ describe('utils', () => {
             { min: 11, max: 10, tickFrequency: 1, betweenTickCount: 0 },
             { interval: 10, major: 10 },
           );
-          console.log('result: ', result);
         }).toThrow(Error);
       });
 
@@ -125,7 +124,6 @@ describe('utils', () => {
             { min: 10, max: 10, tickFrequency: 1, betweenTickCount: 0 },
             { interval: 10, major: 10 },
           );
-          console.log('result: ', result);
         }).toThrow(Error);
       });
     });
@@ -145,7 +143,6 @@ describe('utils', () => {
             { min: 0, max: 10, tickFrequency: 1, betweenTickCount: 0 },
             { interval: 10, major: 10 },
           );
-          console.log('result: ', result);
         }).toThrow(Error);
       });
 
