@@ -1,7 +1,7 @@
 {
-  "name": "pie-lib",
-  "private": true,
+  "name": "@pie-lib/pie-lib",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "static": "./scripts/static",
     "test": "./scripts/test",
