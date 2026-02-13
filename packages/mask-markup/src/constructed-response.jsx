@@ -67,7 +67,7 @@ const MaskedInput = (props) => (node, data) => {
         pluginProps={pluginProps}
         languageCharactersProps={[{ language: 'spanish' }]}
         spellCheck={spellCheck}
-        width={`calc(${width}em + 32px)`} // added 32px for left and right padding of editable-html
+        adjustWidthForLimit
         onKeyDown={handleKeyDown}
         autoWidthToolbar
         toolbarOpts={{

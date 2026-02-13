@@ -6,8 +6,8 @@ import { renderMath } from '@pie-lib/math-rendering';
 import { MARK_TAGS } from './serialization';
 
 const Paragraph = styled('div')(({ theme }) => ({
-  paddingTop: theme.spacing(2),
-  paddingBottom: theme.spacing(2),
+  paddingTop: theme.spacing(0.5),
+  paddingBottom: theme.spacing(0.5),
 }));
 
 const Spacer = styled('span')(() => ({
