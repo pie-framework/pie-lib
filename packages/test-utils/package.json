@@ -15,6 +15,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pie-framework/pie-lib"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.11.0",

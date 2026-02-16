@@ -11,11 +11,14 @@
     "equations",
     "expressions"
   ],
-  "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "module": "src/index.js",
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pie-framework/pie-lib"
+  },
   "dependencies": {
     "@pie-framework/math-expressions": "^3.0.0",
     "jsesc": "^2.5.2",

@@ -10,12 +10,15 @@
     "pie",
     "tools"
   ],
-  "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "module": "src/index.js",
   "scripts": {},
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pie-framework/pie-lib"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/style": "^0.8.0",
