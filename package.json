@@ -1,5 +1,5 @@
 {
-  "name": "@pie-lib/pie-lib",
+  "name": "pie-lib",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -11,7 +11,6 @@
     "release": "scripts/build release deploy",
     "release:next": "scripts/build release deploy --next",
     "build": "scripts/build build",
-    "prepush": "npm run test",
     "prepack": "scripts/build changelog",
     "run-mathml": "cd node_modules/ && yarn link \"@pie-framework/mathml-to-latex\" && cd .. && ./scripts/dev",
     "clean-install": "git clean -xdf . && yarn install && ./scripts/build babel",
