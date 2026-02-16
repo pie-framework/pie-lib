@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.1.1-next.1",
+  "version": "3.1.1-next.2",
   "description": "Some underlying components for building charts/graphs",
   "keywords": [
     "react",
@@ -21,8 +21,8 @@
     "@mapbox/point-geometry": "^1.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/editable-html-tip-tap": "^1.1.1-next.3",
-    "@pie-lib/render-ui": "^5.1.1-next.1",
+    "@pie-lib/editable-html-tip-tap": "^1.1.1-next.5",
+    "@pie-lib/render-ui": "^5.1.1-next.2",
     "assert": "^1.4.1",
     "d3-scale": "^4.0.2",
     "d3-selection": "^3.0.0",
