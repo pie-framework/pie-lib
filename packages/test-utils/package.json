@@ -22,7 +22,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.11.0",
-    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.5.2"
   },
   "gitHead": "87d7d9ee63abeb5eff95f888cc2b80683c81ea13",
