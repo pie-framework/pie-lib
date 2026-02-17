@@ -14,10 +14,7 @@
   "version": "3.2.0-next.0",
   "main": "lib/index.js",
   "module": "src/index.jsx",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pie-framework/pie-lib"
-  },
+ "repository": "pie-framework/pie-lib",
   "scripts": {},
   "dependencies": {
     "@emotion/react": "^11.14.0",
