@@ -3,10 +3,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "7.2.0-next.0",
+  "version": "7.2.0-next.1",
   "main": "lib/index.js",
   "module": "src/index.jsx",
- "repository": "pie-framework/pie-lib",
+  "repository": "pie-framework/pie-lib",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/style": "^0.8.0",

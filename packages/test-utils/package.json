@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/test-utils",
-  "version": "1.2.0-next.0",
+  "version": "1.2.0-next.1",
   "description": "Testing utilities for pie-lib packages with React Testing Library and MUI support",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -15,7 +15,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
- "repository": "pie-framework/pie-lib",
+  "repository": "pie-framework/pie-lib",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.11.0",

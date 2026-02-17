@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.2.0-next.0",
+  "version": "1.2.0-next.1",
   "description": "Some interactive tools",
   "keywords": [
     "react",
@@ -15,14 +15,14 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
- "repository": "pie-framework/pie-lib",
+  "repository": "pie-framework/pie-lib",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/style": "^0.8.0",
     "@mapbox/point-geometry": "^1.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/style-utils": "^1.2.0-next.0",
+    "@pie-lib/style-utils": "^1.2.0-next.1",
     "assert": "^1.4.1",
     "debug": "^4.1.1",
     "lodash-es": "^4.17.23",

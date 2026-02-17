@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/scoring-config",
-  "version": "4.2.0-next.0",
+  "version": "4.2.0-next.1",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.jsx",
@@ -10,7 +10,7 @@
   "scripts": {},
   "author": "",
   "license": "ISC",
- "repository": "pie-framework/pie-lib",
+  "repository": "pie-framework/pie-lib",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/style": "^0.8.0",

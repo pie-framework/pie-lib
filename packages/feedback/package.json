@@ -1,13 +1,13 @@
 {
   "name": "@pie-lib/feedback",
-  "version": "1.2.0-next.0",
+  "version": "1.2.0-next.1",
   "description": "Feedback utilities",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
     "access": "public"
   },
- "repository": "pie-framework/pie-lib",
+  "repository": "pie-framework/pie-lib",
   "scripts": {},
   "author": "",
   "license": "ISC",

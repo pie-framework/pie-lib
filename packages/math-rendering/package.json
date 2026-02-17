@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering",
-  "version": "4.2.0-next.0",
+  "version": "4.2.0-next.1",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
@@ -9,7 +9,7 @@
   "module": "src/index.js",
   "author": "pie-framework developers",
   "license": "ISC",
- "repository": "pie-framework/pie-lib",
+  "repository": "pie-framework/pie-lib",
   "dependencies": {
     "@pie-framework/mathml-to-latex": "1.4.4",
     "debug": "^4.1.1",
