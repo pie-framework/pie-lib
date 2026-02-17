@@ -10,6 +10,9 @@ on:
       - develop
       - master
 
+permissions:
+  contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
