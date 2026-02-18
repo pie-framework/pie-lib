@@ -153,20 +153,23 @@ export default function MediaNodeView({ editor, node, updateAttributes, deleteNo
   };
 
   useEffect(() => {
-    insertDialog({
-      ...node.attrs,
-      options: options,
-      edit: true,
-      callback: (val, data) => {
-        if (val) {
-          updateAttributes(data);
-        } else {
-          deleteNode();
-        }
+    // Only open dialog for newly inserted media without a src
+    if (!src) {
+      insertDialog({
+        ...node.attrs,
+        options: options,
+        edit: true,
+        callback: (val, data) => {
+          if (val) {
+            updateAttributes(data);
+          } else {
+            deleteNode();
+          }
 
-        editor.chain().focus().run();
-      },
-    });
+          editor.chain().focus().run();
+        },
+      });
+    }
   }, []);
 
   return (
