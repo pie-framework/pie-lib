@@ -124,7 +124,6 @@ describe('htmlToValue', () => {
     const html = `<div><p>foo<img src="blah.jpg"/>bar</p></div>`;
     const v = htmlToValue(html);
 
-    console.log(JSON.stringify(v.toJSON()));
     expect(v.toJSON()).toEqual(expected);
   });
 

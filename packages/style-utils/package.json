@@ -1,12 +1,13 @@
 {
   "name": "@pie-lib/style-utils",
-  "version": "1.1.1-next.1",
+  "version": "1.2.0-next.1",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
     "access": "public"
   },
+  "repository": "pie-framework/pie-lib",
   "scripts": {},
   "author": "",
   "license": "ISC",

@@ -1,10 +1,17 @@
 {
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
   "version": "independent",
-  "verifyAccess": false,
+  "npmClient": "yarn",
   "command": {
     "publish": {
-      "ignoreChanges": ["yarn.lock", "CHANGELOG.json", "CHANGELOG.md", "LICENSE.md"],
+      "ignoreChanges": [
+        "yarn.lock",
+        "CHANGELOG.json",
+        "CHANGELOG.md",
+        "LICENSE.md"
+      ],
       "message": "[ci skip] chore: publish"
     }
   },

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { ConstructedResponse, DragInTheBlank, InlineDropdown } from '@pie-lib/mask-markup';
 
