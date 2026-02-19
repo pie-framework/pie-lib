@@ -1,4 +1,5 @@
-import { compact, isEmpty } from 'lodash-es';
+import compact from 'lodash-es/compact';
+import isEmpty from 'lodash-es/isEmpty';
 import debug from 'debug';
 
 const log = debug('@pie-lib:editable-html:plugins');

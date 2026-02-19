@@ -316,11 +316,9 @@ export class Root extends React.Component {
               {isChart ? (
                 <ChartTitle className={showPixelGuides ? 'rightMargin' : ''}>
                   <EditableHtml
-                    style={
-                      isChart && {
-                        width: finalWidth,
-                      }
-                    }
+                    {...(isChart && {
+                      width: finalWidth,
+                    })}
                     markup={title || ''}
                     onChange={onChangeTitle}
                     placeholder={
@@ -336,11 +334,9 @@ export class Root extends React.Component {
               ) : (
                 <GraphTitle className={showPixelGuides ? 'rightMargin' : ''}>
                   <EditableHtml
-                    style={
-                      isChart && {
-                        width: finalWidth,
-                      }
-                    }
+                    {...(isChart && {
+                      width: finalWidth,
+                    })}
                     markup={title || ''}
                     onChange={onChangeTitle}
                     placeholder={

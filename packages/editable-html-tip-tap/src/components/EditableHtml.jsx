@@ -7,7 +7,9 @@ import SuperScript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
 import TextAlign from '@tiptap/extension-text-align';
 import Image from '@tiptap/extension-image';
+import Placeholder from '@tiptap/extension-placeholder';
 import { styled } from '@mui/material/styles';
+import debounce from 'lodash-es/debounce';
 
 import ExtendedTable from '../extensions/extended-table';
 import { TableRow } from '@tiptap/extension-table-row';
@@ -137,6 +139,13 @@ export const EditableHtml = (props) => {
       limit: props.charactersLimit || 1000000,
     }),
     StarterKit,
+    Placeholder.configure({
+      placeholder: props.placeholder,
+      // show placeholder even when editor is focused
+      showOnlyWhenEditable: true,
+      showOnlyCurrent: false, // show on all empty nodes, not only the current one
+      includeChildren: true,
+    }),
     ExtendedTable,
     TableRow,
     TableHeader,
@@ -247,11 +256,13 @@ export const EditableHtml = (props) => {
           props.onChange?.(editor.getHTML());
         }
       },
-      onBlur: ({ editor }) => {
-        const respAreaToolbarActive =
-          editor.isActive('inline_dropdown') || editor.isActive('explicit_constructed_response');
+      onBlur: debounce(({ editor }) => {
+        const otherToolbarOpened =
+          editor._toolbarOpened ||
+          editor.isActive('inline_dropdown') ||
+          editor.isActive('explicit_constructed_response');
 
-        if (respAreaToolbarActive) {
+        if (otherToolbarOpened) {
           return;
         }
 
@@ -262,7 +273,7 @@ export const EditableHtml = (props) => {
         if (toolbarOptsToUse.doneOn === 'blur') {
           props.onDone?.(editor.getHTML());
         }
-      },
+      }, 200),
     },
     [props.charactersLimit],
   );
@@ -345,6 +356,15 @@ const StyledEditorContent = styled(EditorContent, {
     '& > p': {
       margin: '0',
     },
+
+    '& p.is-editor-empty:first-child::before': {
+      content: 'attr(data-placeholder)',
+      display: 'block',
+      color: '#9CA3AF',
+      pointerEvents: 'none',
+      whiteSpace: 'pre-wrap',
+    },
+
     ...(showParagraph && {
       '& > p:has(+ p)::after': {
         display: 'block',
