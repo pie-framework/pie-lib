@@ -248,7 +248,7 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <ImageIcon />,
-        hidden: (state) => !activePlugins?.includes('image') || state.isTable,
+        hidden: () => !activePlugins?.includes('image'),
         onClick: (editor) => editor.chain().focus().setImageUploadNode().run(),
       },
       {
@@ -279,12 +279,12 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       },
       {
         icon: <CharacterIcon letter="ñ" />,
-        hidden: (state) => !activePlugins?.includes('languageCharacters') || state.isTable,
+        hidden: () => !activePlugins?.includes('languageCharacters'),
         onClick: () => setShowPicker(spanishConfig),
       },
       {
         icon: <CharacterIcon letter="€" />,
-        hidden: (state) => activePlugins?.filter((p) => p === 'languageCharacters').length !== 2 || state.isTable,
+        hidden: () => activePlugins?.filter((p) => p === 'languageCharacters').length !== 2,
         onClick: () => setShowPicker(specialConfig),
       },
       {
