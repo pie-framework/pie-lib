@@ -108,13 +108,13 @@ const StyledRoot = styled('div', {
 }));
 
 const StyledEditorHolder = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'disableScrollbar',
-})(({ disableScrollbar }) => ({
+  shouldForwardProp: (prop) => !['disableScrollbar', 'editorBackgroundColor'].includes(prop),
+})(({ disableScrollbar, editorBackgroundColor }) => ({
   position: 'relative',
   padding: '0px',
   overflowY: 'auto',
   color: color.text(),
-  backgroundColor: color.background(),
+  backgroundColor: editorBackgroundColor || color.background(),
   ...(disableScrollbar && {
     '&::-webkit-scrollbar': {
       display: 'none',
@@ -149,6 +149,7 @@ function TiptapContainer(props) {
     height,
     maxHeight,
     ref,
+    editorBackgroundColor,
   } = props;
 
   useEffect(() => {
@@ -195,7 +196,7 @@ function TiptapContainer(props) {
       style={{ width: sizeStyle.width, minWidth: sizeStyle.minWidth, maxWidth: sizeStyle.maxWidth }}
       ref={rootRef}
     >
-      <StyledEditorHolder disableScrollbar={disableScrollbar}>
+      <StyledEditorHolder disableScrollbar={disableScrollbar} editorBackgroundColor={editorBackgroundColor}>
         <StyledChildren noPadding={toolbarOpts && toolbarOpts.noPadding}>{children}</StyledChildren>
       </StyledEditorHolder>
 

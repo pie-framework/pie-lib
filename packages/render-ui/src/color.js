@@ -23,6 +23,7 @@ export const defaults = {
   TERTIARY_LIGHT: '#D0E2F0',
   BACKGROUND: 'rgba(255,255,255,0)',
   BACKGROUND_DARK: '#ECEDF1',
+  BACKGROUND_LIGHT: 'rgba(0,0,0,0.06)',
   DROPDOWN_BACKGROUND: '#E0E1E6', // this is used for inline-dropdown
   // this is only used for multi-trait-rubric, we might want to use BACKGROUND_DARK instead
   SECONDARY_BACKGROUND: 'rgba(241,241,241,1)',
