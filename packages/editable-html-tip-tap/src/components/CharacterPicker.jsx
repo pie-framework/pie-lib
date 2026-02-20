@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { get } from 'lodash-es';
+import get from 'lodash-es/get';
 
 import { PureToolbar } from '@pie-lib/math-toolbar';
 
