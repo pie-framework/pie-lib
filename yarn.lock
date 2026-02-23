@@ -3163,15 +3163,10 @@
   dependencies:
     linkifyjs "^4.3.2"
 
-"@tiptap/extension-list-item@3.0.9":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-list-item/-/extension-list-item-3.0.9.tgz#fcda61dd666064faf5da05737e4765a5753a2b19"
-  integrity sha512-K+ogk1BH/eYhsK9nSTXNdIXlxQcXzty6h1QFiZNr9XmaLk+q4NZFHR5FVz3EJ7QXyw+Gv/2FQn+T2Q/GpbMxZQ==
-
-"@tiptap/extension-list-item@^3.0.9":
-  version "3.16.0"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-list-item/-/extension-list-item-3.16.0.tgz#7da8b785a5788c3e432e58f6ce456684b9c2d069"
-  integrity sha512-kshssUZEPoosPWbJNQEFJnVV3iPwsDU9l/RCdHJB5SE+aNWJyUk5hQ/YwngEHjV7rS+RnAuhbrcB5swgyzROuA==
+"@tiptap/extension-list-item@3.20.0", "@tiptap/extension-list-item@^3.0.9":
+  version "3.20.0"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-list-item/-/extension-list-item-3.20.0.tgz#60ec36a3326d3bf28982b653b63f6cab5c7d9d9f"
+  integrity sha512-qEtjaaGPuqaFB4VpLrGDoIe9RHnckxPfu6d3rc22ap6TAHCDyRv05CEyJogqccnFceG/v5WN4znUBER8RWnWHA==
 
 "@tiptap/extension-list-keymap@^3.0.9":
   version "3.16.0"
