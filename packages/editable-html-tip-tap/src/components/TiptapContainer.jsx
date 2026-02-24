@@ -5,6 +5,10 @@ import { valueToSize } from '../utils/size';
 
 import StyledMenuBar from './MenuBar';
 
+// Background color for highlighted editor (e.g., when highlightShape is true in student view)
+// This is the same color used in the previous Slate implementation
+const HIGHLIGHT_BACKGROUND_COLOR = 'rgba(0,0,0,0.06)';
+
 const StyledRoot = styled('div', {
   shouldForwardProp: (prop) => !['noBorder', 'error'].includes(prop),
 })(({ theme, noBorder, error }) => ({
@@ -108,13 +112,13 @@ const StyledRoot = styled('div', {
 }));
 
 const StyledEditorHolder = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'disableScrollbar',
-})(({ disableScrollbar }) => ({
+  shouldForwardProp: (prop) => !['disableScrollbar', 'bgColor'].includes(prop),
+})(({ disableScrollbar, bgColor }) => ({
   position: 'relative',
   padding: '0px',
   overflowY: 'auto',
   color: color.text(),
-  backgroundColor: color.background(),
+  backgroundColor: bgColor || color.background(),
   ...(disableScrollbar && {
     '&::-webkit-scrollbar': {
       display: 'none',
@@ -148,6 +152,7 @@ function TiptapContainer(props) {
     minHeight,
     height,
     maxHeight,
+    highlightShape,
     ref,
   } = props;
 
@@ -187,6 +192,8 @@ function TiptapContainer(props) {
     [adjustedWidth, minWidth, width, maxWidth, minHeight, height, maxHeight],
   );
 
+  const bgColor = highlightShape ? HIGHLIGHT_BACKGROUND_COLOR : undefined;
+
   return (
     <StyledRoot
       noBorder={toolbarOpts && toolbarOpts.noBorder}
@@ -195,7 +202,7 @@ function TiptapContainer(props) {
       style={{ width: sizeStyle.width, minWidth: sizeStyle.minWidth, maxWidth: sizeStyle.maxWidth }}
       ref={rootRef}
     >
-      <StyledEditorHolder disableScrollbar={disableScrollbar}>
+      <StyledEditorHolder disableScrollbar={disableScrollbar} bgColor={bgColor}>
         <StyledChildren noPadding={toolbarOpts && toolbarOpts.noPadding}>{children}</StyledChildren>
       </StyledEditorHolder>
 
