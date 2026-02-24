@@ -3,24 +3,17 @@ import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { alpha, lighten, styled } from '@mui/material/styles';
+import { indigo, pink } from '@mui/material/colors';
 import debug from 'debug';
 import { flatten } from 'lodash-es';
-import * as mq from '../mq';
+import { color } from '@pie-lib/render-ui';
 
+import * as mq from '../mq';
 import { baseSet } from '../keys';
 import { commonMqKeyboardStyles } from '../mq/common-mq-styles';
 import { sortKeys } from './keys-layout';
-import { indigo, pink } from '@mui/material/colors';
-import { color } from '@pie-lib/render-ui';
 
 const log = debug('pie-lib:math-inline:keypad');
-
-const StyledLatexButton = styled(Button)(() => ({
-  textTransform: 'none',
-  padding: 0,
-  margin: 0,
-  fontSize: '110% !important',
-}));
 
 const LatexButtonContent = styled(mq.Static)(({ latex }) => {
   const baseStyles = {
@@ -219,6 +212,10 @@ const StyledButton = styled(Button)(({ category, isDelete, isComma, isDot }) => 
 }));
 
 const StyledLatexButtonWrapper = styled(Button)(({ category }) => ({
+  textTransform: 'none',
+  padding: 0,
+  margin: 0,
+  fontSize: '110% !important',
   minWidth: 'auto',
   borderRadius: 0,
   backgroundColor:
