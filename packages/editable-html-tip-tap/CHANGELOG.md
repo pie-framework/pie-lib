@@ -3,49 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.1...@pie-lib/editable-html-tip-tap@1.2.0-next.3) (2026-02-24)
+
+### Bug Fixes
+
+- made sure placeholder works, math item does not blur editor, table toolbar contains correct extensions [PD-5616] [PD-5584] [PD-5627] ([9bc768f](https://github.com/pie-framework/pie-lib/commit/9bc768f4e4301f91cc768475f0defa545ee7b43d))
+
 # [1.1.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.1.0-next.2...@pie-lib/editable-html-tip-tap@1.1.0-next.4) (2026-01-27)
 
 **Note:** Version bump only for package @pie-lib/editable-html-tip-tap
-
-
-
-
 
 # [1.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.1.0-next.1...@pie-lib/editable-html-tip-tap@1.1.0-next.2) (2026-01-26)
 
 **Note:** Version bump only for package @pie-lib/editable-html-tip-tap
 
-
-
-
-
 # 1.1.0-next.1 (2026-01-26)
-
 
 ### Bug Fixes
 
-* bumped versions [PD-5141] ([c2a8c1b](https://github.com/pie-framework/pie-lib/commit/c2a8c1ba27a86f73d32c1e53279b5fcadb52d7d7))
-* fix the update attributes code in the image extension [PD-5141] ([6e95af5](https://github.com/pie-framework/pie-lib/commit/6e95af50c9b2446f0b200a52b4f33866e5363380))
-* fixed circular dependencies and bumped versions, plus image upload handling [PD-5141] ([7b5fbc9](https://github.com/pie-framework/pie-lib/commit/7b5fbc9126446916d42d6b3597232a231567b2d8))
-* fixed import [PD-5141] ([5ca0f0b](https://github.com/pie-framework/pie-lib/commit/5ca0f0bd05cc04e178e672d67f6e0b1127a3a36d))
-* fixed some of the issues [PD-5141] ([46326ec](https://github.com/pie-framework/pie-lib/commit/46326ecef920698e942a47c6fc756b9e16878797))
-* fixed some responseArea problems and general tip-tap improvements [PD-5141] ([eab7870](https://github.com/pie-framework/pie-lib/commit/eab7870d0e1a24bf5868c058f2a7522d68870a04))
-* fixed toolbar not focusing [PD-5141] ([cc01875](https://github.com/pie-framework/pie-lib/commit/cc01875fee48b853f49e9f37ab343d1013cc2372))
-* implemented read only mode, fixed highlighting [PD-5141] ([6f14213](https://github.com/pie-framework/pie-lib/commit/6f14213d24381428fe7b44dfe6ec0c76801ed532))
-* made sure characterpicker is over the editor ([921c6d3](https://github.com/pie-framework/pie-lib/commit/921c6d31baf2ce14a59d6a3222124753ebd91482))
-* made sure displayed plugins are customizable [PD-5141] ([ceac403](https://github.com/pie-framework/pie-lib/commit/ceac40359f611a24cc44261dda0d1318a77ac5e9))
-* made sure inline-dropdown works properly, fixed pluginprops use [PD-5141] ([0516164](https://github.com/pie-framework/pie-lib/commit/05161642349eb9cc0a088211b8fc17e4c0c9a94c))
-* made sure insert special characters works properly [PD-5409] ([5a61688](https://github.com/pie-framework/pie-lib/commit/5a61688c7327112bb1f5cb557f3c84dfc9f084f9))
-* made sure onChange is called when needed [PD-5141] ([f1e737c](https://github.com/pie-framework/pie-lib/commit/f1e737c6aa5aada6645d29b7139116dd13316103))
-* new versioning and published mask-markup and math-input [PD-5141] ([9c7e825](https://github.com/pie-framework/pie-lib/commit/9c7e8252a7de293b0f1d836f305511e53b28b8a6))
-* refactored tip-tap editor, made sure response area works [PD-5141] ([e97d80a](https://github.com/pie-framework/pie-lib/commit/e97d80a28eb97f86d85ba7525ce5936314e76abc))
-* removed faulty import [PD-5141] ([efb7db1](https://github.com/pie-framework/pie-lib/commit/efb7db12c9637f01bb5e9459adadcde0f31aa7d1))
-* removed horizontal line, fixed math and characters dialog positioning [PD-5141] ([7df8a11](https://github.com/pie-framework/pie-lib/commit/7df8a1151d420333303b9efb48e864b403a0cbb4))
-* updated tip-tap with mui instead of material-ui [PD-5141] ([880d3ab](https://github.com/pie-framework/pie-lib/commit/880d3ab1d63aa12c7e975c882f50624200565737))
-
-
-
-
+- bumped versions [PD-5141] ([c2a8c1b](https://github.com/pie-framework/pie-lib/commit/c2a8c1ba27a86f73d32c1e53279b5fcadb52d7d7))
+- fix the update attributes code in the image extension [PD-5141] ([6e95af5](https://github.com/pie-framework/pie-lib/commit/6e95af50c9b2446f0b200a52b4f33866e5363380))
+- fixed circular dependencies and bumped versions, plus image upload handling [PD-5141] ([7b5fbc9](https://github.com/pie-framework/pie-lib/commit/7b5fbc9126446916d42d6b3597232a231567b2d8))
+- fixed import [PD-5141] ([5ca0f0b](https://github.com/pie-framework/pie-lib/commit/5ca0f0bd05cc04e178e672d67f6e0b1127a3a36d))
+- fixed some of the issues [PD-5141] ([46326ec](https://github.com/pie-framework/pie-lib/commit/46326ecef920698e942a47c6fc756b9e16878797))
+- fixed some responseArea problems and general tip-tap improvements [PD-5141] ([eab7870](https://github.com/pie-framework/pie-lib/commit/eab7870d0e1a24bf5868c058f2a7522d68870a04))
+- fixed toolbar not focusing [PD-5141] ([cc01875](https://github.com/pie-framework/pie-lib/commit/cc01875fee48b853f49e9f37ab343d1013cc2372))
+- implemented read only mode, fixed highlighting [PD-5141] ([6f14213](https://github.com/pie-framework/pie-lib/commit/6f14213d24381428fe7b44dfe6ec0c76801ed532))
+- made sure characterpicker is over the editor ([921c6d3](https://github.com/pie-framework/pie-lib/commit/921c6d31baf2ce14a59d6a3222124753ebd91482))
+- made sure displayed plugins are customizable [PD-5141] ([ceac403](https://github.com/pie-framework/pie-lib/commit/ceac40359f611a24cc44261dda0d1318a77ac5e9))
+- made sure inline-dropdown works properly, fixed pluginprops use [PD-5141] ([0516164](https://github.com/pie-framework/pie-lib/commit/05161642349eb9cc0a088211b8fc17e4c0c9a94c))
+- made sure insert special characters works properly [PD-5409] ([5a61688](https://github.com/pie-framework/pie-lib/commit/5a61688c7327112bb1f5cb557f3c84dfc9f084f9))
+- made sure onChange is called when needed [PD-5141] ([f1e737c](https://github.com/pie-framework/pie-lib/commit/f1e737c6aa5aada6645d29b7139116dd13316103))
+- new versioning and published mask-markup and math-input [PD-5141] ([9c7e825](https://github.com/pie-framework/pie-lib/commit/9c7e8252a7de293b0f1d836f305511e53b28b8a6))
+- refactored tip-tap editor, made sure response area works [PD-5141] ([e97d80a](https://github.com/pie-framework/pie-lib/commit/e97d80a28eb97f86d85ba7525ce5936314e76abc))
+- removed faulty import [PD-5141] ([efb7db1](https://github.com/pie-framework/pie-lib/commit/efb7db12c9637f01bb5e9459adadcde0f31aa7d1))
+- removed horizontal line, fixed math and characters dialog positioning [PD-5141] ([7df8a11](https://github.com/pie-framework/pie-lib/commit/7df8a1151d420333303b9efb48e864b403a0cbb4))
+- updated tip-tap with mui instead of material-ui [PD-5141] ([880d3ab](https://github.com/pie-framework/pie-lib/commit/880d3ab1d63aa12c7e975c882f50624200565737))
 
 ## [11.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@11.17.2...@pie-lib/editable-html@11.21.1) (2025-10-22)
 
