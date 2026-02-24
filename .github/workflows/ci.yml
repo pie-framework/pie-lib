@@ -22,8 +22,8 @@ jobs:
           node-version: 22
           cache: yarn
       - run: yarn install
-      - run: scripts/release build
-      - run: scripts/release test
+      - run: scripts/release --build
+      - run: scripts/release --test
 
   build-next:
     needs: test
@@ -48,7 +48,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: yarn
       - run: yarn install
-      - run: scripts/release --next --loglevel verbose
+      - run: scripts/release --build
+      - run: scripts/release --release --next --loglevel verbose
 
   build-release:
     needs: test
@@ -73,4 +74,5 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: yarn
       - run: yarn install
-      - run: scripts/release --loglevel verbose
+      - run: scripts/release --build
+      - run: scripts/release --release --loglevel verbose
