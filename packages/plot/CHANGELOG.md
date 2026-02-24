@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.3...@pie-lib/plot@3.2.0-next.4) (2026-02-24)
+
+**Note:** Version bump only for package @pie-lib/plot
+
 # [3.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.1...@pie-lib/plot@3.2.0-next.3) (2026-02-24)
 
 ### Bug Fixes
