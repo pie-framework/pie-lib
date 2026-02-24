@@ -2,26 +2,28 @@ name: PIE Lib CI
 
 on:
   push:
-    branches:
-      - develop
-      - master
+    branches: [develop, master]
   pull_request:
-    branches:
-      - develop
-      - master
+    branches: [develop, master]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # REQUIRED for lerna version
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: yarn
       - run: yarn install
-      - run: scripts/build lint
-      - run: scripts/build babel test
+      - run: scripts/release build
+      - run: scripts/release test
 
   build-next:
     needs: test
@@ -34,13 +36,19 @@ jobs:
       id-token: write   # REQUIRED for npm trusted publishing
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # REQUIRED for lerna version
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
           cache: yarn
       - run: yarn install
-      - run: scripts/build release --next
+      - run: scripts/release --next --loglevel verbose
 
   build-release:
     needs: test
@@ -53,10 +61,16 @@ jobs:
       id-token: write   # REQUIRED for npm trusted publishing
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # REQUIRED for lerna version
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
           cache: yarn
       - run: yarn install
-      - run: scripts/build release
+      - run: scripts/release --loglevel verbose
