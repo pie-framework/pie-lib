@@ -57,6 +57,7 @@ export default class DragInTheBlank extends React.Component {
     super(props);
     this.state = {
       activeDragItem: null,
+      dropAnimation: undefined,
     };
   }
 
@@ -87,6 +88,7 @@ export default class DragInTheBlank extends React.Component {
     if (active?.data?.current) {
       this.setState({
         activeDragItem: active.data.current,
+        dropAnimation: undefined, // default during drag
       });
     }
   };
@@ -112,38 +114,40 @@ export default class DragInTheBlank extends React.Component {
     const { active, over } = event;
     const { onChange, value } = this.props;
 
-    // Always reset the active drag item state, even if drop is invalid
-    this.setState({ activeDragItem: null });
+    const draggedData = active?.data?.current;
+    const dropData = over?.data?.current;
 
-    if (!over || !active || !onChange) {
-      return;
-    }
+    const isValidDrop =
+      !!active && !!over && draggedData?.type === 'MaskBlank' && dropData?.accepts?.includes('MaskBlank');
 
-    const draggedData = active.data.current;
-    const dropData = over.data.current;
+    // Only animate back when drop is invalid
+    this.setState({
+      activeDragItem: null,
+      dropAnimation: isValidDrop ? null : undefined,
+    });
 
-    if (draggedData?.type === 'MaskBlank' && dropData?.accepts?.includes('MaskBlank')) {
-      const draggedItem = draggedData;
-      const targetId = dropData.id;
+    if (!isValidDrop || !onChange) return;
 
-      if (dropData.toChoiceBoard === true) {
-        if (!draggedItem.fromChoice && draggedItem.id) {
-          const newValue = { ...value };
-          delete newValue[draggedItem.id];
-          onChange(newValue);
-        }
-      } else if (draggedItem.fromChoice === true) {
-        if (targetId && targetId !== 'drag-in-the-blank-droppable') {
-          const newValue = { ...value };
-          newValue[targetId] = draggedItem.choice.id;
-          onChange(newValue);
-        }
-      } else if (draggedItem.id && draggedItem.id !== targetId) {
+    const draggedItem = draggedData;
+    const targetId = dropData.id;
+
+    if (dropData.toChoiceBoard === true) {
+      if (!draggedItem.fromChoice && draggedItem.id) {
         const newValue = { ...value };
-        newValue[targetId] = draggedItem.choice.id;
         delete newValue[draggedItem.id];
         onChange(newValue);
       }
+    } else if (draggedItem.fromChoice === true) {
+      if (targetId && targetId !== 'drag-in-the-blank-droppable') {
+        const newValue = { ...value };
+        newValue[targetId] = draggedItem.choice.id;
+        onChange(newValue);
+      }
+    } else if (draggedItem.id && draggedItem.id !== targetId) {
+      const newValue = { ...value };
+      newValue[targetId] = draggedItem.choice.id;
+      delete newValue[draggedItem.id];
+      onChange(newValue);
     }
   };
 
@@ -227,7 +231,9 @@ export default class DragInTheBlank extends React.Component {
             instanceId={instanceId}
             isDragging={!!this.state.activeDragItem}
           />
-          <DragOverlay style={{ pointerEvents: 'none' }}>{this.renderDragOverlay()}</DragOverlay>
+          <DragOverlay style={{ pointerEvents: 'none' }} dropAnimation={this.state.dropAnimation}>
+            {this.renderDragOverlay()}
+          </DragOverlay>
         </div>
       </DragProvider>
     );
