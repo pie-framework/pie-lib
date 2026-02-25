@@ -268,3 +268,4 @@ describe('insertDialog', () => {
     expect(dialogs).toHaveLength(1);
   });
 });
+
