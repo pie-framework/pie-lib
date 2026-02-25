@@ -206,6 +206,7 @@ function TiptapContainer(props) {
           toolbarOpts={toolbarOpts}
           activePlugins={activePlugins}
           onChange={props.onChange}
+          autoWidthToolbar={props.autoWidthToolbar}
         />
       )}
     </StyledRoot>
