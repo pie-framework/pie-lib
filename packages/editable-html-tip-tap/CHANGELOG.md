@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.8...@pie-lib/editable-html-tip-tap@1.2.0-next.9) (2026-02-25)
+
+### Bug Fixes
+
+- added math-templated node and element [PD-5558] ([57f1d07](https://github.com/pie-framework/pie-lib/commit/57f1d075582a9b1091167ed5ef1b6d49652401df))
+
 # [1.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.7...@pie-lib/editable-html-tip-tap@1.2.0-next.8) (2026-02-25)
 
 ### Bug Fixes
