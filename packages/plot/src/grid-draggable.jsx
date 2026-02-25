@@ -95,12 +95,25 @@ export const gridDraggable = (opts) => (Comp) => {
       log('bounds: ', bounds);
       const grid = this.grid();
 
-      const scaled = {
+      let scaled = {
         left: bounds.left * grid.x,
         right: bounds.right * grid.x,
         top: bounds.top * grid.y,
         bottom: bounds.bottom * grid.y,
       };
+
+      // Normalize Y bounds so that:
+      // - top is <= 0 (negative or zero, allowing upward movement)
+      // - bottom is >= 0 (positive or zero, allowing downward movement)
+      // This compensates for the inverted Y scale (range.max -> 0, range.min -> size.height)
+      // Add a small buffer (1 grid unit) to ensure we can reach exact boundaries
+      const buffer = Math.abs(grid.y);
+      scaled = {
+        ...scaled,
+        top: Math.min(0, scaled.top) - buffer, // More negative to allow reaching max
+        bottom: Math.abs(scaled.bottom) + buffer, // More positive to allow reaching min
+      };
+
       log('[getScaledBounds]: ', scaled);
       return scaled;
     };
