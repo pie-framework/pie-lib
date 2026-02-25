@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.2.0-next.7...@pie-lib/config-ui@12.2.0-next.8) (2026-02-25)
+
+### Bug Fixes
+
+- **deps:** update [@pie-lib](https://github.com/pie-lib) dependencies to published versions ([134fbdc](https://github.com/pie-framework/pie-lib/commit/134fbdc90c6a15f89a736340578d70fb80a983b3))
+
 # [12.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.2.0-next.6...@pie-lib/config-ui@12.2.0-next.7) (2026-02-25)
 
 **Note:** Version bump only for package @pie-lib/config-ui
