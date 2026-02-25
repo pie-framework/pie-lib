@@ -43,7 +43,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.6.1",
-    "@types/fs-extra": "^5.1.0",
+    "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.14",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
