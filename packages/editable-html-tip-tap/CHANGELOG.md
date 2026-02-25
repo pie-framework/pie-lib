@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.6...@pie-lib/editable-html-tip-tap@1.2.0-next.7) (2026-02-25)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** add autoWidthToolbar prop to MenuBar and TiptapContainer components PD-5594 ([ccb2727](https://github.com/pie-framework/pie-lib/commit/ccb2727d2aaf64e71564380c5b90179747bc15b5))
+
 # [1.2.0-next.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.5...@pie-lib/editable-html-tip-tap@1.2.0-next.6) (2026-02-25)
 
 ### Bug Fixes
