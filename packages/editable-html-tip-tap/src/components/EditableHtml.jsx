@@ -19,6 +19,7 @@ import {
   DragInTheBlankNode,
   ExplicitConstructedResponseNode,
   InlineDropdownNode,
+  MathTemplatedNode,
   ResponseAreaExtension,
 } from '../extensions/responseArea';
 import { MathNode } from '../extensions/math';
@@ -154,6 +155,7 @@ export const EditableHtml = (props) => {
     ExplicitConstructedResponseNode.configure(props.responseAreaProps),
     DragInTheBlankNode.configure(props.responseAreaProps),
     InlineDropdownNode.configure(props.responseAreaProps),
+    MathTemplatedNode.configure(props.responseAreaProps),
     MathNode.configure({
       toolbarOpts: toolbarOptsToUse,
     }),

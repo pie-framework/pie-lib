@@ -91,6 +91,9 @@ jest.mock('../extensions/responseArea', () => ({
   InlineDropdownNode: {
     configure: jest.fn(() => ({})),
   },
+  MathTemplatedNode: {
+    configure: jest.fn(() => ({})),
+  },
   ResponseAreaExtension: {
     configure: jest.fn(() => ({})),
   },
