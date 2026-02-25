@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.5...@pie-lib/editable-html-tip-tap@1.2.0-next.6) (2026-02-25)
+
+### Bug Fixes
+
+- restore highlightShape prop support in editable-html-tip-tap PD-5583 ([16f9422](https://github.com/pie-framework/pie-lib/commit/16f9422eb48502b97746fdc377184d690aba5bd8))
+
 # [1.2.0-next.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.4...@pie-lib/editable-html-tip-tap@1.2.0-next.5) (2026-02-25)
 
 ### Bug Fixes
