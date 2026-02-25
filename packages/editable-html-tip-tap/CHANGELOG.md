@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.4...@pie-lib/editable-html-tip-tap@1.2.0-next.5) (2026-02-25)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** add support to disable lists PD-5606 ([b74b1d5](https://github.com/pie-framework/pie-lib/commit/b74b1d5215a4e41af3631e728229bac81eb41f3f))
+- **editable-html-tip-tap:** prevent media dialog from auto-opening on existing content PD-5624 ([f0111a8](https://github.com/pie-framework/pie-lib/commit/f0111a8fa297361da37a82b4553f66973e13259b))
+
 # [1.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.3...@pie-lib/editable-html-tip-tap@1.2.0-next.4) (2026-02-24)
 
 **Note:** Version bump only for package @pie-lib/editable-html-tip-tap

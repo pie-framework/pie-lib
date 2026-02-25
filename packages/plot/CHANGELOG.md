@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.4...@pie-lib/plot@3.2.0-next.5) (2026-02-25)
+
+### Bug Fixes
+
+- **plot:** add a small buffer to ensure we can reach the boudaries PD-5498 ([e71922d](https://github.com/pie-framework/pie-lib/commit/e71922d80e60dc013ea97c8818ee3458ecf85ba8))
+
 # [3.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.3...@pie-lib/plot@3.2.0-next.4) (2026-02-24)
 
 **Note:** Version bump only for package @pie-lib/plot

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-next.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.4...@pie-lib/mask-markup@2.2.0-next.5) (2026-02-25)
+
+### Bug Fixes
+
+- **mask-markup:** enable snap back preview only for invalid drop zone PD-5495 ([c15ec83](https://github.com/pie-framework/pie-lib/commit/c15ec83c4d5e1076fc8a252418dc9c32f3216d97))
+
 # [2.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.3...@pie-lib/mask-markup@2.2.0-next.4) (2026-02-24)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
