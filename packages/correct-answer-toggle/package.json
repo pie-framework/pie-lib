@@ -11,7 +11,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.2.0-next.3",
+  "version": "3.2.0-next.4",
   "main": "lib/index.js",
   "module": "src/index.jsx",
   "repository": "pie-framework/pie-lib",
@@ -21,9 +21,9 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/icons": "^3.2.0-next.2",
-    "@pie-lib/render-ui": "^5.2.0-next.2",
-    "@pie-lib/translator": "^3.2.0-next.0",
+    "@pie-lib/icons": "^3.2.0-next.4",
+    "@pie-lib/render-ui": "^5.2.0-next.4",
+    "@pie-lib/translator": "^3.2.0-next.3",
     "lodash-es": "^4.17.23",
     "prop-types": "^15.6.2",
     "react-transition-group": "^4.4.5"

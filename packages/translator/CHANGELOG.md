@@ -3,47 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@3.2.0-next.1...@pie-lib/translator@3.2.0-next.3) (2026-02-26)
+
+**Note:** Version bump only for package @pie-lib/translator
+
 # [3.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@3.1.0-next.1...@pie-lib/translator@3.1.0-next.3) (2026-01-27)
 
 **Note:** Version bump only for package @pie-lib/translator
 
-
-
-
-
 # [3.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.23.1...@pie-lib/translator@3.1.0-next.1) (2026-01-26)
-
 
 ### Bug Fixes
 
-* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
-
+- remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
 
 ### Features
 
-* bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
-* PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
-* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
-
-
-
-
+- bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+- PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
+- sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
 
 # [3.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.23.2-next.0...@pie-lib/translator@3.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/translator
 
-
-
-
-
 ## [2.23.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.38.0-mui-update.0...@pie-lib/translator@2.23.2-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/translator
-
-
-
-
 
 ## [2.23.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@2.19.0...@pie-lib/translator@2.23.1) (2025-10-22)
 

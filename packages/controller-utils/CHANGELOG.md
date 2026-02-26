@@ -3,48 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@1.2.0-next.1...@pie-lib/controller-utils@1.2.0-next.3) (2026-02-26)
+
+**Note:** Version bump only for package @pie-lib/controller-utils
+
 # [1.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@1.1.0-next.1...@pie-lib/controller-utils@1.1.0-next.3) (2026-01-27)
 
 **Note:** Version bump only for package @pie-lib/controller-utils
 
-
-
-
-
 # [1.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.22.2...@pie-lib/controller-utils@1.1.0-next.1) (2026-01-26)
-
 
 ### Bug Fixes
 
-* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
-
+- remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
 
 ### Features
 
-* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
-
-
-
-
+- sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
 
 # [1.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.22.3-next.0...@pie-lib/controller-utils@1.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/controller-utils
 
-
-
-
-
 ## [0.22.3-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.36.0-mui-update.0...@pie-lib/controller-utils@0.22.3-next.0) (2026-01-19)
-
 
 ### Bug Fixes
 
-* **controller-utils:** update debug PD-5248 ([b238a16](https://github.com/pie-framework/pie-lib/commit/b238a16acf55cc7b9316965a10a27a4f9ab4c220))
-
-
-
-
+- **controller-utils:** update debug PD-5248 ([b238a16](https://github.com/pie-framework/pie-lib/commit/b238a16acf55cc7b9316965a10a27a4f9ab4c220))
 
 ## [0.22.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/controller-utils@0.22.1...@pie-lib/controller-utils@0.22.2) (2025-11-27)
 

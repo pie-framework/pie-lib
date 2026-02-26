@@ -3,45 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@2.2.0-next.1...@pie-lib/graphing-utils@2.2.0-next.3) (2026-02-26)
+
+**Note:** Version bump only for package @pie-lib/graphing-utils
+
 # [2.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@2.1.0-next.1...@pie-lib/graphing-utils@2.1.0-next.3) (2026-01-27)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
 
-
-
-
-
 # [2.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.21.1...@pie-lib/graphing-utils@2.1.0-next.1) (2026-01-26)
-
 
 ### Bug Fixes
 
-* remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
-
+- remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
 
 ### Features
 
-* sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
-
-
-
-
+- sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
 
 # [2.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.21.2-next.0...@pie-lib/graphing-utils@2.0.0-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
 
-
-
-
-
 ## [1.21.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.35.0-mui-update.0...@pie-lib/graphing-utils@1.21.2-next.0) (2026-01-19)
 
 **Note:** Version bump only for package @pie-lib/graphing-utils
-
-
-
-
 
 ## [1.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-utils@1.17.0...@pie-lib/graphing-utils@1.21.1) (2025-10-22)
 
