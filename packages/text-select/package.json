@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.2.0-next.2",
+  "version": "2.2.0-next.3",
   "description": "Some react components for text selection",
   "keywords": [
     "react",

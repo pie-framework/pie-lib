@@ -1,7 +1,7 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "8.33.0-next.8",
+  "version": "8.33.0-next.9",
   "repository": "pie-framework/pie-lib",
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
