@@ -18,6 +18,7 @@ import Undo from '@mui/icons-material/Undo';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import BorderAll from '@mui/icons-material/BorderAll';
+import Delete from '@mui/icons-material/Delete';
 
 import { useEditorState } from '@tiptap/react';
 
@@ -83,7 +84,8 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
       const hideDefaultToolbar =
         ctx.editor?.isActive('math') ||
         ctx.editor?.isActive('explicit_constructed_response') ||
-        ctx.editor?.isActive('imageUploadNode');
+        ctx.editor?.isActive('imageUploadNode') ||
+        ctx.editor?.isActive('drag_in_the_blank');
 
       return {
         currentNode,
@@ -320,8 +322,29 @@ function MenuBar({ editor, classes, activePlugins, toolbarOpts: toolOpts, respon
     [activePlugins, editor],
   );
 
+  const isDragInTheBlankSelected =
+    editorState.hideDefaultToolbar && editorState.currentNode?.type?.name === 'drag_in_the_blank';
+
   return (
     <div className={names} style={{ ...customStyles }} onMouseDown={handleMouseDown}>
+      {isDragInTheBlankSelected && (
+        <div className={classes.defaultToolbar} tabIndex="1">
+          <div className={classes.buttonsContainer}>
+            <button
+              type="button"
+              className={classes.button}
+              onClick={(e) => {
+                e.preventDefault();
+                editor.chain().focus().deleteSelection().run();
+                onChange?.(editor.getHTML());
+              }}
+              aria-label="Delete response area"
+            >
+              <Delete />
+            </button>
+          </div>
+        </div>
+      )}
       {!editorState.hideDefaultToolbar && (
         <div className={classes.defaultToolbar} tabIndex="1">
           <div className={classes.buttonsContainer}>
