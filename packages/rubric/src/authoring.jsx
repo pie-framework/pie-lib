@@ -233,18 +233,16 @@ export class RawAuthoring extends React.Component {
     onChange({ ...value, excludeZero: !value.excludeZero });
   };
 
-  shouldRenderPoint = (index, value) => {
-    if (!value.excludeZero) {
-      return true;
-    } else {
-      if (index < value.points.length - 1) {
-        return true;
-      } else if (index === value.points.length - 1) {
-        return false;
-      }
+  getPointForIndex = (index, value) => {
+    const maxPoint = value.excludeZero ? value.points.length - 1 + 1 : value.points.length - 1;
+    return maxPoint - index;
+  };
 
-      return true;
-    }
+  getMaxPoint = (value) => (value.excludeZero ? value.points.length : value.points.length - 1);
+
+  shouldRenderPoint = (index, value) => {
+    const point = this.getPointForIndex(index, value);
+    return point > 0 || !value.excludeZero;
   };
 
   onPointMenuChange = (index, clickedItem) => {
@@ -279,8 +277,10 @@ export class RawAuthoring extends React.Component {
       console.warn('maxPoints is deprecated - remove from model');
     }
 
+    console.log('value.points', value.points);
+
     // for rubric value is computed based on points
-    const maxPointsValue = !rubricless ? value.points.length - 1 : maxPoints;
+    const maxPointsValue = rubricless ? maxPoints : value.excludeZero ? value.points.length : value.points.length - 1;
 
     return (
       <div>
@@ -338,7 +338,7 @@ export class RawAuthoring extends React.Component {
                                   {...provided.dragHandleProps}
                                 >
                                   <PointConfig
-                                    points={value.points.length - 1 - index}
+                                    points={this.getPointForIndex(index, value)}
                                     content={p}
                                     error={
                                       pointsDescriptorsErrors &&
