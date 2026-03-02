@@ -277,8 +277,6 @@ export class RawAuthoring extends React.Component {
       console.warn('maxPoints is deprecated - remove from model');
     }
 
-    console.log('value.points', value.points);
-
     // for rubric value is computed based on points
     const maxPointsValue = rubricless ? maxPoints : value.excludeZero ? value.points.length : value.points.length - 1;
 
