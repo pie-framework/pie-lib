@@ -15,7 +15,7 @@ const StyledContent = styled('span')(({ theme }) => ({
   },
 }));
 
-export function BlankContent({ n, children, isDragging, isOver, dragItem, value }) {
+export function BlankContent({ n, children, isDragging, isOver, dragItem, value, selected }) {
   const [hoveredElementSize, setHoveredElementSize] = useState(null);
   const elementRef = useRef(null);
 
@@ -56,15 +56,22 @@ export function BlankContent({ n, children, isDragging, isOver, dragItem, value 
   const hasGrip = finalLabel !== '\u00A0';
   const isPreview = dragItem && isOver;
 
+  const borderStyle = selected
+    ? `2px solid ${color.primaryDark()}`
+    : isPreview
+      ? `1px solid ${color.defaults.BORDER_DARK}`
+      : `1px solid ${color.defaults.BORDER_LIGHT}`;
+
   return (
     <div
       ref={elementRef}
+      className={selected ? 'selected' : undefined}
       style={{
         display: 'inline-flex',
         minWidth: '178px',
         minHeight: '36px',
         background: isPreview ? `${color.defaults.BORDER_LIGHT}` : `${color.defaults.WHITE}`,
-        border: isPreview ? `1px solid  ${color.defaults.BORDER_DARK}` : `1px solid  ${color.defaults.BORDER_LIGHT}`,
+        border: borderStyle,
         boxSizing: 'border-box',
         borderRadius: '3px',
         overflow: 'hidden',
@@ -104,9 +111,21 @@ BlankContent.propTypes = {
   isOver: PropTypes.bool,
   dragItem: PropTypes.object,
   value: PropTypes.object,
+  selected: PropTypes.bool,
 };
 
-function DragDropChoice({ value, disabled, instanceId, children, n, onChange, removeResponse, duplicates, pos }) {
+function DragDropChoice({
+  value,
+  disabled,
+  instanceId,
+  children,
+  n,
+  onChange,
+  removeResponse,
+  duplicates,
+  pos,
+  selected,
+}) {
   const {
     attributes: dragAttributes,
     listeners: dragListeners,
@@ -196,7 +215,14 @@ function DragDropChoice({ value, disabled, instanceId, children, n, onChange, re
   };
 
   const dragContent = (
-    <BlankContent n={n} isDragging={isDragging} isOver={isOver} dragItem={dragItem?.data?.current} value={value}>
+    <BlankContent
+      n={n}
+      isDragging={isDragging}
+      isOver={isOver}
+      dragItem={dragItem?.data?.current}
+      value={value}
+      selected={selected}
+    >
       {children}
     </BlankContent>
   );
@@ -223,6 +249,7 @@ DragDropChoice.propTypes = {
   onChange: PropTypes.func.isRequired,
   removeResponse: PropTypes.func.isRequired,
   duplicates: PropTypes.bool,
+  selected: PropTypes.bool,
 };
 
 export default DragDropChoice;
