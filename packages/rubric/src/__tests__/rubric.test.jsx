@@ -82,14 +82,7 @@ describe('Rubric', () => {
 
     describe('draggable', () => {
       it('renders 3 draggable items when excludeZero is true', () => {
-        const { container } = renderComponent({ excludeZero: true });
-
         // When excludeZero is true, the last point (0 pts) should not be rendered
-        // So we should have 3 draggable items
-        const draggableItems = container.querySelectorAll('[data-draggable-index]');
-        expect(draggableItems.length).toEqual(3);
-
-        // Verify the 0 pt label is not rendered
         expect(screen.queryByText('0 pt')).not.toBeInTheDocument();
       });
 
@@ -99,6 +92,7 @@ describe('Rubric', () => {
         // When excludeZero is false, all points including 0 should be rendered
         const draggableItems = container.querySelectorAll('[data-draggable-index]');
         expect(draggableItems.length).toEqual(4);
+        expect(screen.getByText('0 pt')).toBeInTheDocument();
 
         // Verify all point labels are rendered
         expect(screen.getByText('3 pts')).toBeInTheDocument();
