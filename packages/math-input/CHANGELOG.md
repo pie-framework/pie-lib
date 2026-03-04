@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0-next.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.4...@pie-lib/math-input@7.2.0-next.5) (2026-03-04)
+
+### Bug Fixes
+
+- **math-input:** adjust padding for empty elements in long division PD-5661 ([7196165](https://github.com/pie-framework/pie-lib/commit/71961651b7e9be81d2c5c935ef368d18d6fe1c41))
+- **math-input:** fontFamily styling for delete button PD-5612 ([0118a78](https://github.com/pie-framework/pie-lib/commit/0118a785df81de52211beef6eb1b9724cd4c01bf))
+
 # [7.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.2...@pie-lib/math-input@7.2.0-next.4) (2026-02-26)
 
 **Note:** Version bump only for package @pie-lib/math-input

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.11...@pie-lib/editable-html-tip-tap@1.2.0-next.12) (2026-03-04)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** adjust placeholder styling for empty paragraphs to prevent extra height ([a9d8643](https://github.com/pie-framework/pie-lib/commit/a9d86432b7aac9a3ead327c7d32ddbdb94e25fdb))
+- **editable-html-tip-tap:** handle focus,selection delete menu PD-5589 ([b975827](https://github.com/pie-framework/pie-lib/commit/b975827da8fed42936f54544c7faba2ea7de009c))
+
 # [1.2.0-next.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.9...@pie-lib/editable-html-tip-tap@1.2.0-next.11) (2026-02-26)
 
 **Note:** Version bump only for package @pie-lib/editable-html-tip-tap
