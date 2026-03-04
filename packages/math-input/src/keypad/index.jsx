@@ -205,9 +205,7 @@ const StyledButton = styled(Button)(({ category, isDelete, isComma, isDot }) => 
   },
   borderRadius: 0,
   ...(isDelete && {
-    '& > span': {
-      fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
-    },
+    fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
   }),
 }));
 
