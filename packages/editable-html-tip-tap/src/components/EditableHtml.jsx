@@ -361,7 +361,8 @@ const StyledEditorContent = styled(EditorContent, {
 
     '& p.is-editor-empty:first-child::before': {
       content: 'attr(data-placeholder)',
-      display: 'block',
+      float: 'left',
+      height: 0,
       color: '#9CA3AF',
       pointerEvents: 'none',
       whiteSpace: 'pre-wrap',
