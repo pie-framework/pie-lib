@@ -122,14 +122,32 @@ function BlankContent({
     }
   };
 
+  const getMeasureNode = () => {
+    if (!spanRef.current) return null;
+    const mjx = spanRef.current.querySelector('mjx-container');
+    if (mjx && spanRef.current.parentElement) return spanRef.current.parentElement;
+    const img = spanRef.current.querySelector('img');
+    if (img) return img;
+    return spanRef.current;
+  };
+
   const updateDimensions = () => {
     if (spanRef.current && rootRef.current) {
       // Temporarily set rootRef width to 'auto' for natural measurement
       rootRef.current.style.width = 'auto';
+      rootRef.current.style.height = 'auto';
+      rootRef.current.offsetHeight;
 
-      // Get the natural dimensions of the content
-      const width = spanRef.current.offsetWidth || 0;
-      const height = spanRef.current.offsetHeight || 0;
+      const measureNode = getMeasureNode();
+      const node = measureNode || spanRef.current;
+      const rect = node.getBoundingClientRect();
+      const width = rect.width || node.offsetWidth || 0;
+      const height = Math.max(
+        rect.height || 0,
+        node.offsetHeight || 0,
+        node.scrollHeight || 0,
+        spanRef.current.scrollHeight || 0,
+      );
 
       const widthWithPadding = width + 24; // 12px padding on each side
       const heightWithPadding = height + 24; // 12px padding on top and bottom
