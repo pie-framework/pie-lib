@@ -281,6 +281,12 @@ export const EditableHtml = (props) => {
   );
 
   useEffect(() => {
+    if (props.editorRef) {
+      props.editorRef(editor);
+    }
+  }, [props.editorRef, editor]);
+
+  useEffect(() => {
     editor?.setEditable(!props.disabled);
   }, [props.disabled, editor]);
 
@@ -349,8 +355,10 @@ export const EditableHtml = (props) => {
 const StyledEditorContent = styled(EditorContent, {
   shouldForwardProp: (prop) => !['showParagraph', 'separateParagraph'].includes(prop),
 })(({ showParagraph, separateParagraph }) => ({
+  display: 'flex',
   outline: 'none !important',
   '& .ProseMirror': {
+    flex: 1,
     padding: '5px',
     maxHeight: '500px',
     outline: 'none !important',

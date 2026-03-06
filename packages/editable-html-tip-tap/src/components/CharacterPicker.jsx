@@ -121,6 +121,7 @@ export function CharacterPicker({ editor, opts, onClose }) {
         <div
           ref={containerRef}
           className="insert-character-dialog"
+          data-toolbar-for={editor.instanceId}
           style={{
             visibility: position.top === 0 && position.left === 0 ? 'hidden' : 'initial',
             position: 'absolute',

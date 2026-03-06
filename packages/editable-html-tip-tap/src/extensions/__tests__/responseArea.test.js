@@ -101,6 +101,163 @@ describe('ResponseAreaExtension', () => {
       expect(commands).toHaveProperty('insertResponseArea');
       expect(typeof commands.insertResponseArea).toBe('function');
     });
+
+    it('returns refreshResponseArea command', () => {
+      const commands = ResponseAreaExtension.addCommands();
+
+      expect(commands).toHaveProperty('refreshResponseArea');
+      expect(typeof commands.refreshResponseArea).toBe('function');
+    });
+
+    it('refreshResponseArea handles node with attrs safely', () => {
+      const context = {
+        options: {
+          type: 'explicit-constructed-response',
+          maxResponseAreas: 5,
+        },
+      };
+
+      const commands = ResponseAreaExtension.addCommands.call(context);
+      const refreshCommand = commands.refreshResponseArea();
+
+      // Mock transaction and state
+      const mockNode = {
+        attrs: {
+          index: '0',
+          value: 'test',
+        },
+      };
+
+      const mockTr = {
+        setNodeMarkup: jest.fn(),
+        setSelection: jest.fn(),
+      };
+
+      const mockState = {
+        selection: {
+          from: 0,
+          $from: {
+            nodeAfter: mockNode,
+          },
+        },
+        tr: mockTr,
+      };
+
+      const mockCommands = {
+        focus: jest.fn(),
+      };
+
+      const mockDispatch = jest.fn();
+
+      refreshCommand({
+        tr: mockTr,
+        state: mockState,
+        commands: mockCommands,
+        dispatch: mockDispatch,
+      });
+
+      expect(mockTr.setNodeMarkup).toHaveBeenCalled();
+    });
+
+    it('refreshResponseArea handles node without attrs safely (optional chaining)', () => {
+      const context = {
+        options: {
+          type: 'explicit-constructed-response',
+          maxResponseAreas: 5,
+        },
+      };
+
+      const commands = ResponseAreaExtension.addCommands.call(context);
+      const refreshCommand = commands.refreshResponseArea();
+
+      // Mock transaction and state with node that has no attrs
+      const mockNode = null;
+
+      const mockTr = {
+        setNodeMarkup: jest.fn(),
+        setSelection: jest.fn(),
+      };
+
+      const mockState = {
+        selection: {
+          from: 0,
+          $from: {
+            nodeAfter: mockNode,
+          },
+        },
+        tr: mockTr,
+      };
+
+      const mockCommands = {
+        focus: jest.fn(),
+      };
+
+      const mockDispatch = jest.fn();
+
+      // This should not throw an error due to optional chaining on node?.attrs
+      expect(() => {
+        refreshCommand({
+          tr: mockTr,
+          state: mockState,
+          commands: mockCommands,
+          dispatch: mockDispatch,
+        });
+      }).not.toThrow();
+    });
+
+    it('refreshResponseArea updates timestamp in node attributes', () => {
+      const context = {
+        options: {
+          type: 'explicit-constructed-response',
+          maxResponseAreas: 5,
+        },
+      };
+
+      const commands = ResponseAreaExtension.addCommands.call(context);
+      const refreshCommand = commands.refreshResponseArea();
+
+      const mockNode = {
+        attrs: {
+          index: '0',
+          value: 'test',
+          updated: '1234567890',
+        },
+      };
+
+      const mockTr = {
+        setNodeMarkup: jest.fn((pos, type, attrs) => {
+          // Verify that updated timestamp is being set
+          expect(attrs.updated).toBeDefined();
+          expect(attrs.updated).not.toBe('1234567890');
+        }),
+        setSelection: jest.fn(),
+      };
+
+      const mockState = {
+        selection: {
+          from: 0,
+          $from: {
+            nodeAfter: mockNode,
+          },
+        },
+        tr: mockTr,
+      };
+
+      const mockCommands = {
+        focus: jest.fn(),
+      };
+
+      const mockDispatch = jest.fn();
+
+      refreshCommand({
+        tr: mockTr,
+        state: mockState,
+        commands: mockCommands,
+        dispatch: mockDispatch,
+      });
+
+      expect(mockTr.setNodeMarkup).toHaveBeenCalled();
+    });
   });
 });
 

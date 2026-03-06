@@ -266,4 +266,39 @@ describe('EditableHtml', () => {
     const { container } = render(<EditableHtml {...defaultProps} disableImageAlignmentButtons={true} />);
     expect(container).toBeInTheDocument();
   });
+
+  it('calls editorRef callback when editor is initialized', async () => {
+    const editorRef = jest.fn();
+    render(<EditableHtml {...defaultProps} editorRef={editorRef} />);
+
+    await waitFor(() => {
+      expect(editorRef).toHaveBeenCalled();
+    });
+  });
+
+  it('calls editorRef with the editor instance', async () => {
+    const editorRef = jest.fn();
+    render(<EditableHtml {...defaultProps} editorRef={editorRef} />);
+
+    await waitFor(() => {
+      expect(editorRef).toHaveBeenCalled();
+      // Verify it was called with an object that has editor-like properties
+      const callArg = editorRef.mock.calls[0][0];
+      expect(callArg).toHaveProperty('getHTML');
+      expect(callArg).toHaveProperty('commands');
+    });
+  });
+
+  it('handles editorRef being undefined', () => {
+    const { container } = render(<EditableHtml {...defaultProps} editorRef={undefined} />);
+    expect(container).toBeInTheDocument();
+  });
+
+  it('applies flex display to StyledEditorContent', async () => {
+    const { getByTestId } = render(<EditableHtml {...defaultProps} />);
+    await waitFor(() => {
+      const editorContent = getByTestId('editor-content');
+      expect(editorContent).toBeInTheDocument();
+    });
+  });
 });

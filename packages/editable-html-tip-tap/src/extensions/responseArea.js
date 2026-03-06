@@ -209,7 +209,7 @@ export const ResponseAreaExtension = Extension.create({
           const node = selection.$from.nodeAfter;
           const nodePos = selection.from;
 
-          tr.setNodeMarkup(nodePos, undefined, { ...node.attrs, updated: `${Date.now()}` });
+          tr.setNodeMarkup(nodePos, undefined, { ...node?.attrs, updated: `${Date.now()}` });
           tr.setSelection(NodeSelection.create(tr.doc, nodePos));
 
           if (dispatch) {

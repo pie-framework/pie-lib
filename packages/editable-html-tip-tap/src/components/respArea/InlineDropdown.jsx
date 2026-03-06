@@ -12,6 +12,7 @@ const InlineDropdown = (props) => {
   // Needed because items with values inside have different positioning for some reason
   const html = value || '<div>&nbsp</div>';
   const toolbarRef = useRef(null);
+  const toolbarEditor = useRef(null);
   const [showToolbar, setShowToolbar] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const InlineDropdownToolbar = options.respAreaToolbar(node, editor, () => {});
@@ -41,7 +42,11 @@ const InlineDropdown = (props) => {
     });
 
     const handleClickOutside = (event) => {
+      const insideSomeEditor = event.target.closest('[data-toolbar-for]');
+
       if (
+        (!insideSomeEditor || insideSomeEditor.dataset.toolbarFor !== toolbarEditor.current.instanceId) &&
+        !editor._toolbarOpened &&
         toolbarRef.current &&
         !toolbarRef.current.contains(event.target) &&
         !event.target.closest('[data-inline-node]')
@@ -116,7 +121,11 @@ const InlineDropdown = (props) => {
       {showToolbar &&
         ReactDOM.createPortal(
           <div ref={toolbarRef} style={{ zIndex: 1 }}>
-            <InlineDropdownToolbar />
+            <InlineDropdownToolbar
+              editorCallback={(instance) => {
+                toolbarEditor.current = instance;
+              }}
+            />
           </div>,
           document.body,
         )}
