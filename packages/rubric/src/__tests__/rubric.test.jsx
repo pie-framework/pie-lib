@@ -13,6 +13,11 @@ jest.mock('@pie-lib/editable-html-tip-tap', () => {
 
 jest.mock('@pie-lib/config-ui', () => ({
   FeedbackConfig: ({ feedback }) => <div data-testid="feedback-config">{JSON.stringify(feedback)}</div>,
+  InputContainer: ({ children, label }) => (
+    <div data-testid="input-container" data-label={label}>
+      {children}
+    </div>
+  ),
 }));
 
 jest.mock('@hello-pangea/dnd', () => ({

@@ -142,12 +142,19 @@ const Container = styled('div')(({ theme }) => ({
   padding: theme.spacing(2),
   margin: theme.spacing(1),
 }));
-const InputContainerWrapper = styled('div')(({ theme }) => ({
+
+const StyledInputContainer = styled(InputContainer)(({ theme }) => ({
   width: '100%',
-  paddingTop: theme.spacing(2),
+  paddingTop: theme.spacing(2.5),
   marginBottom: theme.spacing(2),
-  '& MuiFormControl-root': { width: '100%' },
+  marginTop: theme.spacing(1),
+  '& .MuiFormControl-root': { width: '100%' },
+  '& > .MuiFormLabel-root.MuiInputLabel-shrink': {
+    fontSize: theme.typography.fontSize + 2,
+    transform: 'translate(0, 1.5px) scale(0.75)',
+  },
 }));
+
 const Rubricless = styled('div')(() => ({ display: 'none' }));
 const ConfigHolder = styled('div')(({ theme }) => ({ paddingTop: theme.spacing(1), paddingBottom: theme.spacing(1) }));
 const RubricTitle = styled(Typography)(({ theme }) => ({ paddingLeft: theme.spacing(1), margin: theme.spacing(1) }));
@@ -301,19 +308,18 @@ export class RawAuthoring extends React.Component {
         </FormGroup>
 
         {rubriclessInstructionEnabled && rubricless && (
-          <InputContainerWrapper>
-            <InputContainer label={rubriclessInstruction.label}>
-              <EditableHtml
-                markup={value.rubriclessInstruction || ''}
-                onChange={this.changeRubriclessInstruction}
-                pluginProps={pluginOpts}
-                nonEmpty={false}
-                disableUnderline
-                languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
-                mathMlOptions={mathMlOptions}
-              />
-            </InputContainer>
-          </InputContainerWrapper>
+          <StyledInputContainer label={rubriclessInstruction.label}>
+            <EditableHtml
+              markup={value.rubriclessInstruction || ''}
+              onChange={this.changeRubriclessInstruction}
+              pluginProps={pluginOpts}
+              nonEmpty={false}
+              disableUnderline
+              languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
+              mathMlOptions={mathMlOptions}
+              autoWidthToolbar
+            />
+          </StyledInputContainer>
         )}
 
         <div>
