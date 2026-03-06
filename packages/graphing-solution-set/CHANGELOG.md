@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@3.2.0-next.12...@pie-lib/graphing-solution-set@3.2.0-next.13) (2026-03-06)
+
+**Note:** Version bump only for package @pie-lib/graphing-solution-set
+
 # [3.2.0-next.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@3.2.0-next.11...@pie-lib/graphing-solution-set@3.2.0-next.12) (2026-03-04)
 
 **Note:** Version bump only for package @pie-lib/graphing-solution-set

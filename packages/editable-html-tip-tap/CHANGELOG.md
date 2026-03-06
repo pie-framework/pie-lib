@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.12...@pie-lib/editable-html-tip-tap@1.2.0-next.13) (2026-03-06)
+
+### Bug Fixes
+
+- editable-area responsive, added handling for toolbars inside responseArea, ability to provide editor instance PD-5616-PD-5582-PD-5603-PD-5604-PD-5605 ([02213cd](https://github.com/pie-framework/pie-lib/commit/02213cde4315edb8fa68f1f3b97a14aaba2b156c))
+
 # [1.2.0-next.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.11...@pie-lib/editable-html-tip-tap@1.2.0-next.12) (2026-03-04)
 
 ### Bug Fixes

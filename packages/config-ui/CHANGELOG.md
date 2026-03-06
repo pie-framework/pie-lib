@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.2.0-next.12...@pie-lib/config-ui@12.2.0-next.13) (2026-03-06)
+
+**Note:** Version bump only for package @pie-lib/config-ui
+
 # [12.2.0-next.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.2.0-next.11...@pie-lib/config-ui@12.2.0-next.12) (2026-03-04)
 
 **Note:** Version bump only for package @pie-lib/config-ui
