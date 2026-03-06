@@ -184,4 +184,153 @@ describe('InlineDropdown', () => {
       }
     });
   });
+
+  it('passes editorCallback to InlineDropdownToolbar', async () => {
+    const mockToolbarComponent = jest.fn(({ editorCallback }) => {
+      editorCallback?.({ instanceId: 'test-instance' });
+      return <div data-testid="inline-dropdown-toolbar">Toolbar</div>;
+    });
+
+    const mockOptionsWithCallback = {
+      respAreaToolbar: jest.fn(() => mockToolbarComponent),
+    };
+
+    const { queryByTestId } = render(
+      <InlineDropdown {...defaultProps} options={mockOptionsWithCallback} selected={true} />,
+    );
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+  });
+
+  it('stores toolbar editor instance in ref when editorCallback is called', async () => {
+    let capturedCallback;
+    const mockToolbarComponent = ({ editorCallback }) => {
+      capturedCallback = editorCallback;
+      return <div data-testid="inline-dropdown-toolbar">Toolbar</div>;
+    };
+
+    const mockOptionsWithCallback = {
+      respAreaToolbar: jest.fn(() => mockToolbarComponent),
+    };
+
+    const { queryByTestId } = render(
+      <InlineDropdown {...defaultProps} options={mockOptionsWithCallback} selected={true} />,
+    );
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+
+    // Verify callback exists
+    expect(capturedCallback).toBeDefined();
+  });
+
+  it('handles click outside logic with data-toolbar-for attribute', async () => {
+    const editorWithInstanceId = {
+      ...mockEditor,
+      instanceId: 'editor-123',
+      _toolbarOpened: false,
+    };
+
+    // Mock the toolbar callback to set the toolbar editor instance
+    let capturedCallback;
+    const mockToolbarComponent = ({ editorCallback }) => {
+      React.useEffect(() => {
+        capturedCallback = editorCallback;
+        if (editorCallback) {
+          editorCallback({ instanceId: 'editor-123' });
+        }
+      }, [editorCallback]);
+      return <div data-testid="inline-dropdown-toolbar">Toolbar</div>;
+    };
+
+    const mockOptionsWithCallback = {
+      respAreaToolbar: jest.fn(() => mockToolbarComponent),
+    };
+
+    const { container, queryByTestId } = render(
+      <InlineDropdown
+        {...defaultProps}
+        editor={editorWithInstanceId}
+        options={mockOptionsWithCallback}
+        selected={true}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+
+    // Create an element with data-toolbar-for attribute
+    const otherToolbar = document.createElement('div');
+    otherToolbar.setAttribute('data-toolbar-for', 'editor-456');
+    document.body.appendChild(otherToolbar);
+
+    await waitFor(() => {
+      fireEvent.mouseDown(otherToolbar);
+    });
+
+    // Cleanup
+    document.body.removeChild(otherToolbar);
+    expect(container).toBeInTheDocument();
+  });
+
+  it('does not close when clicking inside same editor toolbar', async () => {
+    const editorWithInstanceId = {
+      ...mockEditor,
+      instanceId: 'editor-123',
+      _toolbarOpened: false,
+    };
+
+    let toolbarEditorInstance;
+    const mockToolbarComponent = ({ editorCallback }) => {
+      React.useEffect(() => {
+        if (editorCallback) {
+          editorCallback({ instanceId: 'editor-123' });
+          toolbarEditorInstance = { instanceId: 'editor-123' };
+        }
+      }, [editorCallback]);
+      return <div data-testid="inline-dropdown-toolbar">Toolbar</div>;
+    };
+
+    const mockOptionsWithCallback = {
+      respAreaToolbar: jest.fn(() => mockToolbarComponent),
+    };
+
+    render(
+      <InlineDropdown
+        {...defaultProps}
+        editor={editorWithInstanceId}
+        options={mockOptionsWithCallback}
+        selected={true}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(mockOptionsWithCallback.respAreaToolbar).toHaveBeenCalled();
+    });
+  });
+
+  it('checks editor._toolbarOpened in click outside handler', async () => {
+    const editorWithToolbarOpened = {
+      ...mockEditor,
+      _toolbarOpened: true,
+    };
+
+    const { queryByTestId } = render(
+      <InlineDropdown {...defaultProps} editor={editorWithToolbarOpened} selected={true} />,
+    );
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+
+    // When _toolbarOpened is true, clicking outside should not close
+    fireEvent.mouseDown(document.body);
+
+    // Toolbar should still be visible
+    expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+  });
 });

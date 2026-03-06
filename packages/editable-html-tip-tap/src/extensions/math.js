@@ -253,6 +253,7 @@ export const MathNodeView = (props) => {
         ReactDOM.createPortal(
           <div
             ref={toolbarRef}
+            data-toolbar-for={editor.instanceId}
             style={{
               position: 'absolute',
               top: `${position.top}px`,

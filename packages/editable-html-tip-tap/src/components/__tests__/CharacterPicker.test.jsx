@@ -194,4 +194,26 @@ describe('CharacterPicker', () => {
     const dialog = container.querySelector('.insert-character-dialog');
     expect(dialog).toHaveStyle({ position: 'absolute' });
   });
+
+  it('adds data-toolbar-for attribute with editor instanceId', () => {
+    const editorWithInstanceId = {
+      ...mockEditor,
+      instanceId: 'editor-123',
+    };
+    const opts = {
+      characters: [['á', 'é']],
+    };
+    const { container } = render(<CharacterPicker editor={editorWithInstanceId} opts={opts} onClose={jest.fn()} />);
+    const dialog = container.querySelector('.insert-character-dialog');
+    expect(dialog).toHaveAttribute('data-toolbar-for', 'editor-123');
+  });
+
+  it('renders without instanceId gracefully', () => {
+    const opts = {
+      characters: [['á', 'é']],
+    };
+    const { container } = render(<CharacterPicker editor={mockEditor} opts={opts} onClose={jest.fn()} />);
+    const dialog = container.querySelector('.insert-character-dialog');
+    expect(dialog).toBeInTheDocument();
+  });
 });
