@@ -6,7 +6,7 @@ import { color } from '@pie-lib/render-ui';
 const StyledArrowHead = styled('polygon')(({ disabled, correctness }) => ({
   fill: color.defaults.BLACK,
   ...(disabled && {
-    fill: color.disabled(),
+    fill: color.disabledSecondary(),
   }),
   ...(correctness === 'correct' && {
     fill: color.correctWithIcon(),
@@ -23,7 +23,7 @@ const StyledMarker = styled('marker')(({ disabled, correctness }) => ({
   '& polygon': {
     fill: color.defaults.BLACK,
     ...(disabled && {
-      fill: color.disabled(),
+      fill: color.disabledSecondary(),
     }),
     ...(correctness === 'correct' && {
       fill: color.correctWithIcon(),

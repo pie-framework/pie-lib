@@ -116,4 +116,5 @@ export const visualElementsColors = {
   ROLLOVER_FILL_BAR_COLOR: '#050F2D',
   GRIDLINES_COLOR: '#8E88EA',
   PLOT_FILL_COLOR: '#1463B3',
+  SHAPES_FILL_COLOR: '#7986cb',
 };
