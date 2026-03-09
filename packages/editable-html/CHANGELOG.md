@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@12.2.0-next.6...@pie-lib/editable-html@12.2.0-next.7) (2026-03-09)
+
+### Features
+
+- remove jQuery dependency via MathQuill 1.2.0-beta.0 Interface v3 shim PD-5791 ([d427f32](https://github.com/pie-framework/pie-lib/commit/d427f32d5547de9610579d83b454c568def7ea74))
+
 # [12.2.0-next.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@12.2.0-next.5...@pie-lib/editable-html@12.2.0-next.6) (2026-03-04)
 
 **Note:** Version bump only for package @pie-lib/editable-html
