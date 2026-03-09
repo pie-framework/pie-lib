@@ -6,7 +6,7 @@ import { updateSpans } from '../updateSpans';
 
 let MQ;
 if (typeof window !== 'undefined') {
-  MQ = MathQuill.getInterface(2);
+  MQ = MathQuill.getInterface(3);
 }
 
 const log = debug('pie-lib:math-input:mq:static');
