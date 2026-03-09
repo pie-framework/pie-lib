@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-next.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.13...@pie-lib/mask-markup@2.2.0-next.14) (2026-03-09)
+
+### Bug Fixes
+
+- **mask-markup:** compute mjx-container height based on parent PD-5501 ([66277b5](https://github.com/pie-framework/pie-lib/commit/66277b52a36d2178c13bf93962a0646b5a2d0ae0))
+
 # [2.2.0-next.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.12...@pie-lib/mask-markup@2.2.0-next.13) (2026-03-06)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

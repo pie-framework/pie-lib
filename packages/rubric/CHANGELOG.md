@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@1.2.0-next.13...@pie-lib/rubric@1.2.0-next.14) (2026-03-09)
+
+### Bug Fixes
+
+- **rubric:** rubricless intructions fix PD-5657 ([7a05af5](https://github.com/pie-framework/pie-lib/commit/7a05af5122eb499250f89ac9f0115cc3e49f5c92))
+
 # [1.2.0-next.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/rubric@1.2.0-next.12...@pie-lib/rubric@1.2.0-next.13) (2026-03-06)
 
 **Note:** Version bump only for package @pie-lib/rubric
