@@ -7,7 +7,7 @@ import MathQuill from '@pie-framework/mathquill';
 
 let MQ;
 if (typeof window !== 'undefined') {
-  MQ = MathQuill.getInterface(2);
+  MQ = MathQuill.getInterface(3);
 
   if (MQ && MQ.registerEmbed) {
     registerLineBreak(MQ);
