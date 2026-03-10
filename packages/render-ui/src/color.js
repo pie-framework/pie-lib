@@ -45,6 +45,9 @@ export const defaults = {
   BLUE_GREY900: '#152452',
   // this is used for charting
   FADED_PRIMARY: '#DCDAFB',
+  // these are used for graphing UI elements
+  BUTTON_BORDER: 'rgba(0, 0, 0, 0.23)',
+  BUTTON_HOVER_BG: 'rgba(0, 0, 0, 0.08)',
 };
 
 Object.freeze(defaults);
@@ -110,6 +113,9 @@ export const blueGrey100 = () => pv('blue-grey-100', defaults.BLUE_GREY100);
 export const blueGrey300 = () => pv('blue-grey-300', defaults.BLUE_GREY300);
 export const blueGrey600 = () => pv('blue-grey-600', defaults.BLUE_GREY600);
 export const blueGrey900 = () => pv('blue-grey-900', defaults.BLUE_GREY900);
+
+export const buttonBorder = () => pv('button-border', defaults.BUTTON_BORDER);
+export const buttonHoverBg = () => pv('button-hover-bg', defaults.BUTTON_HOVER_BG);
 
 export const visualElementsColors = {
   AXIS_LINE_COLOR: '#5A53C9',
