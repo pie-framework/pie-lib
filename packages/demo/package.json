@@ -14,7 +14,7 @@
     "@mui/material": "^7.3.4",
     "@pie-framework/math-expressions": "^3.0.0",
     "@pie-framework/mathml-to-latex": "1.4.4",
-    "@pie-framework/mathquill": "1.1.4",
+    "@pie-framework/mathquill": "1.2.1-beta.0",
     "@pie-framework/parse-english": "^1.0.0",
     "@pie-lib/charting": "^6.2.0-next.13",
     "@pie-lib/config-ui": "^12.2.0-next.13",
