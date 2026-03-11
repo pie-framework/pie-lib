@@ -2765,8 +2765,10 @@
   dependencies:
     "@xmldom/xmldom" "^0.8.10"
 
-"@pie-framework/mathquill@1.2.1-beta.0", "@pie-framework/mathquill@file:../mathquill":
+"@pie-framework/mathquill@1.2.1-beta.0":
   version "1.2.1-beta.0"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.2.1-beta.0.tgz#837613ed07028f6d8f0118a634bc1cb04717f602"
+  integrity sha512-+UhxS65Ge+XvOxG6tV0QboQWkISWWveWHlIlQi/mrC6kw+ef5wnEnB7coWOclcXA+q84pwrtTddePG7wruC1sQ==
 
 "@pie-framework/parse-english@^1.0.0":
   version "1.0.0"

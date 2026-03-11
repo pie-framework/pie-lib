@@ -87,8 +87,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "resolutions": {
-    "@pie-framework/mathquill": "file:../mathquill"
-  }
+  ]
 }
