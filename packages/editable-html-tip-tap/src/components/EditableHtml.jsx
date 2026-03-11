@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import debounce from 'lodash-es/debounce';
 
 import ExtendedTable from '../extensions/extended-table';
+import { DivNode } from '../extensions/div-node';
 import { TableRow } from '@tiptap/extension-table-row';
 import { TableCell } from '@tiptap/extension-table-cell';
 import { TableHeader } from '@tiptap/extension-table-header';
@@ -139,7 +140,13 @@ export const EditableHtml = (props) => {
     CharacterCount.configure({
       limit: props.charactersLimit || 1000000,
     }),
-    StarterKit,
+    StarterKit.configure({
+      trailingNode: {
+        node: 'paragraph',
+        notAfter: ['paragraph', 'div'],
+      },
+    }),
+    DivNode,
     Placeholder.configure({
       placeholder: props.placeholder,
       // show placeholder even when editor is focused
@@ -252,7 +259,7 @@ export const EditableHtml = (props) => {
         },
       },
       editable: !props.disabled,
-      content: props.markup,
+      content: props.markup || '<div></div>',
       onUpdate: ({ editor, transaction }) => {
         if (transaction.isDone) {
           props.onChange?.(editor.getHTML());
@@ -295,7 +302,9 @@ export const EditableHtml = (props) => {
       return;
     }
 
-    if (props.markup !== editor.getHTML()) {
+    const nextMarkup = props.markup || '<div></div>';
+
+    if (nextMarkup !== editor.getHTML()) {
       editor.commands.setContent(props.markup, false); // false = don’t emit update
     }
   }, [props.markup, editor]);
@@ -363,11 +372,13 @@ const StyledEditorContent = styled(EditorContent, {
     maxHeight: '500px',
     outline: 'none !important',
     position: 'initial',
-    '& > p': {
+
+    // reset default margins for all block paragraphs/divs in the editor
+    '& > p, & > div': {
       margin: '0',
     },
 
-    '& p.is-editor-empty:first-child::before': {
+    '& p.is-editor-empty:first-child::before, & div.is-editor-empty:first-child::before': {
       content: 'attr(data-placeholder)',
       float: 'left',
       height: 0,
@@ -377,7 +388,7 @@ const StyledEditorContent = styled(EditorContent, {
     },
 
     ...(showParagraph && {
-      '& > p:has(+ p)::after': {
+      '& > p:has(+ p)::after, & > div:has(+ div)::after': {
         display: 'block',
         content: '"¶"',
         fontSize: '1em',

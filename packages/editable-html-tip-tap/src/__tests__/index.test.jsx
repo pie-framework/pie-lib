@@ -13,7 +13,10 @@ jest.mock('@tiptap/react', () => ({
   useEditorState: jest.fn(() => ({ isFocused: false })),
 }));
 
-jest.mock('@tiptap/starter-kit', () => ({ __esModule: true, default: {} }));
+jest.mock('@tiptap/starter-kit', () => ({
+  __esModule: true,
+  default: { configure: jest.fn(() => ({})) },
+}));
 jest.mock('@tiptap/extension-text-style', () => ({ TextStyleKit: {} }));
 jest.mock('@tiptap/extension-character-count', () => ({
   CharacterCount: { configure: jest.fn(() => ({})) },
