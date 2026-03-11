@@ -9,6 +9,8 @@ let MQ;
 if (typeof window !== 'undefined') {
   MQ = MathQuill.getInterface(3);
 
+  console.log('MQ', MQ);
+
   if (MQ && MQ.registerEmbed) {
     registerLineBreak(MQ);
   }
