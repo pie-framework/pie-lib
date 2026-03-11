@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.2.0-next.15...@pie-lib/config-ui@12.2.0-next.16) (2026-03-11)
+
+### Bug Fixes
+
+- **config-ui:** adjust number field padding PD-5786 ([5e80d6b](https://github.com/pie-framework/pie-lib/commit/5e80d6bdaf11a15cb93377e0518a21cd2ccb24db))
+
 # [12.2.0-next.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.2.0-next.14...@pie-lib/config-ui@12.2.0-next.15) (2026-03-11)
 
 **Note:** Version bump only for package @pie-lib/config-ui
