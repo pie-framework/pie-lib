@@ -162,14 +162,14 @@ const release = () => {
   log(chalk.magenta('--- STEP 5: VERSION PACKAGES ---'));
   runCmd('npx lerna version --conventional-commits --yes');
 
-  log(chalk.magenta('--- STEP 6: PUSH TAGS ---'));
-  runCmd(`git push origin ${getCurrentBranch()} --follow-tags`);
-
-  log(chalk.magenta('--- STEP 7: PUBLISH PACKAGES ---'));
+  log(chalk.magenta('--- STEP 6: PUBLISH PACKAGES ---'));
   let releaseCmd = 'npx lerna publish from-git --yes';
   if (argv.next) releaseCmd += ' --canary --preid next --dist-tag next';
   if (argv.loglevel) releaseCmd += ` --loglevel ${argv.loglevel}`;
   runCmd(releaseCmd);
+
+  log(chalk.magenta('--- STEP 7: PUSH TAGS ---'));
+  runCmd(`git push origin ${getCurrentBranch()} --follow-tags`);
 };
 
 /**
