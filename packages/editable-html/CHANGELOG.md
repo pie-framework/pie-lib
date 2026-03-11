@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@12.2.0-next.7...@pie-lib/editable-html@12.2.0-next.8) (2026-03-11)
+
+### Bug Fixes
+
+- bump pie-framework/mathquill PD-5791 ([6dd160a](https://github.com/pie-framework/pie-lib/commit/6dd160a980fd53c2acd704b503266863c24bcf23))
+
 # [12.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@12.2.0-next.6...@pie-lib/editable-html@12.2.0-next.7) (2026-03-09)
 
 ### Features
