@@ -129,7 +129,7 @@ export default class Static extends React.Component {
   };
 
   onInputEdit = (field) => {
-    if (!this.mathField) {
+    if (!this.mathField || this._isProgrammaticUpdate) {
       return;
     }
     const name = this.props.getFieldName(field, this.mathField.innerFields);
@@ -187,7 +187,10 @@ export default class Static extends React.Component {
       }
     }
 
-    this.setState({ previousLatex: newLatex, isDeleteKeyPressed: false });
+    // Only setState when values change to avoid "Maximum update depth exceeded"
+    if (this.state.previousLatex !== newLatex || this.state.isDeleteKeyPressed) {
+      this.setState({ previousLatex: newLatex, isDeleteKeyPressed: false });
+    }
   };
 
   announceMessage = (message) => {
@@ -216,13 +219,17 @@ export default class Static extends React.Component {
     }
 
     try {
+      this._isProgrammaticUpdate = true;
       this.mathField.parseLatex(this.props.latex);
       this.mathField.latex(this.props.latex);
     } catch (e) {
       // default latex if received has errors
       this.mathField.latex('\\MathQuillMathField[r1]{}');
+    } finally {
+      this._isProgrammaticUpdate = false;
     }
   };
+
 
   blur = () => {
     log('blur mathfield');

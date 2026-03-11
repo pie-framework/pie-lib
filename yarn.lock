@@ -2765,12 +2765,10 @@
   dependencies:
     "@xmldom/xmldom" "^0.8.10"
 
-"@pie-framework/mathquill@1.2.0-beta.0":
-  version "1.2.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.2.0-beta.0.tgz#9d37465a16d14e26d65848c86dbaefb7a4dd90cc"
-  integrity sha512-nRz3osm0DsEq5LLqgUxaoJdGS/Kodl2yi7TJSpa7kpSo3aR+g67DFUddL0b8mFfMw9sxW+9sPyRkGZriU8St/w==
-  dependencies:
-    jquery "^3.3.1"
+"@pie-framework/mathquill@1.2.1-beta.0":
+  version "1.2.1-beta.0"
+  resolved "https://registry.yarnpkg.com/@pie-framework/mathquill/-/mathquill-1.2.1-beta.0.tgz#837613ed07028f6d8f0118a634bc1cb04717f602"
+  integrity sha512-+UhxS65Ge+XvOxG6tV0QboQWkISWWveWHlIlQi/mrC6kw+ef5wnEnB7coWOclcXA+q84pwrtTddePG7wruC1sQ==
 
 "@pie-framework/parse-english@^1.0.0":
   version "1.0.0"
@@ -8630,11 +8628,6 @@ jira-connector@^3.1.0:
     oauth "^0.9.15"
     query-string "^6.9.0"
     request "^2.88.0"
-
-jquery@^3.3.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
-  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
