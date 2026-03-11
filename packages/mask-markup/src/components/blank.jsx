@@ -32,7 +32,6 @@ const StyledChip = styled(Chip)(() => ({
   backgroundColor: color.background(),
   border: `2px dashed ${color.text()}`,
   touchAction: 'none',
-
   color: color.text(),
   fontSize: 'inherit',
   maxWidth: '374px',
