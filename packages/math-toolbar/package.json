@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.2.0-next.8",
+  "version": "2.2.0-next.9",
   "description": "Math toolbar for editing math equations",
   "keywords": [
     "math",
@@ -21,7 +21,7 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/math-input": "^7.2.0-next.7",
+    "@pie-lib/math-input": "^7.2.0-next.8",
     "@pie-lib/render-ui": "^5.2.0-next.4",
     "debug": "^4.1.1",
     "lodash-es": "^4.17.23",

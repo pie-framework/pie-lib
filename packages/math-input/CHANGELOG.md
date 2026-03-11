@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.7...@pie-lib/math-input@7.2.0-next.8) (2026-03-11)
+
+### Bug Fixes
+
+- refactor release script, force publish math-input ([d397e7b](https://github.com/pie-framework/pie-lib/commit/d397e7b992e28f7a1eaa68798410cdff167f55a5))
+
 # [7.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.6...@pie-lib/math-input@7.2.0-next.7) (2026-03-11)
 
 ### Bug Fixes
