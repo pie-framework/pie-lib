@@ -27,8 +27,8 @@ export const DivNode = Node.create({
         return this.editor
           .chain()
           .focus()
-          .setNode('paragraph') // divul curent devine <p>
-          .splitBlock() // se creează încă un <p>
+          .setNode('paragraph') // current div becomes <p>
+          .splitBlock() // create another <p>
           .run();
       },
     };
