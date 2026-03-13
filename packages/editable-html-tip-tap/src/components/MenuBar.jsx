@@ -15,6 +15,7 @@ import Functions from '@mui/icons-material/Functions';
 import ImageIcon from '@mui/icons-material/Image';
 import Redo from '@mui/icons-material/Redo';
 import Undo from '@mui/icons-material/Undo';
+import FormatQuote from '@mui/icons-material/FormatQuote';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import BorderAll from '@mui/icons-material/BorderAll';
@@ -278,6 +279,12 @@ function MenuBar({
         icon: <CSSIcon />,
         hidden: () => !activePlugins?.includes('css'),
         onClick: (editor) => editor.commands.openCSSClassDialog(),
+      },
+      {
+        icon: <FormatQuote />,
+        hidden: () => !activePlugins?.includes('blockquote'),
+        onClick: (editor) => editor.chain().focus().toggleBlockquote().run(),
+        isActive: (state) => state.isBlockquote,
       },
       {
         icon: <HeadingIcon />,

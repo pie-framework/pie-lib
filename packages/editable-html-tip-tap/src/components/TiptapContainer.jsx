@@ -73,9 +73,10 @@ const StyledRoot = styled('div', {
     },
   },
   '& blockquote': {
-    borderLeft: '3px solid var(--gray-3)',
-    margin: '1.5rem 0',
-    paddingLeft: '1rem',
+    background: '#f9f9f9',
+    borderLeft: '5px solid #ccc',
+    margin: '1.5em 10px',
+    padding: '.5em 10px',
   },
   '& hr': {
     border: 'none',

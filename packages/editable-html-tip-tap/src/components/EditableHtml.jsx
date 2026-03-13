@@ -135,6 +135,10 @@ export const EditableHtml = (props) => {
   }, [props]);
 
   const extensions = [
+    TextAlign.configure({
+      types: ['heading', 'paragraph'],
+      alignments: ['left', 'right', 'center', 'justify'],
+    }),
     TextStyleKit,
     CharacterCount.configure({
       limit: props.charactersLimit || 1000000,
@@ -161,10 +165,6 @@ export const EditableHtml = (props) => {
     }),
     SubScript,
     SuperScript,
-    TextAlign.configure({
-      types: ['heading', 'paragraph'],
-      alignments: ['left', 'right', 'center'],
-    }),
     Image,
     ImageUploadNode.configure({
       toolbarOpts: toolbarOptsToUse,
