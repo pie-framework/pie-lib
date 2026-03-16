@@ -185,6 +185,7 @@ const KeyPadContainer = styled('div')(() => ({
 
 const StyledButton = styled(Button)(({ category, isDelete, isComma, isDot }) => ({
   minWidth: 'auto',
+  textTransform: 'none',
   fontSize: isComma || isDot ? '200% !important' : '140% !important',
   lineHeight: isComma || isDot ? '100%' : 'normal',
   color: color.text(),
