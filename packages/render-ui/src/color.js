@@ -45,6 +45,10 @@ export const defaults = {
   BLUE_GREY900: '#152452',
   // this is used for charting
   FADED_PRIMARY: '#DCDAFB',
+  // these are used for the math keypad buttons
+  KEYPAD_BUTTON: 'rgb(188, 194, 229)',
+  KEYPAD_BUTTON_OPERATOR: 'rgb(255, 159, 192)',
+  KEYPAD_EMPTY_PLACEHOLDER: 'rgba(245, 0, 87, 0.4)',
 };
 
 Object.freeze(defaults);
@@ -110,6 +114,10 @@ export const blueGrey100 = () => pv('blue-grey-100', defaults.BLUE_GREY100);
 export const blueGrey300 = () => pv('blue-grey-300', defaults.BLUE_GREY300);
 export const blueGrey600 = () => pv('blue-grey-600', defaults.BLUE_GREY600);
 export const blueGrey900 = () => pv('blue-grey-900', defaults.BLUE_GREY900);
+
+export const keypadButton = () => pv('keypad-button', defaults.KEYPAD_BUTTON);
+export const keypadButtonOperator = () => pv('keypad-button-operator', defaults.KEYPAD_BUTTON_OPERATOR);
+export const keypadEmptyPlaceholder = () => pv('keypad-empty-placeholder', defaults.KEYPAD_EMPTY_PLACEHOLDER);
 
 export const visualElementsColors = {
   AXIS_LINE_COLOR: '#5A53C9',
