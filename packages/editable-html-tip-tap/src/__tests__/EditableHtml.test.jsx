@@ -24,7 +24,9 @@ jest.mock('@tiptap/react', () => ({
 
 jest.mock('@tiptap/starter-kit', () => ({
   __esModule: true,
-  default: {},
+  default: {
+    configure: jest.fn(() => ({})),
+  },
 }));
 
 jest.mock('@tiptap/extension-text-style', () => ({
