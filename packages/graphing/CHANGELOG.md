@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.16...@pie-lib/graphing@3.2.0-next.17) (2026-03-18)
+
+### Bug Fixes
+
+- **graphing:** color changes for graph buttons PD-5590 ([1053f44](https://github.com/pie-framework/pie-lib/commit/1053f44cd10521bf5e3431ac071fb3f18e97f467))
+- **graphing:** revert to previous disabled colors PD-5510 ([e50a991](https://github.com/pie-framework/pie-lib/commit/e50a991aaa20f134d338a3f27d6d46d68db02a57))
+
 # [3.2.0-next.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.15...@pie-lib/graphing@3.2.0-next.16) (2026-03-11)
 
 **Note:** Version bump only for package @pie-lib/graphing

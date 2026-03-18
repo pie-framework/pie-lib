@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-next.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.17...@pie-lib/mask-markup@2.2.0-next.18) (2026-03-18)
+
+### Bug Fixes
+
+- add touchAction style to prevent touch interactions in DragInTheBlank and blank components PD-5811 ([ba4d73b](https://github.com/pie-framework/pie-lib/commit/ba4d73b4785cc59e85f3055902667a1cd4db325c))
+- remove unnecessary newline in StyledChip component ([02acee2](https://github.com/pie-framework/pie-lib/commit/02acee2e8e741a56b854abd62c27de89cbf02f33))
+
 # [2.2.0-next.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.16...@pie-lib/mask-markup@2.2.0-next.17) (2026-03-11)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
