@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-next.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.18...@pie-lib/charting@6.2.0-next.19) (2026-03-18)
+
+### Bug Fixes
+
+- **charting:** enhance RawChartAxes with MathJax rendering support and improve hidden label measurement PD-5496 PD-5497 ([4644a62](https://github.com/pie-framework/pie-lib/commit/4644a62365cc22b5558ae99cfa64c78bdc21815a))
+
+# [6.2.0-next.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.17...@pie-lib/charting@6.2.0-next.18) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.16...@pie-lib/charting@6.2.0-next.17) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/charting
+
 # [6.2.0-next.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.15...@pie-lib/charting@6.2.0-next.16) (2026-03-11)
 
 **Note:** Version bump only for package @pie-lib/charting

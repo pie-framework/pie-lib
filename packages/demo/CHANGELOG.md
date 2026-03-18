@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.33.0-next.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.19...@pie-lib/demo@8.33.0-next.20) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+# [8.33.0-next.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.18...@pie-lib/demo@8.33.0-next.19) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+# [8.33.0-next.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.17...@pie-lib/demo@8.33.0-next.18) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/demo
+
 # [8.33.0-next.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.16...@pie-lib/demo@8.33.0-next.17) (2026-03-11)
 
 **Note:** Version bump only for package @pie-lib/demo

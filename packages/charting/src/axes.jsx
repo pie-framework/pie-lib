@@ -13,6 +13,31 @@ import { TickCorrectnessIndicator } from './common/correctness-indicators';
 import { bandKey, getRotateAngle, getTickValues } from './utils';
 import MarkLabel from './mark-label';
 
+// one document-level MutationObserver shared across all
+// RawChartAxes instances so that no chart misses a MathJax render batch
+const _mathCallbacks = new Set();
+let _docObserver = null;
+
+function registerMathCallback(cb) {
+  _mathCallbacks.add(cb);
+
+  if (!_docObserver && typeof document !== 'undefined') {
+    _docObserver = new MutationObserver(() => {
+      _mathCallbacks.forEach((fn) => fn());
+    });
+    _docObserver.observe(document.body, { childList: true, subtree: true });
+  }
+}
+
+function unregisterMathCallback(cb) {
+  _mathCallbacks.delete(cb);
+
+  if (_mathCallbacks.size === 0 && _docObserver) {
+    _docObserver.disconnect();
+    _docObserver = null;
+  }
+}
+
 const StyledErrorText = styled('text')(({ theme }) => ({
   fontSize: theme.typography.fontSize - 2,
   fill: theme.palette.error.main,
@@ -403,36 +428,71 @@ export class RawChartAxes extends React.Component {
 
   state = { height: 0, width: 0 };
 
+  measureHiddenLabel = () => {
+    if (!this.hiddenLabelRef) return;
+
+    const mjx = this.hiddenLabelRef.querySelector('mjx-container');
+    const input = this.hiddenLabelRef.querySelector('input');
+    const target = mjx || input || this.hiddenLabelRef;
+    const rect = target.getBoundingClientRect();
+    const height = Math.floor(rect.height);
+    const width = Math.floor(rect.width);
+
+    if (height !== this.state.height || width !== this.state.width) {
+      this.setState({ height, width });
+    }
+  };
+
+  // called by the document-level observer on every DOM mutation.
+  // only re-measures once mjx-container is present in our hidden label.
+  _onDocMutation = () => {
+    if (!this.hiddenLabelRef) return;
+    if (this.hiddenLabelRef.querySelector('mjx-container')) {
+      this.measureHiddenLabel();
+    }
+  };
+
+  observeHiddenLabel = (el) => {
+    if (!el) return;
+
+    const containsLatex = el.querySelector('[data-latex], [data-raw]');
+
+    if (containsLatex) {
+      renderMath(el);
+    }
+
+    if (el.querySelector('mjx-container') || !containsLatex) {
+      this.measureHiddenLabel();
+    }
+    // always register: if mjx-container isn't there yet, the doc observer will
+    // call _onDocMutation when MathJax finishes rendering any element on the page.
+    registerMathCallback(this._onDocMutation);
+  };
+
+  setHiddenLabelRef = (ref) => {
+    if (ref && ref !== this.hiddenLabelRef) {
+      this.hiddenLabelRef = ref;
+      this.observeHiddenLabel(ref);
+    }
+  };
+
   componentDidMount() {
     if (this.hiddenLabelRef) {
-      const boundingClientRect = this.hiddenLabelRef.getBoundingClientRect();
-      const hiddenEl = this.hiddenLabelRef;
-
-      // same logic used in dropdown.jsx for hidden labels width calculation
-      if (hiddenEl) {
-        const containsLatex = hiddenEl.querySelector('[data-latex], [data-raw]');
-        const hasMathJax = hiddenEl.querySelector('mjx-container');
-        const mathHandled = hiddenEl.querySelector('[data-math-handled="true"]');
-
-        if (containsLatex && (!mathHandled || !hasMathJax)) {
-          renderMath(this.hiddenLabelRef);
-        }
-
-        this.setState({
-          height: Math.floor(boundingClientRect.height),
-          width: Math.floor(boundingClientRect.width),
-        });
-      }
+      this.observeHiddenLabel(this.hiddenLabelRef);
     }
   }
 
-  componentDidUpdate() {
-    if (this.hiddenLabelRef) {
-      const width = Math.floor(this.hiddenLabelRef.getBoundingClientRect().width);
+  componentWillUnmount() {
+    unregisterMathCallback(this._onDocMutation);
+    if (this._updateTimer) {
+      clearTimeout(this._updateTimer);
+    }
+  }
 
-      if (width !== this.state.width) {
-        this.setState({ width });
-      }
+  componentDidUpdate(prevProps) {
+    if (prevProps.categories !== this.props.categories) {
+      if (this._updateTimer) clearTimeout(this._updateTimer);
+      this._updateTimer = setTimeout(() => this.measureHiddenLabel(), 50);
     }
   }
 
@@ -479,9 +539,7 @@ export class RawChartAxes extends React.Component {
 
     const getTickComponent = (props) => {
       const properties = {
-        hiddenLabelRef: (ref) => {
-          this.hiddenLabelRef = ref;
-        },
+        hiddenLabelRef: this.setHiddenLabelRef,
         categories,
         xBand,
         bandWidth,

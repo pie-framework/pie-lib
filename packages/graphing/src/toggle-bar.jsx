@@ -17,6 +17,10 @@ const StyledMiniButton = styled(Button, {
 })(({ selected, disabled }) => ({
   color: color.text(),
   backgroundColor: color.background(),
+  border: `1px solid ${color.buttonBorder()}`,
+  '&:hover': {
+    backgroundColor: color.buttonHoverBg(),
+  },
   ...(selected && {
     border: `1px solid ${color.secondary()}`,
   }),

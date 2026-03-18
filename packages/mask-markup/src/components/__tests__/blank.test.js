@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import Blank from '../blank';
 
 // Mock @dnd-kit hooks to avoid DndContext requirement
@@ -119,6 +119,38 @@ describe('Blank', () => {
         <Blank {...defaultProps} emptyResponseAreaHeight="non-numeric" emptyResponseAreaWidth="non-numeric" />,
       );
       expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('computes chip dimensions based on content when no emptyResponseArea size is provided', () => {
+      jest.useFakeTimers();
+      // Mock getBoundingClientRect to simulate measured content size
+      const rectSpy = jest
+        .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+        .mockReturnValue({ width: 100, height: 20, top: 0, left: 0, right: 100, bottom: 20 });
+
+      const { container } = render(
+        <Blank
+          {...defaultProps}
+          // Force measurement path that uses getMeasureNode / updateDimensions
+          emptyResponseAreaHeight={0}
+          emptyResponseAreaWidth={0}
+        />,
+      );
+
+      // Let the internal timeout in handleElements / updateDimensions run
+      act(() => {
+        jest.runAllTimers();
+      });
+
+      const wrapper = container.firstChild; // StyledContent
+      const chip = wrapper && wrapper.firstChild; // StyledChip (rootRef)
+
+      // Width and height should include padding (24px) around measured content
+      expect(chip.style.width).toBe('124px');
+      expect(chip.style.height).toBe('44px');
+
+      rectSpy.mockRestore();
+      jest.useRealTimers();
     });
   });
 

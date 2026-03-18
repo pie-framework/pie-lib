@@ -68,7 +68,7 @@ const styles = (theme) => ({
       background: 'var(--black)',
       borderRadius: '0.5rem',
       color: 'var(--white)',
-      fontFamily: "'JetBrainsMono', monospace",
+      fontFamily: '\'JetBrainsMono\', monospace',
       margin: '1.5rem 0',
       padding: '0.75rem 1rem',
 
@@ -81,9 +81,10 @@ const styles = (theme) => ({
     },
 
     '& blockquote': {
-      borderLeft: '3px solid var(--gray-3)',
-      margin: '1.5rem 0',
-      paddingLeft: '1rem',
+      background: '#f9f9f9',
+      borderLeft: '5px solid #ccc',
+      margin: '1.5em 10px',
+      padding: '.5em 10px',
     },
 
     '& hr': {

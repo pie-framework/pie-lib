@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.17...@pie-lib/editable-html-tip-tap@1.2.0-next.18) (2026-03-18)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** add blockquote, fix styling and add text alignment options PD-5790 ([99b30f6](https://github.com/pie-framework/pie-lib/commit/99b30f6622fd002abcdb901c4584026519bed8b7))
+
+# [1.2.0-next.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.16...@pie-lib/editable-html-tip-tap@1.2.0-next.17) (2026-03-18)
+
+### Bug Fixes
+
+- add touchAction style to prevent touch interactions in DragInTheBlank and blank components PD-5811 ([ba4d73b](https://github.com/pie-framework/pie-lib/commit/ba4d73b4785cc59e85f3055902667a1cd4db325c))
+- **editable-html-tip-tap:** create test for new div block extension PD-5622 ([911ef92](https://github.com/pie-framework/pie-lib/commit/911ef92c08f8de3f7080c36b48aa336f61b55800))
+- **editable-html-tip-tap:** set div as default, transform div to p tag at enter, update tests PD-5622 ([32e4126](https://github.com/pie-framework/pie-lib/commit/32e4126b9369c29c165d7a55315b04dbc759a181))
+
 # [1.2.0-next.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.15...@pie-lib/editable-html-tip-tap@1.2.0-next.16) (2026-03-11)
 
 **Note:** Version bump only for package @pie-lib/editable-html-tip-tap
