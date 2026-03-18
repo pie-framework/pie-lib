@@ -79,6 +79,7 @@ export function BlankContent({ n, children, isDragging, isOver, dragItem, value,
         padding: '8px 8px 8px 35px',
         width: hoveredElementSize ? hoveredElementSize.width : undefined,
         height: hoveredElementSize ? hoveredElementSize.height : undefined,
+        touchAction: 'none',
       }}
       data-key={n.index}
       contentEditable={false}
