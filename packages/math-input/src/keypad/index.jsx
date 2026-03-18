@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { alpha, lighten, styled } from '@mui/material/styles';
-import { indigo, pink } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import { flatten } from 'lodash-es';
 import { color } from '@pie-lib/render-ui';
@@ -27,7 +26,7 @@ const LatexButtonContent = styled(mq.Static)(({ latex }) => {
       marginBottom: '0.9px !important',
     },
     '& .mq-empty': {
-      backgroundColor: `${alpha(pink[300], 0.4)} !important`,
+      backgroundColor: `${color.keypadEmptyPlaceholder()} !important`,
     },
     '& .mq-overline .mq-overline-inner': {
       borderTop: '2px solid black',
@@ -186,22 +185,20 @@ const KeyPadContainer = styled('div')(() => ({
 
 const StyledButton = styled(Button)(({ category, isDelete, isComma, isDot }) => ({
   minWidth: 'auto',
+  textTransform: 'none',
   fontSize: isComma || isDot ? '200% !important' : '140% !important',
   lineHeight: isComma || isDot ? '100%' : 'normal',
   color: color.text(),
 
   backgroundColor:
     category === 'operators'
-      ? lighten(pink[300], 0.5)
-      : // this code with green seems to not be applied to current implementation, so I commented it out, but left it here just in case
-        // category === 'comparison' ? lighten(green[500], 0.5) :
-        lighten(indigo[300], 0.5),
+      ? color.keypadButtonOperator()
+      : color.keypadButton(),
   '&:hover': {
     backgroundColor:
       category === 'operators'
-        ? lighten(pink[300], 0.7)
-        : // category === 'comparison' ? lighten(green[500], 0.7) :
-          lighten(indigo[300], 0.7),
+        ? color.keypadButtonOperator()
+        : color.keypadButton(),
   },
   borderRadius: 0,
   ...(isDelete && {
@@ -218,15 +215,13 @@ const StyledLatexButtonWrapper = styled(Button)(({ category }) => ({
   borderRadius: 0,
   backgroundColor:
     category === 'operators'
-      ? lighten(pink[300], 0.5)
-      : // category === 'comparison' ? lighten(green[500], 0.5) :
-        lighten(indigo[300], 0.5),
+      ? color.keypadButtonOperator()
+      : color.keypadButton(),
   '&:hover': {
     backgroundColor:
       category === 'operators'
-        ? lighten(pink[300], 0.7)
-        : // category === 'comparison' ? lighten(green[500], 0.7) :
-          lighten(indigo[300], 0.7),
+        ? color.keypadButtonOperator()
+        : color.keypadButton(),
   },
 }));
 
@@ -234,15 +229,13 @@ const StyledIconButton = styled(IconButton)(({ category }) => ({
   minWidth: 'auto',
   backgroundColor:
     category === 'operators'
-      ? lighten(pink[300], 0.5)
-      : // category === 'comparison' ? lighten(green[500], 0.5) :
-        lighten(indigo[300], 0.5),
+      ? color.keypadButtonOperator()
+      : color.keypadButton(),
   '&:hover': {
     backgroundColor:
       category === 'operators'
-        ? lighten(pink[300], 0.7)
-        : // category === 'comparison' ? lighten(green[500], 0.7) :
-          lighten(indigo[300], 0.7),
+        ? color.keypadButtonOperator()
+        : color.keypadButton(),
   },
   borderRadius: 0,
   '& .icon': {
