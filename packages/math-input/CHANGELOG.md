@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0-next.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.8...@pie-lib/math-input@7.2.0-next.9) (2026-03-18)
+
+### Bug Fixes
+
+- **math-toolbar:** update math keypad colors and styles for improved UI consistency PD-5530 ([713c283](https://github.com/pie-framework/pie-lib/commit/713c283a11e1cff6568da7010e98e0b84df164ab))
+- remove default mui uppercase button style PD-5649 ([4f35483](https://github.com/pie-framework/pie-lib/commit/4f354832a7656ff640ca7d6a2b9baab2fd000b53))
+
 # [7.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.7...@pie-lib/math-input@7.2.0-next.8) (2026-03-11)
 
 ### Bug Fixes

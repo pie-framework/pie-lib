@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-next.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.5...@pie-lib/render-ui@5.2.0-next.6) (2026-03-18)
+
+### Bug Fixes
+
+- **math-toolbar:** update math keypad colors and styles for improved UI consistency PD-5530 ([713c283](https://github.com/pie-framework/pie-lib/commit/713c283a11e1cff6568da7010e98e0b84df164ab))
+
 # [5.2.0-next.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.4...@pie-lib/render-ui@5.2.0-next.5) (2026-03-18)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.18...@pie-lib/editable-html-tip-tap@1.2.0-next.19) (2026-03-18)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** wrap new node with plain text in a div not in a p PD-5669 ([0216b60](https://github.com/pie-framework/pie-lib/commit/0216b60cb54f2af2761042c0be7247b1507b8aeb))
+
 # [1.2.0-next.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.17...@pie-lib/editable-html-tip-tap@1.2.0-next.18) (2026-03-18)
 
 ### Bug Fixes

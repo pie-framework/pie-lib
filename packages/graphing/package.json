@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.2.0-next.18",
+  "version": "3.2.0-next.19",
   "description": "Graphing components",
   "keywords": [
     "react",
@@ -22,11 +22,11 @@
     "@mapbox/point-geometry": "^1.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/drag": "^3.2.0-next.5",
-    "@pie-lib/editable-html-tip-tap": "^1.2.0-next.18",
+    "@pie-lib/drag": "^3.2.0-next.6",
+    "@pie-lib/editable-html-tip-tap": "^1.2.0-next.19",
     "@pie-lib/graphing-utils": "^2.2.0-next.3",
-    "@pie-lib/plot": "^3.2.0-next.18",
-    "@pie-lib/render-ui": "^5.2.0-next.5",
+    "@pie-lib/plot": "^3.2.0-next.19",
+    "@pie-lib/render-ui": "^5.2.0-next.6",
     "@pie-lib/translator": "^3.2.0-next.3",
     "@visx/axis": "^3.0.0",
     "@visx/clip-path": "^3.0.0",
