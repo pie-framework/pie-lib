@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.17...@pie-lib/editable-html-tip-tap@1.2.0-next.18) (2026-03-18)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** add blockquote, fix styling and add text alignment options PD-5790 ([99b30f6](https://github.com/pie-framework/pie-lib/commit/99b30f6622fd002abcdb901c4584026519bed8b7))
+
 # [1.2.0-next.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.16...@pie-lib/editable-html-tip-tap@1.2.0-next.17) (2026-03-18)
 
 ### Bug Fixes

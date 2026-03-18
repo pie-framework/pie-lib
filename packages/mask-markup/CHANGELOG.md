@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-next.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.18...@pie-lib/mask-markup@2.2.0-next.19) (2026-03-18)
+
+### Bug Fixes
+
+- **mask-markup:** add tests for new getMeasureNode method PD-5501 ([85bd3f6](https://github.com/pie-framework/pie-lib/commit/85bd3f6ea7610819b676bc0113151bd8ef06709f))
+
 # [2.2.0-next.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.17...@pie-lib/mask-markup@2.2.0-next.18) (2026-03-18)
 
 ### Bug Fixes
