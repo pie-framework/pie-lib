@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import debounce from 'lodash-es/debounce';
 import { EditorContent, useEditor, useEditorState } from '@tiptap/react';
+import { styled } from '@mui/material/styles';
 import StarterKit from '@tiptap/starter-kit';
 import { TextStyleKit } from '@tiptap/extension-text-style';
 import { CharacterCount } from '@tiptap/extension-character-count';
@@ -8,8 +10,7 @@ import SubScript from '@tiptap/extension-subscript';
 import TextAlign from '@tiptap/extension-text-align';
 import Image from '@tiptap/extension-image';
 import Placeholder from '@tiptap/extension-placeholder';
-import { styled } from '@mui/material/styles';
-import debounce from 'lodash-es/debounce';
+import { normalizeInitialMarkup } from '../utils/helper';
 
 import ExtendedTable from '../extensions/extended-table';
 import { DivNode } from '../extensions/div-node';
@@ -259,7 +260,7 @@ export const EditableHtml = (props) => {
         },
       },
       editable: !props.disabled,
-      content: props.markup || '<div></div>',
+      content: normalizeInitialMarkup(props.markup),
       onUpdate: ({ editor, transaction }) => {
         if (transaction.isDone) {
           props.onChange?.(editor.getHTML());
@@ -301,11 +302,10 @@ export const EditableHtml = (props) => {
     if (!editor) {
       return;
     }
-
-    const nextMarkup = props.markup || '<div></div>';
+    const nextMarkup = normalizeInitialMarkup(props.markup);
 
     if (nextMarkup !== editor.getHTML()) {
-      editor.commands.setContent(props.markup, false); // false = don’t emit update
+      editor.commands.setContent(nextMarkup, false);
     }
   }, [props.markup, editor]);
 
