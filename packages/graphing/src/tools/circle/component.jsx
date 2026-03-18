@@ -240,7 +240,7 @@ export class RawBaseCircle extends React.Component {
 // MUI v5 styled() replaces withStyles
 const StyledBgCircle = styled(BgCircle)(() => ({
   '&.outerLine': {
-    fill: 'rgba(0,0,0,0)',
+    fill: color.transparent(),
     stroke: color.defaults.BLACK,
     strokeWidth: 4,
     '&:hover': {
