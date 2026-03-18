@@ -1,7 +1,7 @@
 {
   "name": "@pie-lib/demo",
   "private": true,
-  "version": "8.33.0-next.19",
+  "version": "8.33.0-next.20",
   "repository": "pie-framework/pie-lib",
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -16,7 +16,7 @@
     "@pie-framework/mathml-to-latex": "1.4.4",
     "@pie-framework/mathquill": "1.2.1-beta.0",
     "@pie-framework/parse-english": "^1.0.0",
-    "@pie-lib/charting": "^6.2.0-next.18",
+    "@pie-lib/charting": "^6.2.0-next.19",
     "@pie-lib/config-ui": "^12.2.0-next.19",
     "@pie-lib/correct-answer-toggle": "^3.2.0-next.5",
     "@pie-lib/drag": "^3.2.0-next.5",
