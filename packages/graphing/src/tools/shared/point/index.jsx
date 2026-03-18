@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { gridDraggable } from '@pie-lib/plot';
+import { color } from '@pie-lib/render-ui';
 import * as utils from '../../../utils';
 import { RawBp } from './base-point';
 import { RawArrow } from './arrow-point';
@@ -26,6 +27,11 @@ const opts = {
 const PointStyle = styled('g')(() => ({
   '& circle, & polygon': {
     cursor: 'pointer',
+  },
+  '&[disabled]': {
+    '& circle, & polygon': {
+      fill: color.disabledSecondary(),
+    },
   },
 }));
 
