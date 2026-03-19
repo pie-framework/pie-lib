@@ -118,6 +118,15 @@ const AxisConfig = (props) => {
   const { axisLabel = {}, min = {}, max = {} } = displayedFields;
   const activePlugins = ['bold', 'italic', 'underline', 'strikethrough'];
 
+  const onKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      // prevent adding new lines - cancelling event
+      return true;
+    }
+
+    return false;
+  };
+
   return (
     <ColumnView>
       {displayHeader && (
@@ -159,6 +168,7 @@ const AxisConfig = (props) => {
                 onChange={(value) => onChange('axisLabel', value)}
                 markup={label || ''}
                 charactersLimit={5}
+                onKeyDown={onKeyDown}
                 activePlugins={activePlugins}
               />
             </AxisLabel>
