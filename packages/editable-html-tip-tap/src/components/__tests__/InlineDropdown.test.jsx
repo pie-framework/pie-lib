@@ -132,7 +132,7 @@ describe('InlineDropdown', () => {
 
   it('calls respAreaToolbar with correct params', () => {
     render(<InlineDropdown {...defaultProps} />);
-    expect(mockOptions.respAreaToolbar).toHaveBeenCalledWith(mockNode, mockEditor, expect.any(Function));
+    expect(mockOptions.respAreaToolbar).toHaveBeenCalledWith([mockNode, 5], mockEditor, expect.any(Function));
   });
 
   it('closes toolbar on outside click', async () => {

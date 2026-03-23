@@ -124,7 +124,7 @@ describe('ExplicitConstructedResponse', () => {
 
   it('calls respAreaToolbar with correct params', () => {
     render(<ExplicitConstructedResponse {...defaultProps} />);
-    expect(mockOptions.respAreaToolbar).toHaveBeenCalledWith(mockNode, mockEditor, expect.any(Function));
+    expect(mockOptions.respAreaToolbar).toHaveBeenCalledWith([mockNode, 5], mockEditor, expect.any(Function));
   });
 
   it('has cursor pointer style', () => {

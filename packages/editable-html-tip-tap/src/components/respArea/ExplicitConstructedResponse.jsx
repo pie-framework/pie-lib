@@ -9,7 +9,7 @@ const ExplicitConstructedResponse = (props) => {
   const { respAreaToolbar, error: errorFn } = options;
   const pos = getPos();
   const [showToolbar, setShowToolbar] = useState(false);
-  const EcrToolbar = respAreaToolbar(node, editor, () => {});
+  const EcrToolbar = respAreaToolbar([node, pos], editor, () => {});
   const toolbarRef = useRef(null);
 
   let error;
