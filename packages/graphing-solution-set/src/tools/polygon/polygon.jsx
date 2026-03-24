@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { gridDraggable, types } from '@pie-lib/plot';
 import * as utils from '../../utils';
-import { color } from '@pie-lib/render-ui';
 import { correct, incorrect } from '../shared/styles';
 
 const StyledPolygon = styled('polygon', {
@@ -11,7 +10,6 @@ const StyledPolygon = styled('polygon', {
 })(({ isSolution, correctness }) => ({
   fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'transparent',
   strokeWidth: 2,
-  stroke: color.defaults.SECONDARY_LIGHT,
   '&:hover': {
     fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'rgb(0, 0, 0, 0.25)',
   },
@@ -24,7 +22,6 @@ const StyledPolyline = styled('polyline', {
 })(({ isSolution, correctness }) => ({
   fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'transparent',
   strokeWidth: 2,
-  stroke: color.defaults.SECONDARY_LIGHT,
   '&:hover': {
     fill: isSolution ? 'rgb(60, 73, 150, 0.6)' : 'rgb(0, 0, 0, 0.25)',
   },
