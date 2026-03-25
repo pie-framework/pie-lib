@@ -306,7 +306,7 @@ describe('MathNodeView', () => {
       expect(queryByTestId('math-toolbar')).toBeInTheDocument();
     });
 
-    fireEvent.mouseDown(document.body);
+    fireEvent.click(document.body);
 
     await waitFor(() => {
       expect(queryByTestId('math-toolbar')).not.toBeInTheDocument();
