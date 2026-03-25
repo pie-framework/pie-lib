@@ -34,7 +34,7 @@ const StyledAccordion = styled(Accordion)({
 });
 
 const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
-  padding: `0 ${theme.spacing(1)}px`,
+  padding: `0 ${theme.spacing(1)}`,
   minHeight: '32px !important',
   '& .MuiAccordionSummary-content': {
     margin: '4px 0 !important',
