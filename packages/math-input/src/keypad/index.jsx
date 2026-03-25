@@ -195,10 +195,10 @@ const StyledButton = styled(Button)(({ category, isDelete, isComma, isDot }) => 
       ? color.keypadButtonOperator()
       : color.keypadButton(),
   '&:hover': {
-    backgroundColor:
+     backgroundColor:
       category === 'operators'
-        ? color.keypadButtonOperator()
-        : color.keypadButton(),
+        ? color.keypadButtonOperatorHover()
+        : color.keypadButtonHover()
   },
   borderRadius: 0,
   ...(isDelete && {
@@ -218,10 +218,10 @@ const StyledLatexButtonWrapper = styled(Button)(({ category }) => ({
       ? color.keypadButtonOperator()
       : color.keypadButton(),
   '&:hover': {
-    backgroundColor:
+     backgroundColor:
       category === 'operators'
-        ? color.keypadButtonOperator()
-        : color.keypadButton(),
+        ? color.keypadButtonOperatorHover()
+        : color.keypadButtonHover(),
   },
 }));
 
@@ -234,8 +234,8 @@ const StyledIconButton = styled(IconButton)(({ category }) => ({
   '&:hover': {
     backgroundColor:
       category === 'operators'
-        ? color.keypadButtonOperator()
-        : color.keypadButton(),
+        ? color.keypadButtonOperatorHover()
+        : color.keypadButtonHover(),
   },
   borderRadius: 0,
   '& .icon': {
