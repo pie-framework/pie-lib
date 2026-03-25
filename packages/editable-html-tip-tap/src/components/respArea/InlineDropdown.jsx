@@ -11,11 +11,12 @@ const InlineDropdown = (props) => {
   // TODO: Investigate
   // Needed because items with values inside have different positioning for some reason
   const html = value || '<div>&nbsp</div>';
+  const pos = getPos();
   const toolbarRef = useRef(null);
   const toolbarEditor = useRef(null);
   const [showToolbar, setShowToolbar] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
-  const InlineDropdownToolbar = options.respAreaToolbar(node, editor, () => {});
+  const InlineDropdownToolbar = options.respAreaToolbar([node, pos], editor, () => {});
 
   useEffect(() => {
     const { selection } = editor.state;
