@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.19...@pie-lib/editable-html-tip-tap@1.2.0-next.20) (2026-03-25)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** extend text alignment options to include additional elements PD-5851 ([fc43c5c](https://github.com/pie-framework/pie-lib/commit/fc43c5c4c29a4c6bcd42c61d6b18e32d56bf2557))
+- provided the pos of the node as well in the response area toolbar callback [PD-5787] ([caa9a90](https://github.com/pie-framework/pie-lib/commit/caa9a90617d15afcd8457c8962460867b3990bbc))
+
 # [1.2.0-next.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.18...@pie-lib/editable-html-tip-tap@1.2.0-next.19) (2026-03-18)
 
 ### Bug Fixes

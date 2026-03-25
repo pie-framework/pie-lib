@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.19...@pie-lib/graphing@3.2.0-next.20) (2026-03-25)
+
+### Bug Fixes
+
+- **graphing:** adjust axis label PD-5595 ([f462a1f](https://github.com/pie-framework/pie-lib/commit/f462a1f5563a6bb18443091c16d75064f2b31bad))
+
 # [3.2.0-next.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.18...@pie-lib/graphing@3.2.0-next.19) (2026-03-18)
 
 **Note:** Version bump only for package @pie-lib/graphing

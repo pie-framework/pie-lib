@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.6...@pie-lib/render-ui@5.2.0-next.7) (2026-03-25)
+
+### Features
+
+- **math-input:** add hover styles for keypad buttons and update color definitions PD-5530 ([a3cb101](https://github.com/pie-framework/pie-lib/commit/a3cb101e5f326df14d0ae8454689ee18218744db))
+
 # [5.2.0-next.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.5...@pie-lib/render-ui@5.2.0-next.6) (2026-03-18)
 
 ### Bug Fixes

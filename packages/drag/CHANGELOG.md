@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.2.0-next.6...@pie-lib/drag@3.2.0-next.7) (2026-03-25)
+
+### Bug Fixes
+
+- **drag:** set margin for draggable choice with p tag PD-5669 ([c430a21](https://github.com/pie-framework/pie-lib/commit/c430a21788138edfa522b42230120133943bcb1f))
+
 # [3.2.0-next.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.2.0-next.5...@pie-lib/drag@3.2.0-next.6) (2026-03-18)
 
 **Note:** Version bump only for package @pie-lib/drag

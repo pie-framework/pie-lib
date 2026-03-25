@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@3.2.0-next.19...@pie-lib/graphing-solution-set@3.2.0-next.20) (2026-03-25)
+
+### Bug Fixes
+
+- **graphing-solution-set:** adjust axis label PD-5595 ([201bad9](https://github.com/pie-framework/pie-lib/commit/201bad9ef919f982cf045f15b9d01b2cb0ba66ef))
+- **graphing-solution-set:** get rid of border in solution set mode PD-5566 ([49a6f62](https://github.com/pie-framework/pie-lib/commit/49a6f62d6b0b29e7acd62b8561441a1439077d8e))
+
 # [3.2.0-next.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing-solution-set@3.2.0-next.18...@pie-lib/graphing-solution-set@3.2.0-next.19) (2026-03-18)
 
 **Note:** Version bump only for package @pie-lib/graphing-solution-set
