@@ -25,19 +25,19 @@ const StyledArrow = styled(Arrow)(() => ({
   fill: color.defaults.PRIMARY,
 }));
 
-const StyledLabel = styled('div')(({ theme }) => ({
-  fontSize: theme.typography.fontSize,
-}));
 
-const StyledAxisLabelHolder = styled('div')(({ theme }) => ({
+const StyledAxisLabelHolder = styled('div')(({ theme, centered }) => ({
   padding: 0,
   margin: 0,
-  textAlign: 'center',
   '* > *': {
     margin: 0,
     padding: 0,
   },
+  '& p': {
+    margin: 0,
+  },
   fontSize: theme.typography.fontSize,
+  ...(centered && { textAlign: 'center' }),
 }));
 
 const StyledAxesGroup = styled('g')(() => ({
@@ -129,7 +129,9 @@ export class RawXAxis extends React.Component {
         {includeArrows && includeArrows.right && <StyledArrow direction="right" x={domain.max} y={0} scale={scale} />}
         {domain.axisLabel && (
           <foreignObject x={size.width + 17} y={scale.y(0) - 9} width={necessaryWidth} height={20 * necessaryRows}>
-            <StyledLabel dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
+            <Readable false>
+              <StyledAxisLabelHolder dangerouslySetInnerHTML={{ __html: domain.axisLabel }} />
+            </Readable>
           </foreignObject>
         )}
       </StyledAxesGroup>
@@ -186,7 +188,7 @@ export class RawYAxis extends React.Component {
         {range.axisLabel && (
           <foreignObject x={scale.x(0) - necessaryWidth / 2} y={-33} width={necessaryWidth} height="20">
             <Readable false>
-              <StyledAxisLabelHolder dangerouslySetInnerHTML={{ __html: range.axisLabel }} />
+              <StyledAxisLabelHolder centered dangerouslySetInnerHTML={{ __html: range.axisLabel }} />
             </Readable>
           </foreignObject>
         )}
