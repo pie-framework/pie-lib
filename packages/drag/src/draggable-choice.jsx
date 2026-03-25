@@ -14,6 +14,12 @@ const StyledChoice = styled('div')(({ theme }) => ({
   minWidth: theme.spacing(20),
   maxWidth: theme.spacing(75),
   cursor: 'grab',
+  '& p': {
+    margin: 0,
+  },
+  '& p *': {
+    margin: 0,
+  },
   '&:active': {
     cursor: 'grabbing',
   },
