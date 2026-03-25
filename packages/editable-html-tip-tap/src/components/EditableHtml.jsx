@@ -138,7 +138,7 @@ export const EditableHtml = (props) => {
 
   const extensions = [
     TextAlign.configure({
-      types: ['heading', 'paragraph'],
+      types: ['heading', 'paragraph', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'td', 'th'],
       alignments: ['left', 'right', 'center', 'justify'],
     }),
     TextStyleKit,
