@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
 import { Readable } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import PropTypes from 'prop-types';
@@ -46,6 +47,13 @@ const styles = {
   },
 };
 
+const LabelContent = styled('div')({
+  ...styles.disabledLabel,
+  '& p': {
+    margin: 0,
+  },
+});
+
 const LabelComponent = (props) => {
   const {
     disabledLabel,
@@ -62,6 +70,7 @@ const LabelComponent = (props) => {
     mathMlOptions = {},
     charactersLimit,
     titleHeight,
+    preventNewLines,
   } = props;
 
   const [rotatedToHorizontal, setRotatedToHorizontal] = useState(false);
@@ -109,6 +118,15 @@ const LabelComponent = (props) => {
     });
   };
 
+  const onKeyDown = (event) => {
+    if (preventNewLines && event.key === 'Enter') {
+      // prevent adding new lines - cancelling event
+      return true;
+    }
+
+    return false;
+  };
+
   return (
     <Readable false>
       <div
@@ -124,7 +142,7 @@ const LabelComponent = (props) => {
         }}
       >
         {disabledLabel ? (
-          <div style={styles.disabledLabel} dangerouslySetInnerHTML={{ __html: text || '' }} />
+          <LabelContent dangerouslySetInnerHTML={{ __html: text || '' }} />
         ) : (
           <EditableHtml
             markup={text || ''}
@@ -138,6 +156,7 @@ const LabelComponent = (props) => {
             disableScrollbar
             activePlugins={activePlugins}
             onDone={exitEditMode}
+            onKeyDown={onKeyDown}
             mathMlOptions={mathMlOptions}
             charactersLimit={charactersLimit}
           />
