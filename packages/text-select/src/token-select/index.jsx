@@ -18,15 +18,6 @@ const StyledTokenSelect = styled('div')(() => ({
   },
 }));
 
-// strip HTML tags for plain text rendering
-const stripHtmlTags = (text) => {
-  if (!text) {
-    return text;
-  }
-
-  return text.replace(/<[^>]+>/g, '');
-};
-
 export class TokenSelect extends React.Component {
   static propTypes = {
     tokens: PropTypes.arrayOf(PropTypes.shape(TokenTypes)).isRequired,
@@ -137,15 +128,15 @@ export class TokenSelect extends React.Component {
             disabled={disabled}
             index={index}
             {...t}
-            text={stripHtmlTags(t.text)}
+            text={t.text}
             selectable={selectable}
             highlight={highlightChoices}
             animationsDisabled={animationsDisabled}
           />,
         );
       } else {
-        // raw text node – React will escape as needed
-        currentChildren.push(<React.Fragment key={index}>{stripHtmlTags(t.text)}</React.Fragment>);
+        // non-selectable text node
+        currentChildren.push(<span key={index} dangerouslySetInnerHTML={{ __html: t.text }} />);
       }
     });
 
