@@ -60,6 +60,9 @@ export const gridDraggable = (opts) => (Comp) => {
       if (document.activeElement) {
         document.activeElement.blur();
       }
+      // reliably track whether any real drag movement occurred. This avoids the async-setState race condition
+      // where onStop fires before setState has updated, causing drags to be misidentified as clicks.
+      this._didDrag = false;
       this.setState({ startX: e.clientX, startY: e.clientY });
       if (onDragStart) {
         onDragStart();
@@ -185,6 +188,13 @@ export const gridDraggable = (opts) => (Comp) => {
         return;
       }
 
+      // Mark that a real drag occurred so onStop won't treat this as a click.
+      // We check for non-trivial movement to avoid marking a click as a drag
+      // due to sub-pixel jitter on mousedown.
+      if (Math.abs(dd.deltaX) > 1 || Math.abs(dd.deltaY) > 1) {
+        this._didDrag = true;
+      }
+
       const bounds = this.getScaledBounds();
 
       if (dd.deltaX < 0 && dd.deltaX < bounds.left) {
@@ -240,7 +250,11 @@ export const gridDraggable = (opts) => (Comp) => {
       }
 
       log('[onStop] lastX/Y: ', dd.lastX, dd.lastY);
-      const isClick = this.tiny('x', e) && this.tiny('y', e);
+      // Use the synchronous _didDrag flag instead of comparing clientX/clientY via tiny().
+      // tiny() was unreliable because setState is async – startX/startY might not reflect
+      // the actual mousedown position when onStop fires. _didDrag is set synchronously in
+      // onStart (false) and onDrag (true), so it's always accurate.
+      const isClick = !this._didDrag;
 
       if (isClick) {
         if (onClick) {
