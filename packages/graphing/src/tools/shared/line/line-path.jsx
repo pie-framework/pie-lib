@@ -29,10 +29,11 @@ const StyledDrawLine = styled(vx.LinePath)(({ disabled: isDisabled, correctness 
 }));
 
 const StyledLine = styled(vx.LinePath)(({ theme, disabled: isDisabled, correctness, isDragging }) => ({
-  strokeWidth: 3,
+  strokeWidth: 7,
   fill: 'none',
   transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
   stroke: 'transparent',
+  pointerEvents: 'stroke',
   '&:hover': dragging(theme),
   ...(isDragging && dragging(theme)),
   ...(isDisabled && {

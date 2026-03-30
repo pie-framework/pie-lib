@@ -41,6 +41,16 @@ export const ArrowedLine = (props) => {
           )}
         />
       </defs>
+      {/* Transparent wider line captures pointer events (+2px each side) */}
+      <line
+        x1={scale.x(eFrom.x)}
+        y1={scale.y(eFrom.y)}
+        x2={scale.x(eTo.x)}
+        y2={scale.y(eTo.y)}
+        stroke="transparent"
+        strokeWidth={7}
+        style={{ cursor: 'pointer', pointerEvents: 'stroke' }}
+      />
       <line
         x1={scale.x(eFrom.x)}
         y1={scale.y(eFrom.y)}

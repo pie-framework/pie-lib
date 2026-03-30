@@ -18,20 +18,23 @@ const StyledLineRoot = styled('line')(({ theme, disabled, correctness }) => ({
 export const Line = (props) => {
   const { className, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
+  const x1 = scale.x(from.x);
+  const y1 = scale.y(from.y);
+  const x2 = scale.x(to.x);
+  const y2 = scale.y(to.y);
 
   return (
-    <StyledLineRoot
-      stroke="green"
-      strokeWidth={6}
-      x1={scale.x(from.x)}
-      y1={scale.y(from.y)}
-      x2={scale.x(to.x)}
-      y2={scale.y(to.y)}
-      className={className}
-      disabled={disabled}
-      correctness={correctness}
-      {...rest}
-    />
+    <g>
+      {/* Transparent wider line captures pointer events (+2px each side) */}
+      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="transparent" strokeWidth={7} style={{ cursor: 'pointer', pointerEvents: 'stroke' }} />
+      <StyledLineRoot
+        x1={x1} y1={y1} x2={x2} y2={y2}
+        className={className}
+        disabled={disabled}
+        correctness={correctness}
+        {...rest}
+      />
+    </g>
   );
 };
 
