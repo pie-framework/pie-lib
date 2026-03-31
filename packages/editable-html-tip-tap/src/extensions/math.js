@@ -209,12 +209,14 @@ export const MathNodeView = (props) => {
     };
 
     if (showToolbar) {
-      document.addEventListener('mousedown', handleClickOutside);
+      // Use `click` (not `mousedown`) so interacting with browser UI like the scrollbar
+      // doesn't automatically dismiss the math toolbar.
+      document.addEventListener('click', handleClickOutside);
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     }
 
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, [editor, showToolbar]);
 
   const handleChange = (newLatex) => {
