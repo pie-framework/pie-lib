@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-next.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.21...@pie-lib/charting@6.2.0-next.22) (2026-03-31)
+
+### Bug Fixes
+
+- **charting:** fix math rendering race condition in fractional chart labels PD-5496 ([03d9d81](https://github.com/pie-framework/pie-lib/commit/03d9d8131872aff762866abb5c910312a7151864))
+
 # [6.2.0-next.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.20...@pie-lib/charting@6.2.0-next.21) (2026-03-25)
 
 **Note:** Version bump only for package @pie-lib/charting

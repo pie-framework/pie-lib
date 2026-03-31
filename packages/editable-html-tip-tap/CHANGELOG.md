@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.20...@pie-lib/editable-html-tip-tap@1.2.0-next.21) (2026-03-31)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** avoid closing math dialog on scrollbar, update test PD-5823 ([ad43e67](https://github.com/pie-framework/pie-lib/commit/ad43e67d9019efae020d2da817568936348bcbc9))
+
 # [1.2.0-next.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.19...@pie-lib/editable-html-tip-tap@1.2.0-next.20) (2026-03-25)
 
 ### Bug Fixes
