@@ -154,6 +154,12 @@ function TiptapContainer(props) {
   } = props;
 
   useEffect(() => {
+    if (editor && rootRef.current) {
+      editor._tiptapContainerEl = rootRef.current;
+    }
+  }, [editor, rootRef.current]);
+
+  useEffect(() => {
     if (editor && autoFocus) {
       Promise.resolve().then(() => {
         editor.commands.focus('end');
