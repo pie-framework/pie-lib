@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.33.0-next.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.23...@pie-lib/demo@8.33.0-next.24) (2026-04-03)
+
+### Bug Fixes
+
+- **math-input:** bump @pie-framework/mathquill to 1.2.1-beta.1 with jQuery shim fixes PIE-16 PIE-20 ([3eaa8fd](https://github.com/pie-framework/pie-lib/commit/3eaa8fd410d8668c2d085cca4a4995a7e66d774f))
+
 # [8.33.0-next.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.22...@pie-lib/demo@8.33.0-next.23) (2026-03-31)
 
 **Note:** Version bump only for package @pie-lib/demo

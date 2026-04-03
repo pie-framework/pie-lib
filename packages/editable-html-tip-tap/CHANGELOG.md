@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.21...@pie-lib/editable-html-tip-tap@1.2.0-next.22) (2026-04-03)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** backspace behavior in tiptap and add custom toolbar in ExplicitConstructedResponse PIE-19 PIE-30 ([5779a6d](https://github.com/pie-framework/pie-lib/commit/5779a6d6a1c30f398025d4c7bdce578827b51e3a))
+- handle different editors, handle clicks in dropdown PIE-47 ([19c8914](https://github.com/pie-framework/pie-lib/commit/19c89148cee951133680c218fb446107f9b2ce16))
+- **math-input:** bump @pie-framework/mathquill to 1.2.1-beta.1 with jQuery shim fixes PIE-16 PIE-20 ([3eaa8fd](https://github.com/pie-framework/pie-lib/commit/3eaa8fd410d8668c2d085cca4a4995a7e66d774f))
+- **plot:** remove unnecessary space, prevent new lines, center placeholder PD-5674 ([9840d80](https://github.com/pie-framework/pie-lib/commit/9840d80a1351f19adbe3396d3abae5fb4e310494))
+
 # [1.2.0-next.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.20...@pie-lib/editable-html-tip-tap@1.2.0-next.21) (2026-03-31)
 
 ### Bug Fixes

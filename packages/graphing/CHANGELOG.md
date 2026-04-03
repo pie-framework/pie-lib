@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.21...@pie-lib/graphing@3.2.0-next.22) (2026-04-03)
+
+### Bug Fixes
+
+- **graphing/plot:** improve drag handling to prevent misidentifying clicks as drags PD-5598 ([40a65a3](https://github.com/pie-framework/pie-lib/commit/40a65a312ec06227309fceac848bb8c7a266b1bb))
+- **graphing:** increase stroke width and improve pointer event handling for lines ([58e1b47](https://github.com/pie-framework/pie-lib/commit/58e1b476cccb43c2db7e685119a3268fce21808c))
+- unapplied padding PD-5450 ([5d92076](https://github.com/pie-framework/pie-lib/commit/5d92076e57b1106a9bcb746da97bf105427e77f5))
+
 # [3.2.0-next.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.20...@pie-lib/graphing@3.2.0-next.21) (2026-03-31)
 
 **Note:** Version bump only for package @pie-lib/graphing

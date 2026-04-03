@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.2.0-next.7...@pie-lib/drag@3.2.0-next.8) (2026-04-03)
+
+### Bug Fixes
+
+- unapplied padding PD-5450 ([5d92076](https://github.com/pie-framework/pie-lib/commit/5d92076e57b1106a9bcb746da97bf105427e77f5))
+
 # [3.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.2.0-next.6...@pie-lib/drag@3.2.0-next.7) (2026-03-25)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/mask-markup",
-  "version": "2.2.0-next.22",
+  "version": "2.2.0-next.23",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -13,8 +13,8 @@
     "@emotion/style": "^0.8.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/drag": "^3.2.0-next.7",
-    "@pie-lib/editable-html-tip-tap": "^1.2.0-next.21",
+    "@pie-lib/drag": "^3.2.0-next.8",
+    "@pie-lib/editable-html-tip-tap": "^1.2.0-next.22",
     "@pie-lib/math-rendering": "^4.2.0-next.3",
     "@pie-lib/render-ui": "^5.2.0-next.7",
     "classnames": "^2.2.6",

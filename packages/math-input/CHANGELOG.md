@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0-next.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.10...@pie-lib/math-input@7.2.0-next.11) (2026-04-03)
+
+### Bug Fixes
+
+- **math-input:** bump @pie-framework/mathquill to 1.2.1-beta.1 with jQuery shim fixes PIE-16 PIE-20 ([3eaa8fd](https://github.com/pie-framework/pie-lib/commit/3eaa8fd410d8668c2d085cca4a4995a7e66d774f))
+
 # [7.2.0-next.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.9...@pie-lib/math-input@7.2.0-next.10) (2026-03-25)
 
 ### Features

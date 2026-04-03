@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.21...@pie-lib/plot@3.2.0-next.22) (2026-04-03)
+
+### Bug Fixes
+
+- **graphing/plot:** improve drag handling to prevent misidentifying clicks as drags PD-5598 ([40a65a3](https://github.com/pie-framework/pie-lib/commit/40a65a312ec06227309fceac848bb8c7a266b1bb))
+- **plot:** remove unnecessary space, prevent new lines, center placeholder PD-5674 ([9840d80](https://github.com/pie-framework/pie-lib/commit/9840d80a1351f19adbe3396d3abae5fb4e310494))
+
 # [3.2.0-next.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.20...@pie-lib/plot@3.2.0-next.21) (2026-03-31)
 
 **Note:** Version bump only for package @pie-lib/plot
