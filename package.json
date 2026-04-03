@@ -16,6 +16,8 @@
     "release:next": "scripts/build release deploy --next",
     "build": "scripts/build build",
     "run-mathml": "cd node_modules/ && yarn link \"@pie-framework/mathml-to-latex\" && cd .. && ./scripts/dev",
+    "link-mathquill": "yarn link \"@pie-framework/mathquill\"",
+    "unlink-mathquill": "yarn unlink \"@pie-framework/mathquill\" && yarn install",
     "clean-install": "git clean -xdf . && yarn install && ./scripts/build babel",
     "link-pslb": "cd node_modules/ && yarn link '@pslb/pslb'",
     "print-module": "time yarn pslb --config pslb/pslb.config.js --logLevel silly",
