@@ -7,9 +7,10 @@ import * as utils from '../../utils';
 import { correct, disabled, incorrect, missing } from '../shared/styles';
 
 const StyledLine = styled('line')(({ disabled: isDisabled, correctness }) => ({
-  strokeWidth: 3,
+  strokeWidth: 7,
   transition: 'stroke-width 200ms ease-in, stroke 200ms ease-in',
   stroke: 'transparent',
+  pointerEvents: 'stroke',
   '&:hover': {
     strokeWidth: 4,
     stroke: color.defaults.BLACK,

@@ -8,7 +8,7 @@ import { getAdjustedGraphLimits, thinnerShapesNeeded } from '../../utils';
 import { styled } from '@mui/material/styles';
 
 const StyledRayRoot = styled('g')(({ theme, disabled, correctness }) => ({
-  '& line': {
+  '& line:not(.hit-area)': {
     ...styles.line(theme),
     ...(disabled && styles.disabledSecondary(theme)),
     ...(correctness === 'correct' && styles.correct(theme, 'stroke')),
@@ -52,6 +52,17 @@ export const RayLine = (props) => {
           )}
         />
       </defs>
+      {/* Transparent wider line captures pointer events (+2px each side) */}
+      <line
+        x1={scale.x(from.x)}
+        y1={scale.y(from.y)}
+        x2={scale.x(aToB.x)}
+        y2={scale.y(aToB.y)}
+        className="hit-area"
+        stroke="transparent"
+        strokeWidth={7}
+        style={{ cursor: 'pointer', pointerEvents: 'stroke' }}
+      />
       <line
         x1={scale.x(from.x)}
         y1={scale.y(from.y)}
