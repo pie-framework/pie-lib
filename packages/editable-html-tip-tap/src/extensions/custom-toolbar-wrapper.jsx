@@ -48,7 +48,7 @@ const SharedContainer = styled('div')({
 });
 
 function CustomToolbarWrapper(props) {
-  const { children, deletable, toolbarOpts, autoWidth, isFocused, doneButtonRef, onDelete, showDone, onDone } = props;
+  const { children, deletable, toolbarOpts, autoWidth, isFocused, doneButtonRef, onDelete, showDone, onDone, style } = props;
   const customStyles = toolbarOpts.minWidth !== undefined ? { minWidth: toolbarOpts.minWidth } : {};
 
   return (
@@ -59,7 +59,7 @@ function CustomToolbarWrapper(props) {
       isFocused={toolbarOpts.alwaysVisible || isFocused}
       autoWidth={autoWidth}
       isHidden={toolbarOpts.isHidden === true}
-      style={{ ...customStyles }}
+      style={{ ...customStyles, ...style }}
     >
       {children}
 
