@@ -48,6 +48,9 @@ const GraphTitle = styled('div')(({ theme }) => ({
   '&.rightMargin': {
     marginRight: '74px',
   },
+  '& p': {
+    margin: 0,
+  },
 }));
 
 const ChartTitle = styled('div')(({ theme }) => ({
@@ -60,6 +63,9 @@ const ChartTitle = styled('div')(({ theme }) => ({
   },
   '&.rightMargin': {
     marginRight: '74px',
+  },
+  '& p': {
+    margin: 0,
   },
 }));
 
@@ -362,6 +368,7 @@ export class Root extends React.Component {
             graphWidth={finalWidth}
             onChange={(value) => this.onChangeLabel(value, 'top')}
             mathMlOptions={mathMlOptions}
+            preventNewLines={true}
             charactersLimit={labelsCharactersLimit}
           />
         )}
@@ -378,6 +385,7 @@ export class Root extends React.Component {
               isDefineChartLeftLabel={isChart && defineChart}
               onChange={(value) => this.onChangeLabel(value, 'left')}
               mathMlOptions={mathMlOptions}
+              preventNewLines={true}
               charactersLimit={labelsCharactersLimit}
             />
           )}
@@ -420,6 +428,7 @@ export class Root extends React.Component {
               graphWidth={finalWidth}
               onChange={(value) => this.onChangeLabel(value, 'right')}
               mathMlOptions={mathMlOptions}
+              preventNewLines={true}
               charactersLimit={labelsCharactersLimit}
             />
           )}
@@ -451,6 +460,7 @@ export class Root extends React.Component {
             isDefineChartBottomLabel={isChart && defineChart}
             onChange={(value) => this.onChangeLabel(value, 'bottom')}
             mathMlOptions={mathMlOptions}
+            preventNewLines={true}
             charactersLimit={labelsCharactersLimit}
           />
         )}
