@@ -258,6 +258,140 @@ describe('ResponseAreaExtension', () => {
 
       expect(mockTr.setNodeMarkup).toHaveBeenCalled();
     });
+
+    describe('insertResponseArea', () => {
+      beforeEach(() => {
+        jest.resetModules();
+      });
+
+      const buildInsertCommand = () => {
+        const { ResponseAreaExtension } = require('../responseArea');
+        const context = {
+          options: {
+            type: 'inline-dropdown',
+            maxResponseAreas: 5,
+          },
+        };
+        const commands = ResponseAreaExtension.addCommands.call(context);
+        return commands.insertResponseArea('inline-dropdown');
+      };
+
+      const createDoc = (existingCount, typeName = 'inline_dropdown') => ({
+        descendants: jest.fn((callback) => {
+          for (let i = 0; i < existingCount; i += 1) {
+            callback({ type: { name: typeName } }, i);
+          }
+        }),
+        content: { size: 50 },
+      });
+
+      it('assigns index 1 and id 1 on the first insert', () => {
+        const insert = buildInsertCommand();
+        const mockInlineNode = { nodeSize: 1 };
+        const create = jest.fn(() => mockInlineNode);
+        const mockDoc = createDoc(0);
+        const mockTr = {
+          insert: jest.fn(),
+          doc: mockDoc,
+          setSelection: jest.fn(),
+        };
+        const state = {
+          schema: {
+            nodes: {
+              inline_dropdown: { create },
+            },
+          },
+          doc: mockDoc,
+          selection: { from: 5 },
+        };
+        const mockDispatch = jest.fn();
+        const mockCommands = { focus: jest.fn() };
+
+        const result = insert({
+          tr: mockTr,
+          state,
+          dispatch: mockDispatch,
+          commands: mockCommands,
+        });
+
+        expect(result).toBe(true);
+        expect(create).toHaveBeenCalledWith({
+          index: '1',
+          id: '1',
+          value: '',
+        });
+        expect(mockTr.insert).toHaveBeenCalledWith(5, mockInlineNode);
+        expect(mockDispatch).toHaveBeenCalled();
+      });
+
+      it('assigns consecutive indices on repeated inserts', () => {
+        const insert = buildInsertCommand();
+        const mockInlineNode = { nodeSize: 1 };
+        const create = jest.fn(() => mockInlineNode);
+        const mockDoc = createDoc(0);
+
+        const runOnce = () => {
+          const mockTr = {
+            insert: jest.fn(),
+            doc: mockDoc,
+            setSelection: jest.fn(),
+          };
+          const state = {
+            schema: {
+              nodes: {
+                inline_dropdown: { create },
+              },
+            },
+            doc: mockDoc,
+            selection: { from: 1 },
+          };
+          insert({
+            tr: mockTr,
+            state,
+            dispatch: jest.fn(),
+            commands: { focus: jest.fn() },
+          });
+        };
+
+        runOnce();
+        runOnce();
+
+        expect(create.mock.calls[0][0]).toEqual({ index: '1', id: '1', value: '' });
+        expect(create.mock.calls[1][0]).toEqual({ index: '2', id: '2', value: '' });
+      });
+
+      it('returns false when maxResponseAreas is reached', () => {
+        const insert = buildInsertCommand();
+        const mockInlineNode = { nodeSize: 1 };
+        const create = jest.fn(() => mockInlineNode);
+        const mockDoc = createDoc(5);
+        const mockTr = {
+          insert: jest.fn(),
+          doc: mockDoc,
+          setSelection: jest.fn(),
+        };
+        const state = {
+          schema: {
+            nodes: {
+              inline_dropdown: { create },
+            },
+          },
+          doc: mockDoc,
+          selection: { from: 5 },
+        };
+
+        const result = insert({
+          tr: mockTr,
+          state,
+          dispatch: jest.fn(),
+          commands: { focus: jest.fn() },
+        });
+
+        expect(result).toBe(false);
+        expect(create).not.toHaveBeenCalled();
+        expect(mockTr.insert).not.toHaveBeenCalled();
+      });
+    });
   });
 });
 

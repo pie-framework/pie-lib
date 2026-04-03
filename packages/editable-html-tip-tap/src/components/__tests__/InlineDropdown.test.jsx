@@ -73,6 +73,14 @@ describe('InlineDropdown', () => {
     expect(valueDiv).toBeInTheDocument();
   });
 
+  it('uses 2px horizontal margin on the value control and no horizontal margin on the wrapper', () => {
+    const { container, getByTestId } = render(<InlineDropdown {...defaultProps} />);
+    const valueDiv = container.querySelector('div[style*="border"]');
+    expect(valueDiv).toHaveStyle({ margin: '0 2px' });
+    const wrapper = getByTestId('node-view-wrapper');
+    expect(wrapper.getAttribute('style') || '').not.toMatch(/margin/);
+  });
+
   it('renders chevron icon', () => {
     const { container } = render(<InlineDropdown {...defaultProps} />);
     const chevron = container.querySelector('svg');

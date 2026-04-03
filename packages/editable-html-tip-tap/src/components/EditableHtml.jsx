@@ -379,9 +379,15 @@ const StyledEditorContent = styled(EditorContent, {
       margin: '0',
     },
 
-    '& p.is-editor-empty:first-child::before, & div.is-editor-empty:first-child::before': {
+    // Out of flow so the caret stays at the start of the block; in-flow ::before pushes the caret after the hint text.
+    '& p.is-editor-empty, & div.is-editor-empty': {
+      position: 'relative',
+    },
+    '& p.is-editor-empty::before, & div.is-editor-empty::before': {
       content: 'attr(data-placeholder)',
-      height: 0,
+      position: 'absolute',
+      left: 0,
+      top: 0,
       color: '#9CA3AF',
       pointerEvents: 'none',
       whiteSpace: 'pre-wrap',
