@@ -313,6 +313,27 @@ describe('MathNodeView', () => {
     });
   });
 
+  it('does not close toolbar when clicking equation editor dropdown', async () => {
+    const { queryByTestId } = render(<MathNodeView {...defaultProps} selected={true} />);
+
+    await waitFor(() => {
+      expect(queryByTestId('math-toolbar')).toBeInTheDocument();
+    });
+
+    // Simulate MUI Select's portal dropdown container.
+    const dropdown = document.createElement('div');
+    dropdown.id = 'equation-editor-select-listbox';
+    document.body.appendChild(dropdown);
+
+    fireEvent.click(dropdown);
+
+    await waitFor(() => {
+      expect(queryByTestId('math-toolbar')).toBeInTheDocument();
+    });
+
+    document.body.removeChild(dropdown);
+  });
+
   it('renders with empty latex', () => {
     const nodeWithEmptyLatex = { attrs: { latex: '' } };
     const { getByTestId } = render(<MathNodeView {...defaultProps} node={nodeWithEmptyLatex} />);

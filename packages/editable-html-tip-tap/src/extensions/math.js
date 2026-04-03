@@ -8,6 +8,15 @@ import { wrapMath } from '@pie-lib/math-rendering';
 
 const ensureTextAfterMathPluginKey = new PluginKey('ensureTextAfterMath');
 
+const generateAdditionalKeys = (keyData = []) => {
+  return keyData.map((key) => ({
+    name: key,
+    latex: key,
+    write: key,
+    label: key,
+  }));
+};
+
 export const EnsureTextAfterMathPlugin = (mathNodeName) =>
   new Plugin({
     key: ensureTextAfterMathPluginKey,
@@ -175,6 +184,14 @@ export const MathNodeView = (props) => {
   const [showToolbar, setShowToolbar] = useState(selected);
   const toolbarRef = useRef(null);
   const [position, setPosition] = useState({ top: 0, left: 0 });
+  const { math: mathOptions = {} } = options || {};
+  const {
+    keypadMode,
+    controlledKeypadMode = true,
+    customKeys = [],
+    keyPadCharacterRef,
+    setKeypadInteraction,
+  } = mathOptions;
 
   const latex = node.attrs.latex || '';
 
@@ -199,10 +216,26 @@ export const MathNodeView = (props) => {
     });
 
     const handleClickOutside = (event) => {
+      const target = event?.target;
+
+      // MUI's `Select` renders its dropdown options in a portal attached to `document.body`.
+      // Those clicks should not dismiss the math toolbar.
+      const equationEditorListboxes =
+        document.querySelectorAll?.(
+          '[id^="equation-editor-select"][id*="listbox"], [aria-labelledby="equation-editor-label"][role="listbox"]',
+        ) || [];
+
+      const equationEditorPopoverOpen = equationEditorListboxes.length > 0;
+      const clickedEquationEditorSelect =
+        !!(target?.id && target.id.includes('equation-editor-select')) ||
+        !!target?.closest?.('[id*="equation-editor-select"]');
+
       if (
         toolbarRef.current &&
-        !toolbarRef.current.contains(event.target) &&
-        !event.target.closest('[data-inline-node]')
+        !toolbarRef.current.contains(target) &&
+        !target?.closest?.('[data-inline-node]') &&
+        !equationEditorPopoverOpen &&
+        !clickedEquationEditorSelect
       ) {
         setShowToolbar(false);
       }
@@ -266,7 +299,17 @@ export const MathNodeView = (props) => {
                 '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
             }}
           >
-            <MathToolbar latex={latex} autoFocus onChange={handleChange} onDone={handleDone} keypadMode="basic" />
+            <MathToolbar
+              latex={latex}
+              autoFocus
+              onChange={handleChange}
+              onDone={handleDone}
+              keypadMode={keypadMode}
+              controlledKeypadMode={controlledKeypadMode}
+              additionalKeys={generateAdditionalKeys(customKeys)}
+              keyPadCharacterRef={keyPadCharacterRef}
+              setKeypadInteraction={setKeypadInteraction}
+            />
           </div>,
           document.body,
         )}

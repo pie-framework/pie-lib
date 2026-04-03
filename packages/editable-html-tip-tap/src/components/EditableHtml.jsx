@@ -170,6 +170,7 @@ export const EditableHtml = (props) => {
     MathTemplatedNode.configure(props.responseAreaProps),
     MathNode.configure({
       toolbarOpts: toolbarOptsToUse,
+      math: props.pluginProps?.math || {},
     }),
     SubScript,
     SuperScript,
