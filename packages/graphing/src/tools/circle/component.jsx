@@ -106,7 +106,8 @@ export class RawBaseCircle extends React.Component {
     const { changeMarkProps, disabled, from, to, labelModeEnabled, limitLabeling, onClick } = this.props;
 
     if (!labelModeEnabled) {
-      onClick(point || data);
+      // Clicks on existing mark points/lines should not create new marks.
+      // Moving is handled entirely by drag. Do nothing here.
       return;
     }
 
