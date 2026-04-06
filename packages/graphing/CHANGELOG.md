@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.22...@pie-lib/graphing@3.2.0-next.23) (2026-04-06)
+
+### Bug Fixes
+
+- **graphing:** prevent new marks creation on existing points/lines during click events PIE-27 ([6c73a8e](https://github.com/pie-framework/pie-lib/commit/6c73a8e8317f3302c6d54dd9890c1d5a9fb02305))
+
 # [3.2.0-next.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.21...@pie-lib/graphing@3.2.0-next.22) (2026-04-03)
 
 ### Bug Fixes

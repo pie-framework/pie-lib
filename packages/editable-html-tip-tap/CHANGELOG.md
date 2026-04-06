@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.22...@pie-lib/editable-html-tip-tap@1.2.0-next.23) (2026-04-06)
+
+### Bug Fixes
+
+- made sure lastIndex in respArea is handled properly, improved spacing around response areas [PIE-35][PIE-40] ([c673701](https://github.com/pie-framework/pie-lib/commit/c673701618bc896208c9760e87ea6dbbd1a91d54))
+
 # [1.2.0-next.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.21...@pie-lib/editable-html-tip-tap@1.2.0-next.22) (2026-04-03)
 
 ### Bug Fixes
