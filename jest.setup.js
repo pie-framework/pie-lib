@@ -186,52 +186,53 @@ if (!document.getSelection) {
   });
 }
 
-// Mock XMLHttpRequest for speech-rule-engine locale loading
-// This prevents errors when speech-rule-engine tries to load locale files
-const originalXHR = global.XMLHttpRequest;
-global.XMLHttpRequest = class XMLHttpRequestMock extends originalXHR {
+// Mock XMLHttpRequest for speech-rule-engine locale loading and any sync XHR during setup.
+// Do not extend jsdom's XMLHttpRequest: calling super() can throw when _ownerDocument is null
+// (e.g. speech-rule-engine math_map.js constructs XHR before document is ready in CI).
+global.XMLHttpRequest = class XMLHttpRequestMock {
   constructor() {
-    super();
-    // Ensure document and URL are available
-    if (!this._ownerDocument) {
-      Object.defineProperty(this, '_ownerDocument', {
-        value: { URL: 'http://localhost' },
-        writable: true,
-      });
-    }
+    this.readyState = 0;
+    this.status = 0;
+    this.response = null;
+    this.responseText = '';
+    this.responseType = '';
+    this.onload = null;
+    this.onerror = null;
+    this.onreadystatechange = null;
   }
 
   open(method, url) {
-    // Prevent loading external locale files in tests
-    if (url && url.includes('/locales/')) {
-      this.mockResponse = true;
-      return;
-    }
-    try {
-      return super.open(method, url);
-    } catch (e) {
-      // Swallow errors for locale file loading
+    this._method = method;
+    this._url = url;
+    if (url && (url.includes('/locales/') || url.includes('speech-rule-engine'))) {
       this.mockResponse = true;
     }
   }
 
+  setRequestHeader() {}
+
   send() {
     if (this.mockResponse) {
-      // Mock successful empty response for locale files
       setTimeout(() => {
-        Object.defineProperty(this, 'status', { value: 200 });
-        Object.defineProperty(this, 'response', { value: '{}' });
-        Object.defineProperty(this, 'responseText', { value: '{}' });
+        this.readyState = 4;
+        this.status = 200;
+        this.response = '{}';
+        this.responseText = '{}';
+        if (this.onreadystatechange) this.onreadystatechange();
         if (this.onload) this.onload();
       }, 0);
       return;
     }
-    try {
-      return super.send();
-    } catch (e) {
-      // Swallow errors
-    }
+    setTimeout(() => {
+      this.readyState = 4;
+      this.status = 200;
+      this.responseText = '';
+      if (this.onreadystatechange) this.onreadystatechange();
+      if (this.onload) this.onload();
+    }, 0);
   }
+
+  abort() {}
 };
 
 // Suppress console errors/warnings in tests (optional - comment out if you want to see them)

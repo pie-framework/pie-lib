@@ -72,7 +72,6 @@ const InlineDropdown = (props) => {
       style={{
         display: 'inline-flex',
         height: '50px',
-        margin: '0 5px',
         cursor: 'pointer',
       }}
     >
@@ -85,7 +84,7 @@ const InlineDropdown = (props) => {
           border: '1px solid #C0C3CF',
           boxSizing: 'border-box',
           borderRadius: '3px',
-          margin: '0 4px',
+          margin: '0 2px',
           position: 'relative',
           alignItems: 'center',
         }}
