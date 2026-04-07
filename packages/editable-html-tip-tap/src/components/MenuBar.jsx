@@ -142,7 +142,7 @@ function MenuBar({
     [classes.toolbarWithNoDone]: !hasDoneButton,
     [classes.toolbarTop]: toolbarOpts.position === 'top',
     [classes.toolbarRight]: toolbarOpts.alignment === 'right',
-    [classes.focused]: toolbarOpts.alwaysVisible || (editorState.isFocused && !editor._toolbarOpened),
+    [classes.focused]: toolbarOpts.alwaysVisible || (editorState.isFocused && !editor._toolbarOpened && !editorState.hideDefaultToolbar),
     [classes.autoWidth]: autoWidth,
     [classes.fullWidth]: !autoWidth,
     [classes.hidden]: toolbarOpts.isHidden === true,
