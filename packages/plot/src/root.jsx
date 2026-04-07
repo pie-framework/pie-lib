@@ -26,10 +26,12 @@ const Wrapper = styled('div')({
 const DefineChartSvg = styled('svg')({
   paddingLeft: '50px',
   overflow: 'visible',
+  boxSizing: 'content-box',
 });
 
 const ChartSvg = styled('svg')({
   overflow: 'visible',
+  boxSizing: 'content-box',
 });
 
 const GraphBox = styled('g')({
