@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.23...@pie-lib/editable-html-tip-tap@1.2.0-next.24) (2026-04-07)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** prevent toolbar from closing when clicking on math node preview PIE-114 ([b422584](https://github.com/pie-framework/pie-lib/commit/b4225846952d9eaef76039d7c6b69b93c5029da6))
+
 # [1.2.0-next.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.22...@pie-lib/editable-html-tip-tap@1.2.0-next.23) (2026-04-06)
 
 ### Bug Fixes
