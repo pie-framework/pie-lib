@@ -230,12 +230,20 @@ export const MathNodeView = (props) => {
         !!(target?.id && target.id.includes('equation-editor-select')) ||
         !!target?.closest?.('[id*="equation-editor-select"]');
 
+      // If the click originated from the math node preview itself (the element
+      // that opens the toolbar), ignore it here — the node's own onClick handler
+      // will keep/re-open the toolbar. Without this guard, closing and then
+      // immediately clicking the math node would fire this listener in the same
+      // event cycle and close the toolbar before it could open.
+      const clickedMathNode = !!target?.closest?.('.math-node');
+
       if (
         toolbarRef.current &&
         !toolbarRef.current.contains(target) &&
         !target?.closest?.('[data-inline-node]') &&
         !equationEditorPopoverOpen &&
-        !clickedEquationEditorSelect
+        !clickedEquationEditorSelect &&
+        !clickedMathNode
       ) {
         setShowToolbar(false);
       }
