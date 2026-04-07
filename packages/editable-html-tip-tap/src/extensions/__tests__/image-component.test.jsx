@@ -36,6 +36,7 @@ jest.mock('../custom-toolbar-wrapper', () => ({
 
 describe('ImageComponent', () => {
   const mockEditor = {
+    _tiptapContainerEl: document.body,
     commands: {
       updateAttributes: jest.fn(),
       focus: jest.fn(),
