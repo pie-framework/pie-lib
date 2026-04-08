@@ -5,6 +5,7 @@ import debug from 'debug';
 import LinearProgress from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import { NodeViewWrapper } from '@tiptap/react';
+import ReactDOM from 'react-dom';
 import InsertImageHandler from '../components/image/InsertImageHandler';
 import ImageToolbar from '../components/image/ImageToolbar';
 import CustomToolbarWrapper from './custom-toolbar-wrapper';
@@ -244,13 +245,10 @@ function ImageComponent(props) {
         </StyledImageContainer>
       </StyledRoot>
 
-      {showToolbar && (
+      {showToolbar && editor._tiptapContainerEl && ReactDOM.createPortal(
         <div
           ref={toolbarRef}
           style={{
-            position: 'absolute',
-            top: '100%',
-            left: 0,
             zIndex: 20,
             background: 'var(--editable-html-toolbar-bg, #efefef)',
             boxShadow:
@@ -275,7 +273,8 @@ function ImageComponent(props) {
               onChange={onChange}
             />
           </CustomToolbarWrapper>
-        </div>
+        </div>,
+        editor._tiptapContainerEl,
       )}
     </NodeViewWrapper>
   );
