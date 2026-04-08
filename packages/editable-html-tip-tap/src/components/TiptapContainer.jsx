@@ -78,11 +78,6 @@ const StyledRoot = styled('div', {
     margin: '1.5em 10px',
     padding: '.5em 10px',
   },
-  '& hr': {
-    border: 'none',
-    borderTop: '1px solid var(--gray-2)',
-    margin: '2rem 0',
-  },
   '& p': {
     margin: '0',
   },
