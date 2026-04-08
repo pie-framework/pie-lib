@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.24...@pie-lib/editable-html-tip-tap@1.2.0-next.25) (2026-04-08)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** enhance toolbar visibility logic and use portal for rendering ([0b06a9d](https://github.com/pie-framework/pie-lib/commit/0b06a9d2a8b208069d9a774b38797428cff30174))
+- made sure div is the default field in the editor, if a breakpoint is added it turns into a p [PIE-53] ([8f33af0](https://github.com/pie-framework/pie-lib/commit/8f33af05047cdd8993a8a862ce3e26e67c6810fe))
+- test ([10d2392](https://github.com/pie-framework/pie-lib/commit/10d23926c2028851bcb26cc41f430aa88e85ff21))
+
 # [1.2.0-next.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.23...@pie-lib/editable-html-tip-tap@1.2.0-next.24) (2026-04-07)
 
 ### Bug Fixes
