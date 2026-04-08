@@ -134,8 +134,6 @@ function ImageComponent(props) {
       if (resizeHandle) {
         resizeHandle.removeEventListener('mousedown', initResize, false);
       }
-
-      options.imageHandling.onDelete(latestNodeRef.current);
     };
   }, []);
 
@@ -195,6 +193,22 @@ function ImageComponent(props) {
     },
     [editor, node.attrs],
   );
+
+  // Helper to find this node's current position in the doc.
+  // We cannot use object identity (n === node) because ProseMirror replaces
+  // node objects after every transaction — match by src instead.
+  const findNodePos = useCallback(() => {
+    let found = null;
+    const src = latestNodeRef.current.attrs.src;
+    editor.state.doc.descendants((n, pos) => {
+      if (found !== null) return false;
+      if (n.type.name === 'imageUploadNode' && n.attrs.src === src) {
+        found = pos;
+        return false;
+      }
+    });
+    return found;
+  }, [editor]);
 
   const onChange = useCallback(
     (newValues) => {
@@ -258,11 +272,24 @@ function ImageComponent(props) {
         >
           <CustomToolbarWrapper
             showDone
-            {...options}
+            deletable
+            toolbarOpts={options.toolbarOpts || {}}
+            onDelete={() => {
+              const nodePos = findNodePos();
+              if (nodePos === null) return;
+
+              options.imageHandling?.onDelete?.(latestNodeRef.current);
+
+              editor.view.dispatch(
+                editor.state.tr.delete(nodePos, nodePos + editor.state.doc.nodeAt(nodePos).nodeSize),
+              );
+              setShowToolbar(false);
+              editor.commands.focus();
+            }}
             onDone={() => {
               setShowToolbar(false);
-              props.imageHandling?.onDone();
-              props.editor.commands.focus('end');
+              options.imageHandling?.onDone?.();
+              editor.commands.focus('end');
             }}
           >
             <ImageToolbar
