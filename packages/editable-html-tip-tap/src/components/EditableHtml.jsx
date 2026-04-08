@@ -13,10 +13,10 @@ import Placeholder from '@tiptap/extension-placeholder';
 import { normalizeInitialMarkup } from '../utils/helper';
 
 import ExtendedTable from '../extensions/extended-table';
+import { ExtendedTableCell, ExtendedTableHeader } from '../extensions/extended-table-cell';
 import { DivNode } from '../extensions/div-node';
+import { EnsureEmptyRootIsDiv } from '../extensions/ensure-empty-root-div';
 import { TableRow } from '@tiptap/extension-table-row';
-import { TableCell } from '@tiptap/extension-table-cell';
-import { TableHeader } from '@tiptap/extension-table-header';
 import {
   DragInTheBlankNode,
   ExplicitConstructedResponseNode,
@@ -152,6 +152,7 @@ export const EditableHtml = (props) => {
       },
     }),
     DivNode,
+    EnsureEmptyRootIsDiv,
     Placeholder.configure({
       placeholder: props.placeholder,
       // show placeholder even when editor is focused
@@ -161,8 +162,8 @@ export const EditableHtml = (props) => {
     }),
     ExtendedTable,
     TableRow,
-    TableHeader,
-    TableCell,
+    ExtendedTableHeader,
+    ExtendedTableCell,
     ResponseAreaExtension.configure(props.responseAreaProps),
     ExplicitConstructedResponseNode.configure(props.responseAreaProps),
     DragInTheBlankNode.configure(props.responseAreaProps),

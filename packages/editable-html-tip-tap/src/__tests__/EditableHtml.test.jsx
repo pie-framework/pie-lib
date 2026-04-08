@@ -70,17 +70,18 @@ jest.mock('@tiptap/extension-table-row', () => ({
   TableRow: {},
 }));
 
-jest.mock('@tiptap/extension-table-cell', () => ({
-  TableCell: {},
-}));
-
-jest.mock('@tiptap/extension-table-header', () => ({
-  TableHeader: {},
+jest.mock('../extensions/extended-table-cell', () => ({
+  ExtendedTableCell: {},
+  ExtendedTableHeader: {},
 }));
 
 jest.mock('../extensions/extended-table', () => ({
   __esModule: true,
   default: {},
+}));
+
+jest.mock('../extensions/ensure-empty-root-div', () => ({
+  EnsureEmptyRootIsDiv: {},
 }));
 
 jest.mock('../extensions/responseArea', () => ({
