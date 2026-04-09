@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.25...@pie-lib/graphing@3.2.0-next.26) (2026-04-09)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
 # [3.2.0-next.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.24...@pie-lib/graphing@3.2.0-next.25) (2026-04-08)
 
 **Note:** Version bump only for package @pie-lib/graphing

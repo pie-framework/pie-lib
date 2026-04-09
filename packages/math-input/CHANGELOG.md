@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0-next.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.11...@pie-lib/math-input@7.2.0-next.12) (2026-04-09)
+
+### Features
+
+- **math-input:** centralize MathQuill init; export registerEmbed and applyStaticMath PIE-57 ([43350d8](https://github.com/pie-framework/pie-lib/commit/43350d8d8cee0b64a8c6d2c585985d406eaa6871))
+
 # [7.2.0-next.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.10...@pie-lib/math-input@7.2.0-next.11) (2026-04-03)
 
 ### Bug Fixes

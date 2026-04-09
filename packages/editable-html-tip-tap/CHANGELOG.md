@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.25...@pie-lib/editable-html-tip-tap@1.2.0-next.26) (2026-04-09)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** open math toolbar in current container PIE-18 ([f33a73f](https://github.com/pie-framework/pie-lib/commit/f33a73fd0c7dbd34571d6490b031459ad89923c3))
+- **editable-html-tip-tap:** prevent spanish keyboard to be dismissed when clicking on it PIE-36 ([6c02557](https://github.com/pie-framework/pie-lib/commit/6c02557fd61b5b0cc217340f20b94e1934f6beaa))
+- **tip-tap/image-component:** add image deletion handling PIE-38 ([582bd1f](https://github.com/pie-framework/pie-lib/commit/582bd1f8edd33f0a2c5a80eab7d400a2db5113fb))
+
 # [1.2.0-next.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.24...@pie-lib/editable-html-tip-tap@1.2.0-next.25) (2026-04-08)
 
 ### Bug Fixes
