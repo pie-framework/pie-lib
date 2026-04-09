@@ -112,24 +112,35 @@ describe('ImageUploadNode', () => {
 
   describe('addCommands', () => {
     it('returns setImageUploadNode command', () => {
-      const commands = ImageUploadNode.addCommands();
+      const context = { name: 'imageUploadNode' };
+      const commands = ImageUploadNode.addCommands.call(context);
 
       expect(commands).toHaveProperty('setImageUploadNode');
       expect(typeof commands.setImageUploadNode).toBe('function');
     });
 
-    it('setImageUploadNode inserts content', () => {
+    it('setImageUploadNode returns false when insertImageRequested is not configured', () => {
       const context = { name: 'imageUploadNode' };
       const commands = ImageUploadNode.addCommands.call(context);
-      const mockCommands = {
-        insertContent: jest.fn(() => true),
+
+      const result = commands.setImageUploadNode()({ editor: {} });
+
+      expect(result).toBe(false);
+    });
+
+    it('setImageUploadNode calls insertImageRequested and returns true', () => {
+      const mockInsertImageRequested = jest.fn();
+      const context = { name: 'imageUploadNode', options: { imageHandling: { insertImageRequested: mockInsertImageRequested } } };
+      const commands = ImageUploadNode.addCommands.call(context);
+
+      const mockRun = jest.fn();
+      const mockEditor = {
+        chain: () => ({ focus: () => ({ insertContent: () => ({ run: mockRun }) }) }),
       };
 
-      const result = commands.setImageUploadNode()({ commands: mockCommands });
+      const result = commands.setImageUploadNode()({ editor: mockEditor });
 
-      expect(mockCommands.insertContent).toHaveBeenCalledWith({
-        type: 'imageUploadNode',
-      });
+      expect(mockInsertImageRequested).toHaveBeenCalledWith(null, expect.any(Function));
       expect(result).toBe(true);
     });
   });

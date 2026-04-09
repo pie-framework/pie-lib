@@ -27,9 +27,8 @@ const StyledProgress = styled(LinearProgress, {
 
 const StyledRoot = styled('div', {
   shouldForwardProp: (prop) => !['active', 'loading', 'pendingDelete'].includes(prop),
-})(({ theme, active, loading, pendingDelete }) => ({
+})(({ loading, pendingDelete }) => ({
   position: 'relative',
-  border: active ? `solid 1px ${theme.palette.primary.main}` : `solid 1px ${theme.palette.common.white}`,
   display: 'flex',
   transition: 'opacity 200ms linear',
   ...(loading && {
@@ -48,6 +47,12 @@ const StyledImageContainer = styled('div')(({ theme }) => ({
   '&&:hover > .resize': {
     display: 'block',
   },
+}));
+
+const StyledImage = styled('img',{
+  shouldForwardProp: (prop) => prop !== 'active',
+})(({ theme, active }) => ({
+   border: active ? `solid 1px ${theme.palette.primary.main}` : `solid 1px transparent`,
 }));
 
 const StyledResize = styled('div')(({ theme }) => ({
@@ -239,16 +244,17 @@ function ImageComponent(props) {
     <NodeViewWrapper>
       <StyledRoot
         onFocus={onFocus}
-        active={selected}
         loading={!node.attrs.loaded}
         pendingDelete={node.attrs.deleteStatus === 'pending'}
         style={{ justifyContent: flexAlign }}
       >
         <StyledProgress mode="determinate" value={node.attrs.percent || 0} hideProgress={node.attrs.loaded} />
 
-        <StyledImageContainer>
-          <img
+        <StyledImageContainer onDragStart={(e) => e.preventDefault()}>
+          <StyledImage
             {...attributes}
+            active={selected && node.attrs.loaded}
+            draggable={false}
             ref={imgRef}
             src={node.attrs.src}
             style={style}
