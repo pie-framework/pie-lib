@@ -45,7 +45,7 @@ export const ImageUploadNode = Node.create({
       setImageUploadNode:
         () =>
           ({ editor }) => {
-            const { insertImageRequested } = this.options.imageHandling || {};
+            const { insertImageRequested } = this.options?.imageHandling || {};
             if (!insertImageRequested) return false;
 
             insertImageRequested(null, (onFinish) => {
