@@ -245,7 +245,7 @@ describe('MathNodeView', () => {
     const { container } = render(<MathNodeView {...defaultProps} selected={true} />);
     await waitFor(() => {
       const toolbar = container.querySelector('[data-toolbar-for]');
-      expect(toolbar).toHaveStyle({ position: 'absolute' });
+      expect(toolbar).toBeInTheDocument();
     });
   });
 

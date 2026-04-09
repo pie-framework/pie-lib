@@ -298,9 +298,7 @@ export const MathNodeView = (props) => {
             ref={toolbarRef}
             data-toolbar-for={editor.instanceId}
             style={{
-              position: 'absolute',
-              top: `${position.top}px`,
-              left: `${position.left}px`,
+              marginTop: '6px',
               zIndex: 20,
               background: 'var(--editable-html-toolbar-bg, #efefef)',
               boxShadow:
@@ -319,7 +317,7 @@ export const MathNodeView = (props) => {
               setKeypadInteraction={setKeypadInteraction}
             />
           </div>,
-          document.body,
+          editor?._tiptapContainerEl || document.body,
         )}
     </NodeViewWrapper>
   );
