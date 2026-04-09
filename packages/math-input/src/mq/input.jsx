@@ -2,19 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import { registerLineBreak } from './custom-elements';
-import MathQuill from '@pie-framework/mathquill';
-
-let MQ;
-if (typeof window !== 'undefined') {
-  MQ = MathQuill.getInterface(3);
-
-  console.log('MQ', MQ);
-
-  if (MQ && MQ.registerEmbed) {
-    registerLineBreak(MQ);
-  }
-}
+import { MQ } from './mathquill-instance';
 
 const log = debug('math-input:mq:input');
 

@@ -1,6 +1,11 @@
-import { addBrackets, removeBrackets } from '../index';
+import { addBrackets, removeBrackets, registerEmbed, applyStaticMath } from '../index';
 
 describe('math-input index', () => {
+  it('exports registerEmbed and applyStaticMath', () => {
+    expect(typeof registerEmbed).toBe('function');
+    expect(typeof applyStaticMath).toBe('function');
+  });
+
   describe('addBrackets', () => {
     it('should add both brackets to a plain string', () => {
       expect(addBrackets('x^2')).toBe('\\(x^2\\)');

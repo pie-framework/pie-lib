@@ -1,13 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
-import MathQuill from '@pie-framework/mathquill';
 import { updateSpans } from '../updateSpans';
-
-let MQ;
-if (typeof window !== 'undefined') {
-  MQ = MathQuill.getInterface(3);
-}
+import { MQ } from './mathquill-instance';
 
 const log = debug('pie-lib:math-input:mq:static');
 const REGEX = /\\MathQuillMathField\[r\d*\]\{(.*?)\}/g;

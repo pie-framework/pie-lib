@@ -6,6 +6,10 @@ Some reusable react components, mostly used in [pie][pie] components.
 
 Elements are in `packages`.
 
+## Documentation
+
+- [MathQuill → MathLive migration plan](docs/mathquill-to-mathlive-migration.md)
+
 ## install
 
 ```bash
