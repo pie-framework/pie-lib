@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.26...@pie-lib/editable-html-tip-tap@1.2.0-next.27) (2026-04-09)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** image-component - fix active style, dragging issues and update image rendering logic PIE-34 ([5588e8b](https://github.com/pie-framework/pie-lib/commit/5588e8b10f61f2936d2356a4b2d403f29d094efa))
+- handle optional chaining and fix test ([c4d4657](https://github.com/pie-framework/pie-lib/commit/c4d4657ed38718142c07ddf2a06225f2a11fd535))
+
 # [1.2.0-next.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.25...@pie-lib/editable-html-tip-tap@1.2.0-next.26) (2026-04-09)
 
 ### Bug Fixes

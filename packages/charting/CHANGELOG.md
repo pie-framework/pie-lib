@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0-next.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.27...@pie-lib/charting@6.2.0-next.28) (2026-04-09)
+
+**Note:** Version bump only for package @pie-lib/charting
+
 # [6.2.0-next.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.26...@pie-lib/charting@6.2.0-next.27) (2026-04-09)
 
 **Note:** Version bump only for package @pie-lib/charting
