@@ -19,7 +19,7 @@
     "assert": "^1.4.1",
     "debug": "^4.1.1",
     "lodash-es": "^4.17.23",
-    "mathjs": "^7.0.1",
+    "mathjs": "^15.2.0",
     "prop-types": "^15.6.2",
     "react-measure": "^2.2.2"
   },
