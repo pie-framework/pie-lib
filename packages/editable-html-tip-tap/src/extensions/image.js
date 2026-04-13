@@ -47,7 +47,6 @@ export const ImageUploadNode = Node.create({
           ({ commands }) => {
             return commands.insertContent({
               type: this.name,
-              attrs: { nodeKey: `img-${Date.now()}-${Math.random().toString(36).slice(2)}` },
             });
           },
     };
