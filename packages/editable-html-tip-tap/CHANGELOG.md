@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.27...@pie-lib/editable-html-tip-tap@1.2.0-next.28) (2026-04-13)
+
+### Bug Fixes
+
+- **image:** remove unwanted change ([04a484f](https://github.com/pie-framework/pie-lib/commit/04a484f395c8a87407a8ad3f0ff99a7c0af0488a))
+- **image:** revert - simplify setImageUploadNode command to directly insert content ([0d4467d](https://github.com/pie-framework/pie-lib/commit/0d4467dd9c29e9c90db6cfbf49f6e68704c1d0a9))
+
 # [1.2.0-next.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.26...@pie-lib/editable-html-tip-tap@1.2.0-next.27) (2026-04-09)
 
 ### Bug Fixes
