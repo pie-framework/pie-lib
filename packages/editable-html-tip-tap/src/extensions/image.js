@@ -44,40 +44,11 @@ export const ImageUploadNode = Node.create({
     return {
       setImageUploadNode:
         () =>
-          ({ editor }) => {
-            const { insertImageRequested } = this.options?.imageHandling || {};
-            if (!insertImageRequested) return false;
-
-            insertImageRequested(null, (onFinish) => {
-              return {
-                fileChosen: (file) => {
-                  if (!file) {
-                    onFinish(false);
-                    return;
-                  }
-
-                  // only insert after file is chosen
-                  editor
-                    .chain()
-                    .focus()
-                    .insertContent({
-                      type: this.name,
-                      attrs: {
-                        src: URL.createObjectURL(file), // or leave null if upload handles it
-                      },
-                    })
-                    .run();
-
-                  onFinish(true);
-                },
-
-                cancel: () => {
-                  onFinish(false);
-                },
-              };
+          ({ commands }) => {
+            return commands.insertContent({
+              type: this.name,
+              attrs: { nodeKey: `img-${Date.now()}-${Math.random().toString(36).slice(2)}` },
             });
-
-            return true;
           },
     };
   },
