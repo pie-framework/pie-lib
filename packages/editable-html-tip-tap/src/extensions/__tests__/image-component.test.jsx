@@ -46,11 +46,24 @@ describe('ImageComponent', () => {
         from: 0,
         to: 1,
       },
+      doc: {
+        descendants: jest.fn(),
+        nodeAt: jest.fn(),
+      },
+      tr: {
+        setNodeMarkup: jest.fn().mockReturnThis(),
+        delete: jest.fn().mockReturnThis(),
+      },
+    },
+    view: {
+      dispatch: jest.fn(),
     },
   };
 
   const mockNode = {
+    type: { name: 'imageUploadNode' },
     attrs: {
+      nodeKey: 'test-key-123',
       src: 'test.jpg',
       width: 100,
       height: 100,
@@ -83,6 +96,8 @@ describe('ImageComponent', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockEditor.state.doc.descendants.mockImplementation((cb) => cb(mockNode, 0));
+    mockEditor.state.doc.nodeAt.mockReturnValue(mockNode);
   });
 
   it('renders without crashing', () => {
@@ -198,7 +213,12 @@ describe('ImageComponent', () => {
       fireEvent.click(centerButton);
     });
 
-    expect(mockEditor.commands.updateAttributes).toHaveBeenCalledWith('imageUploadNode', { alignment: 'center' });
+    expect(mockEditor.state.tr.setNodeMarkup).toHaveBeenCalledWith(
+      0,
+      undefined,
+      expect.objectContaining({ alignment: 'center' }),
+    );
+    expect(mockEditor.view.dispatch).toHaveBeenCalled();
   });
 
   it('toolbar is shown when selected', async () => {

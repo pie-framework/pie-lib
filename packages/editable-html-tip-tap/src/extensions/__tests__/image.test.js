@@ -126,9 +126,12 @@ describe('ImageUploadNode', () => {
         insertContent: jest.fn(() => true),
       };
       const result = commands.setImageUploadNode()({ commands: mockCommands });
-      expect(mockCommands.insertContent).toHaveBeenCalledWith({
-        type: 'imageUploadNode',
-      });
+      expect(mockCommands.insertContent).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'imageUploadNode',
+          attrs: expect.objectContaining({ nodeKey: expect.any(String) }),
+        }),
+      );
       expect(result).toBe(true);
     });
   });
