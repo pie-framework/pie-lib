@@ -67,7 +67,7 @@ describe('ImageUploadNode', () => {
 
       expect(Array.isArray(rules)).toBe(true);
       expect(rules).toHaveLength(1);
-      expect(rules[0]).toHaveProperty('tag', 'div[data-type="image-upload-node"]');
+      expect(rules[0]).toHaveProperty('tag', 'img[data-type="image-upload-node"]');
     });
   });
 

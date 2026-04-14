@@ -27,7 +27,7 @@ export const ImageUploadNode = Node.create({
   parseHTML() {
     return [
       {
-        tag: 'div[data-type="image-upload-node"]',
+        tag: 'img[data-type="image-upload-node"]',
       },
     ];
   },
@@ -44,11 +44,11 @@ export const ImageUploadNode = Node.create({
     return {
       setImageUploadNode:
         () =>
-          ({ commands }) => {
-            return commands.insertContent({
-              type: this.name,
-            });
-          },
+        ({ commands }) => {
+          return commands.insertContent({
+            type: this.name,
+          });
+        },
     };
   },
 });
