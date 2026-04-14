@@ -49,10 +49,10 @@ const StyledImageContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-const StyledImage = styled('img',{
+const StyledImage = styled('img', {
   shouldForwardProp: (prop) => prop !== 'active',
 })(({ theme, active }) => ({
-   border: active ? `solid 1px ${theme.palette.primary.main}` : `solid 1px transparent`,
+  border: active ? `solid 1px ${theme.palette.primary.main}` : 'solid 1px transparent',
 }));
 
 const StyledResize = styled('div')(({ theme }) => ({
@@ -128,7 +128,13 @@ function ImageComponent(props) {
   }, [editor, node, selected]);
 
   useEffect(() => {
-    options.imageHandling.insertImageRequested(node, (finish) => new InsertImageHandler(editor, node, finish));
+    // Only open the upload UI for a fresh placeholder. Remounting after tab switch
+    // would otherwise call insertImageRequested again and reopen the file modal.
+    const hasImageSrc = String(node.attrs?.src ?? '').trim();
+    if (!hasImageSrc && options.imageHandling?.insertImageRequested) {
+      options.imageHandling.insertImageRequested(node, (finish) => new InsertImageHandler(editor, node, finish));
+    }
+
     applySizeData();
 
     const resizeHandle = resizeRef.current;
@@ -265,50 +271,52 @@ function ImageComponent(props) {
         </StyledImageContainer>
       </StyledRoot>
 
-      {showToolbar && editor._tiptapContainerEl && ReactDOM.createPortal(
-        <div
-          ref={toolbarRef}
-          style={{
-            zIndex: 20,
-            background: 'var(--editable-html-toolbar-bg, #efefef)',
-            boxShadow:
-              '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
-            width: '100%',
-          }}
-        >
-          <CustomToolbarWrapper
-            showDone
-            deletable
-            toolbarOpts={options.toolbarOpts || {}}
-            onDelete={() => {
-              const nodePos = findNodePos();
-              if (nodePos === null) return;
-
-              options.imageHandling?.onDelete?.(latestNodeRef.current);
-
-              editor.view.dispatch(
-                editor.state.tr.delete(nodePos, nodePos + editor.state.doc.nodeAt(nodePos).nodeSize),
-              );
-              setShowToolbar(false);
-              editor.commands.focus();
-            }}
-            onDone={() => {
-              setShowToolbar(false);
-              options.imageHandling?.onDone?.();
-              editor.commands.focus('end');
+      {showToolbar &&
+        editor._tiptapContainerEl &&
+        ReactDOM.createPortal(
+          <div
+            ref={toolbarRef}
+            style={{
+              zIndex: 20,
+              background: 'var(--editable-html-toolbar-bg, #efefef)',
+              boxShadow:
+                '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+              width: '100%',
             }}
           >
-            <ImageToolbar
-              disableImageAlignmentButtons={options.disableImageAlignmentButtons}
-              alt={node.attrs.alt}
-              imageLoaded={node.attrs.loaded}
-              alignment={node.attrs.alignment || 'left'}
-              onChange={onChange}
-            />
-          </CustomToolbarWrapper>
-        </div>,
-        editor._tiptapContainerEl,
-      )}
+            <CustomToolbarWrapper
+              showDone
+              deletable
+              toolbarOpts={options.toolbarOpts || {}}
+              onDelete={() => {
+                const nodePos = findNodePos();
+                if (nodePos === null) return;
+
+                options.imageHandling?.onDelete?.(latestNodeRef.current);
+
+                editor.view.dispatch(
+                  editor.state.tr.delete(nodePos, nodePos + editor.state.doc.nodeAt(nodePos).nodeSize),
+                );
+                setShowToolbar(false);
+                editor.commands.focus();
+              }}
+              onDone={() => {
+                setShowToolbar(false);
+                options.imageHandling?.onDone?.();
+                editor.commands.focus('end');
+              }}
+            >
+              <ImageToolbar
+                disableImageAlignmentButtons={options.disableImageAlignmentButtons}
+                alt={node.attrs.alt}
+                imageLoaded={node.attrs.loaded}
+                alignment={node.attrs.alignment || 'left'}
+                onChange={onChange}
+              />
+            </CustomToolbarWrapper>
+          </div>,
+          editor._tiptapContainerEl,
+        )}
     </NodeViewWrapper>
   );
 }
