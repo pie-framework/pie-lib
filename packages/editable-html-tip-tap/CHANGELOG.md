@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.28...@pie-lib/editable-html-tip-tap@1.2.0-next.29) (2026-04-14)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** parseHTML as img tag image extension, avoid open upload automatically at mounted PIE-37 ([30bad4e](https://github.com/pie-framework/pie-lib/commit/30bad4ea07c1e4c738534aab115cc16d64195b60))
+
 # [1.2.0-next.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.27...@pie-lib/editable-html-tip-tap@1.2.0-next.28) (2026-04-13)
 
 ### Bug Fixes
