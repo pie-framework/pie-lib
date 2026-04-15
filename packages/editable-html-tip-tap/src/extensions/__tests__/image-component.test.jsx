@@ -200,8 +200,22 @@ describe('ImageComponent', () => {
     expect(root).toHaveStyle({ justifyContent: 'flex-end' });
   });
 
-  it('calls insertImageRequested on mount', () => {
+  it('does not call insertImageRequested when image already has src', () => {
     render(<ImageComponent {...defaultProps} />);
+    expect(mockOptions.imageHandling.insertImageRequested).not.toHaveBeenCalled();
+  });
+
+  it('calls insertImageRequested on mount only for empty placeholder (no src)', () => {
+    const placeholderNode = {
+      ...mockNode,
+      attrs: {
+        ...mockNode.attrs,
+        src: null,
+        loaded: false,
+        percent: null,
+      },
+    };
+    render(<ImageComponent {...defaultProps} node={placeholderNode} />);
     expect(mockOptions.imageHandling.insertImageRequested).toHaveBeenCalled();
   });
 

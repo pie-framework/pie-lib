@@ -1,8 +1,13 @@
-import { ImageUploadNode } from '../image';
-
 jest.mock('@tiptap/core', () => ({
   Node: { create: jest.fn((config) => config) },
   mergeAttributes: jest.fn((...args) => Object.assign({}, ...args)),
+}));
+
+jest.mock('@tiptap/pm/state', () => ({
+  Plugin: jest.fn(function MockPlugin(spec) {
+    this.spec = spec;
+    return { spec };
+  }),
 }));
 
 jest.mock('@tiptap/react', () => ({
@@ -13,6 +18,19 @@ jest.mock('../image-component', () => ({
   __esModule: true,
   default: jest.fn(() => <div data-testid="image-component" />),
 }));
+
+import { Plugin } from '@tiptap/pm/state';
+import { ImageUploadNode } from '../image';
+
+function setupPastePlugin() {
+  const insertContent = jest.fn();
+  const editor = { commands: { insertContent } };
+  Plugin.mockClear();
+  ImageUploadNode.addProseMirrorPlugins.call({ editor });
+  expect(Plugin).toHaveBeenCalledTimes(1);
+  const handlePaste = Plugin.mock.calls[0][0].props.handlePaste;
+  return { handlePaste, insertContent, editor };
+}
 
 describe('ImageUploadNode', () => {
   describe('configuration', () => {
@@ -67,7 +85,7 @@ describe('ImageUploadNode', () => {
 
       expect(Array.isArray(rules)).toBe(true);
       expect(rules).toHaveLength(1);
-      expect(rules[0]).toHaveProperty('tag', 'div[data-type="image-upload-node"]');
+      expect(rules[0]).toHaveProperty('tag', 'img[data-type="image-upload-node"]');
     });
   });
 
@@ -133,6 +151,85 @@ describe('ImageUploadNode', () => {
         }),
       );
       expect(result).toBe(true);
+    });
+  });
+
+  describe('addProseMirrorPlugins', () => {
+    const mockView = {};
+
+    beforeEach(() => {
+      jest.spyOn(global, 'FileReader').mockImplementation(function MockFileReader() {
+        this.readAsDataURL = function readAsDataURL() {
+          this.result = 'data:image/png;base64,Zm9v';
+          queueMicrotask(() => {
+            if (this.onload) {
+              this.onload();
+            }
+          });
+        };
+      });
+    });
+
+    afterEach(() => {
+      global.FileReader.mockRestore();
+    });
+
+    it('registers one paste plugin', () => {
+      const insertContent = jest.fn();
+      const editor = { commands: { insertContent } };
+      Plugin.mockClear();
+      const plugins = ImageUploadNode.addProseMirrorPlugins.call({ editor });
+      expect(plugins).toHaveLength(1);
+      expect(Plugin).toHaveBeenCalledTimes(1);
+    });
+
+    it('handlePaste returns false when clipboard has no image file', () => {
+      const { handlePaste } = setupPastePlugin();
+      const event = {
+        clipboardData: {
+          items: [{ kind: 'string', type: 'text/plain', getAsFile: () => null }],
+        },
+      };
+      expect(handlePaste(mockView, event)).toBe(false);
+    });
+
+    it('handlePaste returns false when clipboardData is missing', () => {
+      const { handlePaste } = setupPastePlugin();
+      const event = {};
+      expect(handlePaste(mockView, event)).toBe(false);
+    });
+
+    it('handlePaste returns false when the file item has no file', () => {
+      const { handlePaste } = setupPastePlugin();
+      const event = {
+        clipboardData: {
+          items: [{ kind: 'file', type: 'image/png', getAsFile: () => null }],
+        },
+      };
+      expect(handlePaste(mockView, event)).toBe(false);
+    });
+
+    it('handlePaste returns true and inserts imageUploadNode with data URL after read', async () => {
+      const { handlePaste, insertContent } = setupPastePlugin();
+      const file = new File([new Uint8Array([1, 2, 3])], 'p.png', { type: 'image/png' });
+      const event = {
+        clipboardData: {
+          items: [{ kind: 'file', type: 'image/png', getAsFile: () => file }],
+        },
+      };
+
+      expect(handlePaste(mockView, event)).toBe(true);
+      expect(insertContent).not.toHaveBeenCalled();
+
+      await new Promise((resolve) => queueMicrotask(resolve));
+
+      expect(insertContent).toHaveBeenCalledWith({
+        type: 'imageUploadNode',
+        attrs: {
+          src: 'data:image/png;base64,Zm9v',
+          loaded: true,
+        },
+      });
     });
   });
 });
