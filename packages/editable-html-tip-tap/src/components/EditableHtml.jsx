@@ -16,6 +16,7 @@ import ExtendedTable from '../extensions/extended-table';
 import { ExtendedTableCell, ExtendedTableHeader } from '../extensions/extended-table-cell';
 import { DivNode } from '../extensions/div-node';
 import { EnsureEmptyRootIsDiv } from '../extensions/ensure-empty-root-div';
+import { EnsureListItemContentIsDiv } from '../extensions/ensure-list-item-content-is-div';
 import { TableRow } from '@tiptap/extension-table-row';
 import {
   DragInTheBlankNode,
@@ -28,6 +29,7 @@ import { MathNode } from '../extensions/math';
 import { ImageUploadNode } from '../extensions/image';
 import { Media } from '../extensions/media';
 import { CSSMark } from '../extensions/css';
+import { ExtendedListItem } from '../extensions/extended-list-item';
 
 import EditorContainer from './TiptapContainer';
 import { valueToSize } from '../utils/size';
@@ -151,8 +153,10 @@ export const EditableHtml = (props) => {
         notAfter: ['paragraph', 'div'],
       },
     }),
+    ExtendedListItem,
     DivNode,
     EnsureEmptyRootIsDiv,
+    EnsureListItemContentIsDiv,
     Placeholder.configure({
       placeholder: props.placeholder,
       // show placeholder even when editor is focused

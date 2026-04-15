@@ -36,6 +36,8 @@ jest.mock('../extensions/extended-table-cell', () => ({
 }));
 jest.mock('../extensions/extended-table', () => ({ __esModule: true, default: {} }));
 jest.mock('../extensions/ensure-empty-root-div', () => ({ EnsureEmptyRootIsDiv: {} }));
+jest.mock('../extensions/extended-list-item', () => ({ ExtendedListItem: {} }));
+jest.mock('../extensions/ensure-list-item-content-is-div', () => ({ EnsureListItemContentIsDiv: {} }));
 jest.mock('../extensions/responseArea', () => ({
   ExplicitConstructedResponseNode: { configure: jest.fn(() => ({})) },
   DragInTheBlankNode: { configure: jest.fn(() => ({})) },
