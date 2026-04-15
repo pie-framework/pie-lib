@@ -307,7 +307,7 @@ function ImageComponent(props) {
               }}
             >
               <ImageToolbar
-                disableImageAlignmentButtons={options.disableImageAlignmentButtons}
+                disableImageAlignmentButtons={options.imageHandling?.disableImageAlignmentButtons}
                 alt={node.attrs.alt}
                 imageLoaded={node.attrs.loaded}
                 alignment={node.attrs.alignment || 'left'}
