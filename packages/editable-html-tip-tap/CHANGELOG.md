@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.30...@pie-lib/editable-html-tip-tap@1.2.0-next.31) (2026-04-15)
+
+### Bug Fixes
+
+- **render-ui/editable-html-tip-tap:** fix disableImageAlignmentButtons prop and fix alignment in PreviewPrompt PIE-45 ([ef87ea4](https://github.com/pie-framework/pie-lib/commit/ef87ea4e4f9343be4779ea370036a556d67c8cb3))
+
 # [1.2.0-next.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.29...@pie-lib/editable-html-tip-tap@1.2.0-next.30) (2026-04-15)
 
 ### Features
