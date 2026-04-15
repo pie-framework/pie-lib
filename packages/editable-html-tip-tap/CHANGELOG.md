@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.29...@pie-lib/editable-html-tip-tap@1.2.0-next.30) (2026-04-15)
+
+### Features
+
+- made sure pasting image works in the editor [PIE-173] ([28c46e5](https://github.com/pie-framework/pie-lib/commit/28c46e5d1ec97fdc2d1b4dd454fe19882dea5125))
+
 # [1.2.0-next.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.28...@pie-lib/editable-html-tip-tap@1.2.0-next.29) (2026-04-14)
 
 ### Bug Fixes
