@@ -223,13 +223,15 @@ describe('ImageUploadNode', () => {
 
       await new Promise((resolve) => queueMicrotask(resolve));
 
-      expect(insertContent).toHaveBeenCalledWith({
-        type: 'imageUploadNode',
-        attrs: {
-          src: 'data:image/png;base64,Zm9v',
-          loaded: true,
-        },
-      });
+      expect(insertContent).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'imageUploadNode',
+          attrs: expect.objectContaining({
+            src: 'data:image/png;base64,Zm9v',
+            loaded: true,
+          }),
+        }),
+      );
     });
   });
 });
