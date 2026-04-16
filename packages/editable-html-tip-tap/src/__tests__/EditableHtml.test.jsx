@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
+import { useEditor } from '@tiptap/react';
 import { EditableHtml } from '../components/EditableHtml';
 
 // Mock TipTap dependencies
@@ -303,5 +304,41 @@ describe('EditableHtml', () => {
       const editorContent = getByTestId('editor-content');
       expect(editorContent).toBeInTheDocument();
     });
+  });
+
+  it('does not run blur onChange/onDone while an image insert flow is active', async () => {
+    jest.useFakeTimers();
+    const onChange = jest.fn();
+    const onDone = jest.fn();
+
+    render(
+      <EditableHtml
+        {...defaultProps}
+        markup="<p>Hello World</p>"
+        onChange={onChange}
+        onDone={onDone}
+        toolbarOpts={{ ...defaultProps.toolbarOpts, doneOn: 'blur' }}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(useEditor).toHaveBeenCalled();
+    });
+
+    const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
+    const blurEditor = {
+      getHTML: jest.fn(() => '<p>changed</p>'),
+      _insertingImage: true,
+      _toolbarOpened: false,
+      isActive: jest.fn(() => false),
+    };
+
+    editorConfig.onBlur({ editor: blurEditor });
+    jest.advanceTimersByTime(200);
+
+    expect(onChange).not.toHaveBeenCalled();
+    expect(onDone).not.toHaveBeenCalled();
+
+    jest.useRealTimers();
   });
 });
