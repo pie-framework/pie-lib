@@ -38,6 +38,8 @@ class InsertImageHandler {
       this.onFinish(false);
     } catch (err) {
       //
+    } finally {
+      this.editor._insertingImage = false;
     }
   }
 
@@ -72,6 +74,8 @@ class InsertImageHandler {
       this.updateNode({ loaded: true, src, percent: 100 });
       this.onFinish(true);
     }
+
+    this.editor._insertingImage = false;
   }
 
   /**
@@ -86,6 +90,7 @@ class InsertImageHandler {
 
     // Save the chosen file to this.chosenFile
     this.chosenFile = file;
+    this.editor._insertingImage = false;
 
     log('[fileChosen] file: ', file);
     const reader = new FileReader();

@@ -100,7 +100,7 @@ describe('MediaNodeView Component', () => {
           updateAttributes={mockUpdateAttributes}
           deleteNode={mockDeleteNode}
           options={{}}
-        />
+        />,
       );
 
       // Verify the component rendered successfully
@@ -130,7 +130,7 @@ describe('MediaNodeView Component', () => {
           updateAttributes={mockUpdateAttributes}
           deleteNode={mockDeleteNode}
           options={{}}
-        />
+        />,
       );
 
       // Verify the component rendered successfully
@@ -159,7 +159,7 @@ describe('MediaNodeView Component', () => {
           updateAttributes={mockUpdateAttributes}
           deleteNode={mockDeleteNode}
           options={{}}
-        />
+        />,
       );
 
       // Empty string is falsy, so dialog WOULD open with current implementation
@@ -185,7 +185,7 @@ describe('MediaNodeView Component', () => {
           updateAttributes={mockUpdateAttributes}
           deleteNode={mockDeleteNode}
           options={{}}
-        />
+        />,
       );
 
       expect(getByTestId('edit-button')).toBeTruthy();
@@ -210,7 +210,7 @@ describe('MediaNodeView Component', () => {
           updateAttributes={mockUpdateAttributes}
           deleteNode={mockDeleteNode}
           options={{}}
-        />
+        />,
       );
 
       const audio = container.querySelector('audio');
@@ -237,12 +237,14 @@ describe('MediaNodeView Component', () => {
           updateAttributes={mockUpdateAttributes}
           deleteNode={mockDeleteNode}
           options={{}}
-        />
+        />,
       );
 
       const iframe = container.querySelector('iframe');
       expect(iframe).toBeTruthy();
       expect(iframe.getAttribute('src')).toBe('https://www.youtube.com/embed/dQw4w9WgXcQ');
+      expect(iframe.getAttribute('width')).toBe('640');
+      expect(iframe.getAttribute('height')).toBe('480');
     });
 
     it('should render MediaToolbar', () => {
@@ -261,7 +263,7 @@ describe('MediaNodeView Component', () => {
           updateAttributes={mockUpdateAttributes}
           deleteNode={mockDeleteNode}
           options={{}}
-        />
+        />,
       );
 
       expect(getByTestId('media-toolbar')).toBeTruthy();
@@ -285,7 +287,7 @@ describe('MediaNodeView Component', () => {
           updateAttributes={mockUpdateAttributes}
           deleteNode={mockDeleteNode}
           options={{}}
-        />
+        />,
       );
 
       fireEvent.click(getByTestId('remove-button'));
