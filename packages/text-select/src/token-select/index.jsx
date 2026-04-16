@@ -1,4 +1,5 @@
 import React from 'react';
+import { renderToString } from 'react-dom/server';
 import PropTypes from 'prop-types';
 import Token, { TokenTypes } from './token';
 import { styled } from '@mui/material/styles';
@@ -14,18 +15,26 @@ const StyledTokenSelect = styled('div')(() => ({
   ...noSelect(),
   '& p': {
     whiteSpace: 'break-spaces',
-    margin: 0,
   },
 }));
 
-// strip HTML tags for plain text rendering
-const stripHtmlTags = (text) => {
-  if (!text) {
-    return text;
-  }
+// Invisible container whose only job is to make Emotion inject CSS for all Token variants.
+// renderToString produces correct class names but never triggers Emotion's DOM-side injection,
+// so without this the class names exist in the HTML but have no matching CSS rules.
+const HiddenCssPrimer = styled('div')(() => ({
+  display: 'none',
+  position: 'absolute',
+  visibility: 'hidden',
+  pointerEvents: 'none',
+}));
 
-  return text.replace(/<[^>]+>/g, '');
-};
+const normalizeCommonEntities = (text = '') => text.replace(/&nbsp;/gi, '\u00a0');
+
+const normalizeSelectableText = (text = '') =>
+  normalizeCommonEntities(text)
+    .replace(/<\/p>\s*<p[^>]*>/gi, '\n\n')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?(table|tbody|tr|td|p)[^>]*>/gi, '');
 
 export class TokenSelect extends React.Component {
   static propTypes = {
@@ -93,76 +102,139 @@ export class TokenSelect extends React.Component {
     }
   };
 
-  /** Build a React tree instead of an HTML string so Emotion can inject CSS */
-  generateTokensNodes = () => {
+  /**
+   * Build an HTML string so that non-selectable token text (which may contain arbitrary or even
+   * *partial* HTML — e.g. just an opening <table><tbody><tr><td> in one token and the matching
+   * closing tags in another) is preserved exactly as-is.  Selectable Token components are
+   * serialised via renderToString; their Emotion class names are stable hashes so they match the
+   * CSS that the HiddenCssPrimer forces Emotion to inject into the document.
+   */
+  generateTokensInHtml = () => {
     const { tokens, disabled, highlightChoices, animationsDisabled } = this.props;
     const selectedCount = this.selectedCount();
 
-    const isLineBreak = (text) => text === '\n';
-    const isNewParagraph = (text) => text === '\n\n';
-
-    const paragraphs = [];
-    let currentChildren = [];
-
-    const flushParagraph = () => {
-      // Always push a <p>, even if empty, to mirror previous behavior
-      paragraphs.push(<p key={`p-${paragraphs.length}`}>{currentChildren}</p>);
-      currentChildren = [];
-    };
-
-    (tokens || []).forEach((t, index) => {
+    const reducer = (accumulator, t, index) => {
       const selectable = t.selected || (t.selectable && this.canSelectMore(selectedCount));
       const showCorrectAnswer = t.correct !== undefined && (t.selectable || t.selected);
 
-      if (isNewParagraph(t.text)) {
-        flushParagraph();
-        return;
-      }
+      if (t.text === '\n\n') return `${accumulator}</p><p>`;
 
-      if (isLineBreak(t.text)) {
-        currentChildren.push(<br key={`br-${index}`} />);
-        return;
-      }
+      if (t.text === '\n') return `${accumulator}<br>`;
 
       if (
         (selectable && !disabled) ||
         showCorrectAnswer ||
         t.selected ||
         t.isMissing ||
-        (animationsDisabled && t.predefined) // print mode
+        (animationsDisabled && t.predefined)
       ) {
-        currentChildren.push(
-          <Token
-            key={index}
-            disabled={disabled}
-            index={index}
-            {...t}
-            text={stripHtmlTags(t.text)}
-            selectable={selectable}
-            highlight={highlightChoices}
-            animationsDisabled={animationsDisabled}
-          />,
+        return (
+          accumulator +
+          renderToString(
+            <Token
+              key={index}
+              disabled={disabled}
+              index={index}
+              {...t}
+              text={normalizeSelectableText(t.text)}
+              selectable={selectable}
+              highlight={highlightChoices}
+              animationsDisabled={animationsDisabled}
+            />,
+          )
         );
-      } else {
-        // raw text node – React will escape as needed
-        currentChildren.push(<React.Fragment key={index}>{stripHtmlTags(t.text)}</React.Fragment>);
       }
-    });
 
-    // flush last paragraph
-    flushParagraph();
+      // Non-selectable: emit raw HTML unchanged (may contain partial tags, tables, lists, etc.)
+      return accumulator + normalizeCommonEntities(t.text);
+    };
 
-    return paragraphs;
+    return (tokens || []).reduce(reducer, '<p>') + '</p>';
   };
 
   render() {
     const { className: classNameProp } = this.props;
-    const nodes = this.generateTokensNodes();
+    const html = this.generateTokensInHtml();
 
+    // Render one invisible Token per visual variant so Emotion injects all CSS rules into the
+    // document before the browser paints the dangerouslySetInnerHTML content.
+    const primerText = ' ';
     return (
-      <StyledTokenSelect className={classNameProp} onClick={this.toggleToken}>
-        {nodes}
-      </StyledTokenSelect>
+      <>
+        <HiddenCssPrimer aria-hidden="true">
+          {/* base / selectable */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            disabled={false}
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* highlight */}
+          <Token text={primerText} index={-1} selectable disabled={false} highlight animationsDisabled={false} />
+          {/* selected */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            selected
+            disabled={false}
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* disabled + selected */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            selected
+            disabled
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* print / animationsDisabled */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            disabled={false}
+            highlight={false}
+            animationsDisabled
+            predefined
+          />
+          {/* correct */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            selected
+            correct
+            disabled={false}
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* incorrect */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            selected
+            correct={false}
+            disabled={false}
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* missing */}
+          <Token text={primerText} index={-1} isMissing disabled={false} highlight={false} animationsDisabled={false} />
+        </HiddenCssPrimer>
+
+        <StyledTokenSelect
+          className={classNameProp}
+          onClick={this.toggleToken}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </>
     );
   }
 }
