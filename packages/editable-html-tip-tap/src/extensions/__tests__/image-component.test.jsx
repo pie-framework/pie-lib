@@ -209,7 +209,7 @@ describe('ImageComponent', () => {
     expect(mockOptions.imageHandling.insertImageRequested).not.toHaveBeenCalled();
   });
 
-  it('calls insertImageRequested with editor and node when empty placeholder is solely selected', async () => {
+  it('calls insertImageRequested with editor and [node, pos] when empty placeholder is solely selected', async () => {
     const placeholderNode = {
       ...mockNode,
       nodeSize: 1,
@@ -230,7 +230,7 @@ describe('ImageComponent', () => {
 
     expect(mockOptions.imageHandling.insertImageRequested).toHaveBeenCalledWith(
       mockEditor,
-      expect.objectContaining({ ...placeholderNode, pos: MOCK_NODE_POS }),
+      [placeholderNode, MOCK_NODE_POS],
       expect.any(Function),
     );
     expect(defaultProps.getPos).toHaveBeenCalled();

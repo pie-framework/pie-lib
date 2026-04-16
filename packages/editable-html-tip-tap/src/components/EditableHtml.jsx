@@ -206,7 +206,9 @@ export const EditableHtml = (props) => {
           }),
         insertImageRequested:
           props.imageSupport &&
-          ((editor, addedImage, getHandler) => {
+          ((editor, imageInfo, getHandler) => {
+            const [addedImage, pos] = imageInfo;
+
             const onFinish = (result) => {
               let cb;
 
@@ -215,7 +217,7 @@ export const EditableHtml = (props) => {
                 cb = props.onChange;
               }
 
-              removePendingImage(addedImage.pos);
+              removePendingImage(pos);
               cb?.(editor.getHTML());
             };
 
@@ -236,7 +238,7 @@ export const EditableHtml = (props) => {
                   return;
                 }
 
-                removePendingImage(addedImage.pos);
+                removePendingImage(pos);
                 editor._insertingImage = false;
                 detach();
               }, 500);
