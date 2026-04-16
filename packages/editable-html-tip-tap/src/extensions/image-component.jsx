@@ -74,15 +74,14 @@ function ImageComponent(props) {
     editor,
     attributes,
     onFocus,
+    getPos,
     selected,
     options,
     maxImageWidth = 700,
     maxImageHeight = 900,
-    latex,
-    handleChange,
-    handleDone,
   } = props;
   const { alt } = node.attrs;
+  const pos = getPos();
 
   const [showToolbar, setShowToolbar] = useState(false);
 
@@ -111,8 +110,8 @@ function ImageComponent(props) {
 
   // keep ref in sync with latest node
   useEffect(() => {
-    latestNodeRef.current = node;
-  }, [node]);
+    latestNodeRef.current = { ...node, pos };
+  }, [node, pos]);
 
   useEffect(() => {
     const { selection } = editor.state;
@@ -120,6 +119,18 @@ function ImageComponent(props) {
 
     if (selected) {
       if (onlyThisNodeSelected) {
+        // Only open the upload UI for a fresh placeholder. Remounting after tab switch
+        // would otherwise call insertImageRequested again and reopen the file modal.
+        const hasImageSrc = String(node.attrs?.src ?? '').trim();
+
+        if (!hasImageSrc && options.imageHandling?.insertImageRequested) {
+          options.imageHandling.insertImageRequested(
+            editor,
+            latestNodeRef.current,
+            (finish) => new InsertImageHandler(editor, latestNodeRef.current, finish),
+          );
+        }
+
         setShowToolbar(selected);
       }
     } else {
@@ -128,13 +139,6 @@ function ImageComponent(props) {
   }, [editor, node, selected]);
 
   useEffect(() => {
-    // Only open the upload UI for a fresh placeholder. Remounting after tab switch
-    // would otherwise call insertImageRequested again and reopen the file modal.
-    const hasImageSrc = String(node.attrs?.src ?? '').trim();
-    if (!hasImageSrc && options.imageHandling?.insertImageRequested) {
-      options.imageHandling.insertImageRequested(node, (finish) => new InsertImageHandler(editor, node, finish));
-    }
-
     applySizeData();
 
     const resizeHandle = resizeRef.current;
@@ -302,7 +306,7 @@ function ImageComponent(props) {
               }}
               onDone={() => {
                 setShowToolbar(false);
-                options.imageHandling?.onDone?.();
+                options.imageHandling?.onDone?.(editor);
                 editor.commands.focus('end');
               }}
             >

@@ -35,19 +35,20 @@ jest.mock('../custom-toolbar-wrapper', () => ({
 }));
 
 describe('ImageComponent', () => {
-  const mockEditor = {
+  const MOCK_NODE_POS = 7;
+
+  const createMockEditor = (selection = { from: 0, to: 1 }) => ({
     _tiptapContainerEl: document.body,
     commands: {
       updateAttributes: jest.fn(),
       focus: jest.fn(),
     },
     state: {
-      selection: {
-        from: 0,
-        to: 1,
-      },
+      selection,
     },
-  };
+  });
+
+  let mockEditor = createMockEditor();
 
   const mockNode = {
     attrs: {
@@ -79,10 +80,14 @@ describe('ImageComponent', () => {
     options: mockOptions,
     attributes: {},
     onFocus: jest.fn(),
+    getPos: jest.fn(() => MOCK_NODE_POS),
   };
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockEditor = createMockEditor();
+    defaultProps.editor = mockEditor;
+    defaultProps.getPos = jest.fn(() => MOCK_NODE_POS);
   });
 
   it('renders without crashing', () => {
@@ -186,11 +191,11 @@ describe('ImageComponent', () => {
   });
 
   it('does not call insertImageRequested when image already has src', () => {
-    render(<ImageComponent {...defaultProps} />);
+    render(<ImageComponent {...defaultProps} selected={true} />);
     expect(mockOptions.imageHandling.insertImageRequested).not.toHaveBeenCalled();
   });
 
-  it('calls insertImageRequested on mount only for empty placeholder (no src)', () => {
+  it('does not call insertImageRequested for empty placeholder on mount when not selected', () => {
     const placeholderNode = {
       ...mockNode,
       attrs: {
@@ -200,8 +205,52 @@ describe('ImageComponent', () => {
         percent: null,
       },
     };
-    render(<ImageComponent {...defaultProps} node={placeholderNode} />);
-    expect(mockOptions.imageHandling.insertImageRequested).toHaveBeenCalled();
+    render(<ImageComponent {...defaultProps} node={placeholderNode} selected={false} />);
+    expect(mockOptions.imageHandling.insertImageRequested).not.toHaveBeenCalled();
+  });
+
+  it('calls insertImageRequested with editor and node when empty placeholder is solely selected', async () => {
+    const placeholderNode = {
+      ...mockNode,
+      nodeSize: 1,
+      attrs: {
+        ...mockNode.attrs,
+        src: null,
+        loaded: false,
+        percent: null,
+      },
+    };
+    mockEditor = createMockEditor({ from: 0, to: 1 });
+
+    render(<ImageComponent {...defaultProps} editor={mockEditor} node={placeholderNode} selected={true} />);
+
+    await waitFor(() => {
+      expect(mockOptions.imageHandling.insertImageRequested).toHaveBeenCalled();
+    });
+
+    expect(mockOptions.imageHandling.insertImageRequested).toHaveBeenCalledWith(
+      mockEditor,
+      expect.objectContaining({ ...placeholderNode, pos: MOCK_NODE_POS }),
+      expect.any(Function),
+    );
+    expect(defaultProps.getPos).toHaveBeenCalled();
+  });
+
+  it('does not call insertImageRequested when selection spans beyond the image node', () => {
+    const placeholderNode = {
+      ...mockNode,
+      nodeSize: 1,
+      attrs: {
+        ...mockNode.attrs,
+        src: null,
+        loaded: false,
+        percent: null,
+      },
+    };
+    mockEditor = createMockEditor({ from: 0, to: 5 });
+
+    render(<ImageComponent {...defaultProps} editor={mockEditor} node={placeholderNode} selected={true} />);
+    expect(mockOptions.imageHandling.insertImageRequested).not.toHaveBeenCalled();
   });
 
   it('updates attributes through toolbar onChange', async () => {
@@ -260,5 +309,17 @@ describe('ImageComponent', () => {
     const { container } = render(<ImageComponent {...defaultProps} node={noAltNode} />);
     const img = container.querySelector('img');
     expect(img).toBeInTheDocument();
+  });
+
+  it('passes editor to imageHandling onDone when Done is clicked', async () => {
+    const { getByTestId } = render(<ImageComponent {...defaultProps} selected={true} />);
+
+    await waitFor(() => {
+      expect(getByTestId('done-button')).toBeInTheDocument();
+    });
+
+    fireEvent.click(getByTestId('done-button'));
+
+    expect(mockOptions.imageHandling.onDone).toHaveBeenCalledWith(mockEditor);
   });
 });

@@ -179,7 +179,7 @@ export default function MediaNodeView({ editor, node, updateAttributes, deleteNo
           <source type="audio/mp3" src={src} />
         </audio>
       ) : (
-        <iframe src={src} allowFullScreen frameBorder="0" />
+        <iframe src={src} allowFullScreen frameBorder="0" width={width} height={height} />
       )}
 
       <MediaToolbar onEdit={handleEdit} onRemove={deleteNode} />

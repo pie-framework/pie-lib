@@ -7,6 +7,7 @@ describe('InsertImageHandler', () => {
   };
 
   const createMockEditor = () => ({
+    _insertingImage: true,
     state: {
       doc: {
         descendants: jest.fn((callback) => {
@@ -61,6 +62,7 @@ describe('InsertImageHandler', () => {
     const handler = new InsertImageHandler(editor, mockNode, mockOnFinish);
     handler.cancel();
     expect(mockOnFinish).toHaveBeenCalledWith(false);
+    expect(editor._insertingImage).toBe(false);
   });
 
   it('updateNode dispatches transaction with new attributes', () => {
@@ -84,6 +86,7 @@ describe('InsertImageHandler', () => {
 
     expect(consoleLogSpy).toHaveBeenCalledWith('error');
     expect(mockOnFinish).toHaveBeenCalledWith(false);
+    expect(editor._insertingImage).toBe(false);
     consoleLogSpy.mockRestore();
   });
 
@@ -97,6 +100,7 @@ describe('InsertImageHandler', () => {
 
     expect(editor.view.dispatch).toHaveBeenCalled();
     expect(mockOnFinish).toHaveBeenCalledWith(true);
+    expect(editor._insertingImage).toBe(false);
   });
 
   it('fileChosen returns early when no file provided', () => {
@@ -124,6 +128,7 @@ describe('InsertImageHandler', () => {
     handler.fileChosen(mockFile);
 
     expect(handler.chosenFile).toBe(mockFile);
+    expect(editor._insertingImage).toBe(false);
   });
 
   it('progress updates node with percent', () => {
