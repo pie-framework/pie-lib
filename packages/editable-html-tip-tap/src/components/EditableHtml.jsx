@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash-es/debounce';
 import { EditorContent, useEditor, useEditorState } from '@tiptap/react';
 import { styled } from '@mui/material/styles';
@@ -99,6 +99,19 @@ export const EditableHtml = (props) => {
   const [scheduled, setScheduled] = useState(false);
   const { toolbarOpts } = props;
 
+  const removePendingImage = useCallback(
+    (imagePos) => {
+      setPendingImages((prev) => {
+        const next = prev.filter((img) => img.pos !== imagePos);
+        if (next.length === 0) {
+          setScheduled(false);
+        }
+        return next;
+      });
+    },
+    [setPendingImages],
+  );
+
   const toolbarOptsToUse = {
     ...defaultToolbarOpts,
     ...toolbarOpts,
@@ -180,7 +193,7 @@ export const EditableHtml = (props) => {
       toolbarOpts: toolbarOptsToUse,
       imageHandling: {
         disableImageAlignmentButtons: props.disableImageAlignmentButtons,
-        onDone: () => props.onDone?.(editor.getHTML()),
+        onDone: (editor) => props.onDone?.(editor.getHTML()),
         onDelete:
           props.imageSupport &&
           props.imageSupport.delete &&
@@ -188,19 +201,14 @@ export const EditableHtml = (props) => {
             const { src } = node.attrs;
 
             props.imageSupport.delete(src, (e) => {
-              const newPendingImages = pendingImages.filter((img) => img.key !== node.key);
-              const newState = {
-                pendingImages: newPendingImages,
-                scheduled: scheduled && newPendingImages.length === 0 ? false : scheduled,
-              };
-
-              setPendingImages(newState.pendingImages);
-              setScheduled(newState.scheduled);
+              removePendingImage(node.pos);
             });
           }),
         insertImageRequested:
           props.imageSupport &&
-          ((addedImage, getHandler) => {
+          ((editor, imageInfo, getHandler) => {
+            const [addedImage, pos] = imageInfo;
+
             const onFinish = (result) => {
               let cb;
 
@@ -209,29 +217,39 @@ export const EditableHtml = (props) => {
                 cb = props.onChange;
               }
 
-              const newPendingImages = pendingImages.filter((img) => img.key !== addedImage.key);
-              const newState = {
-                pendingImages: newPendingImages,
-              };
-
-              if (newPendingImages.length === 0) {
-                newState.scheduled = false;
-              }
-
-              setPendingImages(newState.pendingImages);
-              setScheduled(newState.scheduled);
+              removePendingImage(pos);
               cb?.(editor.getHTML());
             };
+
             const callback = () => {
               /**
                * The handler is the object through which the outer context
                * communicates file upload events like: fileChosen, cancel, progress
                */
               const handler = getHandler(onFinish);
+
+              // If the user closes the file picker without choosing a file, the window regains
+              // focus while _insertingImage is still true — drop the stale pending entry.
+              const focusHandler = debounce(() => {
+                const detach = () => window.removeEventListener('focus', focusHandler);
+
+                if (!editor._insertingImage) {
+                  detach();
+                  return;
+                }
+
+                removePendingImage(pos);
+                editor._insertingImage = false;
+                detach();
+              }, 500);
+
+              window.addEventListener('focus', focusHandler);
+
               props.imageSupport.add(handler);
             };
 
-            setPendingImages([...pendingImages, addedImage]);
+            editor._insertingImage = true;
+            setPendingImages((prev) => [...prev, addedImage]);
             callback();
           }),
         maxImageWidth: props.maxImageWidth,
@@ -270,6 +288,7 @@ export const EditableHtml = (props) => {
       },
       onBlur: debounce(({ editor }) => {
         const otherToolbarOpened =
+          editor._insertingImage ||
           editor._toolbarOpened ||
           editor.isActive('inline_dropdown') ||
           editor.isActive('explicit_constructed_response');

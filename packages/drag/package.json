@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/drag",
-  "version": "3.2.0-next.8",
+  "version": "3.2.0-next.9",
   "description": "",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -14,7 +14,7 @@
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@pie-lib/math-rendering": "^4.2.0-next.3",
-    "@pie-lib/render-ui": "^5.2.0-next.7",
+    "@pie-lib/render-ui": "^5.2.0-next.8",
     "classnames": "^2.2.6",
     "lodash-es": "^4.17.23",
     "prop-types": "^15.7.2",
