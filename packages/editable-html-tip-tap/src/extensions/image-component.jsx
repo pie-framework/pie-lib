@@ -126,8 +126,8 @@ function ImageComponent(props) {
         if (!hasImageSrc && options.imageHandling?.insertImageRequested) {
           options.imageHandling.insertImageRequested(
             editor,
-            latestNodeRef.current,
-            (finish) => new InsertImageHandler(editor, latestNodeRef.current, finish),
+            [node, pos],
+            (finish) => new InsertImageHandler(editor, [node, pos], finish),
           );
         }
 
@@ -136,7 +136,7 @@ function ImageComponent(props) {
     } else {
       setShowToolbar(selected);
     }
-  }, [editor, node, selected]);
+  }, [editor, node, pos, selected]);
 
   useEffect(() => {
     applySizeData();

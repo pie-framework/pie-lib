@@ -11,20 +11,11 @@ const log = debug('@pie-lib:editable-html:image:insert-image-handler');
  * @param {Boolean} isPasted - a boolean that keeps track if the file is pasted
  */
 class InsertImageHandler {
-  constructor(editor, node, onFinish, isPasted = false) {
+  constructor(editor, nodeInfo, onFinish, isPasted = false) {
     this.editor = editor;
-    this.node = node;
-
-    let nodePos;
-
-    editor.state.doc.descendants((node, pos) => {
-      if (node === this.node) {
-        nodePos = pos;
-        return false;
-      }
-    });
-
-    this.nodePos = nodePos;
+    this.nodeInfo = nodeInfo;
+    this.node = nodeInfo[0];
+    this.nodePos = nodeInfo[1];
     this.onFinish = onFinish;
     this.isPasted = isPasted;
     this.chosenFile = null;
