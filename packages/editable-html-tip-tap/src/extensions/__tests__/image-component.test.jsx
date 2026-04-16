@@ -97,13 +97,11 @@ describe('ImageComponent', () => {
   };
 
   beforeEach(() => {
-
     jest.clearAllMocks();
     mockEditor = createMockEditor();
-   
     defaultProps.editor = mockEditor;
     defaultProps.getPos = jest.fn(() => MOCK_NODE_POS);
-     mockEditor.state.doc.descendants.mockImplementation((cb) => cb(mockNode, 0));
+    mockEditor.state.doc.descendants.mockImplementation((cb) => cb(mockNode, 0));
     mockEditor.state.doc.nodeAt.mockReturnValue(mockNode);
   });
 
