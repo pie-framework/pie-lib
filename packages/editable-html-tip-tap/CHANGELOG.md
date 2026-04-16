@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.34](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.33...@pie-lib/editable-html-tip-tap@1.2.0-next.34) (2026-04-16)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** handle list item to avoid default paragraph wrapping PIE-46 ([9c37dac](https://github.com/pie-framework/pie-lib/commit/9c37dac9d10940f59930d21a135cd991f238d622))
+- streamline beforeEach setup in image component tests ([3d0fc78](https://github.com/pie-framework/pie-lib/commit/3d0fc78b9ceda1664978378ace9f6c3bbd4a2269))
+- tests ([4c96c88](https://github.com/pie-framework/pie-lib/commit/4c96c88b791b10d747453914577178b991753961))
+
+### Features
+
+- **editable-html-tip-tap:** image -add unique nodeKey attribute for identification PIE-54 ([210c0d5](https://github.com/pie-framework/pie-lib/commit/210c0d5ffda0718b52845b3b4011b98f66b0b547))
+
 # [1.2.0-next.33](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.32...@pie-lib/editable-html-tip-tap@1.2.0-next.33) (2026-04-16)
 
 ### Bug Fixes

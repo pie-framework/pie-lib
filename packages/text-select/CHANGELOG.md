@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-next.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.8...@pie-lib/text-select@2.2.0-next.9) (2026-04-16)
+
+### Bug Fixes
+
+- **text-select:** adjust markup rendering PIE-25 PIE-13 ([1d4d91d](https://github.com/pie-framework/pie-lib/commit/1d4d91d09efdaf861e384beda7d6d1e512a2281c))
+
 # [2.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.7...@pie-lib/text-select@2.2.0-next.8) (2026-04-15)
 
 **Note:** Version bump only for package @pie-lib/text-select
