@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.33](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.32...@pie-lib/editable-html-tip-tap@1.2.0-next.33) (2026-04-16)
+
+### Bug Fixes
+
+- made sure correct reference is sent for insert image handler [PIE-1229][PIE-44] ([8db57c0](https://github.com/pie-framework/pie-lib/commit/8db57c035449b5c630a084211b506d2c85786772))
+
 # [1.2.0-next.32](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.31...@pie-lib/editable-html-tip-tap@1.2.0-next.32) (2026-04-16)
 
 ### Bug Fixes
