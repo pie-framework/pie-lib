@@ -15,12 +15,24 @@ export const DivNode = Node.create({
   },
 
   addKeyboardShortcuts() {
+    const isInsideListItem = ($from) => {
+      for (let depth = $from.depth; depth >= 0; depth -= 1) {
+        if ($from.node(depth).type.name === 'listItem') {
+          return true;
+        }
+      }
+      return false;
+    };
+
     return {
       Enter: () => {
         const { state } = this.editor;
         const { $from } = state.selection;
 
         if ($from.parent.type.name !== 'div') {
+          return false;
+        }
+        if (isInsideListItem($from)) {
           return false;
         }
 
@@ -60,8 +72,6 @@ export const DivNode = Node.create({
           return state.doc.childCount === 1 ? true : false;
         }
 
-        // one character left and cursor is after it — delete
-        // only that character and stop, preventing the block-join that fires Enter.
         if (parentText.length === 1 && $from.parentOffset === 1) {
           const { tr } = state;
           tr.delete($from.pos - 1, $from.pos);
