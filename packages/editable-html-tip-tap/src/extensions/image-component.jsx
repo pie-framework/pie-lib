@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash-es/isEqual';
 import debug from 'debug';
@@ -83,6 +83,10 @@ function ImageComponent(props) {
   const { alt } = node.attrs;
   const pos = getPos();
 
+  const selFrom = editor.state.selection.from;
+  const selTo = editor.state.selection.to;
+  const onlyThisNodeSelected = useMemo(() => selFrom + node.nodeSize === selTo, [selFrom, selTo, node.nodeSize]);
+
   const [showToolbar, setShowToolbar] = useState(false);
 
   const latestNodeRef = useRef(node);
@@ -109,15 +113,16 @@ function ImageComponent(props) {
   }, [editor]);
 
   // dispatch an attribute update targeted precisely at this node by nodeKey.
-  const updateThisNode = useCallback((newAttrs) => {
-    const nodePos = findNodePos();
-    if (nodePos === null) return;
-    const currentNode = editor.state.doc.nodeAt(nodePos);
-    if (!currentNode) return;
-    editor.view.dispatch(
-      editor.state.tr.setNodeMarkup(nodePos, undefined, { ...currentNode.attrs, ...newAttrs }),
-    );
-  }, [editor, findNodePos]);
+  const updateThisNode = useCallback(
+    (newAttrs) => {
+      const nodePos = findNodePos();
+      if (nodePos === null) return;
+      const currentNode = editor.state.doc.nodeAt(nodePos);
+      if (!currentNode) return;
+      editor.view.dispatch(editor.state.tr.setNodeMarkup(nodePos, undefined, { ...currentNode.attrs, ...newAttrs }));
+    },
+    [editor, findNodePos],
+  );
 
   const applySizeData = useCallback(() => {
     if (!node.attrs.width || !imgRef.current) return;
@@ -132,9 +137,6 @@ function ImageComponent(props) {
   }, [node, pos]);
 
   useEffect(() => {
-    const { selection } = editor.state;
-    const onlyThisNodeSelected = selection.from + node.nodeSize === selection.to;
-
     if (selected) {
       if (onlyThisNodeSelected) {
         // Only open the upload UI for a fresh placeholder. Remounting after tab switch
@@ -154,7 +156,7 @@ function ImageComponent(props) {
     } else {
       setShowToolbar(selected);
     }
-  }, [editor, node, pos, selected]);
+  }, [onlyThisNodeSelected, selected]);
 
   useEffect(() => {
     applySizeData();
