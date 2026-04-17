@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.34...@pie-lib/editable-html-tip-tap@1.2.0-next.35) (2026-04-17)
+
+### Bug Fixes
+
+- made sure insertImageRequested is called only once [PIE-1229] ([336d38c](https://github.com/pie-framework/pie-lib/commit/336d38cf2e7e45b621b5dd831991017a694ec5cd))
+
 # [1.2.0-next.34](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.33...@pie-lib/editable-html-tip-tap@1.2.0-next.34) (2026-04-16)
 
 ### Bug Fixes
