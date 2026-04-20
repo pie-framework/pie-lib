@@ -23,16 +23,12 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-root, & .MuiInput-root, & .MuiFilledInput-root, & .MuiOutlinedInput-root': {
     height: 'auto',
     minHeight: 'auto',
+    marginTop: 0,
   },
   '& .MuiInputBase-input': {
     height: 'auto',
     minHeight: 'auto',
     padding: '6px 0 7px',
-  },
-  '& .MuiInput-root, & .MuiFilledInput-root': {
-    '&:before, &:after, &:hover:not(.Mui-disabled):before': {
-      display: 'none',
-    },
   },
 }));
 
