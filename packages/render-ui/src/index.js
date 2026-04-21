@@ -13,6 +13,7 @@ import * as color from './color';
 import { hasText } from './has-text';
 import { hasMedia } from './has-media';
 import EnableAudioAutoplayImage from './assets/enableAudioAutoplayImage';
+import { transformDataHeadings } from './transform-headings';
 
 export {
   HtmlAndMath,
@@ -30,4 +31,5 @@ export {
   hasText,
   hasMedia,
   EnableAudioAutoplayImage,
+  transformDataHeadings,
 };
