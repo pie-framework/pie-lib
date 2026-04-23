@@ -269,14 +269,28 @@ const bootstrap = (opts) => {
 
         updatedDocument = updatedDocument.getMetrics().typeset();
 
-        // Only add assistive MML and speech if speech-rule-engine is ready and not in temporary mode
+        // assistiveMml() is what produces the <mjx-assistive-mml> element that
+        // screen readers (VoiceOver, JAWS, NVDA) use to read math semantically.
+        // It only serializes MathJax's internal MathML tree via LimitedMmlVisitor
+        // and does NOT depend on speech-rule-engine, so it must always run –
+        // otherwise fractions, roots, etc. get flattened to raw digits in AT.
+        try {
+          updatedDocument = updatedDocument.assistiveMml();
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.warn('[math-rendering] Failed to attach assistive MathML:', e);
+        }
+
+        // attachSpeech() relies on speech strings computed during enrich(),
+        // which requires speech-rule-engine to be ready. Skip it gracefully
+        // if SRE isn't initialised yet – screen readers will still read the
+        // MathML structure produced above.
         if (!temporary && sreReady) {
           try {
-            updatedDocument = updatedDocument.assistiveMml().attachSpeech();
+            updatedDocument = updatedDocument.attachSpeech();
           } catch (e) {
-            // If this fails, speech-rule-engine isn't ready
             // eslint-disable-next-line no-console
-            console.warn('[math-rendering] Speech-rule-engine not fully initialized, skipping assistive features');
+            console.warn('[math-rendering] Speech-rule-engine not fully initialized, skipping speech attachment');
             sreReady = false;
           }
         }
