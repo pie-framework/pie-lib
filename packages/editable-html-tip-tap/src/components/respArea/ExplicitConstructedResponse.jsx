@@ -11,7 +11,7 @@ const ExplicitConstructedResponse = (props) => {
   const { respAreaToolbar, error: errorFn } = options;
   const pos = getPos();
   const [showToolbar, setShowToolbar] = useState(false);
-  const EcrToolbar = respAreaToolbar([node, pos], editor, () => { });
+  const EcrToolbar = respAreaToolbar([node, pos], editor, () => {});
   const toolbarRef = useRef(null);
 
   let error;
@@ -38,7 +38,8 @@ const ExplicitConstructedResponse = (props) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      const insideCharacterPicker = event.target.closest('.insert-character-dialog') || event.target.closest('[data-toolbar-for]');
+      const insideCharacterPicker =
+        event.target.closest('.insert-character-dialog') || event.target.closest('[data-toolbar-for]');
 
       if (
         !insideCharacterPicker &&
@@ -93,29 +94,32 @@ const ExplicitConstructedResponse = (props) => {
         }}
       />
       {showToolbar && (
-        <div ref={toolbarRef} className="absolute z-50 bg-white shadow-lg rounded p-2" style={{ zIndex: 1 }}>
-          <EcrToolbar />
-        </div>
-      )}
-      {showToolbar && editor._tiptapContainerEl && ReactDOM.createPortal(
-          <CustomToolbarWrapper
-            deletable
-            toolbarOpts={{ minWidth: 'auto' }}
-            autoWidth
-            style={{ top: -40, left: 0, right: 0 }}
-            onDelete={() => {
-              const { tr } = editor.state;
-              tr.delete(pos, pos + node.nodeSize);
-              // Prevent the debounced onBlur/onDone from firing into the
-              // now-deleted node's stale position
-              editor._toolbarOpened = false;
-              editor.view.dispatch(tr);
-              setShowToolbar(false);
-              editor.commands.focus();
-            }}
-            showDone={false}
-          />,
-        editor._tiptapContainerEl,
+        <React.Fragment>
+          <div ref={toolbarRef} className="absolute z-50 bg-white shadow-lg rounded p-2" style={{ zIndex: 1 }}>
+            <EcrToolbar />
+          </div>
+          {editor._tiptapContainerEl &&
+            ReactDOM.createPortal(
+              <CustomToolbarWrapper
+                deletable
+                toolbarOpts={{ minWidth: 'auto' }}
+                autoWidth
+                style={{ top: -40, left: 0, right: 0 }}
+                onDelete={() => {
+                  const { tr } = editor.state;
+                  tr.delete(pos, pos + node.nodeSize);
+                  // Prevent the debounced onBlur/onDone from firing into the
+                  // now-deleted node's stale position
+                  editor._toolbarOpened = false;
+                  editor.view.dispatch(tr);
+                  setShowToolbar(false);
+                  editor.commands.focus();
+                }}
+                showDone={false}
+              />,
+              editor._tiptapContainerEl,
+            )}
+        </React.Fragment>
       )}
     </NodeViewWrapper>
   );

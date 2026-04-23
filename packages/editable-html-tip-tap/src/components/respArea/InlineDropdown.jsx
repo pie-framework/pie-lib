@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NodeViewWrapper } from '@tiptap/react';
 import { Chevron } from '../icons/RespArea';
 import ReactDOM from 'react-dom';
+import CustomToolbarWrapper from '../../extensions/custom-toolbar-wrapper';
 
 const InlineDropdown = (props) => {
   const { editor, node, getPos, options, selected } = props;
@@ -118,17 +119,42 @@ const InlineDropdown = (props) => {
           }}
         />
       </div>
-      {showToolbar &&
-        ReactDOM.createPortal(
-          <div ref={toolbarRef} style={{ zIndex: 1 }}>
-            <InlineDropdownToolbar
-              editorCallback={(instance) => {
-                toolbarEditor.current = instance;
-              }}
-            />
-          </div>,
-          document.body,
-        )}
+      {showToolbar && (
+        <React.Fragment>
+          {ReactDOM.createPortal(
+            <div ref={toolbarRef} style={{ zIndex: 1 }}>
+              <InlineDropdownToolbar
+                editorCallback={(instance) => {
+                  toolbarEditor.current = instance;
+                }}
+              />
+            </div>,
+            document.body,
+          )}
+
+          {editor._tiptapContainerEl &&
+            ReactDOM.createPortal(
+              <CustomToolbarWrapper
+                deletable
+                toolbarOpts={{ minWidth: 'auto' }}
+                autoWidth
+                style={{ top: -40, left: 0, right: 0 }}
+                onDelete={() => {
+                  const { tr } = editor.state;
+                  tr.delete(pos, pos + node.nodeSize);
+                  // Prevent the debounced onBlur/onDone from firing into the
+                  // now-deleted node's stale position
+                  editor._toolbarOpened = false;
+                  editor.view.dispatch(tr);
+                  setShowToolbar(false);
+                  editor.commands.focus();
+                }}
+                showDone={false}
+              />,
+              editor._tiptapContainerEl,
+            )}
+        </React.Fragment>
+      )}
     </NodeViewWrapper>
   );
 };

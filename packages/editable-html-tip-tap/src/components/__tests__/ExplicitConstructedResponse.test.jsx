@@ -10,18 +10,36 @@ jest.mock('@tiptap/react', () => ({
   ),
 }));
 
+jest.mock('react-dom', () => ({
+  ...jest.requireActual('react-dom'),
+  createPortal: (node) => node,
+}));
+
 describe('ExplicitConstructedResponse', () => {
-  const mockEditor = {
-    state: {
-      selection: {
-        from: 0,
-        to: 1,
+  const buildMockEditor = (overrides = {}) => {
+    const mockTr = {
+      delete: jest.fn(),
+    };
+    return {
+      state: {
+        selection: {
+          from: 0,
+          to: 1,
+        },
+        tr: mockTr,
       },
-    },
-    commands: {
-      focus: jest.fn(),
-    },
+      view: {
+        dispatch: jest.fn(),
+      },
+      commands: {
+        focus: jest.fn(),
+      },
+      _tiptapContainerEl: document.createElement('div'),
+      ...overrides,
+    };
   };
+
+  let mockEditor;
 
   const mockNode = {
     attrs: {
@@ -46,6 +64,8 @@ describe('ExplicitConstructedResponse', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockEditor = buildMockEditor();
+    defaultProps.editor = mockEditor;
   });
 
   it('renders without crashing', () => {
@@ -97,8 +117,7 @@ describe('ExplicitConstructedResponse', () => {
     const clickableDiv = container.querySelector('div[style*="border"]');
     fireEvent.click(clickableDiv);
     await waitFor(() => {
-      // After click, toolbar should be shown
-      expect(container).toBeInTheDocument();
+      expect(queryByTestId('toolbar')).toBeInTheDocument();
     });
   });
 
@@ -157,5 +176,29 @@ describe('ExplicitConstructedResponse', () => {
     const { container } = render(<ExplicitConstructedResponse {...defaultProps} />);
     const contentDiv = container.querySelector('div[style*="padding"]');
     expect(contentDiv).toHaveStyle({ minWidth: '178px' });
+  });
+
+  it('renders delete control on portaled custom toolbar when container el is set', async () => {
+    const { findByLabelText } = render(<ExplicitConstructedResponse {...defaultProps} selected />);
+    expect(await findByLabelText('Delete')).toBeInTheDocument();
+  });
+
+  it('does not render portaled delete control when _tiptapContainerEl is missing', async () => {
+    const editor = buildMockEditor({ _tiptapContainerEl: undefined });
+    const { queryByLabelText, findByTestId } = render(
+      <ExplicitConstructedResponse {...defaultProps} editor={editor} selected />,
+    );
+    expect(await findByTestId('toolbar')).toBeInTheDocument();
+    expect(queryByLabelText('Delete')).not.toBeInTheDocument();
+  });
+
+  it('delete clears toolbar flag, removes node range, dispatches, and focuses', async () => {
+    mockEditor._toolbarOpened = true;
+    const { findByLabelText } = render(<ExplicitConstructedResponse {...defaultProps} selected />);
+    fireEvent.mouseDown(await findByLabelText('Delete'));
+    expect(mockEditor.state.tr.delete).toHaveBeenCalledWith(5, 6);
+    expect(mockEditor.view.dispatch).toHaveBeenCalledWith(mockEditor.state.tr);
+    expect(mockEditor._toolbarOpened).toBe(false);
+    expect(mockEditor.commands.focus).toHaveBeenCalled();
   });
 });
