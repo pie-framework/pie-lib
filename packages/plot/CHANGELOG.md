@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.35...@pie-lib/plot@3.2.0-next.36) (2026-04-23)
+
+### Bug Fixes
+
+- **plot:** center placeholder PIE-171 ([dd61600](https://github.com/pie-framework/pie-lib/commit/dd61600afa15b20b309624514b5b2945dfd090e0))
+
 # [3.2.0-next.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.34...@pie-lib/plot@3.2.0-next.35) (2026-04-17)
 
 **Note:** Version bump only for package @pie-lib/plot

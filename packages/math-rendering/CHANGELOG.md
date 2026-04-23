@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@4.2.0-next.3...@pie-lib/math-rendering@4.2.0-next.4) (2026-04-23)
+
+### Bug Fixes
+
+- **math-rendering:** always emit mjx-assistive-mml so screen readers read math correctly PIE-147 ([d825be2](https://github.com/pie-framework/pie-lib/commit/d825be2110f3e67fd738b07598d4b55b87a638af))
+
 # [4.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@4.2.0-next.1...@pie-lib/math-rendering@4.2.0-next.3) (2026-02-26)
 
 **Note:** Version bump only for package @pie-lib/math-rendering

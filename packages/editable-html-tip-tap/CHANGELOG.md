@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-next.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.35...@pie-lib/editable-html-tip-tap@1.2.0-next.36) (2026-04-23)
+
+### Bug Fixes
+
+- made sure colspan elements match the number of columns on removing [PIE-168] ([0ee3056](https://github.com/pie-framework/pie-lib/commit/0ee3056f2c00d71eb83ee2f56ad0efb75dc3b21b))
+- made sure custom toolbar is shown for inline dropdown response areas [PIE-130] ([d3cb03d](https://github.com/pie-framework/pie-lib/commit/d3cb03d45eb716d700f1202aa1cc223c169cfde5))
+
 # [1.2.0-next.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.34...@pie-lib/editable-html-tip-tap@1.2.0-next.35) (2026-04-17)
 
 ### Bug Fixes

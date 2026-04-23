@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.2.0-next.9...@pie-lib/drag@3.2.0-next.10) (2026-04-23)
+
+**Note:** Version bump only for package @pie-lib/drag
+
 # [3.2.0-next.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.2.0-next.8...@pie-lib/drag@3.2.0-next.9) (2026-04-15)
 
 **Note:** Version bump only for package @pie-lib/drag

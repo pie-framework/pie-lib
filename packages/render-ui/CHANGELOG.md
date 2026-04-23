@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0-next.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.8...@pie-lib/render-ui@5.2.0-next.9) (2026-04-23)
+
+### Features
+
+- **render-ui:** add transformDataHeadings function to convert data-heading paragraphs to headings - PIE-151 ([b59a7cc](https://github.com/pie-framework/pie-lib/commit/b59a7cc091ce9d1ace1679bd854e72ab3d57fc76))
+
 # [5.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.7...@pie-lib/render-ui@5.2.0-next.8) (2026-04-15)
 
 ### Bug Fixes

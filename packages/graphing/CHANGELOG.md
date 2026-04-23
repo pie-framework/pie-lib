@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.35...@pie-lib/graphing@3.2.0-next.36) (2026-04-23)
+
+### Bug Fixes
+
+- **graphing:** restore disabled/correctness styling on Line tool PIE-425 ([de26993](https://github.com/pie-framework/pie-lib/commit/de26993e35aa46437af9f6f9db5126218890dcf7))
+
 # [3.2.0-next.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.34...@pie-lib/graphing@3.2.0-next.35) (2026-04-17)
 
 **Note:** Version bump only for package @pie-lib/graphing

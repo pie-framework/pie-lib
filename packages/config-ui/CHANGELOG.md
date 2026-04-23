@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.2.0-next.36...@pie-lib/config-ui@12.2.0-next.37) (2026-04-23)
+
+### Bug Fixes
+
+- **config-ui:** enable default style for text field PIE-133 ([3e7d13c](https://github.com/pie-framework/pie-lib/commit/3e7d13c32663d10ce0d1f125a02962ce53d7f289))
+
 # [12.2.0-next.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.2.0-next.35...@pie-lib/config-ui@12.2.0-next.36) (2026-04-17)
 
 **Note:** Version bump only for package @pie-lib/config-ui
