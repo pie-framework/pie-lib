@@ -17,6 +17,14 @@ jest.mock('../draggable', () => ({
   },
 }));
 
+// Reusable mock start event with a target that supports addEventListener/removeEventListener
+const mockStartEvent = (overrides = {}) => ({
+  clientX: 0,
+  clientY: 0,
+  target: { addEventListener: jest.fn(), removeEventListener: jest.fn() },
+  ...overrides,
+});
+
 jest.mock('../utils', () => ({
   getDelta: jest.fn(),
 }));
@@ -141,7 +149,7 @@ describe('gridDraggable', () => {
         render(<Comp {...props} />);
 
         // Simulate drag start
-        mockDraggableCoreProps.onStart({ clientX: 100, clientY: 100 });
+        mockDraggableCoreProps.onStart(mockStartEvent({ clientX: 100, clientY: 100 }));
 
         expect(onDragStart).toHaveBeenCalled();
       });
@@ -159,7 +167,7 @@ describe('gridDraggable', () => {
         render(<Comp {...props} />);
 
         // Set up drag start state
-        mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+        mockDraggableCoreProps.onStart(mockStartEvent());
 
         // Simulate drag
         mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 10 });
@@ -174,7 +182,7 @@ describe('gridDraggable', () => {
         const Comp = gridDraggable(options)(() => <div>Test</div>);
         render(<Comp {...defaultProps} />);
 
-        mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+        mockDraggableCoreProps.onStart(mockStartEvent());
         mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 10 });
 
         expect(fromDelta).not.toHaveBeenCalled();
@@ -191,7 +199,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           // deltaX < 0 and deltaX < scaled bounds.left (0), so -10 < 0 triggers early return
           mockDraggableCoreProps.onDrag({}, { deltaX: -10, deltaY: 0 });
 
@@ -208,7 +216,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           // deltaX > 0 and deltaX > scaled bounds.right (0), so 10 > 0 triggers early return
           mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 0 });
 
@@ -225,7 +233,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           // deltaY < 0 and deltaY < scaled bounds.top (0), so -10 < 0 triggers early return
           mockDraggableCoreProps.onDrag({}, { deltaX: 0, deltaY: -10 });
 
@@ -242,7 +250,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           // deltaY > 0 and deltaY > scaled bounds.bottom (0), so 10 > 0 triggers early return
           mockDraggableCoreProps.onDrag({}, { deltaX: 0, deltaY: 10 });
 
@@ -259,7 +267,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           // All bound checks pass: deltaX (-10) is NOT < bounds.left (-100) and NOT > bounds.right (100)
           // Similarly for deltaY
           mockDraggableCoreProps.onDrag({}, { deltaX: -10, deltaY: 10 });
@@ -285,7 +293,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           mockDraggableCoreProps.onDrag({}, { deltaX: 1, deltaY: 0 });
 
           expect(onDrag).not.toHaveBeenCalled();
@@ -307,7 +315,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           mockDraggableCoreProps.onDrag({}, { deltaX: -1, deltaY: 0 });
 
           expect(onDrag).not.toHaveBeenCalled();
@@ -329,7 +337,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           mockDraggableCoreProps.onDrag({}, { deltaX: 0, deltaY: 1 });
 
           expect(onDrag).not.toHaveBeenCalled();
@@ -351,7 +359,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           mockDraggableCoreProps.onDrag({}, { deltaX: 0, deltaY: -1 });
 
           expect(onDrag).not.toHaveBeenCalled();
@@ -374,7 +382,7 @@ describe('gridDraggable', () => {
           const Comp = gridDraggable(options)(() => <div>Test</div>);
           render(<Comp {...props} />);
 
-          mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+          mockDraggableCoreProps.onStart(mockStartEvent());
           mockDraggableCoreProps.onDrag({}, { deltaX: 1, deltaY: -1 });
 
           expect(onDrag).toHaveBeenCalled();
@@ -393,7 +401,7 @@ describe('gridDraggable', () => {
         const Comp = gridDraggable(options)(() => <div>Test</div>);
         render(<Comp {...props} />);
 
-        mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+        mockDraggableCoreProps.onStart(mockStartEvent());
         mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 10 });
 
         expect(getDelta).toHaveBeenCalled();
@@ -409,7 +417,7 @@ describe('gridDraggable', () => {
         const Comp = gridDraggable(options)(() => <div>Test</div>);
         render(<Comp {...props} />);
 
-        mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+        mockDraggableCoreProps.onStart(mockStartEvent());
         mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 10 });
 
         expect(fromDelta).toHaveBeenCalled();
@@ -425,7 +433,7 @@ describe('gridDraggable', () => {
         render(<Comp {...props} />);
 
         // Start to set up state
-        mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+        mockDraggableCoreProps.onStart(mockStartEvent());
 
         // Stop with large movement (not tiny)
         mockDraggableCoreProps.onStop({ clientX: 100, clientY: 100, stopPropagation: jest.fn() }, {});
@@ -445,7 +453,7 @@ describe('gridDraggable', () => {
 
         // Start and stop at almost the same position (tiny movement)
         // Grid is 1x1, tiny threshold is grid/10 = 0.1
-        mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+        mockDraggableCoreProps.onStart(mockStartEvent());
         mockDraggableCoreProps.onStop({ clientX: 0.05, clientY: 0.05, target: {}, stopPropagation: jest.fn() }, {});
 
         expect(onClick).toHaveBeenCalledWith({ x: 0, y: 0 });
@@ -467,7 +475,7 @@ describe('gridDraggable', () => {
         render(<Comp {...propsWithGraphProps} />);
 
         // Start and stop at almost the same position (tiny movement)
-        mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
+        mockDraggableCoreProps.onStart(mockStartEvent());
         mockDraggableCoreProps.onStop({ clientX: 0.05, clientY: 0.05, target: {}, stopPropagation: jest.fn() }, {});
 
         expect(graphProps.snap.x).toHaveBeenCalledWith(1.7);
