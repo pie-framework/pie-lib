@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.37...@pie-lib/plot@3.2.0-next.38) (2026-04-24)
+
+### Bug Fixes
+
+- enhance drag handling and prevent click interference in draggable components. fix auto input label PIE-428 ([cc06766](https://github.com/pie-framework/pie-lib/commit/cc06766fab6960356f3e7f8975da1f12f3358a9e))
+- refactor drag event handling to use reusable mockStartEvent for consistency ([5afea30](https://github.com/pie-framework/pie-lib/commit/5afea30ead6caa387fa1822c7d498069b704d9c8))
+
 # [3.2.0-next.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.36...@pie-lib/plot@3.2.0-next.37) (2026-04-24)
 
 ### Bug Fixes

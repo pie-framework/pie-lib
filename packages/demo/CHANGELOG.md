@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.33.0-next.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.39...@pie-lib/demo@8.33.0-next.40) (2026-04-24)
+
+**Note:** Version bump only for package @pie-lib/demo
+
 # [8.33.0-next.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.38...@pie-lib/demo@8.33.0-next.39) (2026-04-24)
 
 **Note:** Version bump only for package @pie-lib/demo

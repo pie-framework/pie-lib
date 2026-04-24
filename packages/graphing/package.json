@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.2.0-next.37",
+  "version": "3.2.0-next.38",
   "description": "Graphing components",
   "keywords": [
     "react",
@@ -25,7 +25,7 @@
     "@pie-lib/drag": "^3.2.0-next.10",
     "@pie-lib/editable-html-tip-tap": "^1.2.0-next.36",
     "@pie-lib/graphing-utils": "^2.2.0-next.3",
-    "@pie-lib/plot": "^3.2.0-next.37",
+    "@pie-lib/plot": "^3.2.0-next.38",
     "@pie-lib/render-ui": "^5.2.0-next.9",
     "@pie-lib/translator": "^3.2.0-next.3",
     "@visx/axis": "^3.0.0",
