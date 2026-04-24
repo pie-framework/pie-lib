@@ -25,21 +25,24 @@ export class Point extends React.Component {
   };
 
   startDrag = () => {
+    const { onDragStart } = this.props;
     const update = { ...this.props.mark };
 
     if (update.label === '') {
       delete update.label;
     }
     this.setState({ mark: update });
+    if (onDragStart) onDragStart();
   };
 
   stopDrag = () => {
-    const { onChange } = this.props;
+    const { onChange, onDragStop } = this.props;
     const mark = { ...this.state.mark };
     this.setState({ mark: undefined }, () => {
       if (!isEqual(this.props.mark, mark)) {
         onChange(this.props.mark, mark);
       }
+      if (onDragStop) onDragStop();
     });
   };
 
@@ -70,9 +73,13 @@ export class Point extends React.Component {
 
     onChange(mark, { label: '', ...mark });
 
-    if (this.input) {
-      this.input.focus();
-    }
+    // MarkLabel is only rendered after the parent re-renders with the new label prop,
+    // so we defer focus until after that render cycle completes.
+    setTimeout(() => {
+      if (this.input) {
+        this.input.focus();
+      }
+    }, 0);
   };
 
   render() {

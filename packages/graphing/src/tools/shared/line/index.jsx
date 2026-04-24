@@ -89,10 +89,14 @@ export const lineToolComponent = (Component) => {
       this.state = {};
     }
 
-    startDrag = () => this.setState({ mark: { ...this.props.mark } });
+    startDrag = () => {
+      const { onDragStart } = this.props;
+      this.setState({ mark: { ...this.props.mark } });
+      if (onDragStart) onDragStart();
+    };
 
     stopDrag = () => {
-      const { onChange, mark } = this.props;
+      const { onChange, mark, onDragStop } = this.props;
       const update = { ...this.state.mark };
 
       this.setState({ mark: undefined }, () => {
@@ -107,6 +111,7 @@ export const lineToolComponent = (Component) => {
         if (!isEqual(mark, update) && !shouldNotChange) {
           onChange(mark, update);
         }
+        if (onDragStop) onDragStop();
       });
     };
 
