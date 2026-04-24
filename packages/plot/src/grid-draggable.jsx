@@ -60,10 +60,22 @@ export const gridDraggable = (opts) => (Comp) => {
       if (document.activeElement) {
         document.activeElement.blur();
       }
-      // reliably track whether any real drag movement occurred. This avoids the async-setState race condition
-      // where onStop fires before setState has updated, causing drags to be misidentified as clicks.
       this._didDrag = false;
       this.setState({ startX: e.clientX, startY: e.clientY });
+
+      // Intercept the native 'click' event that the browser fires after mouseup.
+      // We use a one-time capture-phase listener so we can suppress it when a
+      // real drag occurred, preventing Bg's d3 click listener from creating a new mark.
+      const target = e.target;
+      const onNativeClick = (clickEvent) => {
+        target.removeEventListener('click', onNativeClick, true);
+        if (this._didDrag) {
+          clickEvent.stopPropagation();
+          clickEvent.preventDefault();
+        }
+      };
+      target.addEventListener('click', onNativeClick, true);
+
       if (onDragStart) {
         onDragStart();
       }
@@ -183,15 +195,15 @@ export const gridDraggable = (opts) => (Comp) => {
 
     onDrag = (e, dd) => {
       const { onDrag, graphProps, disabled } = this.props;
-      if (!onDrag || disabled) {
-        return;
-      }
 
-      // Mark that a real drag occurred so onStop won't treat this as a click.
-      // We check for non-trivial movement to avoid marking a click as a drag
-      // due to sub-pixel jitter on mousedown.
+      // Track drag movement BEFORE any early returns so that onStop always
+      // knows a real drag occurred, even when onDrag prop is absent or disabled.
       if (Math.abs(dd.deltaX) > 1 || Math.abs(dd.deltaY) > 1) {
         this._didDrag = true;
+      }
+
+      if (!onDrag || disabled) {
+        return;
       }
 
       const bounds = this.getScaledBounds();
@@ -255,23 +267,30 @@ export const gridDraggable = (opts) => (Comp) => {
         // For non-disabled marks, stop propagation so the Bg d3 listener
         // doesn't also create a new mark on top of this one.
         // Disabled/background marks allow propagation so Bg can handle the click.
-        if (!disabled) {
+        if (!disabled && typeof e?.stopPropagation === 'function') {
           e.stopPropagation();
         }
 
         if (onClick) {
           log('call onClick');
-          this.setState({ startX: null });
+          this.setState({ startX: null, startY: null });
           const { graphProps } = this.props;
           const { scale, snap } = graphProps;
-          const [rawX, rawY] = pointer(e, e.target);
-          let x = scale.x.invert(rawX);
-          let y = scale.y.invert(rawY);
-          x = snap.x(x);
-          y = snap.y(y);
-          onClick({ x, y });
-          return false;
+          try {
+            const [rawX, rawY] = pointer(e, e.target);
+            let x = scale.x.invert(rawX);
+            let y = scale.y.invert(rawY);
+            x = snap.x(x);
+            y = snap.y(y);
+            onClick({ x, y });
+          } catch (_) {
+            // pointer() can fail on SVG elements (e.g. <circle>) that lack a valid
+            // coordinate transform. Label-mode callbacks use props data, not coords.
+            onClick({});
+          }
         }
+
+        return false;
       }
 
       this.setState({ startX: null, startY: null });
@@ -305,7 +324,7 @@ export const gridDraggable = (opts) => (Comp) => {
           axis={opts.axis || 'both'}
           grid={[grid.x, grid.y]}
         >
-          <Comp {...rest} disabled={disabled} isDragging={isDragging} />
+          <Comp {...rest} disabled={disabled} isDragging={isDragging} onClick={isDragging ? undefined : onClick} />
         </DraggableCore>
       );
     }

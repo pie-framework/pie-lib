@@ -83,6 +83,19 @@ export class Graph extends React.Component {
   };
 
   state = {};
+  _justDragged = false;
+
+  startDrag = () => {
+    this._justDragged = false;
+  };
+
+  stopDrag = () => {
+    this._justDragged = true;
+    // Reset after a short delay — long enough for any trailing click/bg-click to fire first.
+    setTimeout(() => {
+      this._justDragged = false;
+    }, 300);
+  };
 
   generateMaskId() {
     return 'graph-' + (Math.random() * 10000).toFixed();
@@ -144,6 +157,10 @@ export class Graph extends React.Component {
   onBgClick = (point) => {
     const { x, y } = point || {};
     const { labelModeEnabled, currentTool, marks } = this.props;
+
+    if (this._justDragged) {
+      return;
+    }
 
     if (labelModeEnabled || !currentTool || [null, undefined].includes(x) || [null, undefined].includes(y)) {
       return;
