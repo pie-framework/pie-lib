@@ -182,9 +182,8 @@ export const gridDraggable = (opts) => (Comp) => {
     };
 
     onDrag = (e, dd) => {
-      const { onDrag, graphProps } = this.props;
-
-      if (!onDrag) {
+      const { onDrag, graphProps, disabled } = this.props;
+      if (!onDrag || disabled) {
         return;
       }
 
@@ -243,20 +242,23 @@ export const gridDraggable = (opts) => (Comp) => {
 
     onStop = (e, dd) => {
       log('[onStop] dd:', dd);
-      const { onDragStop, onClick } = this.props;
+      const { onDragStop, onClick, disabled } = this.props;
 
-      if (onDragStop) {
+      if (onDragStop && !disabled) {
         onDragStop();
       }
 
       log('[onStop] lastX/Y: ', dd.lastX, dd.lastY);
-      // Use the synchronous _didDrag flag instead of comparing clientX/clientY via tiny().
-      // tiny() was unreliable because setState is async – startX/startY might not reflect
-      // the actual mousedown position when onStop fires. _didDrag is set synchronously in
-      // onStart (false) and onDrag (true), so it's always accurate.
       const isClick = !this._didDrag;
 
       if (isClick) {
+        // For non-disabled marks, stop propagation so the Bg d3 listener
+        // doesn't also create a new mark on top of this one.
+        // Disabled/background marks allow propagation so Bg can handle the click.
+        if (!disabled) {
+          e.stopPropagation();
+        }
+
         if (onClick) {
           log('call onClick');
           this.setState({ startX: null });
@@ -278,7 +280,11 @@ export const gridDraggable = (opts) => (Comp) => {
     };
 
     render() {
-      const { disabled, ...rest } = this.props;
+      // we extract onClick here to prevent it from being passed to the DraggableCore
+      // and to prevent it from being included in the ...rest that gets passed to the Comp
+      // because otherwise it is called on every drag event
+      // eslint-disable-next-line no-unused-vars
+      const { disabled, onClick, ...rest } = this.props;
       const grid = this.grid();
 
       // prevent the text select icon from rendering.
@@ -292,7 +298,6 @@ export const gridDraggable = (opts) => (Comp) => {
 
       return (
         <DraggableCore
-          disabled={disabled}
           onMouseDown={onMouseDown}
           onStart={this.onStart}
           onDrag={this.onDrag}
