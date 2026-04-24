@@ -428,7 +428,7 @@ describe('gridDraggable', () => {
         mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
 
         // Stop with large movement (not tiny)
-        mockDraggableCoreProps.onStop({ clientX: 100, clientY: 100 }, {});
+        mockDraggableCoreProps.onStop({ clientX: 100, clientY: 100, stopPropagation: jest.fn() }, {});
 
         expect(onDragStop).toHaveBeenCalled();
       });
@@ -446,7 +446,7 @@ describe('gridDraggable', () => {
         // Start and stop at almost the same position (tiny movement)
         // Grid is 1x1, tiny threshold is grid/10 = 0.1
         mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
-        mockDraggableCoreProps.onStop({ clientX: 0.05, clientY: 0.05, target: {} }, {});
+        mockDraggableCoreProps.onStop({ clientX: 0.05, clientY: 0.05, target: {}, stopPropagation: jest.fn() }, {});
 
         expect(onClick).toHaveBeenCalledWith({ x: 0, y: 0 });
       });
@@ -468,7 +468,7 @@ describe('gridDraggable', () => {
 
         // Start and stop at almost the same position (tiny movement)
         mockDraggableCoreProps.onStart({ clientX: 0, clientY: 0 });
-        mockDraggableCoreProps.onStop({ clientX: 0.05, clientY: 0.05, target: {} }, {});
+        mockDraggableCoreProps.onStop({ clientX: 0.05, clientY: 0.05, target: {}, stopPropagation: jest.fn() }, {});
 
         expect(graphProps.snap.x).toHaveBeenCalledWith(1.7);
         expect(graphProps.snap.y).toHaveBeenCalledWith(2.3);
