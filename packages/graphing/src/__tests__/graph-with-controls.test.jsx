@@ -1,17 +1,56 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
-
-import { xy } from './utils';
-
 import {
+  filterByValidToolTypes,
+  filterByVisibleToolTypes,
+  getAvailableTool,
   GraphWithControls,
   setToolbarAvailability,
   toolIsAvailable,
-  getAvailableTool,
-  filterByValidToolTypes,
-  filterByVisibleToolTypes,
 } from '../graph-with-controls';
-import { toolsArr, allTools, line as lineTool, point as pointTool } from '../tools';
+import { allTools, line as lineTool, point as pointTool, toolsArr } from '../tools';
+
+jest.mock('@pie-lib/drag', () => ({
+  DragProvider: ({ children }) => <div data-testid="drag-provider">{children}</div>,
+}));
+
+jest.mock('@dnd-kit/core', () => ({
+  useDraggable: jest.fn(() => ({
+    attributes: {
+      role: 'button',
+      tabIndex: 0,
+    },
+    listeners: {
+      onPointerDown: jest.fn(),
+    },
+    setNodeRef: jest.fn(),
+    transform: null,
+    transition: null,
+    isDragging: false,
+  })),
+  useDroppable: jest.fn(() => ({
+    setNodeRef: jest.fn(),
+    isOver: false,
+    active: null,
+  })),
+}));
+
+jest.mock('@dnd-kit/utilities', () => ({
+  CSS: {
+    Transform: {
+      toString: jest.fn((transform) => (transform ? 'translate3d(0, 0, 0)' : '')),
+    },
+  },
+}));
+
+jest.mock('@dnd-kit/sortable', () => ({
+  arrayMove: jest.fn((array, from, to) => {
+    const newArray = [...array];
+    const [removed] = newArray.splice(from, 1);
+    newArray.splice(to, 0, removed);
+    return newArray;
+  }),
+}));
 
 const point = {
   type: 'point',
@@ -26,11 +65,10 @@ const line = {
   from: { x: 0, y: 0 },
   to: { x: 1, y: 1 },
   label: 'Line',
-  building: true,
 };
 
 const circle = {
-  type: 'line',
+  type: 'circle',
   edge: { x: 0, y: 0 },
   root: { x: 2, y: 2 },
 };
@@ -111,13 +149,15 @@ describe('filterByVisibleToolTypes', () => {
 });
 
 describe('GraphWithControls', () => {
-  let w;
   let onChangeMarks = jest.fn();
+
+  beforeEach(() => {
+    onChangeMarks.mockClear();
+  });
 
   const defaultProps = () => ({
     axesSettings: { includeArrows: true },
     backgroundMarks: [point, line, circle],
-    classes: {},
     className: '',
     coordinatesOnHover: false,
     domain: { min: 0, max: 10, step: 1 },
@@ -129,19 +169,30 @@ describe('GraphWithControls', () => {
     size: { width: 500, height: 500 },
     title: 'Title',
     toolbarTools: allTools,
+    language: 'en',
   });
   const initialProps = defaultProps();
 
-  const wrapper = (extras, opts) => {
+  const renderComponent = (extras) => {
     const props = { ...initialProps, ...extras };
 
-    return shallow(<GraphWithControls {...props} />, opts);
+    return render(<GraphWithControls {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders ToolMenu with toolbar tools', () => {
+      const { container } = renderComponent({ toolbarTools: ['point', 'line'] });
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders Graph component', () => {
+      const { container } = renderComponent();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
   });
 });

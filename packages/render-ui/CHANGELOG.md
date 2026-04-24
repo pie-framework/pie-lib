@@ -3,164 +3,179 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.35.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.1...@pie-lib/render-ui@4.35.2) (2025-11-27)
+# [5.2.0-next.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.8...@pie-lib/render-ui@5.2.0-next.9) (2026-04-23)
 
+### Features
+
+- **render-ui:** add transformDataHeadings function to convert data-heading paragraphs to headings - PIE-151 ([b59a7cc](https://github.com/pie-framework/pie-lib/commit/b59a7cc091ce9d1ace1679bd854e72ab3d57fc76))
+
+# [5.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.7...@pie-lib/render-ui@5.2.0-next.8) (2026-04-15)
 
 ### Bug Fixes
 
-* **render-ui:** change unneeded colors overwriting in theme provider PD-5274 ([dbfaed5](https://github.com/pie-framework/pie-lib/commit/dbfaed50feed9c059b14c9835468159858446af1))
-* **render-ui:** handle vertical striping only for tables with th first col PD-5211 ([d32502e](https://github.com/pie-framework/pie-lib/commit/d32502e496fc9a19a6444e537587017c91e87724))
+- **render-ui/editable-html-tip-tap:** fix disableImageAlignmentButtons prop and fix alignment in PreviewPrompt PIE-45 ([ef87ea4](https://github.com/pie-framework/pie-lib/commit/ef87ea4e4f9343be4779ea370036a556d67c8cb3))
 
+# [5.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.6...@pie-lib/render-ui@5.2.0-next.7) (2026-03-25)
 
+### Features
 
+- **math-input:** add hover styles for keypad buttons and update color definitions PD-5530 ([a3cb101](https://github.com/pie-framework/pie-lib/commit/a3cb101e5f326df14d0ae8454689ee18218744db))
 
+# [5.2.0-next.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.5...@pie-lib/render-ui@5.2.0-next.6) (2026-03-18)
+
+### Bug Fixes
+
+- **math-toolbar:** update math keypad colors and styles for improved UI consistency PD-5530 ([713c283](https://github.com/pie-framework/pie-lib/commit/713c283a11e1cff6568da7010e98e0b84df164ab))
+
+# [5.2.0-next.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.4...@pie-lib/render-ui@5.2.0-next.5) (2026-03-18)
+
+### Bug Fixes
+
+- **graphing:** color changes for graph buttons PD-5590 ([1053f44](https://github.com/pie-framework/pie-lib/commit/1053f44cd10521bf5e3431ac071fb3f18e97f467))
+- **graphing:** revert to previous disabled colors PD-5510 ([e50a991](https://github.com/pie-framework/pie-lib/commit/e50a991aaa20f134d338a3f27d6d46d68db02a57))
+
+# [5.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.2...@pie-lib/render-ui@5.2.0-next.4) (2026-02-26)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+# [5.2.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.1...@pie-lib/render-ui@5.2.0-next.2) (2026-02-25)
+
+### Bug Fixes
+
+- **deps:** update [@pie-lib](https://github.com/pie-lib) dependencies to published versions ([134fbdc](https://github.com/pie-framework/pie-lib/commit/134fbdc90c6a15f89a736340578d70fb80a983b3))
+
+# [5.1.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.1.0-next.2...@pie-lib/render-ui@5.1.0-next.4) (2026-01-27)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+# [5.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.1.0-next.1...@pie-lib/render-ui@5.1.0-next.2) (2026-01-26)
+
+### Bug Fixes
+
+- removed slate-html-serializer from markup, and fixed extracss rules functionality ([1ac30a3](https://github.com/pie-framework/pie-lib/commit/1ac30a362202b9c063920642382cce8234b9de85))
+
+# [5.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.2...@pie-lib/render-ui@5.1.0-next.1) (2026-01-26)
+
+### Bug Fixes
+
+- remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+- **render-ui:** handle invalid values for fontSizeFactor PD-5412 ([39b13c0](https://github.com/pie-framework/pie-lib/commit/39b13c0583f3f83575e4c32ed2873eecfd4903cd))
+- add back muiButton ([b65ddc0](https://github.com/pie-framework/pie-lib/commit/b65ddc06cbb83dda5cc3c04ee60afffb793f1e10))
+- add default props uiLayout, add props for previewLayout ([933e5f7](https://github.com/pie-framework/pie-lib/commit/933e5f71f1f2fff99c57ee5132f9f23ee85c3f28))
+- Add MutationObserver to PreviewPrompt for prompt, rationale & TI math rendering ([d77ef3c](https://github.com/pie-framework/pie-lib/commit/d77ef3c15c6928f3a7dae627e6c49380cef01745))
+- fix some popper components, fix some math toolbar color ([ed1df55](https://github.com/pie-framework/pie-lib/commit/ed1df558e272686a712767e347df49434790f334))
+- label positioning in input render-ui ([8012817](https://github.com/pie-framework/pie-lib/commit/80128173dc596181de296633e9413bba8b79db81))
+- remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+- remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+- simplify math render logic ([de11ebe](https://github.com/pie-framework/pie-lib/commit/de11ebe7f2faeb9dce6215673a90b79e86cbc590))
+- update graphing components - styling and correctness handling PD-5258 ([7f1d3ba](https://github.com/pie-framework/pie-lib/commit/7f1d3bade7271c8f95bb9a67352fc9a52888ffda))
+- use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+
+### Features
+
+- add MuiButton style overrides for consistent theming ([8fc184e](https://github.com/pie-framework/pie-lib/commit/8fc184e0eca3425cc76f1f76d8f1f24eb56c0779))
+- bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+- PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
+- sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+# [5.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.3-next.0...@pie-lib/render-ui@5.0.0-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
+## [4.35.3-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.49.0-mui-update.0...@pie-lib/render-ui@4.35.3-next.0) (2026-01-19)
+
+### Bug Fixes
+
+- **render-ui:** change unneeded colors overwriting in theme provider PD-5274 ([dbfaed5](https://github.com/pie-framework/pie-lib/commit/dbfaed50feed9c059b14c9835468159858446af1))
+- **render-ui:** handle vertical striping only for tables with th first col PD-5211 ([d32502e](https://github.com/pie-framework/pie-lib/commit/d32502e496fc9a19a6444e537587017c91e87724))
+- bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+## [4.35.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.35.1...@pie-lib/render-ui@4.35.2) (2025-11-27)
+
+### Bug Fixes
+
+- **render-ui:** change unneeded colors overwriting in theme provider PD-5274 ([dbfaed5](https://github.com/pie-framework/pie-lib/commit/dbfaed50feed9c059b14c9835468159858446af1))
+- **render-ui:** handle vertical striping only for tables with th first col PD-5211 ([d32502e](https://github.com/pie-framework/pie-lib/commit/d32502e496fc9a19a6444e537587017c91e87724))
 
 ## [4.35.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.2...@pie-lib/render-ui@4.35.1) (2025-10-22)
 
-
 ### Bug Fixes
 
-* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
-
-
-
-
+- bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
 
 # [4.35.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.34.0...@pie-lib/render-ui@4.35.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.34.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.0...@pie-lib/render-ui@4.34.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 # [4.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.0...@pie-lib/render-ui@4.33.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.0...@pie-lib/render-ui@4.32.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 ## [4.31.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.1...@pie-lib/render-ui@4.31.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.31.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.31.0...@pie-lib/render-ui@4.31.1) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.15.9...@pie-lib/render-ui@4.31.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [4.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.29.0...@pie-lib/render-ui@4.30.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.28.0...@pie-lib/render-ui@4.29.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.15.9...@pie-lib/render-ui@4.28.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [4.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.26.0...@pie-lib/render-ui@4.27.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 # [4.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.25.0...@pie-lib/render-ui@4.26.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/render-ui
-
-
-
-
 
 # [4.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.24.1...@pie-lib/render-ui@4.25.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/render-ui
 
-
-
-
-
 ## [4.24.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.15.9...@pie-lib/render-ui@4.24.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [4.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@4.15.9...@pie-lib/render-ui@4.24.0) (2025-08-07)
 

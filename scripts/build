@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const _ = require('lodash');
 const minimist = require('minimist');
 const { Commands } = require('@pie-framework/build-helper');
 const args = minimist(process.argv.slice(2));
@@ -18,11 +17,12 @@ class LibCommands extends Commands {
   sharedBuild() {
     if (args.next) {
       return Promise.resolve();
-    } else {
-      return this.runCmd(
-        `yarn pslb --config pslb/pslb.config.js --publishLibs --token ${args.token} --cleanLibs --logLevel debug`
-      );
     }
+    let cmd = `yarn pslb --config pslb/pslb.config.js --publishLibs --cleanLibs --logLevel debug`;
+    if (args.token) {
+      cmd += ` --token ${args.token}`;
+    }
+    return this.runCmd(cmd);
   }
 
   babel() {

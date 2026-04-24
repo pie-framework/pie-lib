@@ -1,10 +1,6 @@
-import head from 'lodash/head';
-import tail from 'lodash/tail';
 import { utils } from '@pie-lib/plot';
 import invariant from 'invariant';
-import isEqual from 'lodash/isEqual';
-import isEmpty from 'lodash/isEmpty';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep, head, isEmpty, isEqual, tail } from 'lodash-es';
 
 export const tickCount = utils.tickCount;
 export const bounds = utils.bounds;

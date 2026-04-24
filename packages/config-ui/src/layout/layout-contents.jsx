@@ -1,16 +1,36 @@
 import React from 'react';
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
 import Tabs from '../tabs';
-import classNames from 'classnames';
+
+const StyledContainer = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'relative',
+}));
+
+const StyledFlow = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+}));
+
+const StyledContentContainer = styled('div')(({ theme }) => ({
+  padding: `${theme.spacing(2)} 0`,
+}));
+
+const StyledConfigContainer = styled('div')(() => ({
+  flex: '1',
+}));
+
+const StyledSettingsContainer = styled('div')(({ theme }) => ({
+  marginLeft: theme.spacing(2),
+}));
 
 class RawLayoutContents extends React.Component {
   static propTypes = {
     mode: PropTypes.oneOf(['tabbed', 'inline']),
     secondary: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    classes: PropTypes.object,
     dimensions: PropTypes.object,
   };
 
@@ -47,7 +67,7 @@ class RawLayoutContents extends React.Component {
   // }
 
   render() {
-    const { mode, secondary, children, classes, dimensions } = this.props;
+    const { mode, secondary, children, dimensions } = this.props;
     const { minHeight, minWidth, maxHeight, maxWidth } = dimensions || {};
     const configuration = this.getConfiguration();
 
@@ -65,54 +85,33 @@ class RawLayoutContents extends React.Component {
     }
 
     return (
-      <div className={classes.container} style={{ minHeight, minWidth, maxHeight, maxWidth }}>
+      <StyledContainer style={{ minHeight, minWidth, maxHeight, maxWidth }}>
         {mode === 'inline' && (
-          <div className={classnames(classes.flow, classes.contentContainer)}>
-            <div className={classnames(classes.configContainer, 'design-container')}>{children}</div>
+          <StyledFlow>
+            <StyledConfigContainer className="design-container">{children}</StyledConfigContainer>
             {hasSettingsPanel && (
-              <div className={classnames(classes.settingsContainer, 'settings-container')}>{secondary}</div>
+              <StyledSettingsContainer className="settings-container">{secondary}</StyledSettingsContainer>
             )}
-          </div>
+          </StyledFlow>
         )}
 
         {mode === 'tabbed' && hasSettingsPanel && (
-          <Tabs onChange={this.onTabsChange} contentClassName={classes.contentContainer} indicatorColor="primary">
-            <div title="Design" className="design-container">
+          <Tabs onChange={this.onTabsChange} contentClassName="content-container" indicatorColor="primary">
+            <StyledContentContainer title="Design" className="design-container">
               {children}
-            </div>
-            <div title="Settings" className="settings-container">
+            </StyledContentContainer>
+            <StyledContentContainer title="Settings" className="settings-container">
               {secondary}
-            </div>
+            </StyledContentContainer>
           </Tabs>
         )}
 
         {mode === 'tabbed' && !hasSettingsPanel && (
-          <div className={classNames(classes.contentContainer, 'design-container')}>{children}</div>
+          <StyledContentContainer className="design-container">{children}</StyledContentContainer>
         )}
-      </div>
+      </StyledContainer>
     );
   }
 }
 
-const styles = (theme) => ({
-  flow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative',
-  },
-  contentContainer: {
-    padding: `${theme.spacing.unit * 2}px 0`,
-  },
-  configContainer: {
-    flex: '1',
-  },
-  settingsContainer: {
-    marginLeft: theme.spacing.unit * 2,
-  },
-});
-
-export default withStyles(styles)(RawLayoutContents);
+export default RawLayoutContents;

@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep } from 'lodash-es';
 
 export default (arr, fromIndex, toIndex) => {
   if (!arr || arr.length <= 1 || fromIndex === undefined || toIndex === undefined) {

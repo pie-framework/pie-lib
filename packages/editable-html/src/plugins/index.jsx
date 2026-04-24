@@ -1,24 +1,23 @@
 import Hotkeys from 'slate-hotkeys';
 import { IS_IOS } from 'slate-dev-environment';
 import { Mark } from 'slate';
-import Bold from '@material-ui/icons/FormatBold';
-import FormatQuote from '@material-ui/icons/FormatQuote';
-//import Code from '@material-ui/icons/Code';
-import BulletedListIcon from '@material-ui/icons/FormatListBulleted';
-import NumberedListIcon from '@material-ui/icons/FormatListNumbered';
-import Redo from '@material-ui/icons/Redo';
-import Undo from '@material-ui/icons/Undo';
+import Bold from '@mui/icons-material/FormatBold';
+import FormatQuote from '@mui/icons-material/FormatQuote';
+//import Code from '@mui/icons-material/Code';
+import BulletedListIcon from '@mui/icons-material/FormatListBulleted';
+import NumberedListIcon from '@mui/icons-material/FormatListNumbered';
+import Redo from '@mui/icons-material/Redo';
+import Undo from '@mui/icons-material/Undo';
 import ImagePlugin from './image';
 import MediaPlugin from './media';
 import CharactersPlugin from './characters';
-import Italic from '@material-ui/icons/FormatItalic';
+import Italic from '@mui/icons-material/FormatItalic';
 import MathPlugin from './math';
 import React from 'react';
-import Strikethrough from '@material-ui/icons/FormatStrikethrough';
+import Strikethrough from '@mui/icons-material/FormatStrikethrough';
 import ToolbarPlugin from './toolbar';
-import Underline from '@material-ui/icons/FormatUnderlined';
-import compact from 'lodash/compact';
-import isEmpty from 'lodash/isEmpty';
+import Underline from '@mui/icons-material/FormatUnderlined';
+import { compact, isEmpty } from 'lodash-es';
 import SoftBreakPlugin from 'slate-soft-break';
 import debug from 'debug';
 import List from './list';
@@ -305,11 +304,13 @@ export const buildPlugins = (activePlugins, customPlugins, opts) => {
     }
 
     if (!isValidEventName(event)) {
+      // eslint-disable-next-line no-console
       console.error(`The event name: ${event} is not a valid event name!`);
       return;
     }
 
     if (!icon && !iconType && !iconAlt) {
+      // eslint-disable-next-line no-console
       console.error('Your custom button requires icon, iconType and iconAlt');
       return;
     }

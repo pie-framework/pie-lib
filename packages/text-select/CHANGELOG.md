@@ -3,160 +3,164 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-next.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.9...@pie-lib/text-select@2.2.0-next.10) (2026-04-23)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+# [2.2.0-next.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.8...@pie-lib/text-select@2.2.0-next.9) (2026-04-16)
+
+### Bug Fixes
+
+- **text-select:** adjust markup rendering PIE-25 PIE-13 ([1d4d91d](https://github.com/pie-framework/pie-lib/commit/1d4d91d09efdaf861e384beda7d6d1e512a2281c))
+
+# [2.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.7...@pie-lib/text-select@2.2.0-next.8) (2026-04-15)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+# [2.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.6...@pie-lib/text-select@2.2.0-next.7) (2026-03-25)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+# [2.2.0-next.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.5...@pie-lib/text-select@2.2.0-next.6) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+# [2.2.0-next.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.4...@pie-lib/text-select@2.2.0-next.5) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+# [2.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.2...@pie-lib/text-select@2.2.0-next.4) (2026-02-26)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+# [2.2.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.2.0-next.1...@pie-lib/text-select@2.2.0-next.2) (2026-02-25)
+
+### Bug Fixes
+
+- **deps:** update [@pie-lib](https://github.com/pie-lib) dependencies to published versions ([134fbdc](https://github.com/pie-framework/pie-lib/commit/134fbdc90c6a15f89a736340578d70fb80a983b3))
+
+# [2.1.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.1.0-next.2...@pie-lib/text-select@2.1.0-next.4) (2026-01-27)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+# [2.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@2.1.0-next.1...@pie-lib/text-select@2.1.0-next.2) (2026-01-26)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+# [2.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.32.2...@pie-lib/text-select@2.1.0-next.1) (2026-01-26)
+
+### Bug Fixes
+
+- remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+- **text-select:** remove html tags from rendering ([71201bc](https://github.com/pie-framework/pie-lib/commit/71201bce2535668769047ea3db8405c6b49fe615))
+- diaable toggling selection in view mode ([c0e47f0](https://github.com/pie-framework/pie-lib/commit/c0e47f0f5beaced697d6cdf3c418b92ec29679ab))
+- parsefloat to correctly compute tokens line height ([282c464](https://github.com/pie-framework/pie-lib/commit/282c464b860dc72e08d8692a7c2236c5475e49e0))
+- **correct-answer-toggle, text-select:** change logic to corresp to material v5 PD-5269 PD-5271 ([e992861](https://github.com/pie-framework/pie-lib/commit/e992861c6d964340bf7afc8e5ac9007816d510ef))
+- **text-select:** refactor icon token wrappers,delete unused container ([fdc6066](https://github.com/pie-framework/pie-lib/commit/fdc60661dd3bbda8c936a5e495be75ac4a2ac2ea))
+- refactor text select as renderAsString not used anymore ([9a1aea9](https://github.com/pie-framework/pie-lib/commit/9a1aea9c9cc709a803e30a8477b42ae2136a5061))
+- remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+- remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+- use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+
+### Features
+
+- sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+- **correct-answe-toggle, legend:** delete unused files and imports PD-5258 ([261638d](https://github.com/pie-framework/pie-lib/commit/261638d9ceff79163eb858696a4c8eb7a7a3006c))
+- bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+
+# [2.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.32.3-next.0...@pie-lib/text-select@2.0.0-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/text-select
+
+## [1.32.3-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.46.0-mui-update.0...@pie-lib/text-select@1.32.3-next.0) (2026-01-19)
+
+### Bug Fixes
+
+- bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
 ## [1.32.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.32.1...@pie-lib/text-select@1.32.2) (2025-11-27)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.32.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.2...@pie-lib/text-select@1.32.1) (2025-10-22)
-
 
 ### Bug Fixes
 
-* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
-
-
-
-
+- bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
 
 # [1.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.31.0...@pie-lib/text-select@1.32.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 # [1.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.0...@pie-lib/text-select@1.31.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 # [1.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.0...@pie-lib/text-select@1.30.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 # [1.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.0...@pie-lib/text-select@1.29.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 ## [1.28.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.1...@pie-lib/text-select@1.28.2) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.28.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.28.0...@pie-lib/text-select@1.28.1) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 # [1.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.12.7...@pie-lib/text-select@1.28.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [1.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.26.0...@pie-lib/text-select@1.27.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 # [1.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.25.0...@pie-lib/text-select@1.26.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 # [1.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.12.7...@pie-lib/text-select@1.25.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [1.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.23.0...@pie-lib/text-select@1.24.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 # [1.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.22.0...@pie-lib/text-select@1.23.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/text-select
-
-
-
-
 
 # [1.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.21.1...@pie-lib/text-select@1.22.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/text-select
 
-
-
-
-
 ## [1.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.12.7...@pie-lib/text-select@1.21.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [1.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@1.12.7...@pie-lib/text-select@1.21.0) (2025-08-07)
 

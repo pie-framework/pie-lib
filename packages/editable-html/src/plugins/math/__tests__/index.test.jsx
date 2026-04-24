@@ -2,18 +2,35 @@ import React from 'react';
 import debug from 'debug';
 import MockChange from '../../image/__tests__/mock-change';
 import { Data } from 'slate';
-import MathPlugin, { serialization, inlineMath, CustomToolbarComp } from '../index';
-import { shallow } from 'enzyme';
-import { MathToolbar } from '@pie-lib/math-toolbar';
+import MathPlugin, { CustomToolbarComp, inlineMath, serialization } from '../index';
+import { render, screen } from '@testing-library/react';
+
 jest.mock('@pie-framework/mathquill', () => ({
   StaticMath: jest.fn(),
   getInterface: jest.fn().mockReturnThis(),
   registerEmbed: jest.fn(),
 }));
 
+let mockMathToolbarOnChange;
+let mockMathToolbarOnDone;
+
 jest.mock('@pie-lib/math-toolbar', () => ({
-  MathPreview: () => <div />,
-  MathToolbar: () => <div />,
+  MathPreview: () => <div data-testid="math-preview" />,
+  MathToolbar: (props) => {
+    // Store callbacks for testing
+    mockMathToolbarOnChange = props.onChange;
+    mockMathToolbarOnDone = props.onDone;
+    return (
+      <div data-testid="math-toolbar" role="toolbar">
+        <button data-testid="toolbar-change" onClick={() => props.onChange && props.onChange('test-latex')}>
+          Change
+        </button>
+        <button data-testid="toolbar-done" onClick={() => props.onDone && props.onDone('test-latex')}>
+          Done
+        </button>
+      </div>
+    );
+  },
 }));
 
 jest.mock('@pie-lib/math-rendering', () => ({
@@ -177,7 +194,7 @@ describe('CustomToolbarComp', () => {
   let onDataChange;
   let onToolbarDone;
 
-  const wrapper = (extras) => {
+  const renderComponent = (extras = {}) => {
     let mockChange = new MockChange();
     const defaults = {
       node: {
@@ -200,45 +217,47 @@ describe('CustomToolbarComp', () => {
       ...extras,
     };
 
-    return shallow(<CustomToolbarComp {...props} />);
+    return render(<CustomToolbarComp {...props} />);
   };
 
   describe('render', () => {
-    it('renders without default keypadMode', () => {
-      const w = wrapper();
+    it('renders toolbar without default keypadMode', () => {
+      renderComponent();
 
-      expect(w).toMatchSnapshot();
-
-      w.setProps({ pluginProps: { math: { keypadMode: 3 } } });
-
-      expect(w).toMatchSnapshot();
+      // Verify the toolbar is rendered
+      expect(screen.getByTestId('math-toolbar')).toBeInTheDocument();
+      expect(screen.getByRole('toolbar')).toBeInTheDocument();
     });
 
-    it('renders with default keypadMode', () => {
-      const w = wrapper({ pluginProps: { math: { keypadMode: 'geometry' } } });
+    it('renders toolbar with default keypadMode', () => {
+      renderComponent({ pluginProps: { math: { keypadMode: 'geometry' } } });
 
-      expect(w).toMatchSnapshot();
-
-      w.setProps({ pluginProps: { math: { keypadMode: 3 } } });
-
-      expect(w).toMatchSnapshot();
+      // Verify the toolbar is rendered with keypadMode prop
+      expect(screen.getByTestId('math-toolbar')).toBeInTheDocument();
+      expect(screen.getByRole('toolbar')).toBeInTheDocument();
     });
   });
 
   describe('onDone', () => {
-    it('calls onToolbarDone', () => {
+    it('calls onToolbarDone when done callback is triggered', () => {
       onToolbarDone = jest.fn();
-      const w = wrapper();
-      w.find(MathToolbar).prop('onDone')('oo');
+      renderComponent();
+
+      // Trigger the onDone callback that was passed to MathToolbar
+      mockMathToolbarOnDone('oo');
+
       expect(onToolbarDone).toHaveBeenCalledWith(expect.anything(), false);
     });
   });
 
   describe('onChange', () => {
-    it('calls onDataChange', () => {
+    it('calls onDataChange when change callback is triggered', () => {
       onDataChange = jest.fn();
-      const w = wrapper();
-      w.find(MathToolbar).prop('onChange')('oo');
+      renderComponent();
+
+      // Trigger the onChange callback that was passed to MathToolbar
+      mockMathToolbarOnChange('oo');
+
       expect(onDataChange).toHaveBeenCalledWith('1', { latex: 'oo' });
     });
   });

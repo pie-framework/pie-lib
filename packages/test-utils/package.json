@@ -1,7 +1,7 @@
 {
   "name": "@pie-lib/test-utils",
-  "version": "0.22.1",
-  "description": "",
+  "version": "1.2.0-next.3",
+  "description": "Testing utilities for pie-lib packages with React Testing Library and MUI support",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -10,9 +10,18 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
-    "enzyme": "^3.8.0",
-    "react": "^16.8.1"
+    "@mui/material": "^7.3.4",
+    "@testing-library/react": "^16.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb",
+  "repository": "pie-framework/pie-lib",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.11.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/user-event": "^14.5.2"
+  },
+  "gitHead": "87d7d9ee63abeb5eff95f888cc2b80683c81ea13",
   "scripts": {}
 }

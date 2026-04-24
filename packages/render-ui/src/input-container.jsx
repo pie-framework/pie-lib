@@ -1,41 +1,47 @@
-import InputLabel from '@material-ui/core/InputLabel';
+import InputLabel from '@mui/material/InputLabel';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
+import { styled } from '@mui/material/styles';
+import FormControl from '@mui/material/FormControl';
 
-const RawInputContainer = (props) => {
-  const { label, className, children, classes } = props;
-  const names = classNames(classes.formControl, className);
+const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  margin: 0,
+  padding: 0,
+  flex: '1 0 auto',
+  minWidth: theme.spacing(4),
+}));
 
-  return (
-    <FormControl className={names}>
-      <InputLabel className={classes.label} shrink={true}>
-        {label}
-      </InputLabel>
-      {children}
-    </FormControl>
-  );
-};
+const StyledInputLabel = styled(InputLabel)(() => ({
+  fontSize: 'inherit',
+  whiteSpace: 'nowrap',
+  margin: 0,
+  padding: 0,
+  alignSelf: 'flex-start',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  transformOrigin: 'top left',
+  pointerEvents: 'none',
+  // override MUI's default transform styles
+  '&.MuiInputLabel-shrink': {
+    transform: 'scale(0.75) translate(0, -0.75em)',
+  },
+  '&:not(.MuiInputLabel-shrink)': {
+    transform: 'translate(0, 0)',
+  },
+}));
 
-RawInputContainer.propTypes = {
+const InputContainer = ({ label, className, children }) => (
+  <StyledFormControl className={className}>
+    <StyledInputLabel shrink>{label}</StyledInputLabel>
+    {children}
+  </StyledFormControl>
+);
+
+InputContainer.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   className: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  classes: PropTypes.object.isRequired,
 };
 
-export default withStyles((theme) => ({
-  formControl: {
-    marginLeft: 0,
-    marginRight: 0,
-    paddingBottom: theme.spacing.unit,
-    flex: '1 0 auto',
-    minWidth: theme.spacing.unit * 4,
-  },
-  label: {
-    fontSize: 'inherit',
-    whiteSpace: 'nowrap',
-  },
-}))(RawInputContainer);
+export default InputContainer;

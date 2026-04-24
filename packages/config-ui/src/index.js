@@ -1,6 +1,6 @@
 import AlertDialog from './alert-dialog';
-import FeedbackConfig, { FeedbackSelector, buildDefaults as feedbackConfigDefaults } from './feedback-config';
-import { InputCheckbox, InputSwitch, InputRadio } from './inputs';
+import FeedbackConfig, { buildDefaults as feedbackConfigDefaults, FeedbackSelector } from './feedback-config';
+import { InputCheckbox, InputRadio, InputSwitch } from './inputs';
 import Langs, { LanguageControls } from './langs';
 import Tabs from './tabs';
 import Checkbox from './checkbox';

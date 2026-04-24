@@ -1,18 +1,25 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-export class InputChooser extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-    inputOptions: PropTypes.array.isRequired,
-    onChange: PropTypes.func.isRequired,
-  };
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
+const StyledFormControl = styled(FormControl)({
+  width: '100%',
+});
+
+const ItalicText = styled('em')({
+  fontSize: '11px',
+});
+
+const StyledTextArea = styled('textarea')({
+  width: '100%',
+  height: '100px',
+});
+
+export class InputChooser extends React.Component {
   constructor(props) {
     super(props);
 
@@ -32,15 +39,15 @@ export class InputChooser extends React.Component {
   };
 
   render() {
-    const { classes, inputOptions } = this.props;
+    const { inputOptions } = this.props;
     const { userHtml, selected } = this.state;
     return (
       <div>
         <div>
-          <em className={classes.italic}>You can enter your own markup here to see how it works with the editor.</em>
+          <ItalicText>You can enter your own markup here to see how it works with the editor.</ItalicText>
         </div>
         <br />
-        <FormControl className={classes.formControl}>
+        <StyledFormControl>
           <InputLabel htmlFor="markup">Example Markup</InputLabel>
           <Select
             value={selected.html}
@@ -56,14 +63,10 @@ export class InputChooser extends React.Component {
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </StyledFormControl>
         <br />
         <br />
-        <textarea
-          className={classes.textArea}
-          onChange={(e) => this.setState({ userHtml: e.target.value })}
-          value={userHtml}
-        />
+        <StyledTextArea onChange={(e) => this.setState({ userHtml: e.target.value })} value={userHtml} />
         <Button variant="contained" color="primary" onClick={() => this.props.onChange(this.state.userHtml)}>
           Update Editor
         </Button>
@@ -72,17 +75,4 @@ export class InputChooser extends React.Component {
   }
 }
 
-const styles = {
-  formControl: {
-    width: '100%',
-  },
-  italic: {
-    fontSize: '11px',
-  },
-  textArea: {
-    width: '100%',
-    height: '100px',
-  },
-};
-
-export default withStyles(styles)(InputChooser);
+export default InputChooser;

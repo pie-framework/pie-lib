@@ -1,42 +1,42 @@
 import PropTypes from 'prop-types';
 import RadioWithLabel from '../radio-with-label';
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 
-const styles = (theme) => ({
-  radioLabel: {
+const StyledChoiceHolder = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+const StyledChoice = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+const StyledRadioWithLabel = styled(RadioWithLabel)(({ theme }) => ({
+  '& .MuiFormControlLabel-label': {
     fontSize: theme.typography.fontSize - 2,
   },
-  choice: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  choiceHolder: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
+}));
 
 const Group = (props) => {
-  const { feedbackLabels, value, classes, className, onChange, keys } = props;
+  const { feedbackLabels, value, className, onChange, keys } = props;
 
   return (
-    <div className={classNames(classes.choiceHolder, className)}>
+    <StyledChoiceHolder className={className}>
       {keys.map((key) => {
         return (
-          <div className={classes.choice} key={key}>
-            <RadioWithLabel
+          <StyledChoice key={key}>
+            <StyledRadioWithLabel
               value={key}
               checked={value === key}
-              classes={{ label: classes.radioLabel }}
               onChange={(e) => onChange(e.currentTarget.value)}
               label={feedbackLabels[key]}
             />
-          </div>
+          </StyledChoice>
         );
       })}
-    </div>
+    </StyledChoiceHolder>
   );
 };
 
@@ -44,9 +44,8 @@ Group.propTypes = {
   className: PropTypes.string,
   feedbackLabels: PropTypes.object.isRequired,
   value: PropTypes.string.isRequired,
-  classes: PropTypes.object.isRequired,
   keys: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
 };
 
-export default withStyles(styles)(Group);
+export default Group;

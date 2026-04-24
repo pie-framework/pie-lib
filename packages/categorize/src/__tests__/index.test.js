@@ -1,21 +1,31 @@
 import {
-  countChosen,
-  buildState,
-  moveChoiceToCategory,
-  removeChoiceFromCategory,
-  ensureNoExtraChoicesInAnswer,
-  limitInArray,
-  limitInArrays,
-  removeAllChoices,
   buildCategories,
   buildChoices,
+  buildState,
+  countChosen,
+  countInAnswer,
+  countInChoices,
+  ensureNoExtraChoicesInAlternate,
+  ensureNoExtraChoicesInAnswer,
   getAllPossibleResponses,
+  getBuiltCategories,
+  limitChoices,
+  limitInArray,
+  limitInArrays,
   moveChoiceToAlternate,
+  moveChoiceToCategory,
+  rearrangeChoices,
+  removeAllChoices,
+  removeCategory,
+  removeChoiceFromAlternate,
+  removeChoiceFromCategory,
+  stillSelectable,
+  verifyAllowMultiplePlacements,
 } from '../index';
-import range from 'lodash/range';
+import { range } from 'lodash-es';
 import util from 'util';
 import debug from 'debug';
-import { cat, cats, choice, answer } from './utils';
+import { answer, cat, cats, choice } from './utils';
 
 const log = debug('@pie-lib:drag:test');
 
@@ -948,6 +958,305 @@ describe('categorize', () => {
 ]}
     `('allResponses = allResponses', ({ correctResponse, allResponses }) => {
       expect(getAllPossibleResponses(correctResponse)).toEqual(allResponses);
+    });
+  });
+
+  describe('limitChoices', () => {
+    it('returns all choices when count is not exceeded', () => {
+      const result = limitChoices('1', 2, ['1', '2', '1']);
+      expect(result).toEqual(['1', '2', '1']);
+    });
+
+    it('limits choice when count is exceeded', () => {
+      const result = limitChoices('1', 2, ['1', '2', '1', '1']);
+      expect(result).toEqual(['1', '2', '1']);
+    });
+
+    it('handles empty choices array', () => {
+      const result = limitChoices('1', 2, []);
+      expect(result).toEqual([]);
+    });
+
+    it('handles different choice IDs', () => {
+      const result = limitChoices('2', 1, ['1', '2', '3', '2']);
+      expect(result).toEqual(['1', '2', '3']);
+    });
+  });
+
+  describe('ensureNoExtraChoicesInAlternate', () => {
+    it('handles null choices', () => {
+      const result = ensureNoExtraChoicesInAlternate([answer('1', ['1'])], null);
+      expect(result).toEqual([answer('1', ['1'])]);
+    });
+
+    it('handles undefined choices', () => {
+      const result = ensureNoExtraChoicesInAlternate([answer('1', ['1'])], undefined);
+      expect(result).toEqual([answer('1', ['1'])]);
+    });
+
+    it('handles empty choices array', () => {
+      const result = ensureNoExtraChoicesInAlternate([answer('1', ['1'])], []);
+      expect(result).toEqual([answer('1', ['1'])]);
+    });
+
+    it('limits alternates when categoryCount is set', () => {
+      const answers = [answer('1', ['1'], [['1', '1'], ['1']]), answer('2', ['2'], [['2'], ['2', '2']])];
+      const choices = [choice('1', 2), choice('2', 1)];
+      const result = ensureNoExtraChoicesInAlternate(answers, choices);
+
+      expect(result[0].alternateResponses).toEqual([['1', '1'], ['1']]);
+      expect(result[1].alternateResponses).toEqual([['2'], ['2']]);
+    });
+
+    it('does not limit when categoryCount is 0', () => {
+      const answers = [answer('1', ['1'], [['1', '1', '1']])];
+      const choices = [choice('1', 0)];
+      const result = ensureNoExtraChoicesInAlternate(answers, choices);
+
+      expect(result).toEqual(answers);
+    });
+  });
+
+  describe('countInAnswer', () => {
+    it('counts choice occurrences in answer', () => {
+      const result = countInAnswer('1', [answer('1', ['1', '2', '1'])]);
+      expect(result).toBe(2);
+    });
+
+    it('counts across multiple categories', () => {
+      const result = countInAnswer('1', [answer('1', ['1', '1']), answer('2', ['1', '2'])]);
+      expect(result).toBe(3);
+    });
+
+    it('returns 0 when choice not found', () => {
+      const result = countInAnswer('3', [answer('1', ['1', '2'])]);
+      expect(result).toBe(0);
+    });
+
+    it('handles empty answer array', () => {
+      const result = countInAnswer('1', []);
+      expect(result).toBe(0);
+    });
+  });
+
+  describe('countInChoices', () => {
+    it('counts choice in array', () => {
+      expect(countInChoices('1', ['1', '2', '1'])).toBe(2);
+    });
+
+    it('returns 0 for empty array', () => {
+      expect(countInChoices('1', [])).toBe(0);
+    });
+
+    it('returns 0 for null', () => {
+      expect(countInChoices('1', null)).toBe(0);
+    });
+
+    it('returns 0 for undefined', () => {
+      expect(countInChoices('1', undefined)).toBe(0);
+    });
+
+    it('returns 0 when choice not found', () => {
+      expect(countInChoices('3', ['1', '2'])).toBe(0);
+    });
+  });
+
+  describe('removeCategory', () => {
+    it('removes category by id', () => {
+      const result = removeCategory('1', [answer('1', ['1']), answer('2', ['2'])]);
+      expect(result).toEqual([answer('2', ['2'])]);
+    });
+
+    it('removes multiple occurrences', () => {
+      const result = removeCategory('1', [answer('1', ['1']), answer('1', ['2']), answer('2', ['3'])]);
+      expect(result).toEqual([answer('2', ['3'])]);
+    });
+
+    it('returns all answers when category not found', () => {
+      const answers = [answer('1', ['1']), answer('2', ['2'])];
+      const result = removeCategory('3', answers);
+      expect(result).toEqual(answers);
+    });
+
+    it('handles empty answers array', () => {
+      const result = removeCategory('1', []);
+      expect(result).toEqual([]);
+    });
+  });
+
+  describe('rearrangeChoices', () => {
+    it('swaps elements at given indices', () => {
+      const choices = ['1', '2', '3', '4'];
+      const result = rearrangeChoices(choices, 0, 2);
+      expect(result).toEqual(['3', '2', '1', '4']);
+    });
+
+    it('handles empty array', () => {
+      const result = rearrangeChoices([], 0, 1);
+      expect(result).toEqual([]);
+    });
+
+    it('handles single element array', () => {
+      const choices = ['1'];
+      const result = rearrangeChoices(choices, 0, 0);
+      expect(result).toEqual(['1']);
+    });
+
+    it('rearranges when moving forward', () => {
+      const choices = ['a', 'b', 'c'];
+      const result = rearrangeChoices(choices, 0, 2);
+      expect(result).toEqual(['c', 'b', 'a']);
+    });
+  });
+
+  describe('verifyAllowMultiplePlacements', () => {
+    it('removes duplicates from other categories', () => {
+      const answers = [
+        { category: '1', choices: ['a', 'b'] },
+        { category: '2', choices: ['a', 'c'] },
+      ];
+      const result = verifyAllowMultiplePlacements({ id: 'a' }, '1', answers);
+
+      expect(result[0].choices).toEqual(['a', 'b']);
+      expect(result[1].choices).toEqual(['c']);
+    });
+
+    it('removes duplicate choices in target category', () => {
+      const answers = [{ category: '1', choices: [{ id: 'a' }, { id: 'a' }, { id: 'b' }] }];
+      const result = verifyAllowMultiplePlacements({ id: 'a' }, '1', answers);
+
+      expect(result[0].choices).toEqual([{ id: 'a' }, { id: 'b' }]);
+    });
+
+    it('handles empty choices arrays', () => {
+      const answers = [
+        { category: '1', choices: [] },
+        { category: '2', choices: [] },
+      ];
+      const result = verifyAllowMultiplePlacements({ id: 'a' }, '1', answers);
+
+      expect(result).toEqual(answers);
+    });
+  });
+
+  describe('removeChoiceFromAlternate', () => {
+    it('removes choice from alternate at specified index', () => {
+      const answers = [
+        answer(
+          '1',
+          ['1'],
+          [
+            ['a', 'b'],
+            ['c', 'd'],
+          ],
+        ),
+      ];
+      const result = removeChoiceFromAlternate('b', '1', 1, 0, answers);
+
+      expect(result[0].alternateResponses[0]).toEqual(['a']);
+    });
+
+    it('does not affect other categories', () => {
+      const answers = [answer('1', ['1'], [['a', 'b']]), answer('2', ['2'], [['c', 'd']])];
+      const result = removeChoiceFromAlternate('b', '1', 1, 0, answers);
+
+      expect(result[1].alternateResponses[0]).toEqual(['c', 'd']);
+    });
+
+    it('handles null answers', () => {
+      const result = removeChoiceFromAlternate('a', '1', 0, 0, null);
+      expect(result).toEqual([]);
+    });
+
+    it('handles undefined answers', () => {
+      const result = removeChoiceFromAlternate('a', '1', 0, 0, undefined);
+      expect(result).toEqual([]);
+    });
+  });
+
+  describe('stillSelectable', () => {
+    it('returns true when categoryCount is 0', () => {
+      const result = stillSelectable({ id: '1', categoryCount: 0 }, []);
+      expect(result).toBe(true);
+    });
+
+    it('returns true when categoryCount is undefined', () => {
+      const result = stillSelectable({ id: '1' }, []);
+      expect(result).toBe(true);
+    });
+
+    it('returns true when count is below categoryCount', () => {
+      const builtCategories = [cats(['1'])];
+      const result = stillSelectable({ id: '1', categoryCount: 2 }, builtCategories);
+      expect(result).toBe(true);
+    });
+
+    it('returns false when count equals categoryCount', () => {
+      const builtCategories = [cats(['1', '1'])];
+      const result = stillSelectable({ id: '1', categoryCount: 2 }, builtCategories);
+      expect(result).toBe(false);
+    });
+
+    it('returns false when count exceeds categoryCount', () => {
+      const builtCategories = [cats(['1', '1', '1'])];
+      const result = stillSelectable({ id: '1', categoryCount: 2 }, builtCategories);
+      expect(result).toBe(false);
+    });
+  });
+
+  describe('getBuiltCategories', () => {
+    it('returns built categories with correctness', () => {
+      const possibleResponse = { 1: ['a', 'b'] };
+      const builtCategories = [
+        {
+          id: '1',
+          label: 'Cat 1',
+          choices: [
+            { id: 'a', content: 'A' },
+            { id: 'b', content: 'B' },
+          ],
+        },
+      ];
+
+      const result = getBuiltCategories(possibleResponse, builtCategories);
+
+      expect(result.correct).toBe(true);
+      expect(result.builtCategories[0].correct).toBe(true);
+      expect(result.builtCategories[0].choices[0].correct).toBe(true);
+      expect(result.builtCategories[0].choices[1].correct).toBe(true);
+    });
+
+    it('marks as incorrect when choices do not match', () => {
+      const possibleResponse = { 1: ['a'] };
+      const builtCategories = [
+        {
+          id: '1',
+          label: 'Cat 1',
+          choices: [{ id: 'b', content: 'B' }],
+        },
+      ];
+
+      const result = getBuiltCategories(possibleResponse, builtCategories);
+
+      expect(result.correct).toBe(false);
+      expect(result.builtCategories[0].correct).toBe(false);
+      expect(result.builtCategories[0].choices[0].correct).toBe(false);
+    });
+
+    it('handles empty possibleResponse for category', () => {
+      const possibleResponse = {};
+      const builtCategories = [
+        {
+          id: '1',
+          label: 'Cat 1',
+          choices: [],
+        },
+      ];
+
+      const result = getBuiltCategories(possibleResponse, builtCategories);
+
+      expect(result.correct).toBe(true);
+      expect(result.builtCategories[0].correct).toBe(true);
     });
   });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import findKey from 'lodash/findKey';
+import { findKey } from 'lodash-es';
 import Choice from './choice';
 import { DragDroppablePlaceholder } from '@pie-lib/drag';
 
@@ -11,6 +11,7 @@ export default class Choices extends React.Component {
     choices: PropTypes.arrayOf(PropTypes.shape({ label: PropTypes.string, value: PropTypes.string })),
     value: PropTypes.object,
     choicePosition: PropTypes.string.isRequired,
+    instanceId: PropTypes.string, // Added for drag isolation
   };
 
   getStyleForWrapper = () => {
@@ -40,7 +41,7 @@ export default class Choices extends React.Component {
   };
 
   render() {
-    const { disabled, duplicates, choices, value } = this.props;
+    const { disabled, duplicates, choices, value, instanceId } = this.props;
     const filteredChoices = choices.filter((c) => {
       if (duplicates === true) {
         return true;
@@ -52,9 +53,9 @@ export default class Choices extends React.Component {
 
     return (
       <div style={elementStyle}>
-        <DragDroppablePlaceholder disabled={disabled}>
+        <DragDroppablePlaceholder disabled={disabled} instanceId={instanceId}>
           {filteredChoices.map((c, index) => (
-            <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} />
+            <Choice key={`${c.value}-${index}`} disabled={disabled} choice={c} instanceId={instanceId} />
           ))}
         </DragDroppablePlaceholder>
       </div>

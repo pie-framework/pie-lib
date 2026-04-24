@@ -13,10 +13,9 @@ import * as color from './color';
 import { hasText } from './has-text';
 import { hasMedia } from './has-media';
 import EnableAudioAutoplayImage from './assets/enableAudioAutoplayImage';
-import AppendCSSRules from './append-css-rules';
+import { transformDataHeadings } from './transform-headings';
 
 export {
-  AppendCSSRules,
   HtmlAndMath,
   indicators,
   withUndoReset,
@@ -32,4 +31,5 @@ export {
   hasText,
   hasMedia,
   EnableAudioAutoplayImage,
+  transformDataHeadings,
 };

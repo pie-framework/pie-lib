@@ -4,9 +4,9 @@ import { GraphPropsType } from './types';
 import { DraggableCore } from './draggable';
 import debug from 'debug';
 import * as utils from './utils';
-import isFunction from 'lodash/isFunction';
+import { isFunction } from 'lodash-es';
 import invariant from 'invariant';
-import { clientPoint } from 'd3-selection';
+import { pointer } from 'd3-selection';
 
 const log = debug('pie-lib:plot:grid-draggable');
 
@@ -38,6 +38,15 @@ export const gridDraggable = (opts) => (Comp) => {
       onMove: PropTypes.func,
       graphProps: GraphPropsType.isRequired,
     };
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        startX: null,
+        startY: null,
+      };
+    }
+
     grid = () => {
       const { graphProps } = this.props;
       const { scale, domain, range } = graphProps;
@@ -51,7 +60,22 @@ export const gridDraggable = (opts) => (Comp) => {
       if (document.activeElement) {
         document.activeElement.blur();
       }
+      this._didDrag = false;
       this.setState({ startX: e.clientX, startY: e.clientY });
+
+      // Intercept the native 'click' event that the browser fires after mouseup.
+      // We use a one-time capture-phase listener so we can suppress it when a
+      // real drag occurred, preventing Bg's d3 click listener from creating a new mark.
+      const target = e.target;
+      const onNativeClick = (clickEvent) => {
+        target.removeEventListener('click', onNativeClick, true);
+        if (this._didDrag) {
+          clickEvent.stopPropagation();
+          clickEvent.preventDefault();
+        }
+      };
+      target.addEventListener('click', onNativeClick, true);
+
       if (onDragStart) {
         onDragStart();
       }
@@ -86,12 +110,25 @@ export const gridDraggable = (opts) => (Comp) => {
       log('bounds: ', bounds);
       const grid = this.grid();
 
-      const scaled = {
-        left: (bounds.left / grid.interval) * grid.x,
-        right: (bounds.right / grid.interval) * grid.x,
-        top: (bounds.top / grid.interval) * grid.y,
-        bottom: (bounds.bottom / grid.interval) * grid.y,
+      let scaled = {
+        left: bounds.left * grid.x,
+        right: bounds.right * grid.x,
+        top: bounds.top * grid.y,
+        bottom: bounds.bottom * grid.y,
       };
+
+      // Normalize Y bounds so that:
+      // - top is <= 0 (negative or zero, allowing upward movement)
+      // - bottom is >= 0 (positive or zero, allowing downward movement)
+      // This compensates for the inverted Y scale (range.max -> 0, range.min -> size.height)
+      // Add a small buffer (1 grid unit) to ensure we can reach exact boundaries
+      const buffer = Math.abs(grid.y);
+      scaled = {
+        ...scaled,
+        top: Math.min(0, scaled.top) - buffer, // More negative to allow reaching max
+        bottom: Math.abs(scaled.bottom) + buffer, // More positive to allow reaching min
+      };
+
       log('[getScaledBounds]: ', scaled);
       return scaled;
     };
@@ -157,9 +194,15 @@ export const gridDraggable = (opts) => (Comp) => {
     };
 
     onDrag = (e, dd) => {
-      const { onDrag, graphProps } = this.props;
+      const { onDrag, graphProps, disabled } = this.props;
 
-      if (!onDrag) {
+      // Track drag movement BEFORE any early returns so that onStop always
+      // knows a real drag occurred, even when onDrag prop is absent or disabled.
+      if (Math.abs(dd.deltaX) > 1 || Math.abs(dd.deltaY) > 1) {
+        this._didDrag = true;
+      }
+
+      if (!onDrag || disabled) {
         return;
       }
 
@@ -211,29 +254,43 @@ export const gridDraggable = (opts) => (Comp) => {
 
     onStop = (e, dd) => {
       log('[onStop] dd:', dd);
-      const { onDragStop, onClick } = this.props;
+      const { onDragStop, onClick, disabled } = this.props;
 
-      if (onDragStop) {
+      if (onDragStop && !disabled) {
         onDragStop();
       }
 
       log('[onStop] lastX/Y: ', dd.lastX, dd.lastY);
-      const isClick = this.tiny('x', e) && this.tiny('y', e);
+      const isClick = !this._didDrag;
 
       if (isClick) {
+        // For non-disabled marks, stop propagation so the Bg d3 listener
+        // doesn't also create a new mark on top of this one.
+        // Disabled/background marks allow propagation so Bg can handle the click.
+        if (!disabled && typeof e?.stopPropagation === 'function') {
+          e.stopPropagation();
+        }
+
         if (onClick) {
           log('call onClick');
-          this.setState({ startX: null });
+          this.setState({ startX: null, startY: null });
           const { graphProps } = this.props;
           const { scale, snap } = graphProps;
-          const [rawX, rawY] = clientPoint(e.target, e);
-          let x = scale.x.invert(rawX);
-          let y = scale.y.invert(rawY);
-          x = snap.x(x);
-          y = snap.y(y);
-          onClick({ x, y });
-          return false;
+          try {
+            const [rawX, rawY] = pointer(e, e.target);
+            let x = scale.x.invert(rawX);
+            let y = scale.y.invert(rawY);
+            x = snap.x(x);
+            y = snap.y(y);
+            onClick({ x, y });
+          } catch (_) {
+            // pointer() can fail on SVG elements (e.g. <circle>) that lack a valid
+            // coordinate transform. Label-mode callbacks use props data, not coords.
+            onClick({});
+          }
         }
+
+        return false;
       }
 
       this.setState({ startX: null, startY: null });
@@ -242,7 +299,11 @@ export const gridDraggable = (opts) => (Comp) => {
     };
 
     render() {
-      const { disabled, ...rest } = this.props;
+      // we extract onClick here to prevent it from being passed to the DraggableCore
+      // and to prevent it from being included in the ...rest that gets passed to the Comp
+      // because otherwise it is called on every drag event
+      // eslint-disable-next-line no-unused-vars
+      const { disabled, onClick, ...rest } = this.props;
       const grid = this.grid();
 
       // prevent the text select icon from rendering.
@@ -256,7 +317,6 @@ export const gridDraggable = (opts) => (Comp) => {
 
       return (
         <DraggableCore
-          disabled={disabled}
           onMouseDown={onMouseDown}
           onStart={this.onStart}
           onDrag={this.onDrag}
@@ -264,7 +324,7 @@ export const gridDraggable = (opts) => (Comp) => {
           axis={opts.axis || 'both'}
           grid={[grid.x, grid.y]}
         >
-          <Comp {...rest} disabled={disabled} isDragging={isDragging} />
+          <Comp {...rest} disabled={disabled} isDragging={isDragging} onClick={isDragging ? undefined : onClick} />
         </DraggableCore>
       );
     }

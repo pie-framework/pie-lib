@@ -1,10 +1,10 @@
 import { classObject, mockIconButton } from '../../../__tests__/utils';
 
-import { Data, Value } from 'slate';
-import { EditorAndToolbar, getClonedChildren } from '../editor-and-toolbar';
+import { Value } from 'slate';
+import { EditorAndToolbar } from '../editor-and-toolbar';
 import React from 'react';
 import debug from 'debug';
-import renderer from 'react-test-renderer';
+import { render, screen } from '@testing-library/react';
 
 jest.mock('../toolbar', () => () => <div>---- toolbar ------ </div>);
 
@@ -20,18 +20,21 @@ describe('toolbar', () => {
     classes = classObject('root', 'editorHolder', 'editorInFocus');
   });
 
-  it('renders', () => {
+  it('renders EditorAndToolbar component', () => {
     const value = Value.fromJSON({});
     Object.defineProperty(value, 'isFocused', { get: jest.fn(() => true) });
 
-    const tree = renderer
-      .create(
-        <EditorAndToolbar classes={classes} value={value} plugins={[]} onDone={jest.fn()} onChange={jest.fn()}>
-          children
-        </EditorAndToolbar>,
-      )
-      .toJSON();
-    log('tree: ', JSON.stringify(tree, null, '  '));
-    expect(tree).toMatchSnapshot();
+    const { container } = render(
+      <EditorAndToolbar classes={classes} value={value} plugins={[]} onDone={jest.fn()} onChange={jest.fn()}>
+        children
+      </EditorAndToolbar>,
+    );
+
+    // Verify component rendered
+    expect(container.firstChild).toBeInTheDocument();
+    // Verify toolbar is present
+    expect(screen.getByText('---- toolbar ------')).toBeInTheDocument();
+    // Verify children are rendered
+    expect(screen.getByText('children')).toBeInTheDocument();
   });
 });

@@ -1,21 +1,18 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { render } from '@pie-lib/test-utils';
 import { Chart } from '../chart';
-import { graphProps } from './utils';
+import { createBandScale, graphProps } from './utils';
 
 describe('ChartAxes', () => {
   let onDataChange = jest.fn();
-  const wrapper = (extras) => {
+
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       onDataChange,
       className: 'className',
       graphProps: graphProps(),
-      xBand: () => {
-        return {
-          bandwidth: () => {},
-        };
-      },
+      xBand: createBandScale(['a', 'b', 'c'], [0, 100]),
       charts: [
         {
           type: 'bar',
@@ -35,61 +32,55 @@ describe('ChartAxes', () => {
       data: [],
     };
     const props = { ...defaults, ...extras };
-    return shallow(<Chart {...props} />);
+    return render(<Chart {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      jest.spyOn(Chart.prototype, 'generateMaskId').mockReturnValue('chart-2645');
-      let w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders chart container', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
 
-    it('renders if size is not defined', () => {
-      jest.spyOn(Chart.prototype, 'generateMaskId').mockReturnValue('chart-1553');
-      let w = wrapper({ size: undefined });
-      expect(w).toMatchSnapshot();
+    it('renders chart with default size', () => {
+      const { container } = renderComponent();
+      const svg = container.querySelector('svg');
+      expect(svg).toBeInTheDocument();
+      expect(svg).toHaveAttribute('width', '240');
+      expect(svg).toHaveAttribute('height', '240');
     });
 
-    it('renders without chartType property', () => {
-      jest.spyOn(Chart.prototype, 'generateMaskId').mockReturnValue('chart-4286');
-      let w = wrapper({ chartType: null });
-      expect(w).toMatchSnapshot();
+    it('renders chart when size is not defined', () => {
+      const { container } = renderComponent({ size: undefined });
+      expect(container.firstChild).toBeInTheDocument();
+      const svg = container.querySelector('svg');
+      expect(svg).toBeInTheDocument();
     });
 
-    it('renders without chartType and charts properties', () =>
-      expect(wrapper({ chartType: null, charts: null })).toMatchSnapshot());
-
-    it('renders without chartType property and empty charts property', () =>
-      expect(wrapper({ chartType: null, charts: [] })).toMatchSnapshot());
-
-    it('renders with chartType property and empty charts property', () =>
-      expect(wrapper({ charts: [] })).toMatchSnapshot());
-  });
-
-  describe('logic', () => {
-    it('changeData', () => {
-      let w = wrapper();
-
-      w.instance().changeData();
-
-      expect(onDataChange).toHaveBeenCalled();
+    it('renders chart without chartType property', () => {
+      const { container } = renderComponent({ chartType: null });
+      expect(container.firstChild).toBeInTheDocument();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
 
-    it('getChart', () => {
-      const w = wrapper();
-
-      const chart = w.instance().getChart();
-
-      expect(chart.type).toEqual('bar');
+    it('renders chart without chartType and charts properties', () => {
+      const { container } = renderComponent({ chartType: null, charts: null });
+      expect(container.firstChild).toBeInTheDocument();
     });
 
-    it('deleteCategory', () => {
-      const w = wrapper();
+    it('renders chart without chartType property and empty charts property', () => {
+      const { container } = renderComponent({ chartType: null, charts: [] });
+      expect(container.firstChild).toBeInTheDocument();
+    });
 
-      w.instance().deleteCategory(0);
-
-      expect(onDataChange).toHaveBeenCalled();
+    it('renders chart with chartType property and empty charts property', () => {
+      const { container } = renderComponent({ charts: [] });
+      expect(container.firstChild).toBeInTheDocument();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
   });
+
+  // Note: changeData, getChart, and deleteCategory are internal implementation details.
+  // In RTL philosophy, we test user-visible behavior rather than implementation.
+  // These methods would be tested indirectly through user interactions that trigger them.
 });

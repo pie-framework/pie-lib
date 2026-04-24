@@ -3,133 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.28.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.28.1) (2025-10-22)
+# [1.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@1.2.0-next.1...@pie-lib/categorize@1.2.0-next.3) (2026-02-26)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
+# [1.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@1.1.0-next.1...@pie-lib/categorize@1.1.0-next.3) (2026-01-27)
 
+**Note:** Version bump only for package @pie-lib/categorize
 
+# [1.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.28.1...@pie-lib/categorize@1.1.0-next.1) (2026-01-26)
 
+### Bug Fixes
+
+- remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+
+### Features
+
+- sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+# [1.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.28.2-next.0...@pie-lib/categorize@1.0.0-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/categorize
+
+## [0.28.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.42.0-mui-update.0...@pie-lib/categorize@0.28.2-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/categorize
+
+## [0.28.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.28.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/categorize
 
 # [0.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.27.0...@pie-lib/categorize@0.28.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
-
-
-
-
 # [0.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.27.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/categorize
-
-
-
-
 
 # [0.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.26.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
-
-
-
-
 # [0.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.24.0...@pie-lib/categorize@0.25.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
-
-
-
-
 # [0.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.8.17...@pie-lib/categorize@0.24.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [0.23.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.22.0...@pie-lib/categorize@0.23.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
-
-
-
-
 # [0.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.21.0...@pie-lib/categorize@0.22.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
-
-
-
-
 # [0.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.8.17...@pie-lib/categorize@0.21.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [0.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.19.0...@pie-lib/categorize@0.20.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
-
-
-
-
 # [0.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.18.0...@pie-lib/categorize@0.19.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/categorize
-
-
-
-
 
 # [0.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.17.1...@pie-lib/categorize@0.18.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/categorize
 
-
-
-
-
 ## [0.17.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.8.17...@pie-lib/categorize@0.17.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [0.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/categorize@0.8.17...@pie-lib/categorize@0.17.0) (2025-08-07)
 

@@ -1,10 +1,9 @@
 import React from 'react';
 import withRoot from '../../source/withRoot';
-import { withStyles } from '@material-ui/core';
 
 import Translator from '@pie-lib/translator';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 const { translator, languageOptions } = Translator;
 
@@ -64,6 +63,4 @@ class Demo extends React.Component {
   }
 }
 
-const Styled = withStyles((theme) => ({}))(Demo);
-
-export default withRoot(Styled);
+export default withRoot(Demo);

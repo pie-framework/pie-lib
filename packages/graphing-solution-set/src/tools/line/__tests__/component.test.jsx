@@ -1,7 +1,8 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { ArrowedLine } from '../component';
 import { graphProps as getGraphProps } from '../../../__tests__/utils';
+
 jest.mock('@pie-lib/plot', () => {
   const a = jest.requireActual('@pie-lib/plot');
   return {
@@ -15,9 +16,8 @@ jest.mock('@pie-lib/plot', () => {
 });
 
 describe('ArrowedLine', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -26,11 +26,12 @@ describe('ArrowedLine', () => {
       graphProps: getGraphProps(),
     };
     const props = { ...defaults, ...extras };
-    return shallow(<ArrowedLine {...props} />);
+    return render(<ArrowedLine {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      expect(wrapper()).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

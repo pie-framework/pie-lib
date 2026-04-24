@@ -1,25 +1,16 @@
 import { EditorAndPad } from '../editor-and-pad';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import React from 'react';
 
-describe('snapshot', () => {
-  let wrapper;
-  let onBlur = jest.fn();
+describe('EditorAndPad', () => {
+  const defaultProps = {
+    classes: {},
+    classNames: {},
+    onBlur: jest.fn(),
+  };
 
-  beforeAll(() => {
-    wrapper = (extras) => {
-      const defaults = {
-        classes: {},
-        classNames: {},
-        onBlur,
-      };
-      const props = { ...defaults, ...extras };
-
-      return shallow(<EditorAndPad {...props} />);
-    };
-  });
-
-  it('renders', () => {
-    expect(wrapper()).toMatchSnapshot();
+  it('renders with default props', () => {
+    const { container } = render(<EditorAndPad {...defaultProps} />);
+    expect(container.firstChild).toBeInTheDocument();
   });
 });

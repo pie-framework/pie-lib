@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import classNames from 'classnames';
-import uniq from 'lodash/uniq';
-import isString from 'lodash/isString';
+import { isString, uniq } from 'lodash-es';
 import { color } from '@pie-lib/render-ui';
 import ToolMenu from './tool-menu';
 import Graph, { graphPropTypes } from './graph';
 import UndoRedo from './undo-redo';
 import { allTools, toolsArr } from './tools';
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const setToolbarAvailability = (toolbarTools) =>
-  toolsArr.map((tA) => ({ ...tA, toolbar: !!toolbarTools.find((t) => t === tA.type) })) || [];
+  toolsArr.map((tA) => ({
+    ...tA,
+    toolbar: !!toolbarTools.find((t) => t === tA.type),
+  })) || [];
 
 export const toolIsAvailable = (tools, currentTool) =>
   currentTool && tools && (tools.find((tool) => tool.type === currentTool.type) || {}).toolbar;
@@ -28,24 +30,63 @@ export const filterByVisibleToolTypes = (toolbarTools, marks) =>
 
 const getDefaultCurrentTool = (toolType) => toolsArr.find((tool) => tool.type === toolType) || null;
 
-const Collapsible = ({ classes, children, title }) => (
-  <ExpansionPanel elevation={0} className={classes.expansionPanel} disabledGutters={true} square={true}>
-    <ExpansionPanelSummary
-      classes={{
-        root: classes.summaryRoot,
-        content: classes.summaryContent,
-      }}
-      expandIcon={<ExpandMoreIcon />}
-    >
-      <Typography variant="subheading">{title}</Typography>
-    </ExpansionPanelSummary>
-    <ExpansionPanelDetails className={classes.details}>{children}</ExpansionPanelDetails>
-  </ExpansionPanel>
+const GraphWithControlsRoot = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  width: 'min-content',
+}));
+
+const Controls = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: 'calc(1.25rem - 12px) calc(1.25rem - 12px) 1.25rem',
+  color: color.text(),
+  backgroundColor: '#9FA8DA',
+  '& button': {
+    fontSize: '0.875rem',
+    padding: '0.25rem .3rem',
+    width: '5rem',
+  },
+}));
+
+const StyledAccordion = styled(Accordion)(() => ({
+  backgroundColor: color.primaryLight(),
+  width: '100%',
+  boxShadow: 'none',
+}));
+
+const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
+  padding: `0 ${theme.spacing(1)}`,
+  minHeight: '32px !important',
+  '& .MuiAccordionSummary-content': {
+    margin: '4px 0 !important',
+  },
+}));
+
+const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
+  padding: 0,
+  marginTop: theme.spacing(1),
+  display: 'flex',
+  justifyContent: 'space-between',
+}));
+
+const UndoRedoOuterDiv = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  marginTop: '.5rem',
+}));
+
+const Collapsible = ({ children, title }) => (
+  <StyledAccordion square disableGutters>
+    <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <Typography variant="subtitle1">{title}</Typography>
+    </StyledAccordionSummary>
+    <StyledAccordionDetails>{children}</StyledAccordionDetails>
+  </StyledAccordion>
 );
 
 Collapsible.propTypes = {
-  classes: PropTypes.object,
-  children: PropTypes.array,
+  children: PropTypes.node,
   title: PropTypes.string,
 };
 
@@ -55,7 +96,7 @@ export class GraphWithControls extends React.Component {
     onUndo: PropTypes.func,
     onRedo: PropTypes.func,
     onReset: PropTypes.func,
-    toolbarTools: PropTypes.arrayOf(PropTypes.string), // array of tool types that have to be displayed in the toolbar, same shape as 'allTools'
+    toolbarTools: PropTypes.arrayOf(PropTypes.string),
     language: PropTypes.string,
   };
 
@@ -71,7 +112,6 @@ export class GraphWithControls extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       currentTool: getDefaultCurrentTool(props.defaultTool),
       labelModeEnabled: false,
@@ -80,10 +120,8 @@ export class GraphWithControls extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { defaultTool } = this.props;
-
     if (prevProps.defaultTool !== defaultTool) {
       const currentTool = getDefaultCurrentTool(defaultTool);
-
       this.setState({ currentTool });
     }
   }
@@ -96,7 +134,6 @@ export class GraphWithControls extends React.Component {
     let { currentTool, labelModeEnabled } = this.state;
     const {
       axesSettings,
-      classes,
       className,
       coordinatesOnHover,
       collapsibleToolbar,
@@ -126,15 +163,11 @@ export class GraphWithControls extends React.Component {
       onSolutionSetSelected,
       onCustomReset,
     } = this.props;
+
     let { backgroundMarks, marks, toolbarTools } = this.props;
 
-    // make sure only valid tool types are kept (string) and without duplicates
     toolbarTools = uniq(toolbarTools || []).filter((tT) => !!isString(tT)) || [];
-
-    // keep only the backgroundMarks that have valid types
     backgroundMarks = filterByValidToolTypes(backgroundMarks || []);
-
-    // keep only the marks that have types which appear in toolbar
     marks = filterByVisibleToolTypes(toolbarTools, marks || []);
 
     if (gssLineData && gssLineData.lineA && marks[0] && marks[0].type === 'line')
@@ -143,14 +176,12 @@ export class GraphWithControls extends React.Component {
       marks[1].fill = gssLineData.lineB.lineType;
 
     const tools = setToolbarAvailability(toolbarTools);
-
-    // set current tool if there's no current tool or if the existing one is no longer available
     if (!currentTool || !toolIsAvailable(tools, currentTool)) {
       currentTool = getAvailableTool(tools);
     }
 
     const gssActions = gssLineData && (
-      <React.Fragment>
+      <>
         <ToolMenu
           numberOfLines={gssLineData.numberOfLines}
           gssLineData={gssLineData}
@@ -159,29 +190,19 @@ export class GraphWithControls extends React.Component {
           language={language}
         />
         {!disabled && (
-          <UndoRedo
-            className={classes.undoRedoOuterDiv}
-            onUndo={onUndo}
-            onRedo={onRedo}
-            onReset={onCustomReset}
-            language={language}
-          />
+          <UndoRedoOuterDiv>
+            <UndoRedo onUndo={onUndo} onRedo={onRedo} onReset={onCustomReset} language={language} />
+          </UndoRedoOuterDiv>
         )}
-      </React.Fragment>
+      </>
     );
 
     return (
-      <div className={classNames(classes.graphWithControls, className)}>
+      <GraphWithControlsRoot className={classNames(className)}>
         {!disableToolbar && (
-          <div className={classes.controls}>
-            {collapsibleToolbar ? (
-              <Collapsible classes={classes} title={collapsibleToolbarTitle}>
-                {gssActions}
-              </Collapsible>
-            ) : (
-              gssActions
-            )}
-          </div>
+          <Controls>
+            {collapsibleToolbar ? <Collapsible title={collapsibleToolbarTitle}>{gssActions}</Collapsible> : gssActions}
+          </Controls>
         )}
 
         <div ref={(r) => (this.labelNode = r)} />
@@ -213,51 +234,9 @@ export class GraphWithControls extends React.Component {
           onSolutionSetSelected={onSolutionSetSelected}
           disabled={!!disabled}
         />
-      </div>
+      </GraphWithControlsRoot>
     );
   }
 }
 
-const styles = (theme) => ({
-  graphWithControls: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 'min-content',
-  },
-  controls: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: 'calc(1.25rem - 12px) calc(1.25rem - 12px) 1.25rem',
-    color: color.text(),
-    backgroundColor: '#9FA8DA',
-    '& button': {
-      fontSize: '0.875rem',
-      padding: '0.25rem .3rem',
-      width: '5rem',
-    },
-  },
-  expansionPanel: {
-    backgroundColor: color.primaryLight(),
-    width: '100%',
-  },
-  summaryRoot: {
-    padding: `0 ${theme.spacing.unit}px`,
-    minHeight: '32px !important',
-  },
-  summaryContent: {
-    margin: '4px 0 !important',
-  },
-  details: {
-    padding: 0,
-    marginTop: theme.spacing.unit,
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  undoRedoOuterDiv: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginTop: '.5rem',
-  },
-});
-
-export default withStyles(styles)(GraphWithControls);
+export default GraphWithControls;

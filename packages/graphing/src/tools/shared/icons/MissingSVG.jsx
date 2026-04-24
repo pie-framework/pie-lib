@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const MissingSVG = ({ scale, x, y }) => (
   <svg
@@ -17,5 +18,14 @@ const MissingSVG = ({ scale, x, y }) => (
     />
   </svg>
 );
+
+MissingSVG.propTypes = {
+  scale: PropTypes.shape({
+    x: PropTypes.func,
+    y: PropTypes.func,
+  }),
+  x: PropTypes.number,
+  y: PropTypes.number,
+};
 
 export default MissingSVG;

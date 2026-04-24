@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { types } from '@pie-lib/plot';
-import { color, Readable } from '@pie-lib/render-ui';
-import EditableHtml from '@pie-lib/editable-html';
-import cn from 'classnames';
+import { Readable } from '@pie-lib/render-ui';
+import EditableHtml from '@pie-lib/editable-html-tip-tap';
 
 const rotations = {
   left: -90,
@@ -43,15 +42,29 @@ const getY = (side, height) => {
   }
 };
 
+const StyledEditableHtml = styled(EditableHtml, {
+  shouldForwardProp: (prop) => !['side', 'disabledLabel'].includes(prop),
+})(({ theme, side, disabledLabel }) => ({
+  fontSize: theme.typography.fontSize - 2,
+  textAlign: 'center',
+  padding: '0 4px',
+  ...(side === 'bottom' && {
+    marginTop: '44px',
+  }),
+  ...(disabledLabel && {
+    pointerEvents: 'none',
+  }),
+}));
+
 class RawLabel extends React.Component {
   static propTypes = {
     text: PropTypes.string,
     side: PropTypes.string,
-    classes: PropTypes.object,
     disabledLabel: PropTypes.bool,
     placeholder: PropTypes.string,
     graphProps: types.GraphPropsType.isRequired,
     onChange: PropTypes.func,
+    mathMlOptions: PropTypes.object,
   };
 
   static defaultProps = {
@@ -59,7 +72,7 @@ class RawLabel extends React.Component {
   };
 
   render() {
-    const { disabledLabel, placeholder, text, side, graphProps, classes, onChange, mathMlOptions = {} } = this.props;
+    const { disabledLabel, placeholder, text, side, graphProps, onChange, mathMlOptions = {} } = this.props;
     const { size, domain, range } = graphProps;
     const totalHeight = (size.height || 500) + (range.padding || 0) * 2;
     const totalWidth = (size.width || 500) + (domain.padding || 0) * 2;
@@ -89,14 +102,9 @@ class RawLabel extends React.Component {
         textAnchor="middle"
       >
         <Readable false>
-          <EditableHtml
-            className={cn(
-              {
-                [classes.bottomLabel]: side === 'bottom',
-                [classes.disabledAxisLabel]: disabledLabel,
-              },
-              classes.axisLabel,
-            )}
+          <StyledEditableHtml
+            side={side}
+            disabledLabel={disabledLabel}
             markup={text || ''}
             onChange={onChange}
             placeholder={!disabledLabel && placeholder}
@@ -114,22 +122,7 @@ class RawLabel extends React.Component {
   }
 }
 
-const Label = withStyles((theme) => ({
-  label: {
-    fill: color.defaults.SECONDARY,
-  },
-  axisLabel: {
-    fontSize: theme.typography.fontSize - 2,
-    textAlign: 'center',
-    padding: '0 4px',
-  },
-  disabledAxisLabel: {
-    pointerEvents: 'none',
-  },
-  bottomLabel: {
-    marginTop: '44px',
-  },
-}))(RawLabel);
+const Label = RawLabel;
 
 export const LabelType = {
   left: PropTypes.string,
@@ -140,13 +133,13 @@ export const LabelType = {
 
 export class Labels extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     disabledLabels: PropTypes.bool,
     placeholders: PropTypes.object,
     value: PropTypes.shape(LabelType),
     graphProps: PropTypes.object,
     onChange: PropTypes.object,
+    mathMlOptions: PropTypes.object,
   };
 
   static defaultProps = {};

@@ -1,27 +1,70 @@
-const withCSS = require('@zeit/next-css');
-
+const path = require('path');
 const { loadLinks } = require('./config/load-links');
-
 const gitInfo = require('./config/git-info')();
 const links = loadLinks();
-
 const packageInfo = require('./config/package-info');
 
+const withTM = require('next-transpile-modules')([
+  'd3-array',
+  'd3-scale',
+  'd3-selection',
+  'd3-shape',
+  'd3-color',
+  'd3-interpolate',
+  'd3-format',
+  'd3-time',
+  'd3-time-format',
+  '@pie-framework/mathquill',
+  '@pie-lib/charting',
+  '@pie-lib/config-ui',
+  '@pie-lib/correct-answer-toggle',
+  '@pie-lib/drag',
+  '@pie-lib/editable-html-tip-tap',
+  '@pie-lib/graphing',
+  '@pie-lib/icons',
+  '@pie-lib/mask-markup',
+  '@pie-lib/math-evaluator',
+  '@pie-lib/math-input',
+  '@pie-lib/math-rendering',
+  '@pie-lib/math-toolbar',
+  '@pie-lib/plot',
+  '@pie-lib/render-ui',
+  '@pie-lib/rubric',
+  '@pie-lib/scoring-config',
+  '@pie-lib/style-utils',
+  '@pie-lib/text-select',
+  '@pie-lib/tools',
+  '@pie-lib/translator',
+  '@mapbox/point-geometry',
+]);
+
 const getAssetPrefix = () => {
-  //eslint-disable-next-line
   if (process.env.NODE_ENV !== 'production') {
     return '';
   }
-
-  return process.env.ASSET_PREFIX || ''; //eslint-disable-line
+  return process.env.ASSET_PREFIX || '';
 };
 
-module.exports = withCSS({
-  webpack: (config /*opts*/) => {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  experimental: {
+    esmExternals: 'loose',
+  },
+  webpack: (config) => {
+    config.cache = false;
     const publicPath = `${getAssetPrefix()}/_next/static`;
 
     config.resolve.mainFields = ['browser', 'main'];
 
+    // Ensure all modules use the same React instance
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      react: path.resolve(__dirname, '../../node_modules/react'),
+      'react-dom': path.resolve(__dirname, '../../node_modules/react-dom'),
+    };
+
+    // Optional: keep url-loader rule if you still want inlined assets
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|otf)$/,
       loader: 'url-loader',
@@ -31,17 +74,19 @@ module.exports = withCSS({
         publicPath,
       },
     });
+
+    // Optional: if you have "fullySpecified" errors
+    config.module.rules.forEach((rule) => {
+      if (rule.resolve) {
+        rule.resolve.fullySpecified = false;
+      }
+    });
+
     return config;
   },
-  webpackDevMiddleware: (config) => {
-    //in dev mode - we want to watch for changes in node_modules coming from babel updates
-    const out = Object.assign({}, config);
-    out.watch = true;
-    out.watchOptions = undefined;
-    out.devtool = 'inline-cheap-source-map';
-    return out;
-  },
-  exportPathMap: function(/*defaultPathMap*/) {
+
+  // Only runs when using `next export`
+  exportPathMap: async () => {
     return links.reduce(
       (acc, l) => {
         acc[l.path] = { page: l.path };
@@ -50,10 +95,15 @@ module.exports = withCSS({
       { '/': { page: '/' } },
     );
   },
+
   assetPrefix: getAssetPrefix(),
+
+  // env must be flat strings now
   env: {
-    links,
-    gitInfo,
+    links: links,
+    gitInfo: gitInfo,
     packageInfo: packageInfo.load(),
   },
-});
+};
+
+module.exports = withTM(nextConfig);

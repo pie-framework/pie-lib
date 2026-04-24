@@ -1,4 +1,5 @@
-import { wrapMath, unWrapMath } from './normalization';
+/* global MathJax */
+import { unWrapMath, wrapMath } from './normalization';
 import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
 import TexError from 'mathjax-full/js/input/tex/TexError';
 
@@ -158,6 +159,7 @@ const renderContentWithMathJax = (executeOn) => {
 
           // If the original input was a string, return the parsed MathML
         } catch (e) {
+          // eslint-disable-next-line no-console
           console.error('Error post-processing MathJax typesetting:', e.toString());
         }
 
@@ -166,7 +168,7 @@ const renderContentWithMathJax = (executeOn) => {
       })
       .catch((error) => {
         //  If there was an internal error, put the message into the output instead
-
+        // eslint-disable-next-line no-console
         console.error('Error in typesetting with MathJax:', error);
       });
   }
@@ -186,7 +188,7 @@ const convertMathJax2ToMathJax3 = () => {
       if (required.match(/[^_a-zA-Z0-9]/) || required === '') {
         throw new TexError('BadPackageName', 'Argument for %1 is not a valid package name', name);
       }
-      if (requireMap.hasOwnProperty(required)) {
+      if (Object.prototype.hasOwnProperty.call(requireMap, required)) {
         required = requireMap[required];
       }
       RequireLoad(parser, required);
@@ -212,7 +214,7 @@ const convertMathJax2ToMathJax3 = () => {
     } else if (typeof args === 'function') {
       return args;
     }
-    throw Error("Can't make callback from given data");
+    throw Error('Can\'t make callback from given data');
   };
 
   //
@@ -236,16 +238,20 @@ const convertMathJax2ToMathJax3 = () => {
     },
     Register: {
       MessageHook: function() {
+        // eslint-disable-next-line no-console
         console.log('MessageHooks are not supported in version 3');
       },
       StartupHook: function() {
+        // eslint-disable-next-line no-console
         console.log('StartupHooks are not supported in version 3');
       },
       LoadHook: function() {
+        // eslint-disable-next-line no-console
         console.log('LoadHooks are not supported in version 3');
       },
     },
     Config: function() {
+      // eslint-disable-next-line no-console
       console.log('MathJax configurations should be converted for version 3');
     },
   };
@@ -319,6 +325,7 @@ export const initializeMathJax = (callback) => {
           globalObj.instance = MathJax;
 
           window.mathjaxLoadedComplete = true;
+          // eslint-disable-next-line no-console
           console.log('MathJax has initialised!', new Date().toString());
 
           // in this file, initializeMathJax is called with a callback that has to be executed when MathJax was loaded
@@ -383,7 +390,7 @@ export const initializeMathJax = (callback) => {
   });
 };
 
-const renderMath = (el, renderOpts) => {
+const renderMath = (el) => {
   const usedForMmlOutput = typeof el === 'string';
   let executeOn = document.body;
 
@@ -403,7 +410,10 @@ const renderMath = (el, renderOpts) => {
           window.mathjaxLoadedComplete = true;
           renderContentsWithMathJax(el);
         })
-        .catch((error) => console.error('Error in initializing MathJax:', error));
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error('Error in initializing MathJax:', error);
+        });
     }
   } else {
     // Here we're handling the case when renderMath is being called for mmlOutput
@@ -426,6 +436,7 @@ const renderMath = (el, renderOpts) => {
 
         return parsedMathMl;
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error rendering math:', error.message);
       }
 

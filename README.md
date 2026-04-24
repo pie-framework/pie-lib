@@ -6,11 +6,14 @@ Some reusable react components, mostly used in [pie][pie] components.
 
 Elements are in `packages`.
 
+## Documentation
+
+- [MathQuill → MathLive migration plan](docs/mathquill-to-mathlive-migration.md)
+
 ## install
 
 ```bash
 yarn install
-./node_modules/.bin/lerna bootstrap
 ```
 
 ## Commands
@@ -60,7 +63,7 @@ HUSKY_SKIP_HOOKS=1 git rebase ...
 
 Sometimes the project test set up can get out of synch
 
-- try `lerna bootstrap`, `npm run build`, `rm -fr packages/test-utils/node_modules` and run again.
+- try `npm run build`, `rm -fr packages/test-utils/node_modules` and run again.
 
 ## Building and deploying a pre-release
 

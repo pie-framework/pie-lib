@@ -1,6 +1,9 @@
 export const scaleMock = () => {
   const fn = jest.fn((n) => n);
   fn.invert = jest.fn((n) => n);
+  fn.domain = jest.fn(() => fn);
+  fn.range = jest.fn(() => fn);
+  fn.copy = jest.fn(() => scaleMock());
   return fn;
 };
 

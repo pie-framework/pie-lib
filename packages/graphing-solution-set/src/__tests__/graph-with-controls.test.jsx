@@ -1,15 +1,60 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
-
 import {
+  filterByValidToolTypes,
+  filterByVisibleToolTypes,
+  getAvailableTool,
   GraphWithControls,
   setToolbarAvailability,
   toolIsAvailable,
-  getAvailableTool,
-  filterByValidToolTypes,
-  filterByVisibleToolTypes,
 } from '../graph-with-controls';
-import { toolsArr, allTools, line as lineTool } from '../tools';
+import { allTools, line as lineTool, toolsArr } from '../tools';
+
+// Mock DragProvider to avoid @dnd-kit React version conflicts
+jest.mock('@pie-lib/drag', () => ({
+  DragProvider: ({ children }) => <div data-testid="drag-provider">{children}</div>,
+}));
+
+// Mock @dnd-kit/core hooks to avoid DndContext requirement
+jest.mock('@dnd-kit/core', () => ({
+  useDraggable: jest.fn(() => ({
+    attributes: {
+      role: 'button',
+      tabIndex: 0,
+    },
+    listeners: {
+      onPointerDown: jest.fn(),
+    },
+    setNodeRef: jest.fn(),
+    transform: null,
+    transition: null,
+    isDragging: false,
+  })),
+  useDroppable: jest.fn(() => ({
+    setNodeRef: jest.fn(),
+    isOver: false,
+    active: null,
+  })),
+}));
+
+// Mock @dnd-kit/utilities for CSS transform
+jest.mock('@dnd-kit/utilities', () => ({
+  CSS: {
+    Transform: {
+      toString: jest.fn((transform) => (transform ? 'translate3d(0, 0, 0)' : '')),
+    },
+  },
+}));
+
+// Mock @dnd-kit/sortable for arrayMove
+jest.mock('@dnd-kit/sortable', () => ({
+  arrayMove: jest.fn((array, from, to) => {
+    const newArray = [...array];
+    const [removed] = newArray.splice(from, 1);
+    newArray.splice(to, 0, removed);
+    return newArray;
+  }),
+}));
 
 const line = {
   type: 'line',
@@ -30,6 +75,7 @@ const polygon = {
 
 const marks = [line, polygon];
 
+// Pure function tests - keep as-is
 describe('setToolbarAvailability', () => {
   it('sets `toolbar: true` if tool should be displayed in toolbar - all tools', () => {
     const result = setToolbarAvailability(allTools);
@@ -96,12 +142,14 @@ describe('filterByVisibleToolTypes', () => {
 });
 
 describe('GraphWithControls', () => {
-  let w;
   let onChangeMarks = jest.fn();
+
+  beforeEach(() => {
+    onChangeMarks.mockClear();
+  });
 
   const defaultProps = () => ({
     axesSettings: { includeArrows: true },
-    classes: {},
     className: '',
     coordinatesOnHover: false,
     domain: { min: 0, max: 10, step: 1 },
@@ -113,19 +161,24 @@ describe('GraphWithControls', () => {
     size: { width: 500, height: 500 },
     title: 'Title',
     toolbarTools: allTools,
+    language: 'en',
   });
   const initialProps = defaultProps();
 
-  const wrapper = (extras, opts) => {
+  const renderComponent = (extras) => {
     const props = { ...initialProps, ...extras };
-
-    return shallow(<GraphWithControls {...props} />, opts);
+    return render(<GraphWithControls {...props} />);
   };
 
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
+    });
+
+    it('renders Graph component', () => {
+      const { container } = renderComponent();
+      expect(container.querySelector('svg')).toBeInTheDocument();
     });
   });
 });

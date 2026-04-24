@@ -74,6 +74,10 @@ export const commonMqKeyboardStyles = {
       padding: '9px 1px !important',
     },
 
+    '& .mq-math-mode .mq-longdiv-inner .mq-empty': {
+      padding: '0 !important',
+    },
+
     '& .mq-math-mode .mq-supsub': {
       fontSize: '70.7% !important',
     },

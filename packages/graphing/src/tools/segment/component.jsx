@@ -1,40 +1,45 @@
-import { lineToolComponent, lineBase, styles } from '../shared/line';
+import { lineBase, lineToolComponent, styles } from '../shared/line';
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { types } from '@pie-lib/plot';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 
-const lineStyles = (theme) => ({
-  line: styles.line(theme),
-  disabled: styles.disabled(theme),
-  disabledSecondary: styles.disabledSecondary(theme),
-  correct: styles.correct(theme, 'stroke'),
-  incorrect: styles.incorrect(theme, 'stroke'),
-  missing: styles.missing(theme, 'stroke'),
-});
+const StyledLineRoot = styled('line')(({ theme, disabled, correctness }) => ({
+  ...styles.line(theme),
+  ...(disabled && {
+    ...styles.disabled(theme),
+    ...styles.disabledSecondary(theme),
+  }),
+  ...(correctness === 'correct' && styles.correct(theme, 'stroke')),
+  ...(correctness === 'incorrect' && styles.incorrect(theme, 'stroke')),
+  ...(correctness === 'missing' && styles.missing(theme, 'stroke')),
+}));
+
 export const Line = (props) => {
-  const { className, classes, correctness, disabled, graphProps, from, to, ...rest } = props;
+  const { className, correctness, disabled, graphProps, from, to, ...rest } = props;
   const { scale } = graphProps;
+  const x1 = scale.x(from.x);
+  const y1 = scale.y(from.y);
+  const x2 = scale.x(to.x);
+  const y2 = scale.y(to.y);
 
   return (
-    <line
-      stroke="green"
-      strokeWidth="6"
-      x1={scale.x(from.x)}
-      y1={scale.y(from.y)}
-      x2={scale.x(to.x)}
-      y2={scale.y(to.y)}
-      className={classNames(classes.line, disabled && classes.disabledSecondary, classes[correctness], className)}
-      {...rest}
-    />
+    <g>
+      {/* Transparent wider line captures pointer events (+2px each side) */}
+      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="transparent" strokeWidth={7} style={{ cursor: 'pointer', pointerEvents: 'stroke' }} />
+      <StyledLineRoot
+        x1={x1} y1={y1} x2={x2} y2={y2}
+        className={className}
+        disabled={disabled}
+        correctness={correctness}
+        {...rest}
+      />
+    </g>
   );
 };
 
 Line.propTypes = {
   className: PropTypes.string,
-  classes: PropTypes.object,
   correctness: PropTypes.string,
   disabled: PropTypes.bool,
   graphProps: PropTypes.any,
@@ -42,8 +47,7 @@ Line.propTypes = {
   to: types.PointType,
 };
 
-const StyledLine = withStyles(lineStyles)(Line);
-const Segment = lineBase(StyledLine);
+const Segment = lineBase(Line);
 const Component = lineToolComponent(Segment);
 
 export default Component;

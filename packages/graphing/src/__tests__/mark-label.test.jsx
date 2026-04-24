@@ -1,36 +1,31 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
-import { MarkLabel, position, coordinates } from '../mark-label';
+import { coordinates, MarkLabel, position } from '../mark-label';
 import { graphProps as getGraphProps } from './utils';
 
-const xyFn = () => {
-  const out = jest.fn((n) => n);
-  out.invert = jest.fn((n) => n);
-  return out;
-};
-
 describe('MarkLabel', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras) => {
+  let inputRef = jest.fn();
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
       onChange,
+      inputRef,
       mark: { x: 1, y: 1 },
       graphProps: getGraphProps(0, 10, 0, 10),
     };
     const props = { ...defaults, ...extras };
-    return shallow(<MarkLabel {...props} />);
+    return render(<MarkLabel {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
-    it('renders', () => {
-      w = wrapper({ mark: { x: 10, y: 10 } });
-      expect(w).toMatchSnapshot();
+    it('renders with different mark position', () => {
+      const { container } = renderComponent({ mark: { x: 10, y: 10 } });
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

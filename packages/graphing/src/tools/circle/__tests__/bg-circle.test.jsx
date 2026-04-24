@@ -1,12 +1,11 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { BgCircle } from '../bg-circle';
 import { graphProps } from '../../../__tests__/utils';
 
 describe('BgCircle', () => {
-  let w;
   let onChange = jest.fn();
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -16,13 +15,12 @@ describe('BgCircle', () => {
       graphProps: graphProps(),
     };
     const props = { ...defaults, ...extras };
-    return shallow(<BgCircle {...props} />);
+    return render(<BgCircle {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
-  describe('logic', () => {});
 });

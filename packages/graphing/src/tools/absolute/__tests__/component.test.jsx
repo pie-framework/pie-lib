@@ -1,6 +1,5 @@
-import React from 'react';
 import { withRootEdge } from '../../shared/line/with-root-edge';
-import { buildDataPoints, absoluteFromTwoPoints } from '@pie-lib/graphing-utils';
+import { absoluteFromTwoPoints, buildDataPoints } from '@pie-lib/graphing-utils';
 import { utils } from '@pie-lib/plot';
 
 import { graphProps as getGraphProps } from '../../../__tests__/utils';

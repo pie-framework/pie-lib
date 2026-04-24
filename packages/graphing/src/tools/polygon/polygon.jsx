@@ -1,12 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { alpha, styled } from '@mui/material/styles';
 import { gridDraggable, types } from '@pie-lib/plot';
-import * as utils from '../../utils';
-import classNames from 'classnames';
 import { color } from '@pie-lib/render-ui';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { correct, disabled, incorrect, missing } from '../shared/styles';
+
+import * as utils from '../../utils';
+import { correct, disabledSecondary, incorrect, missing, graphingShapeFill } from '../shared/styles';
+
+const StyledPolygon = styled('polygon')(({ disabled: isDisabled, correctness }) => ({
+  fill: alpha(graphingShapeFill(), 0.2),
+  strokeWidth: 2,
+  stroke: color.defaults.BLACK,
+  ...(isDisabled && disabledSecondary('stroke')),
+  ...(correctness === 'correct' && correct('stroke')),
+  ...(correctness === 'incorrect' && incorrect('stroke')),
+  ...(correctness === 'missing' && {
+    ...missing('stroke'),
+    stroke: 'inherit',
+  }),
+}));
+
+const StyledPolyline = styled('polyline')(({ disabled: isDisabled, correctness }) => ({
+  fill: alpha(graphingShapeFill(), 0.0),
+  strokeWidth: 2,
+  stroke: color.defaults.BLACK,
+  pointerEvents: 'none',
+  ...(isDisabled && disabledSecondary('stroke')),
+  ...(correctness === 'correct' && correct('stroke')),
+  ...(correctness === 'incorrect' && incorrect('stroke')),
+  ...(correctness === 'missing' && {
+    ...missing('stroke'),
+    stroke: 'inherit',
+  }),
+}));
 
 export const getPointString = (points, scale) => {
   return (points || [])
@@ -22,7 +48,6 @@ export const getPointString = (points, scale) => {
 
 export class RawPolygon extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     points: PropTypes.arrayOf(types.PointType),
@@ -36,53 +61,36 @@ export class RawPolygon extends React.Component {
   };
 
   render() {
-    const { points, classes, className, disabled, correctness, graphProps, closed, ...rest } = this.props;
+    const { points, className, disabled, correctness, graphProps, closed, ...rest } = this.props;
     const { scale } = graphProps;
 
     const pointString = getPointString(points, scale);
-    const Tag = closed ? 'polygon' : 'polyline';
-    return (
-      <Tag
-        points={pointString}
-        className={classNames(
-          closed && classes.closed,
-          !closed && classes.open,
-          disabled && classes.disabled,
-          classes[correctness],
-          className,
-        )}
-        {...rest}
-      />
-    );
+
+    if (closed) {
+      return (
+        <StyledPolygon
+          points={pointString}
+          className={className}
+          disabled={disabled}
+          correctness={correctness}
+          {...rest}
+        />
+      );
+    } else {
+      return (
+        <StyledPolyline
+          points={pointString}
+          className={className}
+          disabled={disabled}
+          correctness={correctness}
+          {...rest}
+        />
+      );
+    }
   }
 }
 
-export const Polygon = withStyles((theme) => ({
-  closed: {
-    fill: fade(theme.palette.primary.light, 0.2), // TODO hardcoded color
-    strokeWidth: 2,
-    stroke: color.defaults.BLACK,
-  },
-  open: {
-    fill: fade(theme.palette.primary.light, 0.0), // TODO hardcoded color
-    strokeWidth: 2,
-    stroke: color.defaults.BLACK,
-    pointerEvents: 'none',
-  },
-  disabled: {
-    ...disabled('stroke'),
-  },
-  correct: {
-    ...correct('stroke'),
-  },
-  incorrect: {
-    ...incorrect('stroke'),
-  },
-  missing: {
-    ...missing('stroke'),
-    stroke: 'inherit',
-  },
-}))(RawPolygon);
+export const Polygon = RawPolygon;
 
 export default gridDraggable({
   bounds: (props, { domain, range }) => {

@@ -3,39 +3,41 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.29.1",
+  "version": "1.2.0-next.4",
   "description": "Some interactive tools",
   "keywords": [
     "react",
     "pie",
     "tools"
   ],
-  "repository": "pie-framework/pie-lib",
   "main": "lib/index.js",
   "module": "src/index.js",
   "scripts": {},
   "author": "",
   "license": "ISC",
+  "repository": "pie-framework/pie-lib",
   "dependencies": {
-    "@mapbox/point-geometry": "^0.1.0",
-    "@pie-lib/style-utils": "^0.21.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/style": "^0.8.0",
+    "@mapbox/point-geometry": "^1.1.0",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
+    "@pie-lib/style-utils": "^1.2.0-next.3",
     "assert": "^1.4.1",
-    "classnames": "^2.2.6",
     "debug": "^4.1.1",
-    "invariant": "^2.2.4",
-    "lodash": "^4.17.11",
+    "lodash-es": "^4.17.23",
     "prop-types": "^15.7.2",
     "react-portal": "^4.2.0",
     "trigonometry-calculator": "^2.0.0"
   },
   "devDependencies": {
-    "@material-ui/core": "^3.8.3",
-    "react": "^16.8.1",
-    "react-dom": "^16.9.0"
+    "@mui/material": "^7.3.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "peerDependencies": {
-    "@material-ui/core": "^3.8.3",
-    "react": "^16.8.1"
+    "@mui/material": "^7.3.4",
+    "react": "^18.2.0"
   },
-  "gitHead": "ff5ec2ebe11110b7652812a10c6dc230f08e12cb"
+  "gitHead": "2c31ce9ebbe2ae3cb470c1442d6fff005ba649ad"
 }

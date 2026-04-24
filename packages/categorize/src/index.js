@@ -1,6 +1,5 @@
 import debug from 'debug';
-import clone from 'lodash/clone';
-import remove from 'lodash/remove';
+import { clone, remove } from 'lodash-es';
 import { score } from './scoring';
 
 export { score };
@@ -17,12 +16,10 @@ export const limitChoices = (choiceId, count, choices) => {
       if (id !== choiceId || foundCount < count) {
         acc.choices.push(id);
       }
-
       return acc;
     },
     { choices: [] },
   );
-
   return out.choices;
 };
 

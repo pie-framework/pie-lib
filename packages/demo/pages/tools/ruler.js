@@ -1,9 +1,8 @@
 import withRoot from '../../source/withRoot';
 import React from 'react';
 import { Ruler } from '@pie-lib/tools';
-import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 
 class Demo extends React.Component {
@@ -38,9 +37,7 @@ class Demo extends React.Component {
         <Ruler measure={'imperial'} width={480} units={6} />
         <br />
         <br />
-        <Link href="/tools/rotatable">
-          <a>Ruler uses Rotatable</a>
-        </Link>
+        <Link href="/tools/rotatable">Ruler uses Rotatable</Link>
       </div>
     ) : (
       <div>loading...</div>
@@ -48,4 +45,4 @@ class Demo extends React.Component {
   }
 }
 
-export default withRoot(withStyles(() => ({}))(Demo));
+export default withRoot(Demo);

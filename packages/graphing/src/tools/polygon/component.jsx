@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import { ToolPropTypeFields } from '../shared/types';
 import { BasePoint } from '../shared/point';
-import chunk from 'lodash/chunk';
-import initial from 'lodash/initial';
+import { chunk, initial, isEmpty } from 'lodash-es';
 import debug from 'debug';
 import Line from './line';
 import DraggablePolygon, { Polygon } from './polygon';
@@ -12,8 +10,7 @@ import { types } from '@pie-lib/plot';
 import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
-import isEmpty from 'lodash/isEmpty';
-import { getMiddleOfTwoPoints, getRightestPoints, equalPoints } from '../../utils';
+import { equalPoints, getMiddleOfTwoPoints, getRightestPoints } from '../../utils';
 
 const log = debug('pie-lib:graphing:polygon');
 
@@ -233,7 +230,7 @@ export class RawBaseComponent extends React.Component {
     const polygonLabelIndex = (points && points.length) || 0;
     let polygonLabelNode = null;
 
-    if (labelNode && middle && middle.hasOwnProperty('label')) {
+    if (labelNode && middle && Object.prototype.hasOwnProperty.call(middle, 'label')) {
       polygonLabelNode = ReactDOM.createPortal(
         <MarkLabel
           inputRef={(r) => (this.input[polygonLabelIndex] = r)}
@@ -285,7 +282,7 @@ export class RawBaseComponent extends React.Component {
               {...common}
               onClick={this.clickPoint.bind(this, p, index)}
             />,
-            labelNode && p.hasOwnProperty('label')
+            labelNode && Object.prototype.hasOwnProperty.call(p, 'label')
               ? ReactDOM.createPortal(
                   <MarkLabel
                     inputRef={(r) => (this.input[index] = r)}
@@ -304,7 +301,7 @@ export class RawBaseComponent extends React.Component {
   }
 }
 
-export const BaseComponent = withStyles(() => ({}))(RawBaseComponent);
+export const BaseComponent = RawBaseComponent;
 
 export default class Component extends React.Component {
   static propTypes = {
@@ -367,16 +364,8 @@ export default class Component extends React.Component {
   };
 
   render() {
-    const {
-      coordinatesOnHover,
-      mark,
-      graphProps,
-      onClick,
-      isToolActive,
-      labelNode,
-      labelModeEnabled,
-      limitLabeling,
-    } = this.props;
+    const { coordinatesOnHover, mark, graphProps, onClick, isToolActive, labelNode, labelModeEnabled, limitLabeling } =
+      this.props;
     const { mark: stateMark } = this.state;
 
     return (

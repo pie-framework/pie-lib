@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 const path = require('path');
 const fs = require('fs-extra');
-const _ = require('lodash');
 
 const commonJs = {};
 
@@ -9,18 +8,15 @@ const packagesDir = path.resolve(__dirname, '../packages');
 const listPackages = () => {
   const files = fs.readdirSync(packagesDir);
 
-  return _.compact(
-    files
-      .filter((f) => !f.includes('@'))
-      .filter((f) => fs.lstatSync(path.join(packagesDir, f)).isDirectory())
-      .map((f) => {
-        const p = fs.readJsonSync(path.join(packagesDir, f, 'package.json'));
-        if (!p.module) {
-          return;
-        }
-        return p.name;
-      }),
-  );
+  return files
+    .filter((f) => !f.includes('@'))
+    .filter((f) => fs.lstatSync(path.join(packagesDir, f)).isDirectory())
+    .map((f) => {
+      const p = fs.readJsonSync(path.join(packagesDir, f, 'package.json'));
+
+      return p.module ? p.name : null;
+    })
+    .filter(Boolean);
 };
 
 /**
@@ -68,26 +64,27 @@ module.exports = {
           namespace: ['@pie-lib/math-rendering'],
         },
       },
-      // core shared module lib
+      // core shared module lib - bundles MUI for other modules to use
       {
         name: '@pie-lib/shared-module',
+        excludeFromBundling: [], // Bundle MUI here (override default exclusions)
         imports: {
           default: [
             'react-dom',
+            'react-dom/client',
             'react-dom/server',
             'react',
             'prop-types',
             '@pie-lib/correct-answer-toggle',
-            'lodash',
             'classnames',
             'debug',
           ],
           namespace: [
-            '@material-ui/core/styles/colorManipulator',
-            '@material-ui/core/Collapse/index',
-            '@material-ui/core/styles',
-            '@material-ui/core',
-            '@material-ui/icons',
+            '@mui/system',
+            '@mui/material/Collapse',
+            '@mui/material/styles',
+            '@mui/material',
+            '@mui/icons-material',
             '@pie-lib/render-ui',
           ],
         },
@@ -112,19 +109,19 @@ module.exports = {
       {
         name: '@pie-lib/editable-html-module',
         imports: {
-          default: ['@pie-lib/editable-html'],
+          default: ['@pie-lib/editable-html-tip-tap'],
         },
       },
+      // Uses MUI from shared-module (default exclusions apply)
       {
         name: '@pie-lib/config-module',
         imports: {
           namespace: ['@pie-lib/config-ui'],
         },
       },
+      // Uses MUI from shared-module (default exclusions apply)
       {
         name: '@pie-lib/graphing-module',
-        // add dependency here? or use the order?
-        // output: path.resolve(__dirname, '../packages'),
         imports: {
           default: [],
           namespace: ['@pie-lib/plot', '@pie-lib/graphing'],

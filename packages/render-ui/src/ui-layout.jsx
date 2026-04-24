@@ -1,12 +1,9 @@
 import React from 'react';
-import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { createTheme, styled, StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import AppendCSSRules from './append-css-rules';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
-    useNextVariants: true,
     fontFamily: 'inherit',
   },
   palette: {
@@ -14,16 +11,35 @@ const theme = createMuiTheme({
       disabled: 'rgba(0, 0, 0, 0.54);',
     },
   },
-  overrides: {
+  components: {
     MuiTypography: {
-      root: { fontFamily: 'inherit' },
+      styleOverrides: {
+        root: { fontFamily: 'inherit' },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          backgroundColor: '#e0e0e0',
+          color: '#000000',
+          '&:hover': {
+            backgroundColor: '#bdbdbd',
+          },
+        },
+      },
     },
   },
 });
 
-class UiLayout extends AppendCSSRules {
+const StyledContainer = styled('div')({
+  // need this because some browsers set their own style on table
+  '& table, th, td': {
+    fontSize: 'inherit' /* Ensure table elements inherit font size */,
+  },
+});
+
+class UiLayout extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     children: PropTypes.array,
     extraCSSRules: PropTypes.shape({
@@ -50,36 +66,31 @@ class UiLayout extends AppendCSSRules {
     const bodyFontSize = getFontSize(document.body);
     const effectiveFontSize = Math.max(rootFontSize, bodyFontSize);
 
-    return fontSizeFactor !== 1 ? { fontSize: `${effectiveFontSize * fontSizeFactor}px` } : null;
+    // Handle null, undefined, or invalid values by defaulting to 1
+    const factor = fontSizeFactor != null && typeof fontSizeFactor === 'number' ? fontSizeFactor : 1;
+    return factor !== 1 ? { fontSize: `${effectiveFontSize * factor}px` } : null;
   }
 
   render() {
-    const { children, className, classes, fontSizeFactor, ...rest } = this.props;
+    const { children, className, fontSizeFactor, ...rest } = this.props;
 
-    const finalClass = classNames(className, classes.extraCSSRules, classes.uiLayoutContainer);
     const { extraCSSRules, ...restProps } = rest;
     const style = this.computeStyle(fontSizeFactor);
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className={finalClass} {...restProps} {...(style && { style })}>
-          {children}
-        </div>
-      </MuiThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          {extraCSSRules?.rules ? (
+            <style dangerouslySetInnerHTML={{ __html: `.extraCSSRules { ${extraCSSRules.rules} }` }} />
+          ) : null}
+
+          <StyledContainer className={`${className} extraCSSRules`} {...restProps} {...(style && { style })}>
+            {children}
+          </StyledContainer>
+        </ThemeProvider>
+      </StyledEngineProvider>
     );
   }
 }
 
-const styles = {
-  extraCSSRules: {},
-  // need this because some browsers set their own style on table
-  uiLayoutContainer: {
-    '& table, th, td': {
-      fontSize: 'inherit' /* Ensure table elements inherit font size */,
-    },
-  },
-};
-
-const Styled = withStyles(styles)(UiLayout);
-
-export default Styled;
+export default UiLayout;

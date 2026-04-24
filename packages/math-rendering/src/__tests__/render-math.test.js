@@ -1,7 +1,7 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import renderMath, { fixMathElement } from '../render-math';
-import _ from 'lodash';
+import { times } from 'lodash-es';
 
 jest.mock(
   'mathjax-full/js/mathjax',
@@ -115,7 +115,7 @@ describe('render-math', () => {
   it('calls classFactory.create once', () => {
     const div = document.createElement('div');
 
-    _.times(10).forEach((i) => renderMath(div));
+    times(10).forEach((i) => renderMath(div));
 
     expect(mockEnrichHandlerInstance.create).toHaveBeenCalledTimes(1);
   });
@@ -141,12 +141,12 @@ describe('render-math', () => {
   });
 
   it('wraps the math containing element the right way', () => {
-    const wrapper = mount(
+    const { container } = render(
       <div>
         <span data-latex="">{'420\\text{ cm}=4.2\\text{ meters}'}</span>
       </div>,
     );
-    const spanElem = wrapper.instance();
+    const spanElem = container.querySelector('span[data-latex]');
 
     fixMathElement(spanElem);
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Inline } from 'slate';
-import TheatersIcon from '@material-ui/icons/Theaters';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import TheatersIcon from '@mui/icons-material/Theaters';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import debug from 'debug';
 
 import MediaDialog from './media-dialog';
@@ -44,7 +44,8 @@ export const insertDialog = (props) => {
     />
   );
 
-  ReactDOM.render(el, newEl);
+  const dialogRoot = createRoot(newEl);
+  dialogRoot.render(el);
 
   document.body.appendChild(newEl);
 };
@@ -178,7 +179,7 @@ export default function MediaPlugin(type, opts) {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               src={src}
-              editing={editing ? 1 : 0}
+              data-editing={editing ? 1 : 0}
               {...rest}
               {...style}
             />

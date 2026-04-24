@@ -1,0 +1,93 @@
+name: PIE Lib CI
+
+on:
+  push:
+    branches: [develop, master]
+  pull_request:
+    branches: [develop, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # REQUIRED for lerna version
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+      - run: yarn install
+      - run: scripts/release --build
+      - run: scripts/release --test
+
+  build-next:
+    needs: test
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write   # REQUIRED for npm trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # REQUIRED for lerna version
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+          cache: yarn
+      - run: yarn install
+      - run: scripts/release --build
+      - run: scripts/release --release --next --loglevel verbose
+
+  build-release:
+    needs: test
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write   # REQUIRED for npm trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # REQUIRED for lerna version
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+          cache: yarn
+      - run: yarn install
+      - run: scripts/release --build
+      # ─────────────────────────────────────────────────────────────────────
+      # TEMPORARY: --major forces every publishable package to a new major
+      # version on the next publish. This is in place ONLY for the platform
+      # upgrade release (React 18, MUI v7, Node 24, test stack modernization).
+      #
+      # REVERT THIS IMMEDIATELY AFTER THE PLATFORM RELEASE PUBLISHES.
+      #
+      # How to revert: open a follow-up PR to master that removes the
+      # --major flag from the line below, restoring:
+      #   - run: scripts/release --release --loglevel verbose
+      #
+      # Leaving --major in place will bump every package to the next major
+      # on EVERY subsequent merge to master, which is almost certainly not
+      # what you want.
+      # ─────────────────────────────────────────────────────────────────────
+      - run: scripts/release --release --major --loglevel verbose

@@ -1,23 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
-import { withStyles } from '@material-ui/core/styles';
+import { get } from 'lodash-es';
+import { styled } from '@mui/material/styles';
+import { renderMath } from '@pie-lib/math-rendering';
 import { MARK_TAGS } from './serialization';
-import cx from 'classnames';
 
-const Paragraph = withStyles((theme) => ({
-  para: {
-    paddingTop: 2 * theme.spacing.unit,
-    paddingBottom: 2 * theme.spacing.unit,
-  },
-}))((props) => <div className={props.classes.para}>{props.children}</div>);
+const Paragraph = styled('div')(({ theme }) => ({
+  paddingTop: theme.spacing(0.5),
+  paddingBottom: theme.spacing(0.5),
+}));
 
-const Spacer = withStyles(() => ({
-  spacer: {
-    display: 'inline-block',
-    width: '.75em',
-  },
-}))((props) => <span className={props.classes.spacer} />);
+const Spacer = styled('span')(() => ({
+  display: 'inline-block',
+  width: '.75em',
+}));
 
 const restrictWhitespaceTypes = ['tbody', 'tr'];
 
@@ -120,33 +116,42 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
   return children;
 };
 
-const MaskContainer = withStyles(() => ({
-  main: {
-    display: 'initial',
+const MaskContainer = styled('div')(() => ({
+  display: 'initial',
+  '&:not(.MathJax) table': {
+    borderCollapse: 'collapse',
   },
-  tableStyle: {
-    '&:not(.MathJax) table': {
-      borderCollapse: 'collapse',
-    },
-    // align table content to left as per STAR requirement PD-3687
-    '&:not(.MathJax) table td, &:not(.MathJax) table th': {
-      padding: '8px 12px',
-      textAlign: 'left',
-    },
+  // align table content to left as per STAR requirement PD-3687
+  '&:not(.MathJax) table td, &:not(.MathJax) table th': {
+    padding: '8px 12px',
+    textAlign: 'left',
   },
-}))((props) => <div className={cx(props.classes.main, props.classes.tableStyle)}>{props.children}</div>);
+}));
 
 /**
  * Renders a layout that uses the slate.js Value model structure.
  */
 export default class Mask extends React.Component {
+  constructor(props) {
+    super(props);
+    this.internalContainerRef = React.createRef();
+  }
+
   static propTypes = {
     renderChildren: PropTypes.func,
     layout: PropTypes.object,
     value: PropTypes.object,
     onChange: PropTypes.func,
     elementType: PropTypes.string,
+    containerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   };
+
+  componentDidMount() {
+    const containerRef = this.props.containerRef || this.internalContainerRef;
+    if (containerRef.current && typeof renderMath === 'function') {
+      renderMath(containerRef.current);
+    }
+  }
 
   handleChange = (id, value) => {
     const data = { ...this.props.value, [id]: value };
@@ -154,9 +159,10 @@ export default class Mask extends React.Component {
   };
 
   render() {
-    const { value, layout, elementType } = this.props;
+    const { value, layout, elementType, containerRef } = this.props;
     const children = renderChildren(layout, value, this.handleChange, this.props.renderChildren, null, elementType);
+    const ref = containerRef || this.internalContainerRef;
 
-    return <MaskContainer>{children}</MaskContainer>;
+    return <MaskContainer ref={ref}>{children}</MaskContainer>;
   }
 }

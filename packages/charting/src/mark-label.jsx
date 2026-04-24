@@ -1,54 +1,55 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import AutosizeInput from 'react-input-autosize';
 import PropTypes from 'prop-types';
 
 import { types } from '@pie-lib/plot';
-import { correct, incorrect, disabled } from './common/styles';
+import { correct, disabled, incorrect } from './common/styles';
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
 
-const styles = (theme) => ({
-  input: {
-    float: 'right',
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.fontSize,
-    border: 'none',
-    '&.correct': correct('color'),
-    '&.incorrect': incorrect('color'),
-    '&.disabled': {
-      backgroundColor: 'transparent !important',
-    },
-    '&.error': { border: `2px solid ${theme.palette.error.main}` },
+const StyledContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+// eslint-disable-next-line no-unused-vars
+const StyledInput = styled('input')(({ theme }) => ({
+  float: 'right',
+  fontFamily: theme.typography.fontFamily,
+  fontSize: theme.typography.fontSize,
+  border: 'none',
+  '&.correct': correct('color'),
+  '&.incorrect': incorrect('color'),
+  '&.disabled': {
+    backgroundColor: 'transparent !important',
   },
-  mathInput: {
-    pointerEvents: 'auto',
-    textAlign: 'center',
-    fontSize: theme.typography.fontSize + 2,
-    fontFamily: theme.typography.fontFamily,
-    color: color.primaryDark(),
-    paddingTop: theme.typography.fontSize / 2,
-  },
-  disabled: {
+  '&.error': { border: `2px solid ${theme.palette.error.main}` },
+}));
+
+const StyledMathInput = styled('div')(({ theme }) => ({
+  pointerEvents: 'auto',
+  textAlign: 'center',
+  fontSize: theme.typography.fontSize + 2,
+  fontFamily: theme.typography.fontFamily,
+  color: color.primaryDark(),
+  paddingTop: theme.typography.fontSize / 2,
+  '&.disabled': {
     ...disabled('color'),
     backgroundColor: 'transparent !important',
   },
-  error: {
+  '&.error': {
     border: `2px solid ${theme.palette.error.main}`,
   },
-  correct: {
+  '&.correct': {
     ...correct('color'),
   },
-  incorrect: {
+  '&.incorrect': {
     ...incorrect('color'),
   },
-  flexContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-});
+}));
 
 function isFractionFormat(label) {
   const trimmedLabel = label?.trim() || '';
@@ -84,8 +85,7 @@ export const MarkLabel = (props) => {
   const _ref = useCallback((node) => setInput(node), null);
 
   const {
-    mark,
-    classes,
+    mark = {},
     disabled,
     inputRef: externalInputRef,
     barWidth,
@@ -101,7 +101,7 @@ export const MarkLabel = (props) => {
   const [label, setLabel] = useState(mark.label);
   const [mathLabel, setMathLabel] = useState(getLabelMathFormat(mark.label));
   const [isEditing, setIsEditing] = useState(false);
-  let root = useRef(null);
+  const rootRef = useRef(null);
 
   const onChange = (e) => {
     if (limitCharacters && e.target.value && e.target.value.length > 20) {
@@ -135,24 +135,30 @@ export const MarkLabel = (props) => {
   }, [mark.label]);
 
   useEffect(() => {
-    renderMath(root);
-  }, []);
+    const el = rootRef.current;
+
+    if (el && mathLabel) {
+      el.innerHTML = mathLabel;
+      renderMath(el);
+    }
+  }, [label, mathLabel]);
 
   return (
-    <div className={classes.flexContainer}>
+    <StyledContainer>
       {correctnessIndicator}
       {isMathRendering() ? (
-        <div
+        <StyledMathInput
           ref={(r) => {
-            root = r;
-            externalInputRef(r);
+            rootRef.current = r;
+            if (typeof externalInputRef === 'function') {
+              externalInputRef(r);
+            }
           }}
-          dangerouslySetInnerHTML={{ __html: getLabelMathFormat(label) }}
-          className={classNames(classes.mathInput, {
-            [classes.disabled]: disabled,
-            [classes.error]: error,
-            [classes.correct]: mark.editable && correctness?.label === 'correct',
-            [classes.incorrect]: mark.editable && correctness?.label === 'incorrect',
+          className={classNames({
+            disabled: disabled,
+            error: error,
+            correct: mark.editable && correctness?.label === 'correct',
+            incorrect: mark.editable && correctness?.label === 'incorrect',
           })}
           onClick={() => setIsEditing(true)}
           style={{
@@ -163,17 +169,19 @@ export const MarkLabel = (props) => {
             visibility: isHiddenLabel ? 'hidden' : 'unset',
             marginTop: correctnessIndicator ? '24px' : '0',
           }}
-        ></div>
+        ></StyledMathInput>
       ) : (
         <AutosizeInput
           inputRef={(r) => {
             _ref(r);
-            externalInputRef(r);
+            if (typeof externalInputRef === 'function') {
+              externalInputRef(r);
+            }
           }}
+          name="mark-label-input"
           autoFocus={isEditing || autoFocus}
           disabled={disabled}
           inputClassName={classNames(
-            classes.input,
             correctness && mark.editable ? correctness.label : null,
             disabled && 'disabled',
             error && 'error',
@@ -185,6 +193,7 @@ export const MarkLabel = (props) => {
             boxSizing: 'border-box',
             paddingLeft: 0,
             paddingRight: 0,
+            border: 'none',
             ...extraStyle,
           }}
           value={label}
@@ -203,7 +212,7 @@ export const MarkLabel = (props) => {
           onBlur={onChangeProp}
         />
       )}
-    </div>
+    </StyledContainer>
   );
 };
 
@@ -213,7 +222,6 @@ MarkLabel.propTypes = {
   error: PropTypes.any,
   onChange: PropTypes.func,
   graphProps: types.GraphPropsType,
-  classes: PropTypes.object,
   inputRef: PropTypes.func,
   mark: PropTypes.object,
   barWidth: PropTypes.number,
@@ -227,4 +235,4 @@ MarkLabel.propTypes = {
   correctnessIndicator: PropTypes.node,
 };
 
-export default withStyles(styles)(MarkLabel);
+export default MarkLabel;

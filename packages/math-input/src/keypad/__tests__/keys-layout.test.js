@@ -1,5 +1,4 @@
 import { sortKeys } from '../keys-layout';
-import { baseSet, comparison } from '../../keys';
 
 describe('keys-layout', () => {
   describe('sortKeys', () => {

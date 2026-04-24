@@ -1,14 +1,19 @@
 {
-  "lerna": "3.11.0",
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true,
-  "verifyAccess": "false",
   "command": {
     "publish": {
-      "ignoreChanges": ["yarn.lock", "CHANGELOG.json", "CHANGELOG.md", "LICENSE.md"],
+      "ignoreChanges": [
+        "yarn.lock",
+        "CHANGELOG.json",
+        "CHANGELOG.md",
+        "LICENSE.md"
+      ],
       "message": "[ci skip] chore: publish"
     }
-  }
+  },
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }

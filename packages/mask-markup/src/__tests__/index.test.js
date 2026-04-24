@@ -1,4 +1,3 @@
-import * as React from 'react';
 import componentize from '../componentize';
 import { deserialize } from '../serialization';
 

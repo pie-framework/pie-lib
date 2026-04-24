@@ -1,17 +1,29 @@
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import React from 'react';
 import { gridDraggable } from '../grid-draggable';
 import { getDelta } from '../utils';
-
-import { clientPoint } from 'd3-selection';
+import { pointer } from 'd3-selection';
 
 jest.mock('d3-selection', () => ({
-  clientPoint: jest.fn().mockReturnValue([0, 0]),
+  pointer: jest.fn().mockReturnValue([0, 0]),
 }));
 
+let mockDraggableCoreProps;
 jest.mock('../draggable', () => ({
-  DraggableCore: jest.fn((type, props, children) => children),
+  DraggableCore: (props) => {
+    // Store the props so tests can call the handlers
+    mockDraggableCoreProps = props;
+    return props.children;
+  },
 }));
+
+// Reusable mock start event with a target that supports addEventListener/removeEventListener
+const mockStartEvent = (overrides = {}) => ({
+  clientX: 0,
+  clientY: 0,
+  target: { addEventListener: jest.fn(), removeEventListener: jest.fn() },
+  ...overrides,
+});
 
 jest.mock('../utils', () => ({
   getDelta: jest.fn(),
@@ -22,6 +34,7 @@ const xyFn = () => {
   out.invert = jest.fn((n) => n);
   return out;
 };
+
 const getGraphProps = () => ({
   scale: {
     x: xyFn(),
@@ -45,281 +58,429 @@ const getGraphProps = () => ({
     width: 500,
     height: 500,
   },
-  getRootNode: () => ({}),
+  getRootNode: () => ({
+    ownerSVGElement: null,
+    getBoundingClientRect: () => ({
+      left: 0,
+      top: 0,
+      right: 100,
+      bottom: 100,
+    }),
+  }),
 });
 
 describe('gridDraggable', () => {
-  const wrapper = (opts, extras) => {
-    const defaults = {
-      graphProps: getGraphProps(),
-    };
+  let defaultOptions;
+  let defaultProps;
 
-    defaults.graphProps.scale.x.invert = jest.fn((x) => x);
-    defaults.graphProps.scale.y.invert = jest.fn((x) => x);
-
-    const props = { ...defaults, ...extras };
-
-    opts = {
+  beforeEach(() => {
+    mockDraggableCoreProps = null;
+    defaultOptions = {
       anchorPoint: jest.fn().mockReturnValue({ x: 0, y: 0 }),
       bounds: jest.fn().mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0 }),
       fromDelta: jest.fn(),
-      ...opts,
     };
 
-    const Comp = gridDraggable(opts)(() => <div />);
-    return shallow(<Comp {...props} />);
-  };
+    defaultProps = {
+      graphProps: getGraphProps(),
+    };
+  });
 
-  describe('snapshot', () => {
-    it('reqular', () => {
-      const w = wrapper();
-      expect(w).toMatchSnapshot();
-    });
+  it('renders regular component', () => {
+    const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
+    const { container } = render(<Comp {...defaultProps} />);
+    expect(container.firstChild).toBeInTheDocument();
+  });
 
-    it('render with decimals', () => {
-      const w = wrapper(
-        {},
-        {
-          domain: {
-            min: -1.5,
-            max: 1.6,
-            step: 0.3,
-          },
-          range: {
-            min: -2,
-            max: 3,
-            step: 0.2,
-          },
+  it('renders with decimal domain and range', () => {
+    const props = {
+      ...defaultProps,
+      graphProps: {
+        ...getGraphProps(),
+        domain: {
+          min: -1.5,
+          max: 1.6,
+          step: 0.3,
         },
-      );
-      expect(w).toMatchSnapshot();
-    });
+        range: {
+          min: -2,
+          max: 3,
+          step: 0.2,
+        },
+      },
+    };
+    const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
+    const { container } = render(<Comp {...props} />);
+    expect(container.firstChild).toBeInTheDocument();
   });
 
   describe('logic', () => {
-    describe('grid', () => {
-      it('returns the grid', () => {
-        const w = wrapper();
-        const g = w.instance().grid();
-        expect(g).toEqual({ x: 1, y: 1 });
+    describe('grid calculation', () => {
+      it('passes correct grid to DraggableCore based on domain and range step', () => {
+        const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
+        render(<Comp {...defaultProps} />);
+
+        // Grid is calculated as: scale.x(domain.step) - scale.x(0)
+        // With our mock xyFn that returns n, this is: step - 0 = step
+        expect(mockDraggableCoreProps.grid).toEqual([1, 1]);
+      });
+
+      it('calculates grid with decimal steps', () => {
+        const props = {
+          ...defaultProps,
+          graphProps: {
+            ...getGraphProps(),
+            domain: { min: -1.5, max: 1.6, step: 0.3 },
+            range: { min: -2, max: 3, step: 0.2 },
+          },
+        };
+        const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
+        render(<Comp {...props} />);
+
+        expect(mockDraggableCoreProps.grid).toEqual([0.3, 0.2]);
       });
     });
 
     describe('onStart', () => {
-      it('sets the drag state', () => {
-        const w = wrapper();
-        w.instance().onStart({ clientX: 100, clientY: 100 });
-        expect(w.state().startX).toEqual(100);
-        expect(w.state().startY).toEqual(100);
-      });
-
-      it('calls the handler', () => {
+      it('calls onDragStart handler when drag starts', () => {
         const onDragStart = jest.fn();
-        const w = wrapper(
-          {},
-          {
-            onDragStart,
-          },
-        );
-        w.instance().onStart({ clientX: 100, clientY: 100 });
+        const props = { ...defaultProps, onDragStart };
+        const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
+        render(<Comp {...props} />);
+
+        // Simulate drag start
+        mockDraggableCoreProps.onStart(mockStartEvent({ clientX: 100, clientY: 100 }));
+
         expect(onDragStart).toHaveBeenCalled();
       });
     });
 
-    describe('position', () => {
-      it('returns position object', () => {
-        const w = wrapper();
-        const pos = w.instance().position();
-
-        const anchorPoint = {
-          x: 0,
-          y: 0,
-        };
-        expect(pos).toEqual({
-          anchorPoint,
-          x: expect.any(Function),
-          y: expect.any(Function),
-        });
-      });
-    });
-
-    describe('tiny', () => {
-      it('returns true for 10 ', () => {
-        const w = wrapper();
-        w.setState({ startX: 0 });
-        const result = w.instance().tiny('x', { clientX: 10 });
-        expect(result).toBe(false);
-      });
-      it('returns true for 0.01', () => {
-        const w = wrapper();
-        w.setState({ startX: 0 });
-        const result = w.instance().tiny('x', { clientX: 0.01 });
-        expect(result).toBe(true);
-      });
-    });
-
     describe('onDrag', () => {
-      let onDrag, w;
+      it('calls onDrag callback with result from fromDelta', () => {
+        const onDrag = jest.fn();
+        const fromDelta = jest.fn().mockReturnValue('delta-result');
+        const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
+        const options = { ...defaultOptions, fromDelta, bounds };
+        const props = { ...defaultProps, onDrag };
 
-      beforeEach(() => {
-        onDrag = jest.fn();
-        w = wrapper({}, { onDrag });
-        w.instance().applyDelta = jest.fn().mockReturnValue(0);
-        w.instance().props.graphProps.getRootNode = jest.fn().mockReturnValue({
-          ownerSVGElement: null,
-          getBoundingClientRect: jest.fn(() => ({
-            left: 0,
-            top: 0,
-            right: 100,
-            bottom: 100,
-          })),
-        });
-        w.instance().getClientPoint = jest.fn().mockReturnValue([50, 50]); // Mocking getClientPoint
-        w.instance().onDrag({}, { x: 1, y: 1 });
+        const Comp = gridDraggable(options)(() => <div>Test</div>);
+        render(<Comp {...props} />);
+
+        // Set up drag start state
+        mockDraggableCoreProps.onStart(mockStartEvent());
+
+        // Simulate drag
+        mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 10 });
+
+        expect(fromDelta).toHaveBeenCalled();
+        expect(onDrag).toHaveBeenCalledWith('delta-result');
       });
 
-      it('calls applyDelta', () => {
-        expect(w.instance().applyDelta).toHaveBeenCalled();
-      });
-
-      it('calls callback', () => {
-        expect(onDrag).toHaveBeenCalledWith(0);
-      });
-
-      const bounds = (left, right, top, bottom) => ({ left, right, top, bottom });
-      describe('bounds', () => {
-        const assertEarlyExit = (bounds, dd) => {
-          it(`${JSON.stringify(bounds)}, ${dd.deltaX}, ${dd.deltaY} `, () => {
-            w = wrapper({}, { onDrag });
-            w.instance().getScaledBounds = jest.fn().mockReturnValue(bounds);
-            w.instance().getClientPoint = jest.fn().mockReturnValue([50, 50]);
-            w.instance().onDrag({}, dd);
-            expect(w.instance().getClientPoint).not.toHaveBeenCalled();
-          });
-        };
-        assertEarlyExit(bounds(0, 0, 0, 0), { deltaX: -10 });
-        assertEarlyExit(bounds(0, 0, 0, 0), { deltaX: 10 });
-        assertEarlyExit(bounds(-100, 100, 0, 0), { deltaY: -10 });
-        assertEarlyExit(bounds(-100, 100, -100, 0), { deltaY: 10 });
-        it('calls client point if it doesnt exit early bounds', () => {
-          w = wrapper({}, { onDrag });
-          w.instance().getScaledBounds = jest.fn().mockReturnValue(bounds(100, 100, 100, 100));
-          w.instance().getClientPoint = jest.fn().mockReturnValue([50, 50]);
-          w.instance().onDrag({}, { deltaX: 10 });
-          expect(w.instance().getClientPoint).toHaveBeenCalled(); // Asserting that getClientPoint is called
-        });
-      });
-    });
-
-    describe('skipDragOutsideOfBounds', () => {
-      let w;
-      const assertSkipDrag = (dd, rawXFn, rawYFn, expected) => {
-        rawXFn = rawXFn || ((x) => x);
-        rawYFn = rawYFn || ((y) => y);
-
-        it(`${dd.deltaX}, ${dd.deltaY}, ${expected}`, () => {
-          w = wrapper({});
-          const gp = getGraphProps();
-
-          const mockGetBoundingClientRect = jest.fn(() => ({
-            left: 0,
-            top: 0,
-            right: 100,
-            bottom: 100,
-          }));
-
-          w.instance().getClientPoint = jest.fn(() => [
-            rawXFn(gp.domain.min, gp.domain.max),
-            rawYFn(gp.range.min, gp.range.max),
-          ]);
-
-          const rootNode = {
-            ownerSVGElement: null,
-            getBoundingClientRect: mockGetBoundingClientRect,
-          };
-
-          const result = w.instance().skipDragOutsideOfBounds(dd, {}, { ...gp, getRootNode: () => rootNode });
-          expect(result).toEqual(expected);
-        });
-      };
-      assertSkipDrag(
-        { deltaX: 1 },
-        (min, max) => min - 1,
-        (min, max) => min,
-        true,
-      );
-      assertSkipDrag(
-        { deltaX: -1 },
-        (min, max) => max + 1,
-        (min, max) => min,
-        true,
-      );
-      assertSkipDrag(
-        { deltaY: 1 },
-        (min, max) => max,
-        (min, max) => max + 1,
-        true,
-      );
-      assertSkipDrag(
-        { deltaY: -1 },
-        (min, max) => max,
-        (min, max) => min - 1,
-        true,
-      );
-      assertSkipDrag(
-        { deltaY: 1 },
-        (min, max) => max,
-        (min, max) => max,
-        false,
-      );
-      assertSkipDrag(
-        { deltaY: -1 },
-        (min, max) => max,
-        (min, max) => min,
-        false,
-      );
-    });
-
-    describe('getDelta', () => {
-      it('calls utils.getDelta', () => {
-        const w = wrapper();
-        w.instance().position = jest.fn().mockReturnValue({
-          anchorPoint: {
-            x: 0,
-            y: 0,
-          },
-          x: jest.fn((x) => x),
-          y: jest.fn((y) => y),
-        });
-        w.instance().getDelta({ x: 1, y: 1 });
-        expect(getDelta).toHaveBeenCalledWith({ x: 0, y: 0 }, { x: 1, y: 1 });
-      });
-    });
-    describe('applyDelta', () => {
-      it('calls fromDelta', () => {
+      it('does not call onDrag when no onDrag handler is provided', () => {
         const fromDelta = jest.fn();
-        const w = wrapper({ fromDelta });
-        w.instance().getDelta = jest.fn();
-        w.instance().applyDelta({ x: 1, y: 1 });
-        expect(fromDelta).toHaveBeenCalledWith(expect.anything(), undefined);
+        const options = { ...defaultOptions, fromDelta };
+        const Comp = gridDraggable(options)(() => <div>Test</div>);
+        render(<Comp {...defaultProps} />);
+
+        mockDraggableCoreProps.onStart(mockStartEvent());
+        mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 10 });
+
+        expect(fromDelta).not.toHaveBeenCalled();
+      });
+
+      describe('bounds checking', () => {
+        it('does not call onDrag when dragging left beyond left bound', () => {
+          const onDrag = jest.fn();
+          const bounds = jest.fn().mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0 });
+          const fromDelta = jest.fn().mockReturnValue('result');
+          const options = { ...defaultOptions, bounds, fromDelta };
+          const props = { ...defaultProps, onDrag };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          // deltaX < 0 and deltaX < scaled bounds.left (0), so -10 < 0 triggers early return
+          mockDraggableCoreProps.onDrag({}, { deltaX: -10, deltaY: 0 });
+
+          expect(onDrag).not.toHaveBeenCalled();
+        });
+
+        it('does not call onDrag when dragging right beyond right bound', () => {
+          const onDrag = jest.fn();
+          const bounds = jest.fn().mockReturnValue({ left: 0, top: 0, bottom: 0, right: 0 });
+          const fromDelta = jest.fn().mockReturnValue('result');
+          const options = { ...defaultOptions, bounds, fromDelta };
+          const props = { ...defaultProps, onDrag };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          // deltaX > 0 and deltaX > scaled bounds.right (0), so 10 > 0 triggers early return
+          mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 0 });
+
+          expect(onDrag).not.toHaveBeenCalled();
+        });
+
+        it('does not call onDrag when dragging up beyond top bound', () => {
+          const onDrag = jest.fn();
+          const bounds = jest.fn().mockReturnValue({ left: -100, top: 0, bottom: 0, right: 100 });
+          const fromDelta = jest.fn().mockReturnValue('result');
+          const options = { ...defaultOptions, bounds, fromDelta };
+          const props = { ...defaultProps, onDrag };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          // deltaY < 0 and deltaY < scaled bounds.top (0), so -10 < 0 triggers early return
+          mockDraggableCoreProps.onDrag({}, { deltaX: 0, deltaY: -10 });
+
+          expect(onDrag).not.toHaveBeenCalled();
+        });
+
+        it('does not call onDrag when dragging down beyond bottom bound', () => {
+          const onDrag = jest.fn();
+          const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 0, right: 100 });
+          const fromDelta = jest.fn().mockReturnValue('result');
+          const options = { ...defaultOptions, bounds, fromDelta };
+          const props = { ...defaultProps, onDrag };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          // deltaY > 0 and deltaY > scaled bounds.bottom (0), so 10 > 0 triggers early return
+          mockDraggableCoreProps.onDrag({}, { deltaX: 0, deltaY: 10 });
+
+          expect(onDrag).not.toHaveBeenCalled();
+        });
+
+        it('calls onDrag when dragging within bounds', () => {
+          const onDrag = jest.fn();
+          const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
+          const fromDelta = jest.fn().mockReturnValue('result');
+          const options = { ...defaultOptions, bounds, fromDelta };
+          const props = { ...defaultProps, onDrag };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          // All bound checks pass: deltaX (-10) is NOT < bounds.left (-100) and NOT > bounds.right (100)
+          // Similarly for deltaY
+          mockDraggableCoreProps.onDrag({}, { deltaX: -10, deltaY: 10 });
+
+          expect(onDrag).toHaveBeenCalled();
+        });
+      });
+
+      describe('skipDragOutsideOfBounds', () => {
+        it('skips drag when moving left and x is below domain.min', () => {
+          const onDrag = jest.fn();
+          const graphProps = {
+            ...getGraphProps(),
+            domain: { min: -5, max: 5, step: 1 },
+            range: { min: -5, max: 5, step: 1 },
+          };
+          graphProps.scale.x.invert = jest.fn().mockReturnValue(-6); // Below min
+
+          const props = { ...defaultProps, graphProps, onDrag };
+          const bounds = jest.fn().mockReturnValue({ left: 100, top: 100, bottom: 100, right: 100 });
+          const options = { ...defaultOptions, bounds };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          mockDraggableCoreProps.onDrag({}, { deltaX: 1, deltaY: 0 });
+
+          expect(onDrag).not.toHaveBeenCalled();
+        });
+
+        it('skips drag when moving right and x is above domain.max', () => {
+          const onDrag = jest.fn();
+          const graphProps = {
+            ...getGraphProps(),
+            domain: { min: -5, max: 5, step: 1 },
+            range: { min: -5, max: 5, step: 1 },
+          };
+          graphProps.scale.x.invert = jest.fn().mockReturnValue(6); // Above max
+
+          const props = { ...defaultProps, graphProps, onDrag };
+          const bounds = jest.fn().mockReturnValue({ left: 100, top: 100, bottom: 100, right: 100 });
+          const options = { ...defaultOptions, bounds };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          mockDraggableCoreProps.onDrag({}, { deltaX: -1, deltaY: 0 });
+
+          expect(onDrag).not.toHaveBeenCalled();
+        });
+
+        it('skips drag when moving up and y is above range.max', () => {
+          const onDrag = jest.fn();
+          const graphProps = {
+            ...getGraphProps(),
+            domain: { min: -5, max: 5, step: 1 },
+            range: { min: -5, max: 5, step: 1 },
+          };
+          graphProps.scale.y.invert = jest.fn().mockReturnValue(6); // Above max
+
+          const props = { ...defaultProps, graphProps, onDrag };
+          const bounds = jest.fn().mockReturnValue({ left: 100, top: 100, bottom: 100, right: 100 });
+          const options = { ...defaultOptions, bounds };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          mockDraggableCoreProps.onDrag({}, { deltaX: 0, deltaY: 1 });
+
+          expect(onDrag).not.toHaveBeenCalled();
+        });
+
+        it('skips drag when moving down and y is below range.min', () => {
+          const onDrag = jest.fn();
+          const graphProps = {
+            ...getGraphProps(),
+            domain: { min: -5, max: 5, step: 1 },
+            range: { min: -5, max: 5, step: 1 },
+          };
+          graphProps.scale.y.invert = jest.fn().mockReturnValue(-6); // Below min
+
+          const props = { ...defaultProps, graphProps, onDrag };
+          const bounds = jest.fn().mockReturnValue({ left: 100, top: 100, bottom: 100, right: 100 });
+          const options = { ...defaultOptions, bounds };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          mockDraggableCoreProps.onDrag({}, { deltaX: 0, deltaY: -1 });
+
+          expect(onDrag).not.toHaveBeenCalled();
+        });
+
+        it('allows drag when within domain and range', () => {
+          const onDrag = jest.fn();
+          const graphProps = {
+            ...getGraphProps(),
+            domain: { min: -5, max: 5, step: 1 },
+            range: { min: -5, max: 5, step: 1 },
+          };
+          graphProps.scale.x.invert = jest.fn().mockReturnValue(3); // Within bounds
+          graphProps.scale.y.invert = jest.fn().mockReturnValue(2); // Within bounds
+
+          const props = { ...defaultProps, graphProps, onDrag };
+          const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
+          const options = { ...defaultOptions, bounds };
+
+          const Comp = gridDraggable(options)(() => <div>Test</div>);
+          render(<Comp {...props} />);
+
+          mockDraggableCoreProps.onStart(mockStartEvent());
+          mockDraggableCoreProps.onDrag({}, { deltaX: 1, deltaY: -1 });
+
+          expect(onDrag).toHaveBeenCalled();
+        });
       });
     });
+
+    describe('getDelta and applyDelta', () => {
+      it('calls utils.getDelta when processing drag', () => {
+        getDelta.mockClear();
+        const onDrag = jest.fn();
+        const props = { ...defaultProps, onDrag };
+        const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
+        const options = { ...defaultOptions, bounds };
+
+        const Comp = gridDraggable(options)(() => <div>Test</div>);
+        render(<Comp {...props} />);
+
+        mockDraggableCoreProps.onStart(mockStartEvent());
+        mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 10 });
+
+        expect(getDelta).toHaveBeenCalled();
+      });
+
+      it('calls fromDelta with result from getDelta', () => {
+        const fromDelta = jest.fn();
+        getDelta.mockReturnValue({ x: 5, y: 5 });
+        const bounds = jest.fn().mockReturnValue({ left: -100, top: -100, bottom: 100, right: 100 });
+        const options = { ...defaultOptions, fromDelta, bounds };
+        const props = { ...defaultProps, onDrag: jest.fn() };
+
+        const Comp = gridDraggable(options)(() => <div>Test</div>);
+        render(<Comp {...props} />);
+
+        mockDraggableCoreProps.onStart(mockStartEvent());
+        mockDraggableCoreProps.onDrag({}, { deltaX: 10, deltaY: 10 });
+
+        expect(fromDelta).toHaveBeenCalled();
+      });
+    });
+
     describe('onStop', () => {
-      it('calls onDragStop', () => {
+      it('calls onDragStop when drag stops', () => {
         const onDragStop = jest.fn();
-        const w = wrapper({}, { onDragStop });
-        w.setState({ startX: 0, startY: 0 });
-        w.instance().onStop({}, {});
+        const props = { ...defaultProps, onDragStop };
+
+        const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
+        render(<Comp {...props} />);
+
+        // Start to set up state
+        mockDraggableCoreProps.onStart(mockStartEvent());
+
+        // Stop with large movement (not tiny)
+        mockDraggableCoreProps.onStop({ clientX: 100, clientY: 100, stopPropagation: jest.fn() }, {});
+
         expect(onDragStop).toHaveBeenCalled();
       });
 
-      it('calls onClick if tiny', () => {
+      it('calls onClick instead of onDragStop when movement is tiny', () => {
         const onClick = jest.fn();
-        const w = wrapper({}, { onClick });
-        w.instance().tiny = jest.fn().mockReturnValue(true);
-        clientPoint.mockReturnValue([0, 0]);
-        w.instance().onStop({}, {});
+        const onDragStop = jest.fn();
+        const props = { ...defaultProps, onClick, onDragStop };
+
+        pointer.mockReturnValue([0, 0]);
+
+        const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
+        render(<Comp {...props} />);
+
+        // Start and stop at almost the same position (tiny movement)
+        // Grid is 1x1, tiny threshold is grid/10 = 0.1
+        mockDraggableCoreProps.onStart(mockStartEvent());
+        mockDraggableCoreProps.onStop({ clientX: 0.05, clientY: 0.05, target: {}, stopPropagation: jest.fn() }, {});
+
         expect(onClick).toHaveBeenCalledWith({ x: 0, y: 0 });
+      });
+
+      it('calls onClick with snapped coordinates', () => {
+        const onClick = jest.fn();
+        const props = { ...defaultProps, onClick };
+        const graphProps = getGraphProps();
+        graphProps.scale.x.invert = jest.fn().mockReturnValue(1.7);
+        graphProps.scale.y.invert = jest.fn().mockReturnValue(2.3);
+        graphProps.snap.x = jest.fn().mockReturnValue(2);
+        graphProps.snap.y = jest.fn().mockReturnValue(2);
+
+        pointer.mockReturnValue([1.7, 2.3]);
+
+        const propsWithGraphProps = { ...props, graphProps };
+        const Comp = gridDraggable(defaultOptions)(() => <div>Test</div>);
+        render(<Comp {...propsWithGraphProps} />);
+
+        // Start and stop at almost the same position (tiny movement)
+        mockDraggableCoreProps.onStart(mockStartEvent());
+        mockDraggableCoreProps.onStop({ clientX: 0.05, clientY: 0.05, target: {}, stopPropagation: jest.fn() }, {});
+
+        expect(graphProps.snap.x).toHaveBeenCalledWith(1.7);
+        expect(graphProps.snap.y).toHaveBeenCalledWith(2.3);
+        expect(onClick).toHaveBeenCalledWith({ x: 2, y: 2 });
       });
     });
   });

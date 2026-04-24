@@ -1,8 +1,13 @@
-import { withStyles } from '@material-ui/core';
 import React from 'react';
 
-import { MathToolbar } from '@pie-lib/math-toolbar';
 import withRoot from '../source/withRoot';
+// import { MathToolbar } from '@pie-lib/math-toolbar'; - mathquill error window not defined
+let MathToolbar;
+
+if (typeof window !== 'undefined') {
+  const MathToolbarPackage = require('@pie-lib/math-toolbar');
+  MathToolbar = MathToolbarPackage.MathToolbar;
+}
 
 export class Demo extends React.Component {
   constructor(props) {
@@ -35,6 +40,4 @@ export class Demo extends React.Component {
   }
 }
 
-const styles = (theme) => ({});
-const Styled = withStyles(styles)(Demo);
-export default withRoot(Styled);
+export default withRoot(Demo);

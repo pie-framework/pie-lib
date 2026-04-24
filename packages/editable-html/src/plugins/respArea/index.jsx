@@ -1,6 +1,6 @@
 import React from 'react';
 import debug from 'debug';
-import isUndefined from 'lodash/isUndefined';
+import { isUndefined } from 'lodash-es';
 
 import InlineDropdown from './inline-dropdown';
 import DragInTheBlank from './drag-in-the-blank';

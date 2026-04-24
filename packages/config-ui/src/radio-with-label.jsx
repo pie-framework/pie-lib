@@ -1,22 +1,30 @@
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
 import { color } from '@pie-lib/render-ui';
 
-export default withStyles({
-  label: {
+const StyledFormControlLabel = styled(FormControlLabel)(() => ({
+  '& .MuiFormControlLabel-label': {
     left: '-5px',
     position: 'relative',
   },
-  customColor: {
-    color: `${color.tertiary()} !important`,
-  },
-})(({ label, value, checked, onChange, classes }) => (
-  <FormControlLabel
-    value={value}
-    classes={{ label: classes.label }}
-    control={<Radio className={classes.customColor} checked={checked} onChange={onChange} />}
-    label={label}
-  />
-));
+}));
+
+const StyledRadio = styled(Radio)(() => ({
+  color: `${color.tertiary()} !important`,
+}));
+
+const RadioWithLabel = ({ label, value, checked, onChange }) => (
+  <StyledFormControlLabel value={value} control={<StyledRadio checked={checked} onChange={onChange} />} label={label} />
+);
+
+RadioWithLabel.propTypes = {
+  label: PropTypes.string,
+  value: PropTypes.string,
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
+};
+
+export default RadioWithLabel;

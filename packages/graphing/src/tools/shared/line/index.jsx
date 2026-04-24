@@ -1,15 +1,50 @@
 import React from 'react';
-import isEqual from 'lodash/isEqual';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep, isEmpty, isEqual } from 'lodash-es';
 import { BasePoint } from '../point';
-import { types, utils, gridDraggable, trig } from '@pie-lib/plot';
+import { gridDraggable, trig, types, utils } from '@pie-lib/plot';
 import PropTypes from 'prop-types';
-import { disabled, disabledSecondary, correct, incorrect, missing } from '../styles';
+import { correct, disabled, disabledSecondary, incorrect, missing } from '../styles';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../../mark-label';
-import isEmpty from 'lodash/isEmpty';
 import { color } from '@pie-lib/render-ui';
-import { getMiddleOfTwoPoints, equalPoints, sameAxes } from '../../../utils';
+import { equalPoints, getMiddleOfTwoPoints, sameAxes } from '../../../utils';
+import { styled } from '@mui/material/styles';
+
+const StyledLineGroup = styled('g')(({ disabled, correctness }) => ({
+  '& line': {
+    fill: 'transparent',
+    stroke: color.defaults.BLACK,
+    strokeWidth: 3,
+    transition: 'stroke 200ms ease-in, stroke-width 200ms ease-in',
+    '&:hover': {
+      strokeWidth: 6,
+      stroke: color.defaults.PRIMARY_DARK,
+    },
+  },
+  ...(disabled && {
+    '& line': {
+      ...disabledSecondary('stroke'),
+      strokeWidth: 2,
+    },
+  }),
+  ...(correctness === 'correct' && {
+    '& line': {
+      ...correct('stroke'),
+    },
+  }),
+  ...(correctness === 'incorrect' && {
+    '& line': {
+      ...incorrect('stroke'),
+    },
+  }),
+  ...(correctness === 'missing' && {
+    '& line': {
+      ...missing('stroke'),
+      strokeWidth: 1,
+      strokeDasharray: '4 3',
+    },
+  }),
+}));
 
 export const lineTool = (type, Component) => () => ({
   type,
@@ -40,6 +75,13 @@ export const lineToolComponent = (Component) => {
     static propTypes = {
       ...types.ToolPropTypeFields,
       graphProps: types.GraphPropsType.isRequired,
+      limitLabeling: PropTypes.bool,
+      changeMarkProps: PropTypes.func,
+      disabled: PropTypes.bool,
+      from: types.PointType,
+      to: types.PointType,
+      labelModeEnabled: PropTypes.bool,
+      onClick: PropTypes.func,
     };
 
     constructor(props) {
@@ -47,10 +89,14 @@ export const lineToolComponent = (Component) => {
       this.state = {};
     }
 
-    startDrag = () => this.setState({ mark: { ...this.props.mark } });
+    startDrag = () => {
+      const { onDragStart } = this.props;
+      this.setState({ mark: { ...this.props.mark } });
+      if (onDragStart) onDragStart();
+    };
 
     stopDrag = () => {
-      const { onChange, mark } = this.props;
+      const { onChange, mark, onDragStop } = this.props;
       const update = { ...this.state.mark };
 
       this.setState({ mark: undefined }, () => {
@@ -65,6 +111,7 @@ export const lineToolComponent = (Component) => {
         if (!isEqual(mark, update) && !shouldNotChange) {
           onChange(mark, update);
         }
+        if (onDragStop) onDragStop();
       });
     };
 
@@ -181,9 +228,10 @@ export const lineBase = (Comp, opts) => {
       onClick: PropTypes.func,
       correctness: PropTypes.string,
       disabled: PropTypes.bool,
-      labelNode: PropTypes.object,
-      labelModeEnabled: PropTypes.bool,
+      limitLabeling: PropTypes.bool,
       changeMarkProps: PropTypes.func,
+      labelModeEnabled: PropTypes.bool,
+      labelNode: PropTypes.object,
     };
 
     onChangePoint = (point) => {
@@ -260,7 +308,6 @@ export const lineBase = (Comp, opts) => {
 
       if (!labelModeEnabled) {
         onClick(point || data);
-        return;
       }
 
       if (disabled) {
@@ -309,7 +356,7 @@ export const lineBase = (Comp, opts) => {
       let lineLabelNode = null;
 
       if (labelNode) {
-        if (from && from.hasOwnProperty('label')) {
+        if (from && Object.prototype.hasOwnProperty.call(from, 'label')) {
           fromLabelNode = ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input.from = r)}
@@ -322,7 +369,7 @@ export const lineBase = (Comp, opts) => {
           );
         }
 
-        if (to && to.hasOwnProperty('label')) {
+        if (to && Object.prototype.hasOwnProperty.call(to, 'label')) {
           toLabelNode = ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input.to = r)}
@@ -335,7 +382,7 @@ export const lineBase = (Comp, opts) => {
           );
         }
 
-        if (middle && middle.hasOwnProperty('label')) {
+        if (middle && Object.prototype.hasOwnProperty.call(middle, 'label')) {
           lineLabelNode = ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input.middle = r)}
@@ -350,7 +397,7 @@ export const lineBase = (Comp, opts) => {
       }
 
       return (
-        <g>
+        <StyledLineGroup disabled={disabled} correctness={correctness}>
           {to && (
             <DraggableComp
               from={from}
@@ -387,7 +434,7 @@ export const lineBase = (Comp, opts) => {
             />
           )}
           {toLabelNode}
-        </g>
+        </StyledLineGroup>
       );
     }
   }

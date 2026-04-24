@@ -1,70 +1,89 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import cn from 'classnames';
-import Button from '@material-ui/core/Button';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 import { color } from '@pie-lib/render-ui';
 import { allTools } from './tools';
-import { withDragContext, DragSource, DropTarget } from '@pie-lib/drag';
+import { DragProvider } from '@pie-lib/drag';
+import { useDraggable, useDroppable } from '@dnd-kit/core';
+import { CSS } from '@dnd-kit/utilities';
+import { arrayMove } from '@dnd-kit/sortable';
 import Translator from '@pie-lib/translator';
 
 const { translator } = Translator;
 
-const buttonStyles = () => ({
-  root: {
-    color: color.text(),
+const StyledMiniButton = styled(Button, {
+  shouldForwardProp: (prop) => !['selected'].includes(prop),
+})(({ selected, disabled }) => ({
+  color: color.text(),
+  backgroundColor: color.background(),
+  border: `1px solid ${color.buttonBorder()}`,
+  '&:hover': {
+    backgroundColor: color.buttonHoverBg(),
   },
-  selected: {
-    backgroundColor: color.background(),
+  ...(selected && {
     border: `1px solid ${color.secondary()}`,
-  },
-  notSelected: {
+  }),
+  ...(!selected && {
     '& span': {
       color: color.primary(),
     },
-    backgroundColor: color.background(),
-  },
-  disabled: {
+  }),
+  ...(disabled && {
     '& span': {
       color: color.primary(),
     },
     backgroundColor: color.disabled(),
-  },
-});
+  }),
+}));
 
-export const MiniButton = withStyles(buttonStyles)((props) => {
-  const { disabled, classes, className, selected, value, onClick, language } = props;
+export const MiniButton = (props) => {
+  const { disabled, className, selected, value, onClick, language } = props;
   const translatorKey = value.toLowerCase();
 
   return (
-    <Button
+    <StyledMiniButton
       size="small"
       disabled={disabled}
-      className={cn(classes.root, selected && classes.selected, className)}
-      classes={{ disabled: cn(disabled && classes.disabled) }}
+      className={className}
+      selected={selected}
       value={value}
       key={value}
       variant="outlined"
       onClick={(e) => onClick({ ...e, buttonValue: value })}
     >
       {translator.t(`graphing.${translatorKey}`, { lng: language })}
-    </Button>
+    </StyledMiniButton>
   );
-});
+};
 
 MiniButton.propTypes = {
   disabled: PropTypes.bool,
-  classes: PropTypes.object,
   className: PropTypes.string,
   disabledClassName: PropTypes.string,
   selected: PropTypes.bool,
   value: PropTypes.string,
   onClick: PropTypes.func,
+  language: PropTypes.string,
 };
+
+const StyledToolsContainer = styled('div')(() => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+}));
+
+const StyledButton = styled(MiniButton)(({ theme }) => ({
+  marginRight: theme.spacing(0.5),
+  marginBottom: theme.spacing(0.5),
+  color: color.text(),
+}));
+
+const StyledWrapper = styled('div')({
+  position: 'relative',
+});
 
 export class ToggleBar extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
     selectedToolType: PropTypes.string,
@@ -81,162 +100,125 @@ export class ToggleBar extends React.Component {
 
   moveTool = (dragIndex, hoverIndex) => {
     const { options, onChangeToolsOrder } = this.props;
-    const dragged = options[dragIndex];
+    const newOptions = arrayMove(options, dragIndex, hoverIndex);
+    onChangeToolsOrder(newOptions);
+  };
 
-    options.splice(dragIndex, 1);
-    options.splice(hoverIndex, 0, dragged);
+  handleDragEnd = (event) => {
+    const { active, over } = event;
 
-    onChangeToolsOrder(options);
+    if (!over || !active) return;
+
+    const activeData = active.data.current;
+    const overData = over.data.current;
+
+    if (activeData?.type === 'tool' && overData?.type === 'tool') {
+      const dragIndex = activeData.index;
+      const hoverIndex = overData.index;
+
+      if (dragIndex !== hoverIndex) {
+        this.moveTool(dragIndex, hoverIndex);
+      }
+    }
   };
 
   render() {
-    const { classes, className, disabled, options, selectedToolType, draggableTools, language } = this.props;
+    const { className, disabled, options, selectedToolType, draggableTools, language } = this.props;
 
     return (
-      <div className={cn(className, classes.toolsContainer)}>
-        {(options || []).map((option, index) => {
-          if ((allTools || []).includes(option)) {
-            const isSelected = option === selectedToolType;
-            const toolRef = React.createRef();
+      <DragProvider onDragEnd={this.handleDragEnd}>
+        <StyledToolsContainer className={className}>
+          {(options || []).map((option, index) => {
+            if ((allTools || []).includes(option)) {
+              const isSelected = option === selectedToolType;
+              const toolRef = React.createRef();
 
-            return (
-              <DragTool
-                key={option}
-                index={index}
-                draggable={draggableTools}
-                moveTool={this.moveTool}
-                classes={classes}
-                toolRef={toolRef}
-              >
-                <MiniButton
-                  className={cn(classes.button, isSelected && classes.selected)}
-                  disabled={disabled}
-                  disableRipple={true}
-                  onClick={this.select}
+              return (
+                <DragTool
+                  key={option}
+                  index={index}
                   value={option}
-                  selected={isSelected}
-                  language={language}
-                />
-              </DragTool>
-            );
-          }
-        })}
-      </div>
+                  draggable={draggableTools}
+                  moveTool={this.moveTool}
+                  toolRef={toolRef}
+                >
+                  <StyledButton
+                    disabled={disabled}
+                    disableRipple={true}
+                    onClick={this.select}
+                    value={option}
+                    selected={isSelected}
+                    language={language}
+                  />
+                </DragTool>
+              );
+            }
+          })}
+        </StyledToolsContainer>
+      </DragProvider>
     );
   }
 }
 
-const styles = (theme) => ({
-  toolsContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  button: {
-    marginRight: theme.spacing.unit / 2,
-    marginBottom: theme.spacing.unit / 2,
-    color: color.text(),
-  },
-  under: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    zIndex: -1,
-    pointerEvents: 'none',
-  },
-  wrapper: {
-    position: 'relative',
-  },
-  hidden: {
-    opacity: 0,
-  },
-});
+// DragTool functional component using @dnd-kit hooks
+function DragTool({ children, index, draggable, toolRef, value }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef: setDragNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useDraggable({
+    id: `tool-${value}-${index}`,
+    disabled: !draggable,
+    data: {
+      type: 'tool',
+      index,
+      value,
+    },
+  });
 
-export default withDragContext(withStyles(styles)(ToggleBar));
+  const { setNodeRef: setDropNodeRef } = useDroppable({
+    id: `drop-tool-${value}-${index}`,
+    data: {
+      type: 'tool',
+      index,
+      accepts: ['tool'],
+    },
+  });
 
-const DRAG_TYPE = 'tool';
-
-export class Item extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-    className: PropTypes.string,
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    connectDragSource: PropTypes.func.isRequired,
-    connectDragPreview: PropTypes.func.isRequired,
-    connectDropTarget: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool,
-    toolRef: PropTypes.any,
+  // Combine refs
+  const setNodeRef = (node) => {
+    setDragNodeRef(node);
+    setDropNodeRef(node);
+    if (toolRef?.current) {
+      toolRef.current = node;
+    }
   };
 
-  static defaultProps = {};
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
 
-  render() {
-    const {
-      classes,
-      children,
-      connectDragSource,
-      connectDropTarget,
-      connectDragPreview,
-      isDragging,
-      toolRef,
-    } = this.props;
-
-    return (
-      <div className={classes.wrapper} ref={toolRef}>
-        {connectDragSource(connectDropTarget(<div className={isDragging && classes.hidden}>{children}</div>))}
-        {connectDragPreview(<div className={classes.under}>{children}</div>)}
+  return (
+    <StyledWrapper ref={setNodeRef} style={style}>
+      <div {...attributes} {...listeners}>
+        {children}
       </div>
-    );
-  }
+    </StyledWrapper>
+  );
 }
 
-const itemSource = {
-  canDrag(props) {
-    return props.draggable;
-  },
-  beginDrag(props) {
-    return {
-      index: props.index,
-    };
-  },
+DragTool.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number,
+  draggable: PropTypes.bool,
+  moveTool: PropTypes.func,
+  toolRef: PropTypes.object,
+  value: PropTypes.string,
 };
 
-const itemTarget = {
-  hover(props, monitor) {
-    const dragIndex = monitor.getItem().index;
-    const { toolRef, index: hoverIndex } = props;
-
-    if (dragIndex === hoverIndex || !toolRef.current) {
-      return;
-    }
-
-    const hoverBoundingRect = toolRef.current?.getBoundingClientRect();
-    const hoverMiddleX = (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
-    const clientOffset = monitor.getClientOffset();
-    const hoverClientX = clientOffset.x - hoverBoundingRect.left;
-
-    if (dragIndex < hoverIndex && hoverClientX < hoverMiddleX) {
-      return;
-    }
-
-    if (dragIndex > hoverIndex && hoverClientX > hoverMiddleX) {
-      return;
-    }
-
-    props.moveTool(dragIndex, hoverIndex);
-    monitor.getItem().index = hoverIndex;
-  },
-};
-
-const collectTarget = (connect) => ({ connectDropTarget: connect.dropTarget() });
-
-const collectSource = (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  connectDragPreview: connect.dragPreview(),
-  isDragging: monitor.isDragging(),
-});
-
-const DragTool = DropTarget(
-  DRAG_TYPE,
-  itemTarget,
-  collectTarget,
-)(DragSource(DRAG_TYPE, itemSource, collectSource)(Item));
+export default ToggleBar;

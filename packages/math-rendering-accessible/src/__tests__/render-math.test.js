@@ -1,8 +1,8 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import renderMath, { fixMathElement } from '../render-math';
 // import * as MathJaxModule from '../mathjax-script';
-import _ from 'lodash';
+import { times } from 'lodash-es';
 
 jest.mock('../mathjax-script', () => ({
   initializeMathJax: jest.fn(),
@@ -45,7 +45,7 @@ describe('render-math', () => {
     global.window.mathjaxLoadedP = Promise.resolve();
 
     // Call renderMath 9 more times
-    _.times(9).forEach((i) => renderMath(div));
+    times(9).forEach((i) => renderMath(div));
 
     // setTimeout(() => {
     //   expect(MathJaxModule.initializeMathJax).toHaveBeenCalledTimes(1);
@@ -60,12 +60,12 @@ describe('render-math', () => {
   });
 
   it('wraps the math containing element the right way', () => {
-    const wrapper = mount(
+    const { container } = render(
       <div>
         <span data-latex="">{'420\\text{ cm}=4.2\\text{ meters}'}</span>
       </div>,
     );
-    const spanElem = wrapper.instance();
+    const spanElem = container.querySelector('span[data-latex]');
 
     fixMathElement(spanElem);
 

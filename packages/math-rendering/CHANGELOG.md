@@ -3,137 +3,113 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.22.1) (2025-10-22)
+# [4.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@4.2.0-next.3...@pie-lib/math-rendering@4.2.0-next.4) (2026-04-23)
+
+### Bug Fixes
+
+- **math-rendering:** always emit mjx-assistive-mml so screen readers read math correctly PIE-147 ([d825be2](https://github.com/pie-framework/pie-lib/commit/d825be2110f3e67fd738b07598d4b55b87a638af))
+
+# [4.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@4.2.0-next.1...@pie-lib/math-rendering@4.2.0-next.3) (2026-02-26)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
+# [4.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@4.1.0-next.1...@pie-lib/math-rendering@4.1.0-next.3) (2026-01-27)
 
+**Note:** Version bump only for package @pie-lib/math-rendering
 
+# [4.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.22.1...@pie-lib/math-rendering@4.1.0-next.1) (2026-01-26)
 
+### Bug Fixes
+
+- prevent speech-rule-engine errors by skipping accessibility features until ready ([e17c4d2](https://github.com/pie-framework/pie-lib/commit/e17c4d2e7d4454571b82a788d100b6ab2002d20a))
+- remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+
+### Features
+
+- bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+- PD-5258 wip Material-UI migration ([25e60f3](https://github.com/pie-framework/pie-lib/commit/25e60f32602bfd7bfc8b4f9d2dcc3a3cd664e72b))
+- sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+# [4.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.22.2-next.0...@pie-lib/math-rendering@4.0.0-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+## [3.22.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.40.0-mui-update.0...@pie-lib/math-rendering@3.22.2-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
+## [3.22.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.22.1) (2025-10-22)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
 
 # [3.22.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.22.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 # [3.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.21.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
 
 # [3.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.20.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 # [3.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.18.0...@pie-lib/math-rendering@3.19.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 # [3.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.2.1...@pie-lib/math-rendering@3.18.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* **math-rendering:** move mathjax-full back to dependencies ([3073e44](https://github.com/pie-framework/pie-lib/commit/3073e444419d8e52d451df750e8d1d604f23bd3f))
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- **math-rendering:** move mathjax-full back to dependencies ([3073e44](https://github.com/pie-framework/pie-lib/commit/3073e444419d8e52d451df750e8d1d604f23bd3f))
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [3.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.16.0...@pie-lib/math-rendering@3.17.0) (2025-09-18)
 
-
 ### Bug Fixes
 
-* **math-rendering:** move mathjax-full back to dependencies ([3073e44](https://github.com/pie-framework/pie-lib/commit/3073e444419d8e52d451df750e8d1d604f23bd3f))
-
-
-
-
+- **math-rendering:** move mathjax-full back to dependencies ([3073e44](https://github.com/pie-framework/pie-lib/commit/3073e444419d8e52d451df750e8d1d604f23bd3f))
 
 # [3.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.15.0...@pie-lib/math-rendering@3.16.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 # [3.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.2.1...@pie-lib/math-rendering@3.15.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [3.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.13.0...@pie-lib/math-rendering@3.14.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 # [3.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.12.0...@pie-lib/math-rendering@3.13.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
-
-
-
-
 
 # [3.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.11.1...@pie-lib/math-rendering@3.12.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/math-rendering
 
-
-
-
-
 ## [3.11.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.2.1...@pie-lib/math-rendering@3.11.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [3.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@3.2.1...@pie-lib/math-rendering@3.11.0) (2025-08-07)
 

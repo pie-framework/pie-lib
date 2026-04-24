@@ -1,4 +1,3 @@
-import React from 'react';
 import { withRootEdge } from '../../shared/line/with-root-edge';
 import { buildDataPoints, parabolaFromTwoPoints } from '@pie-lib/graphing-utils';
 import { utils } from '@pie-lib/plot';

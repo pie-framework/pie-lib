@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Mask from './mask';
 import componentize from './componentize';
@@ -28,11 +27,14 @@ export const withMask = (type, renderChildren) => {
       elementType: PropTypes.string,
     };
 
+    constructor(props) {
+      super(props);
+      this.containerRef = React.createRef();
+    }
+
     componentDidUpdate(prevProps) {
       if (this.props.markup !== prevProps.markup) {
-        // eslint-disable-next-line
-        const domNode = ReactDOM.findDOMNode(this);
-        // Query all elements that may contain outdated MathJax renderings
+        const domNode = this.containerRef.current;
         const mathElements = domNode && domNode.querySelectorAll('[data-latex][data-math-handled="true"]');
 
         // Clean up for fresh MathJax processing
@@ -60,6 +62,7 @@ export const withMask = (type, renderChildren) => {
       const maskLayout = layout ? layout : buildLayoutFromMarkup(markup, type);
       return (
         <Mask
+          containerRef={this.containerRef}
           elementType={elementType}
           layout={maskLayout}
           value={value}

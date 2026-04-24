@@ -4,8 +4,7 @@ import { ToolPropTypeFields } from '../shared/types';
 import { types } from '@pie-lib/plot';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
-import isEqual from 'lodash/isEqual';
-import isEmpty from 'lodash/isEmpty';
+import { isEmpty, isEqual } from 'lodash-es';
 
 export class Point extends React.Component {
   static propTypes = {
@@ -26,21 +25,24 @@ export class Point extends React.Component {
   };
 
   startDrag = () => {
+    const { onDragStart } = this.props;
     const update = { ...this.props.mark };
 
     if (update.label === '') {
       delete update.label;
     }
     this.setState({ mark: update });
+    if (onDragStart) onDragStart();
   };
 
   stopDrag = () => {
-    const { onChange } = this.props;
+    const { onChange, onDragStop } = this.props;
     const mark = { ...this.state.mark };
     this.setState({ mark: undefined }, () => {
       if (!isEqual(this.props.mark, mark)) {
         onChange(this.props.mark, mark);
       }
+      if (onDragStop) onDragStop();
     });
   };
 
@@ -71,9 +73,13 @@ export class Point extends React.Component {
 
     onChange(mark, { label: '', ...mark });
 
-    if (this.input) {
-      this.input.focus();
-    }
+    // MarkLabel is only rendered after the parent re-renders with the new label prop,
+    // so we defer focus until after that render cycle completes.
+    setTimeout(() => {
+      if (this.input) {
+        this.input.focus();
+      }
+    }, 0);
   };
 
   render() {
@@ -101,7 +107,7 @@ export class Point extends React.Component {
           }}
         />
         {labelNode &&
-          mark.hasOwnProperty('label') &&
+          Object.prototype.hasOwnProperty.call(mark, 'label') &&
           ReactDOM.createPortal(
             <MarkLabel
               inputRef={(r) => (this.input = r)}

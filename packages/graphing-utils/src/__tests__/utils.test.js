@@ -1,22 +1,34 @@
-import { xPoints, sinY, buildDataPoints, pointsToABC, parabola, parabolaFromTwoPoints } from '../index';
+import {
+  absolute,
+  absoluteFromTwoPoints,
+  buildDataPoints,
+  exponential,
+  exponentialFromTwoPoints,
+  getAmplitudeAndFreq,
+  parabola,
+  parabolaFromThreePoints,
+  parabolaFromTwoPoints,
+  pointsToABC,
+  pointsToABForExponential,
+  pointsToAForAbsolute,
+  sinY,
+  xPoints,
+} from '../index';
 
-import _ from 'lodash';
+import { range } from 'lodash-es';
 
 const xy = (x, y) => ({ x, y });
 
 describe('utils', () => {
-  describe('xPoints', () => {
-    const assertXPoints = (root, freq, min, max, expected) => {
-      it(`root: ${root}, freq: ${freq}, domain: ${min}<->${max} => ${expected}`, () => {
-        const result = xPoints(root, freq, min, max);
-        expect(result).toEqual(expected);
-      });
-    };
-    assertXPoints(0, 2, -5, 5, [-6, -4, -2, 0, 2, 4, 6]);
-    assertXPoints(2, 2, -5, 5, [-6, -4, -2, 0, 2, 4, 6]);
-    assertXPoints(3, 2, -5, 5, [-5, -3, -1, 1, 3, 5]);
-    assertXPoints(3, 2, 0, 10, [-1, 1, 3, 5, 7, 9, 11]);
-    assertXPoints(-2, 2, -10, -1, [-10, -8, -6, -4, -2, 0]);
+  describe('getAmplitudeAndFreq', () => {
+    it('calculates amplitude and frequency from root and edge points', () => {
+      const root = { x: 0, y: 0 };
+      const edge = { x: 1, y: 2 };
+      const result = getAmplitudeAndFreq(root, edge);
+
+      expect(result.freq).toBe(4);
+      expect(result.amplitude).toBe(2);
+    });
   });
 
   describe('sinY', () => {
@@ -30,7 +42,7 @@ describe('utils', () => {
       });
     };
     const shift = (phase, vertical) => ({ phase, vertical });
-    const rng = (start, end, step) => _.range(start, end + step, step);
+    const rng = (start, end, step) => range(start, end + step, step);
 
     describe('amp: 1, freq: 1', () => {
       assertSin(1, 1, shift(0, 0))(0, 0);
@@ -188,10 +200,100 @@ describe('utils', () => {
     });
   });
 
+  describe('parabolaFromThreePoints', () => {
+    it('generates parabola function from three points', () => {
+      const one = xy(0, 0);
+      const two = xy(1, 1);
+      const three = xy(-1, 1);
+      const fn = parabolaFromThreePoints(one, two, three);
+
+      expect(fn(0)).toBeCloseTo(0);
+      expect(fn(1)).toBeCloseTo(1);
+      expect(fn(-1)).toBeCloseTo(1);
+    });
+  });
+
   describe('parabola', () => {
     it('works', () => {
       const fn = parabola(0.22222, -0.444444, 0.22222);
       expect(fn(0)).toBeCloseTo(0.222222);
     });
+  });
+
+  describe('pointsToAForAbsolute', () => {
+    it('calculates a coefficient for absolute value function', () => {
+      const one = xy(0, 0);
+      const two = xy(2, 4);
+      const result = pointsToAForAbsolute(one, two);
+
+      expect(result).toBe(2);
+    });
+  });
+
+  describe('absolute', () => {
+    it('generates absolute value function y=a*abs(x-h)+k', () => {
+      const fn = absolute(2, 1, 3);
+
+      expect(fn(1)).toBe(3); // vertex
+      expect(fn(2)).toBe(5); // right side
+      expect(fn(0)).toBe(5); // left side
+    });
+  });
+
+  describe('absoluteFromTwoPoints', () => {
+    it('generates absolute value function from two points', () => {
+      const root = xy(0, 0);
+      const edge = xy(1, 2);
+      const fn = absoluteFromTwoPoints(root, edge);
+
+      expect(fn(0)).toBe(0);
+      expect(fn(1)).toBe(2);
+    });
+  });
+
+  describe('pointsToABForExponential', () => {
+    it('calculates a and b coefficients for exponential function', () => {
+      const one = xy(0, 2);
+      const two = xy(1, 4);
+      const result = pointsToABForExponential(one, two);
+
+      expect(result.a).toBeCloseTo(2);
+      expect(result.b).toBeCloseTo(2);
+    });
+  });
+
+  describe('exponential', () => {
+    it('generates exponential function y=a*(b)^x', () => {
+      const fn = exponential(2, 3);
+
+      expect(fn(0)).toBe(2);
+      expect(fn(1)).toBe(6);
+      expect(fn(2)).toBe(18);
+    });
+  });
+
+  describe('exponentialFromTwoPoints', () => {
+    it('generates exponential function from two points', () => {
+      const root = xy(0, 2);
+      const edge = xy(1, 6);
+      const fn = exponentialFromTwoPoints(root, edge);
+
+      expect(fn(0)).toBeCloseTo(2);
+      expect(fn(1)).toBeCloseTo(6);
+    });
+  });
+
+  describe('xPoints', () => {
+    const assertXPoints = (root, freq, min, max, expected) => {
+      it(`root: ${root}, freq: ${freq}, domain: ${min}<->${max} => ${expected}`, () => {
+        const result = xPoints(root, freq, min, max);
+        expect(result).toEqual(expected);
+      });
+    };
+    assertXPoints(0, 2, -5, 5, [-6, -4, -2, 0, 2, 4, 6]);
+    assertXPoints(2, 2, -5, 5, [-6, -4, -2, 0, 2, 4, 6]);
+    assertXPoints(3, 2, -5, 5, [-5, -3, -1, 1, 3, 5]);
+    assertXPoints(3, 2, 0, 10, [-1, 1, 3, 5, 7, 9, 11]);
+    assertXPoints(-2, 2, -10, -1, [-10, -8, -6, -4, -2, 0]);
   });
 });

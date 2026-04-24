@@ -1,28 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noSelect, strokeColor } from '../style-utils';
-import { withStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
+
+const StyledText = styled('text')(({ theme }) => ({
+  ...noSelect(),
+  fill: strokeColor(theme),
+}));
 
 export const UnitType = (props) => {
-  const { classes, label, x, y, textAlign, fill, fontSize, stroke } = props;
+  const { label, x, y, textAlign, fill, fontSize, stroke } = props;
 
   return (
-    <text
-      className={classes.unitType}
-      x={x}
-      y={y}
-      textAnchor={textAlign}
-      stroke={stroke}
-      fill={fill}
-      fontSize={fontSize}
-    >
+    <StyledText x={x} y={y} textAnchor={textAlign} stroke={stroke} fill={fill} fontSize={fontSize}>
       {label}
-    </text>
+    </StyledText>
   );
 };
 
 UnitType.propTypes = {
-  classes: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   x: PropTypes.number,
   y: PropTypes.number,
@@ -40,6 +36,4 @@ UnitType.defaultProps = {
   y: 14,
 };
 
-export default withStyles((theme) => ({
-  unitType: { ...noSelect(), fill: strokeColor(theme) },
-}))(UnitType);
+export default UnitType;

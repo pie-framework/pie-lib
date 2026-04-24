@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Collapse from '@material-ui/core/Collapse';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import PropTypes from 'prop-types';
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
 export const AlignLeft = () => (
   <svg width="20" height="20" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +40,7 @@ export const AlignJustify = () => (
   </svg>
 );
 
-export default ({ getValue, onChange }) => {
+const TextAlignIcon = ({ getValue, onChange }) => {
   const [open, setOpen] = useState(false);
   const value = getValue();
   const text = value.texts.get(0);
@@ -137,3 +138,11 @@ export default ({ getValue, onChange }) => {
     </div>
   );
 };
+
+TextAlignIcon.displayName = 'TextAlignIcon';
+TextAlignIcon.propTypes = {
+  getValue: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+export default TextAlignIcon;

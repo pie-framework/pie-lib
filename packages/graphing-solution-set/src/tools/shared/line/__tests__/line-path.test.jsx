@@ -1,10 +1,10 @@
-import { shallow } from 'enzyme';
+import { render } from '@pie-lib/test-utils';
 import React from 'react';
 import { graphProps as getGraphProps } from '../../../../__tests__/utils';
-import { gridDraggable, utils } from '@pie-lib/plot';
-const { xy } = utils;
-
+import { utils } from '@pie-lib/plot';
 import * as lineUtils from '../../../../utils';
+
+const { xy } = utils;
 
 const { bounds, pointsToArea } = lineUtils;
 jest.mock('../../../../utils', () => {
@@ -19,7 +19,7 @@ jest.mock('../../../../utils', () => {
 jest.mock('@pie-lib/plot', () => {
   const a = jest.requireActual('@pie-lib/plot');
   return {
-    gridDraggable: jest.fn((opts) => jest.fn()),
+    gridDraggable: jest.fn((opts) => (Comp) => Comp),
     types: a.types,
     utils: a.utils,
   };
@@ -27,12 +27,11 @@ jest.mock('@pie-lib/plot', () => {
 
 describe('LinePath', () => {
   let LinePath;
-  let w;
   let onChange = jest.fn();
   beforeEach(() => {
     LinePath = require('../line-path').LinePath;
   });
-  const wrapper = (extras) => {
+  const renderComponent = (extras) => {
     const defaults = {
       classes: {},
       className: 'className',
@@ -40,14 +39,18 @@ describe('LinePath', () => {
       graphProps: getGraphProps(),
       from: xy(0, 0, 0),
       to: xy(1, 1, 0),
+      data: [
+        [0, 0],
+        [1, 1],
+      ],
     };
     const props = { ...defaults, ...extras };
-    return shallow(<LinePath {...props} />);
+    return render(<LinePath {...props} />);
   };
-  describe('snapshot', () => {
-    it('renders', () => {
-      const w = wrapper();
-      expect(w).toMatchSnapshot();
+  describe('rendering', () => {
+    it('renders without crashing', () => {
+      const { container } = renderComponent();
+      expect(container.firstChild).toBeInTheDocument();
     });
   });
 });

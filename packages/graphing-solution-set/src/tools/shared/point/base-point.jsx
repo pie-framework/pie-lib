@@ -1,15 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { types } from '@pie-lib/plot';
 import CoordinatesLabel from '../../../coordinates-label';
 import ReactDOM from 'react-dom';
 import { thinnerShapesNeeded } from '../../../utils';
 import { color } from '@pie-lib/render-ui';
+import { styled } from '@mui/material/styles';
+import { correct, disabled as disabledStyle, incorrect, missing } from '../styles';
+
+const StyledPointGroup = styled('g')(({ disabled, correctness }) => ({
+  cursor: 'pointer',
+  '& circle': {
+    fill: 'currentColor',
+  },
+  ...(disabled && {
+    ...disabledStyle('fill'),
+    ...disabledStyle('color'),
+  }),
+  ...(correctness === 'correct' && {
+    ...correct('fill'),
+    ...correct('color'),
+  }),
+  ...(correctness === 'incorrect' && {
+    ...incorrect('fill'),
+    ...incorrect('color'),
+  }),
+  ...(correctness === 'missing' && {
+    ...missing('fill'),
+    ...missing('color'),
+  }),
+}));
 
 export class RawBp extends React.Component {
   static propTypes = {
-    classes: PropTypes.object,
     className: PropTypes.string,
     coordinatesOnHover: PropTypes.bool,
     correctness: PropTypes.string,
@@ -18,6 +41,9 @@ export class RawBp extends React.Component {
     x: PropTypes.number,
     y: PropTypes.number,
     graphProps: types.GraphPropsType.isRequired,
+    onClick: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    onTouchEnd: PropTypes.func,
   };
 
   constructor(props) {
@@ -27,7 +53,6 @@ export class RawBp extends React.Component {
 
   render() {
     const {
-      classes,
       className,
       coordinatesOnHover,
       x,
@@ -63,8 +88,10 @@ export class RawBp extends React.Component {
           onTouchEnd={onTouchEnd}
           onClick={onClick}
         />
-        <g
-          className={classNames(classes.point, disabled && classes.disabled, classes[correctness], className)}
+        <StyledPointGroup
+          disabled={disabled}
+          correctness={correctness}
+          className={className}
           onMouseEnter={() => this.setState({ showCoordinates: true })}
           onMouseLeave={() => this.setState({ showCoordinates: false })}
         >
@@ -79,7 +106,7 @@ export class RawBp extends React.Component {
             coordinatesOnHover &&
             showCoordinates &&
             ReactDOM.createPortal(<CoordinatesLabel graphProps={graphProps} x={x} y={y} />, labelNode)}
-        </g>
+        </StyledPointGroup>
       </>
     );
   }

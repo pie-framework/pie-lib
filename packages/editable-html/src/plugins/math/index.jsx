@@ -1,14 +1,14 @@
-import Functions from '@material-ui/icons/Functions';
+import Functions from '@mui/icons-material/Functions';
 import { Inline } from 'slate';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
-import { wrapMath, unWrapMath, mmlToLatex, renderMath } from '@pie-lib/math-rendering';
+import { mmlToLatex, renderMath, unWrapMath, wrapMath } from '@pie-lib/math-rendering';
 import React from 'react';
 import debug from 'debug';
 import SlatePropTypes from 'slate-prop-types';
 import PropTypes from 'prop-types';
 
 import { BLOCK_TAGS } from '../../block-tags';
-import isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash-es';
 
 const log = debug('@pie-lib:editable-html:plugins:math');
 

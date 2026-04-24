@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep } from 'lodash-es';
 
-import { Root, createGraphProps } from '@pie-lib/plot';
+import { createGraphProps, Root } from '@pie-lib/plot';
 import { AlertDialog } from '@pie-lib/config-ui';
 import ChartGrid from './grid';
 import ChartAxes from './axes';
@@ -17,6 +16,10 @@ import Translator from '@pie-lib/translator';
 const { translator } = Translator;
 
 const log = debug('pie-lib:charts:chart');
+
+const StyledChartContainer = styled('div')(() => ({
+  width: 'min-content',
+}));
 
 export class Chart extends React.Component {
   constructor(props) {
@@ -31,7 +34,6 @@ export class Chart extends React.Component {
   }
 
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     chartType: PropTypes.string.isRequired,
     size: PropTypes.shape({
@@ -210,8 +212,6 @@ export class Chart extends React.Component {
 
   render() {
     const {
-      classes,
-      className,
       domain = {},
       range = {},
       chartingOptions,
@@ -255,10 +255,6 @@ export class Chart extends React.Component {
     const { scale } = common.graphProps;
     const xBand = dataToXBand(scale.x, categories, width, chartType);
 
-    if (!ChartComponent) {
-      return null;
-    }
-
     const bandWidth = xBand.bandwidth();
     // for chartType "line", bandWidth will be 0, so we have to calculate it
     const barWidth = bandWidth || scale.x(correctValues.domain.max) / categories.length;
@@ -279,7 +275,7 @@ export class Chart extends React.Component {
     }
 
     return (
-      <div className={classNames(classes.chart, classes.chartBox, className)}>
+      <StyledChartContainer>
         <Root
           title={title}
           onChangeTitle={onChangeTitle}
@@ -333,15 +329,17 @@ export class Chart extends React.Component {
             <rect {...maskSize} fill="white" />
           </mask>
           <g id="marks" mask={`url('#${this.maskUid}')`}>
-            <ChartComponent
-              {...common}
-              data={categories}
-              height={rootCommon.graphProps.size.height}
-              defineChart={defineChart}
-              onChange={this.changeData}
-              onChangeCategory={this.changeCategory}
-              correctData={correctData}
-            />
+            {ChartComponent && (
+              <ChartComponent
+                {...common}
+                data={categories}
+                height={rootCommon.graphProps.size.height}
+                defineChart={defineChart}
+                onChange={this.changeData}
+                onChangeCategory={this.changeCategory}
+                correctData={correctData}
+              />
+            )}
           </g>
         </Root>
         <AlertDialog
@@ -351,22 +349,9 @@ export class Chart extends React.Component {
           onClose={dialog.onClose}
           onConfirm={dialog.onConfirm}
         />
-      </div>
+      </StyledChartContainer>
     );
   }
 }
 
-const styles = (theme) => ({
-  graphBox: {
-    transform: 'translate(60px, 35px)',
-  },
-  svg: {
-    overflow: 'visible',
-  },
-
-  chartBox: {
-    width: 'min-content',
-  },
-});
-
-export default withStyles(styles, { withTheme: true })(Chart);
+export default Chart;

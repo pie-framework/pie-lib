@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import debug from 'debug';
-import { color } from '@pie-lib/render-ui';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiTabs from '@material-ui/core/Tabs';
-import MuiTab from '@material-ui/core/Tab';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogActions from '@material-ui/core/DialogActions';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import ActionDelete from '@material-ui/icons/Delete';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import MuiTabs from '@mui/material/Tabs';
+import MuiTab from '@mui/material/Tab';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import ActionDelete from '@mui/icons-material/Delete';
 
 const log = debug('@pie-lib:editable-html:plugins:media:dialog');
 
@@ -23,7 +22,8 @@ const matchYoutubeUrl = (url) => {
     return false;
   }
 
-  const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+  const p =
+    /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
   if (url.match(p)) {
     return url.match(p)[1];
   }
@@ -82,9 +82,38 @@ const tabsTypeMap = {
   insertUrl: 'insert-url',
 };
 
+const StyledDialog = styled(Dialog)(() => ({
+  '& .MuiPaper-root': {
+    minWidth: '500px',
+  },
+}));
+
+const StyledDialogContent = styled(DialogContent)(() => ({
+  '&.properties': {
+    padding: 0,
+  },
+}));
+
+const StyledRow = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'space-between',
+}));
+
+const StyledUploadInput = styled('div')(({ theme }) => ({
+  marginTop: theme.spacing(1.5),
+}));
+
+const StyledError = styled(Typography)(({ theme }) => ({
+  marginTop: theme.spacing(1.5),
+  color: theme.palette.error.main,
+}));
+
+const StyledDeleteIcon = styled(IconButton)(({ theme }) => ({
+  marginLeft: theme.spacing(1.5),
+}));
+
 export class MediaDialog extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     open: PropTypes.bool,
     edit: PropTypes.bool,
     disablePortal: PropTypes.bool,
@@ -404,20 +433,9 @@ export class MediaDialog extends React.Component {
   };
 
   render() {
-    const { classes, open, disablePortal, type, edit, uploadSoundSupport } = this.props;
-    const {
-      ends,
-      height,
-      invalid,
-      starts,
-      width,
-      url,
-      mimeType,
-      formattedUrl,
-      updating,
-      tabValue,
-      fileUpload,
-    } = this.state;
+    const { open, disablePortal, type, edit, uploadSoundSupport } = this.props;
+    const { ends, height, invalid, starts, width, url, mimeType, formattedUrl, updating, tabValue, fileUpload } =
+      this.state;
     const isYoutube = matchYoutubeUrl(url);
     const isInsertURL = tabValue === tabsTypeMap.insertUrl;
     const isUploadMedia = tabValue === tabsTypeMap.uploadFile;
@@ -427,10 +445,7 @@ export class MediaDialog extends React.Component {
     const showUploadFile = uploadSoundSupport?.add && uploadSoundSupport?.delete && type !== 'video';
 
     return (
-      <Dialog
-        classes={{
-          paper: classes.paper,
-        }}
+      <StyledDialog
         disablePortal={disablePortal}
         open={open}
         onClose={() => this.handleDone(false)}
@@ -439,7 +454,7 @@ export class MediaDialog extends React.Component {
         <DialogTitle id="form-dialog-title">Insert {typeMap[type]}</DialogTitle>
         <DialogContent>
           <div>
-            <div className={classes.row}>
+            <StyledRow>
               <MuiTabs
                 indicatorColor="primary"
                 value={tabValue}
@@ -453,7 +468,7 @@ export class MediaDialog extends React.Component {
                   label={type === 'video' ? 'Insert YouTube, Vimeo, or Google Drive URL' : 'Insert SoundCloud URL'}
                 />
               </MuiTabs>
-            </div>
+            </StyledRow>
             {isInsertURL && (
               <div>
                 <TextField
@@ -470,11 +485,7 @@ export class MediaDialog extends React.Component {
                   fullWidth
                 />
                 {type === 'video' && (
-                  <DialogContent
-                    classes={{
-                      root: classes.properties,
-                    }}
-                  >
+                  <StyledDialogContent className="properties">
                     <DialogContentText>Video Properties</DialogContentText>
                     <TextField
                       autoFocus
@@ -496,7 +507,7 @@ export class MediaDialog extends React.Component {
                       value={height}
                       onChange={this.changeHandler('height')}
                     />
-                  </DialogContent>
+                  </StyledDialogContent>
                 )}
                 {formattedUrl && (
                   <iframe
@@ -510,11 +521,7 @@ export class MediaDialog extends React.Component {
                 )}
                 {type === 'video' && (formattedUrl || updating) && !invalid && (
                   <React.Fragment>
-                    <DialogContent
-                      classes={{
-                        root: classes.properties,
-                      }}
-                    >
+                    <StyledDialogContent className="properties">
                       <TextField
                         autoFocus
                         margin="dense"
@@ -537,24 +544,24 @@ export class MediaDialog extends React.Component {
                           onChange={this.changeHandler('ends')}
                         />
                       )}
-                    </DialogContent>
+                    </StyledDialogContent>
                   </React.Fragment>
                 )}
               </div>
             )}
             {isUploadMedia && (
-              <div className={classes.uploadInput}>
+              <StyledUploadInput>
                 <div>
                   {fileUpload.url ? (
                     <>
-                      <div className={classes.row}>
+                      <StyledRow>
                         <audio controls="controls" controlsList="nodownload">
                           <source type={mimeType} src={fileUpload.url} />
                         </audio>
-                        <IconButton aria-label="delete" className={classes.deleteIcon} onClick={this.handleRemoveFile}>
+                        <StyledDeleteIcon aria-label="delete" onClick={this.handleRemoveFile} size="large">
                           <ActionDelete />
-                        </IconButton>
-                      </div>
+                        </StyledDeleteIcon>
+                      </StyledRow>
                       {!fileUpload.scheduled && fileUpload.loading ? (
                         <Typography variant="subheading">Loading...</Typography>
                       ) : null}
@@ -565,15 +572,11 @@ export class MediaDialog extends React.Component {
                       ) : null}
                     </>
                   ) : !fileUpload.loading ? (
-                    <input accept="audio/*" className={classes.input} onChange={this.handleUploadFile} type="file" />
+                    <input accept="audio/*" onChange={this.handleUploadFile} type="file" />
                   ) : null}
-                  {!!fileUpload.error && (
-                    <Typography className={classes.error} variant="caption">
-                      {fileUpload.error}
-                    </Typography>
-                  )}
+                  {!!fileUpload.error && <StyledError variant="caption">{fileUpload.error}</StyledError>}
                 </div>
-              </div>
+              </StyledUploadInput>
             )}
           </div>
         </DialogContent>
@@ -585,40 +588,9 @@ export class MediaDialog extends React.Component {
             {edit ? 'Update' : 'Insert'}
           </Button>
         </DialogActions>
-      </Dialog>
+      </StyledDialog>
     );
   }
 }
 
-const styles = (theme) => ({
-  paper: {
-    minWidth: '500px',
-  },
-  properties: {
-    padding: 0,
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'space-between',
-  },
-  rowItem: {
-    marginRight: theme.spacing.unit * 1.5,
-    cursor: 'pointer',
-  },
-  active: {
-    color: color.primary(),
-    borderBottom: `2px solid ${color.primary()}`,
-  },
-  uploadInput: {
-    marginTop: theme.spacing.unit * 1.5,
-  },
-  error: {
-    marginTop: theme.spacing.unit * 1.5,
-    color: theme.palette.error.main,
-  },
-  deleteIcon: {
-    marginLeft: theme.spacing.unit * 1.5,
-  },
-});
-
-export default withStyles(styles)(MediaDialog);
+export default MediaDialog;

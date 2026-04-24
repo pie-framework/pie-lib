@@ -23,7 +23,7 @@ export function mockComponents() {
 }
 
 export function mockIconButton() {
-  jest.mock('@material-ui/core/IconButton', () => {
+  jest.mock('@mui/material/IconButton', () => {
     return (props) => <div className={props.className} style={props.style} ariaLabel={props['aria-label']} />;
   });
 }

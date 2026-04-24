@@ -3,186 +3,299 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.36.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.36.1...@pie-lib/charting@5.36.2) (2025-11-27)
+# [6.2.0-next.39](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.38...@pie-lib/charting@6.2.0-next.39) (2026-04-24)
 
 **Note:** Version bump only for package @pie-lib/charting
 
+# [6.2.0-next.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.37...@pie-lib/charting@6.2.0-next.38) (2026-04-24)
 
+**Note:** Version bump only for package @pie-lib/charting
 
+# [6.2.0-next.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.36...@pie-lib/charting@6.2.0-next.37) (2026-04-23)
 
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.35...@pie-lib/charting@6.2.0-next.36) (2026-04-17)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.35](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.34...@pie-lib/charting@6.2.0-next.35) (2026-04-16)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.34](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.33...@pie-lib/charting@6.2.0-next.34) (2026-04-16)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.33](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.32...@pie-lib/charting@6.2.0-next.33) (2026-04-16)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.32](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.31...@pie-lib/charting@6.2.0-next.32) (2026-04-15)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.31](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.30...@pie-lib/charting@6.2.0-next.31) (2026-04-15)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.30](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.29...@pie-lib/charting@6.2.0-next.30) (2026-04-14)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.29](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.28...@pie-lib/charting@6.2.0-next.29) (2026-04-13)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.28](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.27...@pie-lib/charting@6.2.0-next.28) (2026-04-09)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.27](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.26...@pie-lib/charting@6.2.0-next.27) (2026-04-09)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.26](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.25...@pie-lib/charting@6.2.0-next.26) (2026-04-08)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.25](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.24...@pie-lib/charting@6.2.0-next.25) (2026-04-07)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.24](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.23...@pie-lib/charting@6.2.0-next.24) (2026-04-06)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.23](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.22...@pie-lib/charting@6.2.0-next.23) (2026-04-03)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.22](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.21...@pie-lib/charting@6.2.0-next.22) (2026-03-31)
+
+### Bug Fixes
+
+- **charting:** fix math rendering race condition in fractional chart labels PD-5496 ([03d9d81](https://github.com/pie-framework/pie-lib/commit/03d9d8131872aff762866abb5c910312a7151864))
+
+# [6.2.0-next.21](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.20...@pie-lib/charting@6.2.0-next.21) (2026-03-25)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.20](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.19...@pie-lib/charting@6.2.0-next.20) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.18...@pie-lib/charting@6.2.0-next.19) (2026-03-18)
+
+### Bug Fixes
+
+- **charting:** enhance RawChartAxes with MathJax rendering support and improve hidden label measurement PD-5496 PD-5497 ([4644a62](https://github.com/pie-framework/pie-lib/commit/4644a62365cc22b5558ae99cfa64c78bdc21815a))
+
+# [6.2.0-next.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.17...@pie-lib/charting@6.2.0-next.18) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.16...@pie-lib/charting@6.2.0-next.17) (2026-03-18)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.15...@pie-lib/charting@6.2.0-next.16) (2026-03-11)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.14...@pie-lib/charting@6.2.0-next.15) (2026-03-11)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.13...@pie-lib/charting@6.2.0-next.14) (2026-03-09)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.12...@pie-lib/charting@6.2.0-next.13) (2026-03-06)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.11...@pie-lib/charting@6.2.0-next.12) (2026-03-04)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.9...@pie-lib/charting@6.2.0-next.11) (2026-02-26)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.8...@pie-lib/charting@6.2.0-next.9) (2026-02-25)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.7...@pie-lib/charting@6.2.0-next.8) (2026-02-25)
+
+### Bug Fixes
+
+- **deps:** update [@pie-lib](https://github.com/pie-lib) dependencies to published versions ([134fbdc](https://github.com/pie-framework/pie-lib/commit/134fbdc90c6a15f89a736340578d70fb80a983b3))
+
+# [6.2.0-next.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.6...@pie-lib/charting@6.2.0-next.7) (2026-02-25)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.5...@pie-lib/charting@6.2.0-next.6) (2026-02-25)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.4...@pie-lib/charting@6.2.0-next.5) (2026-02-25)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.3...@pie-lib/charting@6.2.0-next.4) (2026-02-24)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.2.0-next.1...@pie-lib/charting@6.2.0-next.3) (2026-02-24)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.1.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.1.0-next.2...@pie-lib/charting@6.1.0-next.4) (2026-01-27)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@6.1.0-next.1...@pie-lib/charting@6.1.0-next.2) (2026-01-26)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+# [6.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.36.2...@pie-lib/charting@6.1.0-next.1) (2026-01-26)
+
+### Bug Fixes
+
+- charting cleanup ([4f8b14f](https://github.com/pie-framework/pie-lib/commit/4f8b14f59cf6d977af04feaa75f78f65fe4ffbb8))
+- charting issue after mui update ([19eb377](https://github.com/pie-framework/pie-lib/commit/19eb377ae63624402dce8118857c64e2da07c7ec))
+- charting issues ([fb42cac](https://github.com/pie-framework/pie-lib/commit/fb42cacad4753b1aaf501969bde0a489fd223a1e))
+- charting style ([1e72103](https://github.com/pie-framework/pie-lib/commit/1e7210354c92a4f85da10043f42261e275894b69))
+- charting styles ([c733e4e](https://github.com/pie-framework/pie-lib/commit/c733e4e316b572a8aea3e494a2ab3bf3863a015e))
+- charting ux fixes after mui update PD-5258 ([38ee1dc](https://github.com/pie-framework/pie-lib/commit/38ee1dc3810760794690534821f78672906a4981))
+- math keyboard ref and remove console log ([fd9dc91](https://github.com/pie-framework/pie-lib/commit/fd9dc91092497e55a75aba3e7ef1c4c1c5723f35))
+- publish charting ([df5a64e](https://github.com/pie-framework/pie-lib/commit/df5a64e4287fe71b0da7838c14b19e72286c7e82))
+- remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+- remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+- remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+- select in chart type selection ([ba56525](https://github.com/pie-framework/pie-lib/commit/ba5652504daa9fe9bc499b66c5d8acb88ebf7a8e))
+- use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+
+### Features
+
+- bump react and react-dom ([01dc19e](https://github.com/pie-framework/pie-lib/commit/01dc19e88bbc8d372c561d1511df1a82937d45af))
+- implement web component safe select in charting ([6f84f2f](https://github.com/pie-framework/pie-lib/commit/6f84f2f0bb917a64dbbd46b917f8cc1b5665d9eb))
+- migrate from [@vx](https://github.com/vx) library to [@visx](https://github.com/visx) ([135bf60](https://github.com/pie-framework/pie-lib/commit/135bf605161bfbd0070ac181892df20931691ce3))
+- packages/charting mui update PD-5268 ([9619c34](https://github.com/pie-framework/pie-lib/commit/9619c3437ad7ae762daa04350e1110cb429c7166))
+- sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+# [6.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.36.3-next.0...@pie-lib/charting@6.0.0-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+## [5.36.3-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.50.0-mui-update.0...@pie-lib/charting@5.36.3-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/charting
+
+## [5.36.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.36.1...@pie-lib/charting@5.36.2) (2025-11-27)
+
+**Note:** Version bump only for package @pie-lib/charting
 
 ## [5.36.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.7...@pie-lib/charting@5.36.1) (2025-10-22)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.36.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.35.0...@pie-lib/charting@5.36.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.35.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.35.0) (2025-10-16)
-
 
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 # [5.34.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.34.0) (2025-10-16)
 
-
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 # [5.33.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.33.0) (2025-10-16)
 
-
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 ## [5.32.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.6...@pie-lib/charting@5.32.7) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 ## [5.32.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.32.0...@pie-lib/charting@5.32.6) (2025-10-09)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.32.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.31.0...@pie-lib/charting@5.32.0) (2025-10-09)
-
 
 ### Features
 
-* PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
-* PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
-
-
-
-
+- PD-5128 only needed files ([64d375b](https://github.com/pie-framework/pie-lib/commit/64d375b1731179ae46f735c2c4da21215101bd95))
+- PD-5217 only needed file ([b21b343](https://github.com/pie-framework/pie-lib/commit/b21b34348569c73253eff72eea43c6c3235b25df))
 
 # [5.31.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.31.0) (2025-09-25)
 
-
 ### Bug Fixes
 
-* **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [5.30.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.29.0...@pie-lib/charting@5.30.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.29.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.28.0...@pie-lib/charting@5.29.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.28.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.28.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [5.27.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.26.0...@pie-lib/charting@5.27.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.26.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.25.0...@pie-lib/charting@5.26.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/charting
 
-
-
-
-
 # [5.25.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.24.1...@pie-lib/charting@5.25.0) (2025-09-17)
-
 
 ### Bug Fixes
 
-* **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
-
-
-
-
+- **charting:** make the “answer key correct” indicators smaller for plot PD-5198 ([ce6bb35](https://github.com/pie-framework/pie-lib/commit/ce6bb35099c832f017e1bc213403ccb094792442))
 
 ## [5.24.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.24.1) (2025-08-11)
 
-
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [5.24.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@5.15.6...@pie-lib/charting@5.24.0) (2025-08-07)
 

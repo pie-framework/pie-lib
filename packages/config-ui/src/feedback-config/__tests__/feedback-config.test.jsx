@@ -1,70 +1,140 @@
-import React, { PropTypes } from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
-import { FeedbackConfig } from '../index';
-import FeedbackSelector from '../feedback-selector';
-import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { buildDefaults, FeedbackConfig } from '../index';
 
-Enzyme.configure({ adapter: new Adapter() });
+// Mock FeedbackSelector to simplify testing
+jest.mock('../feedback-selector', () => {
+  return function FeedbackSelector({ label, feedback, onChange }) {
+    return (
+      <div data-testid="feedback-selector">
+        <label>{label}</label>
+        <select
+          aria-label={label}
+          value={feedback.type}
+          onChange={(e) => onChange({ ...feedback, type: e.target.value })}
+        >
+          <option value="default">Default</option>
+          <option value="custom">Custom</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+    );
+  };
+});
 
 describe('FeedbackConfig', () => {
-  describe('render', () => {
-    let component, selectors;
-    let feedback = {
-      correctFeedback: undefined,
-      correctFeedbackType: 'default',
-      incorrectFeedback: undefined,
-      incorrectFeedbackType: 'default',
-    };
+  const onChange = jest.fn();
 
-    let defaults = {
-      correct: 'Correct',
-      incorrect: 'Incorrect',
-      partial: 'Nearly',
-    };
+  beforeEach(() => {
+    onChange.mockClear();
+  });
 
-    describe('Feedback Config Component', () => {
-      it('should exist', () => {
-        component = shallow(
-          <FeedbackConfig feedback={feedback} defaults={defaults} onChange={jest.fn()} classes={{}} />,
-        );
+  describe('rendering', () => {
+    it('renders with default feedback types', () => {
+      const feedback = buildDefaults();
 
-        selectors = component.find(FeedbackSelector);
+      render(<FeedbackConfig feedback={feedback} onChange={onChange} />);
 
-        expect(selectors.length).toEqual(3);
+      expect(screen.getByText('Feedback')).toBeInTheDocument();
+      expect(screen.getByText('If correct, show')).toBeInTheDocument();
+      expect(screen.getByText('If partially correct, show')).toBeInTheDocument();
+      expect(screen.getByText('If incorrect, show')).toBeInTheDocument();
+    });
+
+    it('renders all three feedback selectors by default', () => {
+      const feedback = buildDefaults();
+
+      render(<FeedbackConfig feedback={feedback} onChange={onChange} />);
+
+      const selectors = screen.getAllByTestId('feedback-selector');
+      expect(selectors).toHaveLength(3);
+    });
+
+    it('does not render partial feedback selector when allowPartial is false', () => {
+      const feedback = buildDefaults();
+
+      render(<FeedbackConfig allowPartial={false} feedback={feedback} onChange={onChange} />);
+
+      expect(screen.getByText('If correct, show')).toBeInTheDocument();
+      expect(screen.queryByText('If partially correct, show')).not.toBeInTheDocument();
+      expect(screen.getByText('If incorrect, show')).toBeInTheDocument();
+
+      const selectors = screen.getAllByTestId('feedback-selector');
+      expect(selectors).toHaveLength(2);
+    });
+  });
+
+  describe('user interactions', () => {
+    it('calls onChange when correct feedback type changes', async () => {
+      const user = userEvent.setup();
+      const feedback = buildDefaults();
+
+      render(<FeedbackConfig feedback={feedback} onChange={onChange} />);
+
+      const correctSelect = screen.getByLabelText('If correct, show');
+      await user.selectOptions(correctSelect, 'custom');
+
+      expect(onChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          correct: expect.objectContaining({ type: 'custom' }),
+        }),
+      );
+    });
+
+    it('calls onChange when incorrect feedback type changes', async () => {
+      const user = userEvent.setup();
+      const feedback = buildDefaults();
+
+      render(<FeedbackConfig feedback={feedback} onChange={onChange} />);
+
+      const incorrectSelect = screen.getByLabelText('If incorrect, show');
+      await user.selectOptions(incorrectSelect, 'none');
+
+      expect(onChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          incorrect: expect.objectContaining({ type: 'none' }),
+        }),
+      );
+    });
+
+    it('calls onChange when partial feedback type changes', async () => {
+      const user = userEvent.setup();
+      const feedback = buildDefaults();
+
+      render(<FeedbackConfig feedback={feedback} onChange={onChange} />);
+
+      const partialSelect = screen.getByLabelText('If partially correct, show');
+      await user.selectOptions(partialSelect, 'custom');
+
+      expect(onChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          partial: expect.objectContaining({ type: 'custom' }),
+        }),
+      );
+    });
+  });
+
+  describe('buildDefaults helper', () => {
+    it('returns default feedback configuration', () => {
+      const defaults = buildDefaults();
+
+      expect(defaults).toEqual({
+        correct: { type: 'default', default: 'Correct' },
+        incorrect: { type: 'default', default: 'Incorrect' },
+        partial: { type: 'default', default: 'Nearly' },
+      });
+    });
+
+    it('merges custom values with defaults', () => {
+      const defaults = buildDefaults({
+        correct: { type: 'custom', custom: 'Great job!' },
       });
 
-      describe('props', () => {
-        it('should not render optionally correct if optional is not needed', () => {
-          component = shallow(
-            <FeedbackConfig
-              allowPartial={false}
-              feedback={feedback}
-              defaults={defaults}
-              onChange={jest.fn()}
-              classes={{}}
-            />,
-          );
-
-          selectors = component.find(FeedbackSelector);
-
-          expect(selectors.length).toEqual(2);
-        });
-      });
-
-      describe('snapshot', () => {
-        it('matches the snapshot', () => {
-          component = shallow(
-            <FeedbackConfig
-              allowPartial={false}
-              feedback={feedback}
-              defaults={defaults}
-              onChange={jest.fn()}
-              classes={{}}
-            />,
-          );
-
-          expect(component).toMatchSnapshot();
-        });
+      expect(defaults).toEqual({
+        correct: { type: 'custom', default: 'Correct', custom: 'Great job!' },
+        incorrect: { type: 'default', default: 'Incorrect' },
+        partial: { type: 'default', default: 'Nearly' },
       });
     });
   });

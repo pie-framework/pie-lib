@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
-import times from 'lodash/times';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import grey from '@material-ui/core/colors/grey';
-import Typography from '@material-ui/core/Typography';
-import DragIndicator from '@material-ui/icons/DragIndicator';
-import EditableHtml from '@pie-lib/editable-html';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import debug from 'debug';
-import takeRight from 'lodash/takeRight';
-import PointMenu from './point-menu';
+import { styled } from '@mui/material/styles';
 
-import range from 'lodash/range';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import { range, takeRight, times } from 'lodash-es';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Typography from '@mui/material/Typography';
+import DragIndicator from '@mui/icons-material/DragIndicator';
+import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
+import debug from 'debug';
+import PointMenu from './point-menu';
+import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import { InputContainer } from '@pie-lib/config-ui';
+import { grey } from '@mui/material/colors';
 
 const log = debug('pie-lib:rubric:authoring');
 
@@ -42,20 +39,21 @@ export const RubricType = PropTypes.shape({
   rubriclessInstruction: PropTypes.string,
 });
 
-const MaxPoints = withStyles((theme) => ({
-  formControl: {
-    minWidth: '120px',
-    margin: theme.spacing.unit,
-  },
-}))((props) => {
-  const { value, onChange, max, classes } = props;
+const MaxPoints = (props) => {
+  const { value, onChange, max } = props;
+  const labelId = 'max-points-label';
 
   return (
-    <FormControl className={classes.formControl} variant="outlined">
-      <InputLabel width={100} htmlFor="...">
-        Max Points
-      </InputLabel>
-      <Select value={value} onChange={(e) => onChange(e.target.value)} input={<OutlinedInput labelWidth={80} />}>
+    <FormControl sx={{ minWidth: 120, m: 1 }} variant="outlined">
+      <InputLabel id={labelId}>Max Points</InputLabel>
+      <Select
+        labelId={labelId}
+        label="Max Points"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        input={<OutlinedInput label="Max Points" />}
+        MenuProps={{ transitionDuration: { enter: 225, exit: 195 } }}
+      >
         {range(1, max + 1).map((v) => (
           <MenuItem key={`${v}`} value={v}>
             {v}
@@ -64,97 +62,105 @@ const MaxPoints = withStyles((theme) => ({
       </Select>
     </FormControl>
   );
-});
+};
 
 // if the value is null or 'null', the Sample Answer input field for that point will not be dispalyed
 // if the value is '', the Sample Answer input field will be empty
 const checkSampleAnswer = (sampleAnswer) => sampleAnswer === null || sampleAnswer === 'null';
 
-export const PointConfig = withStyles((theme) => ({
-  pointConfig: {},
-  row: {
-    display: 'flex',
-    width: '100%',
-    position: 'relative',
-  },
-  editor: {
-    width: '100%',
-    backgroundColor: `${theme.palette.common.white} !important`,
-  },
-  dragIndicator: {
-    paddingTop: theme.spacing.unit,
-    color: grey[500],
-  },
-  pointsLabel: {
-    color: grey[500],
-    paddingBottom: theme.spacing.unit,
-    textTransform: 'uppercase',
-  },
-  sampleAnswersEditor: {
-    paddingLeft: theme.spacing.unit * 3,
-  },
-  pointMenu: {
-    position: 'absolute',
-    right: 0,
-  },
-  errorText: {
-    fontSize: theme.typography.fontSize - 2,
-    color: theme.palette.error.main,
-    paddingLeft: theme.spacing.unit * 3,
-    paddingTop: theme.spacing.unit,
-  },
-}))((props) => {
-  const { points, content, classes, sampleAnswer, mathMlOptions = {}, error, pluginOpts = {} } = props;
+const Row = styled('div')(() => ({ display: 'flex', width: '100%', position: 'relative' }));
+
+const EditorDiv = styled('div')(({ theme }) => ({ width: '100%', backgroundColor: `${theme.palette.common.white}` }));
+
+const DragIndicatorStyled = styled(DragIndicator)(({ theme }) => ({ paddingTop: theme.spacing(1), color: grey[500] }));
+
+const PointsLabel = styled(Typography)(({ theme }) => ({
+  color: grey[500],
+  paddingBottom: theme.spacing(1),
+  textTransform: 'uppercase',
+}));
+
+const SampleAnswersEditor = styled('div')(({ theme }) => ({ paddingLeft: theme.spacing(3) }));
+
+const ErrorText = styled('div')(({ theme }) => ({
+  fontSize: theme.typography.fontSize - 2,
+  color: theme.palette.error.main,
+  paddingLeft: theme.spacing(3),
+  paddingTop: theme.spacing(1),
+}));
+
+const PointMenuWrapper = styled('div')(() => ({ position: 'absolute', right: 0 }));
+
+export const PointConfig = (props) => {
+  const { points, content, sampleAnswer, mathMlOptions = {}, error, pluginOpts = {} } = props;
   const pointsLabel = `${points} ${points <= 1 ? 'pt' : 'pts'}`;
   const showSampleAnswer = checkSampleAnswer(sampleAnswer);
 
   return (
-    <div className={classes.pointConfig}>
-      <Typography variant="overline" className={classes.pointsLabel}>
-        {pointsLabel}
-      </Typography>
-
-      <div className={classes.row}>
-        <DragIndicator className={classes.dragIndicator} />
-        <EditableHtml
-          className={classes.editor}
-          error={error}
-          pluginProps={pluginOpts}
-          markup={content}
-          onChange={props.onChange}
-          mathMlOptions={mathMlOptions}
-        />
-        <PointMenu
-          classes={{
-            icon: classes.pointMenu,
-          }}
-          showSampleAnswer={showSampleAnswer}
-          onChange={props.onMenuChange}
-        />
-      </div>
-      {error && <div className={classes.errorText}>{error}</div>}
-      {!showSampleAnswer && (
-        <div className={classes.sampleAnswersEditor}>
-          <Typography variant="overline" className={classes.dragIndicator}>
-            Sample Response
-          </Typography>
+    <div>
+      <PointsLabel variant="overline">{pointsLabel}</PointsLabel>
+      <Row>
+        <DragIndicatorStyled />
+        <EditorDiv>
           <EditableHtml
-            className={classes.editor}
-            markup={sampleAnswer}
+            error={error}
             pluginProps={pluginOpts}
-            onChange={props.onSampleChange}
+            markup={content}
+            onChange={props.onChange}
             mathMlOptions={mathMlOptions}
           />
-        </div>
+        </EditorDiv>
+        <PointMenuWrapper>
+          <PointMenu showSampleAnswer={showSampleAnswer} onChange={props.onMenuChange} />
+        </PointMenuWrapper>
+      </Row>
+      {error && <ErrorText>{error}</ErrorText>}
+      {!showSampleAnswer && (
+        <SampleAnswersEditor>
+          <DragIndicatorStyled as={Typography} variant="overline">
+            Sample Response
+          </DragIndicatorStyled>
+          <EditorDiv>
+            <EditableHtml
+              markup={sampleAnswer}
+              pluginProps={pluginOpts}
+              onChange={props.onSampleChange}
+              mathMlOptions={mathMlOptions}
+            />
+          </EditorDiv>
+        </SampleAnswersEditor>
       )}
     </div>
   );
-});
+};
+
+const Container = styled('div')(({ theme }) => ({
+  backgroundColor: grey[200],
+  borderWidth: 1,
+  borderStyle: 'solid',
+  borderColor: grey[300],
+  padding: theme.spacing(2),
+  margin: theme.spacing(1),
+}));
+
+const StyledInputContainer = styled(InputContainer)(({ theme }) => ({
+  width: '100%',
+  paddingTop: theme.spacing(2.5),
+  marginBottom: theme.spacing(2),
+  marginTop: theme.spacing(1),
+  '& .MuiFormControl-root': { width: '100%' },
+  '& > .MuiFormLabel-root.MuiInputLabel-shrink': {
+    fontSize: theme.typography.fontSize + 2,
+    transform: 'translate(0, 1.5px) scale(0.75)',
+  },
+}));
+
+const Rubricless = styled('div')(() => ({ display: 'none' }));
+const ConfigHolder = styled('div')(({ theme }) => ({ paddingTop: theme.spacing(1), paddingBottom: theme.spacing(1) }));
+const RubricTitle = styled(Typography)(({ theme }) => ({ paddingLeft: theme.spacing(1), margin: theme.spacing(1) }));
 
 export class RawAuthoring extends React.Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
-    className: PropTypes.string,
     value: RubricType,
     config: PropTypes.object,
     pluginOpts: PropTypes.object,
@@ -234,18 +240,16 @@ export class RawAuthoring extends React.Component {
     onChange({ ...value, excludeZero: !value.excludeZero });
   };
 
-  shouldRenderPoint = (index, value) => {
-    if (!value.excludeZero) {
-      return true;
-    } else {
-      if (index < value.points.length - 1) {
-        return true;
-      } else if (index === value.points.length - 1) {
-        return false;
-      }
+  getPointForIndex = (index, value) => {
+    const maxPoint = value.excludeZero ? value.points.length - 1 + 1 : value.points.length - 1;
+    return maxPoint - index;
+  };
 
-      return true;
-    }
+  getMaxPoint = (value) => (value.excludeZero ? value.points.length : value.points.length - 1);
+
+  shouldRenderPoint = (index, value) => {
+    const point = this.getPointForIndex(index, value);
+    return point > 0 || !value.excludeZero;
   };
 
   onPointMenuChange = (index, clickedItem) => {
@@ -264,15 +268,7 @@ export class RawAuthoring extends React.Component {
   };
 
   render() {
-    const {
-      classes,
-      className,
-      value,
-      mathMlOptions = {},
-      config = {},
-      rubricless = false,
-      pluginOpts = {},
-    } = this.props;
+    const { value, mathMlOptions = {}, config = {}, rubricless = false, pluginOpts = {} } = this.props;
     let {
       excludeZeroEnabled = true,
       maxPointsEnabled = true,
@@ -289,13 +285,11 @@ export class RawAuthoring extends React.Component {
     }
 
     // for rubric value is computed based on points
-    const maxPointsValue = !rubricless ? value.points.length - 1 : maxPoints;
+    const maxPointsValue = rubricless ? maxPoints : value.excludeZero ? value.points.length : value.points.length - 1;
 
     return (
-      <div className={classNames(classes.class, className)}>
-        <Typography variant="h5" className={classes.rubricTitle}>
-          Rubric
-        </Typography>
+      <div>
+        <RubricTitle variant="h5">Rubric</RubricTitle>
         <FormGroup row>
           {maxPointsEnabled && (
             <MaxPoints
@@ -314,9 +308,8 @@ export class RawAuthoring extends React.Component {
         </FormGroup>
 
         {rubriclessInstructionEnabled && rubricless && (
-          <InputContainer label={rubriclessInstruction.label} className={classes.inputContainer}>
+          <StyledInputContainer label={rubriclessInstruction.label}>
             <EditableHtml
-              className={classes.input}
               markup={value.rubriclessInstruction || ''}
               onChange={this.changeRubriclessInstruction}
               pluginProps={pluginOpts}
@@ -324,83 +317,63 @@ export class RawAuthoring extends React.Component {
               disableUnderline
               languageCharactersProps={[{ language: 'spanish' }, { language: 'special' }]}
               mathMlOptions={mathMlOptions}
+              autoWidthToolbar
             />
-          </InputContainer>
+          </StyledInputContainer>
         )}
 
-        <div className={rubricless ? classes.rubricless : classes.container}>
-          <DragDropContext onDragEnd={this.dragEnd}>
-            <Droppable droppableId="droppable">
-              {(provided) => (
-                <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {value.points.map(
-                    (p, index) =>
-                      this.shouldRenderPoint(index, value) && (
-                        <Draggable key={`${p.points}-${index}`} index={index} draggableId={index.toString()}>
-                          {(provided) => (
-                            <div
-                              className={classes.configHolder}
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                            >
-                              <PointConfig
-                                points={value.points.length - 1 - index}
-                                content={p}
-                                error={
-                                  pointsDescriptorsErrors && pointsDescriptorsErrors[value.points.length - 1 - index]
-                                }
-                                sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
-                                onChange={(content) => this.changeContent(index, content, 'points')}
-                                onSampleChange={(content) => this.changeContent(index, content, 'sampleAnswers')}
-                                onMenuChange={(clickedItem) => this.onPointMenuChange(index, clickedItem)}
-                                mathMlOptions={mathMlOptions}
-                                pluginOpts={pluginOpts}
-                              />
-                            </div>
-                          )}
-                        </Draggable>
-                      ),
+        <div>
+          {rubricless ? (
+            <Rubricless />
+          ) : (
+            <Container>
+              <DragDropContext onDragEnd={this.dragEnd}>
+                <Droppable droppableId="droppable">
+                  {(provided) => (
+                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                      {value.points.map(
+                        (p, index) =>
+                          this.shouldRenderPoint(index, value) && (
+                            <Draggable key={`${p.points}-${index}`} index={index} draggableId={index.toString()}>
+                              {(provided) => (
+                                <ConfigHolder
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <PointConfig
+                                    points={this.getPointForIndex(index, value)}
+                                    content={p}
+                                    error={
+                                      pointsDescriptorsErrors &&
+                                      pointsDescriptorsErrors[value.points.length - 1 - index]
+                                    }
+                                    sampleAnswer={value.sampleAnswers && value.sampleAnswers[index]}
+                                    onChange={(content) => this.changeContent(index, content, 'points')}
+                                    onSampleChange={(content) => this.changeContent(index, content, 'sampleAnswers')}
+                                    onMenuChange={(clickedItem) => this.onPointMenuChange(index, clickedItem)}
+                                    mathMlOptions={mathMlOptions}
+                                    pluginOpts={pluginOpts}
+                                  />
+                                </ConfigHolder>
+                              )}
+                            </Draggable>
+                          ),
+                      )}
+                      {provided.placeholder}
+                    </div>
                   )}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+                </Droppable>
+              </DragDropContext>
+            </Container>
+          )}
         </div>
       </div>
     );
   }
 }
 
-const styles = (theme) => ({
-  container: {
-    backgroundColor: grey[200],
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: grey[300],
-    padding: theme.spacing.unit * 2,
-    margin: theme.spacing.unit,
-  },
-  inputContainer: {
-    width: '100%',
-    paddingTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
-  },
-  rubricless: {
-    display: 'none',
-  },
-  configHolder: {
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-  },
-  rubricTitle: {
-    paddingLeft: theme.spacing.unit,
-    margin: theme.spacing.unit,
-  },
-});
-
-const StyledRawAuthoring = withStyles(styles)(RawAuthoring);
+// styles migrated to styled-components above
 
 const Reverse = (props) => {
   const { rubricless = false, config = {}, pluginOpts = {} } = props || {};
@@ -424,13 +397,7 @@ const Reverse = (props) => {
   };
 
   return (
-    <StyledRawAuthoring
-      value={value}
-      config={config}
-      onChange={onChange}
-      rubricless={rubricless}
-      pluginOpts={pluginOpts}
-    />
+    <RawAuthoring value={value} config={config} onChange={onChange} rubricless={rubricless} pluginOpts={pluginOpts} />
   );
 };
 

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Sized from './sized';
 
 const Glint = ({ fill }) => (
@@ -21,21 +20,21 @@ export class LearnMore extends React.Component {
   };
 
   render() {
-    const { classes, size } = this.props;
+    const { size } = this.props;
 
     if (this.props.open === true) {
       return (
         <Sized size={size}>
           <svg preserveAspectRatio="xMinYMin meet" viewBox="-135 129 16 32">
             <path
-              className={classes.hideBg}
+              fill="#BCE2FF"
               d="M-122,141.1c0-3.7-3.3-6.6-7.1-5.8c-2.4,0.5-4.3,2.4-4.7,4.8c-0.4,2.3,0.6,4.4,2.2,5.7c0.4,0.3,0.6,0.8,0.6,1.3v1.9h6.1v-1.9c0-0.5,0.2-1,0.6-1.3C-122.8,144.7-122,143-122,141.1z"
             />
             <path
-              className={classes.hideBg}
+              fill="#BCE2FF"
               d="M-125.7,153h-4.5c-0.4,0-0.8-0.4-0.8-0.8v-1.6h6.1v1.6C-124.9,152.7-125.2,153-125.7,153z"
             />
-            <Glint fill={classes.hideFg.fill} />
+            <Glint fill={'#1A9CFF'} />
           </svg>
         </Sized>
       );
@@ -69,32 +68,20 @@ export class LearnMore extends React.Component {
               d="M-125,153.7h-4.5c-0.4,0-0.8-0.4-0.8-0.8v-1.6h6.1v1.6C-124.2,153.3-124.6,153.7-125,153.7z"
             />
             <path
-              className={classes.showBg}
+              fill="#1A9CFF"
               d="M-122,141.1c0-3.7-3.3-6.6-7.1-5.8c-2.4,0.5-4.3,2.4-4.7,4.8c-0.4,2.3,0.6,4.4,2.2,5.7c0.4,0.3,0.6,0.8,0.6,1.3v1.9h6.1v-1.9c0-0.5,0.2-1,0.6-1.3C-122.8,144.7-122,143-122,141.1z"
             />
             <path
-              className={classes.showBg}
+              fill="#1A9CFF"
               d="M-125.7,153h-4.5c-0.4,0-0.8-0.4-0.8-0.8v-1.6h6.1v1.6C-124.9,152.7-125.2,153-125.7,153z"
             />
-            <Glint fill={classes.hideFg.fill} />
+            <Glint fill={'1A9CFF'} />
           </svg>
         </Sized>
       );
     }
   }
 }
-
-const styles = {
-  showBg: {
-    fill: '#1a9cff',
-  },
-  hideFg: {
-    fill: '#1a9cff',
-  },
-  hideBg: {
-    fill: '#bce2ff',
-  },
-};
 
 LearnMore.propTypes = {
   open: PropTypes.bool,
@@ -104,4 +91,4 @@ LearnMore.defaultProps = {
   open: false,
 };
 
-export default withStyles(styles)(LearnMore);
+export default LearnMore;

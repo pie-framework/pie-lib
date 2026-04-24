@@ -3,144 +3,118 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.1...@pie-lib/math-evaluator@2.21.1) (2025-10-22)
+# [3.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@3.2.0-next.2...@pie-lib/math-evaluator@3.2.0-next.4) (2026-02-26)
 
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+# [3.2.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@3.2.0-next.1...@pie-lib/math-evaluator@3.2.0-next.2) (2026-02-25)
 
 ### Bug Fixes
 
-* bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+- **deps:** update [@pie-lib](https://github.com/pie-lib) dependencies to published versions ([134fbdc](https://github.com/pie-framework/pie-lib/commit/134fbdc90c6a15f89a736340578d70fb80a983b3))
 
+# [3.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@3.1.0-next.1...@pie-lib/math-evaluator@3.1.0-next.3) (2026-01-27)
 
+**Note:** Version bump only for package @pie-lib/math-evaluator
 
+# [3.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.21.1...@pie-lib/math-evaluator@3.1.0-next.1) (2026-01-26)
 
+### Bug Fixes
+
+- remove carets from [@pie-lib](https://github.com/pie-lib) dependencies and configure lerna to use exact versions ([c9cd800](https://github.com/pie-framework/pie-lib/commit/c9cd800844abca09e7acf1fd35b2ddf51a6d86df))
+- remove carret, point to specific libs version ([09939a5](https://github.com/pie-framework/pie-lib/commit/09939a5aca19d7dda03d62c93d4d524f98dd69da))
+- remove exports and publish ([#2068](https://github.com/pie-framework/pie-lib/issues/2068)) ([60a96cd](https://github.com/pie-framework/pie-lib/commit/60a96cde0ec65f6b1cac0ae329aa33a0abc50d05))
+- use fixed lib deps ([de7c64d](https://github.com/pie-framework/pie-lib/commit/de7c64d14f13259fe44d47405e4421baef21e24e))
+
+### Features
+
+- sync latest changes from dev ([c936e9c](https://github.com/pie-framework/pie-lib/commit/c936e9c7f9e095e7d9b9805ac2bf72bd271e05f1))
+
+# [3.0.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.21.2-next.0...@pie-lib/math-evaluator@3.0.0-next.0) (2026-01-19)
+
+**Note:** Version bump only for package @pie-lib/math-evaluator
+
+## [2.21.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.35.0-mui-update.0...@pie-lib/math-evaluator@2.21.2-next.0) (2026-01-19)
+
+### Bug Fixes
+
+- bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
+
+## [2.21.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.1...@pie-lib/math-evaluator@2.21.1) (2025-10-22)
+
+### Bug Fixes
+
+- bump config-ui PD-5265 ([77d0c78](https://github.com/pie-framework/pie-lib/commit/77d0c78cacfa57e93ed17e7a7f1257f4a9cf6ab3))
 
 # [2.21.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.0...@pie-lib/math-evaluator@2.21.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
-
-
-
-
 # [2.20.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.0...@pie-lib/math-evaluator@2.20.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
-
-
-
-
 
 # [2.19.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.0...@pie-lib/math-evaluator@2.19.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
-
-
-
-
 # [2.18.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.0...@pie-lib/math-evaluator@2.18.0) (2025-10-16)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
-
-
-
-
 
 ## [2.17.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.17.0...@pie-lib/math-evaluator@2.17.1) (2025-10-14)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
-
-
-
-
 # [2.17.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.23...@pie-lib/math-evaluator@2.17.0) (2025-09-25)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.16.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.15.0...@pie-lib/math-evaluator@2.16.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
-
-
-
-
 # [2.15.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.14.0...@pie-lib/math-evaluator@2.15.0) (2025-09-18)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
-
-
-
-
 # [2.14.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.23...@pie-lib/math-evaluator@2.14.0) (2025-09-18)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.13.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.12.0...@pie-lib/math-evaluator@2.13.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
-
-
-
-
 # [2.12.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.11.0...@pie-lib/math-evaluator@2.12.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
-
-
-
-
 
 # [2.11.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.10.1...@pie-lib/math-evaluator@2.11.0) (2025-09-17)
 
 **Note:** Version bump only for package @pie-lib/math-evaluator
 
-
-
-
-
 ## [2.10.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.23...@pie-lib/math-evaluator@2.10.1) (2025-08-11)
-
 
 ### Bug Fixes
 
-* fixed pie-lib/icons import [PD-5126] ([dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f))
-
+- fixed pie-lib/icons import [PD-5126](<[dcb506c](https://github.com/pie-framework/pie-lib/commit/dcb506c914a177f6d88bf73247a023bfe71dac1f)>)
 
 ### Features
 
-* split pie-toolbox into multiple packages [PD-5126] ([7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2))
-
-
-
-
+- split pie-toolbox into multiple packages [PD-5126](<[7d55a25](https://github.com/pie-framework/pie-lib/commit/7d55a2552d084cd3d0d5c00dc77411b2ced2f5e2)>)
 
 # [2.10.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-evaluator@2.1.23...@pie-lib/math-evaluator@2.10.0) (2025-08-07)
 

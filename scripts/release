@@ -1,0 +1,212 @@
+#!/usr/bin/env node
+
+const { execSync } = require('child_process');
+const os = require('os');
+const chalk = require('chalk');
+const minimist = require('minimist');
+const { resolve } = require('path');
+
+const CWD = process.cwd();
+
+/**
+ * Parsed command-line arguments object processed using the `minimist` library.
+ *
+ * This variable contains the arguments passed to the program from the command-line interface
+ * after slicing off the first two elements of `process.argv` (node executable and script path).
+ * The arguments are processed into a structured object with specific parsing rules.
+ *
+ * Configuration:
+ * - `boolean`: Specifies arguments that should be treated as booleans.
+ *   - `dry-run`: Indicates whether the operation is a dry run. Defaults to `false`.
+ *   - `next`: Flag for enabling next-related actions. Defaults to `false`.
+ * - `string`: Specifies arguments that should be treated as strings.
+ *   - `loglevel`: Defines the logging level, if provided.
+ * - `default`: Sets default values for parameters.
+ *   - `dry-run`: Defaults to `false`.
+ *   - `next`: Defaults to `false`.
+ */
+const argv = minimist(process.argv.slice(2), {
+  boolean: ['dry-run', 'next', 'build', 'test', 'release', 'major'],
+  string: ['loglevel'],
+  default: { 'dry-run': false, next: false, build: false, test: false, release: false, major: false },
+});
+
+/**
+ * Logs messages to the console with an informational label `[INFO]` styled in cyan.
+ *
+ * This function accepts multiple arguments and outputs them to the console,
+ * prefixed by a styled `[INFO]` label for clarity. The styling is achieved using
+ * the `chalk` library.
+ *
+ * @param {...*} msg - One or more arguments to be logged to the console.
+ */
+const log = (...msg) => console.log(chalk.cyan('[INFO]'), ...msg);
+/**
+ * Logs warning messages to the console in a formatted and visually distinct way.
+ * Prepends the warning label "[WARN]" in yellow color to the provided messages.
+ *
+ * @param {...*} msg - The messages or data to be logged as warnings. Accepts multiple arguments.
+ */
+const warn = (...msg) => console.warn(chalk.yellow('[WARN]'), ...msg);
+/**
+ * Logs error messages to the console with a standardized [ERROR] prefix in red color.
+ *
+ * This function uses the `chalk` library to style the text in red color for better visibility.
+ * The messages are passed as arguments and are logged to the console using `console.error`.
+ *
+ * @param {...any} msg - One or more error messages or data to be logged to the console.
+ */
+const error = (...msg) => console.error(chalk.red('[ERROR]'), ...msg);
+
+/**
+ * Resolves the path to a binary installed in the project's `node_modules/.bin` directory.
+ *
+ * @param {string} n - The name of the binary file (e.g., "eslint", "jest").
+ * @returns {string} Absolute path to the binary in `node_modules/.bin`.
+ */
+const binary = (n) => resolve(CWD, 'node_modules/.bin', n);
+/**
+ * Resolves a path relative to the project root (current working directory).
+ *
+ * @param {string} n - A relative path or filename (e.g., "src/index.js", "package.json").
+ * @returns {string} Absolute path to the file or directory in the project root.
+ */
+const root = (n) => resolve(CWD, n);
+
+/**
+ * Executes a shell command synchronously, with optional configuration.
+ * If the `dry-run` option is enabled, logs the command without executing it.
+ *
+ * @param {string} command - The shell command to be executed.
+ * @param {Object} [options={}] - Optional configuration for command execution.
+ *   The options are passed to the `execSync` method.
+ */
+const runCmd = (command, options = {}) => {
+  log(`CMD: ${command}`);
+  if (argv['dry-run']) {
+    warn('Dry run enabled — skipping execution');
+    return;
+  }
+  execSync(command, { stdio: 'inherit', cwd: CWD, ...options });
+};
+
+/**
+ * Retrieves the name of the current Git branch.
+ *
+ * This function executes a Git command to determine the branch name
+ * of the repository in the current working directory. It utilizes
+ * `git rev-parse --abbrev-ref HEAD` to extract the branch name and
+ * returns it as a trimmed string.
+ *
+ * @returns {string} The name of the current Git branch.
+ *
+ * @throws {Error} If the Git command fails or if the current
+ *                 directory is not part of a Git repository.
+ */
+const getCurrentBranch = () =>
+  execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+
+/**
+ * Executes the build process, which consists of multiple sequential steps including:
+ *
+ * 1. Cleanup: Removes generated `lib` directories for all packages in the repository.
+ * 2. Linting: Runs ESLint across specified source files with defined extensions.
+ * 3. Transpilation: Uses Babel to build the code from source to output directories (`lib`)
+ *    while generating source maps and respecting defined ignore rules.
+ */
+const build = () => {
+  log(chalk.magenta('--- STEP 1: CLEANUP ---'));
+  runCmd(
+    `${binary(`lerna`)} exec -- rm -rf lib`,
+  );
+
+  log(chalk.magenta('--- STEP 2: LINT ---'));
+  runCmd(
+    `${binary(`lerna`)} exec -- ${binary('eslint')} --ignore-path ${root('.eslintignore')} --ext .js --ext .jsx src`,
+  );
+
+  log(chalk.magenta('--- STEP 3: BABEL BUILD ---'));
+  runCmd(
+    `${binary(`lerna`)} exec -- ${binary('babel')} --ignore \'**/__test__/**\',\'**/__tests__/**\' src -d lib --source-maps --root-mode upward`,
+  );
+};
+
+/**
+ * Executes the test step of the build process.
+ *
+ * This function determines the number of CPU cores available on the host machine.
+ * It uses that information to calculate the number of workers (`workers`) to be utilized by Jest.
+ * If no CPU core information is available, a default value of 1 is used.
+ * The step also logs the number of workers being used for the test process
+ * and runs the Jest test suite in a worker-based parallel execution mode.
+ */
+const test = () => {
+  const workers = os.cpus().length || 1;
+  log(chalk.magenta(`--- STEP 4: TEST ---`));
+  runCmd(`${binary('jest')} -w ${workers}`);
+};
+
+/**
+ * Handles the release process, including versioning, pushing tags, and publishing packages.
+ *
+ * This function executes the following steps:
+ * 1. Logs the initiation of the versioning process and versions the packages using Lerna with conventional commits.
+ * 2. Pushes the tags and updates the branch to a remote git repository.
+ * 3. Publishes the packages to the package registry using Lerna, with optional customization for next/canary releases and log level.
+ *
+ * Conditional behavior:
+ * - If the `argv.next` flag is provided, the release process will include canary versioning with a preid and dist-tag of "next".
+ * - If the `argv.loglevel` flag is provided, the specified log level will be included in the publishing command.
+ */
+const release = () => {
+  log(chalk.magenta('--- STEP 5: VERSION PACKAGES ---'));
+  // --major forces a major bump on every publishable package, bypassing
+  // conventional-commits inference. Use this for coordinated platform
+  // upgrades (peerDep changes for React, MUI, etc.) where every package
+  // must move to a new major in lockstep.
+  const versionCmd = argv.major
+    ? 'npx lerna version major --force-publish=* --yes'
+    : 'npx lerna version --conventional-commits --yes';
+  runCmd(versionCmd);
+
+  log(chalk.magenta('--- STEP 6: PUBLISH PACKAGES ---'));
+  let releaseCmd = 'npx lerna publish from-git --yes';
+  if (argv.next) releaseCmd += ' --canary --preid next --dist-tag next';
+  if (argv.loglevel) releaseCmd += ` --loglevel ${argv.loglevel}`;
+  runCmd(releaseCmd);
+
+  log(chalk.magenta('--- STEP 7: PUSH TAGS ---'));
+  runCmd(`git push origin ${getCurrentBranch()} --follow-tags`);
+};
+
+/**
+ * Executes the build and release process.
+ *
+ * The `run` function coordinates the execution of the build and release workflows.
+ * If successful, it logs a confirmation message indicating the process completed successfully.
+ * If an error occurs during the execution, it logs an error message, showing the associated
+ * error details, and then terminates the process with a non-zero exit code.
+ *
+ * This function is designed to encapsulate the complete
+ * build-and-release lifecycle, handling both success and failure scenarios.
+ */
+const run = () => {
+  try {
+    // If no specific flags, run full workflow
+    const anyFlag = argv.build || argv.test || argv.release;
+    if (!anyFlag) {
+      build();
+      test();
+      release();
+    } else {
+      if (argv.build) build();
+      if (argv.test) test();
+      if (argv.release) release();
+    }
+    log(chalk.green('✅ Tasks completed successfully.'));
+  } catch (err) {
+    error('❌ Build/release failed:', err.message);
+    process.exit(1);
+  }
+};
+run();

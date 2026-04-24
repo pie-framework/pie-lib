@@ -2,6 +2,7 @@ import { trigCalculator } from 'trigonometry-calculator';
 import Point from '@mapbox/point-geometry';
 import debug from 'debug';
 import { parse as parseOrigin } from './transform-origin';
+
 const log = debug('@pie-lib:tools:anchor-utils');
 
 export const toDegrees = (radians) => radians * (180 / Math.PI);

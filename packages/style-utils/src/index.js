@@ -3,8 +3,8 @@
  */
 export const noSelect = () => ({
   cursor: 'default',
-  '-webkit-user-select': 'none',
-  '-moz-user-select': 'none',
-  '-ms-user-select': 'none',
-  'user-select': 'none',
+  WebkitUserSelect: 'none',
+  MozUserSelect: 'none',
+  msUserSelect: 'none',
+  userSelect: 'none',
 });

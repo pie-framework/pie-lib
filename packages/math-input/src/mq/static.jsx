@@ -1,13 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import debug from 'debug';
-import MathQuill from '@pie-framework/mathquill';
 import { updateSpans } from '../updateSpans';
-
-let MQ;
-if (typeof window !== 'undefined') {
-  MQ = MathQuill.getInterface(2);
-}
+import { MQ } from './mathquill-instance';
 
 const log = debug('pie-lib:math-input:mq:static');
 const REGEX = /\\MathQuillMathField\[r\d*\]\{(.*?)\}/g;
@@ -129,7 +124,7 @@ export default class Static extends React.Component {
   };
 
   onInputEdit = (field) => {
-    if (!this.mathField) {
+    if (!this.mathField || this._isProgrammaticUpdate) {
       return;
     }
     const name = this.props.getFieldName(field, this.mathField.innerFields);
@@ -156,6 +151,7 @@ export default class Static extends React.Component {
 
   announceLatexConversion = (newLatex) => {
     if (!this.state) {
+      // eslint-disable-next-line no-console
       console.error('State is not initialized');
       return;
     }
@@ -178,13 +174,18 @@ export default class Static extends React.Component {
             this.announceMessage(announcement);
           }
         } catch (e) {
+          // eslint-disable-next-line no-console
           console.warn('Error parsing latex:', e.message);
+          // eslint-disable-next-line no-console
           console.warn(e);
         }
       }
     }
 
-    this.setState({ previousLatex: newLatex, isDeleteKeyPressed: false });
+    // Only setState when values change to avoid "Maximum update depth exceeded"
+    if (this.state.previousLatex !== newLatex || this.state.isDeleteKeyPressed) {
+      this.setState({ previousLatex: newLatex, isDeleteKeyPressed: false });
+    }
   };
 
   announceMessage = (message) => {
@@ -213,13 +214,17 @@ export default class Static extends React.Component {
     }
 
     try {
+      this._isProgrammaticUpdate = true;
       this.mathField.parseLatex(this.props.latex);
       this.mathField.latex(this.props.latex);
     } catch (e) {
       // default latex if received has errors
       this.mathField.latex('\\MathQuillMathField[r1]{}');
+    } finally {
+      this._isProgrammaticUpdate = false;
     }
   };
+
 
   blur = () => {
     log('blur mathfield');

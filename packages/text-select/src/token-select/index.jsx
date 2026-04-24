@@ -1,21 +1,45 @@
 import React from 'react';
+import { renderToString } from 'react-dom/server';
 import PropTypes from 'prop-types';
 import Token, { TokenTypes } from './token';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import clone from 'lodash/clone';
+import { styled } from '@mui/material/styles';
+import { clone, isEqual } from 'lodash-es';
 import debug from 'debug';
 import { noSelect } from '@pie-lib/style-utils';
-import { renderToString } from 'react-dom/server';
-import isEqual from 'lodash/isEqual';
 
 const log = debug('@pie-lib:text-select:token-select');
+
+const StyledTokenSelect = styled('div')(() => ({
+  backgroundColor: 'none',
+  whiteSpace: 'pre',
+  ...noSelect(),
+  '& p': {
+    whiteSpace: 'break-spaces',
+  },
+}));
+
+// Invisible container whose only job is to make Emotion inject CSS for all Token variants.
+// renderToString produces correct class names but never triggers Emotion's DOM-side injection,
+// so without this the class names exist in the HTML but have no matching CSS rules.
+const HiddenCssPrimer = styled('div')(() => ({
+  display: 'none',
+  position: 'absolute',
+  visibility: 'hidden',
+  pointerEvents: 'none',
+}));
+
+const normalizeCommonEntities = (text = '') => text.replace(/&nbsp;/gi, '\u00a0');
+
+const normalizeSelectableText = (text = '') =>
+  normalizeCommonEntities(text)
+    .replace(/<\/p>\s*<p[^>]*>/gi, '\n\n')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?(table|tbody|tr|td|p)[^>]*>/gi, '');
 
 export class TokenSelect extends React.Component {
   static propTypes = {
     tokens: PropTypes.arrayOf(PropTypes.shape(TokenTypes)).isRequired,
     className: PropTypes.string,
-    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     highlightChoices: PropTypes.bool,
@@ -34,49 +58,36 @@ export class TokenSelect extends React.Component {
   canSelectMore = (selectedCount) => {
     const { maxNoOfSelections } = this.props;
 
-    if (maxNoOfSelections === 1) {
-      return true;
-    }
+    if (maxNoOfSelections === 1) return true;
 
     log('[canSelectMore] maxNoOfSelections: ', maxNoOfSelections, 'selectedCount: ', selectedCount);
     return maxNoOfSelections <= 0 || (isFinite(maxNoOfSelections) && selectedCount < maxNoOfSelections);
   };
 
-  /**
-   @function
-   @param { object } event
-
-   @description
-    each token is wrapped into a span that has Token.rootClassName class and indexkey attribute (represents the index of the token)
-    tokens are updated with the targeted token having the correct value set for 'selected' property
-   */
   toggleToken = (event) => {
     const { target } = event;
     const { tokens, animationsDisabled } = this.props;
     const tokensCloned = clone(tokens);
-    const targetSpanWrapper = target.closest(`.${Token.rootClassName}`);
-    const targetedTokenIndex = targetSpanWrapper && targetSpanWrapper.dataset && targetSpanWrapper.dataset.indexkey;
-    const t = targetedTokenIndex && tokensCloned[targetedTokenIndex];
 
-    // don't toggle if we are in print mode, token correctness is defined or if it's missing
-    // (missing means that it was evaluated as correct and not selected)
+    const targetSpanWrapper = target.closest?.(`.${Token.rootClassName}`);
+    const targetedTokenIndex = targetSpanWrapper?.dataset?.indexkey;
+    const t = targetedTokenIndex !== undefined ? tokensCloned[targetedTokenIndex] : undefined;
+
+    // don't toggle if in print mode, correctness is defined, or is missing
     if (t && t.correct === undefined && !animationsDisabled && !t.isMissing) {
       const { onChange, maxNoOfSelections } = this.props;
       const selected = !t.selected;
 
       if (maxNoOfSelections === 1 && this.selectedCount() === 1) {
-        const selectedToken = (tokens || []).filter((t) => t.selected);
-
+        const selectedToken = (tokens || []).filter((tk) => tk.selected);
         const updatedTokens = tokensCloned.map((token) => {
           if (isEqual(token, selectedToken[0])) {
             return { ...token, selected: false };
           }
-
           return { ...token, selectable: true };
         });
 
-        const update = { ...t, selected: !t.selected };
-
+        const update = { ...t, selected };
         updatedTokens.splice(targetedTokenIndex, 1, update);
         onChange(updatedTokens);
       } else {
@@ -84,81 +95,148 @@ export class TokenSelect extends React.Component {
           log('skip toggle max reached');
           return;
         }
-
-        const update = { ...t, selected: !t.selected };
-
+        const update = { ...t, selected };
         tokensCloned.splice(targetedTokenIndex, 1, update);
         onChange(tokensCloned);
       }
     }
   };
 
+  /**
+   * Build an HTML string so that non-selectable token text (which may contain arbitrary or even
+   * *partial* HTML — e.g. just an opening <table><tbody><tr><td> in one token and the matching
+   * closing tags in another) is preserved exactly as-is.  Selectable Token components are
+   * serialised via renderToString; their Emotion class names are stable hashes so they match the
+   * CSS that the HiddenCssPrimer forces Emotion to inject into the document.
+   */
   generateTokensInHtml = () => {
     const { tokens, disabled, highlightChoices, animationsDisabled } = this.props;
     const selectedCount = this.selectedCount();
-    const isLineBreak = (text) => text === '\n';
-    const isNewParagraph = (text) => text === '\n\n';
 
     const reducer = (accumulator, t, index) => {
       const selectable = t.selected || (t.selectable && this.canSelectMore(selectedCount));
       const showCorrectAnswer = t.correct !== undefined && (t.selectable || t.selected);
-      let finalAcc = accumulator;
 
-      if (isNewParagraph(t.text)) {
-        return finalAcc + '</p><p>';
-      }
+      if (t.text === '\n\n') return `${accumulator}</p><p>`;
 
-      if (isLineBreak(t.text)) {
-        return finalAcc + '<br>';
-      }
+      if (t.text === '\n') return `${accumulator}<br>`;
 
       if (
         (selectable && !disabled) ||
         showCorrectAnswer ||
         t.selected ||
         t.isMissing ||
-        (animationsDisabled && t.predefined) // if we are in print mode
+        (animationsDisabled && t.predefined)
       ) {
         return (
-          finalAcc +
+          accumulator +
           renderToString(
             <Token
               key={index}
               disabled={disabled}
               index={index}
               {...t}
+              text={normalizeSelectableText(t.text)}
               selectable={selectable}
               highlight={highlightChoices}
               animationsDisabled={animationsDisabled}
             />,
           )
         );
-      } else {
-        return accumulator + t.text;
       }
+
+      // Non-selectable: emit raw HTML unchanged (may contain partial tags, tables, lists, etc.)
+      return accumulator + normalizeCommonEntities(t.text);
     };
 
-    const reduceResult = (tokens || []).reduce(reducer, '<p>');
-
-    return reduceResult + '</p>';
+    return (tokens || []).reduce(reducer, '<p>') + '</p>';
   };
 
   render() {
-    const { classes, className: classNameProp } = this.props;
-    const className = classNames(classes.tokenSelect, classNameProp);
+    const { className: classNameProp } = this.props;
     const html = this.generateTokensInHtml();
 
-    return <div className={className} dangerouslySetInnerHTML={{ __html: html }} onClick={this.toggleToken} />;
+    // Render one invisible Token per visual variant so Emotion injects all CSS rules into the
+    // document before the browser paints the dangerouslySetInnerHTML content.
+    const primerText = ' ';
+    return (
+      <>
+        <HiddenCssPrimer aria-hidden="true">
+          {/* base / selectable */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            disabled={false}
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* highlight */}
+          <Token text={primerText} index={-1} selectable disabled={false} highlight animationsDisabled={false} />
+          {/* selected */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            selected
+            disabled={false}
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* disabled + selected */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            selected
+            disabled
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* print / animationsDisabled */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            disabled={false}
+            highlight={false}
+            animationsDisabled
+            predefined
+          />
+          {/* correct */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            selected
+            correct
+            disabled={false}
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* incorrect */}
+          <Token
+            text={primerText}
+            index={-1}
+            selectable
+            selected
+            correct={false}
+            disabled={false}
+            highlight={false}
+            animationsDisabled={false}
+          />
+          {/* missing */}
+          <Token text={primerText} index={-1} isMissing disabled={false} highlight={false} animationsDisabled={false} />
+        </HiddenCssPrimer>
+
+        <StyledTokenSelect
+          className={classNameProp}
+          onClick={this.toggleToken}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </>
+    );
   }
 }
 
-export default withStyles(() => ({
-  tokenSelect: {
-    backgroundColor: 'none',
-    whiteSpace: 'pre',
-    ...noSelect(),
-    '& p': {
-      whiteSpace: 'break-spaces',
-    },
-  },
-}))(TokenSelect);
+export default TokenSelect;
