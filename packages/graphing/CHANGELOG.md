@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-next.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.36...@pie-lib/graphing@3.2.0-next.37) (2026-04-24)
+
+### Bug Fixes
+
+- ensure onClick is called for existing mark points/lines and does not interfere with drag PIE-426 PIE-427 ([1cb4f00](https://github.com/pie-framework/pie-lib/commit/1cb4f00118ff24ddffe4c1ee2a091daccafa4d15))
+
 # [3.2.0-next.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.35...@pie-lib/graphing@3.2.0-next.36) (2026-04-23)
 
 ### Bug Fixes
