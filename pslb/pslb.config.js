@@ -71,6 +71,7 @@ module.exports = {
         imports: {
           default: [
             'react-dom',
+            'react-dom/client',
             'react-dom/server',
             'react',
             'prop-types',
