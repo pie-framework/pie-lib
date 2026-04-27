@@ -26,9 +26,9 @@ const CWD = process.cwd();
  *   - `next`: Defaults to `false`.
  */
 const argv = minimist(process.argv.slice(2), {
-  boolean: ['dry-run', 'next', 'build', 'test', 'release', 'major'],
+  boolean: ['dry-run', 'next', 'build', 'test', 'release'],
   string: ['loglevel'],
-  default: { 'dry-run': false, next: false, build: false, test: false, release: false, major: false },
+  default: { 'dry-run': false, next: false, build: false, test: false, release: false },
 });
 
 /**
@@ -160,14 +160,7 @@ const test = () => {
  */
 const release = () => {
   log(chalk.magenta('--- STEP 5: VERSION PACKAGES ---'));
-  // --major forces a major bump on every publishable package, bypassing
-  // conventional-commits inference. Use this for coordinated platform
-  // upgrades (peerDep changes for React, MUI, etc.) where every package
-  // must move to a new major in lockstep.
-  const versionCmd = argv.major
-    ? 'npx lerna version major --force-publish=* --yes'
-    : 'npx lerna version --conventional-commits --yes';
-  runCmd(versionCmd);
+  runCmd('npx lerna version --conventional-commits --yes');
 
   log(chalk.magenta('--- STEP 6: PUBLISH PACKAGES ---'));
   let releaseCmd = 'npx lerna publish from-git --yes';
