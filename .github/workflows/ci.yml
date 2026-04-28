@@ -75,19 +75,4 @@ jobs:
           cache: yarn
       - run: yarn install
       - run: scripts/release --build
-      # ─────────────────────────────────────────────────────────────────────
-      # TEMPORARY: --major forces every publishable package to a new major
-      # version on the next publish. This is in place ONLY for the platform
-      # upgrade release (React 18, MUI v7, Node 24, test stack modernization).
-      #
-      # REVERT THIS IMMEDIATELY AFTER THE PLATFORM RELEASE PUBLISHES.
-      #
-      # How to revert: open a follow-up PR to master that removes the
-      # --major flag from the line below, restoring:
-      #   - run: scripts/release --release --loglevel verbose
-      #
-      # Leaving --major in place will bump every package to the next major
-      # on EVERY subsequent merge to master, which is almost certainly not
-      # what you want.
-      # ─────────────────────────────────────────────────────────────────────
-      - run: scripts/release --release --major --loglevel verbose
+      - run: scripts/release --release --loglevel verbose
