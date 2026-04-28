@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "charting",
   "keywords": [
     "react",
@@ -22,10 +22,10 @@
     "@mapbox/point-geometry": "^1.1.0",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/math-rendering": "^5.0.0",
-    "@pie-lib/plot": "^4.0.0",
-    "@pie-lib/render-ui": "^6.0.0",
-    "@pie-lib/translator": "^4.0.0",
+    "@pie-lib/math-rendering": "^5.0.1",
+    "@pie-lib/plot": "^4.0.1",
+    "@pie-lib/render-ui": "^6.0.1",
+    "@pie-lib/translator": "^4.0.1",
     "@visx/axis": "^3.0.0",
     "@visx/event": "^3.0.0",
     "@visx/grid": "^3.0.0",
@@ -47,7 +47,7 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@pie-lib/test-utils": "^2.0.0"
+    "@pie-lib/test-utils": "^2.0.1"
   },
   "gitHead": "433bcb776c2975739e7417f133d31cd996164116"
 }

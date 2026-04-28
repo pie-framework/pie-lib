@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/math-rendering-accessible",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "math rendering utilities",
   "publishConfig": {
     "access": "public"
@@ -12,7 +12,7 @@
   "repository": "pie-framework/pie-lib",
   "dependencies": {
     "@pie-framework/mathml-to-latex": "1.4.4",
-    "@pie-lib/math-rendering": "^5.0.0",
+    "@pie-lib/math-rendering": "^5.0.1",
     "debug": "^4.1.1",
     "lodash-es": "^4.17.23",
     "mathjax-full": "3.2.2",

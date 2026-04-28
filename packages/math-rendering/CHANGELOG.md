@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@5.0.0...@pie-lib/math-rendering@5.0.1) (2026-04-28)
+
+**Note:** Version bump only for package @pie-lib/math-rendering
+
 # [4.2.0-next.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@4.2.0-next.3...@pie-lib/math-rendering@4.2.0-next.4) (2026-04-23)
 
 ### Bug Fixes

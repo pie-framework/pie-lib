@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@4.0.0...@pie-lib/translator@4.0.1) (2026-04-28)
+
+**Note:** Version bump only for package @pie-lib/translator
+
 # [3.2.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/translator@3.2.0-next.1...@pie-lib/translator@3.2.0-next.3) (2026-02-26)
 
 **Note:** Version bump only for package @pie-lib/translator

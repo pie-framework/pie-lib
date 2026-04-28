@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/icons",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Some simple icons",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -25,7 +25,7 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@pie-lib/test-utils": "^2.0.0"
+    "@pie-lib/test-utils": "^2.0.1"
   },
   "publishConfig": {
     "access": "public"
