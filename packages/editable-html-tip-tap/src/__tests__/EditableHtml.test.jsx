@@ -349,4 +349,126 @@ describe('EditableHtml', () => {
 
     jest.useRealTimers();
   });
+
+  describe('onUpdate callback', () => {
+    it('calls onChange when transaction.isDone is true', async () => {
+      const onChange = jest.fn();
+      const markup = '<p>Initial content</p>';
+
+      render(<EditableHtml {...defaultProps} markup={markup} onChange={onChange} />);
+
+      await waitFor(() => {
+        expect(useEditor).toHaveBeenCalled();
+      });
+
+      const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
+      const mockEditor = {
+        getHTML: jest.fn(() => '<p>Updated content</p>'),
+      };
+
+      const mockTransaction = {
+        isDone: true,
+      };
+
+      editorConfig.onUpdate({ editor: mockEditor, transaction: mockTransaction });
+
+      expect(onChange).toHaveBeenCalledWith('<p>Updated content</p>');
+    });
+
+    it('calls onChange when markup differs from editor HTML', async () => {
+      const onChange = jest.fn();
+      const markup = '<p>Initial content</p>';
+
+      render(<EditableHtml {...defaultProps} markup={markup} onChange={onChange} />);
+
+      await waitFor(() => {
+        expect(useEditor).toHaveBeenCalled();
+      });
+
+      const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
+      const mockEditor = {
+        getHTML: jest.fn(() => '<p>Different content</p>'),
+      };
+
+      const mockTransaction = {
+        isDone: false,
+      };
+
+      editorConfig.onUpdate({ editor: mockEditor, transaction: mockTransaction });
+
+      expect(onChange).toHaveBeenCalledWith('<p>Different content</p>');
+    });
+
+    it('does not call onChange when transaction.isDone is false and markup matches editor HTML', async () => {
+      const onChange = jest.fn();
+      const markup = '<p>Same content</p>';
+
+      render(<EditableHtml {...defaultProps} markup={markup} onChange={onChange} />);
+
+      await waitFor(() => {
+        expect(useEditor).toHaveBeenCalled();
+      });
+
+      const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
+      const mockEditor = {
+        getHTML: jest.fn(() => '<p>Same content</p>'),
+      };
+
+      const mockTransaction = {
+        isDone: false,
+      };
+
+      editorConfig.onUpdate({ editor: mockEditor, transaction: mockTransaction });
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it('calls onChange when transaction.isDone is true even if markup matches', async () => {
+      const onChange = jest.fn();
+      const markup = '<p>Same content</p>';
+
+      render(<EditableHtml {...defaultProps} markup={markup} onChange={onChange} />);
+
+      await waitFor(() => {
+        expect(useEditor).toHaveBeenCalled();
+      });
+
+      const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
+      const mockEditor = {
+        getHTML: jest.fn(() => '<p>Same content</p>'),
+      };
+
+      const mockTransaction = {
+        isDone: true,
+      };
+
+      editorConfig.onUpdate({ editor: mockEditor, transaction: mockTransaction });
+
+      expect(onChange).toHaveBeenCalledWith('<p>Same content</p>');
+    });
+
+    it('does not call onChange when onChange is not provided', async () => {
+      const markup = '<p>Content</p>';
+
+      render(<EditableHtml {...defaultProps} markup={markup} onChange={undefined} />);
+
+      await waitFor(() => {
+        expect(useEditor).toHaveBeenCalled();
+      });
+
+      const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
+      const mockEditor = {
+        getHTML: jest.fn(() => '<p>Updated content</p>'),
+      };
+
+      const mockTransaction = {
+        isDone: true,
+      };
+
+      // Should not throw error when onChange is undefined
+      expect(() => {
+        editorConfig.onUpdate({ editor: mockEditor, transaction: mockTransaction });
+      }).not.toThrow();
+    });
+  });
 });
