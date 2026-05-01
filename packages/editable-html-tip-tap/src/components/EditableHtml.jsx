@@ -286,7 +286,7 @@ export const EditableHtml = (props) => {
       editable: !props.disabled,
       content: normalizeInitialMarkup(props.markup),
       onUpdate: ({ editor, transaction }) => {
-        if (transaction.isDone) {
+        if (transaction.isDone || props.markup !== editor.getHTML()) {
           props.onChange?.(editor.getHTML());
         }
       },
