@@ -308,6 +308,7 @@ export const lineBase = (Comp, opts) => {
 
       if (!labelModeEnabled) {
         onClick(point || data);
+        return;
       }
 
       if (disabled) {
