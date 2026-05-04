@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.1...@pie-lib/graphing@4.0.2) (2026-05-04)
+
+### Bug Fixes
+
+- **graphing:** defer focus call to ensure re-render completion PIE-520 ([3e3ae16](https://github.com/pie-framework/pie-lib/commit/3e3ae16f11d2193ae77db11d8bd19ec711f8b679))
+
 ## [4.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.0...@pie-lib/graphing@4.0.1) (2026-04-28)
 
 **Note:** Version bump only for package @pie-lib/graphing
