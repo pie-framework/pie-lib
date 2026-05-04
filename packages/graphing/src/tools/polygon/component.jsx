@@ -192,9 +192,12 @@ export class RawBaseComponent extends React.Component {
         onChangeProps(update);
       }
 
-      if (this.input[index]) {
-        this.input[index].focus();
-      }
+      // defer the focus() call with setTimeout to allow the re-render to complete first.
+      setTimeout(() => {
+        if (this.input[index]) {
+          this.input[index].focus();
+        }
+      }, 0);
 
       return;
     }
