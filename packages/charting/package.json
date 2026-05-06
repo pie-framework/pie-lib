@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "7.0.2-next.0",
+  "version": "7.0.2-next.1",
   "description": "charting",
   "keywords": [
     "react",
@@ -23,7 +23,7 @@
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@pie-lib/math-rendering": "^5.0.2-next.0",
-    "@pie-lib/plot": "^4.0.2-next.0",
+    "@pie-lib/plot": "^4.0.2-next.1",
     "@pie-lib/render-ui": "^6.1.0-next.0",
     "@pie-lib/translator": "^4.0.2-next.0",
     "@visx/axis": "^3.0.0",

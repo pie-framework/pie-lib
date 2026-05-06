@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0-next.0...@pie-lib/editable-html-tip-tap@2.1.0-next.1) (2026-05-06)
+
+### Features
+
+- add extension to apply semantic heading markup instead of hardcoded h3 PIE-152 ([02f8b60](https://github.com/pie-framework/pie-lib/commit/02f8b6061bfb30fbf9d3a71e6aec93afc38167b7))
+
 # [2.1.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.15...@pie-lib/editable-html-tip-tap@2.1.0-next.0) (2026-05-06)
 
 ### Bug Fixes
