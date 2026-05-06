@@ -62,8 +62,15 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
     if (rootRenderChildren) {
       const c = rootRenderChildren(n, value, onChange);
       if (c) {
+        const isDndComponent = n.data?.dataset?.component === 'blank';
+
+        if (isDndComponent) {
+          children.push(<Spacer key={`spacer-${index}`} />);
+        }
+
         children.push(c);
-        if (parentNode?.type !== 'td' && elementType === 'drag-in-the-blank') {
+
+        if (isDndComponent) {
           children.push(<Spacer key={`spacer-${index}`} />);
         }
         return;
@@ -91,9 +98,6 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
         }
       } else if (content.length > 0) {
         children.push(content);
-        if (parentNode?.type !== 'td' && elementType === 'drag-in-the-blank') {
-          children.push(<Spacer key={`spacer-${index}`} />);
-        }
       }
     } else {
       const subNodes = renderChildren(n, value, onChange, rootRenderChildren, n, elementType);

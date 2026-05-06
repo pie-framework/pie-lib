@@ -184,4 +184,198 @@ describe('Mask', () => {
       expect(container.querySelector('tr')).toBeInTheDocument();
     });
   });
+
+  describe('spacer rendering for DnD components', () => {
+    it('adds spacers before and after DnD blank components', () => {
+      const mockRenderChildren = jest.fn((n) => {
+        if (n.data?.dataset?.component === 'blank') {
+          return <span data-testid="blank-component">Blank</span>;
+        }
+        return null;
+      });
+
+      const { container } = render(
+        <Mask
+          {...defaultProps}
+          renderChildren={mockRenderChildren}
+          layout={{
+            nodes: [
+              {
+                type: 'div',
+                data: {
+                  dataset: { component: 'blank' },
+                  attributes: {},
+                },
+                nodes: [],
+              },
+            ],
+          }}
+        />,
+      );
+
+      // Check that renderChildren was called and spacers are present
+      // Count all children in the container - should be: spacer + blank + spacer = 3 elements
+      const maskContainer = container.firstChild;
+      expect(maskContainer.childNodes.length).toBe(3);
+      expect(screen.getByTestId('blank-component')).toBeInTheDocument();
+    });
+
+    it('does not add spacers for non-DnD components', () => {
+      const mockRenderChildren = jest.fn((n) => {
+        return <span data-testid="regular-component">Regular</span>;
+      });
+
+      const { container } = render(
+        <Mask
+          {...defaultProps}
+          renderChildren={mockRenderChildren}
+          layout={{
+            nodes: [
+              {
+                type: 'div',
+                data: {
+                  attributes: {},
+                },
+                nodes: [],
+              },
+            ],
+          }}
+        />,
+      );
+
+      // Should not have spacers - only the regular component
+      const maskContainer = container.firstChild;
+      expect(maskContainer.childNodes.length).toBe(1);
+      expect(screen.getByTestId('regular-component')).toBeInTheDocument();
+    });
+
+    it('adds spacers regardless of parent node type', () => {
+      const mockRenderChildren = jest.fn((n) => {
+        if (n.data?.dataset?.component === 'blank') {
+          return <span data-testid="blank-in-td">Blank in TD</span>;
+        }
+        return null;
+      });
+
+      const { container } = render(
+        <Mask
+          {...defaultProps}
+          renderChildren={mockRenderChildren}
+          elementType="drag-in-the-blank"
+          layout={{
+            nodes: [
+              {
+                type: 'table',
+                data: { attributes: {} },
+                nodes: [
+                  {
+                    type: 'tbody',
+                    data: { attributes: {} },
+                    nodes: [
+                      {
+                        type: 'tr',
+                        data: { attributes: {} },
+                        nodes: [
+                          {
+                            type: 'td',
+                            data: { attributes: {} },
+                            nodes: [
+                              {
+                                type: 'div',
+                                data: {
+                                  dataset: { component: 'blank' },
+                                  attributes: {},
+                                },
+                                nodes: [],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }}
+        />,
+      );
+
+      // Should have spacers even inside td element
+      const td = container.querySelector('td');
+      expect(td.childNodes.length).toBe(3); // spacer + blank + spacer
+      expect(screen.getByTestId('blank-in-td')).toBeInTheDocument();
+    });
+
+    it('does not add spacers for text content', () => {
+      const { container } = render(
+        <Mask
+          {...defaultProps}
+          elementType="drag-in-the-blank"
+          layout={{
+            nodes: [
+              {
+                object: 'text',
+                leaves: [
+                  {
+                    text: 'Some text',
+                  },
+                ],
+              },
+            ],
+          }}
+        />,
+      );
+
+      // Should not have spacers for plain text - just text node
+      const maskContainer = container.firstChild;
+      expect(maskContainer.childNodes.length).toBe(1);
+      expect(maskContainer.childNodes[0].nodeType).toBe(Node.TEXT_NODE);
+      expect(screen.getByText('Some text')).toBeInTheDocument();
+    });
+
+    it('handles multiple DnD components with correct spacer placement', () => {
+      const mockRenderChildren = jest.fn((n) => {
+        if (n.data?.dataset?.component === 'blank') {
+          return <span data-testid={`blank-${n.data.testId}`}>Blank</span>;
+        }
+        return null;
+      });
+
+      const { container } = render(
+        <Mask
+          {...defaultProps}
+          renderChildren={mockRenderChildren}
+          layout={{
+            nodes: [
+              {
+                type: 'div',
+                data: {
+                  dataset: { component: 'blank' },
+                  attributes: {},
+                  testId: '1',
+                },
+                nodes: [],
+              },
+              {
+                type: 'div',
+                data: {
+                  dataset: { component: 'blank' },
+                  attributes: {},
+                  testId: '2',
+                },
+                nodes: [],
+              },
+            ],
+          }}
+        />,
+      );
+
+      // Should have 2 spacers per component = 4 spacers + 2 blanks = 6 total children
+      const maskContainer = container.firstChild;
+      expect(maskContainer.childNodes.length).toBe(6);
+      expect(screen.getByTestId('blank-1')).toBeInTheDocument();
+      expect(screen.getByTestId('blank-2')).toBeInTheDocument();
+    });
+  });
 });
