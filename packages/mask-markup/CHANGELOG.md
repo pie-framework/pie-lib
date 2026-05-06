@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.2-next.1...@pie-lib/mask-markup@3.0.2-next.2) (2026-05-06)
+
+### Bug Fixes
+
+- made sure extra spacing is added only when needed [PIE-436] ([1eb4b4c](https://github.com/pie-framework/pie-lib/commit/1eb4b4cfa26612ff32f68bc849da59dc0c5c521b))
+
 ## [3.0.2-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.2-next.0...@pie-lib/mask-markup@3.0.2-next.1) (2026-05-06)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

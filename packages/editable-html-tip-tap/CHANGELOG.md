@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0-next.1...@pie-lib/editable-html-tip-tap@2.1.0-next.2) (2026-05-06)
+
+### Bug Fixes
+
+- made sure multiple divs are treated as line breaks [PIE-439] ([2b507e0](https://github.com/pie-framework/pie-lib/commit/2b507e0d1176a33afebb90e69bf7693c17bd4caf))
+
 # [2.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0-next.0...@pie-lib/editable-html-tip-tap@2.1.0-next.1) (2026-05-06)
 
 ### Features

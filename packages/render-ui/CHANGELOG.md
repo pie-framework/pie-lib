@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@6.1.0-next.0...@pie-lib/render-ui@6.1.0-next.1) (2026-05-06)
+
+### Bug Fixes
+
+- tweak table styling rules to exclude role="presentation" PIE-440 ([dfefed1](https://github.com/pie-framework/pie-lib/commit/dfefed1a6f231bef4690e5863f20b9b240212594))
+
 # [6.1.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.4...@pie-lib/render-ui@6.1.0-next.0) (2026-05-06)
 
 ### Bug Fixes

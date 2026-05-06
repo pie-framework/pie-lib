@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.2-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@13.0.2-next.1...@pie-lib/config-ui@13.0.2-next.2) (2026-05-06)
+
+### Bug Fixes
+
+- fix print module for mask-markup elemenets [PIE-216] ([7246d37](https://github.com/pie-framework/pie-lib/commit/7246d376600b630dd082f8d83f084086d92cac93))
+
 ## [13.0.2-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@13.0.2-next.0...@pie-lib/config-ui@13.0.2-next.1) (2026-05-06)
 
 **Note:** Version bump only for package @pie-lib/config-ui

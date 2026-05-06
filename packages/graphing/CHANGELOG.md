@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.3-next.1...@pie-lib/graphing@4.0.3-next.2) (2026-05-06)
+
+### Bug Fixes
+
+- **graphing:** add return statement to prevent further execution in lineBase function PIE-519 ([3b95e6e](https://github.com/pie-framework/pie-lib/commit/3b95e6ed7ab83417f422ffe985a956b9a6a46db4))
+
 ## [4.0.3-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.3-next.0...@pie-lib/graphing@4.0.3-next.1) (2026-05-06)
 
 **Note:** Version bump only for package @pie-lib/graphing
