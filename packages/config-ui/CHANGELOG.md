@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@12.2.0-next.15...@pie-lib/config-ui@13.0.2-next.0) (2026-05-06)
+
+### Bug Fixes
+
+- **config-ui:** adjust number field padding PD-5786 ([5e80d6b](https://github.com/pie-framework/pie-lib/commit/5e80d6bdaf11a15cb93377e0518a21cd2ccb24db))
+- **config-ui:** enable default style for text field PIE-133 ([3e7d13c](https://github.com/pie-framework/pie-lib/commit/3e7d13c32663d10ce0d1f125a02962ce53d7f289))
+
 ## [13.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@13.0.0...@pie-lib/config-ui@13.0.1) (2026-04-28)
 
 **Note:** Version bump only for package @pie-lib/config-ui

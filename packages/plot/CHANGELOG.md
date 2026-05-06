@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@3.2.0-next.15...@pie-lib/plot@4.0.2-next.0) (2026-05-06)
+
+### Bug Fixes
+
+- add stopPropagation to onStop calls in gridDraggable tests ([6049268](https://github.com/pie-framework/pie-lib/commit/6049268d91b0498285df1ac3ad628f45f328be93))
+- enhance drag handling and prevent click interference in draggable components. fix auto input label PIE-428 ([cc06766](https://github.com/pie-framework/pie-lib/commit/cc06766fab6960356f3e7f8975da1f12f3358a9e))
+- ensure onClick is called for existing mark points/lines and does not interfere with drag PIE-426 PIE-427 ([1cb4f00](https://github.com/pie-framework/pie-lib/commit/1cb4f00118ff24ddffe4c1ee2a091daccafa4d15))
+- **graphing/plot:** improve drag handling to prevent misidentifying clicks as drags PD-5598 ([40a65a3](https://github.com/pie-framework/pie-lib/commit/40a65a312ec06227309fceac848bb8c7a266b1bb))
+- **plot:** center placeholder PIE-171 ([dd61600](https://github.com/pie-framework/pie-lib/commit/dd61600afa15b20b309624514b5b2945dfd090e0))
+- **plot:** remove unnecessary space, prevent new lines, center placeholder PD-5674 ([9840d80](https://github.com/pie-framework/pie-lib/commit/9840d80a1351f19adbe3396d3abae5fb4e310494))
+- **plot:** set boxSizing for svg to avoid dif env overwrite the default PIE-74 ([17d4e83](https://github.com/pie-framework/pie-lib/commit/17d4e83f8300dbe7e5dc797b76660f685f1f1dc6))
+- refactor drag event handling to use reusable mockStartEvent for consistency ([5afea30](https://github.com/pie-framework/pie-lib/commit/5afea30ead6caa387fa1822c7d498069b704d9c8))
+
 ## [4.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@4.0.0...@pie-lib/plot@4.0.1) (2026-04-28)
 
 **Note:** Version bump only for package @pie-lib/plot

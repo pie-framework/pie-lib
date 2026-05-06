@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@7.2.0-next.7...@pie-lib/math-input@8.1.0-next.0) (2026-05-06)
+
+### Bug Fixes
+
+- **math-input:** bump @pie-framework/mathquill to 1.2.1-beta.1 with jQuery shim fixes PIE-16 PIE-20 ([3eaa8fd](https://github.com/pie-framework/pie-lib/commit/3eaa8fd410d8668c2d085cca4a4995a7e66d774f))
+- **math-toolbar:** update math keypad colors and styles for improved UI consistency PD-5530 ([713c283](https://github.com/pie-framework/pie-lib/commit/713c283a11e1cff6568da7010e98e0b84df164ab))
+- refactor release script, force publish math-input ([d397e7b](https://github.com/pie-framework/pie-lib/commit/d397e7b992e28f7a1eaa68798410cdff167f55a5))
+- remove default mui uppercase button style PD-5649 ([4f35483](https://github.com/pie-framework/pie-lib/commit/4f354832a7656ff640ca7d6a2b9baab2fd000b53))
+
+### Features
+
+- **math-input:** add hover styles for keypad buttons and update color definitions PD-5530 ([a3cb101](https://github.com/pie-framework/pie-lib/commit/a3cb101e5f326df14d0ae8454689ee18218744db))
+- **math-input:** centralize MathQuill init; export registerEmbed and applyStaticMath PIE-57 ([43350d8](https://github.com/pie-framework/pie-lib/commit/43350d8d8cee0b64a8c6d2c585985d406eaa6871))
+
 ## [8.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-input@8.0.0...@pie-lib/math-input@8.0.1) (2026-04-28)
 
 **Note:** Version bump only for package @pie-lib/math-input
