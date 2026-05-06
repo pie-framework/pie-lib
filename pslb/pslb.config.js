@@ -83,6 +83,7 @@ module.exports = {
             '@mui/system',
             '@mui/material/Collapse',
             '@mui/material/styles',
+            '@mui/material/colors',
             '@mui/material',
             '@mui/icons-material',
             '@pie-lib/render-ui',

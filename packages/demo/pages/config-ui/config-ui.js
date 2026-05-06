@@ -1,0 +1,278 @@
+import {
+  AlertDialog,
+  ChoiceConfiguration,
+  FeedbackConfig,
+  feedbackConfigDefaults,
+  FeedbackSelector,
+  InputCheckbox,
+  InputContainer,
+  InputRadio,
+  InputSwitch,
+  Langs,
+  LanguageControls,
+  MuiBox,
+  NChoice,
+  NumberTextField,
+  TagsInput,
+  TwoChoice,
+} from '@pie-lib/config-ui';
+
+import React from 'react';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import debug from 'debug';
+import withRoot from '../../source/withRoot';
+
+const log = debug('demo:config-ui');
+
+const SectionContainer = styled('div')({
+  padding: '20px',
+  paddingTop: '40px',
+  paddingBottom: '40px',
+  position: 'relative',
+  '&::after': {
+    display: 'block',
+    position: 'absolute',
+    left: '0',
+    top: '0',
+    bottom: '0',
+    right: '0',
+    height: '2px',
+    content: '""',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+  },
+});
+
+const Section = ({ name, children }) => (
+  <SectionContainer>
+    <Typography>{name}</Typography>
+    <br />
+    {children}
+  </SectionContainer>
+);
+
+const RootContainer = styled('div')({
+  display: 'flex',
+});
+
+const LeftSection = styled('div')({
+  flex: 1,
+});
+
+const RightSection = styled('div')({
+  flex: 0.3,
+});
+
+const CodeBlock = styled('pre')({
+  position: 'fixed',
+});
+
+const NumberField = styled(NumberTextField)({
+  width: '270px',
+});
+
+class Container extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      choiceConfig: {
+        label: 'Apple',
+        value: 'apple',
+        feedback: {
+          type: 'none',
+        },
+      },
+      tags: ['apple', 'banana', 'carrot', 'donut', 'eggs', 'fries', 'hops', 'ice cream'],
+      twoChoice: 'one',
+      nChoice: 'left',
+      selector: {
+        type: 'default',
+        customFeedback: undefined,
+        default: 'This is the default feedback',
+      },
+      numberTextField: {
+        one: 1,
+        two: 2,
+      },
+      feedback: feedbackConfigDefaults({
+        correct: { type: 'custom', custom: 'custom message' },
+      }),
+      lang: 'en-US',
+      activeLang: 'en-US',
+      defaultLang: 'en-US',
+      openDialog: false,
+    };
+
+    log('state: ', this.state);
+
+    this.updateOne = this.updateOne.bind(this);
+  }
+
+  updateOne(event, number) {
+    console.log('number: ', number);
+    this.setState({
+      numberTextField: Object.assign({}, this.state.numberTextField, {
+        one: number,
+      }),
+    });
+  }
+
+  componentDidMount() {
+    this.setState({ mounted: true });
+  }
+
+  onChoiceConfigChange = (update) => {
+    console.log('update: ', update);
+    this.setState({ choiceConfig: update });
+  };
+
+  render() {
+    const { mounted, openDialog } = this.state;
+
+    console.log('this.state: ', this.state);
+
+    return mounted ? (
+      <RootContainer>
+        <LeftSection>
+          <Section name="Choice Configuration">
+            <Typography>
+              This is a single choice configuration that can be used where the user can build up a list of choices
+            </Typography>
+            <br />
+            <br />
+            <ChoiceConfiguration
+              index={1}
+              mode={'checkbox'}
+              data={this.state.choiceConfig}
+              defaultFeedback={{
+                correct: 'Correct',
+                incorrect: 'Incorrect',
+              }}
+              onChange={this.onChoiceConfigChange}
+            />
+          </Section>
+          <Section name="MuiBox">
+            <MuiBox focused={false}>contents</MuiBox>
+            <MuiBox focused={true}>contents</MuiBox>
+          </Section>
+          <Section name="Tag Input">
+            <div style={{ maxWidth: '300px' }}>
+              <TagsInput tags={this.state.tags} onChange={(tags) => this.setState({ tags })} />
+            </div>
+          </Section>
+          <Section name="Input Container">
+            <div style={{ display: 'flex' }}>
+              <InputContainer label="raw">
+                <div>raw</div>
+              </InputContainer>
+              <InputSwitch label="InputSwitch" checked={true} />
+              <InputCheckbox label="InputCheckbox" checked={true} />
+              <InputRadio label="InputRadio" checked={true} />
+            </div>
+          </Section>
+          <Section name="Two and N Choice">
+            <div style={{ display: 'flex' }}>
+              <TwoChoice
+                header="two-choice"
+                value={this.state.twoChoice}
+                onChange={(twoChoice) => this.setState({ twoChoice })}
+                one={{ label: 'one', value: 'one' }}
+                two={{ label: 'two', value: 'two' }}
+              />
+              <NChoice
+                header="n-choice"
+                value={this.state.nChoice}
+                onChange={(nChoice) => this.setState({ nChoice })}
+                opts={[
+                  { label: 'left', value: 'left' },
+                  { label: 'center', value: 'center' },
+                  { label: 'right', value: 'right' },
+                ]}
+              />
+              <NChoice
+                header="n-choice vertical"
+                direction={'vertical'}
+                value={this.state.nChoice}
+                onChange={(nChoice) => this.setState({ nChoice })}
+                opts={[
+                  { label: 'left', value: 'left' },
+                  { label: 'center', value: 'center' },
+                  { label: 'right', value: 'right' },
+                ]}
+              />
+            </div>
+          </Section>
+
+          <Section name="NumberTextField">
+            <NumberField
+              label="Number Text Field Without Validation"
+              value={this.state.numberTextField.one}
+              max={10}
+              min={1}
+              onChange={this.updateOne}
+            />
+            <NumberField
+              label="Number Text Field With Validation"
+              value={this.state.numberTextField.one}
+              max={10}
+              min={1}
+              onChange={this.updateOne}
+              showErrorWhenOutsideRange
+            />
+          </Section>
+          <Section name="FeedbackSelector">
+            <FeedbackSelector
+              label={'Some Feedback:'}
+              feedback={this.state.selector}
+              onChange={(feedback) => this.setState({ selector: feedback })}
+            />
+          </Section>
+          <Section name="FeedbackConfig">
+            <FeedbackConfig feedback={this.state.feedback} onChange={(feedback) => this.setState({ feedback })} />
+          </Section>
+
+          <Section name="Language Controls">
+            <LanguageControls
+              langs={['en-US', 'es-ES']}
+              activeLang={this.state.activeLang}
+              defaultLang={this.state.defaultLang}
+              onActiveLangChange={(activeLang) => this.setState({ activeLang })}
+              onDefaultLangChange={(defaultLang) => this.setState({ defaultLang })}
+            />
+          </Section>
+          <Section name="Langs">
+            <Langs
+              label="label"
+              langs={['en-US', 'es-ES']}
+              selected={this.state.lang}
+              onChange={(l) => this.setState({ lang: l })}
+            />
+          </Section>
+
+          <Section name="Alert Dialog">
+            <Button variant="outlined" onClick={() => this.setState({ openDialog: true })}>
+              Open alert dialog
+            </Button>
+            <AlertDialog
+              open={openDialog}
+              text={
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text.'
+              }
+              title={'Dialog title'}
+              onClose={() => this.setState({ openDialog: false })}
+              onConfirm={() => this.setState({ openDialog: false })}
+            />
+          </Section>
+        </LeftSection>
+        <RightSection>
+          <CodeBlock>{JSON.stringify(this.state, null, '  ')}</CodeBlock>
+        </RightSection>
+      </RootContainer>
+    ) : (
+      <div>loading...</div>
+    );
+  }
+}
+
+export default withRoot(Container);
