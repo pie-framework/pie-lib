@@ -159,12 +159,19 @@ const test = () => {
  * - If the `argv.loglevel` flag is provided, the specified log level will be included in the publishing command.
  */
 const release = () => {
+  if (argv.next) {
+    log(chalk.magenta('--- STEP 5: NEXT/CANARY RELEASE ---'));
+    let releaseCmd = 'npx lerna publish --canary --preid next --dist-tag next --include-merged-tags --yes';
+    if (argv.loglevel) releaseCmd += ` --loglevel ${argv.loglevel}`;
+    runCmd(releaseCmd);
+    return;
+  }
+
   log(chalk.magenta('--- STEP 5: VERSION PACKAGES ---'));
   runCmd('npx lerna version --conventional-commits --yes');
 
   log(chalk.magenta('--- STEP 6: PUBLISH PACKAGES ---'));
   let releaseCmd = 'npx lerna publish from-git --yes';
-  if (argv.next) releaseCmd += ' --canary --preid next --dist-tag next';
   if (argv.loglevel) releaseCmd += ` --loglevel ${argv.loglevel}`;
   runCmd(releaseCmd);
 
