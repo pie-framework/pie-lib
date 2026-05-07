@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0-next.1...@pie-lib/editable-html-tip-tap@2.1.0-next.2) (2026-05-06)
+
+### Bug Fixes
+
+- made sure multiple divs are treated as line breaks [PIE-439] ([2b507e0](https://github.com/pie-framework/pie-lib/commit/2b507e0d1176a33afebb90e69bf7693c17bd4caf))
+
+# [2.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0-next.0...@pie-lib/editable-html-tip-tap@2.1.0-next.1) (2026-05-06)
+
+### Features
+
+- add extension to apply semantic heading markup instead of hardcoded h3 PIE-152 ([02f8b60](https://github.com/pie-framework/pie-lib/commit/02f8b6061bfb30fbf9d3a71e6aec93afc38167b7))
+
+# [2.1.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.15...@pie-lib/editable-html-tip-tap@2.1.0-next.0) (2026-05-06)
+
+### Bug Fixes
+
+- add touchAction style to prevent touch interactions in DragInTheBlank and blank components PD-5811 ([ba4d73b](https://github.com/pie-framework/pie-lib/commit/ba4d73b4785cc59e85f3055902667a1cd4db325c))
+- **editable-html-tip-tap:** add blockquote, fix styling and add text alignment options PD-5790 ([99b30f6](https://github.com/pie-framework/pie-lib/commit/99b30f6622fd002abcdb901c4584026519bed8b7))
+- **editable-html-tip-tap:** avoid closing math dialog on scrollbar, update test PD-5823 ([ad43e67](https://github.com/pie-framework/pie-lib/commit/ad43e67d9019efae020d2da817568936348bcbc9))
+- **editable-html-tip-tap:** backspace behavior in tiptap and add custom toolbar in ExplicitConstructedResponse PIE-19 PIE-30 ([5779a6d](https://github.com/pie-framework/pie-lib/commit/5779a6d6a1c30f398025d4c7bdce578827b51e3a))
+- **editable-html-tip-tap:** create test for new div block extension PD-5622 ([911ef92](https://github.com/pie-framework/pie-lib/commit/911ef92c08f8de3f7080c36b48aa336f61b55800))
+- **editable-html-tip-tap:** enhance toolbar visibility logic and use portal for rendering ([0b06a9d](https://github.com/pie-framework/pie-lib/commit/0b06a9d2a8b208069d9a774b38797428cff30174))
+- **editable-html-tip-tap:** extend text alignment options to include additional elements PD-5851 ([fc43c5c](https://github.com/pie-framework/pie-lib/commit/fc43c5c4c29a4c6bcd42c61d6b18e32d56bf2557))
+- **editable-html-tip-tap:** handle list item to avoid default paragraph wrapping PIE-46 ([9c37dac](https://github.com/pie-framework/pie-lib/commit/9c37dac9d10940f59930d21a135cd991f238d622))
+- **editable-html-tip-tap:** image-component - fix active style, dragging issues and update image rendering logic PIE-34 ([5588e8b](https://github.com/pie-framework/pie-lib/commit/5588e8b10f61f2936d2356a4b2d403f29d094efa))
+- **editable-html-tip-tap:** open math toolbar in current container PIE-18 ([f33a73f](https://github.com/pie-framework/pie-lib/commit/f33a73fd0c7dbd34571d6490b031459ad89923c3))
+- **editable-html-tip-tap:** parseHTML as img tag image extension, avoid open upload automatically at mounted PIE-37 ([30bad4e](https://github.com/pie-framework/pie-lib/commit/30bad4ea07c1e4c738534aab115cc16d64195b60))
+- **editable-html-tip-tap:** prevent spanish keyboard to be dismissed when clicking on it PIE-36 ([6c02557](https://github.com/pie-framework/pie-lib/commit/6c02557fd61b5b0cc217340f20b94e1934f6beaa))
+- **editable-html-tip-tap:** prevent toolbar from closing when clicking on math node preview PIE-114 ([b422584](https://github.com/pie-framework/pie-lib/commit/b4225846952d9eaef76039d7c6b69b93c5029da6))
+- **editable-html-tip-tap:** set div as default, transform div to p tag at enter, update tests PD-5622 ([32e4126](https://github.com/pie-framework/pie-lib/commit/32e4126b9369c29c165d7a55315b04dbc759a181))
+- **editable-html-tip-tap:** wrap new node with plain text in a div not in a p PD-5669 ([0216b60](https://github.com/pie-framework/pie-lib/commit/0216b60cb54f2af2761042c0be7247b1507b8aeb))
+- handle different editors, handle clicks in dropdown PIE-47 ([19c8914](https://github.com/pie-framework/pie-lib/commit/19c89148cee951133680c218fb446107f9b2ce16))
+- handle optional chaining and fix test ([c4d4657](https://github.com/pie-framework/pie-lib/commit/c4d4657ed38718142c07ddf2a06225f2a11fd535))
+- **image:** remove unwanted change ([04a484f](https://github.com/pie-framework/pie-lib/commit/04a484f395c8a87407a8ad3f0ff99a7c0af0488a))
+- **image:** revert - simplify setImageUploadNode command to directly insert content ([0d4467d](https://github.com/pie-framework/pie-lib/commit/0d4467dd9c29e9c90db6cfbf49f6e68704c1d0a9))
+- made sure colspan elements match the number of columns on removing [PIE-168] ([0ee3056](https://github.com/pie-framework/pie-lib/commit/0ee3056f2c00d71eb83ee2f56ad0efb75dc3b21b))
+- made sure correct reference is sent for insert image handler [PIE-1229][PIE-44] ([8db57c0](https://github.com/pie-framework/pie-lib/commit/8db57c035449b5c630a084211b506d2c85786772))
+- made sure custom toolbar is shown for inline dropdown response areas [PIE-130] ([d3cb03d](https://github.com/pie-framework/pie-lib/commit/d3cb03d45eb716d700f1202aa1cc223c169cfde5))
+- made sure div is the default field in the editor, if a breakpoint is added it turns into a p [PIE-53] ([8f33af0](https://github.com/pie-framework/pie-lib/commit/8f33af05047cdd8993a8a862ce3e26e67c6810fe))
+- made sure image handling works properly without losing focus, fix media size problem [PIE-129][PIE-44] ([ad28c81](https://github.com/pie-framework/pie-lib/commit/ad28c816e12d35a59d51bcb03466194c33e3b5dd))
+- made sure insertImageRequested is called only once [PIE-1229] ([336d38c](https://github.com/pie-framework/pie-lib/commit/336d38cf2e7e45b621b5dd831991017a694ec5cd))
+- made sure lastIndex in respArea is handled properly, improved spacing around response areas [PIE-35][PIE-40] ([c673701](https://github.com/pie-framework/pie-lib/commit/c673701618bc896208c9760e87ea6dbbd1a91d54))
+- **math-input:** bump @pie-framework/mathquill to 1.2.1-beta.1 with jQuery shim fixes PIE-16 PIE-20 ([3eaa8fd](https://github.com/pie-framework/pie-lib/commit/3eaa8fd410d8668c2d085cca4a4995a7e66d774f))
+- **plot:** remove unnecessary space, prevent new lines, center placeholder PD-5674 ([9840d80](https://github.com/pie-framework/pie-lib/commit/9840d80a1351f19adbe3396d3abae5fb4e310494))
+- provided the pos of the node as well in the response area toolbar callback [PD-5787] ([caa9a90](https://github.com/pie-framework/pie-lib/commit/caa9a90617d15afcd8457c8962460867b3990bbc))
+- **render-ui/editable-html-tip-tap:** fix disableImageAlignmentButtons prop and fix alignment in PreviewPrompt PIE-45 ([ef87ea4](https://github.com/pie-framework/pie-lib/commit/ef87ea4e4f9343be4779ea370036a556d67c8cb3))
+- streamline beforeEach setup in image component tests ([3d0fc78](https://github.com/pie-framework/pie-lib/commit/3d0fc78b9ceda1664978378ace9f6c3bbd4a2269))
+- test ([10d2392](https://github.com/pie-framework/pie-lib/commit/10d23926c2028851bcb26cc41f430aa88e85ff21))
+- tests ([4c96c88](https://github.com/pie-framework/pie-lib/commit/4c96c88b791b10d747453914577178b991753961))
+- **tip-tap/image-component:** add image deletion handling PIE-38 ([582bd1f](https://github.com/pie-framework/pie-lib/commit/582bd1f8edd33f0a2c5a80eab7d400a2db5113fb))
+
+### Features
+
+- **editable-html-tip-tap:** image -add unique nodeKey attribute for identification PIE-54 ([210c0d5](https://github.com/pie-framework/pie-lib/commit/210c0d5ffda0718b52845b3b4011b98f66b0b547))
+- made sure pasting image works in the editor [PIE-173] ([28c46e5](https://github.com/pie-framework/pie-lib/commit/28c46e5d1ec97fdc2d1b4dd454fe19882dea5125))
+
+## [2.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.0.0...@pie-lib/editable-html-tip-tap@2.0.1) (2026-04-28)
+
+**Note:** Version bump only for package @pie-lib/editable-html-tip-tap
+
 # [1.2.0-next.36](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@1.2.0-next.35...@pie-lib/editable-html-tip-tap@1.2.0-next.36) (2026-04-23)
 
 ### Bug Fixes

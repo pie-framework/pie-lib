@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.3-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@9.0.3-next.1...@pie-lib/demo@9.0.3-next.2) (2026-05-06)
+
+### Bug Fixes
+
+- fix print module for mask-markup elemenets [PIE-216] ([7246d37](https://github.com/pie-framework/pie-lib/commit/7246d376600b630dd082f8d83f084086d92cac93))
+
+## [9.0.3-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@9.0.3-next.0...@pie-lib/demo@9.0.3-next.1) (2026-05-06)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [9.0.3-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.15...@pie-lib/demo@9.0.3-next.0) (2026-05-06)
+
+### Bug Fixes
+
+- **math-input:** bump @pie-framework/mathquill to 1.2.1-beta.1 with jQuery shim fixes PIE-16 PIE-20 ([3eaa8fd](https://github.com/pie-framework/pie-lib/commit/3eaa8fd410d8668c2d085cca4a4995a7e66d774f))
+
+## [9.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@9.0.1...@pie-lib/demo@9.0.2) (2026-05-04)
+
+**Note:** Version bump only for package @pie-lib/demo
+
+## [9.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@9.0.0...@pie-lib/demo@9.0.1) (2026-04-28)
+
+**Note:** Version bump only for package @pie-lib/demo
+
 # [8.33.0-next.40](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@8.33.0-next.39...@pie-lib/demo@8.33.0-next.40) (2026-04-24)
 
 **Note:** Version bump only for package @pie-lib/demo

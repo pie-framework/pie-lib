@@ -6,15 +6,9 @@ import ActionDelete from '@mui/icons-material/Delete';
 import ArrowRight from '@mui/icons-material/SubdirectoryArrowRight';
 import IconButton from '@mui/material/IconButton';
 import { InputContainer } from '@pie-lib/render-ui';
-// import EditableHtml from '@pie-lib/editable-html-tip-tap';
+import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import { InputCheckbox, InputRadio } from '../inputs';
 import FeedbackMenu from './feedback-menu';
-
-// - mathquill error window not defined
-let EditableHtml;
-if (typeof window !== 'undefined') {
-  EditableHtml = require('@pie-lib/editable-html-tip-tap')['default'];
-}
 
 const StyledEditorHolder = styled('div')(({ theme }) => ({
   marginTop: theme.spacing(2),

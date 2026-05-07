@@ -122,6 +122,7 @@ function MenuBar({
         isHeading1: ctx.editor.isActive('heading', { level: 1 }) ?? false,
         isHeading2: ctx.editor.isActive('heading', { level: 2 }) ?? false,
         isHeading3: ctx.editor.isActive('heading', { level: 3 }) ?? false,
+        isHeadingParagraph: ctx.editor.isActive('headingParagraph') ?? false,
         isHeading4: ctx.editor.isActive('heading', { level: 4 }) ?? false,
         isHeading5: ctx.editor.isActive('heading', { level: 5 }) ?? false,
         isHeading6: ctx.editor.isActive('heading', { level: 6 }) ?? false,
@@ -289,8 +290,8 @@ function MenuBar({
       {
         icon: <HeadingIcon />,
         hidden: () => !activePlugins?.includes('h3'),
-        onClick: (editor) => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-        isActive: (state) => state.isHeading3,
+        onClick: (editor) => editor.chain().focus().toggleHeadingParagraph().run(),
+        isActive: (state) => state.isHeadingParagraph,
       },
       {
         icon: <Functions />,

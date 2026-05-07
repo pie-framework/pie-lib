@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.2-next.0...@pie-lib/drag@4.0.2-next.1) (2026-05-06)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+## [4.0.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.2.0-next.4...@pie-lib/drag@4.0.2-next.0) (2026-05-06)
+
+### Bug Fixes
+
+- **drag:** set margin for draggable choice with p tag PD-5669 ([c430a21](https://github.com/pie-framework/pie-lib/commit/c430a21788138edfa522b42230120133943bcb1f))
+- unapplied padding PD-5450 ([5d92076](https://github.com/pie-framework/pie-lib/commit/5d92076e57b1106a9bcb746da97bf105427e77f5))
+
+## [4.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.0...@pie-lib/drag@4.0.1) (2026-04-28)
+
+**Note:** Version bump only for package @pie-lib/drag
+
 # [3.2.0-next.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@3.2.0-next.9...@pie-lib/drag@3.2.0-next.10) (2026-04-23)
 
 **Note:** Version bump only for package @pie-lib/drag

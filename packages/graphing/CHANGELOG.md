@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.3-next.1...@pie-lib/graphing@4.0.3-next.2) (2026-05-06)
+
+### Bug Fixes
+
+- **graphing:** add return statement to prevent further execution in lineBase function PIE-519 ([3b95e6e](https://github.com/pie-framework/pie-lib/commit/3b95e6ed7ab83417f422ffe985a956b9a6a46db4))
+
+## [4.0.3-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.3-next.0...@pie-lib/graphing@4.0.3-next.1) (2026-05-06)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [4.0.3-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.15...@pie-lib/graphing@4.0.3-next.0) (2026-05-06)
+
+### Bug Fixes
+
+- enhance drag handling and prevent click interference in draggable components. fix auto input label PIE-428 ([cc06766](https://github.com/pie-framework/pie-lib/commit/cc06766fab6960356f3e7f8975da1f12f3358a9e))
+- ensure onClick is called for existing mark points/lines and does not interfere with drag PIE-426 PIE-427 ([1cb4f00](https://github.com/pie-framework/pie-lib/commit/1cb4f00118ff24ddffe4c1ee2a091daccafa4d15))
+- **graphing/plot:** improve drag handling to prevent misidentifying clicks as drags PD-5598 ([40a65a3](https://github.com/pie-framework/pie-lib/commit/40a65a312ec06227309fceac848bb8c7a266b1bb))
+- **graphing:** adjust axis label PD-5595 ([f462a1f](https://github.com/pie-framework/pie-lib/commit/f462a1f5563a6bb18443091c16d75064f2b31bad))
+- **graphing:** color changes for graph buttons PD-5590 ([1053f44](https://github.com/pie-framework/pie-lib/commit/1053f44cd10521bf5e3431ac071fb3f18e97f467))
+- **graphing:** defer focus call to ensure re-render completion PIE-520 ([3e3ae16](https://github.com/pie-framework/pie-lib/commit/3e3ae16f11d2193ae77db11d8bd19ec711f8b679))
+- **graphing:** increase stroke width and improve pointer event handling for lines ([58e1b47](https://github.com/pie-framework/pie-lib/commit/58e1b476cccb43c2db7e685119a3268fce21808c))
+- **graphing:** prevent new marks creation on existing points/lines during click events PIE-27 ([6c73a8e](https://github.com/pie-framework/pie-lib/commit/6c73a8e8317f3302c6d54dd9890c1d5a9fb02305))
+- **graphing:** restore disabled/correctness styling on Line tool PIE-425 ([de26993](https://github.com/pie-framework/pie-lib/commit/de26993e35aa46437af9f6f9db5126218890dcf7))
+- **graphing:** revert to previous disabled colors PD-5510 ([e50a991](https://github.com/pie-framework/pie-lib/commit/e50a991aaa20f134d338a3f27d6d46d68db02a57))
+- unapplied padding PD-5450 ([5d92076](https://github.com/pie-framework/pie-lib/commit/5d92076e57b1106a9bcb746da97bf105427e77f5))
+
+## [4.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.1...@pie-lib/graphing@4.0.2) (2026-05-04)
+
+### Bug Fixes
+
+- **graphing:** defer focus call to ensure re-render completion PIE-520 ([3e3ae16](https://github.com/pie-framework/pie-lib/commit/3e3ae16f11d2193ae77db11d8bd19ec711f8b679))
+
+## [4.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.0...@pie-lib/graphing@4.0.1) (2026-04-28)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
 # [3.2.0-next.38](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@3.2.0-next.37...@pie-lib/graphing@3.2.0-next.38) (2026-04-24)
 
 ### Bug Fixes

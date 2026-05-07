@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@6.1.0-next.0...@pie-lib/render-ui@6.1.0-next.1) (2026-05-06)
+
+### Bug Fixes
+
+- tweak table styling rules to exclude role="presentation" PIE-440 ([dfefed1](https://github.com/pie-framework/pie-lib/commit/dfefed1a6f231bef4690e5863f20b9b240212594))
+
+# [6.1.0-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.4...@pie-lib/render-ui@6.1.0-next.0) (2026-05-06)
+
+### Bug Fixes
+
+- **graphing:** color changes for graph buttons PD-5590 ([1053f44](https://github.com/pie-framework/pie-lib/commit/1053f44cd10521bf5e3431ac071fb3f18e97f467))
+- **graphing:** revert to previous disabled colors PD-5510 ([e50a991](https://github.com/pie-framework/pie-lib/commit/e50a991aaa20f134d338a3f27d6d46d68db02a57))
+- **math-toolbar:** update math keypad colors and styles for improved UI consistency PD-5530 ([713c283](https://github.com/pie-framework/pie-lib/commit/713c283a11e1cff6568da7010e98e0b84df164ab))
+- **render-ui/editable-html-tip-tap:** fix disableImageAlignmentButtons prop and fix alignment in PreviewPrompt PIE-45 ([ef87ea4](https://github.com/pie-framework/pie-lib/commit/ef87ea4e4f9343be4779ea370036a556d67c8cb3))
+
+### Features
+
+- **math-input:** add hover styles for keypad buttons and update color definitions PD-5530 ([a3cb101](https://github.com/pie-framework/pie-lib/commit/a3cb101e5f326df14d0ae8454689ee18218744db))
+- **render-ui:** add transformDataHeadings function to convert data-heading paragraphs to headings - PIE-151 ([b59a7cc](https://github.com/pie-framework/pie-lib/commit/b59a7cc091ce9d1ace1679bd854e72ab3d57fc76))
+
+## [6.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@6.0.0...@pie-lib/render-ui@6.0.1) (2026-04-28)
+
+**Note:** Version bump only for package @pie-lib/render-ui
+
 # [5.2.0-next.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@5.2.0-next.8...@pie-lib/render-ui@5.2.0-next.9) (2026-04-23)
 
 ### Features

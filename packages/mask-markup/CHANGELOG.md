@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2-next.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.2-next.1...@pie-lib/mask-markup@3.0.2-next.2) (2026-05-06)
+
+### Bug Fixes
+
+- made sure extra spacing is added only when needed [PIE-436] ([1eb4b4c](https://github.com/pie-framework/pie-lib/commit/1eb4b4cfa26612ff32f68bc849da59dc0c5c521b))
+
+## [3.0.2-next.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.2-next.0...@pie-lib/mask-markup@3.0.2-next.1) (2026-05-06)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+## [3.0.2-next.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.16...@pie-lib/mask-markup@3.0.2-next.0) (2026-05-06)
+
+### Bug Fixes
+
+- add touchAction style to prevent touch interactions in DragInTheBlank and blank components PD-5811 ([ba4d73b](https://github.com/pie-framework/pie-lib/commit/ba4d73b4785cc59e85f3055902667a1cd4db325c))
+- **mask-markup:** add tests for new getMeasureNode method PD-5501 ([85bd3f6](https://github.com/pie-framework/pie-lib/commit/85bd3f6ea7610819b676bc0113151bd8ef06709f))
+- remove unnecessary newline in StyledChip component ([02acee2](https://github.com/pie-framework/pie-lib/commit/02acee2e8e741a56b854abd62c27de89cbf02f33))
+
+## [3.0.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.0...@pie-lib/mask-markup@3.0.1) (2026-04-28)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
 # [2.2.0-next.37](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@2.2.0-next.36...@pie-lib/mask-markup@2.2.0-next.37) (2026-04-23)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

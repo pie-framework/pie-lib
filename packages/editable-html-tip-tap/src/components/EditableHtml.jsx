@@ -30,6 +30,7 @@ import { ImageUploadNode } from '../extensions/image';
 import { Media } from '../extensions/media';
 import { CSSMark } from '../extensions/css';
 import { ExtendedListItem } from '../extensions/extended-list-item';
+import { HeadingParagraph } from '../extensions/heading-paragraph';
 
 import EditorContainer from './TiptapContainer';
 import { valueToSize } from '../utils/size';
@@ -153,7 +154,7 @@ export const EditableHtml = (props) => {
 
   const extensions = [
     TextAlign.configure({
-      types: ['heading', 'paragraph', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'td', 'th'],
+      types: ['heading', 'paragraph', 'div', 'headingParagraph', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'td', 'th'],
       alignments: ['left', 'right', 'center', 'justify'],
     }),
     TextStyleKit,
@@ -168,6 +169,7 @@ export const EditableHtml = (props) => {
     }),
     ExtendedListItem,
     DivNode,
+    HeadingParagraph,
     EnsureEmptyRootIsDiv,
     EnsureListItemContentIsDiv,
     Placeholder.configure({
@@ -286,7 +288,7 @@ export const EditableHtml = (props) => {
       editable: !props.disabled,
       content: normalizeInitialMarkup(props.markup),
       onUpdate: ({ editor, transaction }) => {
-        if (transaction.isDone) {
+        if (transaction.isDone || props.markup !== editor.getHTML()) {
           props.onChange?.(editor.getHTML());
         }
       },
