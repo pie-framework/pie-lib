@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0-next.3...@pie-lib/editable-html-tip-tap@2.1.0) (2026-05-07)
+
+**Note:** Version bump only for package @pie-lib/editable-html-tip-tap
+
 # [2.1.0-next.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0-next.2...@pie-lib/editable-html-tip-tap@2.1.0-next.3) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/editable-html-tip-tap
