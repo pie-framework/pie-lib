@@ -25,7 +25,6 @@ const StyledButton = styled(Button)(() => ({
   margin: '2px',
   textTransform: 'none',
   '& span': {
-    // Reserve space for the absolutely-positioned caret icon.
     paddingRight: '24px',
   },
   '& svg': {
