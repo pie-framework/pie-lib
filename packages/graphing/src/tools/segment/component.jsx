@@ -26,9 +26,21 @@ export const Line = (props) => {
   return (
     <g>
       {/* Transparent wider line captures pointer events (+2px each side) */}
-      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="transparent" strokeWidth={7} style={{ cursor: 'pointer', pointerEvents: 'stroke' }} />
+      <line
+        className="hit-area"
+        x1={x1}
+        y1={y1}
+        x2={x2}
+        y2={y2}
+        stroke="transparent"
+        strokeWidth={7}
+        style={{ cursor: 'pointer', pointerEvents: 'stroke' }}
+      />
       <StyledLineRoot
-        x1={x1} y1={y1} x2={x2} y2={y2}
+        x1={x1}
+        y1={y1}
+        x2={x2}
+        y2={y2}
         className={className}
         disabled={disabled}
         correctness={correctness}
