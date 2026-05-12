@@ -207,7 +207,8 @@ export const MathNodeView = (props) => {
 
   useEffect(() => {
     // Calculate position relative to selection
-    const bodyRect = document.body.getBoundingClientRect();
+    const container = editor?._tiptapContainerEl || document.body;
+    const bodyRect = container.getBoundingClientRect();
     const { from } = editor.state.selection;
     const start = editor.view.coordsAtPos(from);
     setPosition({
@@ -298,7 +299,9 @@ export const MathNodeView = (props) => {
             ref={toolbarRef}
             data-toolbar-for={editor.instanceId}
             style={{
-              marginTop: '6px',
+              position: 'absolute',
+              top: `${position.top}px`,
+              left: `${position.left}px`,
               zIndex: 20,
               background: 'var(--editable-html-toolbar-bg, #efefef)',
               boxShadow:

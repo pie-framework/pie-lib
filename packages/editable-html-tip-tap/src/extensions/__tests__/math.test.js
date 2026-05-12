@@ -11,9 +11,10 @@ jest.mock('@tiptap/react', () => ({
   ReactNodeViewRenderer: jest.fn((component) => component),
 }));
 
+const mockCreatePortal = jest.fn((node) => node);
 jest.mock('react-dom', () => ({
   ...jest.requireActual('react-dom'),
-  createPortal: (node) => node,
+  createPortal: (...args) => mockCreatePortal(...args),
 }));
 
 jest.mock('@pie-lib/math-toolbar', () => {
@@ -197,6 +198,7 @@ describe('MathNodeView', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockCreatePortal.mockImplementation((node) => node);
     defaultProps = {
       node: mockNode,
       updateAttributes: jest.fn(),
@@ -241,11 +243,120 @@ describe('MathNodeView', () => {
     });
   });
 
-  it('renders toolbar with correct position', async () => {
-    const { container } = render(<MathNodeView {...defaultProps} selected={true} />);
-    await waitFor(() => {
-      const toolbar = container.querySelector('[data-toolbar-for]');
-      expect(toolbar).toBeInTheDocument();
+  describe('toolbar positioning', () => {
+    it('uses _tiptapContainerEl for position calculation when available', async () => {
+      const containerEl = document.createElement('div');
+      containerEl.getBoundingClientRect = jest.fn(() => ({ top: -50, left: 20, width: 600, height: 400 }));
+
+      const editor = {
+        ...defaultProps.editor,
+        _tiptapContainerEl: containerEl,
+      };
+
+      const { container } = render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
+      await waitFor(() => {
+        const toolbar = container.querySelector('[data-toolbar-for]');
+        expect(toolbar).toBeInTheDocument();
+        // top = coordsAtPos.top (100) + Math.abs(containerEl.top (-50)) + 40 = 190
+        expect(toolbar.style.top).toBe('190px');
+        expect(toolbar.style.left).toBe('50px');
+      });
+    });
+
+    it('falls back to document.body when _tiptapContainerEl is not set', async () => {
+      const editor = {
+        ...defaultProps.editor,
+        _tiptapContainerEl: undefined,
+      };
+
+      const { container } = render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
+      await waitFor(() => {
+        const toolbar = container.querySelector('[data-toolbar-for]');
+        expect(toolbar).toBeInTheDocument();
+        // top = coordsAtPos.top (100) + Math.abs(document.body.top (0)) + 40 = 140
+        expect(toolbar.style.top).toBe('140px');
+        expect(toolbar.style.left).toBe('50px');
+      });
+    });
+
+    it('applies absolute positioning style to toolbar', async () => {
+      const { container } = render(<MathNodeView {...defaultProps} selected={true} />);
+      await waitFor(() => {
+        const toolbar = container.querySelector('[data-toolbar-for]');
+        expect(toolbar).toBeInTheDocument();
+        expect(toolbar.style.position).toBe('absolute');
+      });
+    });
+
+    it('recalculates position when toolbar reopens', async () => {
+      const editor = {
+        ...defaultProps.editor,
+        view: {
+          ...defaultProps.editor.view,
+          coordsAtPos: jest.fn(() => ({ top: 200, left: 150 })),
+          dispatch: jest.fn(),
+        },
+      };
+
+      const { container } = render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
+      await waitFor(() => {
+        const toolbar = container.querySelector('[data-toolbar-for]');
+        expect(toolbar).toBeInTheDocument();
+        // top = 200 + Math.abs(0) + 40 = 240
+        expect(toolbar.style.top).toBe('240px');
+        expect(toolbar.style.left).toBe('150px');
+      });
+    });
+
+    it('accounts for negative container top (scrolled container)', async () => {
+      const containerEl = document.createElement('div');
+      containerEl.getBoundingClientRect = jest.fn(() => ({ top: -200, left: 0, width: 600, height: 400 }));
+
+      const editor = {
+        ...defaultProps.editor,
+        _tiptapContainerEl: containerEl,
+      };
+
+      const { container } = render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
+      await waitFor(() => {
+        const toolbar = container.querySelector('[data-toolbar-for]');
+        expect(toolbar).toBeInTheDocument();
+        // top = 100 + Math.abs(-200) + 40 = 340
+        expect(toolbar.style.top).toBe('340px');
+      });
+    });
+
+    it('portals toolbar into _tiptapContainerEl when available', async () => {
+      const containerEl = document.createElement('div');
+      containerEl.getBoundingClientRect = jest.fn(() => ({ top: 0, left: 0, width: 600, height: 400 }));
+
+      const editor = {
+        ...defaultProps.editor,
+        _tiptapContainerEl: containerEl,
+      };
+
+      mockCreatePortal.mockClear();
+      render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
+      await waitFor(() => {
+        expect(mockCreatePortal).toHaveBeenCalled();
+        const lastCall = mockCreatePortal.mock.calls[mockCreatePortal.mock.calls.length - 1];
+        expect(lastCall[1]).toBe(containerEl);
+      });
+    });
+
+    it('portals toolbar into document.body when _tiptapContainerEl is not set', async () => {
+      const editor = {
+        ...defaultProps.editor,
+        _tiptapContainerEl: undefined,
+      };
+
+      mockCreatePortal.mockClear();
+      render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
+      await waitFor(() => {
+        expect(mockCreatePortal).toHaveBeenCalled();
+        const lastCall = mockCreatePortal.mock.calls[mockCreatePortal.mock.calls.length - 1];
+        expect(lastCall[1]).toBe(document.body);
+      });
     });
   });
 
