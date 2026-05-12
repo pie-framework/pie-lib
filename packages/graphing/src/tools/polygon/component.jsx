@@ -10,7 +10,7 @@ import { types } from '@pie-lib/plot';
 import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
-import { equalPoints, getMiddleOfTwoPoints, getRightestPoints } from '../../utils';
+import { equalPoints, getMiddleOfTwoPoints, getRightestPoints, stripEmptyLabel } from '../../utils';
 
 const log = debug('pie-lib:graphing:polygon');
 
@@ -184,9 +184,10 @@ export class RawBaseComponent extends React.Component {
         const { a, b } = getRightestPoints(points);
         const middle = { label: '', ...point, ...getMiddleOfTwoPoints(a, b) };
 
+        onChangeProps(points.map(stripEmptyLabel));
         onChangeLabelProps(middle);
       } else {
-        const update = [...points];
+        const update = points.map(stripEmptyLabel);
 
         update.splice(index, 1, { label: '', ...point });
         onChangeProps(update);
