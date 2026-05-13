@@ -140,9 +140,7 @@ export const MarkLabel = (props) => {
   const onChange = (e) => setLabel(e.target.value);
 
   const handleBlur = useCallback(() => {
-    console.log('handleBlur Arimie', label);
     if (label === '') {
-      console.log('handleBlur Arimie empty', label);
       props.onChange('');
     }
   }, [label, props.onChange]);
