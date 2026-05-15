@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: master
+          ref: a05f89e03
           fetch-depth: 0
       - name: Configure Git
         run: |
@@ -25,5 +25,5 @@ jobs:
           cache: yarn
       - run: yarn install
       - run: scripts/release --build
-      - name: Publish packages whose local version is missing from npm
-        run: npx lerna publish from-package --yes --loglevel verbose
+      - name: Publish packages tagged at this commit that are missing from npm
+        run: npx lerna publish from-git --yes --loglevel verbose
