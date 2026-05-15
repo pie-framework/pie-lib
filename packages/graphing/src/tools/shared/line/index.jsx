@@ -11,7 +11,7 @@ import { equalPoints, getMiddleOfTwoPoints, sameAxes, stripEmptyLabel } from '..
 import { styled } from '@mui/material/styles';
 
 const StyledLineGroup = styled('g')(({ disabled, correctness }) => ({
-  '& line': {
+  '& line:not(.hit-area)': {
     fill: 'transparent',
     stroke: color.defaults.BLACK,
     strokeWidth: 3,
@@ -22,23 +22,23 @@ const StyledLineGroup = styled('g')(({ disabled, correctness }) => ({
     },
   },
   ...(disabled && {
-    '& line': {
+    '& line:not(.hit-area)': {
       ...disabledSecondary('stroke'),
       strokeWidth: 2,
     },
   }),
   ...(correctness === 'correct' && {
-    '& line': {
+    '& line:not(.hit-area)': {
       ...correct('stroke'),
     },
   }),
   ...(correctness === 'incorrect' && {
-    '& line': {
+    '& line:not(.hit-area)': {
       ...incorrect('stroke'),
     },
   }),
   ...(correctness === 'missing' && {
-    '& line': {
+    '& line:not(.hit-area)': {
       ...missing('stroke'),
       strokeWidth: 1,
       strokeDasharray: '4 3',

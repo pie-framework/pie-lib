@@ -15,17 +15,7 @@ const StyledLine = styled('line')(({ disabled: isDisabled, correctness }) => ({
     strokeWidth: 4,
     stroke: color.defaults.BLACK,
   },
-  ...(isDisabled && {
-    ...disabled('stroke'),
-    strokeWidth: 2,
-  }),
-  ...(correctness === 'correct' && correct('stroke')),
-  ...(correctness === 'incorrect' && incorrect('stroke')),
-  ...(correctness === 'missing' && {
-    ...missing('stroke'),
-    strokeWidth: 1,
-    strokeDasharray: '4 3',
-  }),
+  ...((isDisabled || correctness) && { pointerEvents: 'none' }),
 }));
 
 class RawLine extends React.Component {
