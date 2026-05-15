@@ -10,7 +10,7 @@ import { types } from '@pie-lib/plot';
 import invariant from 'invariant';
 import ReactDOM from 'react-dom';
 import MarkLabel from '../../mark-label';
-import { equalPoints, getMiddleOfTwoPoints, getRightestPoints } from '../../utils';
+import { equalPoints, getMiddleOfTwoPoints, getRightestPoints, stripEmptyLabel } from '../../utils';
 
 const log = debug('pie-lib:graphing:polygon');
 
@@ -82,6 +82,7 @@ export class RawBaseComponent extends React.Component {
     labelModeEnabled: PropTypes.bool,
     limitLabeling: PropTypes.bool,
     onChangeLabelProps: PropTypes.func,
+    onSetMiddleLabel: PropTypes.func,
     onChangeProps: PropTypes.func,
   };
 
@@ -165,12 +166,12 @@ export class RawBaseComponent extends React.Component {
     const {
       closed,
       disabled,
+      middle: currentMiddle,
       onClick,
       isToolActive,
       labelModeEnabled,
       limitLabeling,
-      onChangeProps,
-      onChangeLabelProps,
+      onSetMiddleLabel,
       points,
     } = this.props;
 
@@ -184,12 +185,13 @@ export class RawBaseComponent extends React.Component {
         const { a, b } = getRightestPoints(points);
         const middle = { label: '', ...point, ...getMiddleOfTwoPoints(a, b) };
 
-        onChangeLabelProps(middle);
+        onSetMiddleLabel(middle, points.map(stripEmptyLabel));
       } else {
-        const update = [...points];
+        const strippedPoints = points.map(stripEmptyLabel);
+        strippedPoints.splice(index, 1, { label: '', ...point });
 
-        update.splice(index, 1, { label: '', ...point });
-        onChangeProps(update);
+        const strippedMiddle = currentMiddle ? stripEmptyLabel(currentMiddle) : currentMiddle;
+        onSetMiddleLabel(strippedMiddle, strippedPoints);
       }
 
       // defer the focus() call with setTimeout to allow the re-render to complete first.
@@ -237,7 +239,7 @@ export class RawBaseComponent extends React.Component {
       polygonLabelNode = ReactDOM.createPortal(
         <MarkLabel
           inputRef={(r) => (this.input[polygonLabelIndex] = r)}
-          disabled={!labelModeEnabled}
+          disabled={disabled || !labelModeEnabled}
           mark={middle}
           graphProps={graphProps}
           onChange={(label) => onChangeLabelProps({ ...middle, label })}
@@ -289,7 +291,7 @@ export class RawBaseComponent extends React.Component {
               ? ReactDOM.createPortal(
                   <MarkLabel
                     inputRef={(r) => (this.input[index] = r)}
-                    disabled={!labelModeEnabled}
+                    disabled={disabled || !labelModeEnabled}
                     mark={p}
                     graphProps={graphProps}
                     onChange={(label) => this.labelChange({ ...p, label }, index)}
@@ -344,7 +346,20 @@ export default class Component extends React.Component {
     const { mark, onChange } = this.props;
     const middle = { ...mark.middle, ...point };
 
+    if (!middle.label || isEmpty(middle.label)) {
+      delete middle.label;
+    }
+
     onChange(mark, { ...mark, middle });
+  };
+
+  setMiddleLabel = (middle, strippedPoints) => {
+    const { mark, onChange } = this.props;
+    const next = { ...mark, middle };
+    if (strippedPoints) {
+      next.points = strippedPoints;
+    }
+    onChange(mark, next);
   };
 
   closePolygon = () => {
@@ -377,6 +392,7 @@ export default class Component extends React.Component {
         coordinatesOnHover={coordinatesOnHover}
         onChange={this.change}
         onChangeLabelProps={this.changeLabelProps}
+        onSetMiddleLabel={this.setMiddleLabel}
         onChangeProps={this.changeProps}
         onClosePolygon={this.closePolygon}
         onDragStart={this.dragStart}
