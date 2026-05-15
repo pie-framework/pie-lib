@@ -21,6 +21,6 @@ jobs:
       - run: yarn install
       - run: scripts/release --build
       - name: Publish packages whose local version is missing from npm
-        run: npx lerna publish from-package --yes --loglevel verbose
+        run: npx lerna publish from-package --yes --no-provenance --loglevel verbose
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
