@@ -7,12 +7,17 @@ jobs:
   publish-from-git:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v5
         with:
           ref: master
           fetch-depth: 0
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -22,5 +27,3 @@ jobs:
       - run: scripts/release --build
       - name: Publish packages whose local version is missing from npm
         run: npx lerna publish from-package --yes --loglevel verbose
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
