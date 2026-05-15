@@ -31,6 +31,9 @@ module.exports = {
     // Workspace packages - map to source
     '^@pie-lib/(.*)$': '<rootDir>/packages/$1/src',
     '^d3-array$': '<rootDir>/node_modules/d3-array/dist/d3-array.js',
+
+    // MathLive mock — resolved from __mocks__/mathlive.js until the package is installed
+    '^mathlive$': '<rootDir>/__mocks__/mathlive.js',
   },
 
   // Collect coverage from source files

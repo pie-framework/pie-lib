@@ -26,6 +26,8 @@
     "@pie-lib/mask-markup": "^3.0.2",
     "@pie-lib/math-evaluator": "^4.0.2",
     "@pie-lib/math-input": "^8.1.0",
+    "@pie-lib/math-input-mathlive": "*",
+
     "@pie-lib/math-rendering": "^5.0.2",
     "@pie-lib/math-toolbar": "^3.0.2",
     "@pie-lib/plot": "^4.0.2",

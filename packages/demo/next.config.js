@@ -4,6 +4,18 @@ const gitInfo = require('./config/git-info')();
 const links = loadLinks();
 const packageInfo = require('./config/package-info');
 
+// When mathlive isn't installed yet (e.g. yarn install hasn't been run), fall
+// back to a local stub so the dev server can start.  Once mathlive is present
+// in node_modules this variable is true and the alias is never added.
+const mathliveInstalled = (() => {
+  try {
+    require.resolve('mathlive');
+    return true;
+  } catch (_) {
+    return false;
+  }
+})();
+
 const withTM = require('next-transpile-modules')([
   'd3-array',
   'd3-scale',
@@ -25,6 +37,7 @@ const withTM = require('next-transpile-modules')([
   '@pie-lib/mask-markup',
   '@pie-lib/math-evaluator',
   '@pie-lib/math-input',
+  '@pie-lib/math-input-mathlive',
   '@pie-lib/math-rendering',
   '@pie-lib/math-toolbar',
   '@pie-lib/plot',
@@ -62,6 +75,11 @@ const nextConfig = {
       ...config.resolve.alias,
       react: path.resolve(__dirname, '../../node_modules/react'),
       'react-dom': path.resolve(__dirname, '../../node_modules/react-dom'),
+      // Use the local stub when mathlive isn't installed so webpack can resolve it.
+      // Remove (or it becomes a no-op) once `yarn install` brings in the real package.
+      ...(!mathliveInstalled && {
+        mathlive: path.resolve(__dirname, 'stubs/mathlive-stub.js'),
+      }),
     };
 
     // Optional: keep url-loader rule if you still want inlined assets
