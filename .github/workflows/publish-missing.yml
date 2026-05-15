@@ -1,0 +1,26 @@
+name: Publish Missing Stable Versions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-from-git:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+          cache: yarn
+      - run: yarn install
+      - run: scripts/release --build
+      - name: Publish packages that have git tags but are missing from npm
+        run: npx lerna publish from-git --yes --loglevel verbose
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
