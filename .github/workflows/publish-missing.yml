@@ -20,7 +20,7 @@ jobs:
           cache: yarn
       - run: yarn install
       - run: scripts/release --build
-      - name: Publish packages that have git tags but are missing from npm
-        run: npx lerna publish from-git --yes --loglevel verbose
+      - name: Publish packages whose local version is missing from npm
+        run: npx lerna publish from-package --yes --loglevel verbose
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
