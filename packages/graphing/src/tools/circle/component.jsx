@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { BasePoint } from '../shared/point';
 import BgCircle from './bg-circle';
-import { equalPoints, getMiddleOfTwoPoints, point } from '../../utils';
+import { equalPoints, getMiddleOfTwoPoints, point, stripEmptyLabel } from '../../utils';
 import { types } from '@pie-lib/plot';
 import { rootEdgeComponent } from '../shared/line/with-root-edge';
 import ReactDOM from 'react-dom';
@@ -103,7 +103,7 @@ export class RawBaseCircle extends React.Component {
   };
 
   clickPoint = (point, type, data) => {
-    const { changeMarkProps, disabled, from, to, labelModeEnabled, limitLabeling, onClick } = this.props;
+    const { changeMarkProps, disabled, from, to, middle, labelModeEnabled, limitLabeling, onClick } = this.props;
 
     if (!labelModeEnabled) {
       onClick(point || data);
@@ -115,8 +115,12 @@ export class RawBaseCircle extends React.Component {
     if (type === 'middle' && !point && from && to) {
       point = { ...point, ...getMiddleOfTwoPoints(from, to) };
     }
-
-    changeMarkProps({ from, to, [type]: { label: '', ...point } });
+    changeMarkProps({
+      from: stripEmptyLabel(from),
+      to: stripEmptyLabel(to),
+      middle: stripEmptyLabel(middle),
+      [type]: { label: '', ...point },
+    });
 
     if (this.input[type]) {
       this.input[type].focus();

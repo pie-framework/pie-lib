@@ -103,7 +103,7 @@ export const coordinates = (graphProps, mark, rect = { width: 0, height: 0 }, po
   }
 };
 
-const LabelInput = ({ _ref, externalInputRef, label, disabled, inputStyle, onChange }) => (
+const LabelInput = ({ _ref, externalInputRef, label, disabled, inputStyle, onChange, onBlur }) => (
   <AutosizeInput
     inputRef={(r) => {
       _ref(r);
@@ -113,6 +113,7 @@ const LabelInput = ({ _ref, externalInputRef, label, disabled, inputStyle, onCha
     inputStyle={inputStyle}
     value={label}
     onChange={onChange}
+    onBlur={onBlur}
   />
 );
 
@@ -123,6 +124,7 @@ LabelInput.propTypes = {
   disabled: PropTypes.bool,
   inputStyle: PropTypes.object,
   onChange: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 export const MarkLabel = (props) => {
@@ -134,7 +136,14 @@ export const MarkLabel = (props) => {
 
   const [label, setLabel] = useState(mark.label);
   const { correctness, correctnesslabel, correctlabel } = mark;
+
   const onChange = (e) => setLabel(e.target.value);
+
+  const handleBlur = useCallback(() => {
+    if (label === '') {
+      props.onChange('');
+    }
+  }, [label, props.onChange]);
 
   const debouncedLabel = useDebounce(label, 200);
 
@@ -178,6 +187,7 @@ export const MarkLabel = (props) => {
       disabled={disabledInput}
       inputStyle={inputStyle}
       onChange={onChange}
+      onBlur={handleBlur}
     />
   );
 
@@ -192,7 +202,6 @@ export const MarkLabel = (props) => {
     );
   }
 
-  // avoid rendering empty label when a correct point without label  was provided
   if (correctness === 'correct' && correctnesslabel === 'correct' && !correctlabel) {
     return null;
   }

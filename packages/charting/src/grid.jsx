@@ -26,10 +26,22 @@ export class Grid extends React.Component {
     const { scale = {}, size = {}, range = {} } = graphProps || {};
     const { step = 0, labelStep = 0 } = range;
     const highlightNonLabel = step && labelStep && step < labelStep;
-    // if highlightNonLabel is true, we need to separate the unlabled lines in order to render them in a different color
+
+    // Avoid floating-point precision errors in the % operator.
+    // e.g. 0.6 % 0.2 = 0.19999999999999996, but safeModulo(0.6, 0.2) = 0
+    const safeModulo = (value, step) => {
+      const valueDecimals = (value.toString().split('.')[1] || '').length;
+      const stepDecimals =(step.toString().split('.')[1] || '').length
+      const decimals = Math.max(valueDecimals, stepDecimals);
+      const factor = Math.pow(10, decimals);
+
+      return ((value * factor) % (step * factor)) / factor;
+    };
+
+    // if highlightNonLabel is true, we need to separate the unlabeled lines in order to render them in a different color
     const { unlabeledLines, labeledLines } = (rowTickValues || []).reduce(
       (acc, value) => {
-        if (highlightNonLabel && value % labelStep !== 0) {
+        if (highlightNonLabel && safeModulo(value, labelStep) !== 0) {
           acc.unlabeledLines.push(value);
         } else {
           acc.labeledLines.push(value);
@@ -55,7 +67,7 @@ export class Grid extends React.Component {
           width={size.width}
           tickValues={labeledLines}
           lineStyle={{
-            stroke: color.visualElementsColors.GRIDLINES_COLOR,
+            stroke: unlabeledLines.length ? color.visualElementsColors.GRIDLINES_COLOR : color.fadedPrimary(),
             strokeWidth: 1,
           }}
         />
