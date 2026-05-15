@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0...@pie-lib/editable-html-tip-tap@2.1.1) (2026-05-15)
+
+### Bug Fixes
+
+- made sure math toolbar uses position absolute and its placed below the math input [PIE-510] ([6a51b42](https://github.com/pie-framework/pie-lib/commit/6a51b42e65e81282d65eeee799039bc09b0b91e7))
+
 # [2.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0-next.3...@pie-lib/editable-html-tip-tap@2.1.0) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/editable-html-tip-tap

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.2...@pie-lib/mask-markup@3.0.3) (2026-05-15)
+
+### Bug Fixes
+
+- **mask-markup:** delete unneeded comment PIE-437 ([9040197](https://github.com/pie-framework/pie-lib/commit/9040197795a525d7264402e4b1111498a739d883))
+- **mask-markup:** minimize padding for inline-dropdown PIE-437 ([600f5f8](https://github.com/pie-framework/pie-lib/commit/600f5f8e9e6240c56cb6cbf994f6264b2b582c74))
+
 ## [3.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.2-next.3...@pie-lib/mask-markup@3.0.2) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

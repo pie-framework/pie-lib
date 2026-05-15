@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.3...@pie-lib/graphing@4.0.4) (2026-05-15)
+
+### Bug Fixes
+
+- **graphing:** avoid tools to have extra stroke on eval PD-451 ([b15e23a](https://github.com/pie-framework/pie-lib/commit/b15e23a11c4424dee372b0daea6ef89c2ec35be5))
+- **graphing:** ensure polygon labels are disabled in student view, delete logs PIE-452 ([bd40387](https://github.com/pie-framework/pie-lib/commit/bd40387e228fad48227f77ee825f2f5d5d5ebff6))
+- **graphing:** remove empty labels of tools PIE-452 ([c164061](https://github.com/pie-framework/pie-lib/commit/c164061b00674e7de5bf1d48a6dea36f5638b39c))
+
 ## [4.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.3-next.3...@pie-lib/graphing@4.0.3) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/graphing

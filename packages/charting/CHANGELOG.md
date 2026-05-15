@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@7.0.2...@pie-lib/charting@7.0.3) (2026-05-15)
+
+### Bug Fixes
+
+- **charting:** avoid floating-point precision errors in the % operator PIE-434 ([d325882](https://github.com/pie-framework/pie-lib/commit/d325882408975633c872d5fca70a8117fec30e51))
+
 ## [7.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@7.0.2-next.3...@pie-lib/charting@7.0.2) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/charting
