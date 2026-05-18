@@ -428,7 +428,7 @@ const StyledEditorContent = styled(EditorContent, {
       },
     }),
     ...(separateParagraph && {
-      '& > div:has(+ div)': {
+      '& > p:has(+ p)': {
         marginBottom: '1em',
       },
     }),
