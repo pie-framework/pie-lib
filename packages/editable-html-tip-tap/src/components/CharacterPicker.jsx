@@ -29,8 +29,11 @@ export function CharacterPicker({ editor, opts, onClose }) {
   }
 
   const containerRef = useRef(null);
+  const onCloseRef = useRef(onClose);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [popover, setPopover] = useState(null);
+
+  onCloseRef.current = onClose;
 
   const configToUse = useMemo(() => {
     if (!opts) return spanishConfig;
@@ -69,6 +72,9 @@ export function CharacterPicker({ editor, opts, onClose }) {
     [],
   );
 
+  // Keep `onClose` out of the dependency array — parents often pass a new callback each
+  // render (e.g. after each keystroke), which would re-run this effect constantly. Use a
+  // ref so click-outside always calls the latest close handler.
   useEffect(() => {
     if (!editor) return;
 
@@ -86,14 +92,15 @@ export function CharacterPicker({ editor, opts, onClose }) {
     }
 
     setPosition({
-      // top: start.top + Math.abs(bodyRect.top) - containerRef.current.offsetHeight - 10 + additionalTopOffset, // shift above
       top: top,
       left: start.left,
     });
 
+    const editorViewDom = editor.view.dom;
+
     const handleClickOutside = (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target) && !editor.view.dom.contains(e.target)) {
-        onClose();
+      if (containerRef.current && !containerRef.current.contains(e.target) && !editorViewDom.contains(e.target)) {
+        onCloseRef.current();
       }
     };
 
@@ -105,7 +112,7 @@ export function CharacterPicker({ editor, opts, onClose }) {
       clearTimeout(timeoutId);
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [editor, onClose]);
+  }, [editor]);
 
   const renderPopOver = (event, el) => setPopover({ anchorEl: event.currentTarget, el });
 

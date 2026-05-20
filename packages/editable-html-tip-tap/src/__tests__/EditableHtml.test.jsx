@@ -336,6 +336,7 @@ describe('EditableHtml', () => {
     const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
     const blurEditor = {
       getHTML: jest.fn(() => '<p>changed</p>'),
+      schema: {},
       _insertingImage: true,
       _toolbarOpened: false,
       isActive: jest.fn(() => false),
@@ -346,6 +347,85 @@ describe('EditableHtml', () => {
 
     expect(onChange).not.toHaveBeenCalled();
     expect(onDone).not.toHaveBeenCalled();
+
+    jest.useRealTimers();
+  });
+
+  it('does not run blur onChange/onDone when editor has no schema', async () => {
+    jest.useFakeTimers();
+    const onChange = jest.fn();
+    const onDone = jest.fn();
+
+    render(
+      <EditableHtml
+        {...defaultProps}
+        markup="<p>Hello World</p>"
+        onChange={onChange}
+        onDone={onDone}
+        toolbarOpts={{ doneOn: 'blur' }}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(useEditor).toHaveBeenCalled();
+    });
+
+    const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
+    const getHTML = jest.fn(() => '<p>changed</p>');
+    const blurEditor = {
+      getHTML,
+      schema: undefined,
+      _insertingImage: false,
+      _toolbarOpened: false,
+      isActive: jest.fn(() => false),
+    };
+
+    editorConfig.onBlur({ editor: blurEditor });
+    jest.advanceTimersByTime(200);
+
+    expect(getHTML).not.toHaveBeenCalled();
+    expect(onChange).not.toHaveBeenCalled();
+    expect(onDone).not.toHaveBeenCalled();
+
+    jest.useRealTimers();
+  });
+
+  it('calls getHTML once on blur and passes the same html to onChange and onDone', async () => {
+    jest.useFakeTimers();
+    const onChange = jest.fn();
+    const onDone = jest.fn();
+    const html = '<p>from editor</p>';
+
+    render(
+      <EditableHtml
+        {...defaultProps}
+        markup="<p>Hello World</p>"
+        onChange={onChange}
+        onDone={onDone}
+        toolbarOpts={{ doneOn: 'blur' }}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(useEditor).toHaveBeenCalled();
+    });
+
+    const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
+    const getHTML = jest.fn(() => html);
+    const blurEditor = {
+      getHTML,
+      schema: {},
+      _insertingImage: false,
+      _toolbarOpened: false,
+      isActive: jest.fn(() => false),
+    };
+
+    editorConfig.onBlur({ editor: blurEditor });
+    jest.advanceTimersByTime(200);
+
+    expect(getHTML).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith(html);
+    expect(onDone).toHaveBeenCalledWith(html);
 
     jest.useRealTimers();
   });
