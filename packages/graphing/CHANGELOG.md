@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.4...@pie-lib/graphing@4.0.5) (2026-05-21)
+
+### Bug Fixes
+
+- add a bigger stroke for polygons PIE-451 ([4908eda](https://github.com/pie-framework/pie-lib/commit/4908edae1bb176575e18a5c5979cb3d4e9eb1454))
+
 ## [4.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.3...@pie-lib/graphing@4.0.4) (2026-05-15)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.1...@pie-lib/editable-html-tip-tap@2.1.2) (2026-05-21)
+
+### Bug Fixes
+
+- made sure characterpicker positioning is not changing on each typed character [PIE-511][PIE-561][PIE-562][PIE-563] ([127f409](https://github.com/pie-framework/pie-lib/commit/127f409767e51f43479ae8e44be635db92f77eb5))
+- made sure separateParagraphs works [PIE-522] ([9088942](https://github.com/pie-framework/pie-lib/commit/90889424e08c0588861834c0ba020b63718f8bd8))
+
 ## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0...@pie-lib/editable-html-tip-tap@2.1.1) (2026-05-15)
 
 ### Bug Fixes
