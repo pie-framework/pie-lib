@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { CharacterIcon, CharacterPicker } from '../CharacterPicker';
 
 jest.mock('react-dom', () => ({
@@ -128,13 +128,55 @@ describe('CharacterPicker', () => {
     };
     render(<CharacterPicker editor={mockEditor} opts={opts} onClose={onClose} />);
 
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 0));
+    });
+    fireEvent.click(document.body);
+
     await waitFor(() => {
-      setTimeout(() => {
-        fireEvent.click(document.body);
-      }, 0);
+      expect(onClose).toHaveBeenCalled();
+    });
+  });
+
+  it('does not re-run positioning when only onClose reference changes', async () => {
+    const opts = {
+      characters: [['á', 'é']],
+    };
+    const getRect = mockEditor.options.element.getBoundingClientRect;
+    const { rerender } = render(<CharacterPicker editor={mockEditor} opts={opts} onClose={jest.fn()} />);
+
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 0));
     });
 
-    expect(onClose).toHaveBeenCalled();
+    const callsAfterMount = getRect.mock.calls.length;
+    expect(callsAfterMount).toBeGreaterThan(0);
+
+    rerender(<CharacterPicker editor={mockEditor} opts={opts} onClose={jest.fn()} />);
+
+    expect(getRect.mock.calls.length).toBe(callsAfterMount);
+  });
+
+  it('outside click invokes the latest onClose after rerender', async () => {
+    const opts = {
+      characters: [['á', 'é']],
+    };
+    const onCloseFirst = jest.fn();
+    const { rerender } = render(<CharacterPicker editor={mockEditor} opts={opts} onClose={onCloseFirst} />);
+
+    await act(async () => {
+      await new Promise((r) => setTimeout(r, 0));
+    });
+
+    const onCloseSecond = jest.fn();
+    rerender(<CharacterPicker editor={mockEditor} opts={opts} onClose={onCloseSecond} />);
+
+    fireEvent.click(document.body);
+
+    await waitFor(() => {
+      expect(onCloseSecond).toHaveBeenCalled();
+    });
+    expect(onCloseFirst).not.toHaveBeenCalled();
   });
 
   it('does not close when clicking inside picker', async () => {
