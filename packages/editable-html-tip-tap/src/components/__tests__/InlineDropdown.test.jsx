@@ -17,8 +17,15 @@ jest.mock('react-dom', () => ({
 
 describe('InlineDropdown', () => {
   const buildMockEditor = (overrides = {}) => {
+    const mockNodeAt = jest.fn((pos) => (pos === 5 ? { nodeSize: 1 } : null));
+    const mockDoc = {
+      descendants: jest.fn(),
+      nodeAt: mockNodeAt,
+    };
     const mockTr = {
       delete: jest.fn(),
+      doc: { nodeAt: mockNodeAt },
+      setSelection: jest.fn(),
     };
     return {
       state: {
@@ -27,6 +34,7 @@ describe('InlineDropdown', () => {
           to: 1,
         },
         tr: mockTr,
+        doc: mockDoc,
       },
       view: {
         coordsAtPos: jest.fn(() => ({ top: 100, left: 50 })),
