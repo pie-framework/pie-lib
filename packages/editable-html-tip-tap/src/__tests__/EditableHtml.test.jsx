@@ -455,7 +455,7 @@ describe('EditableHtml', () => {
       expect(onChange).toHaveBeenCalledWith('<p>Updated content</p>');
     });
 
-    it('calls onChange when markup differs from editor HTML', async () => {
+    it('does not call onChange when transaction.isDone is false even if markup differs from editor HTML', async () => {
       const onChange = jest.fn();
       const markup = '<p>Initial content</p>';
 
@@ -476,7 +476,7 @@ describe('EditableHtml', () => {
 
       editorConfig.onUpdate({ editor: mockEditor, transaction: mockTransaction });
 
-      expect(onChange).toHaveBeenCalledWith('<p>Different content</p>');
+      expect(onChange).not.toHaveBeenCalled();
     });
 
     it('does not call onChange when transaction.isDone is false and markup matches editor HTML', async () => {
