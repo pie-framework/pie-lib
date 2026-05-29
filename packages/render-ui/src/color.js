@@ -51,6 +51,7 @@ export const defaults = {
   KEYPAD_EMPTY_PLACEHOLDER: 'rgba(245, 0, 87, 0.4)',
   KEYPAD_BUTTON_HOVER: 'rgb(214, 218, 239)',
   KEYPAD_BUTTON_OPERATOR_HOVER: 'rgb(255, 197, 217)',
+  KEY_BOARD_FOCUS_INDICATOR: '#2B87FF',
   // these are used for graphing UI elements
   BUTTON_BORDER: 'rgba(0, 0, 0, 0.23)',
   BUTTON_HOVER_BG: 'rgba(0, 0, 0, 0.08)',
@@ -125,6 +126,7 @@ export const keypadButtonOperator = () => pv('keypad-button-operator', defaults.
 export const keypadEmptyPlaceholder = () => pv('keypad-empty-placeholder', defaults.KEYPAD_EMPTY_PLACEHOLDER);
 export const keypadButtonHover = () => pv('keypad-button-hover', defaults.KEYPAD_BUTTON_HOVER);
 export const keypadButtonOperatorHover = () => pv('keypad-button-operator-hover', defaults.KEYPAD_BUTTON_OPERATOR_HOVER);
+export const keyBoardFocusIndicator = () => pv('keyboard-focus-indicator', defaults.KEY_BOARD_FOCUS_INDICATOR);
 export const buttonBorder = () => pv('button-border', defaults.BUTTON_BORDER);
 export const buttonHoverBg = () => pv('button-hover-bg', defaults.BUTTON_HOVER_BG);
 
