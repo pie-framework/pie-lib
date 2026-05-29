@@ -224,7 +224,19 @@ class Dropdown extends React.Component {
     }
   }
 
-  handleClick = (event) => this.setState({ anchorEl: event.currentTarget });
+  handleClick = (event) => {
+    const { id, value, choices } = this.props;
+    let highlightedOptionId = null;
+
+    if (value) {
+      const selectedIndex = (choices || []).findIndex((c) => c.value === value);
+      if (selectedIndex >= 0) {
+        highlightedOptionId = `dropdown-option-${id}-${selectedIndex}`;
+      }
+    }
+
+    this.setState({ anchorEl: event.currentTarget, highlightedOptionId });
+  };
 
   handleClose = () => {
     const { value } = this.props;
@@ -386,6 +398,7 @@ class Dropdown extends React.Component {
               <StyledMenuItem
                 id={optionId}
                 className={c.value === value ? 'selected' : ''}
+                selected={c.value === value}
                 key={`${c.label}-${index}`}
                 value={c.value}
                 onClick={() => this.handleSelect(c.value, index)}

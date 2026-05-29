@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { choice } from '../../__tests__/utils';
 import Dropdown from '../dropdown';
@@ -42,6 +42,42 @@ describe('Dropdown', () => {
       expect(options[0]).toHaveTextContent('Jumped');
       expect(options[1]).toHaveTextContent('Laughed');
       expect(options[2]).toHaveTextContent('Smiled');
+    });
+
+    it('focuses the selected option when the menu opens', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown {...defaultProps} />);
+
+      const button = screen.getByRole('combobox');
+      await user.click(button);
+
+      await waitFor(() => {
+        expect(document.getElementById('dropdown-option-1-0')).toHaveFocus();
+      });
+      expect(button).toHaveAttribute('aria-activedescendant', 'dropdown-option-1-0');
+    });
+
+    it('focuses a non-first selected option when the menu opens', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown {...defaultProps} value="Laughed" />);
+
+      const button = screen.getByRole('combobox');
+      await user.click(button);
+
+      await waitFor(() => {
+        expect(document.getElementById('dropdown-option-1-1')).toHaveFocus();
+      });
+      expect(button).toHaveAttribute('aria-activedescendant', 'dropdown-option-1-1');
+    });
+
+    it('does not highlight an option when no value is selected', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown {...defaultProps} value={undefined} />);
+
+      const button = screen.getByRole('combobox');
+      await user.click(button);
+
+      expect(button).not.toHaveAttribute('aria-activedescendant');
     });
 
     it('renders as disabled when disabled prop is true', () => {
