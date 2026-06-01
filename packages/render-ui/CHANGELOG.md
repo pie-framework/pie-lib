@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@6.1.0...@pie-lib/render-ui@6.1.1) (2026-06-01)
+
+### Bug Fixes
+
+- **render-ui:** add new color variable for keypad focus PIE-104 ([656a631](https://github.com/pie-framework/pie-lib/commit/656a631bacc7e3dc87626445cd11909c7094e397))
+
 # [6.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@6.1.0-next.2...@pie-lib/render-ui@6.1.0) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/render-ui

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.2...@pie-lib/editable-html-tip-tap@2.1.3) (2026-06-01)
+
+### Bug Fixes
+
+- **deps:** align all @tiptap/\* to 3.20.0 to dedupe prosemirror downstream ([79f59f6](https://github.com/pie-framework/pie-lib/commit/79f59f6fb853c2fb200fefc17bc69e6f5bb7c010))
+- **deps:** align tiptap and react-transition-group versions to dedupe prosemirror PIE-624 ([3ab7737](https://github.com/pie-framework/pie-lib/commit/3ab7737d896ec48091630c221f8be1f9f5a98d8e))
+- **editable-html-tip-tap:** hanlde new props request close, keep track of last active resp are PIE-574 ([a120f8b](https://github.com/pie-framework/pie-lib/commit/a120f8b28d3871fe7bf59eaf0ec25cbe783c1f7f))
+- handled onChange properly [PIE-509][PIE-562][PIE-563] ([c2009ef](https://github.com/pie-framework/pie-lib/commit/c2009ef30c8f9e268f0d39bf18e16e4a90695071))
+
 ## [2.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.1...@pie-lib/editable-html-tip-tap@2.1.2) (2026-05-21)
 
 ### Bug Fixes

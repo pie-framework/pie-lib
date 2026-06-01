@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.5...@pie-lib/graphing@4.0.6) (2026-06-01)
+
+### Bug Fixes
+
+- **graphing:** make sure evaluate mode marks are not included in undo/redo history PIE-582 ([74f4820](https://github.com/pie-framework/pie-lib/commit/74f482052b5331d918212dcfd847a477f1e5e2d4))
+
 ## [4.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.4...@pie-lib/graphing@4.0.5) (2026-05-21)
 
 ### Bug Fixes

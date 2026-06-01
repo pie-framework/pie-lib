@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@9.0.5...@pie-lib/demo@9.0.6) (2026-06-01)
+
+### Bug Fixes
+
+- **deps:** align all @tiptap/\* to 3.20.0 to dedupe prosemirror downstream ([79f59f6](https://github.com/pie-framework/pie-lib/commit/79f59f6fb853c2fb200fefc17bc69e6f5bb7c010))
+- **deps:** align tiptap and react-transition-group versions to dedupe prosemirror PIE-624 ([3ab7737](https://github.com/pie-framework/pie-lib/commit/3ab7737d896ec48091630c221f8be1f9f5a98d8e))
+
 ## [9.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@9.0.4...@pie-lib/demo@9.0.5) (2026-05-21)
 
 **Note:** Version bump only for package @pie-lib/demo
