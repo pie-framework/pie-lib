@@ -121,6 +121,12 @@ if (typeof Element !== 'undefined' && !Element.prototype.getBoundingClientRect) 
   }));
 }
 
+// Mock elementFromPoint (not implemented in jsdom; prosemirror-view's posAtCoords calls it during editor init)
+if (typeof document !== 'undefined' && !document.elementFromPoint) {
+  document.elementFromPoint = () => null;
+  document.elementsFromPoint = () => [];
+}
+
 // Mock createRange (required for @testing-library/user-event)
 if (!document.createRange) {
   document.createRange = () => ({
