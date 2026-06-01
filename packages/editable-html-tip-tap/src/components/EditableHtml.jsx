@@ -288,11 +288,11 @@ export const EditableHtml = (props) => {
       editable: !props.disabled,
       content: normalizeInitialMarkup(props.markup),
       onUpdate: ({ editor, transaction }) => {
-        if (transaction.isDone || props.markup !== editor.getHTML()) {
+        if (transaction.isDone) {
           props.onChange?.(editor.getHTML());
         }
       },
-      onBlur: debounce(({ editor }) => {
+      onBlur: ({ editor }) => {
         const otherToolbarOpened =
           editor._insertingImage ||
           editor._toolbarOpened ||
@@ -312,7 +312,7 @@ export const EditableHtml = (props) => {
         if (toolbarOptsToUse.doneOn === 'blur') {
           props.onDone?.(html);
         }
-      }, 200),
+      },
     },
     [props.charactersLimit],
   );

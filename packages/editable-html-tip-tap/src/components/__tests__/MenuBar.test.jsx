@@ -20,6 +20,7 @@ jest.mock('@tiptap/react', () => ({
         })),
       })),
       getAttributes: jest.fn(() => ({ border: '1' })),
+      commandManager: {},
       isFocused: true,
       state: {
         selection: {},
