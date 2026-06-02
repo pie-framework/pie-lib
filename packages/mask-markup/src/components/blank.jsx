@@ -196,7 +196,7 @@ function BlankContent({
     if (rootRef.current) {
       renderMath(rootRef.current);
     }
-  }, [isOver, dragItem?.choice?.value]);
+  }, [correct, isOver, dragItem?.choice?.value]);
 
   useEffect(() => {
     if (!choice) {
