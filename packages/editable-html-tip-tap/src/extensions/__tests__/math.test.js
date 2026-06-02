@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, waitFor, fireEvent } from '@testing-library/react';
-import { MathNode, MathNodeView } from '../math';
+import { EnsureTextAfterMathPlugin, MathNode, MathNodeView, ZeroWidthSpaceHandlingPlugin } from '../math';
 
 jest.mock('@tiptap/react', () => ({
   NodeViewWrapper: ({ children, ...props }) => (
@@ -156,6 +156,151 @@ describe('MathNode', () => {
       expect(result).toBeDefined();
     });
   });
+
+  describe('addProseMirrorPlugins', () => {
+    it('registers ensure-text-after-math and zero-width-space plugins', () => {
+      const plugins = MathNode.addProseMirrorPlugins();
+
+      expect(plugins).toHaveLength(2);
+      expect(plugins[0].appendTransaction).toBeDefined();
+      expect(plugins[1].props.handleKeyDown).toBeDefined();
+    });
+  });
+});
+
+describe('EnsureTextAfterMathPlugin', () => {
+  it('inserts a zero-width space after a math node when no text follows', () => {
+    const plugin = EnsureTextAfterMathPlugin('math');
+    const textNode = { type: { name: 'text' } };
+    const mathNode = { type: { name: 'math' }, nodeSize: 3 };
+    const tr = { insert: jest.fn() };
+
+    const newState = {
+      schema: { text: jest.fn((value) => ({ type: textNode.type, text: value })) },
+      tr,
+      doc: {
+        descendants: (cb) => cb(mathNode, 5),
+        nodeAt: jest.fn(() => null),
+      },
+    };
+
+    const result = plugin.appendTransaction([{ docChanged: true }], {}, newState);
+
+    expect(tr.insert).toHaveBeenCalledWith(8, expect.anything());
+    expect(result).toBe(tr);
+  });
+
+  it('does not insert when text already follows the math node', () => {
+    const plugin = EnsureTextAfterMathPlugin('math');
+    const tr = { insert: jest.fn() };
+    const mathNode = { type: { name: 'math' }, nodeSize: 3 };
+
+    const newState = {
+      schema: { text: jest.fn() },
+      tr,
+      doc: {
+        descendants: (cb) => cb(mathNode, 5),
+        nodeAt: jest.fn(() => ({ type: { name: 'text' } })),
+      },
+    };
+
+    const result = plugin.appendTransaction([{ docChanged: true }], {}, newState);
+
+    expect(tr.insert).not.toHaveBeenCalled();
+    expect(result).toBeNull();
+  });
+
+  it('returns null when the document did not change', () => {
+    const plugin = EnsureTextAfterMathPlugin('math');
+
+    const result = plugin.appendTransaction([{ docChanged: false }], {}, {});
+    expect(result).toBeNull();
+  });
+});
+
+describe('ZeroWidthSpaceHandlingPlugin', () => {
+  const createDefaultDoc = () => ({
+    textBetween: jest.fn(() => '\u200b'),
+    resolve: jest.fn(() => ({
+      nodeAfter: null,
+      nodeBefore: null,
+    })),
+  });
+
+  const createView = ({ state: stateOverrides = {} } = {}) => {
+    const dispatch = jest.fn();
+    const tr = {
+      delete: jest.fn().mockReturnThis(),
+      setSelection: jest.fn().mockReturnThis(),
+    };
+
+    return {
+      state: {
+        selection: { from: 2, empty: true },
+        doc: createDefaultDoc(),
+        tr,
+        ...stateOverrides,
+        doc: { ...createDefaultDoc(), ...stateOverrides.doc },
+      },
+      dispatch,
+    };
+  };
+
+  it('deletes math and zero-width space on Backspace', () => {
+    const view = createView();
+    const event = { key: 'Backspace' };
+    const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, event);
+
+    expect(handled).toBe(true);
+    expect(view.state.tr.delete).toHaveBeenCalledWith(0, 2);
+    expect(view.dispatch).toHaveBeenCalledWith(view.state.tr);
+  });
+
+  it('selects the math node on ArrowLeft before a zero-width space', () => {
+    const mathNode = { nodeSize: 3 };
+    const view = createView({
+      state: {
+        doc: {
+          resolve: jest
+            .fn()
+            .mockReturnValueOnce({ nodeAfter: mathNode, nodeBefore: null })
+            .mockReturnValueOnce({ pos: 4 }),
+        },
+      },
+    });
+    const { NodeSelection } = require('prosemirror-state');
+
+    const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'ArrowLeft' });
+
+    expect(handled).toBe(true);
+    expect(NodeSelection.create).toHaveBeenCalledWith(view.state.doc, 4);
+    expect(view.dispatch).toHaveBeenCalled();
+  });
+
+  it('moves the text cursor before the zero-width space when no inline node precedes it', () => {
+    const view = createView();
+    const { TextSelection } = require('prosemirror-state');
+
+    const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'ArrowLeft' });
+
+    expect(handled).toBe(true);
+    expect(TextSelection.create).toHaveBeenCalledWith(view.state.doc, 0);
+    expect(view.dispatch).toHaveBeenCalled();
+  });
+
+  it('returns false for unrelated keys', () => {
+    const view = createView({
+      state: {
+        doc: {
+          textBetween: jest.fn(() => 'a'),
+          resolve: jest.fn(),
+        },
+      },
+    });
+
+    const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'Enter' });
+    expect(handled).toBe(false);
+  });
 });
 
 describe('MathNodeView', () => {
@@ -244,9 +389,19 @@ describe('MathNodeView', () => {
   });
 
   describe('toolbar positioning', () => {
-    it('uses _tiptapContainerEl for position calculation when available', async () => {
+    it('uses a fixed top offset and horizontal position from coordsAtPos', async () => {
+      const { container } = render(<MathNodeView {...defaultProps} selected={true} />);
+      await waitFor(() => {
+        const toolbar = container.querySelector('[data-toolbar-for]');
+        expect(toolbar).toBeInTheDocument();
+        expect(toolbar.style.top).toBe('40px');
+        expect(toolbar.style.left).toBe('50px');
+      });
+    });
+
+    it('keeps the fixed top offset when the editor container is scrolled', async () => {
       const containerEl = document.createElement('div');
-      containerEl.getBoundingClientRect = jest.fn(() => ({ top: -50, left: 20, width: 600, height: 400 }));
+      containerEl.getBoundingClientRect = jest.fn(() => ({ top: -200, left: 0, width: 600, height: 400 }));
 
       const editor = {
         ...defaultProps.editor,
@@ -257,24 +412,7 @@ describe('MathNodeView', () => {
       await waitFor(() => {
         const toolbar = container.querySelector('[data-toolbar-for]');
         expect(toolbar).toBeInTheDocument();
-        // top = coordsAtPos.top (100) + Math.abs(containerEl.top (-50)) + 40 = 190
-        expect(toolbar.style.top).toBe('190px');
-        expect(toolbar.style.left).toBe('50px');
-      });
-    });
-
-    it('falls back to document.body when _tiptapContainerEl is not set', async () => {
-      const editor = {
-        ...defaultProps.editor,
-        _tiptapContainerEl: undefined,
-      };
-
-      const { container } = render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
-      await waitFor(() => {
-        const toolbar = container.querySelector('[data-toolbar-for]');
-        expect(toolbar).toBeInTheDocument();
-        // top = coordsAtPos.top (100) + Math.abs(document.body.top (0)) + 40 = 140
-        expect(toolbar.style.top).toBe('140px');
+        expect(toolbar.style.top).toBe('40px');
         expect(toolbar.style.left).toBe('50px');
       });
     });
@@ -288,7 +426,7 @@ describe('MathNodeView', () => {
       });
     });
 
-    it('recalculates position when toolbar reopens', async () => {
+    it('updates horizontal position from coordsAtPos when selection changes', async () => {
       const editor = {
         ...defaultProps.editor,
         view: {
@@ -302,27 +440,8 @@ describe('MathNodeView', () => {
       await waitFor(() => {
         const toolbar = container.querySelector('[data-toolbar-for]');
         expect(toolbar).toBeInTheDocument();
-        // top = 200 + Math.abs(0) + 40 = 240
-        expect(toolbar.style.top).toBe('240px');
+        expect(toolbar.style.top).toBe('40px');
         expect(toolbar.style.left).toBe('150px');
-      });
-    });
-
-    it('accounts for negative container top (scrolled container)', async () => {
-      const containerEl = document.createElement('div');
-      containerEl.getBoundingClientRect = jest.fn(() => ({ top: -200, left: 0, width: 600, height: 400 }));
-
-      const editor = {
-        ...defaultProps.editor,
-        _tiptapContainerEl: containerEl,
-      };
-
-      const { container } = render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
-      await waitFor(() => {
-        const toolbar = container.querySelector('[data-toolbar-for]');
-        expect(toolbar).toBeInTheDocument();
-        // top = 100 + Math.abs(-200) + 40 = 340
-        expect(toolbar.style.top).toBe('340px');
       });
     });
 
@@ -410,8 +529,13 @@ describe('MathNodeView', () => {
     });
   });
 
-  it('closes toolbar on outside click', async () => {
-    const { queryByTestId } = render(<MathNodeView {...defaultProps} selected={true} />);
+  it('closes toolbar on outside click and runs handleDone', async () => {
+    const updateAttributes = jest.fn();
+    const editor = createMockEditor();
+    const { TextSelection } = require('prosemirror-state');
+    const { queryByTestId } = render(
+      <MathNodeView {...defaultProps} editor={editor} updateAttributes={updateAttributes} selected={true} />,
+    );
 
     await waitFor(() => {
       expect(queryByTestId('math-toolbar')).toBeInTheDocument();
@@ -421,6 +545,26 @@ describe('MathNodeView', () => {
 
     await waitFor(() => {
       expect(queryByTestId('math-toolbar')).not.toBeInTheDocument();
+      expect(updateAttributes).toHaveBeenCalledWith({ latex: 'x^2' });
+      expect(TextSelection.create).toHaveBeenCalledWith(editor.state.doc, 1);
+      expect(editor.state.tr.setSelection).toHaveBeenCalled();
+      expect(editor.view.dispatch).toHaveBeenCalledWith(editor.state.tr);
+      expect(editor.commands.focus).toHaveBeenCalled();
+      expect(editor._toolbarOpened).toBe(false);
+    });
+  });
+
+  it('does not close toolbar when clicking the math node preview', async () => {
+    const { getByTestId, queryByTestId } = render(<MathNodeView {...defaultProps} selected={true} />);
+
+    await waitFor(() => {
+      expect(queryByTestId('math-toolbar')).toBeInTheDocument();
+    });
+
+    fireEvent.click(getByTestId('math-preview'));
+
+    await waitFor(() => {
+      expect(queryByTestId('math-toolbar')).toBeInTheDocument();
     });
   });
 

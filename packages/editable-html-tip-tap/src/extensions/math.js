@@ -195,6 +195,25 @@ export const MathNodeView = (props) => {
 
   const latex = node.attrs.latex || '';
 
+  const handleChange = (newLatex) => {
+    updateAttributes({ latex: newLatex });
+  };
+
+  const handleDone = (newLatex) => {
+    updateAttributes({ latex: newLatex });
+    setShowToolbar(false);
+
+    editor._toolbarOpened = false;
+
+    const { selection, tr, doc } = editor.state;
+    const sel = TextSelection.create(doc, selection.from + 1);
+
+    // Build a fresh transaction from the current state and set the selection
+    tr.setSelection(sel);
+    editor.view.dispatch(tr);
+    editor.commands.focus();
+  };
+
   useEffect(() => {
     if (selected) {
       setShowToolbar(true);
@@ -207,12 +226,10 @@ export const MathNodeView = (props) => {
 
   useEffect(() => {
     // Calculate position relative to selection
-    const container = editor?._tiptapContainerEl || document.body;
-    const bodyRect = container.getBoundingClientRect();
     const { from } = editor.state.selection;
     const start = editor.view.coordsAtPos(from);
     setPosition({
-      top: start.top + Math.abs(bodyRect.top) + 40, // shift above
+      top: 40, // shift above
       left: start.left,
     });
 
@@ -247,6 +264,7 @@ export const MathNodeView = (props) => {
         !clickedMathNode
       ) {
         setShowToolbar(false);
+        handleDone(node.attrs.latex);
       }
     };
 
@@ -260,25 +278,6 @@ export const MathNodeView = (props) => {
 
     return () => document.removeEventListener('click', handleClickOutside);
   }, [editor, showToolbar]);
-
-  const handleChange = (newLatex) => {
-    updateAttributes({ latex: newLatex });
-  };
-
-  const handleDone = (newLatex) => {
-    updateAttributes({ latex: newLatex });
-    setShowToolbar(false);
-
-    editor._toolbarOpened = false;
-
-    const { selection, tr, doc } = editor.state;
-    const sel = TextSelection.create(doc, selection.from + 1);
-
-    // Build a fresh transaction from the current state and set the selection
-    tr.setSelection(sel);
-    editor.view.dispatch(tr);
-    editor.commands.focus();
-  };
 
   return (
     <NodeViewWrapper
