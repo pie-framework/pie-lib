@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.3...@pie-lib/editable-html-tip-tap@2.1.4) (2026-06-03)
+
+### Bug Fixes
+
+- place math editor at the correct position, close math editor if unfocused [PIE-602] ([92d104e](https://github.com/pie-framework/pie-lib/commit/92d104e5c2d51336e103920b1ba559d6b2c79d81))
+
 ## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.2...@pie-lib/editable-html-tip-tap@2.1.3) (2026-06-01)
 
 ### Bug Fixes

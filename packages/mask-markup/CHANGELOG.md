@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.5...@pie-lib/mask-markup@3.0.6) (2026-06-03)
+
+### Bug Fixes
+
+- render math when the correct value changes [PIE-600] ([38a0024](https://github.com/pie-framework/pie-lib/commit/38a002426ae495e98c2fd1355f7cb83069a7dcdc))
+
 ## [3.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.4...@pie-lib/mask-markup@3.0.5) (2026-06-01)
 
 ### Bug Fixes
