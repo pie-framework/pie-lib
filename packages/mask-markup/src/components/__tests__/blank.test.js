@@ -26,7 +26,12 @@ jest.mock('@dnd-kit/utilities', () => ({
   },
 }));
 
+jest.mock('@pie-lib/math-rendering', () => ({
+  renderMath: jest.fn(),
+}));
+
 describe('Blank', () => {
+  const { renderMath } = require('@pie-lib/math-rendering');
   const onChange = jest.fn();
   const defaultProps = {
     disabled: false,
@@ -39,6 +44,7 @@ describe('Blank', () => {
 
   beforeEach(() => {
     onChange.mockClear();
+    renderMath.mockClear();
   });
 
   describe('rendering', () => {
@@ -151,6 +157,30 @@ describe('Blank', () => {
 
       rectSpy.mockRestore();
       jest.useRealTimers();
+    });
+  });
+
+  describe('math rendering', () => {
+    it('calls renderMath on mount when choice has content', () => {
+      render(<Blank {...defaultProps} />);
+      expect(renderMath).toHaveBeenCalled();
+    });
+
+    it('calls renderMath again when correct changes', () => {
+      const { rerender } = render(<Blank {...defaultProps} correct={false} />);
+      const callsAfterMount = renderMath.mock.calls.length;
+      expect(callsAfterMount).toBeGreaterThan(0);
+
+      rerender(<Blank {...defaultProps} correct={true} />);
+      expect(renderMath.mock.calls.length).toBeGreaterThan(callsAfterMount);
+    });
+
+    it('does not call renderMath again when correct is unchanged', () => {
+      const { rerender } = render(<Blank {...defaultProps} correct={true} />);
+      const callsAfterMount = renderMath.mock.calls.length;
+
+      rerender(<Blank {...defaultProps} correct={true} />);
+      expect(renderMath.mock.calls.length).toBe(callsAfterMount);
     });
   });
 
