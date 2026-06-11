@@ -5,6 +5,7 @@ import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
 import { NodeSelection, Plugin, PluginKey, TextSelection } from 'prosemirror-state';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath } from '@pie-lib/math-rendering';
+import { setToolbarOpened } from '../utils/toolbar';
 
 const ensureTextAfterMathPluginKey = new PluginKey('ensureTextAfterMath');
 
@@ -203,8 +204,6 @@ export const MathNodeView = (props) => {
     updateAttributes({ latex: newLatex });
     setShowToolbar(false);
 
-    editor._toolbarOpened = false;
-
     const { selection, tr, doc } = editor.state;
     const sel = TextSelection.create(doc, selection.from + 1);
 
@@ -221,8 +220,8 @@ export const MathNodeView = (props) => {
   }, [selected]);
 
   useEffect(() => {
-    editor._toolbarOpened = !!showToolbar;
-  }, [showToolbar]);
+    setToolbarOpened(editor, showToolbar);
+  }, [editor, showToolbar]);
 
   useEffect(() => {
     // Calculate position relative to selection

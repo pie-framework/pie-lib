@@ -107,6 +107,7 @@ function MenuBar({
         hideDefaultToolbar,
         hasTextSelectionInTable,
         isFocused: ctx.editor?.isFocused,
+        toolbarOpened: ctx.editor?._toolbarOpened ?? false,
         isBold: ctx.editor.isActive('bold') ?? false,
         canBold: ctx.editor.can().chain().toggleBold().run() ?? false,
         isTable: ctx.editor.isActive('table') ?? false,
@@ -148,7 +149,8 @@ function MenuBar({
     [classes.toolbarTop]: toolbarOpts.position === 'top',
     [classes.toolbarRight]: toolbarOpts.alignment === 'right',
     [classes.focused]:
-      toolbarOpts.alwaysVisible || (editorState.isFocused && !editor._toolbarOpened && !editorState.hideDefaultToolbar),
+      toolbarOpts.alwaysVisible ||
+      (editorState.isFocused && !editorState.toolbarOpened && !editorState.hideDefaultToolbar),
     [classes.autoWidth]: autoWidth,
     [classes.fullWidth]: !autoWidth,
     [classes.hidden]: toolbarOpts.isHidden === true,
