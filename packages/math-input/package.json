@@ -9,7 +9,7 @@
   "repository": "pie-framework/pie-lib",
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@emotion/style": "^0.8.0",
+    "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "@pie-framework/mathquill": "1.2.1-beta.1",
