@@ -569,6 +569,66 @@ describe('MathNodeView', () => {
     });
   });
 
+  describe('unique math-node class per instance', () => {
+    let dateNowSpy;
+
+    beforeEach(() => {
+      let timestamp = 1000;
+      dateNowSpy = jest.spyOn(Date, 'now').mockImplementation(() => timestamp++);
+    });
+
+    afterEach(() => {
+      dateNowSpy.mockRestore();
+    });
+
+    it('assigns a timestamp-based class to NodeViewWrapper', () => {
+      const { getByTestId } = render(<MathNodeView {...defaultProps} />);
+      const wrapper = getByTestId('node-view-wrapper');
+
+      expect(wrapper.className).toMatch(/^math-node-\d+$/);
+    });
+
+    it('assigns a different class to each MathNodeView instance', () => {
+      const { getAllByTestId } = render(
+        <>
+          <MathNodeView {...defaultProps} />
+          <MathNodeView {...defaultProps} node={{ attrs: { latex: 'y^2' } }} />
+        </>,
+      );
+
+      const wrappers = getAllByTestId('node-view-wrapper');
+      expect(wrappers[0].className).toBe('math-node-1000');
+      expect(wrappers[1].className).toBe('math-node-1001');
+    });
+
+    it('closes toolbar when clicking a different math node', async () => {
+      const updateAttributes = jest.fn();
+      const editorA = createMockEditor();
+      const editorB = createMockEditor();
+
+      const { getAllByTestId, queryAllByTestId } = render(
+        <>
+          <MathNodeView {...defaultProps} editor={editorA} updateAttributes={updateAttributes} selected={true} />
+          <MathNodeView {...defaultProps} editor={editorB} node={{ attrs: { latex: 'y^2' } }} selected={false} />
+        </>,
+      );
+
+      await waitFor(() => {
+        expect(queryAllByTestId('math-toolbar')).toHaveLength(1);
+      });
+
+      const secondPreview = getAllByTestId('math-preview')[1];
+      fireEvent.click(secondPreview);
+
+      await waitFor(() => {
+        expect(queryAllByTestId('math-toolbar')).toHaveLength(1);
+        expect(updateAttributes).toHaveBeenCalledWith({ latex: 'x^2' });
+        expect(editorA._toolbarOpened).toBe(false);
+        expect(getAllByTestId('math-input')[0]).toHaveValue('y^2');
+      });
+    });
+  });
+
   it('does not close toolbar when clicking equation editor dropdown', async () => {
     const { queryByTestId } = render(<MathNodeView {...defaultProps} selected={true} />);
 
