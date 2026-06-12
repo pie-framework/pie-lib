@@ -107,6 +107,7 @@ function MenuBar({
         hideDefaultToolbar,
         hasTextSelectionInTable,
         isFocused: ctx.editor?.isFocused,
+        toolbarOpened: ctx.editor?._toolbarOpened ?? false,
         isBold: ctx.editor.isActive('bold') ?? false,
         canBold: ctx.editor.can().chain().toggleBold().run() ?? false,
         isTable: ctx.editor.isActive('table') ?? false,
@@ -148,7 +149,8 @@ function MenuBar({
     [classes.toolbarTop]: toolbarOpts.position === 'top',
     [classes.toolbarRight]: toolbarOpts.alignment === 'right',
     [classes.focused]:
-      toolbarOpts.alwaysVisible || (editorState.isFocused && !editor._toolbarOpened && !editorState.hideDefaultToolbar),
+      toolbarOpts.alwaysVisible ||
+      (editorState.isFocused && !editorState.toolbarOpened && !editorState.hideDefaultToolbar),
     [classes.autoWidth]: autoWidth,
     [classes.fullWidth]: !autoWidth,
     [classes.hidden]: toolbarOpts.isHidden === true,
@@ -436,7 +438,7 @@ const StyledMenuBar = (props) => {
   const classes = {
     defaultToolbar: 'defaultToolbar',
     buttonsContainer: 'buttonsContainer',
-    button: 'button',
+    button: 'toolbarButton',
     active: 'active',
     disabled: 'disabled',
     isActive: 'isActive',
@@ -471,7 +473,7 @@ const StyledMenuBarRoot = styled('div')(({ theme }) => ({
     display: 'flex',
     width: '100%',
   },
-  '& .button': {
+  '& .toolbarButton': {
     color: 'grey',
     display: 'inline-flex',
     padding: '2px',

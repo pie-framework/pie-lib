@@ -5,6 +5,7 @@ import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
 import { NodeSelection, Plugin, PluginKey, TextSelection } from 'prosemirror-state';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath } from '@pie-lib/math-rendering';
+import { setToolbarOpened } from '../utils/toolbar';
 
 const ensureTextAfterMathPluginKey = new PluginKey('ensureTextAfterMath');
 
@@ -183,6 +184,7 @@ export const MathNodeView = (props) => {
   const { node, updateAttributes, editor, selected, options } = props;
   const [showToolbar, setShowToolbar] = useState(selected);
   const toolbarRef = useRef(null);
+  const timestamp = useRef(Date.now());
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const { math: mathOptions = {} } = options || {};
   const {
@@ -203,8 +205,6 @@ export const MathNodeView = (props) => {
     updateAttributes({ latex: newLatex });
     setShowToolbar(false);
 
-    editor._toolbarOpened = false;
-
     const { selection, tr, doc } = editor.state;
     const sel = TextSelection.create(doc, selection.from + 1);
 
@@ -221,8 +221,8 @@ export const MathNodeView = (props) => {
   }, [selected]);
 
   useEffect(() => {
-    editor._toolbarOpened = !!showToolbar;
-  }, [showToolbar]);
+    setToolbarOpened(editor, showToolbar);
+  }, [editor, showToolbar]);
 
   useEffect(() => {
     // Calculate position relative to selection
@@ -253,7 +253,7 @@ export const MathNodeView = (props) => {
       // will keep/re-open the toolbar. Without this guard, closing and then
       // immediately clicking the math node would fire this listener in the same
       // event cycle and close the toolbar before it could open.
-      const clickedMathNode = !!target?.closest?.('.math-node');
+      const clickedMathNode = !!target?.closest?.(`.math-node-${timestamp.current}`);
 
       if (
         toolbarRef.current &&
@@ -281,7 +281,7 @@ export const MathNodeView = (props) => {
 
   return (
     <NodeViewWrapper
-      className="math-node"
+      className={`math-node-${timestamp.current}`}
       style={{
         display: 'inline-flex',
         cursor: 'pointer',

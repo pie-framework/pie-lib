@@ -19,6 +19,9 @@ describe('ExplicitConstructedResponse', () => {
   const buildMockEditor = (overrides = {}) => {
     const mockTr = {
       delete: jest.fn(),
+      setMeta: jest.fn(function setMeta() {
+        return mockTr;
+      }),
     };
     return {
       state: {
@@ -197,7 +200,9 @@ describe('ExplicitConstructedResponse', () => {
     const { findByLabelText } = render(<ExplicitConstructedResponse {...defaultProps} selected />);
     fireEvent.mouseDown(await findByLabelText('Delete'));
     expect(mockEditor.state.tr.delete).toHaveBeenCalledWith(5, 6);
-    expect(mockEditor.view.dispatch).toHaveBeenCalledWith(mockEditor.state.tr);
+    expect(mockEditor.view.dispatch).toHaveBeenCalledTimes(2);
+    expect(mockEditor.view.dispatch).toHaveBeenNthCalledWith(1, mockEditor.state.tr);
+    expect(mockEditor.view.dispatch).toHaveBeenNthCalledWith(2, mockEditor.state.tr);
     expect(mockEditor._toolbarOpened).toBe(false);
     expect(mockEditor.commands.focus).toHaveBeenCalled();
   });
