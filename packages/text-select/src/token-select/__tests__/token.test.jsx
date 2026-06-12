@@ -6,7 +6,7 @@ describe('token', () => {
   const defaultProps = {
     classes: {
       token: 'token',
-      selectable: 'selectable',
+      selectable: 'selectableToken',
     },
     text: 'foo bar',
   };
@@ -54,31 +54,31 @@ describe('token', () => {
   });
 
   describe('selectable state', () => {
-    it('applies selectable class when selectable is true', () => {
+    it('applies selectableToken class when selectable is true', () => {
       const { container } = render(<Token {...defaultProps} selectable={true} />);
-      expect(container.querySelector('.selectable')).toBeInTheDocument();
+      expect(container.querySelector('.selectableToken')).toBeInTheDocument();
     });
 
-    it('does not apply selectable class when selectable is false', () => {
+    it('does not apply selectableToken class when selectable is false', () => {
       const { container } = render(<Token {...defaultProps} selectable={false} />);
-      expect(container.querySelector('.selectable')).not.toBeInTheDocument();
+      expect(container.querySelector('.selectableToken')).not.toBeInTheDocument();
     });
 
-    it('does not apply selectable class when disabled', () => {
+    it('does not apply selectableToken class when disabled', () => {
       const { container } = render(<Token {...defaultProps} selectable={true} disabled={true} />);
-      expect(container.querySelector('.selectable')).not.toBeInTheDocument();
+      expect(container.querySelector('.selectableToken')).not.toBeInTheDocument();
     });
   });
 
   describe('selected state', () => {
-    it('applies selected class when selected is true', () => {
+    it('applies selectedToken class when selected is true', () => {
       const { container } = render(<Token {...defaultProps} selected={true} />);
-      expect(container.querySelector('.selected')).toBeInTheDocument();
+      expect(container.querySelector('.selectedToken')).toBeInTheDocument();
     });
 
-    it('does not apply selected class when selected is false', () => {
+    it('does not apply selectedToken class when selected is false', () => {
       const { container } = render(<Token {...defaultProps} selected={false} />);
-      expect(container.querySelector('.selected')).not.toBeInTheDocument();
+      expect(container.querySelector('.selectedToken')).not.toBeInTheDocument();
     });
 
     it('applies disabledBlack class when selected and disabled without correct prop', () => {
@@ -208,7 +208,7 @@ describe('token', () => {
   describe('className combinations', () => {
     it('combines multiple state classes', () => {
       const { container } = render(<Token {...defaultProps} selectable={true} selected={true} highlight={true} />);
-      expect(container.querySelector('.selected')).toBeInTheDocument();
+      expect(container.querySelector('.selectedToken')).toBeInTheDocument();
     });
 
     it('applies correct precedence for disabled and selected', () => {
