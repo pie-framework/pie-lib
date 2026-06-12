@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@2.0.2...@pie-lib/tools@2.0.3) (2026-06-12)
+
+### Bug Fixes
+
+- correct @emotion/style typo to @emotion/styled in package deps PIE-678 ([d529ac7](https://github.com/pie-framework/pie-lib/commit/d529ac7bc3dfa94d8037688452d4c70c66f2590b))
+
 ## [2.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/tools@2.0.2-next.1...@pie-lib/tools@2.0.2) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/tools

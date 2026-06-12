@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@3.0.3...@pie-lib/text-select@3.0.4) (2026-06-12)
+
+### Bug Fixes
+
+- correct @emotion/style typo to @emotion/styled in package deps PIE-678 ([d529ac7](https://github.com/pie-framework/pie-lib/commit/d529ac7bc3dfa94d8037688452d4c70c66f2590b))
+- **text-select:** update selectable and selected class names to include 'token' suffix PIE-663 ([e25cc95](https://github.com/pie-framework/pie-lib/commit/e25cc951be4264595aae0d93a6d9e9832ace72ca))
+
 ## [3.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/text-select@3.0.2...@pie-lib/text-select@3.0.3) (2026-06-01)
 
 **Note:** Version bump only for package @pie-lib/text-select

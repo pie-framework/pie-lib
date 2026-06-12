@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.4...@pie-lib/editable-html-tip-tap@2.1.5) (2026-06-12)
+
+### Bug Fixes
+
+- clicking on a different math node closes current modal [PIE-603] ([6244aaf](https://github.com/pie-framework/pie-lib/commit/6244aaf509da1196e91803aabae0ca531d17f458))
+- **editable-html-tip-tap:** rename button class to 'toolbarButton' PIE-662 ([58ebb5d](https://github.com/pie-framework/pie-lib/commit/58ebb5de67db7019118d7e6707a9bf5a27b6d913))
+- made sure editor state subscribes to toolbarOpened and reacts to its changes [PIE-604] ([c9f6466](https://github.com/pie-framework/pie-lib/commit/c9f64667cda45b4eb6a6746cdae1cbb9976bbb74))
+
 ## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.3...@pie-lib/editable-html-tip-tap@2.1.4) (2026-06-03)
 
 ### Bug Fixes

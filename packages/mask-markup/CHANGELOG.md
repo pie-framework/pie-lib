@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.6...@pie-lib/mask-markup@3.0.7) (2026-06-12)
+
+### Bug Fixes
+
+- correct @emotion/style typo to @emotion/styled in package deps PIE-678 ([d529ac7](https://github.com/pie-framework/pie-lib/commit/d529ac7bc3dfa94d8037688452d4c70c66f2590b))
+
 ## [3.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.5...@pie-lib/mask-markup@3.0.6) (2026-06-03)
 
 ### Bug Fixes
