@@ -436,7 +436,7 @@ const StyledMenuBar = (props) => {
   const classes = {
     defaultToolbar: 'defaultToolbar',
     buttonsContainer: 'buttonsContainer',
-    button: 'button',
+    button: 'toolbarButton',
     active: 'active',
     disabled: 'disabled',
     isActive: 'isActive',
@@ -471,7 +471,7 @@ const StyledMenuBarRoot = styled('div')(({ theme }) => ({
     display: 'flex',
     width: '100%',
   },
-  '& .button': {
+  '& .toolbarButton': {
     color: 'grey',
     display: 'inline-flex',
     padding: '2px',

@@ -29,7 +29,7 @@ const StyledToken = styled('span')(({ theme }) => ({
     backgroundColor: color.blueGrey100(),
   },
   [`@media (min-width: ${theme.breakpoints.values.md}px)`]: {
-    '&.selectable:hover': {
+    '&.selectableToken:hover': {
       backgroundColor: color.blueGrey300(),
       color: theme.palette.common.black,
       '& > *': {
@@ -37,7 +37,7 @@ const StyledToken = styled('span')(({ theme }) => ({
       },
     },
   },
-  '&.selected': {
+  '&.selectedToken': {
     backgroundColor: color.blueGrey100(),
     color: theme.palette.common.black,
     lineHeight: `${parseFloat(theme.spacing(1)) * LINE_HEIGHT_MULTIPLIER}px`,
@@ -161,7 +161,7 @@ export class Token extends React.Component {
 
     if (correct === undefined && selected && disabled) {
       return {
-        className: classNames(baseClassName, 'selected', 'disabledBlack', classNameProp),
+        className: classNames(baseClassName, 'selectedToken', 'disabledBlack', classNameProp),
         Component: StyledToken,
       };
     }
@@ -189,8 +189,8 @@ export class Token extends React.Component {
       className: classNames(
         baseClassName,
         disabled && 'disabled',
-        selectable && !disabled && !isTouchEnabled && 'selectable',
-        selected && !disabled && 'selected',
+        selectable && !disabled && !isTouchEnabled && 'selectableToken',
+        selected && !disabled && 'selectedToken',
         selected && disabled && 'disabledAndSelected',
         highlight && selectable && !disabled && !selected && 'highlight',
         animationsDisabled && 'print',
