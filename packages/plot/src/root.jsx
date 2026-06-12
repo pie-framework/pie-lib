@@ -53,7 +53,7 @@ const GraphTitle = styled('div')(({ theme }) => ({
   fontSize: theme.typography.fontSize + 2,
   padding: `${theme.spacing(1.5)} ${theme.spacing(0.5)} 0`,
   textAlign: 'center',
-  '&.disabled': {
+  '&.disabledTitle': {
     pointerEvents: 'none',
   },
   '&.rightMargin': {
@@ -70,7 +70,7 @@ const ChartTitle = styled('div')(({ theme }) => ({
   fontSize: theme.typography.fontSize + 4,
   padding: `${theme.spacing(1.5)} ${theme.spacing(0.5)} 0`,
   textAlign: 'center',
-  '&.disabled': {
+  '&.disabledTitle': {
     pointerEvents: 'none',
   },
   '&.rightMargin': {
@@ -325,9 +325,9 @@ export class Root extends React.Component {
               }}
             >
               {isChart ? (
-                <ChartTitle className="disabled" dangerouslySetInnerHTML={{ __html: title || '' }} />
+                <ChartTitle className="disabledTitle" dangerouslySetInnerHTML={{ __html: title || '' }} />
               ) : (
-                <GraphTitle className="disabled" dangerouslySetInnerHTML={{ __html: title || '' }} />
+                <GraphTitle className="disabledTitle" dangerouslySetInnerHTML={{ __html: title || '' }} />
               )}
             </div>
           ) : (
