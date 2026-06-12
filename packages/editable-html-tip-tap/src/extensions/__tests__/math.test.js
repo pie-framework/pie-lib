@@ -312,6 +312,7 @@ describe('MathNodeView', () => {
       },
       tr: {
         setSelection: jest.fn().mockReturnThis(),
+        setMeta: jest.fn().mockReturnThis(),
       },
       doc: {},
     },

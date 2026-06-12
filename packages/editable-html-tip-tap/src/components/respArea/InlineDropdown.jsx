@@ -5,6 +5,7 @@ import { NodeSelection } from 'prosemirror-state';
 import { Chevron } from '../icons/RespArea';
 import ReactDOM from 'react-dom';
 import CustomToolbarWrapper from '../../extensions/custom-toolbar-wrapper';
+import { setToolbarOpened } from '../../utils/toolbar';
 
 const InlineDropdown = (props) => {
   const { editor, node, getPos, options, selected } = props;
@@ -196,7 +197,7 @@ const InlineDropdown = (props) => {
                   tr.delete(pos, pos + node.nodeSize);
                   // Prevent the debounced onBlur/onDone from firing into the
                   // now-deleted node's stale position
-                  editor._toolbarOpened = false;
+                  setToolbarOpened(editor, false);
                   delete editor._holdInlineDropdownToolbarIndex;
                   editor.view.dispatch(tr);
                   setShowToolbar(false);
