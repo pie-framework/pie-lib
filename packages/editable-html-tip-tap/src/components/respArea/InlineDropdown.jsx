@@ -175,14 +175,14 @@ const InlineDropdown = (props) => {
       {showToolbar && (
         <React.Fragment>
           {ReactDOM.createPortal(
-            <div ref={toolbarRef} style={{ zIndex: 1 }}>
+            <div ref={toolbarRef}>
               <InlineDropdownToolbar
                 editorCallback={(instance) => {
                   toolbarEditor.current = instance;
                 }}
               />
             </div>,
-            document.body,
+            editor?._tiptapContainerEl || document.body,
           )}
 
           {editor._tiptapContainerEl &&
