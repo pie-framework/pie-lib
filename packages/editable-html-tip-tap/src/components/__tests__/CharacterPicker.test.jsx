@@ -234,7 +234,7 @@ describe('CharacterPicker', () => {
     };
     const { container } = render(<CharacterPicker editor={mockEditor} opts={opts} onClose={jest.fn()} />);
     const dialog = container.querySelector('.insert-character-dialog');
-    expect(dialog).toHaveStyle({ position: 'absolute' });
+    expect(dialog).toHaveStyle({ position: 'fixed' });
   });
 
   it('adds data-toolbar-for attribute with editor instanceId', () => {
