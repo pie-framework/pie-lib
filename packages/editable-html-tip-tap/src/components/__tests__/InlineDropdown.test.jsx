@@ -10,9 +10,11 @@ jest.mock('@tiptap/react', () => ({
   ),
 }));
 
+const mockCreatePortal = jest.fn((node) => node);
+
 jest.mock('react-dom', () => ({
   ...jest.requireActual('react-dom'),
-  createPortal: (node) => node,
+  createPortal: (...args) => mockCreatePortal(...args),
 }));
 
 describe('InlineDropdown', () => {
@@ -77,6 +79,7 @@ describe('InlineDropdown', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockCreatePortal.mockClear();
     mockEditor = buildMockEditor();
     defaultProps.editor = mockEditor;
     Object.defineProperty(document.body, 'getBoundingClientRect', {
@@ -211,14 +214,29 @@ describe('InlineDropdown', () => {
     expect(textContainer).toHaveStyle({ textOverflow: 'ellipsis', whiteSpace: 'nowrap' });
   });
 
-  it('renders toolbar with z-index', async () => {
-    const { container } = render(<InlineDropdown {...defaultProps} selected={true} />);
+  it('portals toolbar into editor container when _tiptapContainerEl is set', async () => {
+    const containerEl = document.createElement('div');
+    const editor = buildMockEditor({ _tiptapContainerEl: containerEl });
+
+    render(<InlineDropdown {...defaultProps} editor={editor} selected={true} />);
+
     await waitFor(() => {
-      const toolbarContainer = container.querySelector('div[style*="zIndex"]');
-      if (toolbarContainer) {
-        expect(toolbarContainer).toHaveStyle({ zIndex: '1' });
-      }
+      expect(mockCreatePortal).toHaveBeenCalled();
     });
+
+    expect(mockCreatePortal.mock.calls[0][1]).toBe(containerEl);
+  });
+
+  it('portals toolbar into document.body when _tiptapContainerEl is missing', async () => {
+    const editor = buildMockEditor({ _tiptapContainerEl: undefined });
+
+    render(<InlineDropdown {...defaultProps} editor={editor} selected={true} />);
+
+    await waitFor(() => {
+      expect(mockCreatePortal).toHaveBeenCalled();
+    });
+
+    expect(mockCreatePortal.mock.calls[0][1]).toBe(document.body);
   });
 
   it('passes editorCallback to InlineDropdownToolbar', async () => {
