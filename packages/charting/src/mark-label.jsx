@@ -23,7 +23,7 @@ const StyledInput = styled('input')(({ theme }) => ({
   border: 'none',
   '&.correct': correct('color'),
   '&.incorrect': incorrect('color'),
-  '&.disabled': {
+  '&.disabledMarkLabel': {
     backgroundColor: 'transparent !important',
   },
   '&.error': { border: `2px solid ${theme.palette.error.main}` },
@@ -36,7 +36,7 @@ const StyledMathInput = styled('div')(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,
   color: color.primaryDark(),
   paddingTop: theme.typography.fontSize / 2,
-  '&.disabled': {
+  '&.disabledMarkLabel': {
     ...disabled('color'),
     backgroundColor: 'transparent !important',
   },
@@ -155,7 +155,7 @@ export const MarkLabel = (props) => {
             }
           }}
           className={classNames({
-            disabled: disabled,
+            disabledMarkLabel: disabled,
             error: error,
             correct: mark.editable && correctness?.label === 'correct',
             incorrect: mark.editable && correctness?.label === 'incorrect',
@@ -183,7 +183,7 @@ export const MarkLabel = (props) => {
           disabled={disabled}
           inputClassName={classNames(
             correctness && mark.editable ? correctness.label : null,
-            disabled && 'disabled',
+            disabled && 'disabledMarkLabel',
             error && 'error',
           )}
           inputStyle={{
