@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, waitFor, fireEvent } from '@testing-library/react';
 import { EnsureTextAfterMathPlugin, MathNode, MathNodeView, ZeroWidthSpaceHandlingPlugin } from '../math';
+import * as toolbarUtils from '../../utils/toolbar';
 
 jest.mock('@tiptap/react', () => ({
   NodeViewWrapper: ({ children, ...props }) => (
@@ -147,6 +148,35 @@ describe('MathNode', () => {
       expect(commands).toHaveProperty('insertMath');
       expect(typeof commands.insertMath).toBe('function');
     });
+
+    it('insertMath opens the toolbar after inserting a math node', () => {
+      const setToolbarOpenedSpy = jest.spyOn(toolbarUtils, 'setToolbarOpened');
+      const mathNode = { type: { name: 'math' }, nodeSize: 1 };
+      const tr = {
+        insert: jest.fn().mockReturnThis(),
+        setSelection: jest.fn().mockReturnThis(),
+        doc: {},
+      };
+      const editor = {
+        view: {
+          state: {
+            schema: { nodes: { math: { create: jest.fn(() => mathNode) } } },
+            selection: { $from: { pos: 1 } },
+          },
+        },
+      };
+      const dispatch = jest.fn();
+      const insertMath = MathNode.addCommands().insertMath('x^2');
+
+      insertMath({ tr, editor, dispatch });
+
+      expect(tr.insert).toHaveBeenCalledWith(1, mathNode);
+      expect(tr.setSelection).toHaveBeenCalled();
+      expect(dispatch).toHaveBeenCalledWith(tr);
+      expect(setToolbarOpenedSpy).toHaveBeenCalledWith(editor, true);
+
+      setToolbarOpenedSpy.mockRestore();
+    });
   });
 
   describe('addNodeView', () => {
@@ -219,12 +249,32 @@ describe('EnsureTextAfterMathPlugin', () => {
 });
 
 describe('ZeroWidthSpaceHandlingPlugin', () => {
-  const createDefaultDoc = () => ({
-    textBetween: jest.fn(() => '\u200b'),
-    resolve: jest.fn(() => ({
+  const createDocWithMathAndZwsp = (resolveOverrides = {}) => ({
+    resolve: jest.fn((pos) => ({
       nodeAfter: null,
       nodeBefore: null,
+      pos,
+      ...resolveOverrides[pos],
     })),
+    nodeAt: jest.fn((pos) => {
+      if (pos === 1) {
+        return { type: { name: 'text' }, textContent: '\u200b' };
+      }
+      if (pos === 0) {
+        return { type: { name: 'math' }, nodeSize: 1 };
+      }
+      return null;
+    }),
+  });
+
+  const createDocWithRegularTextBeforeCursor = () => ({
+    resolve: jest.fn((pos) => ({ nodeAfter: null, nodeBefore: null, pos })),
+    nodeAt: jest.fn((pos) => {
+      if (pos === 1) {
+        return { type: { name: 'text' }, textContent: 'a' };
+      }
+      return null;
+    }),
   });
 
   const createView = ({ state: stateOverrides = {} } = {}) => {
@@ -237,66 +287,88 @@ describe('ZeroWidthSpaceHandlingPlugin', () => {
     return {
       state: {
         selection: { from: 2, empty: true },
-        doc: createDefaultDoc(),
+        doc: createDocWithMathAndZwsp(),
         tr,
         ...stateOverrides,
-        doc: { ...createDefaultDoc(), ...stateOverrides.doc },
       },
       dispatch,
     };
   };
 
-  it('deletes math and zero-width space on Backspace', () => {
-    const view = createView();
-    const event = { key: 'Backspace' };
-    const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, event);
+  describe('Backspace', () => {
+    it('deletes the inline node and zero-width space before the cursor', () => {
+      const view = createView();
+      const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'Backspace' });
 
-    expect(handled).toBe(true);
-    expect(view.state.tr.delete).toHaveBeenCalledWith(0, 2);
-    expect(view.dispatch).toHaveBeenCalledWith(view.state.tr);
-  });
-
-  it('selects the math node on ArrowLeft before a zero-width space', () => {
-    const mathNode = { nodeSize: 3 };
-    const view = createView({
-      state: {
-        doc: {
-          resolve: jest
-            .fn()
-            .mockReturnValueOnce({ nodeAfter: mathNode, nodeBefore: null })
-            .mockReturnValueOnce({ pos: 4 }),
-        },
-      },
+      expect(handled).toBe(true);
+      expect(view.state.tr.delete).toHaveBeenCalledWith(0, 2);
+      expect(view.dispatch).toHaveBeenCalledWith(view.state.tr);
     });
-    const { NodeSelection } = require('prosemirror-state');
 
-    const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'ArrowLeft' });
+    it('returns false when regular text precedes the cursor', () => {
+      const view = createView({
+        state: {
+          doc: createDocWithRegularTextBeforeCursor(),
+        },
+      });
 
-    expect(handled).toBe(true);
-    expect(NodeSelection.create).toHaveBeenCalledWith(view.state.doc, 4);
-    expect(view.dispatch).toHaveBeenCalled();
+      const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'Backspace' });
+
+      expect(handled).toBe(false);
+      expect(view.state.tr.delete).not.toHaveBeenCalled();
+      expect(view.dispatch).not.toHaveBeenCalled();
+    });
   });
 
-  it('moves the text cursor before the zero-width space when no inline node precedes it', () => {
-    const view = createView();
-    const { TextSelection } = require('prosemirror-state');
+  describe('ArrowLeft', () => {
+    it('selects the inline node before a zero-width space', () => {
+      const mathNode = { nodeSize: 3 };
+      const view = createView({
+        state: {
+          doc: createDocWithMathAndZwsp({
+            0: { nodeAfter: mathNode, nodeBefore: null, pos: 0 },
+          }),
+        },
+      });
+      const { NodeSelection } = require('prosemirror-state');
 
-    const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'ArrowLeft' });
+      const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'ArrowLeft' });
 
-    expect(handled).toBe(true);
-    expect(TextSelection.create).toHaveBeenCalledWith(view.state.doc, 0);
-    expect(view.dispatch).toHaveBeenCalled();
+      expect(handled).toBe(true);
+      expect(view.state.doc.resolve).toHaveBeenCalledWith(0);
+      expect(NodeSelection.create).toHaveBeenCalledWith(view.state.doc, 0);
+      expect(view.dispatch).toHaveBeenCalled();
+    });
+
+    it('moves the text cursor before the zero-width space when no inline node precedes it', () => {
+      const view = createView();
+      const { TextSelection } = require('prosemirror-state');
+
+      const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'ArrowLeft' });
+
+      expect(handled).toBe(true);
+      expect(view.state.doc.resolve).toHaveBeenCalledWith(0);
+      expect(TextSelection.create).toHaveBeenCalledWith(view.state.doc, 0);
+      expect(view.dispatch).toHaveBeenCalled();
+    });
+
+    it('returns false when regular text precedes the cursor', () => {
+      const view = createView({
+        state: {
+          doc: createDocWithRegularTextBeforeCursor(),
+        },
+      });
+
+      const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'ArrowLeft' });
+
+      expect(handled).toBe(false);
+      expect(view.state.tr.setSelection).not.toHaveBeenCalled();
+      expect(view.dispatch).not.toHaveBeenCalled();
+    });
   });
 
   it('returns false for unrelated keys', () => {
-    const view = createView({
-      state: {
-        doc: {
-          textBetween: jest.fn(() => 'a'),
-          resolve: jest.fn(),
-        },
-      },
-    });
+    const view = createView();
 
     const handled = ZeroWidthSpaceHandlingPlugin.props.handleKeyDown(view, { key: 'Enter' });
     expect(handled).toBe(false);
@@ -304,6 +376,15 @@ describe('ZeroWidthSpaceHandlingPlugin', () => {
 });
 
 describe('MathNodeView', () => {
+  const createEditorElement = (rect = { top: 0, left: 0, width: 600, height: 400 }) => {
+    const element = document.createElement('div');
+    Object.defineProperty(element, 'getBoundingClientRect', {
+      value: jest.fn(() => rect),
+      configurable: true,
+    });
+    return element;
+  };
+
   const createMockEditor = () => ({
     state: {
       selection: {
@@ -320,6 +401,9 @@ describe('MathNodeView', () => {
       coordsAtPos: jest.fn(() => ({ top: 100, left: 50 })),
       dispatch: jest.fn(),
     },
+    options: {
+      element: createEditorElement(),
+    },
     commands: {
       focus: jest.fn(),
     },
@@ -334,13 +418,6 @@ describe('MathNodeView', () => {
   };
 
   let defaultProps;
-
-  beforeAll(() => {
-    Object.defineProperty(document.body, 'getBoundingClientRect', {
-      value: jest.fn(() => ({ top: 0, left: 0 })),
-      configurable: true,
-    });
-  });
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -390,30 +467,29 @@ describe('MathNodeView', () => {
   });
 
   describe('toolbar positioning', () => {
-    it('uses a fixed top offset and horizontal position from coordsAtPos', async () => {
+    it('positions relative to the editor element using coordsAtPos', async () => {
       const { container } = render(<MathNodeView {...defaultProps} selected={true} />);
       await waitFor(() => {
         const toolbar = container.querySelector('[data-toolbar-for]');
         expect(toolbar).toBeInTheDocument();
-        expect(toolbar.style.top).toBe('40px');
+        expect(toolbar.style.top).toBe('140px');
         expect(toolbar.style.left).toBe('50px');
       });
     });
 
-    it('keeps the fixed top offset when the editor container is scrolled', async () => {
-      const containerEl = document.createElement('div');
-      containerEl.getBoundingClientRect = jest.fn(() => ({ top: -200, left: 0, width: 600, height: 400 }));
+    it('accounts for editor scroll offset when calculating toolbar position', async () => {
+      const editorElement = createEditorElement({ top: -200, left: 0, width: 600, height: 400 });
 
       const editor = {
         ...defaultProps.editor,
-        _tiptapContainerEl: containerEl,
+        options: { element: editorElement },
       };
 
       const { container } = render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
       await waitFor(() => {
         const toolbar = container.querySelector('[data-toolbar-for]');
         expect(toolbar).toBeInTheDocument();
-        expect(toolbar.style.top).toBe('40px');
+        expect(toolbar.style.top).toBe('340px');
         expect(toolbar.style.left).toBe('50px');
       });
     });
@@ -427,7 +503,7 @@ describe('MathNodeView', () => {
       });
     });
 
-    it('updates horizontal position from coordsAtPos when selection changes', async () => {
+    it('updates position from coordsAtPos when selection changes', async () => {
       const editor = {
         ...defaultProps.editor,
         view: {
@@ -441,7 +517,7 @@ describe('MathNodeView', () => {
       await waitFor(() => {
         const toolbar = container.querySelector('[data-toolbar-for]');
         expect(toolbar).toBeInTheDocument();
-        expect(toolbar.style.top).toBe('40px');
+        expect(toolbar.style.top).toBe('240px');
         expect(toolbar.style.left).toBe('150px');
       });
     });
@@ -515,18 +591,35 @@ describe('MathNodeView', () => {
     });
   });
 
-  it('unsets editor._toolbarOpened when toolbar is closed', async () => {
+  it('unsets editor._toolbarOpened when toolbar is closed and node is not selected', async () => {
+    const { getByTestId } = render(<MathNodeView {...defaultProps} selected={false} />);
+
+    fireEvent.click(getByTestId('math-preview'));
+
+    await waitFor(() => {
+      expect(getByTestId('math-toolbar')).toBeInTheDocument();
+      expect(defaultProps.editor._toolbarOpened).toBe(true);
+    });
+
+    fireEvent.click(getByTestId('done-button'));
+
+    await waitFor(() => {
+      expect(defaultProps.editor._toolbarOpened).toBe(false);
+    });
+  });
+
+  it('keeps editor._toolbarOpened true while the math node remains selected', async () => {
     const { getByTestId } = render(<MathNodeView {...defaultProps} selected={true} />);
 
     await waitFor(() => {
       expect(getByTestId('done-button')).toBeInTheDocument();
+      expect(defaultProps.editor._toolbarOpened).toBe(true);
     });
 
-    const doneButton = getByTestId('done-button');
-    fireEvent.click(doneButton);
+    fireEvent.click(getByTestId('done-button'));
 
     await waitFor(() => {
-      expect(defaultProps.editor._toolbarOpened).toBe(false);
+      expect(defaultProps.editor._toolbarOpened).toBe(true);
     });
   });
 
@@ -551,7 +644,7 @@ describe('MathNodeView', () => {
       expect(editor.state.tr.setSelection).toHaveBeenCalled();
       expect(editor.view.dispatch).toHaveBeenCalledWith(editor.state.tr);
       expect(editor.commands.focus).toHaveBeenCalled();
-      expect(editor._toolbarOpened).toBe(false);
+      expect(editor._toolbarOpened).toBe(true);
     });
   });
 
@@ -608,10 +701,12 @@ describe('MathNodeView', () => {
 
       const { getAllByTestId, queryAllByTestId } = render(
         <>
-          <MathNodeView {...defaultProps} editor={editorA} updateAttributes={updateAttributes} selected={true} />
+          <MathNodeView {...defaultProps} editor={editorA} updateAttributes={updateAttributes} selected={false} />
           <MathNodeView {...defaultProps} editor={editorB} node={{ attrs: { latex: 'y^2' } }} selected={false} />
         </>,
       );
+
+      fireEvent.click(getAllByTestId('math-preview')[0]);
 
       await waitFor(() => {
         expect(queryAllByTestId('math-toolbar')).toHaveLength(1);
