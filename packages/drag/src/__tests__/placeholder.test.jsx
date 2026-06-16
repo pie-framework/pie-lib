@@ -29,7 +29,7 @@ describe('placeholder', () => {
     it('applies disabled class when disabled is true', () => {
       const { container } = renderComponent({ disabled: true });
       const placeholder = container.firstChild;
-      expect(placeholder).toHaveClass('disabled');
+      expect(placeholder).toHaveClass('placeholderDisabled');
     });
 
     it('applies custom className', () => {
