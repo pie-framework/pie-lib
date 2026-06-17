@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.5...@pie-lib/editable-html-tip-tap@2.1.6) (2026-06-17)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** explicitly set SVG icon in toolbar button size to 24x24 for consistency ([22166de](https://github.com/pie-framework/pie-lib/commit/22166deb41adb5f1c88b111667e4e304348d4d51))
+- **editable-html-tip-tap:** improve popover positioning and update event handling PIE-670 ([ee89ea1](https://github.com/pie-framework/pie-lib/commit/ee89ea1cf8bd0679d62bb9daeb12f8907dded221))
+- made sure inline dropdown toolbar is rendered inside the editor [PIE-683] ([bf33caa](https://github.com/pie-framework/pie-lib/commit/bf33caa3f328541351b24b479b09d7bb2029dda3))
+- open math in custom toolbars, higher zIndex for character picker, math deletion, math selection, math and character position [PIE-656][PIE-657][PIE-658][PIE-659] ([92e4d66](https://github.com/pie-framework/pie-lib/commit/92e4d66cc5aff8e63363b43df1a5d39f89a7a1a5))
+
 ## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.4...@pie-lib/editable-html-tip-tap@2.1.5) (2026-06-12)
 
 ### Bug Fixes

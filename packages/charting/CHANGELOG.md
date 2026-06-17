@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@7.0.7...@pie-lib/charting@7.0.8) (2026-06-17)
+
+### Bug Fixes
+
+- **charting, plot:** rename 'disabled' class to 'disabledMarkLabel' and 'disabledTitle' PIE-661 PIE-664 ([29fc92c](https://github.com/pie-framework/pie-lib/commit/29fc92cf738990cd83f0e0d48fa4dd9047ad065d))
+
 ## [7.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@7.0.6...@pie-lib/charting@7.0.7) (2026-06-12)
 
 ### Bug Fixes

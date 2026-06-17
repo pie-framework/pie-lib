@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.4...@pie-lib/drag@4.0.5) (2026-06-17)
+
+### Bug Fixes
+
+- **drag/placeholder:** update disabled class to 'placeholderDisabled' for better scoping PIE-666 ([d21fe1c](https://github.com/pie-framework/pie-lib/commit/d21fe1c07636842ca1e592aba965fe72e80d5b22))
+
 ## [4.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.3...@pie-lib/drag@4.0.4) (2026-06-12)
 
 ### Bug Fixes
