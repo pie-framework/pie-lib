@@ -111,4 +111,8 @@ jobs:
           cache: yarn
       - run: yarn install
       - run: scripts/release --build
-      - run: scripts/release --publish --loglevel verbose
+      # Invoke lerna directly (not via scripts/release) so this step does not
+      # depend on the scripts/release version present on the checked-out ref.
+      # `from-package` publishes only versions missing from the registry and
+      # never versions or pushes tags, so it needs no write access to the repo.
+      - run: npx lerna publish from-package --yes --loglevel verbose
