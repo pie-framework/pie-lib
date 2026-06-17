@@ -45,6 +45,26 @@ export const EnsureTextAfterMathPlugin = (mathNodeName) =>
     },
   });
 
+const nodeBeforeZeroWidthSpace = (doc, from) => {
+  let i;
+
+  // finding if previous to the cursor there's a zero-width space
+  // and a non-text element, and deleting everything until the space
+  for (i = from; i > 0; i--) {
+    const currentDoc = doc.nodeAt(i);
+
+    if (currentDoc?.type?.name === 'text' && currentDoc.textContent !== '\u200b') {
+      return -1;
+    }
+
+    if (currentDoc && currentDoc?.type?.name !== 'text') {
+      break;
+    }
+  }
+
+  return i;
+};
+
 export const ZeroWidthSpaceHandlingPlugin = new Plugin({
   key: new PluginKey('zeroWidthSpaceHandling'),
   props: {
@@ -54,35 +74,38 @@ export const ZeroWidthSpaceHandlingPlugin = new Plugin({
       const { from, empty } = selection;
 
       if (empty && event.key === 'Backspace' && from > 0) {
-        const prevChar = doc.textBetween(from - 1, from, '\uFFFC', '\uFFFC');
-        if (prevChar === '\u200b') {
-          const tr = state.tr.delete(from - 2, from);
-          dispatch(tr);
-          return true; // handled
+        const start = nodeBeforeZeroWidthSpace(doc, from);
+
+        if (start === -1) {
+          return false;
         }
+
+        const tr = state.tr.delete(start, from);
+        dispatch(tr);
+        return true; // handled
       }
 
       if (empty && event.key === 'ArrowLeft' && from > 0) {
-        const prevChar = doc.textBetween(from - 1, from, '\uFFFC', '\uFFFC');
-        // If the previous character is the zero-width space...
-        if (prevChar === '\u200b') {
-          const posBefore = from - 1;
-          const resolved = state.doc.resolve(posBefore - 1); // look just before the zwsp
-          const maybeNode = resolved.nodeAfter || resolved.nodeBefore;
+        const start = nodeBeforeZeroWidthSpace(doc, from);
 
-          // Check if there's an inline selectable node (e.g., your math node)
-          if (maybeNode) {
-            const nodePos = posBefore - maybeNode.nodeSize;
-            const nodeResolved = state.doc.resolve(nodePos);
-            const tr = state.tr.setSelection(NodeSelection.create(state.doc, nodeResolved.pos));
-            dispatch(tr);
-            return true;
-          } else {
-            // Just move the text cursor before the zwsp
-            const tr = state.tr.setSelection(TextSelection.create(state.doc, from - 2));
-            dispatch(tr);
-            return true;
-          }
+        if (start === -1) {
+          return false;
+        }
+
+        const resolved = state.doc.resolve(start);
+        const maybeNode = resolved.nodeAfter || resolved.nodeBefore;
+
+        // Check if there's an inline selectable node (e.g., your math node)
+        if (maybeNode) {
+          const nodeResolved = state.doc.resolve(start);
+          const tr = state.tr.setSelection(NodeSelection.create(state.doc, nodeResolved.pos));
+          dispatch(tr);
+          return true;
+        } else {
+          // Just move the text cursor before the zwsp
+          const tr = state.tr.setSelection(TextSelection.create(state.doc, from - 2));
+          dispatch(tr);
+          return true;
         }
       }
 
@@ -152,14 +175,9 @@ export const MathNode = Node.create({
 
           dispatch(tr);
 
+          setToolbarOpened(editor, true);
           return true;
         },
-      // insertMath: (latex = '') => ({ commands }) => {
-      //   return commands.insertContent({
-      //     type: this.name,
-      //     attrs: { latex },
-      //   });
-      // },
     };
   },
 
@@ -221,16 +239,19 @@ export const MathNodeView = (props) => {
   }, [selected]);
 
   useEffect(() => {
-    setToolbarOpened(editor, showToolbar);
-  }, [editor, showToolbar]);
+    setToolbarOpened(editor, selected || showToolbar);
+  }, [editor, showToolbar, selected]);
 
   useEffect(() => {
     // Calculate position relative to selection
     const { from } = editor.state.selection;
     const start = editor.view.coordsAtPos(from);
+    const editorDOM = editor.options.element;
+    const editorRect = editorDOM.getBoundingClientRect();
+
     setPosition({
-      top: 40, // shift above
-      left: start.left,
+      top: start.top - editorRect.top + 40, // shift above
+      left: start.left - editorRect.left,
     });
 
     const handleClickOutside = (event) => {

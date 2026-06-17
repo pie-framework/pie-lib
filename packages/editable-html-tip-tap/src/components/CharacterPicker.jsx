@@ -78,25 +78,52 @@ export function CharacterPicker({ editor, opts, onClose }) {
   useEffect(() => {
     if (!editor) return;
 
-    // Calculate position relative to selection
     const editorDOM = editor.options.element;
-    const editorRect = editorDOM.getBoundingClientRect();
-    const bodyRect = document.body.getBoundingClientRect();
-    const { from } = editor.state.selection;
-    const start = editor.view.coordsAtPos(from);
-
-    let top = editorRect.top + Math.abs(bodyRect.top) + editorRect.height + 60;
-
-    if (editorRect.y > containerRef.current.offsetHeight) {
-      top = top - (containerRef.current.offsetHeight + editorRect.height) - 80;
-    }
-
-    setPosition({
-      top: top,
-      left: start.left,
-    });
-
     const editorViewDom = editor.view.dom;
+
+    // Position is computed in viewport coordinates (the dialog uses position: fixed),
+    // so coordsAtPos / getBoundingClientRect values can be used directly without
+    // adding scroll offsets. The dialog is then clamped to the viewport so it does
+    // not get cut off by fixed page headers/footers.
+    const updatePosition = () => {
+      if (!containerRef.current) return;
+
+      const editorRect = editorDOM.getBoundingClientRect();
+      const { from } = editor.state.selection;
+      const start = editor.view.coordsAtPos(from);
+
+      const dialogHeight = containerRef.current.offsetHeight;
+      const dialogWidth = containerRef.current.offsetWidth;
+
+      // prefer below the editor; flip above when there isn't room below.
+      const spaceBelow = window.innerHeight - (editorRect.bottom + 60);
+      let top =
+        spaceBelow >= dialogHeight || editorRect.top < dialogHeight + 80
+          ? editorRect.bottom + 60
+          : editorRect.top - dialogHeight - 20;
+
+      let left = start.left;
+
+      const margin = 8;
+      top = Math.max(margin, Math.min(top, window.innerHeight - dialogHeight - margin));
+      left = Math.max(margin, Math.min(left, window.innerWidth - dialogWidth - margin));
+
+      setPosition({ top, left });
+    };
+
+    updatePosition();
+
+    let frame = null;
+    const scheduleUpdate = () => {
+      if (frame !== null) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        updatePosition();
+      });
+    };
+
+    window.addEventListener('scroll', scheduleUpdate, true);
+    window.addEventListener('resize', scheduleUpdate);
 
     const handleClickOutside = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target) && !editorViewDom.contains(e.target)) {
@@ -110,6 +137,9 @@ export function CharacterPicker({ editor, opts, onClose }) {
 
     return () => {
       clearTimeout(timeoutId);
+      if (frame !== null) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', scheduleUpdate, true);
+      window.removeEventListener('resize', scheduleUpdate);
       document.removeEventListener('click', handleClickOutside);
     };
   }, [editor]);
@@ -131,11 +161,11 @@ export function CharacterPicker({ editor, opts, onClose }) {
           data-toolbar-for={editor.instanceId}
           style={{
             visibility: position.top === 0 && position.left === 0 ? 'hidden' : 'initial',
-            position: 'absolute',
+            position: 'fixed',
             top: `${position.top}px`,
             left: `${position.left}px`,
             maxWidth: '500px',
-            zIndex: 99,
+            zIndex: 1000,
           }}
         >
           <div>

@@ -234,7 +234,16 @@ describe('CharacterPicker', () => {
     };
     const { container } = render(<CharacterPicker editor={mockEditor} opts={opts} onClose={jest.fn()} />);
     const dialog = container.querySelector('.insert-character-dialog');
-    expect(dialog).toHaveStyle({ position: 'absolute' });
+    expect(dialog).toHaveStyle({ position: 'fixed' });
+  });
+
+  it('renders above other editor overlays with a high z-index', () => {
+    const opts = {
+      characters: [['á']],
+    };
+    const { container } = render(<CharacterPicker editor={mockEditor} opts={opts} onClose={jest.fn()} />);
+    const dialog = container.querySelector('.insert-character-dialog');
+    expect(dialog).toHaveStyle({ zIndex: '1000' });
   });
 
   it('adds data-toolbar-for attribute with editor instanceId', () => {
