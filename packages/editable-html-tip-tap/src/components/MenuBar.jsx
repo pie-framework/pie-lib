@@ -480,6 +480,11 @@ const StyledMenuBarRoot = styled('div')(({ theme }) => ({
     background: 'none',
     border: 'none',
     cursor: 'pointer',
+    // previously we had implicit 24×24 icon rendering for mui svg icons, but now we need to explicitly set the size to 24×24 to match the previous behavior
+    '& svg': {
+      width: '24px',
+      height: '24px',
+    },
     '&:hover': {
       color: 'black',
     },
