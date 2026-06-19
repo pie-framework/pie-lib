@@ -71,8 +71,8 @@ export default function Choice({ choice, disabled, instanceId }) {
       style={
         isDragging
           ? {
-              width: rootRef.current?.offsetWidth,
-              height: rootRef.current?.offsetHeight,
+               width: rootRef.current?.offsetWidth || 90, // min-width of chip is 90px, so if we don't have the width, we can use 90px as a fallback
+               height: rootRef.current?.offsetHeight || 32, // min-height of chip is 32px, so if we don't have the height, we can use 32px as a fallback
             }
           : {}
       }

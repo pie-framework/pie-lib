@@ -26,9 +26,9 @@ const CWD = process.cwd();
  *   - `next`: Defaults to `false`.
  */
 const argv = minimist(process.argv.slice(2), {
-  boolean: ['dry-run', 'next', 'build', 'test', 'release'],
+  boolean: ['dry-run', 'next', 'build', 'test', 'release', 'publish'],
   string: ['loglevel'],
-  default: { 'dry-run': false, next: false, build: false, test: false, release: false },
+  default: { 'dry-run': false, next: false, build: false, test: false, release: false, publish: false },
 });
 
 /**
@@ -180,6 +180,26 @@ const release = () => {
 };
 
 /**
+ * Publishes any package versions that are missing from the registry, without
+ * versioning or creating tags.
+ *
+ * Uses `lerna publish from-package`, which inspects each package's current
+ * version and publishes only those not already present on npm. This makes it
+ * a safe, idempotent retry for a release where some packages published and
+ * others failed (e.g. a transient provenance/transparency-log error): already
+ * published packages are skipped and only the missing ones are published.
+ *
+ * Intended to be run from a branch/commit that already carries the intended
+ * versions (typically `master` after a `lerna version` has run).
+ */
+const publishMissing = () => {
+  log(chalk.magenta('--- PUBLISH MISSING PACKAGES (from-package) ---'));
+  let releaseCmd = 'npx lerna publish from-package --yes';
+  if (argv.loglevel) releaseCmd += ` --loglevel ${argv.loglevel}`;
+  runCmd(releaseCmd);
+};
+
+/**
  * Executes the build and release process.
  *
  * The `run` function coordinates the execution of the build and release workflows.
@@ -193,7 +213,7 @@ const release = () => {
 const run = () => {
   try {
     // If no specific flags, run full workflow
-    const anyFlag = argv.build || argv.test || argv.release;
+    const anyFlag = argv.build || argv.test || argv.release || argv.publish;
     if (!anyFlag) {
       build();
       test();
@@ -202,6 +222,7 @@ const run = () => {
       if (argv.build) build();
       if (argv.test) test();
       if (argv.release) release();
+      if (argv.publish) publishMissing();
     }
     log(chalk.green('✅ Tasks completed successfully.'));
   } catch (err) {

@@ -126,7 +126,7 @@ const InlineDropdown = (props) => {
     }
 
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [showToolbar]);
+  }, [showToolbar, node]);
 
   return (
     <NodeViewWrapper

@@ -185,6 +185,85 @@ describe('InlineDropdown', () => {
     });
   });
 
+  it('uses the current node when closing on outside click after the node prop changes', async () => {
+    const onToolbarCloseRequest = jest.fn((_tuple, _editor, onConfirm) => onConfirm());
+    const options = {
+      ...mockOptions,
+      onToolbarCloseRequest,
+    };
+    const updatedNode = {
+      attrs: { index: '1', value: 'Updated Option', error: false },
+      nodeSize: 1,
+    };
+
+    const { queryByTestId, rerender } = render(<InlineDropdown {...defaultProps} options={options} selected={true} />);
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+
+    rerender(<InlineDropdown {...defaultProps} options={options} node={updatedNode} selected={true} />);
+
+    fireEvent.mouseDown(document.body);
+
+    await waitFor(() => {
+      expect(onToolbarCloseRequest).toHaveBeenCalledWith(
+        [updatedNode, 5],
+        expect.anything(),
+        expect.any(Function),
+        expect.any(Function),
+      );
+    });
+  });
+
+  it('respects hold state for the current node after the node prop changes', async () => {
+    const updatedNode = {
+      attrs: { index: '1', value: 'Updated Option', error: false },
+      nodeSize: 1,
+    };
+
+    mockEditor._holdInlineDropdownToolbarIndex = '1';
+
+    const { queryByTestId, rerender } = render(<InlineDropdown {...defaultProps} selected={true} />);
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+
+    rerender(<InlineDropdown {...defaultProps} node={updatedNode} selected={true} />);
+
+    fireEvent.mouseDown(document.body);
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+  });
+
+  it('rebinds the outside-click listener when the node prop changes while the toolbar is open', async () => {
+    const addSpy = jest.spyOn(document, 'addEventListener');
+    const removeSpy = jest.spyOn(document, 'removeEventListener');
+    const updatedNode = { ...mockNode, attrs: { ...mockNode.attrs, value: 'Updated Option' } };
+
+    const { rerender } = render(<InlineDropdown {...defaultProps} selected={true} />);
+
+    await waitFor(() => {
+      expect(addSpy).toHaveBeenCalledWith('mousedown', expect.any(Function));
+    });
+
+    const removeCallsBeforeRerender = removeSpy.mock.calls.filter(([type]) => type === 'mousedown').length;
+
+    rerender(<InlineDropdown {...defaultProps} node={updatedNode} selected={true} />);
+
+    await waitFor(() => {
+      const removeCallsAfterRerender = removeSpy.mock.calls.filter(([type]) => type === 'mousedown').length;
+      expect(removeCallsAfterRerender).toBeGreaterThan(removeCallsBeforeRerender);
+      expect(addSpy).toHaveBeenCalledWith('mousedown', expect.any(Function));
+    });
+
+    addSpy.mockRestore();
+    removeSpy.mockRestore();
+  });
+
   it('has correct border styling', () => {
     const { container } = render(<InlineDropdown {...defaultProps} />);
     const dropdownDiv = container.querySelector('div[style*="border"]');
