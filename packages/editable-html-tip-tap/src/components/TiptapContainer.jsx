@@ -171,7 +171,7 @@ function TiptapContainer(props) {
       el.style.whiteSpace = 'nowrap';
       el.textContent = 'W'.repeat(props.charactersLimit);
 
-      document.body.appendChild(el);
+      rootRef.current.appendChild(el);
 
       setAdjustedWidth(`${el.offsetWidth + 27}px`);
 
