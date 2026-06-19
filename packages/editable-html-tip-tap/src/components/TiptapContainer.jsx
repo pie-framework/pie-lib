@@ -168,6 +168,7 @@ function TiptapContainer(props) {
 
       el.style.visibility = 'hidden';
       el.style.position = 'absolute';
+      el.style.whiteSpace = 'nowrap';
       el.textContent = 'W'.repeat(props.charactersLimit);
 
       rootRef.current.appendChild(el);
