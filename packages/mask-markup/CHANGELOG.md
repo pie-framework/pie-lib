@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.8...@pie-lib/mask-markup@3.0.9) (2026-06-19)
+
+### Bug Fixes
+
+- **mask-markup/choice:** add fallback dimensions for dragging state in Choice component PIE-693 ([87b7782](https://github.com/pie-framework/pie-lib/commit/87b77824785bf7485b1b3e986749fc877224d154))
+
 ## [3.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.7...@pie-lib/mask-markup@3.0.8) (2026-06-17)
 
 **Note:** Version bump only for package @pie-lib/mask-markup

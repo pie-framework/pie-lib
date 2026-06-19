@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.6...@pie-lib/editable-html-tip-tap@2.1.7) (2026-06-19)
+
+### Bug Fixes
+
+- **editable-html:** append character limit element to document body for accurate width calculation PIE-674 ([9885176](https://github.com/pie-framework/pie-lib/commit/988517666b51636b56751caf65e8c19732db4add))
+- **editable-html:** keep the element appended to rootRef.current so it inherits the editor's actual font and font-size (document.body would use the wrong font and yield inaccurate widths) PIE-674 ([16bb5fc](https://github.com/pie-framework/pie-lib/commit/16bb5fcb9c9ffa8a302f0e2c645a03b91b40192a))
+- explicitly set SVG icon size to 24x24 in StyledMenuBarRoot ([0444e2e](https://github.com/pie-framework/pie-lib/commit/0444e2ec1947d62a1787ae3d66047bd02f048157))
+- when requestClose is called, latest node version is used [PIE-705] ([f1718dd](https://github.com/pie-framework/pie-lib/commit/f1718dd45010380bbe5b319a79627c2be889269d))
+
 ## [2.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.5...@pie-lib/editable-html-tip-tap@2.1.6) (2026-06-17)
 
 ### Bug Fixes

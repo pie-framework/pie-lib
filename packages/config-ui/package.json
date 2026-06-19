@@ -1,6 +1,6 @@
 {
   "name": "@pie-lib/config-ui",
-  "version": "13.0.8",
+  "version": "13.0.9",
   "main": "lib/index.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -13,7 +13,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/editable-html-tip-tap": "^2.1.6",
+    "@pie-lib/editable-html-tip-tap": "^2.1.7",
     "@pie-lib/icons": "^4.0.3",
     "@pie-lib/render-ui": "^6.1.2",
     "assert": "^1.4.1",
