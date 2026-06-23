@@ -232,11 +232,19 @@ export const MathNodeView = (props) => {
     editor.commands.focus();
   };
 
+  // Only open the toolbar when this node is *explicitly* selected
+  // via a NodeSelection — not when it's merely included in a broader
+  // TextSelection or AllSelection (e.g. click-drag across math, or Cmd+A).
   useEffect(() => {
-    if (selected) {
+    if (!selected) return;
+
+    const { selection } = editor.state;
+    const isNodeSelected = selection.node?.type?.name === 'math';
+
+    if (isNodeSelected) {
       setShowToolbar(true);
     }
-  }, [selected]);
+  }, [selected, editor]);
 
   useEffect(() => {
     setToolbarOpened(editor, selected || showToolbar);
