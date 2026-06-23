@@ -298,7 +298,7 @@ export const MathNodeView = (props) => {
     }
 
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [editor, showToolbar]);
+  }, [editor, showToolbar, node]);
 
   return (
     <NodeViewWrapper
