@@ -727,8 +727,6 @@ describe('MathNodeView', () => {
 
   describe('selection-based toolbar guard', () => {
     it('opens toolbar when selected transitions to true and the editor has a NodeSelection on math', async () => {
-      // Start unselected (as the component always mounts in the real editor),
-      // then simulate TipTap delivering selected=true with a proper math NodeSelection.
       const { queryByTestId, rerender } = render(<MathNodeView {...defaultProps} selected={false} />);
       expect(queryByTestId('math-toolbar')).not.toBeInTheDocument();
 
@@ -739,9 +737,6 @@ describe('MathNodeView', () => {
     });
 
     it('does not open toolbar when selected briefly becomes true but editor selection has no node (Cmd+A / drag case)', async () => {
-      // Real-world timing: ProseMirror calls selectNode() (setting selected=true)
-      // while the editor's actual selection is already a TextSelection or AllSelection
-      // with no `.node`. The effect must notice this and keep the toolbar closed.
       const editor = {
         ...defaultProps.editor,
         state: {
