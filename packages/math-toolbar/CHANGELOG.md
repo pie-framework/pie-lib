@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@3.0.4...@pie-lib/math-toolbar@3.0.5) (2026-06-25)
+
+### Bug Fixes
+
+- math editor saves on close and focuses when switching node [PIE-695][PIE-697] ([54beb75](https://github.com/pie-framework/pie-lib/commit/54beb75afe197d157623bb7feec92796a196091a))
+
 ## [3.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@3.0.3...@pie-lib/math-toolbar@3.0.4) (2026-06-12)
 
 ### Bug Fixes

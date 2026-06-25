@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@4.0.9...@pie-lib/plot@4.0.10) (2026-06-25)
+
+**Note:** Version bump only for package @pie-lib/plot
+
 ## [4.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@4.0.8...@pie-lib/plot@4.0.9) (2026-06-19)
 
 **Note:** Version bump only for package @pie-lib/plot

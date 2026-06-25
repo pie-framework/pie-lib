@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.7...@pie-lib/editable-html-tip-tap@2.1.8) (2026-06-25)
+
+### Bug Fixes
+
+- add test for math node selection PIE-699 ([cd4dc89](https://github.com/pie-framework/pie-lib/commit/cd4dc8939f7b8313a80290176806467ef9a928ec))
+- add test for math node selection PIE-699 ([af3b72c](https://github.com/pie-framework/pie-lib/commit/af3b72cb60c2ec31f6c9a1a6063e25af3439fd3c))
+- **editable-html:** preserve existing spans on load and prevent unnecessary updates PIE-665 ([41be4e3](https://github.com/pie-framework/pie-lib/commit/41be4e3f317e6fc23ddae7e3c8c65ff5a6253a0d))
+- math editor saves on close and focuses when switching node [PIE-695][PIE-697] ([54beb75](https://github.com/pie-framework/pie-lib/commit/54beb75afe197d157623bb7feec92796a196091a))
+- place math toolbar inside viewport and move it accordingly when window resizes [PIE-656] ([0f43d5a](https://github.com/pie-framework/pie-lib/commit/0f43d5ae119d4e52263593180fb009821d9e5211))
+- prevent toolbar from opening on text selection and Cmd+A PIE-699 ([f740299](https://github.com/pie-framework/pie-lib/commit/f7402995deaf7687a4dd0f3d8f97b57a77c11d2b))
+
 ## [2.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.6...@pie-lib/editable-html-tip-tap@2.1.7) (2026-06-19)
 
 ### Bug Fixes

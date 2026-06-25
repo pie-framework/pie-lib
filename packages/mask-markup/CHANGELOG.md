@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.9...@pie-lib/mask-markup@3.0.10) (2026-06-25)
+
+### Bug Fixes
+
+- **blank:** prevent ResizeObserver feedback loops and re-measure dimensions on visibility ([009cf1d](https://github.com/pie-framework/pie-lib/commit/009cf1d56af3f5f436d2f09b33e4d6d0bfad8609))
+
 ## [3.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.8...@pie-lib/mask-markup@3.0.9) (2026-06-19)
 
 ### Bug Fixes
