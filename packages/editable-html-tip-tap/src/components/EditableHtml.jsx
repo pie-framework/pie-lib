@@ -334,7 +334,7 @@ export const EditableHtml = (props) => {
     const nextMarkup = normalizeInitialMarkup(props.markup);
 
     if (nextMarkup !== editor.getHTML()) {
-      editor.commands.setContent(nextMarkup, false);
+      editor.commands.setContent(nextMarkup, { emitUpdate: false });
     }
   }, [props.markup, editor]);
 
