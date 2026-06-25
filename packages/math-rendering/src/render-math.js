@@ -132,6 +132,7 @@ const createMathMLInstance = (opts, docProvided = document) => {
     overarc: '\\overparen',
     napprox: '\\not\\approx',
     longdiv: '\\enclose{longdiv}',
+    abs: ['\\left|#1\\right|', 1],
   };
 
   const texConfig = opts.useSingleDollar

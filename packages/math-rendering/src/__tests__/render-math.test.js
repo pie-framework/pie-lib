@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { TeX } from 'mathjax-full/js/input/tex';
 import renderMath, { fixMathElement } from '../render-math';
 import { times } from 'lodash-es';
 
@@ -138,6 +139,16 @@ describe('render-math', () => {
     expect(mockHtml.findMath).toHaveBeenCalledWith({
       elements: [divOne, divTwo],
     });
+  });
+
+  it('registers the abs macro in the TeX config', () => {
+    const div = document.createElement('div');
+
+    renderMath(div);
+
+    const texConfig = TeX.mock.calls[0][0];
+
+    expect(texConfig.macros.abs).toEqual(['\\left|#1\\right|', 1]);
   });
 
   it('wraps the math containing element the right way', () => {
