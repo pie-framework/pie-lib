@@ -23,7 +23,9 @@ export const EnsureTextAfterMathPlugin = (mathNodeName) =>
     key: ensureTextAfterMathPluginKey,
     appendTransaction: (transactions, oldState, newState) => {
       // Only act when the doc actually changed
-      if (!transactions.some((tr) => tr.docChanged)) return null;
+      if (!transactions.some((tr) => tr.docChanged)) {
+        return null;
+      }
 
       const tr = newState.tr;
       let changed = false;
@@ -202,6 +204,7 @@ export const MathNodeView = (props) => {
   const { node, updateAttributes, editor, selected, options } = props;
   const [showToolbar, setShowToolbar] = useState(selected);
   const toolbarRef = useRef(null);
+  const nodeRef = useRef(null);
   const timestamp = useRef(Date.now());
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const { math: mathOptions = {} } = options || {};
@@ -232,28 +235,102 @@ export const MathNodeView = (props) => {
     editor.commands.focus();
   };
 
+  // Only open the toolbar when this node is *explicitly* selected
+  // via a NodeSelection — not when it's merely included in a broader
+  // TextSelection or AllSelection (e.g. click-drag across math, or Cmd+A).
   useEffect(() => {
-    if (selected) {
+    if (!selected) return;
+
+    const { selection } = editor.state;
+    const isNodeSelected = selection.node?.type?.name === 'math';
+
+    if (isNodeSelected) {
       setShowToolbar(true);
     }
-  }, [selected]);
+  }, [selected, editor]);
 
   useEffect(() => {
     setToolbarOpened(editor, selected || showToolbar);
   }, [editor, showToolbar, selected]);
 
   useEffect(() => {
-    // Calculate position relative to selection
-    const { from } = editor.state.selection;
-    const start = editor.view.coordsAtPos(from);
-    const editorDOM = editor.options.element;
-    const editorRect = editorDOM.getBoundingClientRect();
+    if (!editor || !showToolbar) {
+      setPosition({ top: 0, left: 0 });
+      return;
+    }
 
-    setPosition({
-      top: start.top - editorRect.top + 40, // shift above
-      left: start.left - editorRect.left,
+    // Clamp in viewport coordinates, then convert to portal-container-relative values
+    // for position: absolute (toolbar is portaled into _tiptapContainerEl or document.body).
+    const updatePosition = () => {
+      if (!toolbarRef.current) {
+        return;
+      }
+
+      const { from } = editor.state.selection;
+      const start = editor.view.coordsAtPos(from);
+      const nodeRect = nodeRef.current?.getBoundingClientRect?.();
+
+      // Anchor to the math node element when available; fall back to selection coords.
+      const anchorTop = nodeRect?.height ? nodeRect.top : start.top;
+      const anchorLeft = nodeRect?.width ? nodeRect.left : start.left;
+      const anchorBottom = nodeRect?.height ? nodeRect.bottom : (start.bottom ?? start.top);
+
+      const toolbarHeight = toolbarRef.current.offsetHeight;
+      const toolbarWidth = toolbarRef.current.offsetWidth;
+
+      const gap = 0;
+      const spaceBelow = window.innerHeight - (anchorBottom + gap);
+
+      // Place the toolbar's top-left corner directly below the anchor; flip above when needed.
+      let top = spaceBelow >= toolbarHeight ? anchorBottom + gap : anchorTop - toolbarHeight - gap;
+      let left = anchorLeft;
+
+      const margin = 8;
+      top = Math.max(margin, Math.min(top, window.innerHeight - toolbarHeight - margin));
+      left = Math.max(margin, Math.min(left, window.innerWidth - toolbarWidth - margin));
+
+      const portalEl = editor._tiptapContainerEl || document.body;
+      const containerRect = portalEl.getBoundingClientRect();
+
+      setPosition({
+        top: top - containerRect.top,
+        left: left - containerRect.left,
+      });
+    };
+
+    updatePosition();
+
+    let frame = null;
+    const scheduleUpdate = () => {
+      if (frame !== null) {
+        return;
+      }
+
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        updatePosition();
+      });
+    };
+
+    frame = requestAnimationFrame(() => {
+      frame = null;
+      updatePosition();
     });
 
+    window.addEventListener('scroll', scheduleUpdate, true);
+    window.addEventListener('resize', scheduleUpdate);
+
+    return () => {
+      if (frame !== null) {
+        cancelAnimationFrame(frame);
+      }
+
+      window.removeEventListener('scroll', scheduleUpdate, true);
+      window.removeEventListener('resize', scheduleUpdate);
+    };
+  }, [editor, showToolbar]);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
       const target = event?.target;
 
@@ -298,7 +375,7 @@ export const MathNodeView = (props) => {
     }
 
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [editor, showToolbar]);
+  }, [editor, showToolbar, node]);
 
   return (
     <NodeViewWrapper
@@ -310,7 +387,7 @@ export const MathNodeView = (props) => {
       }}
       data-selected={selected}
     >
-      <div onClick={() => setShowToolbar(true)} contentEditable={false}>
+      <div ref={nodeRef} onClick={() => setShowToolbar(true)} contentEditable={false}>
         <MathPreview latex={latex} />
       </div>
       {showToolbar &&
@@ -322,7 +399,7 @@ export const MathNodeView = (props) => {
               position: 'absolute',
               top: `${position.top}px`,
               left: `${position.left}px`,
-              zIndex: 20,
+              zIndex: 1000,
               background: 'var(--editable-html-toolbar-bg, #efefef)',
               boxShadow:
                 '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',

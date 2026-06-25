@@ -106,6 +106,7 @@ function BlankContent({
   const rootRef = useRef(null);
   const spanRef = useRef(null);
   const frozenRef = useRef(null); // to use during dragging to prevent flickering
+  const measuringRef = useRef(false); // guard against ResizeObserver feedback loops
   const [dimensions, setDimensions] = useState({ height: 0, width: 0 });
 
   const handleImageLoad = () => {
@@ -133,7 +134,8 @@ function BlankContent({
   };
 
   const updateDimensions = () => {
-    if (spanRef.current && rootRef.current) {
+    if (spanRef.current && rootRef.current && !measuringRef.current) {
+      measuringRef.current = true;
       // Temporarily set rootRef width to 'auto' for natural measurement
       rootRef.current.style.width = 'auto';
       rootRef.current.style.height = 'auto';
@@ -164,8 +166,15 @@ function BlankContent({
         height: adjustedHeight > responseAreaHeight ? adjustedHeight : prevState.height,
       }));
 
-      rootRef.current.style.width = `${adjustedWidth}px`;
-      rootRef.current.style.height = `${adjustedHeight}px`;
+      const nextWidth = `${adjustedWidth}px`;
+      const nextHeight = `${adjustedHeight}px`;
+      if (rootRef.current.style.width !== nextWidth) {
+        rootRef.current.style.width = nextWidth;
+      }
+      if (rootRef.current.style.height !== nextHeight) {
+        rootRef.current.style.height = nextHeight;
+      }
+      measuringRef.current = false;
     }
   };
 
@@ -191,6 +200,20 @@ function BlankContent({
     handleElements();
   }, []);
 
+  // Re-measure when the element first becomes visible — covers the tabbed-view case
+  // where the initial measurement happened while the tab was hidden (size 0).
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined' || !rootRef.current) return undefined;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) updateDimensions();
+      },
+      { threshold: 0 },
+    );
+    io.observe(rootRef.current);
+    return () => io.disconnect();
+  }, []);
+
   // Render math for the placeholder/preview when dragging over
   useEffect(() => {
     if (rootRef.current) {
@@ -204,7 +227,7 @@ function BlankContent({
       return;
     }
     handleElements();
-  }, [choice]);
+  }, [choice?.value]);
 
   useEffect(() => {
     if (!isOver && !isDragging) {

@@ -169,14 +169,27 @@ export const CSSMark = Mark.create({
   },
 
   parseHTML() {
-    // Any span with a class that matches one of allowed classes
+    // Any span with a class that matches one of allowed classes any span that carries a class attribute
+    // so that pre-existing spans are preserved when loading content
     return [
       {
         tag: 'span[class]',
         getAttrs: (el) => {
           const cls = el.getAttribute('class') || '';
-          const match = this.options.classes.find((name) => cls.includes(name));
-          return match ? { class: match } : false;
+
+          if (!cls) {
+            return false;
+          }
+
+          const allowedClasses = (this.options && this.options.classes) || [];
+
+          if (allowedClasses.length > 0) {
+            const match = this.options.classes.find((name) => cls.includes(name));
+
+            return match ? { class: match } : false;
+          }
+
+          return { class: cls };
         },
       },
     ];
