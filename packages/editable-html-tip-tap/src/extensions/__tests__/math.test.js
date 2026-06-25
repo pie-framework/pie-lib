@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, waitFor, fireEvent, act } from '@testing-library/react';
 import { EnsureTextAfterMathPlugin, MathNode, MathNodeView, ZeroWidthSpaceHandlingPlugin } from '../math';
 import * as toolbarUtils from '../../utils/toolbar';
 
@@ -390,6 +390,7 @@ describe('MathNodeView', () => {
       selection: {
         from: 0,
         to: 1,
+        node: { type: { name: 'math' } },
       },
       tr: {
         setSelection: jest.fn().mockReturnThis(),
@@ -746,6 +747,54 @@ describe('MathNodeView', () => {
         expect(editorA._toolbarOpened).toBe(false);
         expect(getAllByTestId('math-input')[0]).toHaveValue('y^2');
       });
+    });
+  });
+
+  describe('selection-based toolbar guard', () => {
+    it('opens toolbar when selected transitions to true and the editor has a NodeSelection on math', async () => {
+      const { queryByTestId, rerender } = render(<MathNodeView {...defaultProps} selected={false} />);
+      expect(queryByTestId('math-toolbar')).not.toBeInTheDocument();
+
+      rerender(<MathNodeView {...defaultProps} selected={true} />);
+      await waitFor(() => {
+        expect(queryByTestId('math-toolbar')).toBeInTheDocument();
+      });
+    });
+
+    it('does not open toolbar when selected briefly becomes true but editor selection has no node (Cmd+A / drag case)', async () => {
+      const editor = {
+        ...defaultProps.editor,
+        state: {
+          ...defaultProps.editor.state,
+          selection: { from: 0, to: 100 }, // no .node — TextSelection / AllSelection shape
+        },
+      };
+
+      const { queryByTestId, rerender } = render(
+        <MathNodeView {...defaultProps} editor={editor} selected={false} />,
+      );
+      rerender(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
+
+      await act(async () => {});
+      expect(queryByTestId('math-toolbar')).not.toBeInTheDocument();
+    });
+
+    it('does not open toolbar when selected briefly becomes true but NodeSelection targets a non-math node', async () => {
+      const editor = {
+        ...defaultProps.editor,
+        state: {
+          ...defaultProps.editor.state,
+          selection: { from: 0, to: 1, node: { type: { name: 'image' } } },
+        },
+      };
+
+      const { queryByTestId, rerender } = render(
+        <MathNodeView {...defaultProps} editor={editor} selected={false} />,
+      );
+      rerender(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
+
+      await act(async () => {});
+      expect(queryByTestId('math-toolbar')).not.toBeInTheDocument();
     });
   });
 
