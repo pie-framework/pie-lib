@@ -94,15 +94,11 @@ const InlineDropdown = (props) => {
   }, [editor, node, selected]);
 
 
-  const isScrollbarClicked = (event) =>  event.clientX >= document.documentElement.clientWidth ||
-        event.clientY >= document.documentElement.clientHeight ||
-        // macOS overlay: target is document.documentElement or document.body directly
-        // when clicking the window scrollbar — never a child element
-        (
-            (event.target === document.documentElement || event.target === document.body) &&
-            // within 20px of the right or bottom edge of the viewport
-            (event.clientX >= window.innerWidth - 20 || event.clientY >= window.innerHeight - 20)
-        );
+ 
+  const isScrollbarClicked = (event) =>
+    event.clientX > document.documentElement.clientWidth ||
+    event.clientY > document.documentElement.clientHeight ||
+    event.target === document.documentElement;
   
 
   useEffect(() => {
