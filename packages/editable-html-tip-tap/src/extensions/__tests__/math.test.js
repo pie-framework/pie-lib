@@ -648,6 +648,31 @@ describe('MathNodeView', () => {
     });
   });
 
+  it('re-registers click listener when node changes', async () => {
+    const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
+    const removeEventListenerSpy = jest.spyOn(document, 'removeEventListener');
+    const nodeA = { attrs: { latex: 'x^2' } };
+    const nodeB = { attrs: { latex: 'y^2' } };
+
+    const { rerender } = render(<MathNodeView {...defaultProps} node={nodeA} selected={true} />);
+
+    await waitFor(() => {
+      expect(addEventListenerSpy).toHaveBeenCalledWith('click', expect.any(Function));
+    });
+
+    const initialCallCount = addEventListenerSpy.mock.calls.length;
+
+    rerender(<MathNodeView {...defaultProps} node={nodeB} selected={true} />);
+
+    await waitFor(() => {
+      expect(removeEventListenerSpy).toHaveBeenCalled();
+      expect(addEventListenerSpy.mock.calls.length).toBeGreaterThan(initialCallCount);
+    });
+
+    addEventListenerSpy.mockRestore();
+    removeEventListenerSpy.mockRestore();
+  });
+
   it('does not close toolbar when clicking the math node preview', async () => {
     const { getByTestId, queryByTestId } = render(<MathNodeView {...defaultProps} selected={true} />);
 

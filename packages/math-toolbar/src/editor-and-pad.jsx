@@ -263,7 +263,8 @@ export class EditorAndPad extends React.Component {
 
   componentDidMount() {
     if (this.input && this.props.autoFocus) {
-      this.input.focus();
+      // adding a timeout to wait for other stuff related to focus to be finished
+      setTimeout(() => this.input.focus(), 0);
     }
   }
 
