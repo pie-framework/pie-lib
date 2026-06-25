@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, waitFor, fireEvent, act } from '@testing-library/react';
 import { EnsureTextAfterMathPlugin, MathNode, MathNodeView, ZeroWidthSpaceHandlingPlugin } from '../math';
 import * as toolbarUtils from '../../utils/toolbar';
 
@@ -467,30 +467,31 @@ describe('MathNodeView', () => {
   });
 
   describe('toolbar positioning', () => {
-    it('positions relative to the editor element using coordsAtPos', async () => {
+    it('positions relative to portal container using coordsAtPos', async () => {
       const { container } = render(<MathNodeView {...defaultProps} selected={true} />);
       await waitFor(() => {
         const toolbar = container.querySelector('[data-toolbar-for]');
         expect(toolbar).toBeInTheDocument();
-        expect(toolbar.style.top).toBe('140px');
+        expect(toolbar.style.top).toBe('100px');
         expect(toolbar.style.left).toBe('50px');
       });
     });
 
-    it('accounts for editor scroll offset when calculating toolbar position', async () => {
-      const editorElement = createEditorElement({ top: -200, left: 0, width: 600, height: 400 });
+    it('offsets position by portal container getBoundingClientRect', async () => {
+      const containerEl = document.createElement('div');
+      containerEl.getBoundingClientRect = jest.fn(() => ({ top: 100, left: 50, width: 600, height: 400 }));
 
       const editor = {
         ...defaultProps.editor,
-        options: { element: editorElement },
+        _tiptapContainerEl: containerEl,
       };
 
       const { container } = render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
       await waitFor(() => {
         const toolbar = container.querySelector('[data-toolbar-for]');
         expect(toolbar).toBeInTheDocument();
-        expect(toolbar.style.top).toBe('340px');
-        expect(toolbar.style.left).toBe('50px');
+        expect(toolbar.style.top).toBe('0px');
+        expect(toolbar.style.left).toBe('0px');
       });
     });
 
@@ -500,6 +501,15 @@ describe('MathNodeView', () => {
         const toolbar = container.querySelector('[data-toolbar-for]');
         expect(toolbar).toBeInTheDocument();
         expect(toolbar.style.position).toBe('absolute');
+      });
+    });
+
+    it('renders above other editor overlays with a high z-index', async () => {
+      const { container } = render(<MathNodeView {...defaultProps} selected={true} />);
+      await waitFor(() => {
+        const toolbar = container.querySelector('[data-toolbar-for]');
+        expect(toolbar).toBeInTheDocument();
+        expect(toolbar.style.zIndex).toBe('1000');
       });
     });
 
@@ -517,9 +527,62 @@ describe('MathNodeView', () => {
       await waitFor(() => {
         const toolbar = container.querySelector('[data-toolbar-for]');
         expect(toolbar).toBeInTheDocument();
-        expect(toolbar.style.top).toBe('240px');
+        expect(toolbar.style.top).toBe('200px');
         expect(toolbar.style.left).toBe('150px');
       });
+    });
+
+    it('clamps toolbar position to viewport margins', async () => {
+      const originalInnerHeight = window.innerHeight;
+      const originalInnerWidth = window.innerWidth;
+
+      Object.defineProperty(window, 'innerHeight', { configurable: true, writable: true, value: 200 });
+      Object.defineProperty(window, 'innerWidth', { configurable: true, writable: true, value: 300 });
+
+      const editor = {
+        ...defaultProps.editor,
+        view: {
+          ...defaultProps.editor.view,
+          coordsAtPos: jest.fn(() => ({ top: 190, left: 280, bottom: 195 })),
+          dispatch: jest.fn(),
+        },
+      };
+
+      const { container } = render(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
+
+      let toolbar;
+      await waitFor(() => {
+        toolbar = container.querySelector('[data-toolbar-for]');
+        expect(toolbar).toBeInTheDocument();
+      });
+
+      Object.defineProperty(toolbar, 'offsetHeight', { configurable: true, value: 100 });
+      Object.defineProperty(toolbar, 'offsetWidth', { configurable: true, value: 150 });
+
+      await act(async () => {
+        window.dispatchEvent(new Event('resize'));
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+      });
+
+      await waitFor(() => {
+        expect(parseInt(toolbar.style.top, 10)).toBeLessThanOrEqual(200 - 100 - 8);
+        expect(parseInt(toolbar.style.left, 10)).toBeLessThanOrEqual(300 - 150 - 8);
+        expect(parseInt(toolbar.style.top, 10)).toBeGreaterThanOrEqual(8);
+        expect(parseInt(toolbar.style.left, 10)).toBeGreaterThanOrEqual(8);
+      });
+
+      Object.defineProperty(window, 'innerHeight', { configurable: true, writable: true, value: originalInnerHeight });
+      Object.defineProperty(window, 'innerWidth', { configurable: true, writable: true, value: originalInnerWidth });
+    });
+
+    it('attaches scroll and resize listeners while toolbar is open', async () => {
+      const addSpy = jest.spyOn(window, 'addEventListener');
+      render(<MathNodeView {...defaultProps} selected={true} />);
+      await waitFor(() => {
+        expect(addSpy).toHaveBeenCalledWith('scroll', expect.any(Function), true);
+        expect(addSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+      });
+      addSpy.mockRestore();
     });
 
     it('portals toolbar into _tiptapContainerEl when available', async () => {
