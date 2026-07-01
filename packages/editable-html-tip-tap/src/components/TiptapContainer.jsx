@@ -171,10 +171,25 @@ function TiptapContainer(props) {
       el.style.whiteSpace = 'nowrap';
       el.textContent = 'W'.repeat(props.charactersLimit);
 
-      rootRef.current.appendChild(el);
+      // Copy font styles from the editor container so the width measurement reflects the actual font
+      const computedStyles = window.getComputedStyle(rootRef.current);
+      const fontStyleProps = [
+        'fontFamily',
+        'fontSize',
+        'fontWeight',
+        'fontStyle',
+        'letterSpacing',
+        'wordSpacing',
+        'textTransform',
+        'lineHeight',
+      ];
 
+      fontStyleProps.forEach((prop) => {
+        el.style[prop] = computedStyles[prop];
+      });
+
+      document.body.appendChild(el);
       setAdjustedWidth(`${el.offsetWidth + 27}px`);
-
       el.remove();
     }
   }, [props.adjustWidthForLimit, props.charactersLimit]);
