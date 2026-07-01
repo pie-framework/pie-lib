@@ -464,6 +464,20 @@ describe('InlineDropdown', () => {
     expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
   });
 
+  it('does not close toolbar when clicking the page scrollbar (documentElement)', async () => {
+    const { queryByTestId } = render(<InlineDropdown {...defaultProps} selected={true} />);
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+
+    fireEvent.mouseDown(document.documentElement);
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+});
+
   it('renders delete control on portaled custom toolbar when container el is set', async () => {
     const { findByLabelText } = render(<InlineDropdown {...defaultProps} selected />);
     expect(await findByLabelText('Delete')).toBeInTheDocument();
