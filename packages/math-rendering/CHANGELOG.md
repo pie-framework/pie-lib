@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@5.0.2...@pie-lib/math-rendering@5.1.0) (2026-07-01)
+
+### Features
+
+- **math-rendering:** add abs macro support in TeX configuration PIE-442 ([1b1c545](https://github.com/pie-framework/pie-lib/commit/1b1c54591c5150ad4ff2ab04c773f48bd4415587))
+
 ## [5.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-rendering@5.0.2-next.1...@pie-lib/math-rendering@5.0.2) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/math-rendering

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.8...@pie-lib/editable-html-tip-tap@2.1.9) (2026-07-01)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** prevent toolbar closing when clicking the page scrollbar inline-dropdown PIE-575 ([8a93fb5](https://github.com/pie-framework/pie-lib/commit/8a93fb53e3920e9deb642005d6053ac4f9397bec))
+- **editable-html-tip-tap:** use strict greater-than for scrollbar viewport check inlinedropdown PIE-575 ([1b38e20](https://github.com/pie-framework/pie-lib/commit/1b38e20965ee0b3dd7ffe84e7af625865987a4d9))
+- **editable-html:** copy font styles and append character limit element to document body PIE-674 ([84e2d40](https://github.com/pie-framework/pie-lib/commit/84e2d40d74cc89f8c36d61737de1e4b93c0dd084))
+
 ## [2.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.7...@pie-lib/editable-html-tip-tap@2.1.8) (2026-06-25)
 
 ### Bug Fixes
