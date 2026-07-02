@@ -201,7 +201,7 @@ export const MathNode = Node.create({
 });
 
 export const MathNodeView = (props) => {
-  const { node, updateAttributes, editor, selected, options } = props;
+  const { node, updateAttributes, editor, selected, options, getPos } = props;
   const [showToolbar, setShowToolbar] = useState(selected);
   const toolbarRef = useRef(null);
   const nodeRef = useRef(null);
@@ -222,16 +222,29 @@ export const MathNodeView = (props) => {
     updateAttributes({ latex: newLatex });
   };
 
-  const handleDone = (newLatex) => {
+  // moveCursorAfterNode is set explicitly by the caller (not inferred from
+  // editor.state.selection: every keystroke while editing already calls
+  // updateAttributes, which replaces this node's content and — per a
+  // ProseMirror mapping quirk — collapses any NodeSelection on it into a
+  // plain TextSelection right away, so the live selection can't be trusted
+  // to still describe this node by the time handleDone runs).
+  //
+  // - Check icon: always move the cursor to just after this node.
+  // - Clicking elsewhere in the editable content while the toolbar was
+  //   open (see handleClickOutside): leave the cursor where the user
+  //   actually clicked instead of overriding it.
+  const handleDone = (newLatex, { moveCursorAfterNode = true } = {}) => {
     updateAttributes({ latex: newLatex });
     setShowToolbar(false);
 
-    const { selection, tr, doc } = editor.state;
-    const sel = TextSelection.create(doc, selection.from + 1);
+    if (moveCursorAfterNode && typeof getPos === 'function') {
+      const pos = getPos();
+      const { doc } = editor.state;
+      const sel = TextSelection.create(doc, pos + node.nodeSize);
+      const tr = editor.state.tr.setSelection(sel);
+      editor.view.dispatch(tr);
+    }
 
-    // Build a fresh transaction from the current state and set the selection
-    tr.setSelection(sel);
-    editor.view.dispatch(tr);
     editor.commands.focus();
   };
 
@@ -362,7 +375,16 @@ export const MathNodeView = (props) => {
         !clickedMathNode
       ) {
         setShowToolbar(false);
-        handleDone(node.attrs.latex);
+
+        // If the click landed inside the editable content itself, respect
+        // it and leave the cursor where the user clicked. If it landed
+        // fully outside the editor (e.g. on other page UI), there's no
+        // click position to preserve — falling back to "leave selection
+        // untouched" there renders the browser's native NodeSelection
+        // fallback caret at the start of the node, so explicitly move the
+        // cursor after it instead, same as the check-icon path.
+        const clickedInsideEditableContent = !!editor?.view?.dom?.contains(target);
+        handleDone(node.attrs.latex, { moveCursorAfterNode: !clickedInsideEditableContent });
       }
     };
 

@@ -416,6 +416,7 @@ describe('MathNodeView', () => {
     attrs: {
       latex: 'x^2',
     },
+    nodeSize: 1,
   };
 
   let defaultProps;
@@ -429,6 +430,7 @@ describe('MathNodeView', () => {
       editor: createMockEditor(),
       selected: false,
       options: {},
+      getPos: jest.fn(() => 0),
     };
   });
 
