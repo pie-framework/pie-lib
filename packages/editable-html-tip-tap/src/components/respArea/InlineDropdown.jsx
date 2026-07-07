@@ -30,6 +30,7 @@ const InlineDropdown = (props) => {
     }
 
     setShowToolbar(false);
+    options.onInlineDropdownToolbarClose?.(editor);
   };
 
   const InlineDropdownToolbar = options.respAreaToolbar([node, pos], editor, closeToolbar);
@@ -93,13 +94,10 @@ const InlineDropdown = (props) => {
     }
   }, [editor, node, selected]);
 
-
- 
   const isScrollbarClicked = (event) =>
     event.clientX > document.documentElement.clientWidth ||
     event.clientY > document.documentElement.clientHeight ||
     event.target === document.documentElement;
-  
 
   useEffect(() => {
     // Calculate position relative to selection
@@ -113,8 +111,7 @@ const InlineDropdown = (props) => {
     });
 
     const handleClickOutside = (event) => {
-
-      if( isScrollbarClicked(event) ) {
+      if (isScrollbarClicked(event)) {
         return;
       }
       const insideSomeEditor = event.target.closest('[data-toolbar-for]');
