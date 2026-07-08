@@ -1,6 +1,11 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
+import { renderMath } from '@pie-lib/math-rendering';
 import InlineDropdown from '../respArea/InlineDropdown';
+
+jest.mock('@pie-lib/math-rendering', () => ({
+  renderMath: jest.fn(),
+}));
 
 jest.mock('@tiptap/react', () => ({
   NodeViewWrapper: ({ children, ...props }) => (
@@ -102,6 +107,32 @@ describe('InlineDropdown', () => {
     const { container } = render(<InlineDropdown {...defaultProps} />);
     const valueDiv = container.querySelector('div[style*="border"]');
     expect(valueDiv).toBeInTheDocument();
+  });
+
+  it('renders math inside the value control on mount', () => {
+    const { container } = render(<InlineDropdown {...defaultProps} />);
+    const valueDiv = container.querySelector('div[style*="border"]');
+
+    expect(renderMath).toHaveBeenCalledWith(valueDiv);
+  });
+
+  it('re-renders math when the value changes', () => {
+    const updatedNode = {
+      ...mockNode,
+      attrs: {
+        ...mockNode.attrs,
+        value: '<span>Updated math</span>',
+      },
+    };
+
+    const { container, rerender } = render(<InlineDropdown {...defaultProps} />);
+
+    renderMath.mockClear();
+
+    rerender(<InlineDropdown {...defaultProps} node={updatedNode} />);
+
+    const valueDiv = container.querySelector('div[style*="border"]');
+    expect(renderMath).toHaveBeenCalledWith(valueDiv);
   });
 
   it('uses 2px horizontal margin on the value control and no horizontal margin on the wrapper', () => {

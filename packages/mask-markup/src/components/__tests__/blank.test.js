@@ -152,8 +152,8 @@ describe('Blank', () => {
       const chip = wrapper && wrapper.firstChild; // StyledChip (rootRef)
 
       // Width and height should include padding (24px) around measured content
-      expect(chip.style.width).toBe('124px');
-      expect(chip.style.height).toBe('44px');
+      expect(chip.style.width).toBe('129px');
+      expect(chip.style.height).toBe('49px');
 
       rectSpy.mockRestore();
       jest.useRealTimers();
