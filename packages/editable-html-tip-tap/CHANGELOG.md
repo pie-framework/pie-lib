@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.9...@pie-lib/editable-html-tip-tap@2.1.10) (2026-07-08)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** handle cursor position based on node instead of the stale editor position PIE-698 ([fd562cc](https://github.com/pie-framework/pie-lib/commit/fd562cc0c211c204eba579d5cfd957efa2edf346))
+- made sure math is rendered on response render [PIE-706] ([1cb50ba](https://github.com/pie-framework/pie-lib/commit/1cb50ba6908db9599f177a88aa012b75637ac23e))
+- made sure the inline dropdown toolbar closed triggers an onDone [PIE-702] ([c77afed](https://github.com/pie-framework/pie-lib/commit/c77afed2d64126990af95522c9467fb600358832))
+
 ## [2.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.8...@pie-lib/editable-html-tip-tap@2.1.9) (2026-07-01)
 
 ### Bug Fixes

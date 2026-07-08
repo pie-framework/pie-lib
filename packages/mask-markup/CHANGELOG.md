@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.11...@pie-lib/mask-markup@3.0.12) (2026-07-08)
+
+### Bug Fixes
+
+- **mask-markup:** update width and height calculations to include padding and border adjustments PIE-679 ([7142a76](https://github.com/pie-framework/pie-lib/commit/7142a7629da6db7fea621809a38d2cb280bc063f))
+
 ## [3.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.10...@pie-lib/mask-markup@3.0.11) (2026-07-01)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
