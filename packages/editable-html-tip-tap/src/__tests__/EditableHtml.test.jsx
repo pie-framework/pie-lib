@@ -2,6 +2,7 @@ import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { useEditor } from '@tiptap/react';
 import { EditableHtml } from '../components/EditableHtml';
+import { InlineDropdownNode } from '../extensions/responseArea';
 
 // Mock TipTap dependencies
 jest.mock('@tiptap/react', () => ({
@@ -208,6 +209,39 @@ describe('EditableHtml', () => {
     };
     const { container } = render(<EditableHtml {...defaultProps} responseAreaProps={responseAreaProps} />);
     expect(container).toBeInTheDocument();
+  });
+
+  it('passes blur done behavior to inline dropdown toolbar close', async () => {
+    const onChange = jest.fn();
+    const onDone = jest.fn();
+    const html = '<p>from inline dropdown close</p>';
+
+    render(
+      <EditableHtml
+        {...defaultProps}
+        markup="<p>Hello World</p>"
+        onChange={onChange}
+        onDone={onDone}
+        toolbarOpts={{ doneOn: 'blur' }}
+        responseAreaProps={{ type: 'inline-dropdown' }}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(InlineDropdownNode.configure).toHaveBeenCalled();
+    });
+
+    const configureCall = InlineDropdownNode.configure.mock.calls[InlineDropdownNode.configure.mock.calls.length - 1];
+    const inlineDropdownOptions = configureCall[0];
+    const editor = {
+      getHTML: jest.fn(() => html),
+    };
+
+    inlineDropdownOptions.onInlineDropdownToolbarClose(editor);
+
+    expect(editor.getHTML).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith(html);
+    expect(onDone).toHaveBeenCalledWith(html);
   });
 
   it('accepts size props', () => {

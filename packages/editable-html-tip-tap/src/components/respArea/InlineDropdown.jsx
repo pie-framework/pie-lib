@@ -32,6 +32,7 @@ const InlineDropdown = (props) => {
     }
 
     setShowToolbar(false);
+    options.onInlineDropdownToolbarClose?.(editor);
   };
 
   const InlineDropdownToolbar = options.respAreaToolbar([node, pos], editor, closeToolbar);
