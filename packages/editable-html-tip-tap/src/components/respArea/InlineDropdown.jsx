@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
+import { renderMath } from '@pie-lib/math-rendering';
 import PropTypes from 'prop-types';
 import { NodeViewWrapper } from '@tiptap/react';
 import { NodeSelection } from 'prosemirror-state';
 import { Chevron } from '../icons/RespArea';
-import ReactDOM from 'react-dom';
 import CustomToolbarWrapper from '../../extensions/custom-toolbar-wrapper';
 import { setToolbarOpened } from '../../utils/toolbar';
 
@@ -16,6 +17,7 @@ const InlineDropdown = (props) => {
   const toolbarRef = useRef(null);
   const toolbarEditor = useRef(null);
   const pendingCloseRequest = useRef(false);
+  const elementRef = useRef(null);
 
   const isHeld = () =>
     editor._holdInlineDropdownToolbarIndex != null &&
@@ -30,6 +32,7 @@ const InlineDropdown = (props) => {
     }
 
     setShowToolbar(false);
+    options.onInlineDropdownToolbarClose?.(editor);
   };
 
   const InlineDropdownToolbar = options.respAreaToolbar([node, pos], editor, closeToolbar);
@@ -93,13 +96,16 @@ const InlineDropdown = (props) => {
     }
   }, [editor, node, selected]);
 
-
- 
   const isScrollbarClicked = (event) =>
     event.clientX > document.documentElement.clientWidth ||
     event.clientY > document.documentElement.clientHeight ||
     event.target === document.documentElement;
-  
+
+  useEffect(() => {
+    if (elementRef.current && typeof renderMath === 'function') {
+      renderMath(elementRef.current);
+    }
+  }, [value]);
 
   useEffect(() => {
     // Calculate position relative to selection
@@ -113,10 +119,10 @@ const InlineDropdown = (props) => {
     });
 
     const handleClickOutside = (event) => {
-
-      if( isScrollbarClicked(event) ) {
+      if (isScrollbarClicked(event)) {
         return;
       }
+
       const insideSomeEditor = event.target.closest('[data-toolbar-for]');
 
       if (
@@ -151,6 +157,7 @@ const InlineDropdown = (props) => {
       }}
     >
       <div
+        ref={elementRef}
         style={{
           display: 'inline-flex',
           minWidth: '178px',

@@ -1,6 +1,11 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
+import { renderMath } from '@pie-lib/math-rendering';
 import InlineDropdown from '../respArea/InlineDropdown';
+
+jest.mock('@pie-lib/math-rendering', () => ({
+  renderMath: jest.fn(),
+}));
 
 jest.mock('@tiptap/react', () => ({
   NodeViewWrapper: ({ children, ...props }) => (
@@ -104,6 +109,32 @@ describe('InlineDropdown', () => {
     expect(valueDiv).toBeInTheDocument();
   });
 
+  it('renders math inside the value control on mount', () => {
+    const { container } = render(<InlineDropdown {...defaultProps} />);
+    const valueDiv = container.querySelector('div[style*="border"]');
+
+    expect(renderMath).toHaveBeenCalledWith(valueDiv);
+  });
+
+  it('re-renders math when the value changes', () => {
+    const updatedNode = {
+      ...mockNode,
+      attrs: {
+        ...mockNode.attrs,
+        value: '<span>Updated math</span>',
+      },
+    };
+
+    const { container, rerender } = render(<InlineDropdown {...defaultProps} />);
+
+    renderMath.mockClear();
+
+    rerender(<InlineDropdown {...defaultProps} node={updatedNode} />);
+
+    const valueDiv = container.querySelector('div[style*="border"]');
+    expect(renderMath).toHaveBeenCalledWith(valueDiv);
+  });
+
   it('uses 2px horizontal margin on the value control and no horizontal margin on the wrapper', () => {
     const { container, getByTestId } = render(<InlineDropdown {...defaultProps} />);
     const valueDiv = container.querySelector('div[style*="border"]');
@@ -183,6 +214,28 @@ describe('InlineDropdown', () => {
     await waitFor(() => {
       expect(queryByTestId('inline-dropdown-toolbar')).not.toBeInTheDocument();
     });
+  });
+
+  it('calls close callback when toolbar closes on outside click', async () => {
+    const onInlineDropdownToolbarClose = jest.fn();
+    const options = {
+      ...mockOptions,
+      onInlineDropdownToolbarClose,
+    };
+
+    const { queryByTestId } = render(<InlineDropdown {...defaultProps} options={options} selected={true} />);
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
+    });
+
+    fireEvent.mouseDown(document.body);
+
+    await waitFor(() => {
+      expect(queryByTestId('inline-dropdown-toolbar')).not.toBeInTheDocument();
+    });
+
+    expect(onInlineDropdownToolbarClose).toHaveBeenCalledWith(mockEditor);
   });
 
   it('uses the current node when closing on outside click after the node prop changes', async () => {
@@ -476,7 +529,7 @@ describe('InlineDropdown', () => {
     await waitFor(() => {
       expect(queryByTestId('inline-dropdown-toolbar')).toBeInTheDocument();
     });
-});
+  });
 
   it('renders delete control on portaled custom toolbar when container el is set', async () => {
     const { findByLabelText } = render(<InlineDropdown {...defaultProps} selected />);
