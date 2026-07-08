@@ -144,22 +144,28 @@ function BlankContent({
       const measureNode = getMeasureNode();
       const node = measureNode || spanRef.current;
       const rect = node.getBoundingClientRect();
-      const width = rect.width || node.offsetWidth || 0;
+      const width = node.offsetWidth || rect.width || 0;
       const height = Math.max(
-        rect.height || 0,
         node.offsetHeight || 0,
+        rect.height || 0,
         node.scrollHeight || 0,
         spanRef.current.scrollHeight || 0,
       );
 
-      const widthWithPadding = width + 24; // 12px padding on each side
-      const heightWithPadding = height + 24; // 12px padding on top and bottom
+      const PADDING = 12;
+      const BORDER_WIDTH = 2;
+      const ADDITIONAL_SPACE = 1;
+      // padding and border on each side
+      const widthWithPadding = width + 2 * PADDING + 2 * BORDER_WIDTH + ADDITIONAL_SPACE;
+      // padding and border on top and bottom
+      const heightWithPadding = height + 2 * PADDING + 2 * BORDER_WIDTH + ADDITIONAL_SPACE;
 
       const responseAreaWidth = parseFloat(emptyResponseAreaWidth) || 0;
       const responseAreaHeight = parseFloat(emptyResponseAreaHeight) || 0;
 
       const adjustedWidth = widthWithPadding <= responseAreaWidth ? responseAreaWidth : widthWithPadding;
       const adjustedHeight = heightWithPadding <= responseAreaHeight ? responseAreaHeight : heightWithPadding;
+
 
       setDimensions((prevState) => ({
         width: adjustedWidth > responseAreaWidth ? adjustedWidth : prevState.width,
