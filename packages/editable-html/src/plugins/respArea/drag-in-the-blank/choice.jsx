@@ -14,6 +14,9 @@ const StyledContent = styled('span')(({ theme }) => ({
   '& mjx-frac': {
     fontSize: '120% !important',
   },
+  '& mjx-mn:has(~ mjx-mfrac), mjx-mfrac ~ mjx-mn': {
+    fontSize: '120% !important',
+  },
   '&.chip': {
     minWidth: '90px',
   },

@@ -76,6 +76,9 @@ const StyledChipLabel = styled('span')(() => ({
   '& mjx-frac': {
     fontSize: '120% !important',
   },
+  '& mjx-mn:has(~ mjx-mfrac), mjx-mfrac ~ mjx-mn': {
+    fontSize: '120% !important',
+  },
   '&.over': {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -165,7 +168,6 @@ function BlankContent({
 
       const adjustedWidth = widthWithPadding <= responseAreaWidth ? responseAreaWidth : widthWithPadding;
       const adjustedHeight = heightWithPadding <= responseAreaHeight ? responseAreaHeight : heightWithPadding;
-
 
       setDimensions((prevState) => ({
         width: adjustedWidth > responseAreaWidth ? adjustedWidth : prevState.width,
