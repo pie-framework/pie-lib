@@ -195,7 +195,13 @@ export const ResponseAreaExtension = Extension.create({
           // tr.setSelection(NodeSelection.create(tr.doc, usedPos))
 
           // --- Cursor move behavior for certain types (Slate: moveFocusTo next text) ---
-          if (['math_templated', 'inline_dropdown', 'explicit_constructed_response'].includes(typeName)) {
+          // Only types whose node view opens its own toolbar on selection
+          // (inline_dropdown, explicit_constructed_response) benefit from a
+          // NodeSelection here — the toolbar is the visual feedback that it's
+          // selected. math_templated has no such UI, so a NodeSelection there
+          // just looks unfocused (a highlighted node, no blinking caret);
+          // moving the cursor to just after it gives a real, visible caret.
+          if (['inline_dropdown', 'explicit_constructed_response'].includes(typeName)) {
             tr.setSelection(NodeSelection.create(tr.doc, usedPos));
           } else {
             const after = usedPos + newInline.nodeSize;
