@@ -264,16 +264,16 @@ describe('ResponseAreaExtension', () => {
         jest.resetModules();
       });
 
-      const buildInsertCommand = () => {
+      const buildInsertCommand = (type = 'inline-dropdown') => {
         const { ResponseAreaExtension } = require('../responseArea');
         const context = {
           options: {
-            type: 'inline-dropdown',
+            type,
             maxResponseAreas: 5,
           },
         };
         const commands = ResponseAreaExtension.addCommands.call(context);
-        return commands.insertResponseArea('inline-dropdown');
+        return commands.insertResponseArea(type);
       };
 
       const createDoc = (existingCount, typeName = 'inline_dropdown') => ({
@@ -390,6 +390,60 @@ describe('ResponseAreaExtension', () => {
         expect(result).toBe(false);
         expect(create).not.toHaveBeenCalled();
         expect(mockTr.insert).not.toHaveBeenCalled();
+      });
+
+      describe('selection after insert', () => {
+        const buildStateAndTr = (typeName, { withResolve = false } = {}) => {
+          const mockInlineNode = { nodeSize: 1 };
+          const create = jest.fn(() => mockInlineNode);
+          const mockDoc = {
+            descendants: jest.fn(),
+            content: { size: 50 },
+            ...(withResolve ? { resolve: jest.fn((pos) => ({ resolved: pos })) } : {}),
+          };
+          const mockTr = {
+            insert: jest.fn(),
+            doc: mockDoc,
+            setSelection: jest.fn(),
+          };
+          const state = {
+            schema: { nodes: { [typeName]: { create } } },
+            doc: mockDoc,
+            selection: { from: 5 },
+          };
+
+          return { mockTr, state };
+        };
+
+        it.each(['inline-dropdown', 'explicit-constructed-response'])(
+          'sets a NodeSelection on the inserted node for %s',
+          (type) => {
+            const insert = buildInsertCommand(type);
+            const typeName = type.replace(/-/g, '_');
+            const { mockTr, state } = buildStateAndTr(typeName);
+            const { NodeSelection, TextSelection } = require('prosemirror-state');
+
+            insert({ tr: mockTr, state, dispatch: jest.fn(), commands: { focus: jest.fn() } });
+
+            expect(NodeSelection.create).toHaveBeenCalledWith(mockTr.doc, 5);
+            expect(TextSelection.near).not.toHaveBeenCalled();
+            expect(mockTr.setSelection).toHaveBeenCalledWith({ type: 'node', pos: 5 });
+          },
+        );
+
+        it('sets a TextSelection just after the inserted node for math-templated (no NodeSelection)', () => {
+          const insert = buildInsertCommand('math-templated');
+          const { mockTr, state } = buildStateAndTr('math_templated', { withResolve: true });
+          const { NodeSelection, TextSelection } = require('prosemirror-state');
+
+          insert({ tr: mockTr, state, dispatch: jest.fn(), commands: { focus: jest.fn() } });
+
+          expect(NodeSelection.create).not.toHaveBeenCalled();
+          // usedPos (5) + nodeSize (1) === 6
+          expect(mockTr.doc.resolve).toHaveBeenCalledWith(6);
+          expect(TextSelection.near).toHaveBeenCalledWith({ resolved: 6 }, 1);
+          expect(mockTr.setSelection).toHaveBeenCalledWith({ type: 'text', pos: { resolved: 6 }, dir: 1 });
+        });
       });
     });
   });
