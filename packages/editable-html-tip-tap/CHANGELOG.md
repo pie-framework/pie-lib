@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.10...@pie-lib/editable-html-tip-tap@2.1.11) (2026-07-31)
+
+### Bug Fixes
+
+- add tests for handling node insertion PIE-581 ([47a8f89](https://github.com/pie-framework/pie-lib/commit/47a8f89717eb1acedcbbddfe618f4f040a1021d5))
+- **editable-html-tip-tap:** gets a normal TextSelection after insertion PIE-581 ([3e95183](https://github.com/pie-framework/pie-lib/commit/3e95183c47bede6d9d6e301ff44466ce24371a2c))
+- **editable-html:** update placeholder visibility and disable image tools when editor is disabled PIE-787 ([fb0c7aa](https://github.com/pie-framework/pie-lib/commit/fb0c7aaddffa21896fabeb6b677cc0ca85fc7bc9))
+- made sure the numbers near the fraction have the same font size as the fraction [PIE-755] ([1c6d035](https://github.com/pie-framework/pie-lib/commit/1c6d03581470303e750cb14e5edcd08ba2eaf617))
+
 ## [2.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.9...@pie-lib/editable-html-tip-tap@2.1.10) (2026-07-08)
 
 ### Bug Fixes

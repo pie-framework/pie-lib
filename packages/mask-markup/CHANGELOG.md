@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.12...@pie-lib/mask-markup@3.0.13) (2026-07-31)
+
+### Bug Fixes
+
+- made sure the numbers near the fraction have the same font size as the fraction [PIE-755] ([1c6d035](https://github.com/pie-framework/pie-lib/commit/1c6d03581470303e750cb14e5edcd08ba2eaf617))
+- **mask-markup:** handle measurment of choices with text and images PIE-679 ([48d9d69](https://github.com/pie-framework/pie-lib/commit/48d9d693ca2fceed6a6213106dbc541e4f29d01d))
+
 ## [3.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.11...@pie-lib/mask-markup@3.0.12) (2026-07-08)
 
 ### Bug Fixes
