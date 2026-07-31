@@ -125,11 +125,25 @@ function BlankContent({
   };
 
   const getMeasureNode = () => {
-    if (!spanRef.current) return null;
+    if (!spanRef.current) {
+      return null;
+    }
+
     const mjx = spanRef.current.querySelector('mjx-container');
-    if (mjx && spanRef.current.parentElement) return spanRef.current.parentElement;
+
+    if (mjx && spanRef.current.parentElement) {
+      return spanRef.current.parentElement;
+    }
+
     const img = spanRef.current.querySelector('img');
-    if (img) return img;
+
+    if (img) {
+      // If there's text alongside the image, measure the full span to capture both dimensions
+      const hasTextContent = spanRef.current.textContent.trim().length > 0;
+
+      return hasTextContent ? spanRef.current : img;
+    }
+
     return spanRef.current;
   };
 
