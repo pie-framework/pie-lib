@@ -39,6 +39,7 @@ describe('ImageComponent', () => {
 
   const createMockEditor = (selection = { from: 0, to: 1 }) => ({
     _tiptapContainerEl: document.body,
+    isEditable: true,
     commands: {
       updateAttributes: jest.fn(),
       focus: jest.fn(),

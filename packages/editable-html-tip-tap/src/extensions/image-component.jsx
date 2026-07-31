@@ -125,7 +125,7 @@ function ImageComponent(props) {
   );
 
   const applySizeData = useCallback(() => {
-    if (!node.attrs.width || !imgRef.current) return;
+    if (!node.attrs.width || !imgRef.current || !imgRef.current.naturalWidth) return;
     const resizePercent = getPercentFromWidth(node.attrs.width);
     if (node.attrs.resizePercent === resizePercent) return;
     updateThisNode({ resizePercent });
@@ -138,7 +138,7 @@ function ImageComponent(props) {
 
   useEffect(() => {
     if (selected) {
-      if (onlyThisNodeSelected) {
+      if (onlyThisNodeSelected && editor.isEditable) {
         // Only open the upload UI for a fresh placeholder. Remounting after tab switch
         // would otherwise call insertImageRequested again and reopen the file modal.
         const hasImageSrc = String(node.attrs?.src ?? '').trim();
@@ -156,15 +156,17 @@ function ImageComponent(props) {
     } else {
       setShowToolbar(selected);
     }
-  }, [onlyThisNodeSelected, selected]);
+  }, [onlyThisNodeSelected, selected, editor.isEditable]);
 
   useEffect(() => {
     applySizeData();
 
-    const resizeHandle = resizeRef.current;
-    if (resizeHandle) {
+    const resizeHandle = resizeRef?.current;
+
+    if (resizeHandle && editor.isEditable) {
       resizeHandle.addEventListener('mousedown', initResize, false);
     }
+
     return () => {
       if (resizeHandle) {
         resizeHandle.removeEventListener('mousedown', initResize, false);
@@ -272,7 +274,7 @@ function ImageComponent(props) {
             onLoad={loadImage}
             alt={node.attrs.alt}
           />
-          <StyledResize ref={resizeRef} className="resize" />
+          <StyledResize ref={resizeRef} className="resize" style={{ display: editor.isEditable ? undefined : 'none' }} />
         </StyledImageContainer>
       </StyledRoot>
 
