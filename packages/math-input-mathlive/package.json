@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MathLive-based math input (drop-in alternative to @pie-lib/math-input)",
   "main": "lib/index.js",
   "module": "src/index.jsx",

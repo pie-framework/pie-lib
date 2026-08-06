@@ -28,7 +28,7 @@ export function mockIconButton() {
   });
 }
 export function mockMathInput() {
-  jest.mock('@pie-lib/math-input', () => ({
+  jest.mock('@pie-lib/math-input-mathlive', () => ({
     addBrackets: jest.fn((s) => s),
     removeBrackets: jest.fn((s) => s),
     ...mockComponents('Keypad', 'MathQuillInput', 'EditableMathInput', 'HorizontalKeypad'),

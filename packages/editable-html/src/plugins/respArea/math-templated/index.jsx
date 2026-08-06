@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { mq } from '@pie-lib/math-input';
+import { mq } from '@pie-lib/math-input-mathlive';
 
 const StyledSpanContainer = styled('span')(() => ({
   display: 'inline-flex',

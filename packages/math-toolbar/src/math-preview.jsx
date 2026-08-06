@@ -2,7 +2,7 @@ import React from 'react';
 import debug from 'debug';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import { mq } from '@pie-lib/math-input';
+import { mq } from '@pie-lib/math-input-mathlive';
 import { markFractionBaseSuperscripts } from './utils';
 
 const { commonMqFontStyles, longdivStyles, supsubStyles } = mq.CommonMqStyles;

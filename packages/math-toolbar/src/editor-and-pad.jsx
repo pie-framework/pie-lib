@@ -9,7 +9,7 @@ import { isEqual } from 'lodash-es';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
-import { HorizontalKeypad, mq, updateSpans } from '@pie-lib/math-input';
+import { HorizontalKeypad, mq, updateSpans } from '@pie-lib/math-input-mathlive';
 import { color } from '@pie-lib/render-ui';
 import { markFractionBaseSuperscripts } from './utils';
 

@@ -22,7 +22,10 @@ const log = debug('pie-lib:math-input-mathlive:keypad');
  * `convertLatexToMarkup`, so a 40-key keypad no longer creates 40 live math
  * instances.
  */
-const LabelHolder = styled('span')({
+// The `color.*()` helpers must be called lazily, inside the styled callback.
+// Evaluating them in a plain object literal runs them at module load, which
+// breaks any consumer that mocks a subset of @pie-lib/render-ui.
+const LabelHolder = styled('span')(() => ({
   pointerEvents: 'none',
   textTransform: 'none',
   color: color.text(),
@@ -32,9 +35,9 @@ const LabelHolder = styled('span')({
   lineHeight: 1,
   // Answer-block / empty-slot boxes inside a label.
   '& .ML__placeholder': {
-    backgroundColor: color.keypadEmptyPlaceholder(),
+    backgroundColor: color.keypadEmptyPlaceholder ? color.keypadEmptyPlaceholder() : undefined,
   },
-});
+}));
 
 export class LatexLabel extends React.Component {
   static propTypes = {

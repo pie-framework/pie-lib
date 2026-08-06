@@ -11,7 +11,7 @@ jest.mock('@tiptap/react', () => ({
   ),
 }));
 
-jest.mock('@pie-lib/math-input', () => ({
+jest.mock('@pie-lib/math-input-mathlive', () => ({
   mq: {
     Static: ({ latex }) => (
       <div data-testid="mq-static" data-latex={latex}>
