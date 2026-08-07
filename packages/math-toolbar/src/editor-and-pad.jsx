@@ -340,8 +340,11 @@ export class EditorAndPad extends React.Component {
 
     if (this.input && regexMatch && regexMatch?.length) {
       try {
-        this.input.mathField.__controller.cursor.insLeftOf(this.input.mathField.__controller.cursor.parent[-1].parent);
-        this.input.mathField.el().dispatchEvent(new KeyboardEvent('keydown', { keyCode: 8 }));
+        // Undo the empty fraction the editor just created after a digit.
+        // MathQuill needed cursor surgery via `__controller`; MathLive has no
+        // such internals, so use the public delete command. `keystroke` accepts
+        // the MathQuill name and maps it to the engine's selector.
+        this.input.keystroke('Backspace');
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e.toString());
@@ -353,10 +356,13 @@ export class EditorAndPad extends React.Component {
     onChange(latex);
   };
 
-  /** Only render if the mathquill instance's latex is different
+  /** Only render if the editor's latex is different
    * or the keypad state changed from one state to the other (shown / hidden) */
   shouldComponentUpdate(nextProps, nextState) {
-    const inputIsDifferent = this.input.mathField.latex() !== nextProps.latex;
+    // `this.input` is set via a ref, and the underlying math engine loads
+    // asynchronously, so neither is guaranteed to exist on early renders.
+    // Treat "not ready" as different, so the first real render is not skipped.
+    const inputIsDifferent = !this.input || this.input.latex() !== nextProps.latex;
     log('[shouldComponentUpdate] ', 'inputIsDifferent: ', inputIsDifferent);
 
     if (!isEqual(this.props.error, nextProps.error)) {

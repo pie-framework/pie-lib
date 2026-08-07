@@ -72,12 +72,27 @@ widget do not port and need a redesign (`mf.getElementInfo()` exposes per-elemen
 - **Bundle.** The editor is ~227KB gzip plus ~296KB of KaTeX fonts, so it is
   loaded lazily via dynamic `import()`. Render-only consumers can use
   `mathlive/ssr` (~111KB gzip) through `latexToMarkup`.
-- **Fonts: import MathLive's stylesheet once.** This is the recommended way -
-  no copied files, no CDN:
+- **Stylesheets: import both, once, in the host app.**
 
   ```js
-  import 'mathlive/fonts.css';
+  import 'mathlive/fonts.css';  // KaTeX @font-face rules
+  import 'mathlive/static.css'; // REQUIRED for convertLatexToMarkup output
   ```
+
+  `static.css` is not optional. Keypad labels and `mf.Static` in display mode are
+  rendered with `convertLatexToMarkup`, whose output relies on
+  `ML__vlist` / `ML__strut` / `ML__base` / `ML__sqrt-sign` / `ML__pstrut` and on
+  `svg { position: absolute; width: 100% }`. Without the stylesheet, static math
+  renders misaligned and stretchy accents (`\overrightarrow`,
+  `\overleftrightarrow`, `\overarc`) expand without bound - a keypad button can
+  end up stretching across the viewport. The keypad defends against the worst of
+  this (`overflow: hidden` plus an svg rule on the label), but correct layout
+  still needs the real stylesheet.
+
+  Live `<math-field>` elements style themselves via shadow DOM and are unaffected.
+
+  On fonts specifically, `fonts.css` is the recommended route - no copied files,
+  no CDN:
 
   The stylesheet's relative `url(fonts/*.woff2)` paths are resolved by your
   bundler, so the fonts are emitted with the build and content-hashed. It also

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import { loadMathLive, getMacros } from '../mathlive-instance';
-import { toMathLive, fromMathLive } from '../latex-bridge';
+import { toMathLive, fromMathLive, keyToAction, KEYSTROKES } from '../latex-bridge';
 
 const log = debug('pie-lib:math-input-mathlive:input');
 
@@ -131,6 +131,41 @@ export class Input extends React.Component {
     return this.mathField ? fromMathLive(this.mathField.getValue('latex')) : '';
   }
 
+  /**
+   * The underlying `<math-field>` element, or undefined until MathLive has
+   * finished loading. Exposed for callers that need the real element.
+   *
+   * NOTE: this is NOT a MathQuill field. Code written against
+   * `@pie-lib/math-input` often did `input.mathField.latex()`; that shape is
+   * provided by `mqCompat` below, and `latex()` on this component is the
+   * supported replacement.
+   */
+  get element() {
+    return this.mathField;
+  }
+
+  /**
+   * MathQuill-shaped facade, so existing `input.mathField.latex()` /
+   * `.el()` call sites keep working instead of throwing. Only the members that
+   * consumers actually used are provided; MathQuill internals such as
+   * `__controller` have no MathLive equivalent and are deliberately absent.
+   */
+  get mqCompat() {
+    return {
+      latex: (v) => (v === undefined ? this.latex() : (this.setLatex(v), v)),
+      el: () => this.mathField,
+      focus: () => this.focus(),
+      blur: () => this.blur(),
+    };
+  }
+
+  /** Programmatically replace the content. */
+  setLatex(v) {
+    if (this.mathField) {
+      this.mathField.value = toMathLive(v || '');
+    }
+  }
+
   clear() {
     if (this.mathField) {
       this.mathField.value = '';
@@ -149,7 +184,13 @@ export class Input extends React.Component {
     this.mathField && this.mathField.focus();
   }
 
-  /** MathQuill `cmd()` equivalent. */
+  /**
+   * MathQuill `cmd()` equivalent.
+   *
+   * Callers pass MathQuill command names (`'\\frac'`, `'\\sqrt'`, `'^'`, or an
+   * array of them). Those must be expanded into latex with `#?` placeholders,
+   * otherwise inserting a bare `\frac` produces no editable slots.
+   */
   command(v) {
     log('command: ', v);
 
@@ -157,21 +198,39 @@ export class Input extends React.Component {
       return '';
     }
 
-    const values = Array.isArray(v) ? v : [v];
+    const action = keyToAction({ command: v });
 
-    values.forEach((vv) => this.mathField.insert(vv, { focus: true }));
+    if (action) {
+      this.mathField.insert(action.value, { focus: true });
+    }
+
     this.mathField.focus();
 
     return this.latex();
   }
 
-  /** MathQuill `keystroke()` equivalent - takes a MathLive selector. */
-  keystroke(selector) {
+  /**
+   * MathQuill `keystroke()` equivalent.
+   *
+   * Accepts MathQuill keystroke names (`'Left'`, `'Right'`, `'Backspace'`) as
+   * the keypad emits them, and passes anything else through as a MathLive
+   * selector.
+   */
+  keystroke(v) {
+    log('keystroke: ', v);
+
     if (!this.mathField) {
       return '';
     }
 
-    this.mathField.executeCommand(selector);
+    const selector = KEYSTROKES[v] || v;
+
+    try {
+      this.mathField.executeCommand(selector);
+    } catch (e) {
+      log('unknown keystroke/selector "%s": %s', v, e && e.message);
+    }
+
     this.mathField.focus();
 
     return this.latex();

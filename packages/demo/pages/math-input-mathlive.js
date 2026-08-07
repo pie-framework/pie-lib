@@ -4,6 +4,11 @@ import React from 'react';
 // copies in public/ and no CDN. The stylesheet also sets --ML__static-fonts,
 // which tells MathLive not to fetch fonts itself.
 import 'mathlive/fonts.css';
+// REQUIRED for convertLatexToMarkup output (keypad labels, mf.Static in display
+// mode). It styles ML__vlist / ML__strut / ML__sqrt-sign / etc. and positions
+// the <svg> used by stretchy accents. Without it static math renders misaligned
+// and stretchy accents expand without bound.
+import 'mathlive/static.css';
 import withRoot from '../source/withRoot';
 import Section from '../source/formatting/section';
 import { styled } from '@mui/material/styles';

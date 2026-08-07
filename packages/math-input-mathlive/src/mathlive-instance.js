@@ -112,8 +112,88 @@ const KNOWN_EMBED_LATEX = {
   answerBlock: '\\placeholder{}',
 };
 
+let loadWarned = false;
+
+/** Apply post-load configuration exactly once. */
+const configureLoaded = () => {
+  // Always replace MathLive's relative `'./fonts/'` default: it throws
+  // "Invalid base URL" when bundled. Either point at the host app's copy or
+  // disable font loading, both of which are safe.
+  if (fontsDirectory === undefined) {
+    log(
+      'no fontsDirectory configured - MathLive will use fallback fonts. ' +
+        'Call configureFonts("/path/to/fonts") with a copy of node_modules/mathlive/fonts to enable them.',
+    );
+  }
+
+  mathlive.MathfieldElement.fontsDirectory =
+    fontsDirectory === undefined ? null : absoluteFontsDirectory(fontsDirectory);
+
+  injectCoreStylesheet();
+};
+
 /**
- * Load MathLive. Resolves to undefined during SSR.
+ * Ensure MathLive's "core" stylesheet is in the document.
+ *
+ * `convertLatexToMarkup` - which renders keypad labels and static math - does
+ * NOT inject it, while `renderMathInElement` and live mathfields do. Without it
+ * the generated markup is unstyled: glyphs misalign and the <svg> used by
+ * stretchy accents lays out statically at an unbounded width.
+ *
+ * Hosts that can import CSS should `import 'mathlive/static.css'`. For bundles
+ * that cannot handle CSS imports (pie-elements ships JS-only web components),
+ * this triggers MathLive's own injection against a detached element, so the
+ * styles come from MathLive itself rather than being duplicated here.
+ */
+const injectCoreStylesheet = () => {
+  if (typeof document === 'undefined' || !mathlive || !mathlive.renderMathInElement) {
+    return;
+  }
+
+  try {
+    mathlive.renderMathInElement(document.createElement('span'));
+  } catch (e) {
+    log('could not trigger MathLive core stylesheet injection: %s', e && e.message);
+  }
+};
+
+/**
+ * Load MathLive synchronously when the bundler allows it.
+ *
+ * `require` keeps MathLive inside the host's bundle. An `import()` would make
+ * webpack emit a separate chunk, and a deployment that does not serve that
+ * chunk fails with a 404 at runtime - leaving every mathfield and keypad label
+ * blank with no obvious cause. Being in the main bundle also makes the engine
+ * available on first render, so callers that run synchronously (applyStaticMath,
+ * keypad labels) work without a second pass.
+ *
+ * Returns undefined during SSR or if the module is genuinely unavailable.
+ *
+ * @returns {object|undefined}
+ */
+export const loadMathLiveSync = () => {
+  if (typeof window === 'undefined') {
+    return undefined;
+  }
+
+  if (!mathlive) {
+    try {
+      // eslint-disable-next-line global-require
+      mathlive = require('mathlive');
+      configureLoaded();
+    } catch (e) {
+      log('synchronous MathLive load unavailable: %s', e && e.message);
+      return undefined;
+    }
+  }
+
+  return mathlive;
+};
+
+/**
+ * Load MathLive. Prefers the synchronous path; falls back to a dynamic import.
+ * Resolves to undefined during SSR.
+ *
  * @returns {Promise<object|undefined>}
  */
 export const loadMathLive = async () => {
@@ -121,29 +201,32 @@ export const loadMathLive = async () => {
     return undefined;
   }
 
-  if (!mathlive) {
-    try {
-      mathlive = await import('mathlive');
-    } catch (e) {
-      // MathLive is browser-only and ships an ESM-conditional exports map, so
-      // the import can fail in test/SSR-ish runtimes. Fail soft: callers all
-      // handle a missing instance (static rendering falls back to raw latex).
-      log('MathLive could not be loaded: %s', e && e.message);
-      return undefined;
-    }
+  if (mathlive) {
+    return mathlive;
+  }
 
-    // Always replace MathLive's relative `'./fonts/'` default: it throws
-    // "Invalid base URL" when bundled. Either point at the host app's copy or
-    // disable font loading, both of which are safe.
-    if (fontsDirectory === undefined) {
-      log(
-        'no fontsDirectory configured - MathLive will use fallback fonts. ' +
-          'Call configureFonts("/path/to/fonts") with a copy of node_modules/mathlive/fonts to enable them.',
+  if (loadMathLiveSync()) {
+    return mathlive;
+  }
+
+  try {
+    mathlive = await import('mathlive');
+    configureLoaded();
+  } catch (e) {
+    // Surface this once: a silent failure here renders every field and keypad
+    // label blank, which is very hard to trace back to a module load.
+    // Skipped under test, where jsdom cannot load the browser build.
+    if (!loadWarned && process.env.NODE_ENV !== 'test') {
+      loadWarned = true;
+      // eslint-disable-next-line no-console
+      console.warn(
+        '[@pie-lib/math-input-mathlive] MathLive could not be loaded; math input will not render. ' +
+          'If this is a bundling issue, ensure "mathlive" is resolvable from the host bundle. Cause: ' +
+          (e && e.message),
       );
     }
 
-    mathlive.MathfieldElement.fontsDirectory =
-      fontsDirectory === undefined ? null : absoluteFontsDirectory(fontsDirectory);
+    return undefined;
   }
 
   return mathlive;
@@ -231,24 +314,38 @@ export const __setMathLiveForTest = (stub) => {
  * Render static math into an element. API-compatible with
  * @pie-lib/math-input's `applyStaticMath`.
  *
+ * Callers written against MathQuill invoke this synchronously from lifecycle
+ * methods, where MathLive (a dynamic import) may not have loaded yet. Rather
+ * than silently rendering nothing, this kicks off the load and re-applies once
+ * the engine is ready, so the element fills in on the next tick.
+ *
  * @param {HTMLElement} element
  * @param {string} [latex] assigned to the element before rendering
  * @param {object} [options] `{ macros }` overrides
- * @returns {HTMLElement|undefined} the element, for parity with the old return
+ * @returns {HTMLElement|undefined} the element, or undefined if deferred
  */
 export function applyStaticMath(element, latex, options = {}) {
   if (!element || typeof window === 'undefined') {
     return undefined;
   }
 
-  const ml = getMathLive();
+  // Capture the source now: if we defer, the element's textContent may have
+  // been overwritten by the time MathLive is ready.
+  const source = latex === undefined || latex === null ? element.textContent : latex;
+  const ml = getMathLive() || loadMathLiveSync();
 
   if (!ml) {
-    log('applyStaticMath called before MathLive loaded - call loadMathLive() first');
+    log('applyStaticMath called before MathLive loaded - deferring until it is ready');
+
+    loadMathLive().then((loaded) => {
+      // The element may have been unmounted while loading.
+      if (loaded && element.isConnected !== false) {
+        applyStaticMath(element, source, options);
+      }
+    });
+
     return undefined;
   }
-
-  const source = latex === undefined || latex === null ? element.textContent : latex;
 
   element.innerHTML = ml.convertLatexToMarkup(toMathLive(source), {
     macros: { ...getMacros(), ...(options.macros || {}) },
@@ -266,7 +363,9 @@ export function applyStaticMath(element, latex, options = {}) {
  * @returns {string} HTML markup, or '' if MathLive is not loaded
  */
 export function latexToMarkup(latex, options = {}) {
-  const ml = getMathLive();
+  // Try the synchronous load so the very first render can produce markup
+  // instead of falling back to raw latex.
+  const ml = getMathLive() || loadMathLiveSync();
 
   if (!ml || !latex) {
     return '';

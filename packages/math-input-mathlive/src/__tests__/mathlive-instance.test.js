@@ -70,10 +70,39 @@ describe('mathlive-instance', () => {
       expect(instance.applyStaticMath(null, 'x')).toBeUndefined();
     });
 
-    it('returns undefined when MathLive has not loaded', () => {
+    it('defers (returns undefined) when MathLive has not loaded', () => {
       const el = document.createElement('div');
 
       expect(instance.applyStaticMath(el, 'x')).toBeUndefined();
+    });
+
+    it('renders synchronously once MathLive is available', () => {
+      const el = document.createElement('div');
+
+      instance.__setMathLiveForTest({ convertLatexToMarkup: (l) => `<span>${l}</span>` });
+
+      expect(instance.applyStaticMath(el, '\\pi')).toBe(el);
+      expect(el.innerHTML).toEqual('<span>\\pi</span>');
+    });
+
+    it('falls back to the element textContent when no latex is passed', () => {
+      const el = document.createElement('div');
+
+      el.textContent = '\\theta';
+      instance.__setMathLiveForTest({ convertLatexToMarkup: (l) => `<i>${l}</i>` });
+      instance.applyStaticMath(el);
+
+      expect(el.innerHTML).toEqual('<i>\\theta</i>');
+    });
+
+    it('bridges stored latex (newLine embed) before rendering', () => {
+      const el = document.createElement('div');
+
+      instance.__setMathLiveForTest({ convertLatexToMarkup: (l) => l });
+      instance.applyStaticMath(el, 'a\\embed{newLine}[]b');
+
+      // \embed{newLine}[] must become a multiline environment
+      expect(el.innerHTML).toContain('displaylines');
     });
   });
 

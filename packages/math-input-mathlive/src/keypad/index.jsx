@@ -33,6 +33,18 @@ const LabelHolder = styled('span')(() => ({
   alignItems: 'center',
   justifyContent: 'center',
   lineHeight: 1,
+  // Never let a label size its grid column. Stretchy accents
+  // (\overrightarrow, \overleftrightarrow, \overarc) render an <svg> that
+  // mathlive-static.css positions absolutely at width:100%; if that stylesheet
+  // is missing the svg lays out statically and expands without bound, dragging
+  // the whole column across the screen. `overflow: hidden` also collapses the
+  // label's min-content contribution, so the grid can't blow out either way.
+  maxWidth: '100%',
+  overflow: 'hidden',
+  '& svg': {
+    position: 'absolute',
+    width: '100%',
+  },
   // Answer-block / empty-slot boxes inside a label.
   '& .ML__placeholder': {
     backgroundColor: color.keypadEmptyPlaceholder ? color.keypadEmptyPlaceholder() : undefined,
@@ -51,12 +63,29 @@ export class LatexLabel extends React.Component {
 
   async componentDidMount() {
     // MathLive may not have finished loading when the keypad first mounts.
-    if (!this.state.markup) {
-      await loadMathLive();
+    if (this.state.markup) {
+      return;
+    }
 
-      if (!this.unmounted) {
-        this.setState({ markup: latexToMarkup(this.props.latex) });
-      }
+    await loadMathLive();
+
+    if (this.unmounted) {
+      return;
+    }
+
+    const markup = latexToMarkup(this.props.latex);
+
+    if (markup) {
+      this.setState({ markup });
+      return;
+    }
+
+    // Still nothing: the engine is genuinely unavailable (a missing chunk, a
+    // blocked request). Keep the raw-latex fallback visible rather than an
+    // empty button, and log once so this is diagnosable.
+    if (!LatexLabel.warned) {
+      LatexLabel.warned = true;
+      log('MathLive unavailable - keypad labels are falling back to raw latex');
     }
   }
 
