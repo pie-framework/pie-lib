@@ -49,6 +49,12 @@ const LabelHolder = styled('span')(() => ({
   '& .ML__placeholder': {
     backgroundColor: color.keypadEmptyPlaceholder ? color.keypadEmptyPlaceholder() : undefined,
   },
+  // The stand-in glyph for an empty argument slot (see EMPTY_SLOT). Muted so it
+  // reads as "a slot goes here" rather than as part of the symbol, matching how
+  // MathQuill shaded `.mq-empty`.
+  '& [data-pie-empty]': {
+    opacity: 0.5,
+  },
 }));
 
 export class LatexLabel extends React.Component {

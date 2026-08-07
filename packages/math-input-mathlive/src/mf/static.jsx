@@ -4,11 +4,14 @@ import { styled } from '@mui/material/styles';
 import debug from 'debug';
 import { loadMathLive, getMacros, latexToMarkup } from '../mathlive-instance';
 import { toMathLive, fromMathLive, fieldIds } from '../latex-bridge';
+import { placeholderStyles } from './common-styles';
 
 const log = debug('pie-lib:math-input-mathlive:static');
 
 const Holder = styled('span')({
   display: 'inline-block',
+  // Shared static-math rules: muted empty-slot glyphs and svg containment.
+  ...placeholderStyles,
   '& math-field': {
     display: 'inline-block',
     border: 'none',

@@ -1,5 +1,5 @@
 import debug from 'debug';
-import { NEWLINE_EMBED, toMathLive } from './latex-bridge';
+import { NEWLINE_EMBED, toMathLive, withVisibleEmptySlots } from './latex-bridge';
 
 const log = debug('pie-lib:math-input-mathlive:instance');
 
@@ -75,8 +75,9 @@ export const configureFonts = (dir) => {
  * way in the editor and in the static renderer.
  */
 export const PIE_MACROS = {
+  // Argument-less symbols. Atomic is correct here: backspace should remove the
+  // whole glyph, and there is nothing to type into.
   parallelogram: '\\htmlData{pie-macro=parallelogram}{\\unicode{"25B1}}',
-  overarc: '\\overparen{#1}',
   napprox: '\\not\\approx',
   nsim: '\\not\\sim',
   ncong: '\\not\\cong',
@@ -85,7 +86,15 @@ export const PIE_MACROS = {
   divide: '\\div',
   degree: '^{\\circ}',
   square: '\\unicode{"25A1}',
-  longdiv: '\\htmlData{pie-macro=longdiv}{#1}',
+
+  // Argument-taking commands, kept ONLY so previously authored latex still
+  // parses and renders. They are never used for editing: MathLive serialises a
+  // macro from the arguments it was created with, so text typed inside the
+  // expansion never comes back out of `getValue('latex')`. Anything entering a
+  // mathfield is rewritten to the native equivalent first - see
+  // `toNativeCommands` in latex-bridge.
+  longdiv: '\\enclose{longdiv}{#1}',
+  overarc: '\\overparen{#1}',
   abs: '\\left|#1\\right|',
 };
 
@@ -347,7 +356,7 @@ export function applyStaticMath(element, latex, options = {}) {
     return undefined;
   }
 
-  element.innerHTML = ml.convertLatexToMarkup(toMathLive(source), {
+  element.innerHTML = ml.convertLatexToMarkup(withVisibleEmptySlots(toMathLive(source)), {
     macros: { ...getMacros(), ...(options.macros || {}) },
   });
 
@@ -372,7 +381,10 @@ export function latexToMarkup(latex, options = {}) {
   }
 
   try {
-    return ml.convertLatexToMarkup(toMathLive(latex), {
+    // Empty groups render as nothing in static markup, so give them a visible
+    // box. This covers every static path: keypad labels, mf.Static in display
+    // mode, and applyStaticMath.
+    return ml.convertLatexToMarkup(withVisibleEmptySlots(toMathLive(latex)), {
       macros: { ...getMacros(), ...(options.macros || {}) },
       ...options,
     });

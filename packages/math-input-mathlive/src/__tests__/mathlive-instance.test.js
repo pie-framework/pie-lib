@@ -63,6 +63,26 @@ describe('mathlive-instance', () => {
       expect(macros.longdiv).toBeDefined();
       expect(macros.napprox).toEqual('\\not\\approx');
     });
+
+    // Argument-taking macros exist only so previously authored latex parses.
+    // Editing never goes through them: MathLive serialises a macro from its
+    // original arguments, so typed content never comes back out.
+    it('argument-taking macros are plain parse-only definitions', () => {
+      ['longdiv', 'overarc', 'abs'].forEach((name) => {
+        expect(typeof instance.PIE_MACROS[name]).toBe('string');
+        expect(instance.PIE_MACROS[name]).toContain('#1');
+      });
+    });
+
+    it('argument-less symbols stay atomic', () => {
+      ['perpendicular', 'square', 'degree', 'napprox', 'parallelogram'].forEach((name) => {
+        expect(typeof instance.PIE_MACROS[name]).toBe('string');
+      });
+    });
+
+    it('longdiv matches the MathJax macro used by math-rendering', () => {
+      expect(instance.PIE_MACROS.longdiv).toEqual('\\enclose{longdiv}{#1}');
+    });
   });
 
   describe('applyStaticMath', () => {

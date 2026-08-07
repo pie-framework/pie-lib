@@ -51,6 +51,19 @@ export const placeholderStyles = {
     borderBottom: '1px solid currentColor',
     minWidth: '1em',
   },
+  // Stand-in glyph for an empty argument slot in STATIC math (see
+  // `withVisibleEmptySlots`). Muted so it reads as "a slot goes here" rather
+  // than as part of the symbol, matching how MathQuill shaded `.mq-empty`.
+  '& [data-pie-empty]': {
+    opacity: 0.5,
+  },
+  // Stretchy accents render an <svg>; mathlive-static.css positions it
+  // absolutely at width:100%. Repeated here so static math cannot blow out its
+  // container if that stylesheet is missing.
+  '& svg': {
+    position: 'absolute',
+    width: '100%',
+  },
 };
 
 /**

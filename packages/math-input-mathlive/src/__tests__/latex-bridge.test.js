@@ -1,4 +1,12 @@
-import { toMathLive, fromMathLive, fieldIds, keyToAction, NEWLINE_EMBED, DEFAULT_FIELD_ID } from '../latex-bridge';
+import {
+  toMathLive,
+  fromMathLive,
+  fieldIds,
+  keyToAction,
+  toNativeCommands,
+  NEWLINE_EMBED,
+  DEFAULT_FIELD_ID,
+} from '../latex-bridge';
 
 describe('latex-bridge', () => {
   describe('toMathLive', () => {
@@ -64,10 +72,88 @@ describe('latex-bridge', () => {
       expect(fromMathLive(toMathLive(stored))).toEqual(stored);
     });
 
+    // MathLive serialises empty slots as \placeholder{}, which MathJax (used by
+    // @pie-lib/math-rendering for prompts/previews) renders as red error text.
+    it('strips unnamed placeholders that MathLive adds', () => {
+      expect(fromMathLive('\\longdiv{\\placeholder{}}')).toEqual('\\longdiv{}');
+      expect(fromMathLive('\\frac{\\placeholder{}}{\\placeholder{}}')).toEqual('\\frac{}{}');
+    });
+
+    it('keeps content inside an unnamed placeholder', () => {
+      expect(fromMathLive('\\sqrt{\\placeholder{7}}')).toEqual('\\sqrt{7}');
+    });
+
+    it('handles a bare \\placeholder with no argument', () => {
+      expect(fromMathLive('\\longdiv{\\placeholder}')).toEqual('\\longdiv{}');
+    });
+
+    it('never leaks the token \\placeholder', () => {
+      ['\\longdiv{\\placeholder{}}', '\\frac{\\placeholder{}}{x}', '\\placeholder{}'].forEach((l) => {
+        expect(fromMathLive(l)).not.toContain('\\placeholder');
+      });
+    });
+
+    it('still maps NAMED placeholders to answer blocks', () => {
+      // named ones are answer blocks and must survive
+      expect(fromMathLive('\\placeholder[r1]{}')).toEqual('\\MathQuillMathField[r1]{}');
+    });
+
     it('round-trips answer blocks combined with newlines', () => {
       const stored = `\\MathQuillMathField[r1]{}${NEWLINE_EMBED}y`;
 
       expect(fromMathLive(toMathLive(stored))).toEqual(stored);
+    });
+  });
+
+  // A MathLive macro serialises from the arguments it was created with, so text
+  // typed inside its expansion never comes back out of getValue('latex').
+  // Argument-taking pie commands must therefore become native constructs before
+  // they reach a mathfield.
+  describe('toNativeCommands', () => {
+    it('expands \\longdiv to native \\enclose', () => {
+      expect(toNativeCommands('\\longdiv{1234}')).toEqual('\\enclose{longdiv}{1234}');
+      expect(toNativeCommands('\\longdiv{}')).toEqual('\\enclose{longdiv}{}');
+    });
+
+    it('expands \\overarc to native \\overparen', () => {
+      expect(toNativeCommands('\\overarc{AB}')).toEqual('\\overparen{AB}');
+    });
+
+    it('expands \\abs to native \\left|..\\right|', () => {
+      expect(toNativeCommands('\\abs{x}')).toEqual('\\left|x\\right|');
+      expect(toNativeCommands('\\abs{}')).toEqual('\\left|\\right|');
+    });
+
+    it('handles nested braces inside \\abs', () => {
+      expect(toNativeCommands('\\abs{\\frac{1}{2}}')).toEqual('\\left|\\frac{1}{2}\\right|');
+    });
+
+    it('handles several occurrences', () => {
+      expect(toNativeCommands('\\abs{a}+\\abs{b}')).toEqual('\\left|a\\right|+\\left|b\\right|');
+      expect(toNativeCommands('\\longdiv{1}\\longdiv{2}')).toEqual('\\enclose{longdiv}{1}\\enclose{longdiv}{2}');
+    });
+
+    it('leaves other latex untouched', () => {
+      ['\\frac{1}{2}', '\\pi', '\\sqrt{x}', '\\overline{AB}'].forEach((l) => {
+        expect(toNativeCommands(l)).toEqual(l);
+      });
+    });
+
+    it('handles nullish input', () => {
+      expect(toNativeCommands(undefined)).toEqual('');
+      expect(toNativeCommands('')).toEqual('');
+    });
+
+    it('is applied by toMathLive', () => {
+      expect(toMathLive('\\longdiv{5}')).toEqual('\\enclose{longdiv}{5}');
+    });
+
+    it('does not leave a pie macro in what reaches the field', () => {
+      ['\\longdiv{7}', '\\abs{7}', '\\overarc{7}'].forEach((l) => {
+        const out = toMathLive(l);
+
+        expect(out).not.toMatch(/\\longdiv|\\abs|\\overarc/);
+      });
     });
   });
 

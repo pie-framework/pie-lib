@@ -29,8 +29,120 @@ const DISPLAYLINES_REGEX = /^\\displaylines\{([\s\S]*)\}$/;
 const MQ_FIELD_REGEX = /\\MathQuillMathField\[([^\]]*)\]\{([^{}]*)\}/g;
 const PLACEHOLDER_REGEX = /\\placeholder\[([^\]]*)\]\{([^{}]*)\}/g;
 
+/**
+ * Unnamed placeholders, which MathLive inserts on its own.
+ *
+ * Typing a command with empty arguments (`\longdiv{}`, `\frac{}{}`) makes
+ * MathLive serialise the empty slots as `\placeholder{}`. That token is
+ * MathLive-specific: MathJax - which @pie-lib/math-rendering uses to render
+ * prompts and previews - has no such command and renders it as red error text.
+ * Stored latex must therefore keep plain empty groups.
+ */
+const BARE_PLACEHOLDER_REGEX = /\\placeholder\{([^{}]*)\}/g;
+const BARE_PLACEHOLDER_NO_ARG_REGEX = /\\placeholder(?![[{a-zA-Z])/g;
+
 /** Default id used when stored latex has an unnamed field. */
 export const DEFAULT_FIELD_ID = 'r1';
+
+/**
+ * A visible stand-in for an empty argument slot, used for STATIC rendering only.
+ *
+ * Stored latex legitimately contains empty groups - `\longdiv{}`, `\frac{}{}`,
+ * `x^{}` - to express a command's shape. MathQuill drew those as a shaded box
+ * (`.mq-empty`); MathLive renders `{}` as nothing, so `convertLatexToMarkup`
+ * output comes out completely blank (not even the surrounding bracket, in the
+ * case of `\enclose{longdiv}{}`).
+ *
+ * `\placeholder{}` is not usable here: in static markup it renders as a
+ * non-breaking space, because its editable box only exists inside a live
+ * mathfield. So an actual glyph is required.
+ *
+ * Live mathfields need none of this - MathLive manages empty slots itself.
+ */
+const EMPTY_SLOT = '\\htmlData{pie-empty=1}{\\unicode{"25AB}}';
+const EMPTY_GROUP_REGEX = /\{\s*\}/g;
+
+/**
+ * Make empty argument slots visible, for static rendering.
+ *
+ * Display-only: never feed the result to a mathfield or to storage - the
+ * original latex is what gets typed and saved.
+ *
+ * @param {string} latex
+ * @returns {string}
+ */
+export const withVisibleEmptySlots = (latex) => (latex || '').replace(EMPTY_GROUP_REGEX, `{${EMPTY_SLOT}}`);
+
+/**
+ * Pie commands that take an argument, and their native MathLive equivalents.
+ *
+ * These MUST NOT be handled as MathLive macros. A macro is serialised from the
+ * arguments it was created with, so text typed inside its expansion never makes
+ * it back out: `getValue('latex')` keeps returning `\longdiv{\placeholder{}}`
+ * while `getValue('ascii-math')` shows the typed content. Setting
+ * `captureSelection: false` lets the cursor in but does not change
+ * serialisation.
+ *
+ * Expanding to native constructs instead gives real, editable atoms that
+ * round-trip. All three targets are understood by MathJax too, so stored latex
+ * still renders in @pie-lib/math-rendering without a reverse mapping.
+ */
+/**
+ * Rewrite argument-taking pie commands into native MathLive latex.
+ * Applied on the way *into* a mathfield.
+ *
+ * @param {string} latex
+ * @returns {string}
+ */
+export const toNativeCommands = (latex) => {
+  if (typeof latex !== 'string' || !latex) {
+    return latex || '';
+  }
+
+  let out = latex;
+
+  // \abs{x} -> \left|x\right| needs brace-aware handling, the rest are prefix
+  // swaps.
+  out = replaceAbs(out);
+  out = out.replace(/\\longdiv\{/g, '\\enclose{longdiv}{');
+  out = out.replace(/\\overarc\{/g, '\\overparen{');
+
+  return out;
+};
+
+/** `\abs{x}` -> `\left|x\right|`, matching balanced braces. */
+const replaceAbs = (latex) => {
+  let out = latex;
+  let idx = out.indexOf('\\abs{');
+
+  while (idx !== -1) {
+    const open = idx + '\\abs{'.length - 1;
+    let depth = 0;
+    let close = -1;
+
+    for (let i = open; i < out.length; i++) {
+      if (out[i] === '{') depth++;
+      else if (out[i] === '}') {
+        depth--;
+        if (depth === 0) {
+          close = i;
+          break;
+        }
+      }
+    }
+
+    if (close === -1) {
+      break;
+    }
+
+    const inner = out.slice(open + 1, close);
+
+    out = `${out.slice(0, idx)}\\left|${inner}\\right|${out.slice(close + 1)}`;
+    idx = out.indexOf('\\abs{');
+  }
+
+  return out;
+};
 
 /**
  * Ids of the answer blocks in a piece of stored latex, in document order.
@@ -67,8 +179,12 @@ export const toMathLive = (latex) => {
     return latex || '';
   }
 
+  // Argument-taking pie commands -> native constructs, so their content stays
+  // editable and serialises back correctly (see toNativeCommands).
+  let out = toNativeCommands(latex);
+
   // Answer blocks: \MathQuillMathField[id]{x} -> \placeholder[id]{x}
-  let out = latex.replace(MQ_FIELD_REGEX, (_m, id, content) => `\\placeholder[${id || DEFAULT_FIELD_ID}]{${content}}`);
+  out = out.replace(MQ_FIELD_REGEX, (_m, id, content) => `\\placeholder[${id || DEFAULT_FIELD_ID}]{${content}}`);
 
   // Newlines: \embed{newLine}[] -> a multiline environment
   if (out.indexOf(NEWLINE_EMBED) !== -1) {
@@ -108,6 +224,13 @@ export const fromMathLive = (latex) => {
     (_m, id, content) => `\\MathQuillMathField[${id || DEFAULT_FIELD_ID}]{${content}}`,
   );
 
+  // Unnamed placeholders are MathLive's own representation of an empty slot and
+  // must not reach storage or MathJax. Unwrap them: keep any content, drop the
+  // command itself (the surrounding braces are already part of the host latex,
+  // so re-adding them here would produce `\longdiv{{}}`).
+  out = out.replace(BARE_PLACEHOLDER_REGEX, (_m, content) => content);
+  out = out.replace(BARE_PLACEHOLDER_NO_ARG_REGEX, '');
+
   return out;
 };
 
@@ -124,8 +247,10 @@ const COMMANDS_WITH_ARGS = {
   '\\overline': '\\overline{#?}',
   '\\overrightarrow': '\\overrightarrow{#?}',
   '\\overleftrightarrow': '\\overleftrightarrow{#?}',
-  '\\overarc': '\\overarc{#?}',
-  '\\longdiv': '\\longdiv{#?}',
+  // Native forms, not the pie macros: a macro would not serialise the user's
+  // typed content back out (see toNativeCommands).
+  '\\overarc': '\\overparen{#?}',
+  '\\longdiv': '\\enclose{longdiv}{#?}',
   '^': '^{#?}',
   _: '_{#?}',
   '(': '\\left(#?\\right)',
