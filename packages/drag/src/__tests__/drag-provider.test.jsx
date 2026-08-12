@@ -181,11 +181,11 @@ describe('DragProvider', () => {
       expect(useSensor).toHaveBeenCalledWith('PointerSensor', { activationConstraint: { distance: 8 } });
     });
 
-    it('should initialize KeyboardSensor', () => {
+    it('should initialize KeyboardSensor with no options by default', () => {
       const { useSensor } = require('@dnd-kit/core');
       render(<DragProvider {...defaultProps} />);
 
-      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor');
+      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor', undefined);
     });
 
     it('should combine sensors with useSensors', () => {
@@ -193,6 +193,35 @@ describe('DragProvider', () => {
       render(<DragProvider {...defaultProps} />);
 
       expect(useSensors).toHaveBeenCalled();
+    });
+
+    it('should initialize KeyboardSensor with a custom coordinateGetter when provided', () => {
+      const { useSensor } = require('@dnd-kit/core');
+      const keyboardCoordinateGetter = jest.fn();
+      render(<DragProvider {...defaultProps} keyboardCoordinateGetter={keyboardCoordinateGetter} />);
+
+      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor', {
+        coordinateGetter: keyboardCoordinateGetter,
+        keyboardCodes: undefined,
+      });
+    });
+
+    it('should initialize KeyboardSensor with custom keyboardCodes when provided', () => {
+      const { useSensor } = require('@dnd-kit/core');
+      const keyboardCodes = { start: ['Space'], cancel: ['Escape'], end: ['Space'] };
+      render(<DragProvider {...defaultProps} keyboardCodes={keyboardCodes} />);
+
+      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor', {
+        coordinateGetter: undefined,
+        keyboardCodes,
+      });
+    });
+
+    it('should not customize KeyboardSensor when only unrelated props are passed', () => {
+      const { useSensor } = require('@dnd-kit/core');
+      render(<DragProvider {...defaultProps} collisionDetection={jest.fn()} />);
+
+      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor', undefined);
     });
   });
 
