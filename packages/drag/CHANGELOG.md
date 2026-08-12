@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.5...@pie-lib/drag@4.0.6) (2026-07-01)
+
+**Note:** Version bump only for package @pie-lib/drag
+
+## [4.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.4...@pie-lib/drag@4.0.5) (2026-06-17)
+
+### Bug Fixes
+
+- **drag/placeholder:** update disabled class to 'placeholderDisabled' for better scoping PIE-666 ([d21fe1c](https://github.com/pie-framework/pie-lib/commit/d21fe1c07636842ca1e592aba965fe72e80d5b22))
+
+## [4.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.3...@pie-lib/drag@4.0.4) (2026-06-12)
+
+### Bug Fixes
+
+- correct @emotion/style typo to @emotion/styled in package deps PIE-678 ([d529ac7](https://github.com/pie-framework/pie-lib/commit/d529ac7bc3dfa94d8037688452d4c70c66f2590b))
+
+## [4.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.2...@pie-lib/drag@4.0.3) (2026-06-01)
+
+**Note:** Version bump only for package @pie-lib/drag
+
 ## [4.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.2-next.2...@pie-lib/drag@4.0.2) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/drag

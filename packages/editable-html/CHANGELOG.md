@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@13.0.7...@pie-lib/editable-html@13.0.8) (2026-07-31)
+
+### Bug Fixes
+
+- made sure the numbers near the fraction have the same font size as the fraction [PIE-755] ([1c6d035](https://github.com/pie-framework/pie-lib/commit/1c6d03581470303e750cb14e5edcd08ba2eaf617))
+
+## [13.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@13.0.6...@pie-lib/editable-html@13.0.7) (2026-07-01)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+## [13.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@13.0.5...@pie-lib/editable-html@13.0.6) (2026-06-25)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+## [13.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@13.0.4...@pie-lib/editable-html@13.0.5) (2026-06-17)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
+## [13.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@13.0.3...@pie-lib/editable-html@13.0.4) (2026-06-12)
+
+### Bug Fixes
+
+- correct @emotion/style typo to @emotion/styled in package deps PIE-678 ([d529ac7](https://github.com/pie-framework/pie-lib/commit/d529ac7bc3dfa94d8037688452d4c70c66f2590b))
+
+## [13.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@13.0.2...@pie-lib/editable-html@13.0.3) (2026-06-01)
+
+**Note:** Version bump only for package @pie-lib/editable-html
+
 ## [13.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@13.0.2-next.2...@pie-lib/editable-html@13.0.2) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/editable-html

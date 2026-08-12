@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.10...@pie-lib/editable-html-tip-tap@2.1.11) (2026-07-31)
+
+### Bug Fixes
+
+- add tests for handling node insertion PIE-581 ([47a8f89](https://github.com/pie-framework/pie-lib/commit/47a8f89717eb1acedcbbddfe618f4f040a1021d5))
+- **editable-html-tip-tap:** gets a normal TextSelection after insertion PIE-581 ([3e95183](https://github.com/pie-framework/pie-lib/commit/3e95183c47bede6d9d6e301ff44466ce24371a2c))
+- **editable-html:** update placeholder visibility and disable image tools when editor is disabled PIE-787 ([fb0c7aa](https://github.com/pie-framework/pie-lib/commit/fb0c7aaddffa21896fabeb6b677cc0ca85fc7bc9))
+- made sure the numbers near the fraction have the same font size as the fraction [PIE-755] ([1c6d035](https://github.com/pie-framework/pie-lib/commit/1c6d03581470303e750cb14e5edcd08ba2eaf617))
+
+## [2.1.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.9...@pie-lib/editable-html-tip-tap@2.1.10) (2026-07-08)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** handle cursor position based on node instead of the stale editor position PIE-698 ([fd562cc](https://github.com/pie-framework/pie-lib/commit/fd562cc0c211c204eba579d5cfd957efa2edf346))
+- made sure math is rendered on response render [PIE-706] ([1cb50ba](https://github.com/pie-framework/pie-lib/commit/1cb50ba6908db9599f177a88aa012b75637ac23e))
+- made sure the inline dropdown toolbar closed triggers an onDone [PIE-702] ([c77afed](https://github.com/pie-framework/pie-lib/commit/c77afed2d64126990af95522c9467fb600358832))
+
+## [2.1.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.8...@pie-lib/editable-html-tip-tap@2.1.9) (2026-07-01)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** prevent toolbar closing when clicking the page scrollbar inline-dropdown PIE-575 ([8a93fb5](https://github.com/pie-framework/pie-lib/commit/8a93fb53e3920e9deb642005d6053ac4f9397bec))
+- **editable-html-tip-tap:** use strict greater-than for scrollbar viewport check inlinedropdown PIE-575 ([1b38e20](https://github.com/pie-framework/pie-lib/commit/1b38e20965ee0b3dd7ffe84e7af625865987a4d9))
+- **editable-html:** copy font styles and append character limit element to document body PIE-674 ([84e2d40](https://github.com/pie-framework/pie-lib/commit/84e2d40d74cc89f8c36d61737de1e4b93c0dd084))
+
+## [2.1.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.7...@pie-lib/editable-html-tip-tap@2.1.8) (2026-06-25)
+
+### Bug Fixes
+
+- add test for math node selection PIE-699 ([cd4dc89](https://github.com/pie-framework/pie-lib/commit/cd4dc8939f7b8313a80290176806467ef9a928ec))
+- add test for math node selection PIE-699 ([af3b72c](https://github.com/pie-framework/pie-lib/commit/af3b72cb60c2ec31f6c9a1a6063e25af3439fd3c))
+- **editable-html:** preserve existing spans on load and prevent unnecessary updates PIE-665 ([41be4e3](https://github.com/pie-framework/pie-lib/commit/41be4e3f317e6fc23ddae7e3c8c65ff5a6253a0d))
+- math editor saves on close and focuses when switching node [PIE-695][PIE-697] ([54beb75](https://github.com/pie-framework/pie-lib/commit/54beb75afe197d157623bb7feec92796a196091a))
+- place math toolbar inside viewport and move it accordingly when window resizes [PIE-656] ([0f43d5a](https://github.com/pie-framework/pie-lib/commit/0f43d5ae119d4e52263593180fb009821d9e5211))
+- prevent toolbar from opening on text selection and Cmd+A PIE-699 ([f740299](https://github.com/pie-framework/pie-lib/commit/f7402995deaf7687a4dd0f3d8f97b57a77c11d2b))
+
+## [2.1.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.6...@pie-lib/editable-html-tip-tap@2.1.7) (2026-06-19)
+
+### Bug Fixes
+
+- **editable-html:** append character limit element to document body for accurate width calculation PIE-674 ([9885176](https://github.com/pie-framework/pie-lib/commit/988517666b51636b56751caf65e8c19732db4add))
+- **editable-html:** keep the element appended to rootRef.current so it inherits the editor's actual font and font-size (document.body would use the wrong font and yield inaccurate widths) PIE-674 ([16bb5fc](https://github.com/pie-framework/pie-lib/commit/16bb5fcb9c9ffa8a302f0e2c645a03b91b40192a))
+- explicitly set SVG icon size to 24x24 in StyledMenuBarRoot ([0444e2e](https://github.com/pie-framework/pie-lib/commit/0444e2ec1947d62a1787ae3d66047bd02f048157))
+- when requestClose is called, latest node version is used [PIE-705] ([f1718dd](https://github.com/pie-framework/pie-lib/commit/f1718dd45010380bbe5b319a79627c2be889269d))
+
+## [2.1.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.5...@pie-lib/editable-html-tip-tap@2.1.6) (2026-06-17)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** explicitly set SVG icon in toolbar button size to 24x24 for consistency ([22166de](https://github.com/pie-framework/pie-lib/commit/22166deb41adb5f1c88b111667e4e304348d4d51))
+- **editable-html-tip-tap:** improve popover positioning and update event handling PIE-670 ([ee89ea1](https://github.com/pie-framework/pie-lib/commit/ee89ea1cf8bd0679d62bb9daeb12f8907dded221))
+- made sure inline dropdown toolbar is rendered inside the editor [PIE-683] ([bf33caa](https://github.com/pie-framework/pie-lib/commit/bf33caa3f328541351b24b479b09d7bb2029dda3))
+- open math in custom toolbars, higher zIndex for character picker, math deletion, math selection, math and character position [PIE-656][PIE-657][PIE-658][PIE-659] ([92e4d66](https://github.com/pie-framework/pie-lib/commit/92e4d66cc5aff8e63363b43df1a5d39f89a7a1a5))
+
+## [2.1.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.4...@pie-lib/editable-html-tip-tap@2.1.5) (2026-06-12)
+
+### Bug Fixes
+
+- clicking on a different math node closes current modal [PIE-603] ([6244aaf](https://github.com/pie-framework/pie-lib/commit/6244aaf509da1196e91803aabae0ca531d17f458))
+- **editable-html-tip-tap:** rename button class to 'toolbarButton' PIE-662 ([58ebb5d](https://github.com/pie-framework/pie-lib/commit/58ebb5de67db7019118d7e6707a9bf5a27b6d913))
+- made sure editor state subscribes to toolbarOpened and reacts to its changes [PIE-604] ([c9f6466](https://github.com/pie-framework/pie-lib/commit/c9f64667cda45b4eb6a6746cdae1cbb9976bbb74))
+
+## [2.1.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.3...@pie-lib/editable-html-tip-tap@2.1.4) (2026-06-03)
+
+### Bug Fixes
+
+- place math editor at the correct position, close math editor if unfocused [PIE-602] ([92d104e](https://github.com/pie-framework/pie-lib/commit/92d104e5c2d51336e103920b1ba559d6b2c79d81))
+
+## [2.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.2...@pie-lib/editable-html-tip-tap@2.1.3) (2026-06-01)
+
+### Bug Fixes
+
+- **deps:** align all @tiptap/\* to 3.20.0 to dedupe prosemirror downstream ([79f59f6](https://github.com/pie-framework/pie-lib/commit/79f59f6fb853c2fb200fefc17bc69e6f5bb7c010))
+- **deps:** align tiptap and react-transition-group versions to dedupe prosemirror PIE-624 ([3ab7737](https://github.com/pie-framework/pie-lib/commit/3ab7737d896ec48091630c221f8be1f9f5a98d8e))
+- **editable-html-tip-tap:** hanlde new props request close, keep track of last active resp are PIE-574 ([a120f8b](https://github.com/pie-framework/pie-lib/commit/a120f8b28d3871fe7bf59eaf0ec25cbe783c1f7f))
+- handled onChange properly [PIE-509][PIE-562][PIE-563] ([c2009ef](https://github.com/pie-framework/pie-lib/commit/c2009ef30c8f9e268f0d39bf18e16e4a90695071))
+
+## [2.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.1...@pie-lib/editable-html-tip-tap@2.1.2) (2026-05-21)
+
+### Bug Fixes
+
+- made sure characterpicker positioning is not changing on each typed character [PIE-511][PIE-561][PIE-562][PIE-563] ([127f409](https://github.com/pie-framework/pie-lib/commit/127f409767e51f43479ae8e44be635db92f77eb5))
+- made sure separateParagraphs works [PIE-522] ([9088942](https://github.com/pie-framework/pie-lib/commit/90889424e08c0588861834c0ba020b63718f8bd8))
+
 ## [2.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.0...@pie-lib/editable-html-tip-tap@2.1.1) (2026-05-15)
 
 ### Bug Fixes

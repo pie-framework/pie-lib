@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.13...@pie-lib/graphing@4.0.14) (2026-07-31)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [4.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.12...@pie-lib/graphing@4.0.13) (2026-07-08)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [4.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.11...@pie-lib/graphing@4.0.12) (2026-07-01)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [4.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.10...@pie-lib/graphing@4.0.11) (2026-06-25)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [4.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.9...@pie-lib/graphing@4.0.10) (2026-06-19)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [4.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.8...@pie-lib/graphing@4.0.9) (2026-06-17)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [4.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.7...@pie-lib/graphing@4.0.8) (2026-06-12)
+
+### Bug Fixes
+
+- correct @emotion/style typo to @emotion/styled in package deps PIE-678 ([d529ac7](https://github.com/pie-framework/pie-lib/commit/d529ac7bc3dfa94d8037688452d4c70c66f2590b))
+
+## [4.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.6...@pie-lib/graphing@4.0.7) (2026-06-03)
+
+**Note:** Version bump only for package @pie-lib/graphing
+
+## [4.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.5...@pie-lib/graphing@4.0.6) (2026-06-01)
+
+### Bug Fixes
+
+- **graphing:** make sure evaluate mode marks are not included in undo/redo history PIE-582 ([74f4820](https://github.com/pie-framework/pie-lib/commit/74f482052b5331d918212dcfd847a477f1e5e2d4))
+
+## [4.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.4...@pie-lib/graphing@4.0.5) (2026-05-21)
+
+### Bug Fixes
+
+- add a bigger stroke for polygons PIE-451 ([4908eda](https://github.com/pie-framework/pie-lib/commit/4908edae1bb176575e18a5c5979cb3d4e9eb1454))
+
 ## [4.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.3...@pie-lib/graphing@4.0.4) (2026-05-15)
 
 ### Bug Fixes

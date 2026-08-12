@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.12...@pie-lib/mask-markup@3.0.13) (2026-07-31)
+
+### Bug Fixes
+
+- made sure the numbers near the fraction have the same font size as the fraction [PIE-755] ([1c6d035](https://github.com/pie-framework/pie-lib/commit/1c6d03581470303e750cb14e5edcd08ba2eaf617))
+- **mask-markup:** handle measurment of choices with text and images PIE-679 ([48d9d69](https://github.com/pie-framework/pie-lib/commit/48d9d693ca2fceed6a6213106dbc541e4f29d01d))
+
+## [3.0.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.11...@pie-lib/mask-markup@3.0.12) (2026-07-08)
+
+### Bug Fixes
+
+- **mask-markup:** update width and height calculations to include padding and border adjustments PIE-679 ([7142a76](https://github.com/pie-framework/pie-lib/commit/7142a7629da6db7fea621809a38d2cb280bc063f))
+
+## [3.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.10...@pie-lib/mask-markup@3.0.11) (2026-07-01)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+## [3.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.9...@pie-lib/mask-markup@3.0.10) (2026-06-25)
+
+### Bug Fixes
+
+- **blank:** prevent ResizeObserver feedback loops and re-measure dimensions on visibility ([009cf1d](https://github.com/pie-framework/pie-lib/commit/009cf1d56af3f5f436d2f09b33e4d6d0bfad8609))
+
+## [3.0.9](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.8...@pie-lib/mask-markup@3.0.9) (2026-06-19)
+
+### Bug Fixes
+
+- **mask-markup/choice:** add fallback dimensions for dragging state in Choice component PIE-693 ([87b7782](https://github.com/pie-framework/pie-lib/commit/87b77824785bf7485b1b3e986749fc877224d154))
+
+## [3.0.8](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.7...@pie-lib/mask-markup@3.0.8) (2026-06-17)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
+## [3.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.6...@pie-lib/mask-markup@3.0.7) (2026-06-12)
+
+### Bug Fixes
+
+- correct @emotion/style typo to @emotion/styled in package deps PIE-678 ([d529ac7](https://github.com/pie-framework/pie-lib/commit/d529ac7bc3dfa94d8037688452d4c70c66f2590b))
+
+## [3.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.5...@pie-lib/mask-markup@3.0.6) (2026-06-03)
+
+### Bug Fixes
+
+- render math when the correct value changes [PIE-600] ([38a0024](https://github.com/pie-framework/pie-lib/commit/38a002426ae495e98c2fd1355f7cb83069a7dcdc))
+
+## [3.0.5](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.4...@pie-lib/mask-markup@3.0.5) (2026-06-01)
+
+### Bug Fixes
+
+- made sure selected item in dropdown is focused first when the menu is opened [PIE-438] ([a1cdc68](https://github.com/pie-framework/pie-lib/commit/a1cdc686deec2991e543393b17b98181b074d324))
+
+## [3.0.4](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.3...@pie-lib/mask-markup@3.0.4) (2026-05-21)
+
+**Note:** Version bump only for package @pie-lib/mask-markup
+
 ## [3.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.2...@pie-lib/mask-markup@3.0.3) (2026-05-15)
 
 ### Bug Fixes
