@@ -25,6 +25,7 @@ const withTM = require('next-transpile-modules')([
   '@pie-lib/mask-markup',
   '@pie-lib/math-evaluator',
   '@pie-lib/math-input',
+  '@pie-lib/math-input-mathlive',
   '@pie-lib/math-rendering',
   '@pie-lib/math-toolbar',
   '@pie-lib/plot',
@@ -67,6 +68,10 @@ const nextConfig = {
     // Optional: keep url-loader rule if you still want inlined assets
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|otf)$/,
+      // url-loader emits a JS module, which corrupts fonts referenced from a
+      // stylesheet (they end up as `module.exports = ...` under a .woff2 name).
+      // Let Next's built-in asset modules handle mathlive's @font-face fonts.
+      exclude: /node_modules[\\/]mathlive[\\/]/,
       loader: 'url-loader',
       options: {
         limit: 10000,
