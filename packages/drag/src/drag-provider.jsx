@@ -11,6 +11,7 @@ export function DragProvider({
   autoScroll,
   keyboardCoordinateGetter,
   keyboardCodes,
+  accessibility,
 }) {
   const [activeId, setActiveId] = useState(null);
 
@@ -47,6 +48,7 @@ export function DragProvider({
       collisionDetection={collisionDetection}
       modifiers={modifiers}
       autoScroll={autoScroll}
+      accessibility={accessibility}
     >
       {children}
     </DndContext>
@@ -70,6 +72,9 @@ DragProvider.propTypes = {
     cancel: PropTypes.arrayOf(PropTypes.string),
     end: PropTypes.arrayOf(PropTypes.string),
   }),
+  // Passed straight through to dnd-kit's DndContext (screenReaderInstructions,
+  // announcements, container). Omit to keep dnd-kit's defaults.
+  accessibility: PropTypes.object,
 };
 
 export default DragProvider;
