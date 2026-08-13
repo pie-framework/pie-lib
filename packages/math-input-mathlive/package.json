@@ -1,0 +1,31 @@
+{
+  "name": "@pie-lib/math-input-mathlive",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.0.8",
+  "description": "MathLive-based math input (drop-in alternative to @pie-lib/math-input)",
+  "main": "lib/index.js",
+  "module": "src/index.jsx",
+  "repository": "pie-framework/pie-lib",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.4",
+    "@mui/material": "^7.3.4",
+    "@pie-lib/render-ui": "^6.1.0",
+    "debug": "^4.1.1",
+    "lodash-es": "^4.17.23",
+    "mathlive": "^0.110.0",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "scripts": {}
+}

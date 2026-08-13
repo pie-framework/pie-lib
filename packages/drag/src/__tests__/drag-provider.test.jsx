@@ -3,13 +3,14 @@ import { render, screen } from '@testing-library/react';
 import { DragProvider } from '../drag-provider';
 
 jest.mock('@dnd-kit/core', () => ({
-  DndContext: ({ children, onDragStart, onDragEnd, sensors, collisionDetection, modifiers, autoScroll }) => (
+  DndContext: ({ children, onDragStart, onDragEnd, sensors, collisionDetection, modifiers, autoScroll, accessibility }) => (
     <div
       data-testid="dnd-context"
       data-has-sensors={!!sensors}
       data-has-collision-detection={!!collisionDetection}
       data-has-modifiers={!!modifiers}
       data-has-auto-scroll={!!autoScroll}
+      data-has-accessibility={!!accessibility}
       data-on-drag-start={typeof onDragStart === 'function' ? 'function' : 'undefined'}
       data-on-drag-end={typeof onDragEnd === 'function' ? 'function' : 'undefined'}
     >
@@ -114,12 +115,20 @@ describe('DragProvider', () => {
       expect(dndContext).toHaveAttribute('data-has-auto-scroll', 'true');
     });
 
+    it('should pass accessibility to DndContext', () => {
+      const accessibility = { screenReaderInstructions: { draggable: 'Press Space or Enter to pick up.' } };
+      render(<DragProvider {...defaultProps} accessibility={accessibility} />);
+      const dndContext = screen.getByTestId('dnd-context');
+      expect(dndContext).toHaveAttribute('data-has-accessibility', 'true');
+    });
+
     it('should pass all props to DndContext', () => {
       const onDragStart = jest.fn();
       const onDragEnd = jest.fn();
       const collisionDetection = jest.fn();
       const modifiers = [jest.fn()];
       const autoScroll = { enabled: true };
+      const accessibility = { screenReaderInstructions: { draggable: 'Press Space or Enter to pick up.' } };
 
       render(
         <DragProvider
@@ -129,6 +138,7 @@ describe('DragProvider', () => {
           collisionDetection={collisionDetection}
           modifiers={modifiers}
           autoScroll={autoScroll}
+          accessibility={accessibility}
         />,
       );
 
@@ -138,6 +148,7 @@ describe('DragProvider', () => {
       expect(dndContext).toHaveAttribute('data-has-collision-detection', 'true');
       expect(dndContext).toHaveAttribute('data-has-modifiers', 'true');
       expect(dndContext).toHaveAttribute('data-has-auto-scroll', 'true');
+      expect(dndContext).toHaveAttribute('data-has-accessibility', 'true');
     });
   });
 
@@ -171,6 +182,12 @@ describe('DragProvider', () => {
       const dndContext = screen.getByTestId('dnd-context');
       expect(dndContext).toHaveAttribute('data-has-auto-scroll', 'false');
     });
+
+    it('should work without accessibility', () => {
+      render(<DragProvider {...defaultProps} />);
+      const dndContext = screen.getByTestId('dnd-context');
+      expect(dndContext).toHaveAttribute('data-has-accessibility', 'false');
+    });
   });
 
   describe('sensors setup', () => {
@@ -181,11 +198,11 @@ describe('DragProvider', () => {
       expect(useSensor).toHaveBeenCalledWith('PointerSensor', { activationConstraint: { distance: 8 } });
     });
 
-    it('should initialize KeyboardSensor', () => {
+    it('should initialize KeyboardSensor with no options by default', () => {
       const { useSensor } = require('@dnd-kit/core');
       render(<DragProvider {...defaultProps} />);
 
-      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor');
+      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor', undefined);
     });
 
     it('should combine sensors with useSensors', () => {
@@ -193,6 +210,35 @@ describe('DragProvider', () => {
       render(<DragProvider {...defaultProps} />);
 
       expect(useSensors).toHaveBeenCalled();
+    });
+
+    it('should initialize KeyboardSensor with a custom coordinateGetter when provided', () => {
+      const { useSensor } = require('@dnd-kit/core');
+      const keyboardCoordinateGetter = jest.fn();
+      render(<DragProvider {...defaultProps} keyboardCoordinateGetter={keyboardCoordinateGetter} />);
+
+      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor', {
+        coordinateGetter: keyboardCoordinateGetter,
+        keyboardCodes: undefined,
+      });
+    });
+
+    it('should initialize KeyboardSensor with custom keyboardCodes when provided', () => {
+      const { useSensor } = require('@dnd-kit/core');
+      const keyboardCodes = { start: ['Space'], cancel: ['Escape'], end: ['Space'] };
+      render(<DragProvider {...defaultProps} keyboardCodes={keyboardCodes} />);
+
+      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor', {
+        coordinateGetter: undefined,
+        keyboardCodes,
+      });
+    });
+
+    it('should not customize KeyboardSensor when only unrelated props are passed', () => {
+      const { useSensor } = require('@dnd-kit/core');
+      render(<DragProvider {...defaultProps} collisionDetection={jest.fn()} />);
+
+      expect(useSensor).toHaveBeenCalledWith('KeyboardSensor', undefined);
     });
   });
 
