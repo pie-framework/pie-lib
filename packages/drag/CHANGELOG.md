@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.6...@pie-lib/drag@4.1.0) (2026-08-13)
+
+### Features
+
+- **drag:** allow DragProvider to accept a custom accessibility PIE-767 ([454df17](https://github.com/pie-framework/pie-lib/commit/454df177a28b1208135d2532f84ec20dbabb648f))
+- **drag:** allow DragProvider to accept a custom keyboard coordinateGetter and keyboardCodes PIE-767 ([5268c25](https://github.com/pie-framework/pie-lib/commit/5268c2501664a005f2a2fc12bcd03bc09935dcdc))
+
 ## [4.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.0.5...@pie-lib/drag@4.0.6) (2026-07-01)
 
 **Note:** Version bump only for package @pie-lib/drag

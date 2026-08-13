@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@9.0.14...@pie-lib/demo@9.1.0) (2026-08-13)
+
+### Features
+
+- implemented math-input-mathlive [PIE-158] ([0d0aa07](https://github.com/pie-framework/pie-lib/commit/0d0aa07cd946b758cb280add754615690542eca3))
+
 ## [9.0.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/demo@9.0.13...@pie-lib/demo@9.0.14) (2026-07-31)
 
 **Note:** Version bump only for package @pie-lib/demo
