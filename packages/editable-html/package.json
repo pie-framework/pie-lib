@@ -18,7 +18,7 @@
     "@pie-lib/drag": "^4.0.2",
     "@pie-lib/math-input-mathlive": "^1.0.7",
     "@pie-lib/math-rendering": "^5.0.2",
-    "@pie-lib/math-toolbar": "^3.1.0-beta.2",
+    "@pie-lib/math-toolbar": "^3.1.0-beta.3",
     "@pie-lib/render-ui": "^6.1.0",
     "change-case": "^3.0.2",
     "classnames": "^2.2.6",

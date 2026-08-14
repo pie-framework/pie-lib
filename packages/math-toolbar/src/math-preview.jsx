@@ -19,6 +19,10 @@ const MathPreviewContainer = styled('div')(({ theme, isSelected }) => ({
   '& > .mq-math-mode': {
     border: isSelected ? 'solid 0px lightgrey' : 'solid 1px lightgrey',
   },
+  '& .ML__latex': {
+    border: isSelected ? 'solid 0px lightgrey' : 'solid 1px lightgrey',
+    padding: isSelected ? '0px' : '5px',
+  },
   '& > .mq-focused': {
     outline: 'none',
     boxShadow: 'none',
