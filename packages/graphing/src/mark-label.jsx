@@ -7,6 +7,8 @@ import { types } from '@pie-lib/plot';
 import { color } from '@pie-lib/render-ui';
 import SvgIcon from './label-svg-icon';
 
+const DEBOUNCE_DELAY = 500;
+
 const StyledInputCorrect = styled('div')(({ theme }) => ({
   float: 'right',
   padding: theme.spacing(0.5),
@@ -132,10 +134,12 @@ export const MarkLabel = (props) => {
   const _ref = useCallback((node) => setInput(node));
   const theme = useTheme();
 
-  const { mark, graphProps, disabled, inputRef: externalInputRef } = props;
+  const { mark, graphProps, disabled, autoFocus, inputRef: externalInputRef } = props;
 
   const [label, setLabel] = useState(mark.label);
   const { correctness, correctnesslabel, correctlabel } = mark;
+
+  const isFocused = () => !!input && typeof document !== 'undefined' && document.activeElement === input;
 
   const onChange = (e) => setLabel(e.target.value);
 
@@ -143,12 +147,23 @@ export const MarkLabel = (props) => {
     if (label === '') {
       props.onChange('');
     }
-  }, [label, props.onChange]);
 
-  const debouncedLabel = useDebounce(label, 200);
+    // lets the tool know that this label is not being edited anymore, so it stops auto focusing it
+    if (props.onBlur) {
+      props.onBlur();
+    }
+  }, [label, props.onChange, props.onBlur]);
 
-  // useState only sets the value once, to synch props to state need useEffect
+  const debouncedLabel = useDebounce(label, DEBOUNCE_DELAY);
+
+  // useState only sets the value once, to synch props to state need useEffect.
+  // While this input has the focus we keep what the user typed: the mark can come back from an
+  // (async) model save with an older label and that would overwrite the characters typed meanwhile.
   useEffect(() => {
+    if (isFocused()) {
+      return;
+    }
+
     setLabel(mark.label);
   }, [mark.label]);
 
@@ -158,6 +173,24 @@ export const MarkLabel = (props) => {
       props.onChange(debouncedLabel);
     }
   }, [debouncedLabel]);
+
+  // A label that has just been added has to be focused so that it can be typed into right away.
+  // This also re-focuses the input if it gets remounted while it is being edited - saving the model
+  // is done by the host (api call) and the model that comes back can replace the input node.
+  useEffect(() => {
+    if (!autoFocus || !input || disabled || isFocused()) {
+      return;
+    }
+
+    input.focus();
+
+    // keep the caret at the end, otherwise typing continues in front of the existing label
+    const caret = (input.value || '').length;
+
+    if (input.setSelectionRange) {
+      input.setSelectionRange(caret, caret);
+    }
+  }, [autoFocus, input, disabled]);
 
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
   const pos = position(graphProps, mark, rect);
@@ -234,7 +267,9 @@ export const MarkLabel = (props) => {
 };
 
 MarkLabel.propTypes = {
+  autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   graphProps: types.GraphPropsType,
   inputRef: PropTypes.func,
