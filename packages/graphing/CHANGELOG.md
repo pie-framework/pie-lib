@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.15...@pie-lib/graphing@4.0.16) (2026-08-18)
+
+### Bug Fixes
+
+- **graphing:** keep label input focused while it is being edited PIE-681 ([9c836f5](https://github.com/pie-framework/pie-lib/commit/9c836f5ab2437be4e48665426f3656561050c590))
+
 ## [4.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.14...@pie-lib/graphing@4.0.15) (2026-08-13)
 
 **Note:** Version bump only for package @pie-lib/graphing

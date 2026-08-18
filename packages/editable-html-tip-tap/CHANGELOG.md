@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.12...@pie-lib/editable-html-tip-tap@2.1.13) (2026-08-18)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** give toolbar buttons accessible names PIE-708 ([8cf0065](https://github.com/pie-framework/pie-lib/commit/8cf0065ba7ba684c5d51bcdee3cce8166b1cd8bc))
+
 ## [2.1.12](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.11...@pie-lib/editable-html-tip-tap@2.1.12) (2026-08-13)
 
 **Note:** Version bump only for package @pie-lib/editable-html-tip-tap
