@@ -15,7 +15,8 @@
     "debug": "^4.1.1",
     "lodash-es": "^4.17.23",
     "mathjax-full": "3.2.2",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "speech-rule-engine": "4.1.2"
   },
   "resolutions": {
     "react": "^18.2.0"

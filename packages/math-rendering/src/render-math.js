@@ -11,9 +11,9 @@ import { CHTML } from 'mathjax-full/js/output/chtml';
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
 import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
 import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages';
-import { engineReady } from 'speech-rule-engine/js/common/system';
 // import pkg from '../../package.json';
 import { chtmlNodes, mmlNodes } from './mstack';
+import { initSre, isSreReady, markSreNotReady } from './sre';
 import debug from 'debug';
 import { unWrapMath, wrapMath } from './normalization';
 import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
@@ -25,12 +25,6 @@ import { HTMLDomStrings } from 'mathjax-full/js/handlers/html/HTMLDomStrings';
 if (typeof window !== 'undefined') {
   RegisterHTMLHandler(browserAdaptor());
 }
-
-let sreReady = false;
-
-engineReady().then(() => {
-  sreReady = true;
-});
 
 const visitor = new SerializedMmlVisitor();
 const toMMl = (node) => visitor.visitTree(node);
@@ -66,6 +60,13 @@ const getGlobal = () => {
  *   // This will enable single dollar rendering
  *   window.pie = window.pie || {};
  *   window.pie.mathRendering =  {useSingleDollar: true };
+ *  </code>
+ *
+ *  `mathmapsPath` points speech-rule-engine at a copy of its locale data
+ *  (`base.json`, `en.json`, ...) that the host serves itself. Leave it unset and
+ *  SRE falls back to fetching them from cdn.jsdelivr.net at runtime.
+ *  <code>
+ *   window['@pie-lib/math-rendering@2'].opts = { mathmapsPath: '/assets/sre/mathmaps' };
  *  </code>
  */
 const defaultOpts = () => getGlobal().opts || {};
@@ -257,14 +258,14 @@ const bootstrap = (opts) => {
       const attemptRender = (temporary = false) => {
         let updatedDocument = this.html.findMath(elements.length ? { elements } : {}).compile();
 
-        if (!temporary && sreReady) {
+        if (!temporary && isSreReady()) {
           try {
             updatedDocument = updatedDocument.enrich();
           } catch (e) {
             // If enrich fails, speech-rule-engine isn't actually ready yet
             // eslint-disable-next-line no-console
             console.warn('[math-rendering] Speech-rule-engine not fully initialized, skipping enrichment');
-            sreReady = false;
+            markSreNotReady();
           }
         }
 
@@ -286,13 +287,13 @@ const bootstrap = (opts) => {
         // which requires speech-rule-engine to be ready. Skip it gracefully
         // if SRE isn't initialised yet – screen readers will still read the
         // MathML structure produced above.
-        if (!temporary && sreReady) {
+        if (!temporary && isSreReady()) {
           try {
             updatedDocument = updatedDocument.attachSpeech();
           } catch (e) {
             // eslint-disable-next-line no-console
             console.warn('[math-rendering] Speech-rule-engine not fully initialized, skipping speech attachment');
-            sreReady = false;
+            markSreNotReady();
           }
         }
 
@@ -382,6 +383,11 @@ const renderMath = (el, renderOpts) => {
     log('el is undefined');
     return;
   }
+
+  // Starting the engine here rather than at import time keeps its locale data off
+  // pages that never render math. Enrichment stays best effort - anything typeset
+  // before the engine is ready simply skips the speech steps.
+  initSre({ mathmapsPath: (renderOpts || defaultOpts()).mathmapsPath });
 
   if (el instanceof Element && getGlobal().instance?.Typeset) {
     getGlobal().instance.Typeset(el);

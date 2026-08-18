@@ -12959,7 +12959,7 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.22.tgz#abf5a08a6f5d7279559b669f47f0a43e8f3464ef"
   integrity sha512-4PRT4nh1EImPbt2jASOKHX7PB7I+e4IWNLvkKFDxNhJlfjbYlleYQh285Z/3mPTHSAK/AvdMmw5BNNuYH8ShgQ==
 
-speech-rule-engine@^4.0.6:
+speech-rule-engine@4.1.2, speech-rule-engine@^4.0.6:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/speech-rule-engine/-/speech-rule-engine-4.1.2.tgz#3b31b5813a2fc2eaecdfda26ad29c32599e9a537"
   integrity sha512-S6ji+flMEga+1QU79NDbwZ8Ivf0S/MpupQQiIC0rTpU/ZTKgcajijJJb1OcByBQDjrXCN1/DJtGz4ZJeBMPGJw==
