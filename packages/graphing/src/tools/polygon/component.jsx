@@ -90,6 +90,16 @@ export class RawBaseComponent extends React.Component {
     points: [],
   };
 
+  // index of the point whose label is edited (points.length for the polygon label), null if none
+  state = { editingLabel: null };
+
+  componentDidUpdate(prevProps) {
+    // leaving label mode closes any label that is still being edited
+    if (prevProps.labelModeEnabled && !this.props.labelModeEnabled && this.state.editingLabel !== null) {
+      this.setState({ editingLabel: null });
+    }
+  }
+
   dragPoint = (index, from, to) => {
     log('[dragPoint] from, to:', from, to);
     const { onChange, points } = this.props;
@@ -162,6 +172,12 @@ export class RawBaseComponent extends React.Component {
     onChangeProps(update);
   };
 
+  stopEditingLabel = () => {
+    if (this.state.editingLabel !== null) {
+      this.setState({ editingLabel: null });
+    }
+  };
+
   clickPoint = (point, index, data) => {
     const {
       closed,
@@ -194,12 +210,9 @@ export class RawBaseComponent extends React.Component {
         onSetMiddleLabel(strippedMiddle, strippedPoints);
       }
 
-      // defer the focus() call with setTimeout to allow the re-render to complete first.
-      setTimeout(() => {
-        if (this.input[index]) {
-          this.input[index].focus();
-        }
-      }, 0);
+      // MarkLabel focuses itself once it is rendered - it also holds on to the focus if the model
+      // that comes back from the host (api save) remounts the input.
+      this.setState({ editingLabel: index });
 
       return;
     }
@@ -230,6 +243,7 @@ export class RawBaseComponent extends React.Component {
       labelNode,
       labelModeEnabled,
     } = this.props;
+    const { editingLabel } = this.state;
     const lines = buildLines(points, closed);
     const common = { onDragStart, onDragStop, graphProps, disabled, correctness };
     const polygonLabelIndex = (points && points.length) || 0;
@@ -239,9 +253,11 @@ export class RawBaseComponent extends React.Component {
       polygonLabelNode = ReactDOM.createPortal(
         <MarkLabel
           inputRef={(r) => (this.input[polygonLabelIndex] = r)}
+          autoFocus={editingLabel === polygonLabelIndex}
           disabled={disabled || !labelModeEnabled}
           mark={middle}
           graphProps={graphProps}
+          onBlur={this.stopEditingLabel}
           onChange={(label) => onChangeLabelProps({ ...middle, label })}
         />,
         labelNode,
@@ -291,9 +307,11 @@ export class RawBaseComponent extends React.Component {
               ? ReactDOM.createPortal(
                   <MarkLabel
                     inputRef={(r) => (this.input[index] = r)}
+                    autoFocus={editingLabel === index}
                     disabled={disabled || !labelModeEnabled}
                     mark={p}
                     graphProps={graphProps}
+                    onBlur={this.stopEditingLabel}
                     onChange={(label) => this.labelChange({ ...p, label }, index)}
                   />,
                   labelNode,

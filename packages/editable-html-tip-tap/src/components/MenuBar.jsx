@@ -34,7 +34,15 @@ import { CharacterIcon, CharacterPicker } from './CharacterPicker';
 import { DoneButton } from './common/done-button';
 
 const SuperscriptIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24px"
+    viewBox="0 0 24 24"
+    width="24px"
+    fill="none"
+    aria-hidden="true"
+    focusable="false"
+  >
     <path
       d="M22,7h-2v1h3v1h-4V7c0-0.55,0.45-1,1-1h2V5h-3V4h3c0.55,0,1,0.45,1,1v1C23,6.55,22.55,7,22,7z M5.88,20h2.66l3.4-5.42h0.12 l3.4,5.42h2.66l-4.65-7.27L17.81,6h-2.68l-3.07,4.99h-0.12L8.85,6H6.19l4.32,6.73L5.88,20z"
       fill="currentColor"
@@ -43,7 +51,15 @@ const SuperscriptIcon = () => (
 );
 
 const SubscriptIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24px"
+    viewBox="0 0 24 24"
+    width="24px"
+    fill="none"
+    aria-hidden="true"
+    focusable="false"
+  >
     <path
       d="M22,18h-2v1h3v1h-4v-2c0-0.55,0.45-1,1-1h2v-1h-3v-1h3c0.55,0,1,0.45,1,1v1C23,17.55,22.55,18,22,18z M5.88,18h2.66 l3.4-5.42h0.12l3.4,5.42h2.66l-4.65-7.27L17.81,4h-2.68l-3.07,4.99h-0.12L8.85,4H6.19l4.32,6.73L5.88,18z"
       fill="currentColor"
@@ -59,6 +75,8 @@ const HeadingIcon = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     style={{ width: '20px', height: '18px' }}
+    aria-hidden="true"
+    focusable="false"
   >
     <path
       d="M27 4V24H29C29.5 24 30 24.5 30 25V27C30 27.5625 29.5 28 29 28H19C18.4375 28 18 27.5625 18 27V25C18 24.5 18.4375 24 19 24H21V16H9V24H11C11.5 24 12 24.5 12 25V27C12 27.5625 11.5 28 11 28H1C0.4375 28 0 27.5625 0 27V25C0 24.5 0.4375 24 1 24H3V4H1C0.4375 4 0 3.5625 0 3V1C0 0.5 0.4375 0 1 0H11C11.5 0 12 0.5 12 1V3C12 3.5625 11.5 4 11 4H9V12H21V4H19C18.4375 4 18 3.5625 18 3V1C18 0.5 18.4375 0 19 0H29C29.5 0 30 0.5 30 1V3C30 3.5625 29.5 4 29 4H27Z"
@@ -166,6 +184,7 @@ function MenuBar({
     () => [
       {
         icon: <GridOn />,
+        label: 'Insert table',
         onClick: (editor) => editor.chain().focus().insertTable({ rows: 2, cols: 2, withHeaderRow: false }).run(),
         hidden: (state) => !activePlugins?.includes('table') || state.isTable,
         isActive: (state) => state.isTable,
@@ -173,6 +192,7 @@ function MenuBar({
       },
       {
         icon: <AddRow />,
+        label: 'Add table row',
         onClick: (editor) => editor.chain().focus().addRowAfter().run(),
         hidden: (state) => !(state.isTable && !state.hasTextSelectionInTable),
         isActive: (state) => state.isTable,
@@ -180,6 +200,7 @@ function MenuBar({
       },
       {
         icon: <RemoveRow />,
+        label: 'Remove table row',
         onClick: (editor) => editor.chain().focus().deleteRow().run(),
         hidden: (state) => !(state.isTable && !state.hasTextSelectionInTable),
         isActive: (state) => state.isTable,
@@ -187,6 +208,7 @@ function MenuBar({
       },
       {
         icon: <AddColumn />,
+        label: 'Add table column',
         onClick: (editor) => editor.chain().focus().addColumnAfter().run(),
         hidden: (state) => !(state.isTable && !state.hasTextSelectionInTable),
         isActive: (state) => state.isTable,
@@ -194,6 +216,7 @@ function MenuBar({
       },
       {
         icon: <RemoveColumn />,
+        label: 'Remove table column',
         onClick: (editor) => editor.chain().focus().deleteColumn().run(),
         hidden: (state) => !(state.isTable && !state.hasTextSelectionInTable),
         isActive: (state) => state.isTable,
@@ -201,6 +224,7 @@ function MenuBar({
       },
       {
         icon: <RemoveTable />,
+        label: 'Remove table',
         onClick: (editor) => editor.chain().focus().deleteTable().run(),
         hidden: (state) => !(state.isTable && !state.hasTextSelectionInTable),
         isActive: (state) => state.isTable,
@@ -208,6 +232,8 @@ function MenuBar({
       },
       {
         icon: <BorderAll />,
+        label: 'Table borders',
+        toggle: true,
         onClick: (editor) => {
           const tableAttrs = editor.getAttributes('table');
 
@@ -224,6 +250,8 @@ function MenuBar({
       },
       {
         icon: <Bold />,
+        label: 'Bold',
+        toggle: true,
         onClick: (editor) => editor.chain().focus().toggleBold().run(),
         hidden: () => !activePlugins?.includes('bold'),
         isActive: (state) => state.isBold,
@@ -231,6 +259,8 @@ function MenuBar({
       },
       {
         icon: <Italic />,
+        label: 'Italic',
+        toggle: true,
         onClick: (editor) => editor.chain().focus().toggleItalic().run(),
         hidden: () => !activePlugins?.includes('italic'),
         isActive: (state) => state.isItalic,
@@ -238,6 +268,8 @@ function MenuBar({
       },
       {
         icon: <Strikethrough />,
+        label: 'Strikethrough',
+        toggle: true,
         onClick: (editor) => editor.chain().focus().toggleStrike().run(),
         hidden: () => !activePlugins?.includes('strikethrough'),
         isActive: (state) => state.isStrike,
@@ -245,6 +277,8 @@ function MenuBar({
       },
       {
         icon: <Code />,
+        label: 'Code',
+        toggle: true,
         onClick: (editor) => editor.chain().focus().toggleCode().run(),
         hidden: () => !activePlugins?.includes('code'),
         isActive: (state) => state.isCode,
@@ -252,94 +286,118 @@ function MenuBar({
       },
       {
         icon: <Underline />,
+        label: 'Underline',
+        toggle: true,
         onClick: (editor) => editor.chain().focus().toggleUnderline().run(),
         hidden: () => !activePlugins?.includes('underline'),
         isActive: (state) => state.isUnderline,
       },
       {
         icon: <SubscriptIcon />,
+        label: 'Subscript',
+        toggle: true,
         onClick: (editor) => editor.chain().focus().toggleSubscript().run(),
         hidden: () => !activePlugins?.includes('subscript'),
         isActive: (state) => state.isSubScript,
       },
       {
         icon: <SuperscriptIcon />,
+        label: 'Superscript',
+        toggle: true,
         onClick: (editor) => editor.chain().focus().toggleSuperscript().run(),
         hidden: () => !activePlugins?.includes('superscript'),
         isActive: (state) => state.isSuperScript,
       },
       {
         icon: <ImageIcon />,
+        label: 'Insert image',
         hidden: () => !activePlugins?.includes('image'),
         onClick: (editor) => editor.chain().focus().setImageUploadNode().run(),
       },
       {
         icon: <TheatersIcon />,
+        label: 'Insert video',
         hidden: () => !activePlugins?.includes('video'),
         onClick: (editor) => editor.chain().focus().insertMedia({ type: 'video' }).run(),
       },
       {
         icon: <VolumeUpIcon />,
+        label: 'Insert audio',
         hidden: () => !activePlugins?.includes('audio'),
         onClick: (editor) => editor.chain().focus().insertMedia({ type: 'audio', tag: 'audio' }).run(),
       },
       {
         icon: <CSSIcon />,
+        label: 'CSS classes',
         hidden: () => !activePlugins?.includes('css'),
         onClick: (editor) => editor.commands.openCSSClassDialog(),
       },
       {
         icon: <FormatQuote />,
+        label: 'Blockquote',
+        toggle: true,
         hidden: () => !activePlugins?.includes('blockquote'),
         onClick: (editor) => editor.chain().focus().toggleBlockquote().run(),
         isActive: (state) => state.isBlockquote,
       },
       {
         icon: <HeadingIcon />,
+        label: 'Heading',
+        toggle: true,
         hidden: () => !activePlugins?.includes('h3'),
         onClick: (editor) => editor.chain().focus().toggleHeadingParagraph().run(),
         isActive: (state) => state.isHeadingParagraph,
       },
       {
         icon: <Functions />,
+        label: 'Insert math',
         hidden: () => !activePlugins?.includes('math'),
         onClick: (editor) => editor.chain().focus().insertMath('').run(),
       },
       {
         icon: <CharacterIcon letter="ñ" />,
+        label: 'Spanish characters (ñ)',
         hidden: () => !activePlugins?.includes('languageCharacters'),
         onClick: () => setShowPicker(spanishConfig),
       },
       {
         icon: <CharacterIcon letter="€" />,
+        label: 'Special characters (€)',
         hidden: () => activePlugins?.filter((p) => p === 'languageCharacters').length !== 2,
         onClick: () => setShowPicker(specialConfig),
       },
       {
         icon: <TextAlignIcon editor={editor} />,
+        label: 'Text alignment',
         hidden: () => !activePlugins?.includes('text-align'),
         onClick: () => {},
       },
       {
         icon: <BulletedListIcon />,
+        label: 'Bulleted list',
+        toggle: true,
         hidden: () => !activePlugins?.includes('bulleted-list'),
         onClick: (editor) => editor.chain().focus().toggleBulletList().run(),
         isActive: (state) => state.isBulletList,
       },
       {
         icon: <NumberedListIcon />,
+        label: 'Numbered list',
+        toggle: true,
         hidden: () => !activePlugins?.includes('numbered-list'),
         onClick: (editor) => editor.chain().focus().toggleOrderedList().run(),
         isActive: (state) => state.isOrderedList,
       },
       {
         icon: <Undo />,
+        label: 'Undo',
         hidden: () => !activePlugins?.includes('undo'),
         onClick: (editor) => editor.chain().focus().undo().run(),
         isDisabled: (state) => !state.canUndo,
       },
       {
         icon: <Redo />,
+        label: 'Redo',
         hidden: () => !activePlugins?.includes('redo'),
         onClick: (editor) => editor.chain().focus().redo().run(),
         isDisabled: (state) => !state.canRedo,
@@ -365,6 +423,7 @@ function MenuBar({
                 onChange?.(editor.getHTML());
               }}
               aria-label="Delete response area"
+              title="Delete response area"
             >
               <Delete />
             </button>
@@ -383,7 +442,11 @@ function MenuBar({
                 return (
                   <button
                     key={index}
+                    type="button"
                     disabled={disabled}
+                    aria-label={btn.label}
+                    title={btn.label}
+                    aria-pressed={btn.toggle ? !!active : undefined}
                     onClick={(e) => {
                       e.preventDefault();
                       btn.onClick(editor);
@@ -397,6 +460,9 @@ function MenuBar({
           </div>
           {activePlugins?.includes('responseArea') && (
             <button
+              type="button"
+              aria-label="Insert response area"
+              title="Insert response area"
               onClick={() => {
                 editor.chain().focus().insertResponseArea(responseAreaProps.type).run();
               }}

@@ -1,4 +1,4 @@
-import { render } from '@pie-lib/test-utils';
+import { fireEvent, render } from '@pie-lib/test-utils';
 import React from 'react';
 import { graphProps, xy } from '../../../__tests__/utils';
 
@@ -344,6 +344,117 @@ describe('Component', () => {
         graphProps: customGraphProps,
       });
       expect(container.firstChild).toBeInTheDocument();
+    });
+  });
+
+  describe('label focus', () => {
+    let labelNode;
+
+    // the label is rendered into a portal - it has to be in the document for it to take the focus
+    beforeEach(() => {
+      labelNode = document.createElement('div');
+      document.body.appendChild(labelNode);
+    });
+
+    afterEach(() => {
+      document.body.removeChild(labelNode);
+    });
+
+    // the mark is owned by the container, so the tool only sees a new label once it is handed back
+    const Controlled = ({ initialMark, labelModeEnabled }) => {
+      const [mark, setMark] = React.useState(initialMark);
+
+      return (
+        <Component
+          mark={mark}
+          onChange={(current, update) => setMark(update)}
+          onClick={onClick}
+          graphProps={graphProps()}
+          labelNode={labelNode}
+          labelModeEnabled={labelModeEnabled}
+        />
+      );
+    };
+
+    const clickPoint = (container) => fireEvent.click(container.querySelector('circle'));
+
+    it('focuses the new label when a point is clicked in label mode', () => {
+      const { container } = render(<Controlled initialMark={xy(1, 1)} labelModeEnabled={true} />);
+
+      expect(labelNode.querySelector('input')).toBe(null);
+
+      clickPoint(container);
+
+      const input = labelNode.querySelector('input');
+      expect(input).not.toBe(null);
+      expect(document.activeElement).toBe(input);
+    });
+
+    it('does not focus the label when a point is clicked outside of label mode', () => {
+      const { container } = render(<Controlled initialMark={{ ...xy(1, 1), label: 'A' }} labelModeEnabled={false} />);
+
+      clickPoint(container);
+
+      expect(onClick).toHaveBeenCalled();
+      expect(document.activeElement).not.toBe(labelNode.querySelector('input'));
+    });
+
+    it('does not focus the label of a disabled mark', () => {
+      const { container } = render(
+        <Controlled initialMark={{ ...xy(1, 1), label: 'A', disabled: true }} labelModeEnabled={true} />,
+      );
+
+      clickPoint(container);
+
+      expect(document.activeElement).not.toBe(labelNode.querySelector('input'));
+    });
+
+    it('stops auto focusing the label once it is blurred', () => {
+      const { container } = render(<Controlled initialMark={xy(1, 1)} labelModeEnabled={true} />);
+
+      clickPoint(container);
+      const input = labelNode.querySelector('input');
+      expect(document.activeElement).toBe(input);
+
+      fireEvent.blur(input);
+
+      // a re-render must not pull the focus back into the label the user just left
+      fireEvent.change(input, { target: { value: 'A' } });
+      expect(document.activeElement).not.toBe(input);
+    });
+
+    it('closes the label that is being edited when label mode is left', () => {
+      const ref = React.createRef();
+      const { container, rerender } = render(
+        <Component
+          ref={ref}
+          mark={xy(1, 1)}
+          onChange={onChange}
+          onClick={onClick}
+          graphProps={graphProps()}
+          labelNode={labelNode}
+          labelModeEnabled={true}
+        />,
+      );
+
+      clickPoint(container);
+      expect(ref.current.state.editingLabel).toBe('label');
+
+      rerender(
+        <Component
+          ref={ref}
+          mark={xy(1, 1)}
+          onChange={onChange}
+          onClick={onClick}
+          graphProps={graphProps()}
+          labelNode={labelNode}
+          labelModeEnabled={false}
+        />,
+      );
+
+      // there is no user visible path for this one: a real blur resets it through onBlur, this is
+      // the safety net for a label that is still marked as edited when label mode goes away
+      expect(ref.current.state.editingLabel).toBe(null);
     });
   });
 });

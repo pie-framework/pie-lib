@@ -2,21 +2,27 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import StyledMenuBar from '../MenuBar';
 
+// flipped to false by the accessibility tests to render the toolbar in its disabled state
+let mockCanRunCommands = true;
+// node/mark types the accessibility tests want the editor state to report as active
+let mockActiveTypes = [];
+
 jest.mock('@tiptap/react', () => ({
   EditorContent: ({ editor }) => <div data-testid="editor-content" />,
   useEditorState: ({ selector }) => {
+    const can = () => ({ run: jest.fn(() => mockCanRunCommands) });
     const mockEditor = {
-      isActive: jest.fn(() => false),
+      isActive: jest.fn((name) => mockActiveTypes.includes(name)),
       can: jest.fn(() => ({
         chain: jest.fn(() => ({
-          toggleBold: jest.fn(() => ({ run: jest.fn(() => true) })),
-          insertTable: jest.fn(() => ({ run: jest.fn(() => true) })),
-          toggleItalic: jest.fn(() => ({ run: jest.fn(() => true) })),
-          toggleStrike: jest.fn(() => ({ run: jest.fn(() => true) })),
-          toggleCode: jest.fn(() => ({ run: jest.fn(() => true) })),
-          unsetAllMarks: jest.fn(() => ({ run: jest.fn(() => true) })),
-          undo: jest.fn(() => ({ run: jest.fn(() => true) })),
-          redo: jest.fn(() => ({ run: jest.fn(() => true) })),
+          toggleBold: can,
+          insertTable: can,
+          toggleItalic: can,
+          toggleStrike: can,
+          toggleCode: can,
+          unsetAllMarks: can,
+          undo: can,
+          redo: can,
         })),
       })),
       getAttributes: jest.fn(() => ({ border: '1' })),
@@ -246,5 +252,87 @@ describe('StyledMenuBar', () => {
     // Verify that the removal of "|| state.isTable" condition works correctly
     const { container } = render(<StyledMenuBar {...defaultProps} activePlugins={['table', 'bold', 'italic']} />);
     expect(container).toBeInTheDocument();
+  });
+  describe('accessible names', () => {
+    const allPlugins = [
+      'table',
+      'bold',
+      'italic',
+      'strikethrough',
+      'code',
+      'underline',
+      'subscript',
+      'superscript',
+      'image',
+      'video',
+      'audio',
+      'css',
+      'blockquote',
+      'h3',
+      'math',
+      'languageCharacters',
+      'bulleted-list',
+      'numbered-list',
+      'undo',
+      'redo',
+      'responseArea',
+    ];
+
+    const accessibleName = (button) => button.getAttribute('aria-label') || button.textContent.trim();
+
+    afterEach(() => {
+      mockCanRunCommands = true;
+      mockActiveTypes = [];
+    });
+
+    it('gives every toolbar button an accessible name', () => {
+      const { container } = render(<StyledMenuBar {...defaultProps} activePlugins={allPlugins} />);
+      const buttons = Array.from(container.querySelectorAll('button'));
+
+      expect(buttons.length).toBeGreaterThan(0);
+      buttons.forEach((button) => expect(accessibleName(button)).not.toEqual(''));
+    });
+
+    it('keeps accessible names on disabled buttons', () => {
+      mockCanRunCommands = false;
+
+      const { container } = render(<StyledMenuBar {...defaultProps} activePlugins={allPlugins} />);
+      const disabled = Array.from(container.querySelectorAll('button[disabled]'));
+
+      expect(disabled.length).toBeGreaterThan(0);
+      disabled.forEach((button) => expect(accessibleName(button)).not.toEqual(''));
+    });
+
+    it('labels the formatting and history buttons', () => {
+      const { getByLabelText } = render(<StyledMenuBar {...defaultProps} activePlugins={allPlugins} />);
+
+      ['Bold', 'Italic', 'Underline', 'Insert table', 'Undo', 'Redo'].forEach((label) =>
+        expect(getByLabelText(label)).toBeInTheDocument(),
+      );
+    });
+
+    it('labels the table buttons', () => {
+      mockActiveTypes = ['table'];
+
+      const { getByLabelText } = render(<StyledMenuBar {...defaultProps} activePlugins={allPlugins} />);
+
+      ['Add table row', 'Remove table row', 'Add table column', 'Remove table column', 'Remove table'].forEach(
+        (label) => expect(getByLabelText(label)).toBeInTheDocument(),
+      );
+      expect(getByLabelText('Table borders')).toHaveAttribute('aria-pressed', 'true');
+    });
+
+    it('labels the response area insert button', () => {
+      const { getByLabelText } = render(<StyledMenuBar {...defaultProps} activePlugins={['responseArea']} />);
+      expect(getByLabelText('Insert response area')).toBeInTheDocument();
+    });
+
+    it('exposes toggle state via aria-pressed on mark buttons', () => {
+      const { getByLabelText } = render(<StyledMenuBar {...defaultProps} activePlugins={allPlugins} />);
+
+      expect(getByLabelText('Bold')).toHaveAttribute('aria-pressed', 'false');
+      // one-shot actions are not toggles, so they must not report a pressed state
+      expect(getByLabelText('Undo')).not.toHaveAttribute('aria-pressed');
+    });
   });
 });

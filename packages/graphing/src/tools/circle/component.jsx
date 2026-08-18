@@ -49,6 +49,16 @@ export class RawBaseCircle extends React.Component {
     onClick: () => ({}),
   };
 
+  // which of from/to/middle has its label edited, null if none
+  state = { editingLabel: null };
+
+  componentDidUpdate(prevProps) {
+    // leaving label mode closes any label that is still being edited
+    if (prevProps.labelModeEnabled && !this.props.labelModeEnabled && this.state.editingLabel !== null) {
+      this.setState({ editingLabel: null });
+    }
+  }
+
   onChangePoint = (point) => {
     const { middle, onChange } = this.props;
     const { from, to } = point;
@@ -102,6 +112,12 @@ export class RawBaseCircle extends React.Component {
     changeMarkProps({ [type]: update });
   };
 
+  stopEditingLabel = () => {
+    if (this.state.editingLabel !== null) {
+      this.setState({ editingLabel: null });
+    }
+  };
+
   clickPoint = (point, type, data) => {
     const { changeMarkProps, disabled, from, to, middle, labelModeEnabled, limitLabeling, onClick } = this.props;
 
@@ -122,9 +138,9 @@ export class RawBaseCircle extends React.Component {
       [type]: { label: '', ...point },
     });
 
-    if (this.input[type]) {
-      this.input[type].focus();
-    }
+    // MarkLabel focuses itself once it is rendered - it also holds on to the focus if the model
+    // that comes back from the host (api save) remounts the input.
+    this.setState({ editingLabel: type });
   };
 
   input = {};
@@ -145,6 +161,7 @@ export class RawBaseCircle extends React.Component {
       labelNode,
       labelModeEnabled,
     } = this.props;
+    const { editingLabel } = this.state;
 
     const common = { onDragStart, onDragStop, graphProps, onClick };
     to = to || from;
@@ -159,9 +176,11 @@ export class RawBaseCircle extends React.Component {
         fromLabelNode = ReactDOM.createPortal(
           <MarkLabel
             inputRef={(r) => (this.input.from = r)}
+            autoFocus={editingLabel === 'from'}
             disabled={!labelModeEnabled}
             mark={from}
             graphProps={graphProps}
+            onBlur={this.stopEditingLabel}
             onChange={(label) => this.labelChange({ ...from, label }, 'from')}
           />,
           labelNode,
@@ -172,9 +191,11 @@ export class RawBaseCircle extends React.Component {
         toLabelNode = ReactDOM.createPortal(
           <MarkLabel
             inputRef={(r) => (this.input.to = r)}
+            autoFocus={editingLabel === 'to'}
             disabled={!labelModeEnabled}
             mark={to}
             graphProps={graphProps}
+            onBlur={this.stopEditingLabel}
             onChange={(label) => this.labelChange({ ...to, label }, 'to')}
           />,
           labelNode,
@@ -185,9 +206,11 @@ export class RawBaseCircle extends React.Component {
         circleLabelNode = ReactDOM.createPortal(
           <MarkLabel
             inputRef={(r) => (this.input.middle = r)}
+            autoFocus={editingLabel === 'middle'}
             disabled={!labelModeEnabled}
             mark={middle}
             graphProps={graphProps}
+            onBlur={this.stopEditingLabel}
             onChange={(label) => this.labelChange({ ...middle, label }, 'middle')}
           />,
           labelNode,
