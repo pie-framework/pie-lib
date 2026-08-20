@@ -75,8 +75,8 @@ describe('MarkLabel - editing', () => {
       expect(input.selectionEnd).toBe(2);
     });
 
-    it('does not focus the input when autoFocus is not set', () => {
-      const { input } = renderComponent();
+    it('does not focus the input of an existing label when autoFocus is not set', () => {
+      const { input } = renderComponent({ mark: { x: 1, y: 1, label: 'A' } });
 
       expect(document.activeElement).not.toBe(input);
     });
@@ -85,6 +85,38 @@ describe('MarkLabel - editing', () => {
       const { input } = renderComponent({ autoFocus: true, disabled: true });
 
       expect(document.activeElement).not.toBe(input);
+    });
+
+    it('does not focus the input of a disabled mark', () => {
+      const { input } = renderComponent({ autoFocus: true, mark: { x: 1, y: 1, label: '', disabled: true } });
+
+      expect(document.activeElement).not.toBe(input);
+    });
+
+    // the focus can go away without this component hearing about it - the input node gets replaced
+    // by a render higher up, so no blur is fired and autoFocus is still on
+    it('takes the focus back on the next render while it is still being edited', () => {
+      const { input, rerenderWith } = renderComponent({ autoFocus: true, mark: { x: 1, y: 1, label: 'A' } });
+
+      expect(document.activeElement).toBe(input);
+
+      input.blur();
+      expect(document.activeElement).not.toBe(input);
+
+      rerenderWith({ mark: { x: 1, y: 1, label: 'A' } });
+
+      expect(document.activeElement).toBe(input);
+    });
+
+    it('leaves the caret where the user put it while the input has the focus', () => {
+      const { input, rerenderWith } = renderComponent({ autoFocus: true, mark: { x: 1, y: 1, label: 'ABC' } });
+
+      input.setSelectionRange(1, 1);
+
+      rerenderWith({ mark: { x: 1, y: 1, label: 'ABC' } });
+
+      expect(document.activeElement).toBe(input);
+      expect(input.selectionStart).toBe(1);
     });
 
     it('focuses the input once it is no longer disabled', () => {
@@ -115,6 +147,68 @@ describe('MarkLabel - editing', () => {
 
       expect(second).not.toBe(first);
       expect(document.activeElement).toBe(second);
+    });
+  });
+
+  // the tool asks for the focus with autoFocus, but its state can be gone before the input renders:
+  // the marks come back from the host asynchronously and can remount the tool. An empty label in
+  // label mode is a label the user has just added, so the input can tell on its own.
+  describe('a label that was just added', () => {
+    it('focuses itself without the tool asking', () => {
+      const { input } = renderComponent({ mark: { x: 1, y: 1, label: '' } });
+
+      expect(document.activeElement).toBe(input);
+    });
+
+    it('focuses itself again when it is remounted before it was typed into', () => {
+      const props = {
+        onChange,
+        onBlur,
+        inputRef: jest.fn(),
+        mark: { x: 1, y: 1, label: '' },
+        graphProps: getGraphProps(0, 10, 0, 10),
+      };
+      const { container, rerender } = render(<MarkLabel key="first" {...props} />);
+      const first = input(container);
+
+      rerender(<MarkLabel key="second" {...props} />);
+      const second = input(container);
+
+      expect(second).not.toBe(first);
+      expect(document.activeElement).toBe(second);
+    });
+
+    it('stops chasing the focus once it has been left', () => {
+      const { input, rerenderWith } = renderComponent({ mark: { x: 1, y: 1, label: '' } });
+
+      expect(document.activeElement).toBe(input);
+
+      input.blur();
+      rerenderWith({ mark: { x: 1, y: 1, label: '' } });
+
+      expect(document.activeElement).not.toBe(input);
+    });
+
+    // outside of label mode the input is disabled, which is how an empty label that was loaded with
+    // the item is told apart from one the user has just added - label mode always starts off
+    it('is not focused while label mode is off', () => {
+      const { input } = renderComponent({ disabled: true, mark: { x: 1, y: 1, label: '' } });
+
+      expect(document.activeElement).not.toBe(input);
+    });
+
+    it('is not focused when label mode is turned on afterwards', () => {
+      const { rerenderWith, container } = renderComponent({ disabled: true, mark: { x: 1, y: 1, label: '' } });
+
+      rerenderWith({ disabled: false });
+
+      expect(document.activeElement).not.toBe(input(container));
+    });
+
+    it('is not focused when the mark is disabled', () => {
+      const { input } = renderComponent({ mark: { x: 1, y: 1, label: '', disabled: true } });
+
+      expect(document.activeElement).not.toBe(input);
     });
   });
 
