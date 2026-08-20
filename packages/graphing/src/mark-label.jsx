@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
 import AutosizeInput from 'react-input-autosize';
@@ -130,8 +130,14 @@ LabelInput.propTypes = {
 };
 
 export const MarkLabel = (props) => {
+  // the node is kept in a ref as well as in the state: the state is needed to reposition the label
+  // once it has a size, the ref is what the focus is asserted on - it is never a render behind
+  const inputNode = useRef(null);
   const [input, setInput] = useState(null);
-  const _ref = useCallback((node) => setInput(node));
+  const _ref = useCallback((node) => {
+    inputNode.current = node;
+    setInput(node);
+  }, []);
   const theme = useTheme();
 
   const { mark, graphProps, disabled, autoFocus, inputRef: externalInputRef } = props;
@@ -139,11 +145,21 @@ export const MarkLabel = (props) => {
   const [label, setLabel] = useState(mark.label);
   const { correctness, correctnesslabel, correctlabel } = mark;
 
-  const isFocused = () => !!input && typeof document !== 'undefined' && document.activeElement === input;
+  const isFocused = () =>
+    !!inputNode.current && typeof document !== 'undefined' && document.activeElement === inputNode.current;
+
+  // A label that has just been added is empty and its input is enabled - label mode has to be on
+  // for that to happen and it always starts off, so a mark that was loaded with an empty label
+  // cannot grab the focus. This is read from the mark rather than taken from the autoFocus prop
+  // because the tool that asked for the label can be remounted by the marks coming back from the
+  // host (async model save) before the input ever renders, and its autoFocus goes with it.
+  const isNewLabel = useRef(mark.label === '' && !disabled && !mark.disabled);
 
   const onChange = (e) => setLabel(e.target.value);
 
   const handleBlur = useCallback(() => {
+    isNewLabel.current = false;
+
     if (label === '') {
       props.onChange('');
     }
@@ -175,22 +191,33 @@ export const MarkLabel = (props) => {
   }, [debouncedLabel]);
 
   // A label that has just been added has to be focused so that it can be typed into right away.
-  // This also re-focuses the input if it gets remounted while it is being edited - saving the model
-  // is done by the host (api call) and the model that comes back can replace the input node.
+  // This runs after every render on purpose - there is no reliable single moment to focus at:
+  // the input shows up whenever the mark comes back from the (async) model save, and a remount
+  // of the input (same save, replaced node) drops the focus without this component being told.
+  // Asserting the focus on every render is what makes it stick; it is a no-op once the input has
+  // it, so the caret the user placed is left alone.
   useEffect(() => {
-    if (!autoFocus || !input || disabled || isFocused()) {
+    const node = inputNode.current;
+
+    // node.disabled, not the disabled prop: a disabled input silently ignores focus()
+    if ((!autoFocus && !isNewLabel.current) || !node || node.disabled || isFocused()) {
       return;
     }
 
-    input.focus();
+    node.focus();
+
+    // a new label is focused once, so it cannot fight over the focus with another one
+    if (isFocused()) {
+      isNewLabel.current = false;
+    }
 
     // keep the caret at the end, otherwise typing continues in front of the existing label
-    const caret = (input.value || '').length;
+    const caret = (node.value || '').length;
 
-    if (input.setSelectionRange) {
-      input.setSelectionRange(caret, caret);
+    if (node.setSelectionRange) {
+      node.setSelectionRange(caret, caret);
     }
-  }, [autoFocus, input, disabled]);
+  });
 
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
   const pos = position(graphProps, mark, rect);
