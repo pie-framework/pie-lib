@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import ActionDelete from '@mui/icons-material/Delete';
 import ArrowRight from '@mui/icons-material/SubdirectoryArrowRight';
 import IconButton from '@mui/material/IconButton';
-import { InputContainer } from '@pie-lib/render-ui';
+import { InputContainer, color } from '@pie-lib/render-ui';
 import EditableHtml from '@pie-lib/editable-html-tip-tap';
 import { InputCheckbox, InputRadio } from '../inputs';
 import FeedbackMenu from './feedback-menu';
@@ -61,8 +61,10 @@ const StyledFeedbackContainer = styled('div')(() => ({
   position: 'relative',
 }));
 
-const StyledArrowIcon = styled(ArrowRight)(({ theme }) => ({
-  fill: theme.palette.grey[400],
+// The arrow is a connector: it is the only thing tying the feedback field to the
+// choice above it, so it takes a stroke token that clears 3:1 in every scheme.
+const StyledArrowIcon = styled(ArrowRight)(() => ({
+  fill: color.border(),
   left: -56,
   position: 'absolute',
   top: 40,

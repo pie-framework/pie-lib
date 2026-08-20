@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { styled, useTheme } from '@mui/material/styles';
 import { NodeSelection } from 'prosemirror-state';
+import { color } from '@pie-lib/render-ui';
 
 import Bold from '@mui/icons-material/FormatBold';
 import Italic from '@mui/icons-material/FormatItalic';
@@ -528,7 +529,7 @@ const StyledMenuBar = (props) => {
   );
 };
 
-const StyledMenuBarRoot = styled('div')(({ theme }) => ({
+const StyledMenuBarRoot = styled('div')(() => ({
   '& .defaultToolbar': {
     display: 'flex',
     width: '100%',
@@ -552,20 +553,26 @@ const StyledMenuBarRoot = styled('div')(({ theme }) => ({
       height: '24px',
     },
     '&:hover': {
-      color: 'black',
+      color: color.text(),
     },
     '&:focus': {
-      outline: `2px solid ${theme.palette.grey[700]}`,
+      /*
+       * A focus ring is the one thing a keyboard user cannot do without, so it takes
+       * the registered focus token rather than a grey. `--pie-button-focus-outline`
+       * measures at least 3.68:1 against every scheme's own background; MUI's
+       * grey[700] fell to 1.28:1 on yellow-on-navy.
+       */
+      outline: `2px solid ${color.buttonFocusOutline()}`,
     },
   },
   '& .active': {
-    color: 'black',
+    color: color.text(),
   },
   '& .disabled': {
     opacity: 0.7,
     cursor: 'not-allowed',
     '& :hover': {
-      color: 'grey',
+      color: color.disabled(),
     },
   },
   '& .isActive': {
