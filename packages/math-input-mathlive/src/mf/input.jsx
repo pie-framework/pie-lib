@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import { loadMathLive, getMacros } from '../mathlive-instance';
+import { loadMathLive, getMacros, MATH_MODE_SPACE } from '../mathlive-instance';
 import { toMathLive, fromMathLive, keyToAction, KEYSTROKES } from '../latex-bridge';
 
 const log = debug('pie-lib:math-input-mathlive:input');
@@ -49,9 +49,16 @@ export class Input extends React.Component {
   }
 
   async componentDidMount() {
+    // MathLive loads asynchronously, so this method resumes after an await and
+    // has to know whether it is still the current mount. React StrictMode calls
+    // mount -> unmount -> mount on the SAME instance in dev, so a boolean
+    // "unmounted" flag would latch and block the remount from ever creating a
+    // field. A generation counter identifies the live mount instead: only the
+    // newest one proceeds, and a real unmount invalidates all pending ones.
+    const generation = (this.mountGeneration = (this.mountGeneration || 0) + 1);
     const ml = await loadMathLive();
 
-    if (!ml || !this.holderRef.current) {
+    if (generation !== this.mountGeneration || !ml || !this.holderRef.current || this.mathField) {
       return;
     }
 
@@ -64,15 +71,18 @@ export class Input extends React.Component {
 
     // pie drives input through its own keypad, so suppress MathLive's.
     this.mathField.mathVirtualKeyboardPolicy = 'manual';
+    // Without this the spacebar does nothing: MathLive's mathModeSpace
+    // defaults to an empty string.
+    this.mathField.mathModeSpace = MATH_MODE_SPACE;
 
     this.mathField.addEventListener('input', this.onInputEdit);
-    this.holderRef.current.appendChild(this.mathField);
+
+    // Belt and braces: drop anything a previous mount may have left behind.
+    this.holderRef.current.replaceChildren(this.mathField);
 
     if (this.props.innerRef) {
       this.props.innerRef(this);
     }
-
-    this.setState?.({});
   }
 
   componentDidUpdate(prevProps) {
@@ -99,6 +109,10 @@ export class Input extends React.Component {
   }
 
   componentWillUnmount() {
+    // Invalidate any mount still awaiting the MathLive load, so it does not
+    // append a field into a holder that is going away.
+    this.mountGeneration = (this.mountGeneration || 0) + 1;
+
     if (this.mathField) {
       this.mathField.removeEventListener('input', this.onInputEdit);
       this.mathField.remove();

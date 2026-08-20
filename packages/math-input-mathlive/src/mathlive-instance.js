@@ -67,6 +67,18 @@ export const configureFonts = (dir) => {
 };
 
 /**
+ * What the spacebar inserts in math mode.
+ *
+ * MathLive's `mathModeSpace` defaults to an empty string, which makes the
+ * spacebar a no-op - users cannot type a space at all. `\\ ` (a LaTeX control
+ * space) is what MathQuill serialised spaces as, so existing content and the
+ * MathJax renderer in @pie-lib/math-rendering both already understand it.
+ *
+ * A literal " " is not usable: LaTeX skips raw whitespace.
+ */
+export const MATH_MODE_SPACE = '\\ ';
+
+/**
  * Custom macros for the pie-specific commands that the MathQuill fork
  * understood but stock LaTeX does not.
  *

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import { loadMathLive, getMacros, latexToMarkup } from '../mathlive-instance';
+import { loadMathLive, getMacros, latexToMarkup, MATH_MODE_SPACE } from '../mathlive-instance';
 import { toMathLive, fromMathLive, fieldIds } from '../latex-bridge';
 import { placeholderStyles } from './common-styles';
 
@@ -64,28 +64,41 @@ export default class Static extends React.Component {
   }
 
   async componentDidMount() {
+    // See the note in mf/input.jsx: a generation counter, not a boolean, so a
+    // StrictMode mount -> unmount -> mount on the same instance still ends up
+    // with exactly one field.
+    const generation = (this.mountGeneration = (this.mountGeneration || 0) + 1);
+
     if (!this.isInteractive()) {
       await loadMathLive();
-      this.renderMarkup();
+
+      if (generation === this.mountGeneration) {
+        this.renderMarkup();
+      }
+
       return;
     }
 
     const ml = await loadMathLive();
 
-    if (!ml || !this.holderRef.current) {
+    if (generation !== this.mountGeneration || !ml || !this.holderRef.current || this.mathField) {
       return;
     }
 
     this.mathField = new ml.MathfieldElement({ macros: getMacros() });
     this.mathField.readOnly = true;
     this.mathField.mathVirtualKeyboardPolicy = 'manual';
+    // Without this the spacebar does nothing: MathLive's mathModeSpace
+    // defaults to an empty string.
+    this.mathField.mathModeSpace = MATH_MODE_SPACE;
     this.mathField.value = toMathLive(this.props.latex);
 
     this.mathField.addEventListener('input', this.onPromptInput);
     this.mathField.addEventListener('focusin', this.onPromptFocus);
     this.mathField.addEventListener('keydown', this.onKeyDown);
 
-    this.holderRef.current.appendChild(this.mathField);
+    // Belt and braces: drop anything a previous mount may have left behind.
+    this.holderRef.current.replaceChildren(this.mathField);
 
     this.createLiveRegion();
   }
@@ -103,6 +116,9 @@ export default class Static extends React.Component {
   }
 
   componentWillUnmount() {
+    // Invalidate any mount still awaiting the MathLive load.
+    this.mountGeneration = (this.mountGeneration || 0) + 1;
+
     if (this.mathField) {
       this.mathField.removeEventListener('input', this.onPromptInput);
       this.mathField.removeEventListener('focusin', this.onPromptFocus);
