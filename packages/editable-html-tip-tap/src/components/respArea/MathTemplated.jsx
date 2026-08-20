@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import { NodeViewWrapper } from '@tiptap/react';
 import { mq } from '@pie-lib/math-input';
 import { styled } from '@mui/material/styles';
+import { color } from '@pie-lib/render-ui';
 
 const StyledSpanContainer = styled('span')(() => ({
   display: 'inline-flex',
-  border: '1px solid #C0C3CF',
+  /*
+   * #C0C3CF is `--pie-blue-grey-300`'s default value, but that token is a fill: it
+   * measures 1.00:1 against black-on-rose's own background. The box outline is what
+   * marks the response slot in running text, so it takes the stroke token instead.
+   */
+  border: `1px solid ${color.border()}`,
   margin: '1px 5px',
   cursor: 'pointer',
   alignItems: 'center',
@@ -16,11 +22,12 @@ const StyledSpanContainer = styled('span')(() => ({
   height: 'fit-content',
 }));
 
-const StyledResponseBox = styled('div')(({ theme }) => ({
-  background: theme.palette.grey['A100'],
-  color: theme.palette.grey['A700'],
+const StyledResponseBox = styled('div')(() => ({
+  // Fill and ink move together so the label stays legible on whatever the fill becomes.
+  background: color.backgroundDark(),
+  color: color.text(),
   display: 'inline-flex',
-  borderRight: '2px solid #C0C3CF',
+  borderRight: `2px solid ${color.border()}`,
   boxSizing: 'border-box',
   overflow: 'hidden',
   fontSize: '12px',

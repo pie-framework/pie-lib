@@ -10,10 +10,14 @@ import HelpIcon from '@mui/icons-material/Help';
 import IconButton from '@mui/material/IconButton';
 import React from 'react';
 import { styled } from '@mui/material/styles';
+import { color } from '@pie-lib/render-ui';
 
-const StyledIconButton = styled(IconButton)(({ theme }) => ({
+const StyledIconButton = styled(IconButton)(() => ({
   '&:hover': {
-    color: theme.palette.grey[300],
+    // A decorative de-emphasis on hover -- the icon's resting state carries the
+    // affordance, so this does not need the 3:1 non-text minimum. MUI's grey[300]
+    // did not follow `--pie-*`, so it stayed #e0e0e0 on a dark scheme's surface.
+    color: color.borderLight(),
   },
 }));
 
