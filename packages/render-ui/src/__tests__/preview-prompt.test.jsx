@@ -345,10 +345,30 @@ describe('PreviewPrompt - Extended Tests', () => {
   });
 
   describe('accessibility', () => {
-    it('should have preview-prompt id for accessibility', () => {
-      render(<PreviewPrompt prompt="Accessible text" />);
-      const element = document.getElementById('preview-prompt');
-      expect(element).toBeInTheDocument();
+    it('should mark the container with the stable preview-prompt class', () => {
+      const { container } = render(<PreviewPrompt prompt="Accessible text" />);
+      expect(container.firstChild).toHaveClass('preview-prompt');
+    });
+
+    it('should not emit an id on the container', () => {
+      const { container } = render(<PreviewPrompt prompt="Accessible text" />);
+      expect(container.firstChild).not.toHaveAttribute('id');
+    });
+
+    it('should leave no duplicate ids when a page renders many prompts', () => {
+      const { container } = render(
+        <div>
+          <PreviewPrompt prompt="Item 1" />
+          <PreviewPrompt prompt="Item 2" />
+          <PreviewPrompt prompt="Item 3" />
+          <PreviewPrompt prompt="Item 4" />
+          <PreviewPrompt prompt="Item 5" />
+        </div>,
+      );
+
+      const ids = Array.from(container.querySelectorAll('[id]')).map((el) => el.id);
+
+      expect(ids).toEqual(Array.from(new Set(ids)));
     });
 
     it('should preserve semantic HTML', () => {
@@ -374,6 +394,39 @@ describe('PreviewPrompt - Extended Tests', () => {
       expect(screen.getByText('First prompt')).toBeInTheDocument();
       expect(screen.getByText('Second prompt')).toBeInTheDocument();
       expect(screen.getByText('Third prompt')).toBeInTheDocument();
+    });
+
+    it('should typeset each instance with its own node rather than the first prompt on the page', () => {
+      renderMath.mockClear();
+
+      render(
+        <div>
+          <PreviewPrompt prompt="First prompt" />
+          <PreviewPrompt prompt="Second prompt" />
+          <PreviewPrompt prompt="Third prompt" />
+        </div>,
+      );
+
+      const typesetNodes = renderMath.mock.calls.map(([node]) => node);
+
+      expect(typesetNodes).toHaveLength(3);
+      expect(new Set(typesetNodes).size).toBe(3);
+      expect(typesetNodes.map((node) => node.textContent)).toEqual(['First prompt', 'Second prompt', 'Third prompt']);
+    });
+
+    it('should align images within each instance independently', () => {
+      const { container } = render(
+        <div>
+          <PreviewPrompt prompt='<img src="a.png" alignment="center" />' />
+          <PreviewPrompt prompt='<img src="b.png" alignment="right" />' />
+        </div>,
+      );
+
+      const wrappers = container.querySelectorAll('.preview-prompt > div');
+
+      expect(wrappers).toHaveLength(2);
+      expect(wrappers[0].style.justifyContent).toBe('center');
+      expect(wrappers[1].style.justifyContent).toBe('flex-end');
     });
   });
 });

@@ -60,6 +60,10 @@ const StyledPromptContainer = styled('div')(({ theme, tagName }) => ({
 const NEWLINE_BLOCK_REGEX = /\\embed\{newLine\}\[\]/g;
 const NEWLINE_LATEX = '\\newline ';
 
+// stable hook for 'is this node inside a prompt' checks - a class rather than an id,
+// so it stays valid when a page renders more than one prompt
+const PROMPT_CLASS = 'preview-prompt';
+
 export class PreviewPrompt extends Component {
   static propTypes = {
     prompt: PropTypes.string,
@@ -77,6 +81,8 @@ export class PreviewPrompt extends Component {
   static defaultProps = {
     onClick: () => {},
   };
+
+  promptRef = React.createRef();
 
   parsedText = (text) => {
     const { customAudioButton } = this.props;
@@ -213,59 +219,61 @@ export class PreviewPrompt extends Component {
   }
 
   renderMathContent() {
-    const container = document.getElementById('preview-prompt');
+    const container = this.promptRef.current;
     if (container && typeof renderMath === 'function') {
       renderMath(container);
     }
   }
 
   alignImages() {
-    const previewPrompts = document.querySelectorAll('#preview-prompt');
+    const previewPrompt = this.promptRef.current;
 
-    previewPrompts.forEach((previewPrompt) => {
-      const images = previewPrompt.getElementsByTagName('img');
+    if (!previewPrompt) {
+      return;
+    }
 
-      if (images && images.length) {
-        for (let image of images) {
-          if (image.attributes && image.attributes.alignment && image.attributes.alignment.value) {
-            const alignment = image.attributes.alignment.value;
-            const justifyContent =
-              alignment === 'center' ? 'center' : alignment === 'right' ? 'flex-end' : 'flex-start';
+    const images = previewPrompt.getElementsByTagName('img');
 
-            const parentNode = image.parentElement;
+    if (images && images.length) {
+      for (let image of images) {
+        if (image.attributes && image.attributes.alignment && image.attributes.alignment.value) {
+          const alignment = image.attributes.alignment.value;
+          const justifyContent =
+            alignment === 'center' ? 'center' : alignment === 'right' ? 'flex-end' : 'flex-start';
 
-            if (
-              parentNode.tagName === 'DIV' &&
-              parentNode.style.display === 'flex' &&
-              parentNode.style.width === '100%'
-            ) {
-              parentNode.style.justifyContent = justifyContent;
-            } else {
-              const div = document.createElement('div');
-              div.style.display = 'flex';
-              div.style.width = '100%';
-              div.style.justifyContent = justifyContent;
+          const parentNode = image.parentElement;
 
-              const copyImage = image.cloneNode(true);
-              div.appendChild(copyImage);
-              parentNode.replaceChild(div, image);
-            }
+          if (
+            parentNode.tagName === 'DIV' &&
+            parentNode.style.display === 'flex' &&
+            parentNode.style.width === '100%'
+          ) {
+            parentNode.style.justifyContent = justifyContent;
+          } else {
+            const div = document.createElement('div');
+            div.style.display = 'flex';
+            div.style.width = '100%';
+            div.style.justifyContent = justifyContent;
+
+            const copyImage = image.cloneNode(true);
+            div.appendChild(copyImage);
+            parentNode.replaceChild(div, image);
           }
         }
       }
-    });
+    }
   }
 
   render() {
     const { prompt, tagName, className, onClick, defaultClassName } = this.props;
     // legend tag was added once with accessibility tasks, we need extra style to make it work with images alignment
     const legendClass = tagName === 'legend' ? 'legend' : '';
-    const customClasses = `${className || ''} ${defaultClassName || ''} ${legendClass}`.trim();
+    const customClasses = `${className || ''} ${defaultClassName || ''} ${legendClass} ${PROMPT_CLASS}`.trim();
 
     return (
       <StyledPromptContainer
         as={tagName || 'div'}
-        id={'preview-prompt'}
+        ref={this.promptRef}
         onClick={onClick}
         className={customClasses}
         tagName={tagName}
