@@ -38,6 +38,8 @@ export const defaults = {
   FOCUS_CHECKED_BORDER: '#1565C0',
   FOCUS_UNCHECKED: '#E0E0E0',
   FOCUS_UNCHECKED_BORDER: '#757575',
+  // the keyboard focus ring on a button or toolbar control
+  BUTTON_FOCUS_OUTLINE: '#3B82F6',
   // this is used for select text tokens
   BLUE_GREY100: '#F3F5F7',
   BLUE_GREY300: '#C0C3CF',
@@ -115,6 +117,7 @@ export const focusChecked = () => pv('focus-checked', defaults.FOCUS_CHECKED);
 export const focusCheckedBorder = () => pv('focus-checked-border', defaults.FOCUS_CHECKED_BORDER);
 export const focusUnchecked = () => pv('focus-unchecked', defaults.FOCUS_UNCHECKED);
 export const focusUncheckedBorder = () => pv('focus-unchecked-border', defaults.FOCUS_UNCHECKED_BORDER);
+export const buttonFocusOutline = () => pv('button-focus-outline', defaults.BUTTON_FOCUS_OUTLINE);
 
 export const blueGrey100 = () => pv('blue-grey-100', defaults.BLUE_GREY100);
 export const blueGrey300 = () => pv('blue-grey-300', defaults.BLUE_GREY300);
@@ -125,7 +128,8 @@ export const keypadButton = () => pv('keypad-button', defaults.KEYPAD_BUTTON);
 export const keypadButtonOperator = () => pv('keypad-button-operator', defaults.KEYPAD_BUTTON_OPERATOR);
 export const keypadEmptyPlaceholder = () => pv('keypad-empty-placeholder', defaults.KEYPAD_EMPTY_PLACEHOLDER);
 export const keypadButtonHover = () => pv('keypad-button-hover', defaults.KEYPAD_BUTTON_HOVER);
-export const keypadButtonOperatorHover = () => pv('keypad-button-operator-hover', defaults.KEYPAD_BUTTON_OPERATOR_HOVER);
+export const keypadButtonOperatorHover = () =>
+  pv('keypad-button-operator-hover', defaults.KEYPAD_BUTTON_OPERATOR_HOVER);
 export const keyBoardFocusIndicator = () => pv('keyboard-focus-indicator', defaults.KEY_BOARD_FOCUS_INDICATOR);
 export const buttonBorder = () => pv('button-border', defaults.BUTTON_BORDER);
 export const buttonHoverBg = () => pv('button-hover-bg', defaults.BUTTON_HOVER_BG);

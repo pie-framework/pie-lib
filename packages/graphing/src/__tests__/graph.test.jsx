@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@pie-lib/test-utils';
+import { act, fireEvent, render } from '@pie-lib/test-utils';
 import { graphProps } from './utils';
 import Graph, { removeBuildingToolIfCurrentToolDiffers } from '../graph';
 import { toolsArr } from '../tools';
@@ -717,5 +717,61 @@ describe('Graph', () => {
 
       expect(container.querySelector('#marks')).toBeInTheDocument();
     });
+  });
+});
+
+describe('label focus', () => {
+  // the marks are owned by the host and come back from a model save asynchronously; a mark that
+  // shows up in front of the labelled one changes its key, so the tool that handled the click is
+  // remounted and the editingLabel it set is gone before the label input ever renders
+  const Host = ({ shiftMarks }) => {
+    const [marks, setMarks] = React.useState([{ type: 'point', x: 2, y: 2 }]);
+
+    return (
+      <Graph
+        tools={toolsArr}
+        marks={marks}
+        labelModeEnabled={true}
+        onChangeMarks={(next) =>
+          setTimeout(() => setMarks(shiftMarks ? [{ type: 'point', x: 5, y: 5 }, ...next] : next), 30)
+        }
+        domain={{ min: 0, max: 10, step: 1 }}
+        range={{ min: 0, max: 10, step: 1 }}
+        size={{ width: 400, height: 400 }}
+        {...graphProps(0, 10, 0, 10)}
+      />
+    );
+  };
+
+  const clickPoint = (container) => {
+    const circle = container.querySelector('circle');
+
+    fireEvent.mouseDown(circle, { button: 0 });
+    fireEvent.mouseUp(circle, { button: 0 });
+    fireEvent.click(circle, { button: 0 });
+    act(() => jest.advanceTimersByTime(200));
+  };
+
+  beforeEach(() => jest.useFakeTimers());
+  afterEach(() => jest.useRealTimers());
+
+  it('focuses the label that was just added', () => {
+    const { container } = render(<Host />);
+
+    clickPoint(container);
+
+    const input = container.querySelector('foreignObject input');
+    expect(input).not.toBe(null);
+    expect(document.activeElement).toBe(input);
+  });
+
+  it('focuses the label even if the tool was remounted before it rendered', () => {
+    const { container } = render(<Host shiftMarks={true} />);
+
+    clickPoint(container);
+
+    const input = container.querySelector('foreignObject input');
+    expect(input).not.toBe(null);
+    expect(document.activeElement).toBe(input);
   });
 });

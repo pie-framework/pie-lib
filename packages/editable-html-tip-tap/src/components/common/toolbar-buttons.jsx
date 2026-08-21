@@ -2,11 +2,12 @@ import React from 'react';
 import debug from 'debug';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
+import { color } from '@pie-lib/render-ui';
 
 const StyledButton = styled('button', {
   shouldForwardProp: (prop) => !['active', 'disabled', 'extraStyles'].includes(prop),
-})(({ theme, active, disabled }) => ({
-  color: active ? 'black' : 'grey',
+})(({ active, disabled }) => ({
+  color: active ? color.text() : color.disabled(),
   display: 'inline-flex',
   padding: '2px',
   background: 'none',
@@ -18,10 +19,11 @@ const StyledButton = styled('button', {
     height: '24px',
   },
   '&:hover': {
-    color: disabled ? 'grey' : 'black',
+    color: disabled ? color.disabled() : color.text(),
   },
   '&:focus': {
-    outline: `2px solid ${theme.palette.grey[700]}`,
+    // See MenuBar: the focus ring takes the registered focus token, not a grey.
+    outline: `2px solid ${color.buttonFocusOutline()}`,
   },
   ...(disabled && {
     opacity: 0.7,

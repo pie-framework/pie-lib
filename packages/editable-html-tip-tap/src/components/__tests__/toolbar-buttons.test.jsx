@@ -1,6 +1,19 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
+import { color } from '@pie-lib/render-ui';
 import { Button, MarkButton, RawButton, RawMarkButton } from '../common/toolbar-buttons';
+
+/*
+ * jsdom does not resolve custom properties, so toHaveStyle() normalises `var(--x, y)`
+ * to the empty string and cannot compare it. These buttons now take their ink from
+ * `--pie-text`, so assert against the rule emotion emitted for the element's class.
+ */
+const declaredColor = (el) =>
+  Array.from(document.querySelectorAll('style'))
+    .flatMap((tag) => Array.from(tag.sheet?.cssRules || []))
+    .filter((rule) => Array.from(el.classList).some((c) => rule.selectorText?.includes(`.${c}`)))
+    .map((rule) => rule.style?.color)
+    .find(Boolean);
 
 describe('RawButton', () => {
   it('renders without crashing', () => {
@@ -58,7 +71,7 @@ describe('RawButton', () => {
       </RawButton>,
     );
     const button = getByText('Active');
-    expect(button).toHaveStyle({ color: 'black' });
+    expect(declaredColor(button)).toBe(color.text());
   });
 
   it('applies disabled style when disabled is true', () => {
@@ -196,7 +209,7 @@ describe('RawMarkButton', () => {
       </RawMarkButton>,
     );
     const button = getByText('B');
-    expect(button).toHaveStyle({ color: 'black' });
+    expect(declaredColor(button)).toBe(color.text());
   });
 
   it('has aria-label from label prop', () => {
