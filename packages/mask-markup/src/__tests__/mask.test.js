@@ -185,6 +185,104 @@ describe('Mask', () => {
     });
   });
 
+  describe('mark rendering', () => {
+    const markedLayout = (marks, text = 'x') => ({
+      nodes: [
+        {
+          object: 'text',
+          leaves: [{ marks, text }],
+        },
+      ],
+    });
+
+    it('renders a mark as an element, not as escaped html text', () => {
+      const { container } = render(<Mask {...defaultProps} layout={markedLayout([{ type: 'bold' }])} />);
+
+      const b = container.querySelector('b');
+      expect(b).toBeInTheDocument();
+      expect(b.textContent).toBe('x');
+      // the tag must not leak into the text content
+      expect(container.textContent).toBe('x');
+    });
+
+    it.each([
+      ['bold', 'b'],
+      ['italic', 'em'],
+      ['underline', 'u'],
+      ['strikethrough', 's'],
+      ['code', 'code'],
+      ['strong', 'strong'],
+    ])('maps the %s mark to a <%s> element', (markType, tag) => {
+      const { container } = render(<Mask {...defaultProps} layout={markedLayout([{ type: markType }])} />);
+
+      const el = container.querySelector(tag);
+      expect(el).toBeInTheDocument();
+      expect(el.textContent).toBe('x');
+    });
+
+    it('nests multiple marks, keeping the first mark as the outermost tag', () => {
+      const { container } = render(
+        <Mask {...defaultProps} layout={markedLayout([{ type: 'bold' }, { type: 'italic' }])} />,
+      );
+
+      const nested = container.querySelector('b > em');
+      expect(nested).toBeInTheDocument();
+      expect(nested.textContent).toBe('x');
+      expect(container.textContent).toBe('x');
+    });
+
+    it('nests three marks in mark order', () => {
+      const { container } = render(
+        <Mask
+          {...defaultProps}
+          layout={markedLayout([{ type: 'underline' }, { type: 'strikethrough' }, { type: 'italic' }])}
+        />,
+      );
+
+      const nested = container.querySelector('u > s > em');
+      expect(nested).toBeInTheDocument();
+      expect(nested.textContent).toBe('x');
+    });
+
+    it('renders plain text when no mark maps to a tag', () => {
+      const { container } = render(<Mask {...defaultProps} layout={markedLayout([{ type: 'unknown-mark' }])} />);
+
+      expect(container.textContent).toBe('x');
+      expect(container.firstChild.childNodes[0].nodeType).toBe(Node.TEXT_NODE);
+    });
+
+    it('wraps only the marks that map to a tag', () => {
+      const { container } = render(
+        <Mask {...defaultProps} layout={markedLayout([{ type: 'unknown-mark' }, { type: 'bold' }])} />,
+      );
+
+      const b = container.querySelector('b');
+      expect(b).toBeInTheDocument();
+      expect(b.textContent).toBe('x');
+      expect(container.textContent).toBe('x');
+    });
+
+    it('renders marked text inline alongside unmarked text', () => {
+      const { container } = render(
+        <Mask
+          {...defaultProps}
+          layout={{
+            nodes: [
+              { object: 'text', leaves: [{ text: 'Foo ' }] },
+              { object: 'text', leaves: [{ marks: [{ type: 'bold' }, { type: 'italic' }], text: 'x' }] },
+              { object: 'text', leaves: [{ text: ' bar' }] },
+            ],
+            object: 'block',
+            type: 'div',
+          }}
+        />,
+      );
+
+      expect(container.querySelector('b > em').textContent).toBe('x');
+      expect(container.textContent).toBe('Foo x bar');
+    });
+  });
+
   describe('spacer rendering for DnD components', () => {
     it('adds spacers before and after DnD blank components', () => {
       const mockRenderChildren = jest.fn((n) => {
