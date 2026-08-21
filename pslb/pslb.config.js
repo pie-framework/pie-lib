@@ -42,7 +42,33 @@ module.exports = {
    * for this reason - we have no packages to build.
    */
   packages: [],
-  range: '^',
+  /**
+   * Emit exact versions in the dll import urls (no caret). PIE-923.
+   *
+   * A caret in an emitted url (`shared-module@^5.2.13/module/index.js`) is resolved by the CDN
+   * at request time, and the browser keys module identity on the *url string* rather than on
+   * the file it resolves to. So one artifact can import the same lib under two spellings and
+   * get two module instances - two copies of React, and `useState` on a null dispatcher.
+   *
+   * That is not hypothetical: `^5.2.13`, `^5.2.14` and `5.2.14` all serve the byte-identical
+   * file, and @pie-element/extended-text-entry@15.1.10 still crashed, because its print.js
+   * spelled shared-module `^5.2.13` while the editable-html-module build it pulled spelled it
+   * `^5.2.14`.
+   *
+   * The invariant is therefore spelling identity, not version identity: every edge in the
+   * graph must spell each target byte-for-byte the same way. Exact urls give that by
+   * construction - a published artifact's urls can never be re-resolved by a later publish.
+   *
+   * IMPORTANT: this only holds if BOTH sides of every edge are exact. pie-elements emits the
+   * element->lib edges from its own pslb.config.js and must use `range: 'exact'` too, pinned
+   * to exact lib versions. A mixed regime (`@6.0.0` on one edge, `@^6.0.0` on another) is
+   * broken deterministically, not intermittently.
+   *
+   * NOTE: `range` is config-file only - there is no CLI flag for it.
+   *
+   * Verify any lib publish with `node scripts/preflight-exact-publish`.
+   */
+  range: 'exact',
   mode: 'production',
   minify: false,
   packagesDir,

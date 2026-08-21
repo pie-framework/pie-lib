@@ -1,0 +1,178 @@
+#!/usr/bin/env node
+/**
+ * Preflight for a dll lib publish, i.e. before running:
+ *
+ *   yarn pslb --config pslb/pslb.config.js --publishLibs --token <TOKEN> --cleanLibs --logLevel debug
+ *
+ * Run the dev build first so there is something to inspect:
+ *
+ *   yarn pslb --config pslb/pslb.config.js --devBuild --logLevel debug
+ *   node scripts/preflight-exact-publish
+ *
+ * WHY THIS EXISTS
+ * A caret in an emitted dll url is resolved by the CDN at request time, so one published
+ * artifact can end up importing the same lib under two different url strings. The browser
+ * keys module identity on the url string - not the resolved file - so that is two module
+ * instances, two copies of React, and `useState` on a null dispatcher. Verified: `^5.2.13`,
+ * `^5.2.14` and `5.2.14` all serve the identical file (same md5), and the crash still
+ * happened. The invariant is therefore *spelling* identity, not version identity:
+ *
+ *   every edge in the graph must spell each target byte-for-byte the same way.
+ *
+ * This script checks that invariant on the artifacts about to be published.
+ *
+ * TWO MODES, picked automatically:
+ *   - one-shot rollout: pslb.config.js still carries forceLibBump + forceLibBumpType.
+ *     Also requires the @pslb/pslb forceLibBumpType patch and clean x.0.0 versions.
+ *   - steady state: those flags have been removed (their intended end state).
+ *     Only the spelling/caret invariants are checked.
+ */
+const fs = require('fs');
+const path = require('path');
+const semver = require('semver');
+
+const root = path.resolve(__dirname, '..');
+const fail = [];
+const ok = [];
+const note = [];
+
+const config = require(path.join(root, 'pslb/pslb.config.js'));
+const oneShot = config.forceLibBump === true || config.forceLibBumpType !== undefined;
+
+// --- always required -------------------------------------------------------
+if (config.range !== 'exact') {
+  fail.push(`pslb.config.js range is ${JSON.stringify(config.range)}, expected 'exact'`);
+} else {
+  ok.push("range: 'exact'");
+}
+
+// --- one-shot rollout only -------------------------------------------------
+if (oneShot) {
+  note.push('ONE-SHOT ROLLOUT MODE (forceLibBump / forceLibBumpType present)');
+
+  if (config.forceLibBump !== true) {
+    fail.push('forceLibBumpType is set but forceLibBump is not true - nothing would be renumbered');
+  }
+  if (config.forceLibBumpType !== 'major') {
+    fail.push(
+      `forceLibBumpType is ${JSON.stringify(config.forceLibBumpType)}, expected 'major'.\n` +
+        '      A minor lands inside the carets already baked into published elements.',
+    );
+  }
+  if (config.forceLibBump === true && config.forceLibBumpType === 'major') {
+    ok.push("forceLibBump: true + forceLibBumpType: 'major'");
+  }
+
+  // stock pslb SILENTLY IGNORES forceLibBumpType and forces a minor instead
+  const libIndex = path.join(root, 'node_modules/@pslb/pslb/lib/library/index.js');
+  const src = fs.existsSync(libIndex) ? fs.readFileSync(libIndex, 'utf8') : '';
+  if (!src) {
+    fail.push(`missing ${libIndex} - run yarn install`);
+  } else if (src.includes('bump[forceLibBumpType]')) {
+    ok.push('@pslb/pslb carries the forceLibBumpType patch');
+  } else if (src.includes('bump.minor(publishedManifest.version)')) {
+    fail.push(
+      'node_modules/@pslb/pslb is UNPATCHED (still hardcodes bump.minor), and it ignores\n' +
+        '      forceLibBumpType without erroring. Publishing now would emit minors inside the\n' +
+        '      old carets. Re-apply the patch, then re-run the dev build.',
+    );
+  } else {
+    fail.push(`could not recognise the bump logic in ${libIndex} - inspect it by hand`);
+  }
+} else {
+  note.push('STEADY-STATE MODE (one-shot flags removed - the intended end state)');
+}
+
+// --- the artifacts on disk -------------------------------------------------
+const packagesDir = path.join(root, 'packages');
+const built = fs
+  .readdirSync(packagesDir)
+  .filter((f) => f.includes('@'))
+  .filter((f) => fs.existsSync(path.join(packagesDir, f, 'module/index.js')))
+  .sort();
+
+if (built.length === 0) {
+  fail.push(
+    'no built lib dirs in packages/ - run the dev build first:\n' +
+      '      yarn pslb --config pslb/pslb.config.js --devBuild --logLevel debug',
+  );
+}
+
+const spellings = {};
+
+for (const dir of built) {
+  const version = dir.slice(dir.lastIndexOf('@') + 1);
+  if (!semver.valid(version)) {
+    fail.push(`${dir}: not a valid version`);
+    continue;
+  }
+  if (oneShot && (semver.minor(version) !== 0 || semver.patch(version) !== 0)) {
+    fail.push(
+      `${dir}: expected a clean x.0.0 from the forced major, got ${version}.\n` +
+        '      Most likely the pslb patch is not in effect.',
+    );
+  }
+
+  const code = fs.readFileSync(path.join(packagesDir, dir, 'module/index.js'), 'utf8');
+  const urls = (code.match(/from *"[^"]*module\/index\.js"/g) || []).map((s) =>
+    s.slice(s.indexOf('"') + 1, -1),
+  );
+
+  const ranged = urls.filter((u) => u.includes('^') || u.includes('~'));
+  if (ranged.length) {
+    fail.push(`${dir}: range char in emitted url(s): ${ranged.join(', ')}`);
+  }
+
+  for (const url of urls) {
+    const nv = url.replace(/^(\.\.\/)+/, '').split('/')[0];
+    const bare = nv.slice(0, nv.lastIndexOf('@'));
+    spellings[bare] = spellings[bare] || new Set();
+    spellings[bare].add(nv);
+  }
+
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(packagesDir, dir, 'module/manifest.json'), 'utf8'),
+  );
+  const badModules = (manifest.modules || []).filter((m) => !semver.valid(m.version));
+  if (badModules.length) {
+    fail.push(`${dir}: manifest.modules has non-exact versions: ${JSON.stringify(badModules)}`);
+  }
+}
+
+if (built.length) {
+  ok.push(`${built.length} built libs: ${built.join(', ')}`);
+}
+
+for (const [bare, set] of Object.entries(spellings)) {
+  if (set.size > 1) {
+    fail.push(
+      `${bare} is spelled ${set.size} different ways: ${[...set].join(', ')}\n` +
+        '      That IS the duplicate-React bug - two url strings, two module instances.',
+    );
+  }
+}
+if (Object.keys(spellings).length) {
+  ok.push(`one spelling per dll target (${Object.keys(spellings).length} targets)`);
+}
+
+// --- report ----------------------------------------------------------------
+note.forEach((n) => console.log(`  ${n}`));
+console.log('');
+ok.forEach((o) => console.log(`  ok    ${o}`));
+
+if (fail.length === 0) {
+  console.log('\nPREFLIGHT PASS - safe to publish.\n');
+  console.log(
+    '  yarn pslb --config pslb/pslb.config.js --publishLibs --token <TOKEN> --cleanLibs --logLevel debug\n',
+  );
+  if (oneShot) {
+    console.log('Afterwards: delete forceLibBump + forceLibBumpType from pslb/pslb.config.js,');
+    console.log('keeping range: \'exact\'. Leaving them in renumbers every lib on every release.\n');
+  }
+  process.exit(0);
+}
+
+console.log('');
+fail.forEach((f) => console.log(`  FAIL  ${f}`));
+console.log('\nPREFLIGHT FAIL - do not publish.\n');
+process.exit(1);
