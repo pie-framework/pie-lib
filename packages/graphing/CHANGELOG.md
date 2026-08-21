@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.16...@pie-lib/graphing@4.0.17) (2026-08-21)
+
+### Bug Fixes
+
+- **graphing:** focus a new label even if its tool was remounted PIE-681 ([663177b](https://github.com/pie-framework/pie-lib/commit/663177b95aa73f4f53ee2aff31c3bde750435d6e))
+
 ## [4.0.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.15...@pie-lib/graphing@4.0.16) (2026-08-18)
 
 ### Bug Fixes

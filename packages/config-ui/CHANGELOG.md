@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@13.0.15...@pie-lib/config-ui@13.0.16) (2026-08-21)
+
+### Bug Fixes
+
+- **theming:** move the grey palette reads onto --pie-\* tokens PIE-856 ([9bbaf10](https://github.com/pie-framework/pie-lib/commit/9bbaf10ab25a050e4d1b727f84c7ad9fdc952f6a)), closes [#C0C3](https://github.com/pie-framework/pie-lib/issues/C0C3)
+
 ## [13.0.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/config-ui@13.0.14...@pie-lib/config-ui@13.0.15) (2026-08-18)
 
 **Note:** Version bump only for package @pie-lib/config-ui

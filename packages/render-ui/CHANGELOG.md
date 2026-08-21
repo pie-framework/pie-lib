@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@6.1.3...@pie-lib/render-ui@7.0.0) (2026-08-21)
+
+### Bug Fixes
+
+- **theming:** move the grey palette reads onto --pie-\* tokens PIE-856 ([9bbaf10](https://github.com/pie-framework/pie-lib/commit/9bbaf10ab25a050e4d1b727f84c7ad9fdc952f6a)), closes [#C0C3](https://github.com/pie-framework/pie-lib/issues/C0C3)
+
+- fix(render-ui)!: scope PreviewPrompt to its own node instead of a shared id PIE-927 ([6dc34c8](https://github.com/pie-framework/pie-lib/commit/6dc34c89df545dd675b5d17e107c30bca70af202))
+
+### BREAKING CHANGES
+
+- PreviewPrompt no longer renders id="preview-prompt". Consumers
+  matching on that id must match the `.preview-prompt` class instead, e.g.
+  audio.closest('#preview-prompt') becomes audio.closest('.preview-prompt').
+  Affects 5 pie-elements packages: multiple-choice, categorize, drag-in-the-blank,
+  hotspot, image-cloze-association.
+
 ## [6.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/render-ui@6.1.2...@pie-lib/render-ui@6.1.3) (2026-07-01)
 
 **Note:** Version bump only for package @pie-lib/render-ui

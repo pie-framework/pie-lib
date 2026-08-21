@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.14](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.13...@pie-lib/editable-html-tip-tap@2.1.14) (2026-08-21)
+
+### Bug Fixes
+
+- **theming:** move the grey palette reads onto --pie-\* tokens PIE-856 ([9bbaf10](https://github.com/pie-framework/pie-lib/commit/9bbaf10ab25a050e4d1b727f84c7ad9fdc952f6a)), closes [#C0C3](https://github.com/pie-framework/pie-lib/issues/C0C3)
+
 ## [2.1.13](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.12...@pie-lib/editable-html-tip-tap@2.1.13) (2026-08-18)
 
 ### Bug Fixes

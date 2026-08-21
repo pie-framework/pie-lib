@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@3.0.6...@pie-lib/math-toolbar@3.0.7) (2026-08-21)
+
+### Bug Fixes
+
+- **theming:** move the grey palette reads onto --pie-\* tokens PIE-856 ([9bbaf10](https://github.com/pie-framework/pie-lib/commit/9bbaf10ab25a050e4d1b727f84c7ad9fdc952f6a)), closes [#C0C3](https://github.com/pie-framework/pie-lib/issues/C0C3)
+
 ## [3.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/math-toolbar@3.0.5...@pie-lib/math-toolbar@3.0.6) (2026-07-01)
 
 **Note:** Version bump only for package @pie-lib/math-toolbar
