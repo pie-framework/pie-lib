@@ -32,7 +32,7 @@ const getMark = (n) => {
   const mark = n.leaves.find((leave) => get(leave, 'marks', []).length);
 
   if (mark) {
-    return mark.marks[0];
+    return mark.marks;
   }
 
   return null;
@@ -83,18 +83,20 @@ export const renderChildren = (layout, value, onChange, rootRenderChildren, pare
         const extraText = addText(parentNode, t);
         return extraText ? acc + extraText : acc;
       }, '');
-      const mark = getMark(n);
+      const marks = getMark(n);
 
-      if (mark) {
-        let markKey;
+      if (marks?.length > 0) {
+        const tagsToWrap = marks
+          .map((mark) => Object.keys(MARK_TAGS).find((markKey) => MARK_TAGS[markKey] === mark.type))
+          .filter(Boolean);
 
-        for (markKey in MARK_TAGS) {
-          if (MARK_TAGS[markKey] === mark.type) {
-            const Tag = markKey;
-
-            children.push(<Tag key={key}>{content}</Tag>);
-            break;
-          }
+        if (tagsToWrap.length > 0) {
+          // nest from the inside out so the first mark ends up as the outermost tag: <b><em>content</em></b>
+          children.push(
+            tagsToWrap.reduceRight((acc, Tag, tagIndex) => <Tag key={`${key}-${Tag}-${tagIndex}`}>{acc}</Tag>, content),
+          );
+        } else {
+          children.push(content);
         }
       } else if (content.length > 0) {
         children.push(content);
