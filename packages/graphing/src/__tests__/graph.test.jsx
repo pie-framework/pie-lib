@@ -765,6 +765,25 @@ describe('label focus', () => {
     expect(document.activeElement).toBe(input);
   });
 
+  // in the DNA env the focus is moved while the model save is handled, after the last render
+  it('takes the focus back when something steals it while the model is saved', () => {
+    const { container } = render(<Host />);
+
+    clickPoint(container);
+    const input = container.querySelector('foreignObject input');
+    expect(document.activeElement).toBe(input);
+
+    const elsewhere = document.createElement('input');
+    document.body.appendChild(elsewhere);
+    elsewhere.focus();
+    expect(document.activeElement).toBe(elsewhere);
+
+    act(() => jest.advanceTimersByTime(300));
+
+    expect(document.activeElement).toBe(input);
+    elsewhere.remove();
+  });
+
   it('focuses the label even if the tool was remounted before it rendered', () => {
     const { container } = render(<Host shiftMarks={true} />);
 
