@@ -47,22 +47,47 @@ const absoluteFontsDirectory = (dir) => {
 };
 
 /**
+ * Version-pinned CDN fallback for the KaTeX fonts.
+ *
+ * Some symbols are composed from Private Use Area glyphs that exist only in
+ * those fonts: `\\neq` is U+E020 (a negation slash) overlapped on `=`, and
+ * `\\nsim` / `\\ncong` work the same way. With no fonts the browser substitutes
+ * an arbitrary glyph for U+E020, so those keys render as garbage rather than
+ * simply falling back to a plainer face.
+ *
+ * The version comes from MathLive itself, so the fonts always match the engine.
+ * Hosts that would rather not depend on a third party should serve the fonts and
+ * call `configureFonts('/their/path')`, or pass `null` to opt out.
+ */
+const FALLBACK_MATHLIVE_VERSION = '0.110.0';
+
+const cdnFontsDirectory = () => {
+  const version = (mathlive && mathlive.version && mathlive.version.mathlive) || FALLBACK_MATHLIVE_VERSION;
+
+  // NOTE: `/fonts`, not `/dist/fonts` - the published package root holds them.
+  return `https://unpkg.com/mathlive@${version}/fonts`;
+};
+
+/**
  * Tell the package where the MathLive fonts are served from.
  *
- * Call before `loadMathLive()`. Accepts an absolute URL, a root-relative path
- * (`/mathlive-fonts`) or a relative one; pass `null` to skip font loading and
- * fall back to system fonts.
+ * Call before `loadMathLive()`.
+ *
+ *  - a path/URL: served by you, no third-party request
+ *  - `null`:     skip font loading; note `\\neq`, `\\nsim` and `\\ncong` then
+ *                render incorrectly, being built from Private Use Area glyphs
+ *  - not called: falls back to a version-pinned CDN
  *
  * The fonts ship inside the `mathlive` package (`node_modules/mathlive/fonts`)
- * and must be copied into whatever the host app serves statically.
+ * ready to copy into whatever the host app serves statically.
  *
- * @param {string|null} dir
+ * @param {string|null} [dir]
  */
 export const configureFonts = (dir) => {
   fontsDirectory = dir;
 
   if (mathlive) {
-    mathlive.MathfieldElement.fontsDirectory = absoluteFontsDirectory(dir);
+    mathlive.MathfieldElement.fontsDirectory = dir === undefined ? cdnFontsDirectory() : absoluteFontsDirectory(dir);
   }
 };
 
@@ -138,17 +163,19 @@ let loadWarned = false;
 /** Apply post-load configuration exactly once. */
 const configureLoaded = () => {
   // Always replace MathLive's relative `'./fonts/'` default: it throws
-  // "Invalid base URL" when bundled. Either point at the host app's copy or
-  // disable font loading, both of which are safe.
+  // "Invalid base URL" when bundled. Use the host's copy if one was configured,
+  // otherwise the version-pinned CDN.
   if (fontsDirectory === undefined) {
     log(
-      'no fontsDirectory configured - MathLive will use fallback fonts. ' +
-        'Call configureFonts("/path/to/fonts") with a copy of node_modules/mathlive/fonts to enable them.',
+      'no fontsDirectory configured - falling back to the CDN (%s). ' +
+        'Serve the fonts yourself and call configureFonts("/path/to/fonts") to avoid the network request, ' +
+        'or configureFonts(null) to opt out.',
+      cdnFontsDirectory(),
     );
   }
 
   mathlive.MathfieldElement.fontsDirectory =
-    fontsDirectory === undefined ? null : absoluteFontsDirectory(fontsDirectory);
+    fontsDirectory === undefined ? cdnFontsDirectory() : absoluteFontsDirectory(fontsDirectory);
 
   injectCoreStylesheet();
 };

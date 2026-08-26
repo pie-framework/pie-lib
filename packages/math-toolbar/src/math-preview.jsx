@@ -9,7 +9,7 @@ const { commonMqFontStyles, longdivStyles, supsubStyles } = mq.CommonMqStyles;
 
 const log = debug('@pie-lib:math-toolbar:math-preview');
 
-const MathPreviewContainer = styled('div')(({ theme, isSelected }) => ({
+const MathPreviewContainer = styled('div')(({ theme, isSelected, outlineOnWrapper }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   position: 'relative',
@@ -23,6 +23,12 @@ const MathPreviewContainer = styled('div')(({ theme, isSelected }) => ({
     border: isSelected ? 'solid 0px lightgrey' : 'solid 1px lightgrey',
     padding: isSelected ? '0px' : '5px',
   },
+  ...(!outlineOnWrapper && {
+    '&:not(:has(.ML__latex))': {
+      border: isSelected ? 'solid 0px lightgrey' : 'solid 1px lightgrey',
+      padding: isSelected ? '0px' : '5px',
+    },
+  }),
   '& > .mq-focused': {
     outline: 'none',
     boxShadow: 'none',
@@ -118,9 +124,10 @@ const MathPreviewContainer = styled('div')(({ theme, isSelected }) => ({
   '& span[data-prime="true"]': {
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif !important',
   },
-  ...(isSelected && {
-    border: `solid 1px ${theme.palette.primary.main}`,
-  }),
+  ...(isSelected &&
+    !outlineOnWrapper && {
+      border: `solid 1px ${theme.palette.primary.main}`,
+    }),
 }));
 
 const InsideOverlay = styled('span')({
@@ -135,6 +142,7 @@ export class RawMathPreview extends React.Component {
   static propTypes = {
     latex: PropTypes.string,
     isSelected: PropTypes.bool,
+    outlineOnWrapper: PropTypes.bool,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
   };
@@ -151,10 +159,10 @@ export class RawMathPreview extends React.Component {
   }
 
   render() {
-    const { isSelected, onFocus, onBlur, latex } = this.props;
+    const { isSelected, outlineOnWrapper, onFocus, onBlur, latex } = this.props;
     log('[render] latex: ', latex);
     return (
-      <MathPreviewContainer isSelected={isSelected}>
+      <MathPreviewContainer isSelected={isSelected} outlineOnWrapper={outlineOnWrapper}>
         {' '}
         <InsideOverlay />
         <mq.Static latex={latex} onFocus={onFocus} onBlur={onBlur} />

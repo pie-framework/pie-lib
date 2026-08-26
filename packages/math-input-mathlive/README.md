@@ -75,7 +75,7 @@ widget do not port and need a redesign (`mf.getElementInfo()` exposes per-elemen
 - **Stylesheets: import both, once, in the host app.**
 
   ```js
-  import 'mathlive/fonts.css';  // KaTeX @font-face rules
+  import 'mathlive/fonts.css'; // KaTeX @font-face rules
   import 'mathlive/static.css'; // REQUIRED for convertLatexToMarkup output
   ```
 
@@ -108,19 +108,28 @@ widget do not port and need a redesign (`mf.getElementInfo()` exposes per-elemen
   corrupt these fonts (it emits a JS module under a `.woff2` name). Exclude
   mathlive from such rules - see `packages/demo/next.config.js`.
 
+  **Fonts are required, not cosmetic.** Some symbols are composed from Private
+  Use Area glyphs that exist only in the KaTeX fonts: `\neq` is U+E020 (a
+  negation slash) overlapped on `=`, and `\nsim` / `\ncong` are the same. With
+  no fonts the browser substitutes an arbitrary glyph for U+E020, so those keys
+  render as garbage rather than in a plainer face.
+
   **Alternative** - serve the fonts yourself (a static path, or a CDN):
 
   ```js
   import { configureFonts } from '@pie-lib/math-input-mathlive';
 
   configureFonts('/mathlive-fonts'); // before loadMathLive()
-  configureFonts('https://unpkg.com/mathlive@0.110.0/dist/fonts');
-  configureFonts(null); // system fonts
+  configureFonts('https://unpkg.com/mathlive@0.110.0/fonts'); // note: /fonts, /dist/fonts 404s
+  configureFonts(null); // opt out; \neq and friends will render incorrectly
   ```
 
-  Paths are resolved to absolute URLs against `document.baseURI`. If you neither
-  import the stylesheet nor call `configureFonts`, the package disables font
-  loading rather than leaving MathLive's crashing default in place.
+  Paths are resolved to absolute URLs against `document.baseURI`.
+
+  If you neither import the stylesheet nor call `configureFonts`, the package
+  falls back to a **version-pinned CDN** - `https://unpkg.com/mathlive@<engine
+version>/fonts` - so those glyph-dependent symbols still render. Serve the
+  fonts yourself to avoid the third-party request.
 
 - **Custom macros.** `PIE_MACROS` covers the pie-specific commands the MathQuill
   fork understood (`\parallelogram`, `\longdiv`, `\napprox`, …) and is kept in

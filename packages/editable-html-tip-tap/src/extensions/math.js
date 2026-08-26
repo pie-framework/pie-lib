@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Node } from '@tiptap/core';
 import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
 import { NodeSelection, Plugin, PluginKey, TextSelection } from 'prosemirror-state';
+import { styled } from '@mui/material/styles';
 import { MathPreview, MathToolbar } from '@pie-lib/math-toolbar';
 import { wrapMath } from '@pie-lib/math-rendering';
 import { setToolbarOpened } from '../utils/toolbar';
@@ -115,6 +116,21 @@ export const ZeroWidthSpaceHandlingPlugin = new Plugin({
     },
   },
 });
+
+const StyledMathNodeWrapper = styled(NodeViewWrapper, {
+  shouldForwardProp: (prop) => prop !== 'selected',
+})(({ theme, selected }) => ({
+  display: 'inline-flex',
+  cursor: 'pointer',
+  margin: '0 4px',
+  '&:not(:has(.ML__latex))': {
+    border: 'solid 1px lightgrey',
+    padding: '5px',
+  },
+  ...(selected && {
+    border: `solid 1px ${theme.palette.primary.main}`,
+  }),
+}));
 
 export const MathNode = Node.create({
   name: 'math',
@@ -400,17 +416,9 @@ export const MathNodeView = (props) => {
   }, [editor, showToolbar, node]);
 
   return (
-    <NodeViewWrapper
-      className={`math-node-${timestamp.current}`}
-      style={{
-        display: 'inline-flex',
-        cursor: 'pointer',
-        margin: '0 4px',
-      }}
-      data-selected={selected}
-    >
+    <StyledMathNodeWrapper className={`math-node-${timestamp.current}`} selected={selected} data-selected={selected}>
       <div ref={nodeRef} onClick={() => setShowToolbar(true)} contentEditable={false}>
-        <MathPreview latex={latex} />
+        <MathPreview latex={latex} isSelected={selected} outlineOnWrapper />
       </div>
       {showToolbar &&
         ReactDOM.createPortal(
@@ -441,6 +449,6 @@ export const MathNodeView = (props) => {
           </div>,
           editor?._tiptapContainerEl || document.body,
         )}
-    </NodeViewWrapper>
+    </StyledMathNodeWrapper>
   );
 };

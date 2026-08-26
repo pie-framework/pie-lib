@@ -765,11 +765,13 @@ describe('MathNodeView', () => {
       dateNowSpy.mockRestore();
     });
 
+    // The wrapper is an emotion styled() component, so className also carries
+    // emotion's generated class - assert on the math-node token, not equality.
     it('assigns a timestamp-based class to NodeViewWrapper', () => {
       const { getByTestId } = render(<MathNodeView {...defaultProps} />);
       const wrapper = getByTestId('node-view-wrapper');
 
-      expect(wrapper.className).toMatch(/^math-node-\d+$/);
+      expect(Array.from(wrapper.classList).some((c) => /^math-node-\d+$/.test(c))).toBe(true);
     });
 
     it('assigns a different class to each MathNodeView instance', () => {
@@ -781,8 +783,12 @@ describe('MathNodeView', () => {
       );
 
       const wrappers = getAllByTestId('node-view-wrapper');
-      expect(wrappers[0].className).toBe('math-node-1000');
-      expect(wrappers[1].className).toBe('math-node-1001');
+      const mathNodeClass = (el) => Array.from(el.classList).find((c) => c.startsWith('math-node-'));
+
+      expect(mathNodeClass(wrappers[0])).toBe('math-node-1000');
+      expect(mathNodeClass(wrappers[1])).toBe('math-node-1001');
+      // and they must differ
+      expect(mathNodeClass(wrappers[0])).not.toBe(mathNodeClass(wrappers[1]));
     });
 
     it('closes toolbar when clicking a different math node', async () => {
@@ -835,9 +841,7 @@ describe('MathNodeView', () => {
         },
       };
 
-      const { queryByTestId, rerender } = render(
-        <MathNodeView {...defaultProps} editor={editor} selected={false} />,
-      );
+      const { queryByTestId, rerender } = render(<MathNodeView {...defaultProps} editor={editor} selected={false} />);
       rerender(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
 
       await act(async () => {});
@@ -853,9 +857,7 @@ describe('MathNodeView', () => {
         },
       };
 
-      const { queryByTestId, rerender } = render(
-        <MathNodeView {...defaultProps} editor={editor} selected={false} />,
-      );
+      const { queryByTestId, rerender } = render(<MathNodeView {...defaultProps} editor={editor} selected={false} />);
       rerender(<MathNodeView {...defaultProps} editor={editor} selected={true} />);
 
       await act(async () => {});

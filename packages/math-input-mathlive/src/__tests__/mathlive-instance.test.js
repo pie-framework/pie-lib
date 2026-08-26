@@ -150,6 +150,46 @@ describe('mathlive-instance', () => {
       expect(MathfieldElement.fontsDirectory.startsWith('http')).toBe(true);
     });
 
+    // \neq, \nsim and \ncong are built from Private Use Area glyphs that only
+    // the KaTeX fonts contain, so "no fonts" renders garbage rather than
+    // degrading gracefully - hence a CDN fallback by default.
+    it('falls back to a version-pinned CDN when nothing is configured', () => {
+      const MathfieldElement = {};
+
+      instance.__setMathLiveForTest({ MathfieldElement, version: { mathlive: '9.9.9' } });
+      instance.configureFonts(undefined);
+
+      expect(MathfieldElement.fontsDirectory).toEqual('https://unpkg.com/mathlive@9.9.9/fonts');
+    });
+
+    it('uses /fonts, not /dist/fonts (the latter 404s on unpkg)', () => {
+      const MathfieldElement = {};
+
+      instance.__setMathLiveForTest({ MathfieldElement, version: { mathlive: '0.110.0' } });
+      instance.configureFonts(undefined);
+
+      expect(MathfieldElement.fontsDirectory).toEqual('https://unpkg.com/mathlive@0.110.0/fonts');
+      expect(MathfieldElement.fontsDirectory).not.toContain('/dist/');
+    });
+
+    it('a configured path wins over the CDN', () => {
+      const MathfieldElement = {};
+
+      instance.__setMathLiveForTest({ MathfieldElement, version: { mathlive: '0.110.0' } });
+      instance.configureFonts('/mathlive-fonts');
+
+      expect(MathfieldElement.fontsDirectory).not.toContain('unpkg.com');
+    });
+
+    it('null still opts out entirely', () => {
+      const MathfieldElement = {};
+
+      instance.__setMathLiveForTest({ MathfieldElement, version: { mathlive: '0.110.0' } });
+      instance.configureFonts(null);
+
+      expect(MathfieldElement.fontsDirectory).toBeNull();
+    });
+
     it('leaves a fully-qualified url untouched', () => {
       const MathfieldElement = {};
 
