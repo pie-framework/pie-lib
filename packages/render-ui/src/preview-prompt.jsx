@@ -10,16 +10,28 @@ const StyledPromptContainer = styled('div')(({ theme, tagName }) => ({
   '&:not(.MathJax) > table:not([role="presentation"])': {
     borderCollapse: 'collapse',
   },
-  // Apply vertical striping when first column is a header (th) and NOT mixed with td
+  /*
+   * The editor writes border="1", and the UA answers it with `border-style: outset`
+   * on the table and `inset` on the cells -- which browsers paint as synthesized 3D
+   * shades rather than the colour the border resolves to, so the grid comes out grey
+   * on every scheme (1.19:1 on black-on-violet). `solid` is what removes the
+   * shading; without it, setting the colour has no effect.
+   */
+  '&:not(.MathJax) table[border]:not([role="presentation"]), &:not(.MathJax) table[border]:not([role="presentation"]) td, &:not(.MathJax) table[border]:not([role="presentation"]) th':
+    {
+      borderStyle: 'solid',
+      borderColor: color.tableGrid(),
+    },
+  // Apply vertical striping when first column is a header (th) and NOT mixed with td.
+  // Ink stays at 5.44:1 or better on tableStripe in every scheme, so the cell inherits
+  // its text colour rather than pinning the `color: black` this used to carry.
   '&:not(.MathJax) > table:not([role="presentation"]):has(tbody tr > th:first-child):not(:has(tbody tr > td:first-child)) tbody td:nth-child(even)':
     {
-      backgroundColor: '#f6f8fa',
-      color: theme.palette.common.black,
+      backgroundColor: color.tableStripe(),
     },
   // Apply horizontal striping for tables where first element is a data cell (td)
   '&:not(.MathJax) > table:not([role="presentation"]):has(tbody tr > td:first-child) tbody tr:nth-child(even) td': {
-    backgroundColor: '#f6f8fa',
-    color: theme.palette.common.black,
+    backgroundColor: color.tableStripe(),
   },
   // align table content to left as per STAR requirement PD-3687
   '&:not(.MathJax) table:not([role="presentation"]) td, &:not(.MathJax) table:not([role="presentation"]) th': {
