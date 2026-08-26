@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { renderMath } from '@pie-lib/math-rendering';
 import debug from 'debug';
 import { useDraggable, useDroppable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
 import { styled } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import classnames from 'classnames';
@@ -12,21 +11,31 @@ import { grey } from '@mui/material/colors';
 
 const log = debug('pie-lib:mask-markup:blank');
 
-const StyledContent = styled('span')(({ dragged, over }) => ({
+const StyledContent = styled('span')(({ dragged, over, selected, showsPointerCursor }) => ({
   border: `solid 0px ${color.primary()}`,
   minWidth: '200px',
-  touchAction: 'none',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   opacity: 1,
+  cursor: 'default',
   ...(over && {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   }),
-  ...(dragged && {
+  ...((dragged || selected) && {
     opacity: 0.5,
   }),
+  ...(showsPointerCursor && {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  }),
 }));
+
+const StyledDragHandle = styled('span')({
+  display: 'inline-flex',
+  touchAction: 'none',
+});
 
 const StyledChip = styled(Chip)(() => ({
   backgroundColor: color.background(),
@@ -341,23 +350,40 @@ function DragDropBlank({
   emptyResponseAreaWidth,
   emptyResponseAreaHeight,
   instanceId,
+  selectedItem,
+  onSelectClick,
+  onPlacementClick,
 }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const dragData = {
+    id,
+    choice,
+    instanceId,
+    fromChoice: false, // This is from a blank, not from choices
+    type: 'MaskBlank',
+  };
+
   // Setup draggable functionality
   const {
     attributes: dragAttributes,
     listeners: dragListeners,
     setNodeRef: setDragNodeRef,
-    transform,
     isDragging,
   } = useDraggable({
     id: `mask-blank-drag-${id}`,
     disabled: disabled || !choice,
-    data: {
-      id: id,
-      choice: choice,
-      instanceId: instanceId,
-      fromChoice: false, // This is from a blank, not from choices
-      type: 'MaskBlank',
+    data: dragData,
+    // dnd-kit's own `attributes` default tabIndex to 0 unconditionally, even when
+    // `disabled` — so a non-draggable (empty) blank stays a native Tab stop of its own.
+    // For a drop-zone (droppable blank), that duplicates the outer wrapper's own tab stop
+    // (see isNativeTabStop below) at the exact same position, so Tab/Shift+Tab has to
+    // pass through both to move anywhere visibly, making every other press look like a
+    // no-op. Drop it out of the tab order here whenever it isn't independently
+    // reachable/interactive, leaving the outer wrapper (for an empty blank) or
+    // nothing (for a disabled blank) as the sole stop.
+    attributes: {
+      tabIndex: choice && !disabled ? 0 : -1,
     },
   });
 
@@ -375,38 +401,82 @@ function DragDropBlank({
     },
   });
 
-  // Combine refs for both drag and drop
-  const setNodeRef = (node) => {
-    setDragNodeRef(node);
-    setDropNodeRef(node);
+  const isSelected = !!selectedItem && selectedItem.fromChoice === false && selectedItem.id === id;
+
+  const handleClick = () => {
+    if (disabled) return;
+
+    if (isSelected) {
+      // Clicking this blank's already-selected content again deselects it.
+      onSelectClick?.(dragData);
+    } else if (selectedItem) {
+      // Something else is selected — place it here, whether this blank is currently
+      // empty or already filled (the same commitPlacement logic drag-and-drop uses).
+      onPlacementClick?.(id);
+    } else if (choice) {
+      // Nothing selected yet, and this blank holds an answer — select it for moving
+      // elsewhere, the same way Tab+Space/Enter does.
+      onSelectClick?.(dragData);
+    }
+
+    // Empty blank clicked with nothing selected: nothing to place or select.
   };
 
-  const style = {
-    transform: CSS.Translate.toString(transform),
+  // An empty blank isn't draggable, so dnd-kit's own attributes (only applied to the
+  // inner node, and only when draggable) never make it tabbable — this outer wrapper
+  // needs its own focus/activation handling so "select a choice, then Tab to a blank
+  // and press Space/Enter" works even when the blank is empty. This is independent of,
+  // and doesn't change, the existing in-drag Tab-cycling (that's driven by an active
+  // dnd-kit drag, not native focus).
+  //
+  // Only made a native Tab stop when NOT draggable (i.e. empty): when the blank is
+  // filled, the inner node is already independently tabbable via dnd-kit's own
+  // attributes for the existing pick-up-to-move gesture, and adding a second, outer Tab
+  // stop for the same visual chip would add an extra stop to the existing Tab order —
+  // the same double-tab-stop bug already found and fixed once in match-list/image-
+  // cloze-association's equivalent code.
+  const isNativeTabStop = !choice && !disabled;
+  const isInnerDraggable = !!choice && !disabled;
+
+  const handleKeyDown = (e) => {
+    if (e.code === 'Space' || e.code === 'Enter') {
+      e.preventDefault();
+      handleClick();
+    }
   };
+
+  const hasSelection = !!selectedItem;
+  const showsHoverEffect = isOver || (hasSelection && isHovered && !disabled);
 
   return (
     <StyledContent
-      ref={setNodeRef}
-      style={style}
+      ref={setDropNodeRef}
+      role={isNativeTabStop ? 'button' : undefined}
+      tabIndex={isNativeTabStop ? 0 : -1}
+      onClick={handleClick}
+      onKeyDown={isNativeTabStop ? handleKeyDown : undefined}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       dragged={isDragging}
-      over={isOver}
-      {...dragAttributes}
-      {...dragListeners}
+      over={showsHoverEffect}
+      selected={isSelected}
+      showsPointerCursor={hasSelection && !disabled}
     >
-      <BlankContent
-        id={id}
-        disabled={disabled}
-        duplicates={duplicates}
-        choice={choice}
-        isOver={isOver}
-        dragItem={dragItem?.data?.current}
-        correct={correct}
-        onChange={onChange}
-        emptyResponseAreaWidth={emptyResponseAreaWidth}
-        emptyResponseAreaHeight={emptyResponseAreaHeight}
-        instanceId={instanceId}
-      />
+      <StyledDragHandle ref={setDragNodeRef} {...(isInnerDraggable ? dragAttributes : {})} {...dragListeners}>
+        <BlankContent
+          id={id}
+          disabled={disabled}
+          duplicates={duplicates}
+          choice={choice}
+          isOver={showsHoverEffect}
+          dragItem={dragItem?.data?.current}
+          correct={correct}
+          onChange={onChange}
+          emptyResponseAreaWidth={emptyResponseAreaWidth}
+          emptyResponseAreaHeight={emptyResponseAreaHeight}
+          instanceId={instanceId}
+        />
+      </StyledDragHandle>
     </StyledContent>
   );
 }
@@ -426,6 +496,9 @@ DragDropBlank.propTypes = {
   emptyResponseAreaWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   emptyResponseAreaHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   instanceId: PropTypes.string,
+  selectedItem: PropTypes.object,
+  onSelectClick: PropTypes.func,
+  onPlacementClick: PropTypes.func,
 };
 
 export default DragDropBlank;

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, fireEvent } from '@testing-library/react';
 import Blank from '../blank';
 
 // Mock @dnd-kit hooks to avoid DndContext requirement
 jest.mock('@dnd-kit/core', () => ({
-  useDraggable: jest.fn(() => ({
-    attributes: {},
+  useDraggable: jest.fn((options) => ({
+    attributes: options?.attributes || {},
     listeners: {},
     setNodeRef: jest.fn(),
     transform: null,
@@ -163,8 +163,9 @@ describe('Blank', () => {
         jest.runAllTimers();
       });
 
-      const wrapper = container.firstChild; // StyledContent
-      const chip = wrapper && wrapper.firstChild; // StyledChip (rootRef)
+      const wrapper = container.firstChild; // StyledContent (outer droppable/click node)
+      const dragHandle = wrapper && wrapper.firstChild; // StyledDragHandle (inner draggable node)
+      const chip = dragHandle && dragHandle.firstChild; // StyledChip (rootRef)
 
       // Width and height should include padding (24px) around measured content
       expect(chip.style.width).toBe('129px');
@@ -227,6 +228,186 @@ describe('Blank', () => {
       const { container } = render(<Blank {...defaultProps} isOver={true} dragItem={{ choice: { value: 'Dog' } }} />);
       expect(container.firstChild).toBeInTheDocument();
       // Should show visual feedback for drag over
+    });
+  });
+
+  describe('click-to-select and click-to-place', () => {
+    const { useDroppable } = require('@dnd-kit/core');
+
+    afterEach(() => {
+      useDroppable.mockReturnValue({ setNodeRef: jest.fn(), isOver: false, active: null });
+    });
+
+    it('is a native tab stop (role=button, tabIndex=0) when empty and not disabled', () => {
+      const { container } = render(<Blank {...defaultProps} choice={undefined} />);
+      const outer = container.firstChild;
+
+      expect(outer.getAttribute('role')).toBe('button');
+      expect(outer.getAttribute('tabindex')).toBe('0');
+    });
+
+    it('is not a tab stop when it already holds a choice (relies on the inner draggable node)', () => {
+      const { container } = render(<Blank {...defaultProps} />);
+      const outer = container.firstChild;
+
+      expect(outer.getAttribute('role')).toBeNull();
+      expect(outer.getAttribute('tabindex')).toBe('-1');
+    });
+
+    it('is not a tab stop when disabled, even if empty', () => {
+      const { container } = render(<Blank {...defaultProps} choice={undefined} disabled={true} />);
+      const outer = container.firstChild;
+
+      expect(outer.getAttribute('tabindex')).toBe('-1');
+    });
+
+    it('does not make the inner draggable node a second tab stop when the blank is empty', () => {
+      const { container } = render(<Blank {...defaultProps} choice={undefined} selectedItem={null} />);
+      const outer = container.firstChild;
+      const inner = outer.firstElementChild;
+
+      expect(outer.getAttribute('tabindex')).toBe('0');
+      // dragAttributes (which carries tabIndex) is only spread onto the inner node when
+      // it's the live tab stop (filled and not disabled) — otherwise it's omitted
+      // entirely, so no tabindex attribute is present at all here.
+      expect(inner.getAttribute('tabindex')).toBeNull();
+    });
+
+    it('makes the inner draggable node the tab stop when the blank is filled and not disabled', () => {
+      const { container } = render(<Blank {...defaultProps} selectedItem={null} />);
+      const outer = container.firstChild;
+      const inner = outer.firstElementChild;
+
+      expect(inner.getAttribute('tabindex')).toBe('0');
+    });
+
+    it('selects this blank\'s content on click when nothing else is selected', () => {
+      const onSelectClick = jest.fn();
+      const { container } = render(
+        <Blank {...defaultProps} id="3" selectedItem={null} onSelectClick={onSelectClick} />,
+      );
+
+      fireEvent.click(container.firstChild);
+
+      expect(onSelectClick).toHaveBeenCalledWith({
+        id: '3',
+        choice: defaultProps.choice,
+        instanceId: undefined,
+        fromChoice: false,
+        type: 'MaskBlank',
+      });
+    });
+
+    it('toggles off when clicking its own already-selected content', () => {
+      const onSelectClick = jest.fn();
+      const selectedItem = { id: '3', choice: defaultProps.choice, instanceId: undefined, fromChoice: false, type: 'MaskBlank' };
+      const { container } = render(
+        <Blank {...defaultProps} id="3" selectedItem={selectedItem} onSelectClick={onSelectClick} />,
+      );
+
+      fireEvent.click(container.firstChild);
+
+      expect(onSelectClick).toHaveBeenCalledWith(selectedItem);
+    });
+
+    it('places the current selection here when clicking a different, already-filled blank', () => {
+      const onPlacementClick = jest.fn();
+      const selectedItem = { choice: { value: 'Other' }, instanceId: undefined, fromChoice: true, type: 'MaskBlank' };
+      const { container } = render(
+        <Blank {...defaultProps} id="3" selectedItem={selectedItem} onPlacementClick={onPlacementClick} />,
+      );
+
+      fireEvent.click(container.firstChild);
+
+      expect(onPlacementClick).toHaveBeenCalledWith('3');
+    });
+
+    it('places the current selection here on Space/Enter when empty', () => {
+      const onPlacementClick = jest.fn();
+      const selectedItem = { choice: { value: 'Other' }, instanceId: undefined, fromChoice: true, type: 'MaskBlank' };
+      const { container } = render(
+        <Blank {...defaultProps} id="3" choice={undefined} selectedItem={selectedItem} onPlacementClick={onPlacementClick} />,
+      );
+
+      fireEvent.keyDown(container.firstChild, { code: 'Space' });
+
+      expect(onPlacementClick).toHaveBeenCalledWith('3');
+    });
+
+    it('does nothing on click when empty and nothing is selected', () => {
+      const onSelectClick = jest.fn();
+      const onPlacementClick = jest.fn();
+      const { container } = render(
+        <Blank {...defaultProps} choice={undefined} selectedItem={null} onSelectClick={onSelectClick} onPlacementClick={onPlacementClick} />,
+      );
+
+      fireEvent.click(container.firstChild);
+
+      expect(onSelectClick).not.toHaveBeenCalled();
+      expect(onPlacementClick).not.toHaveBeenCalled();
+    });
+
+    it('does nothing on click when disabled', () => {
+      const onSelectClick = jest.fn();
+      const selectedItem = { choice: { value: 'Other' }, instanceId: undefined, fromChoice: true, type: 'MaskBlank' };
+      const { container } = render(
+        <Blank {...defaultProps} disabled={true} selectedItem={selectedItem} onSelectClick={onSelectClick} />,
+      );
+
+      fireEvent.click(container.firstChild);
+
+      expect(onSelectClick).not.toHaveBeenCalled();
+    });
+
+    it('folds click-selection hover into the same highlight a live drag-over shows', () => {
+      const selectedItem = { choice: { value: 'Other' }, instanceId: undefined, fromChoice: true, type: 'MaskBlank' };
+      const { container } = render(<Blank {...defaultProps} id="3" selectedItem={selectedItem} />);
+      const outer = container.firstChild;
+
+      fireEvent.mouseEnter(outer);
+      // The "over" prop drives the same CSS the real isOver-driven highlight uses —
+      // assert via the rendered chip's className, since StyledContent forwards `over`.
+      // Re-render check: BlankContent receives the folded isOver as true while hovered
+      // with a selection active — verified indirectly via the "over" chip class it sets.
+      expect(screen.getByText('Cow').closest('.over')).not.toBeNull();
+
+      fireEvent.mouseLeave(outer);
+      expect(screen.getByText('Cow').closest('.over')).toBeNull();
+    });
+
+    it('shows a pointer cursor on hover when something is selected', () => {
+      const selectedItem = { choice: { value: 'Other' }, instanceId: undefined, fromChoice: true, type: 'MaskBlank' };
+      const { container } = render(<Blank {...defaultProps} id="3" selectedItem={selectedItem} />);
+      const outer = container.firstChild;
+      const className = Array.from(outer.classList).find((c) => c.startsWith('css-'));
+
+      const hoverRule = collectEmotionRules().find((r) => r.includes(`.${className}:hover`));
+
+      expect(hoverRule).toBeDefined();
+      expect(hoverRule).toMatch(/cursor:\s*pointer/);
+    });
+
+    it('keeps the default cursor on hover when nothing is selected', () => {
+      const { container } = render(<Blank {...defaultProps} id="3" selectedItem={null} />);
+      const outer = container.firstChild;
+      const className = Array.from(outer.classList).find((c) => c.startsWith('css-'));
+
+      const hoverRule = collectEmotionRules().find((r) => r.includes(`.${className}:hover`));
+
+      expect(hoverRule).toBeUndefined();
+    });
+
+    it('keeps the default cursor on hover when disabled, even with something selected', () => {
+      const selectedItem = { choice: { value: 'Other' }, instanceId: undefined, fromChoice: true, type: 'MaskBlank' };
+      const { container } = render(
+        <Blank {...defaultProps} id="3" disabled={true} selectedItem={selectedItem} />,
+      );
+      const outer = container.firstChild;
+      const className = Array.from(outer.classList).find((c) => c.startsWith('css-'));
+
+      const hoverRule = collectEmotionRules().find((r) => r.includes(`.${className}:hover`));
+
+      expect(hoverRule).toBeUndefined();
     });
   });
 });
