@@ -409,7 +409,8 @@ describe('Component', () => {
       expect(document.activeElement).not.toBe(labelNode.querySelector('input'));
     });
 
-    it('stops auto focusing the label once it is blurred', () => {
+    // the blur that the DNA env causes by moving the focus is not the user leaving the label
+    it('keeps the focus on a new empty label that something else blurred', () => {
       const { container } = render(<Controlled initialMark={xy(1, 1)} labelModeEnabled={true} />);
 
       clickPoint(container);
@@ -417,9 +418,23 @@ describe('Component', () => {
       expect(document.activeElement).toBe(input);
 
       fireEvent.blur(input);
+      fireEvent.change(input, { target: { value: 'A' } });
+
+      expect(document.activeElement).toBe(input);
+    });
+
+    it('stops auto focusing the label once it has text and is blurred', () => {
+      const { container } = render(<Controlled initialMark={xy(1, 1)} labelModeEnabled={true} />);
+
+      clickPoint(container);
+      const input = labelNode.querySelector('input');
+
+      fireEvent.change(input, { target: { value: 'A' } });
+      fireEvent.blur(input);
+      input.blur();
 
       // a re-render must not pull the focus back into the label the user just left
-      fireEvent.change(input, { target: { value: 'A' } });
+      fireEvent.change(input, { target: { value: 'AB' } });
       expect(document.activeElement).not.toBe(input);
     });
 

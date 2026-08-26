@@ -8,6 +8,11 @@ import { color } from '@pie-lib/render-ui';
 import SvgIcon from './label-svg-icon';
 
 const DEBOUNCE_DELAY = 500;
+// A new label insists on the focus for this long: in the DNA env something moves the focus while the
+// model save that creating the label triggered is handled, after the last render. Nothing typed yet
+// is what tells that apart from the user leaving the label.
+const INSIST_ON_FOCUS_FOR = 500;
+const INSIST_AT = [0, 50, 120, 250, 400];
 
 const StyledInputCorrect = styled('div')(({ theme }) => ({
   float: 'right',
@@ -130,8 +135,7 @@ LabelInput.propTypes = {
 };
 
 export const MarkLabel = (props) => {
-  // the node is kept in a ref as well as in the state: the state is needed to reposition the label
-  // once it has a size, the ref is what the focus is asserted on - it is never a render behind
+  // the state repositions the label once the input has a size, the ref is never a render behind
   const inputNode = useRef(null);
   const [input, setInput] = useState(null);
   const _ref = useCallback((node) => {
@@ -148,33 +152,51 @@ export const MarkLabel = (props) => {
   const isFocused = () =>
     !!inputNode.current && typeof document !== 'undefined' && document.activeElement === inputNode.current;
 
-  // A label that has just been added is empty and its input is enabled - label mode has to be on
-  // for that to happen and it always starts off, so a mark that was loaded with an empty label
-  // cannot grab the focus. This is read from the mark rather than taken from the autoFocus prop
-  // because the tool that asked for the label can be remounted by the marks coming back from the
-  // host (async model save) before the input ever renders, and its autoFocus goes with it.
+  // an empty label with an enabled input is one the user just added: label mode has to be on and it
+  // always starts off. Read from the mark, not from autoFocus, because the tool that asked for the
+  // label can be remounted by the marks coming back from the host before the input renders.
   const isNewLabel = useRef(mark.label === '' && !disabled && !mark.disabled);
+  const insistUntil = useRef(0);
+  const lastSaved = useRef(mark.label);
+  const insisting = () => Date.now() < insistUntil.current && !(inputNode.current && inputNode.current.value);
 
   const onChange = (e) => setLabel(e.target.value);
 
+  const saveLabel = (value) => {
+    if (value === lastSaved.current) {
+      return;
+    }
+
+    lastSaved.current = value;
+    props.onChange(value);
+  };
+
   const handleBlur = useCallback(() => {
+    // in the DNA env the focus is moved while the model is saved - not the user leaving the label
+    if (insisting()) {
+      return;
+    }
+
     isNewLabel.current = false;
 
     if (label === '') {
       props.onChange('');
+    } else if (label !== mark.label) {
+      // the debounce can still be pending, and once the focus is gone an echo of the model would
+      // overwrite what was typed before it fires
+      saveLabel(label);
     }
 
     // lets the tool know that this label is not being edited anymore, so it stops auto focusing it
     if (props.onBlur) {
       props.onBlur();
     }
-  }, [label, props.onChange, props.onBlur]);
+  }, [label, mark.label, props.onChange, props.onBlur]);
 
   const debouncedLabel = useDebounce(label, DEBOUNCE_DELAY);
 
-  // useState only sets the value once, to synch props to state need useEffect.
-  // While this input has the focus we keep what the user typed: the mark can come back from an
-  // (async) model save with an older label and that would overwrite the characters typed meanwhile.
+  // props to state, but not while focused: the mark can come back from an async model save with an
+  // older label and overwrite what was typed meanwhile
   useEffect(() => {
     if (isFocused()) {
       return;
@@ -186,21 +208,15 @@ export const MarkLabel = (props) => {
   // pick up the change to debouncedLabel and save it
   useEffect(() => {
     if (typeof debouncedLabel === 'string' && debouncedLabel !== mark.label) {
-      props.onChange(debouncedLabel);
+      saveLabel(debouncedLabel);
     }
   }, [debouncedLabel]);
 
-  // A label that has just been added has to be focused so that it can be typed into right away.
-  // This runs after every render on purpose - there is no reliable single moment to focus at:
-  // the input shows up whenever the mark comes back from the (async) model save, and a remount
-  // of the input (same save, replaced node) drops the focus without this component being told.
-  // Asserting the focus on every render is what makes it stick; it is a no-op once the input has
-  // it, so the caret the user placed is left alone.
-  useEffect(() => {
+  const focusInput = () => {
     const node = inputNode.current;
 
     // node.disabled, not the disabled prop: a disabled input silently ignores focus()
-    if ((!autoFocus && !isNewLabel.current) || !node || node.disabled || isFocused()) {
+    if ((!autoFocus && !isNewLabel.current && !insisting()) || !node || node.disabled || isFocused()) {
       return;
     }
 
@@ -217,7 +233,27 @@ export const MarkLabel = (props) => {
     if (node.setSelectionRange) {
       node.setSelectionRange(caret, caret);
     }
-  });
+  };
+
+  // after every render: the input can appear a render or more later (the mark comes back from an
+  // async model save) and a replaced node loses the focus without this component being told
+  useEffect(() => focusInput());
+
+  // and again on a timer, for the DNA env, where the focus is moved once the renders are over. The
+  // original code focused from a setTimeout, which is what let it survive that.
+  useEffect(() => {
+    if (!autoFocus && !isNewLabel.current) {
+      return;
+    }
+
+    if (!insistUntil.current) {
+      insistUntil.current = Date.now() + INSIST_ON_FOCUS_FOR;
+    }
+
+    const timers = INSIST_AT.map((delay) => setTimeout(focusInput, delay));
+
+    return () => timers.forEach((t) => clearTimeout(t));
+  }, [autoFocus]);
 
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
   const pos = position(graphProps, mark, rect);
@@ -288,6 +324,12 @@ export const MarkLabel = (props) => {
 
   if (correctness === 'incorrect') {
     return <StyledIncorrect style={style}>{renderInput(studentInputStyle, label)}</StyledIncorrect>;
+  }
+
+  // an empty label that cannot be edited is just an empty box - the config draws the background
+  // marks into every correct answer graph too
+  if (disabledInput && !label) {
+    return null;
   }
 
   return <div style={style}>{renderInput(getInputStyles(theme, disabled, mark.disabled), label)}</div>;
