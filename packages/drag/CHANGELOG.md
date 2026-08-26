@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.1.1...@pie-lib/drag@4.1.2) (2026-08-26)
+
+### Bug Fixes
+
+- **drag:** forward onDragCancel from DragProvider to its internal DndContext PIE-802 ([9e12a9e](https://github.com/pie-framework/pie-lib/commit/9e12a9e5e5fc32f410b6f6d7de124e55d4c9bd80))
+
 ## [4.1.1](https://github.com/pie-framework/pie-lib/compare/@pie-lib/drag@4.1.0...@pie-lib/drag@4.1.1) (2026-08-21)
 
 **Note:** Version bump only for package @pie-lib/drag

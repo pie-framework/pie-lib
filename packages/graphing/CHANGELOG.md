@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.17...@pie-lib/graphing@4.0.18) (2026-08-26)
+
+### Bug Fixes
+
+- **graphing:** hold the focus on a new label and save it on blur PIE-681 ([26c5f98](https://github.com/pie-framework/pie-lib/commit/26c5f9875b45f4495d76827633f28d82d93d8cb9))
+
 ## [4.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.16...@pie-lib/graphing@4.0.17) (2026-08-21)
 
 ### Bug Fixes

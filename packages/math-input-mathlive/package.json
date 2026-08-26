@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "MathLive-based math input (drop-in alternative to @pie-lib/math-input)",
   "main": "lib/index.js",
   "module": "src/index.jsx",
@@ -14,7 +14,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
-    "@pie-lib/render-ui": "^7.0.0",
+    "@pie-lib/render-ui": "^7.0.1",
     "debug": "^4.1.1",
     "lodash-es": "^4.17.23",
     "mathlive": "^0.110.0",

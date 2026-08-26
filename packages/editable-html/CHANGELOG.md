@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.11](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@13.0.10...@pie-lib/editable-html@13.0.11) (2026-08-26)
+
+### Bug Fixes
+
+- **theming:** color authored table borders with --pie-\* tokens PIE-860 ([b285407](https://github.com/pie-framework/pie-lib/commit/b285407235a31d77d75757a1b784fd476fa3e8a0))
+
 ## [13.0.10](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html@13.0.9...@pie-lib/editable-html@13.0.10) (2026-08-21)
 
 **Note:** Version bump only for package @pie-lib/editable-html

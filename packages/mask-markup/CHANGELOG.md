@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.17...@pie-lib/mask-markup@3.1.0) (2026-08-26)
+
+### Bug Fixes
+
+- **mask-markup:** scope dropdown menu to Paper slot PIE-853 ([c714042](https://github.com/pie-framework/pie-lib/commit/c714042b9c41dc72103fcc9b2a54cf8fe0365555))
+
+### Features
+
+- **mask-markup:** add additional keyboard navigation (Tab/Shift+Tab placement) PIE-803 and click-to-select/click-to-place functionality PIE-796 for drag-in-the-blank ([e30b166](https://github.com/pie-framework/pie-lib/commit/e30b1667f0cee547ecbd0dcd1d02a969d98afeb4))
+
 ## [3.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.0.16...@pie-lib/mask-markup@3.0.17) (2026-08-22)
 
 ### Bug Fixes

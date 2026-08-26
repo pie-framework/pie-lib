@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.7](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@4.0.6...@pie-lib/correct-answer-toggle@4.0.7) (2026-08-26)
+
+**Note:** Version bump only for package @pie-lib/correct-answer-toggle
+
 ## [4.0.6](https://github.com/pie-framework/pie-lib/compare/@pie-lib/correct-answer-toggle@4.0.5...@pie-lib/correct-answer-toggle@4.0.6) (2026-08-21)
 
 **Note:** Version bump only for package @pie-lib/correct-answer-toggle
