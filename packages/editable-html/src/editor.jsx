@@ -1170,7 +1170,7 @@ const StyledSlateEditor = styled('div')(() => ({
     backgroundColor: color.background(),
   },
   '& table:not([border="1"]) tr': {
-    borderTop: '1px solid #dfe2e5',
+    borderTop: `1px solid ${color.tableGridLight()}`,
     // TODO perhaps secondary color for background, for now disable
     // '&:nth-child(2n)': {
     //   backgroundColor: '#f6f8fa'
@@ -1181,7 +1181,7 @@ const StyledSlateEditor = styled('div')(() => ({
     textAlign: 'center',
   },
   '& table:not([border="1"]) td, th': {
-    border: '1px solid #dfe2e5',
+    border: `1px solid ${color.tableGridLight()}`,
   },
   '&.showParagraph': {
     // a div that has a div after it
