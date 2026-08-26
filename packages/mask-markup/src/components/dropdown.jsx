@@ -53,15 +53,8 @@ const StyledButton = styled(Button)(() => ({
 }));
 
 const StyledMenu = styled(Menu)(() => ({
-  backgroundColor: color.background(),
-  border: `1px solid ${color.correct()} !important`,
-  '&:hover': {
-    border: `1px solid ${color.text()} `,
-    borderColor: 'initial',
-  },
-  '&:focus': {
-    border: `1px solid ${color.text()}`,
-    borderColor: 'initial',
+  '& .MuiPaper-root': {
+    backgroundColor: color.background(),
   },
   // remove default padding on the inner list
   '& .MuiList-root': {
