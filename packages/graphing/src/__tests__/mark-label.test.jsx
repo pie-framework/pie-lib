@@ -82,13 +82,13 @@ describe('MarkLabel - editing', () => {
     });
 
     it('does not focus the input when disabled', () => {
-      const { input } = renderComponent({ autoFocus: true, disabled: true });
+      const { input } = renderComponent({ autoFocus: true, disabled: true, mark: { x: 1, y: 1, label: 'A' } });
 
       expect(document.activeElement).not.toBe(input);
     });
 
     it('does not focus the input of a disabled mark', () => {
-      const { input } = renderComponent({ autoFocus: true, mark: { x: 1, y: 1, label: '', disabled: true } });
+      const { input } = renderComponent({ autoFocus: true, mark: { x: 1, y: 1, label: 'A', disabled: true } });
 
       expect(document.activeElement).not.toBe(input);
     });
@@ -191,10 +191,17 @@ describe('MarkLabel - editing', () => {
 
     // outside of label mode the input is disabled, which is how an empty label that was loaded with
     // the item is told apart from one the user has just added - label mode always starts off
-    it('is not focused while label mode is off', () => {
-      const { input } = renderComponent({ disabled: true, mark: { x: 1, y: 1, label: '' } });
+    // the config draws the background marks into the correct answer graphs as disabled marks
+    it('is not rendered at all while it cannot be edited', () => {
+      const { container } = renderComponent({ disabled: true, mark: { x: 1, y: 1, label: '' } });
 
-      expect(document.activeElement).not.toBe(input);
+      expect(container.querySelector('input')).toBe(null);
+    });
+
+    it('is still rendered uneditable once it has text', () => {
+      const { container } = renderComponent({ disabled: true, mark: { x: 1, y: 1, label: 'A' } });
+
+      expect(container.querySelector('input').value).toBe('A');
     });
 
     it('is not focused when label mode is turned on afterwards', () => {
@@ -202,13 +209,14 @@ describe('MarkLabel - editing', () => {
 
       rerenderWith({ disabled: false });
 
+      expect(input(container)).not.toBe(null);
       expect(document.activeElement).not.toBe(input(container));
     });
 
-    it('is not focused when the mark is disabled', () => {
-      const { input } = renderComponent({ mark: { x: 1, y: 1, label: '', disabled: true } });
+    it('is not rendered for a disabled mark while it is empty', () => {
+      const { container } = renderComponent({ mark: { x: 1, y: 1, label: '', disabled: true } });
 
-      expect(document.activeElement).not.toBe(input);
+      expect(container.querySelector('input')).toBe(null);
     });
   });
 
@@ -245,6 +253,29 @@ describe('MarkLabel - editing', () => {
       fireEvent.blur(input);
 
       expect(onBlur).toHaveBeenCalled();
+    });
+
+    // clicking a button or anything else interactive blurs the label while the debounce is pending
+    it('saves what was typed straight away', () => {
+      const { input } = renderComponent({ mark: { x: 1, y: 1, label: '' } });
+
+      fireEvent.change(input, { target: { value: 'AB' } });
+      fireEvent.blur(input);
+
+      expect(onChange).toHaveBeenCalledWith('AB');
+    });
+
+    it('does not save it twice when the debounce catches up', () => {
+      jest.useFakeTimers();
+      const { input } = renderComponent({ mark: { x: 1, y: 1, label: '' } });
+
+      fireEvent.change(input, { target: { value: 'AB' } });
+      fireEvent.blur(input);
+      act(() => jest.advanceTimersByTime(1000));
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith('AB');
+      jest.useRealTimers();
     });
 
     it('reports an empty label on blur', () => {

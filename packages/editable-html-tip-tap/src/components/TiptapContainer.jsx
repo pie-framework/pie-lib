@@ -89,14 +89,14 @@ const StyledRoot = styled('div', {
     backgroundColor: color.background(),
   },
   '& table:not([border="1"]) tr': {
-    borderTop: '1px solid #dfe2e5',
+    borderTop: `1px solid ${color.tableGridLight()}`,
   },
   '& td, th': {
     padding: '.6em 1em',
     textAlign: 'center',
   },
   '& table:not([border="1"]) td, th': {
-    border: '1px solid #dfe2e5',
+    border: `1px solid ${color.tableGridLight()}`,
   },
   ...(error && {
     border: `2px solid ${theme.palette.error.main} !important`,

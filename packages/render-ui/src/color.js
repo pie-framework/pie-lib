@@ -30,6 +30,10 @@ export const defaults = {
   BORDER_LIGHT: '#D1D1D1',
   BORDER_DARK: '#646464',
   BORDER_GRAY: '#7E8494',
+  // these are used for authored tables
+  TABLE_GRID: 'black',
+  TABLE_GRID_LIGHT: '#dfe2e5',
+  TABLE_STRIPE: '#f6f8fa',
   BLACK: '#000000',
   WHITE: '#ffffff',
   TRANSPARENT: 'transparent',
@@ -108,6 +112,10 @@ export const border = () => pv('border', defaults.BORDER);
 export const borderLight = () => pv('border-light', defaults.BORDER_LIGHT);
 export const borderDark = () => pv('border-dark', defaults.BORDER_DARK);
 export const borderGray = () => pv('border-gray', defaults.BORDER_GRAY);
+
+export const tableGrid = () => pv('table-grid', 'text', defaults.TABLE_GRID);
+export const tableGridLight = () => pv('table-grid-light', 'border-light', defaults.TABLE_GRID_LIGHT);
+export const tableStripe = () => pv('table-stripe', 'background-dark', defaults.TABLE_STRIPE);
 
 export const black = () => pv('black', defaults.BLACK);
 export const white = () => pv('white', defaults.WHITE);

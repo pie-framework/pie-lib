@@ -1,9 +1,19 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { DragProvider } from '../drag-provider';
 
 jest.mock('@dnd-kit/core', () => ({
-  DndContext: ({ children, onDragStart, onDragEnd, sensors, collisionDetection, modifiers, autoScroll, accessibility }) => (
+  DndContext: ({
+    children,
+    onDragStart,
+    onDragEnd,
+    onDragCancel,
+    sensors,
+    collisionDetection,
+    modifiers,
+    autoScroll,
+    accessibility,
+  }) => (
     <div
       data-testid="dnd-context"
       data-has-sensors={!!sensors}
@@ -13,7 +23,10 @@ jest.mock('@dnd-kit/core', () => ({
       data-has-accessibility={!!accessibility}
       data-on-drag-start={typeof onDragStart === 'function' ? 'function' : 'undefined'}
       data-on-drag-end={typeof onDragEnd === 'function' ? 'function' : 'undefined'}
+      data-on-drag-cancel={typeof onDragCancel === 'function' ? 'function' : 'undefined'}
     >
+      {/* Lets tests simulate dnd-kit itself invoking the handler DragProvider built. */}
+      <button data-testid="simulate-drag-cancel" onClick={() => onDragCancel?.({ active: { id: 'x' } })} />
       {children}
     </div>
   ),
@@ -92,6 +105,29 @@ describe('DragProvider', () => {
       render(<DragProvider {...defaultProps} onDragEnd={onDragEnd} />);
       const dndContext = screen.getByTestId('dnd-context');
       expect(dndContext).toHaveAttribute('data-on-drag-end', 'function');
+    });
+
+    it('should always pass an onDragCancel handler to DndContext, even without one of its own', () => {
+      render(<DragProvider {...defaultProps} />);
+      const dndContext = screen.getByTestId('dnd-context');
+      expect(dndContext).toHaveAttribute('data-on-drag-cancel', 'function');
+    });
+
+    it('invokes the given onDragCancel when dnd-kit cancels a drag', () => {
+      const onDragCancel = jest.fn();
+      render(<DragProvider {...defaultProps} onDragCancel={onDragCancel} />);
+
+      fireEvent.click(screen.getByTestId('simulate-drag-cancel'));
+
+      expect(onDragCancel).toHaveBeenCalledWith({ active: { id: 'x' } });
+    });
+
+    it('does not throw when dnd-kit cancels a drag and no onDragCancel was given', () => {
+      render(<DragProvider {...defaultProps} />);
+
+      expect(() => {
+        fireEvent.click(screen.getByTestId('simulate-drag-cancel'));
+      }).not.toThrow();
     });
 
     it('should pass collisionDetection to DndContext', () => {

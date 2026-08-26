@@ -6,6 +6,7 @@ export function DragProvider({
   children,
   onDragEnd,
   onDragStart,
+  onDragCancel,
   collisionDetection,
   modifiers,
   autoScroll,
@@ -40,11 +41,19 @@ export function DragProvider({
     }
   };
 
+  const handleDragCancel = (event) => {
+    setActiveId(null);
+    if (onDragCancel) {
+      onDragCancel(event);
+    }
+  };
+
   return (
     <DndContext
       sensors={sensors}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
+      onDragCancel={handleDragCancel}
       collisionDetection={collisionDetection}
       modifiers={modifiers}
       autoScroll={autoScroll}
@@ -59,6 +68,7 @@ DragProvider.propTypes = {
   children: PropTypes.node.isRequired,
   onDragEnd: PropTypes.func,
   onDragStart: PropTypes.func,
+  onDragCancel: PropTypes.func,
   collisionDetection: PropTypes.func,
   modifiers: PropTypes.arrayOf(PropTypes.func),
   autoScroll: PropTypes.object,

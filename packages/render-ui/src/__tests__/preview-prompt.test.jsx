@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import PreviewPrompt from '../preview-prompt';
+import * as color from '../color';
 
 jest.mock('@pie-lib/math-rendering', () => ({
   renderMath: jest.fn(),
@@ -316,6 +317,37 @@ describe('PreviewPrompt - Extended Tests', () => {
 
       expect(screen.getByText('Header')).toBeInTheDocument();
       expect(screen.getByText('Data')).toBeInTheDocument();
+    });
+
+    // Asserted against the CSS emotion emitted rather than through toHaveStyle: jsdom
+    // does not resolve custom properties, so it normalises `var()` away. Emotion
+    // inserts through the CSSOM, so the <style> tags themselves carry no text.
+    describe('authored table painting', () => {
+      const emittedCss = () =>
+        Array.from(document.querySelectorAll('style'))
+          .flatMap((tag) => Array.from(tag.sheet?.cssRules || []))
+          .map((rule) => rule.cssText)
+          .join('\n');
+
+      it('paints a bordered table flat, from the ink token', () => {
+        render(<PreviewPrompt prompt={'<div><table border="1"><tbody><tr><td>A</td></tr></tbody></table></div>'} />);
+
+        const css = emittedCss();
+        expect(css).toContain('table[border]');
+        expect(css).toContain('border-style: solid');
+        expect(css).toContain(`border-color: ${color.tableGrid()}`);
+      });
+
+      it('takes the stripe from a scheme-following fill, not a fixed near-white one', () => {
+        render(<PreviewPrompt prompt={'<table><tbody><tr><td>A</td></tr></tbody></table>'} />);
+
+        const css = emittedCss();
+        expect(css).toContain(`background-color: ${color.tableStripe()}`);
+        // #f6f8fa still appears as the var() chain's last resort, so this checks that
+        // nothing paints it bare - along with the `color: black` it used to be paired with.
+        expect(css).not.toContain('background-color: #f6f8fa');
+        expect(css).not.toContain('color: rgb(0, 0, 0)');
+      });
     });
   });
 
