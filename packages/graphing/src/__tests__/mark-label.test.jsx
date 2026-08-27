@@ -218,6 +218,21 @@ describe('MarkLabel - editing', () => {
 
       expect(container.querySelector('input')).toBe(null);
     });
+
+    // an input sized to its content is 2px wide while it is empty, and chrome paints the caret of
+    // an input inside an svg foreignObject as a hairline that never blinks - so an empty label that
+    // has the focus has to be wide enough to be seen as a box waiting for text
+    it('is wide enough to be seen while it is empty', () => {
+      const { input } = renderComponent({ mark: { x: 1, y: 1, label: '' } });
+
+      expect(parseInt(input.style.width, 10)).toBeGreaterThanOrEqual(30);
+    });
+
+    it('is only as wide as its text once it cannot be edited', () => {
+      const { container } = renderComponent({ disabled: true, mark: { x: 1, y: 1, label: 'A' } });
+
+      expect(parseInt(container.querySelector('input').style.width, 10)).toBeLessThan(30);
+    });
   });
 
   describe('syncing mark.label into the input', () => {
@@ -243,6 +258,75 @@ describe('MarkLabel - editing', () => {
       rerenderWith({ mark: { x: 1, y: 1, label: 'A' } });
 
       expect(input.value).toBe('AB');
+    });
+  });
+
+  // the characters land at the document's caret, not at the focused node. In the authoring
+  // environment the input ends up focused with no caret anywhere: keypress fires and nothing is
+  // inserted. jsdom never reports a caret either, so this is that state - the focus cycle that
+  // repairs it must not hand the label over to the blur handling.
+  describe('a focused input with no caret', () => {
+    it('is repaired without reporting the label as removed', () => {
+      const { input } = renderComponent({ autoFocus: true, mark: { x: 1, y: 1, label: '' } });
+
+      expect(document.activeElement).toBe(input);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(onBlur).not.toHaveBeenCalled();
+    });
+
+    it('leaves the caret at the end of a label that already has text', () => {
+      const { input } = renderComponent({ autoFocus: true, mark: { x: 1, y: 1, label: 'AB' } });
+
+      expect(document.activeElement).toBe(input);
+      expect(input.selectionStart).toBe(2);
+      expect(onChange).not.toHaveBeenCalled();
+    });
+  });
+
+  // clicking another window, the devtools, or the host moving the focus while it saves the model:
+  // the label is not being left, so it must survive and take the focus back
+  describe('while the window is away', () => {
+    const windowGoesAway = () => window.dispatchEvent(new Event('blur'));
+    const windowComesBack = () => window.dispatchEvent(new Event('focus'));
+
+    it('keeps an empty label instead of reporting it as removed', () => {
+      const { input } = renderComponent({ mark: { x: 1, y: 1, label: '' } });
+
+      windowGoesAway();
+      fireEvent.blur(input);
+
+      expect(onChange).not.toHaveBeenCalled();
+      expect(onBlur).not.toHaveBeenCalled();
+    });
+
+    it('takes the focus back when the window comes back', () => {
+      const { input } = renderComponent({ autoFocus: true, mark: { x: 1, y: 1, label: '' } });
+
+      // the focus is moved to another input rather than with input.blur(): jsdom fires a window
+      // focus event as part of blur(), which is the very thing being tested here
+      const elsewhere = document.createElement('input');
+
+      document.body.appendChild(elsewhere);
+
+      windowGoesAway();
+      elsewhere.focus();
+      expect(document.activeElement).toBe(elsewhere);
+
+      windowComesBack();
+
+      expect(document.activeElement).toBe(input);
+
+      elsewhere.remove();
+    });
+
+    it('still reports a label the user leaves once the window is back', () => {
+      const { input } = renderComponent({ mark: { x: 1, y: 1, label: '' } });
+
+      windowGoesAway();
+      windowComesBack();
+      fireEvent.blur(input);
+
+      expect(onChange).toHaveBeenCalledWith('');
     });
   });
 

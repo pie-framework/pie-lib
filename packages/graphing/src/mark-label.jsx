@@ -8,11 +8,16 @@ import { color } from '@pie-lib/render-ui';
 import SvgIcon from './label-svg-icon';
 
 const DEBOUNCE_DELAY = 500;
-// A new label insists on the focus for this long: in the DNA env something moves the focus while the
-// model save that creating the label triggered is handled, after the last render. Nothing typed yet
-// is what tells that apart from the user leaving the label.
+// A new label insists on the focus and the caret for this long, and again on each of the ticks
+// below. No single moment is reliable: the authoring host re-renders the whole element while it
+// saves, and the input is replaced under this component more than once. Nothing typed yet is what
+// tells a transient blur apart from the user leaving the label.
 const INSIST_ON_FOCUS_FOR = 500;
-const INSIST_AT = [0, 50, 120, 250, 400];
+const INSIST_AT = [0, 50, 120, 250, 400, 700, 1000];
+// how many times a label will do the heavier focus cycle to get a caret back
+const MAX_CARET_CYCLES = 3;
+// how wide an editable label input is while it is empty
+const EMPTY_INPUT_WIDTH = 30;
 
 const StyledInputCorrect = styled('div')(({ theme }) => ({
   float: 'right',
@@ -110,7 +115,28 @@ export const coordinates = (graphProps, mark, rect = { width: 0, height: 0 }, po
   }
 };
 
-const LabelInput = ({ _ref, externalInputRef, label, disabled, inputStyle, onChange, onBlur }) => (
+/**
+ * Whether the document's caret is in this input. The characters land at the caret, not at the
+ * focused node - an input can be the active element with no caret anywhere, and then keypress fires
+ * and nothing is inserted, with nothing in the page cancelling anything.
+ */
+const caretIsInside = (node) => {
+  if (typeof document === 'undefined' || !document.getSelection) {
+    return true;
+  }
+
+  const selection = document.getSelection();
+
+  if (!selection || !selection.rangeCount || !selection.anchorNode) {
+    return false;
+  }
+
+  const anchor = selection.anchorNode;
+
+  return anchor === node || anchor === node.parentNode || node.contains(anchor);
+};
+
+const LabelInput = ({ _ref, externalInputRef, label, disabled, inputStyle, minWidth, onChange, onBlur }) => (
   <AutosizeInput
     inputRef={(r) => {
       _ref(r);
@@ -118,6 +144,7 @@ const LabelInput = ({ _ref, externalInputRef, label, disabled, inputStyle, onCha
     }}
     disabled={disabled}
     inputStyle={inputStyle}
+    minWidth={minWidth}
     value={label}
     onChange={onChange}
     onBlur={onBlur}
@@ -130,6 +157,7 @@ LabelInput.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   inputStyle: PropTypes.object,
+  minWidth: PropTypes.number,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
 };
@@ -159,6 +187,13 @@ export const MarkLabel = (props) => {
   const insistUntil = useRef(0);
   const lastSaved = useRef(mark.label);
   const insisting = () => Date.now() < insistUntil.current && !(inputNode.current && inputNode.current.value);
+  // the whole window losing the focus is not the user leaving the label - another window, the
+  // devtools, or the host moving the focus while it saves. The window blur arrives before the
+  // input's own blur, so this flag is set by the time the label is asked to give itself up.
+  const windowAway = useRef(false);
+  // our own blur, from the focus cycle that puts a missing caret back
+  const selfFocusing = useRef(false);
+  const caretCycles = useRef(0);
 
   const onChange = (e) => setLabel(e.target.value);
 
@@ -173,7 +208,7 @@ export const MarkLabel = (props) => {
 
   const handleBlur = useCallback(() => {
     // in the DNA env the focus is moved while the model is saved - not the user leaving the label
-    if (insisting()) {
+    if (insisting() || windowAway.current || selfFocusing.current) {
       return;
     }
 
@@ -216,23 +251,53 @@ export const MarkLabel = (props) => {
     const node = inputNode.current;
 
     // node.disabled, not the disabled prop: a disabled input silently ignores focus()
-    if ((!autoFocus && !isNewLabel.current && !insisting()) || !node || node.disabled || isFocused()) {
+    if ((!autoFocus && !isNewLabel.current && !insisting()) || !node || node.disabled) {
       return;
     }
 
+    const wasFocused = isFocused();
+
+    if (!wasFocused) {
+      node.focus();
+
+      // a new label is focused once, so it cannot fight over the focus with another one
+      if (isFocused()) {
+        isNewLabel.current = false;
+      }
+    }
+
+    if (!node.setSelectionRange) {
+      return;
+    }
+
+    // a label that was already being edited keeps the caret the user put in it; one that has just
+    // taken the focus gets it at the end, otherwise typing continues in front of the existing label
+    const keepCaret = wasFocused && node.value;
+    const start = keepCaret ? node.selectionStart : (node.value || '').length;
+    const end = keepCaret ? node.selectionEnd : start;
+
+    // The characters land at the document's caret, not at the focused node. An input focused while
+    // it was being replaced, or while the window was away, ends up as the active element with no
+    // caret anywhere: keypress fires and nothing is inserted, with nothing in the page cancelling
+    // anything. Re-asserting the range is what puts the caret back.
+    if (!caretIsInside(node)) {
+      node.setSelectionRange(start, end);
+    }
+
+    // and if it still is not there, a focus cycle is the heavier way to get it. Every focusInput
+    // call is another go at it - after each render, on each insist tick, and when the window comes
+    // back - up to a few times per label, since the state comes back as the input is replaced.
+    if (caretIsInside(node) || caretCycles.current >= MAX_CARET_CYCLES) {
+      return;
+    }
+
+    caretCycles.current += 1;
+    // our own blur, so the label is not given up over it
+    selfFocusing.current = true;
+    node.blur();
     node.focus();
-
-    // a new label is focused once, so it cannot fight over the focus with another one
-    if (isFocused()) {
-      isNewLabel.current = false;
-    }
-
-    // keep the caret at the end, otherwise typing continues in front of the existing label
-    const caret = (node.value || '').length;
-
-    if (node.setSelectionRange) {
-      node.setSelectionRange(caret, caret);
-    }
+    node.setSelectionRange(start, end);
+    selfFocusing.current = false;
   };
 
   // after every render: the input can appear a render or more later (the mark comes back from an
@@ -253,6 +318,33 @@ export const MarkLabel = (props) => {
     const timers = INSIST_AT.map((delay) => setTimeout(focusInput, delay));
 
     return () => timers.forEach((t) => clearTimeout(t));
+  }, [autoFocus]);
+
+  // the blur that came with the window going away is ignored, so the label is still the one being
+  // edited when the window comes back and it takes the focus, and its selection, back
+  useEffect(() => {
+    const onWindowBlur = () => {
+      windowAway.current = true;
+    };
+
+    const onWindowFocus = () => {
+      // coming back only means something if the window went away: moving the focus from one element
+      // to another inside the page reaches window too in some implementations
+      if (!windowAway.current) {
+        return;
+      }
+
+      windowAway.current = false;
+      focusInput();
+    };
+
+    window.addEventListener('blur', onWindowBlur);
+    window.addEventListener('focus', onWindowFocus);
+
+    return () => {
+      window.removeEventListener('blur', onWindowBlur);
+      window.removeEventListener('focus', onWindowFocus);
+    };
   }, [autoFocus]);
 
   const rect = input ? input.getBoundingClientRect() : { width: 0, height: 0 };
@@ -282,6 +374,11 @@ export const MarkLabel = (props) => {
       label={labelValue}
       disabled={disabledInput}
       inputStyle={inputStyle}
+      // an editable label sizes itself to its content, so an empty one is 2px wide: enough for the
+      // caret, not enough for anybody to see that the label is waiting to be typed into. Chrome
+      // does not blink the caret of an input inside an svg foreignObject, it only paints a hairline,
+      // so the box itself has to say that it has the focus.
+      minWidth={disabledInput ? 1 : EMPTY_INPUT_WIDTH}
       onChange={onChange}
       onBlur={handleBlur}
     />
