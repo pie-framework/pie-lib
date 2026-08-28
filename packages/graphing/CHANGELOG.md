@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.19](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.18...@pie-lib/graphing@4.0.19) (2026-08-28)
+
+### Bug Fixes
+
+- **graphing:** give a new label a caret, not just the focus PIE-681 ([eccf0df](https://github.com/pie-framework/pie-lib/commit/eccf0df50183eab617bf492eec197a1ce9a55087))
+
 ## [4.0.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/graphing@4.0.17...@pie-lib/graphing@4.0.18) (2026-08-26)
 
 ### Bug Fixes
