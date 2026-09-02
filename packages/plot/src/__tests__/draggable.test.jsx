@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Draggable from '../draggable';
+import RD, { DraggableCore as RDCore } from 'react-draggable';
+import Draggable, { DraggableCore } from '../draggable';
 
 describe('draggable', () => {
   it('renders with children', () => {
@@ -12,30 +13,26 @@ describe('draggable', () => {
     expect(container.firstChild).toBeInTheDocument();
   });
 
-  describe('local', () => {
-    it('resets position state when receiving new props', () => {
-      // Render with initial props
-      const { rerender, container } = render(
-        <Draggable position={{ x: 100, y: 100 }}>
-          <div data-testid="draggable-child">content</div>
-        </Draggable>,
-      );
+  it('re-exports react-draggable unchanged', () => {
+    expect(Draggable).toBe(RD);
+    expect(DraggableCore).toBe(RDCore);
+  });
 
-      // Verify initial render
-      expect(container.firstChild).toBeInTheDocument();
+  it('applies a transform from the controlled position prop', () => {
+    const Wrap = ({ x, y }) => (
+      <Draggable position={{ x, y }}>
+        <div data-testid="draggable-child">content</div>
+      </Draggable>
+    );
 
-      // Update props - this triggers componentWillReceiveProps
-      // which should reset internal x/y state to 0
-      rerender(
-        <Draggable position={{ x: 200, y: 200 }}>
-          <div data-testid="draggable-child">content</div>
-        </Draggable>,
-      );
+    const { rerender, getByTestId } = render(<Wrap x={100} y={100} />);
+    const child = getByTestId('draggable-child');
+    expect(child.style.transform).toBe('translate(100px,100px)');
 
-      // The component should still render correctly after prop change
-      // The internal state reset is tested by ensuring no errors occur
-      // and the component continues to function properly
-      expect(container.firstChild).toBeInTheDocument();
-    });
+    rerender(<Wrap x={200} y={200} />);
+    expect(child.style.transform).toBe('translate(200px,200px)');
+
+    rerender(<Wrap x={0} y={0} />);
+    expect(child.style.transform).toBe('translate(0px,0px)');
   });
 });
