@@ -252,6 +252,13 @@ export const gridDraggable = (opts) => (Comp) => {
       return opts.fromDelta(this.props, delta);
     };
 
+    /**
+     * Must not return false. react-draggable v4 treats a false return as "keep dragging"
+     * and bails out of handleDragStop before it detaches the document mousemove/mouseup
+     * listeners, so the handle would keep following the pointer after release - and every
+     * previously dragged handle would move along with the next one. (v3 ignored the
+     * return value and always detached, which is why returning false used to look inert.)
+     */
     onStop = (e, dd) => {
       log('[onStop] dd:', dd);
       const { onDragStop, onClick, disabled } = this.props;
@@ -290,12 +297,11 @@ export const gridDraggable = (opts) => (Comp) => {
           }
         }
 
-        return false;
+        this.setState({ startX: null, startY: null });
+        return;
       }
 
       this.setState({ startX: null, startY: null });
-      // return false to prevent state updates in the underlying draggable - a move will have triggered an update already.
-      return false;
     };
 
     render() {
