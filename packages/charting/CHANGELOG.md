@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@7.0.17...@pie-lib/charting@7.0.18) (2026-09-02)
+
+### Bug Fixes
+
+- **deps:** align versions with pie-elements-ng and upgrade [@visx](https://github.com/visx) to v4 PIE-926 ([16c5ff0](https://github.com/pie-framework/pie-lib/commit/16c5ff093a36fea98a46d5e2b37f95d9ec03025c))
+
 ## [7.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/charting@7.0.16...@pie-lib/charting@7.0.17) (2026-08-26)
 
 **Note:** Version bump only for package @pie-lib/charting

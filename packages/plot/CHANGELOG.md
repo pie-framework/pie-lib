@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@4.0.17...@pie-lib/plot@4.0.18) (2026-09-02)
+
+### Bug Fixes
+
+- **deps:** align versions with pie-elements-ng and upgrade [@visx](https://github.com/visx) to v4 PIE-926 ([16c5ff0](https://github.com/pie-framework/pie-lib/commit/16c5ff093a36fea98a46d5e2b37f95d9ec03025c))
+- **plot:** stop returning false from gridDraggable onStop PIE-972 react-draggable 4.x acts on the value returned by DraggableCore's onStop andreturns early, before it removes the document mousemove/mouseup listeners.3.3.2 ignored that value and always removed them, so returning false was inert -which is what the old comment assumed. On v4 every handle you drag staysattached to the document, so released marks keep following the cursor: incharting a line's points all move together, and in graphing andgraphing-solution-set marks drift off the graph and disappear.The behaviour was introduced upstream in react-draggable 4.3.0. pie-lib pickedit up with the bump in PIE-926; pie-elements-ng has had it since its own move to^4.6.0. grid-draggable is synced from pie-lib, so the fix carries over there.Adds a regression test for both a released handle and a second handle beingdragged.Also drops the componentWillReceiveProps override on plot's Draggable, which v4makes unreachable via its static getDerivedStateFromProps, and replaces twoassertion-free tests with ones that check the real transform. ([0f9f173](https://github.com/pie-framework/pie-lib/commit/0f9f173350f11e98dc1b7cea8cb0a3162bfd3d87))
+
 ## [4.0.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/plot@4.0.16...@pie-lib/plot@4.0.17) (2026-08-26)
 
 **Note:** Version bump only for package @pie-lib/plot

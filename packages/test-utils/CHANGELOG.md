@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@2.0.2...@pie-lib/test-utils@2.0.3) (2026-09-02)
+
+### Bug Fixes
+
+- **deps:** align versions with pie-elements-ng and upgrade [@visx](https://github.com/visx) to v4 PIE-926 ([16c5ff0](https://github.com/pie-framework/pie-lib/commit/16c5ff093a36fea98a46d5e2b37f95d9ec03025c))
+
 ## [2.0.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/test-utils@2.0.2-next.1...@pie-lib/test-utils@2.0.2) (2026-05-07)
 
 **Note:** Version bump only for package @pie-lib/test-utils

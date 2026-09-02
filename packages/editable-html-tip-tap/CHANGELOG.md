@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.15...@pie-lib/editable-html-tip-tap@2.1.16) (2026-09-02)
+
+### Bug Fixes
+
+- **deps:** align versions with pie-elements-ng and upgrade [@visx](https://github.com/visx) to v4 PIE-926 ([16c5ff0](https://github.com/pie-framework/pie-lib/commit/16c5ff093a36fea98a46d5e2b37f95d9ec03025c))
+
 ## [2.1.15](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.14...@pie-lib/editable-html-tip-tap@2.1.15) (2026-08-26)
 
 ### Bug Fixes
