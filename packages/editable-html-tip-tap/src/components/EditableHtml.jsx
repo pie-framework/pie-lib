@@ -198,6 +198,13 @@ export const EditableHtml = (props) => {
         node: 'paragraph',
         notAfter: ['paragraph', 'div'],
       },
+      // StarterKit bundles the link extension, which turns anything that looks like a URL into
+      // a hyperlink as it is typed or pasted. See PIE-980 - we don't want that in any editor.
+      // The mark itself stays registered so links already in the markup keep round-tripping.
+      link: {
+        autolink: false,
+        linkOnPaste: false,
+      },
     }),
     ExtendedListItem,
     DivNode,
