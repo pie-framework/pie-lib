@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.16...@pie-lib/editable-html-tip-tap@2.1.17) (2026-09-03)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** honor the spellCheck prop PIE-978 ([f3e5b64](https://github.com/pie-framework/pie-lib/commit/f3e5b6429ff301191e0e8e110b969a150dacee7c))
+- **editable-html-tip-tap:** stop auto-linking typed and pasted URLs PIE-980 ([6481811](https://github.com/pie-framework/pie-lib/commit/6481811bd80a5731d79fe52fa3668f483b407511))
+
 ## [2.1.16](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.15...@pie-lib/editable-html-tip-tap@2.1.16) (2026-09-02)
 
 ### Bug Fixes
