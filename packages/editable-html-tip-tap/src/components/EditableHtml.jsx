@@ -96,6 +96,14 @@ const cssVariables = {
                0px 3.618px 9.949px 0px rgba(0, 0, 0, .04)`,
 };
 
+// ProseMirror puts these on the contenteditable element. Without them the browser
+// spellchecks the editor regardless of the spellCheck prop.
+const spellCheckAttributes = (enabled) => ({
+  spellcheck: enabled ? 'true' : 'false',
+  autocorrect: enabled ? 'on' : 'off',
+  autocapitalize: enabled ? 'on' : 'off',
+});
+
 export const EditableHtml = (props) => {
   const { showParagraphs, separateParagraphs } = props.pluginProps || {};
   const [pendingImages, setPendingImages] = useState([]);
@@ -295,11 +303,17 @@ export const EditableHtml = (props) => {
     }),
   ];
 
+  // Callers that don't pass spellCheck keep the browser default (on), as they did with the
+  // slate-based editor. Players that have to default to off - extended-text-entry, see
+  // PIE-978 - resolve that in their controller and pass an explicit false.
+  const spellCheckEnabled = props.spellCheck !== false;
+
   const editor = useEditor(
     {
       extensions,
       immediatelyRender: false,
       editorProps: {
+        attributes: spellCheckAttributes(spellCheckEnabled),
         handleKeyDown(view, event) {
           if (props.onKeyDown) {
             return props.onKeyDown(event);
@@ -342,6 +356,25 @@ export const EditableHtml = (props) => {
   useEffect(() => {
     editor?.setEditable(!props.disabled);
   }, [props.disabled, editor]);
+
+  // useEditor only re-applies options on its own when it is called with an empty dependency
+  // array, and this call site depends on charactersLimit, so a spellCheck change on a mounted
+  // editor has to be pushed in. Only the attributes are replaced - the rest of editorProps
+  // stays as the editor already has it.
+  useEffect(() => {
+    if (!editor) {
+      return;
+    }
+
+    const currentEditorProps = editor.options?.editorProps;
+    const attributes = spellCheckAttributes(spellCheckEnabled);
+
+    if (currentEditorProps?.attributes?.spellcheck === attributes.spellcheck) {
+      return;
+    }
+
+    editor.setOptions({ editorProps: { ...currentEditorProps, attributes } });
+  }, [spellCheckEnabled, editor]);
 
   useEffect(() => {
     if (!editor) {
