@@ -295,20 +295,37 @@ export const EditableHtml = (props) => {
     }),
   ];
 
+  // Callers that don't pass spellCheck keep the browser default (on), as they did with the
+  // slate-based editor. Players that have to default to off - extended-text-entry, see
+  // PIE-978 - resolve that in their controller and pass an explicit false.
+  const spellCheckEnabled = props.spellCheck !== false;
+
+  const editorProps = useMemo(
+    () => ({
+      // ProseMirror puts these on the contenteditable element. Without them the
+      // browser spellchecks the editor regardless of the spellCheck prop.
+      attributes: {
+        spellcheck: spellCheckEnabled ? 'true' : 'false',
+        autocorrect: spellCheckEnabled ? 'on' : 'off',
+        autocapitalize: spellCheckEnabled ? 'on' : 'off',
+      },
+      handleKeyDown(view, event) {
+        if (props.onKeyDown) {
+          return props.onKeyDown(event);
+        }
+
+        // Return false to let default behavior continue
+        return false;
+      },
+    }),
+    [spellCheckEnabled, props.onKeyDown],
+  );
+
   const editor = useEditor(
     {
       extensions,
       immediatelyRender: false,
-      editorProps: {
-        handleKeyDown(view, event) {
-          if (props.onKeyDown) {
-            return props.onKeyDown(event);
-          }
-
-          // Return false to let default behavior continue
-          return false;
-        },
-      },
+      editorProps,
       editable: !props.disabled,
       content: normalizeInitialMarkup(props.markup),
       onUpdate: ({ editor, transaction }) => {
@@ -342,6 +359,12 @@ export const EditableHtml = (props) => {
   useEffect(() => {
     editor?.setEditable(!props.disabled);
   }, [props.disabled, editor]);
+
+  // useEditor only re-applies options on its own when it is called with an empty dependency
+  // array, so editorProps changes (spellCheck, onKeyDown) have to be pushed in explicitly.
+  useEffect(() => {
+    editor?.setOptions({ editorProps });
+  }, [editorProps, editor]);
 
   useEffect(() => {
     if (!editor) {
