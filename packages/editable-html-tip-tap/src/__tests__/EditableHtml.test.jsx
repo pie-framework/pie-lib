@@ -11,6 +11,7 @@ jest.mock('@tiptap/react', () => ({
     const mockEditor = {
       getHTML: jest.fn(() => '<p>test content</p>'),
       setEditable: jest.fn(),
+      setOptions: jest.fn(),
       commands: {
         setContent: jest.fn(),
       },
@@ -583,6 +584,75 @@ describe('EditableHtml', () => {
       expect(() => {
         editorConfig.onUpdate({ editor: mockEditor, transaction: mockTransaction });
       }).not.toThrow();
+    });
+  });
+
+  describe('spellCheck', () => {
+    const lastEditorAttributes = () => {
+      const editorConfig = useEditor.mock.calls[useEditor.mock.calls.length - 1][0];
+
+      return editorConfig.editorProps.attributes;
+    };
+
+    it('disables browser spellcheck on the contenteditable when spellCheck is false', async () => {
+      render(<EditableHtml {...defaultProps} spellCheck={false} />);
+
+      await waitFor(() => {
+        expect(useEditor).toHaveBeenCalled();
+      });
+
+      expect(lastEditorAttributes()).toEqual({
+        spellcheck: 'false',
+        autocorrect: 'off',
+        autocapitalize: 'off',
+      });
+    });
+
+    it('enables browser spellcheck when spellCheck is true', async () => {
+      render(<EditableHtml {...defaultProps} spellCheck={true} />);
+
+      await waitFor(() => {
+        expect(useEditor).toHaveBeenCalled();
+      });
+
+      expect(lastEditorAttributes()).toEqual({
+        spellcheck: 'true',
+        autocorrect: 'on',
+        autocapitalize: 'on',
+      });
+    });
+
+    it('keeps the browser default when spellCheck is not provided', async () => {
+      render(<EditableHtml {...defaultProps} />);
+
+      await waitFor(() => {
+        expect(useEditor).toHaveBeenCalled();
+      });
+
+      expect(lastEditorAttributes().spellcheck).toEqual('true');
+    });
+
+    it('pushes spellCheck changes onto an existing editor', async () => {
+      const editorRef = jest.fn();
+      const { rerender } = render(<EditableHtml {...defaultProps} spellCheck={true} editorRef={editorRef} />);
+
+      await waitFor(() => {
+        expect(editorRef).toHaveBeenCalled();
+      });
+
+      rerender(<EditableHtml {...defaultProps} spellCheck={false} editorRef={editorRef} />);
+
+      await waitFor(() => {
+        expect(lastEditorAttributes().spellcheck).toEqual('false');
+      });
+
+      const editor = editorRef.mock.calls[editorRef.mock.calls.length - 1][0];
+
+      expect(editor.setOptions).toHaveBeenCalledWith({
+        editorProps: expect.objectContaining({
+          attributes: { spellcheck: 'false', autocorrect: 'off', autocapitalize: 'off' },
+        }),
+      });
     });
   });
 });
