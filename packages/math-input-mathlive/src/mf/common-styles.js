@@ -57,12 +57,41 @@ export const placeholderStyles = {
   '& [data-pie-empty]': {
     opacity: 0.5,
   },
-  // Stretchy accents render an <svg>; mathlive-static.css positions it
-  // absolutely at width:100%. Repeated here so static math cannot blow out its
-  // container if that stylesheet is missing.
-  '& svg': {
+  // Stretchy accents (\overarc, \overleftrightarrow, \overrightarrow) render an
+  // <svg width="100%" preserveAspectRatio="none"> inside a `.ML__stretchy`. That
+  // span is absolutely positioned, so its immediate wrapper computes to 0px and
+  // the width has to resolve against a *positioned* ancestor. Pin that to
+  // `.ML__base`, whose width already equals the accent's content (measured:
+  // 9.85px for a 0.56em slot), so the arc spans exactly its content.
+  //
+  // Do NOT write a bare `& svg` rule instead: MathLive's own rule is
+  // descendant-scoped (`.ML__latex .ML__stretchy svg`), and a global one
+  // re-parents every svg in the subtree.
+  '& .ML__base': {
+    position: 'relative',
+  },
+  '& .ML__stretchy': {
     position: 'absolute',
+    left: 0,
     width: '100%',
+  },
+  // MathLive centres an accent by shifting it right half the content width -
+  // `margin-left: 0.28em` for a 0.56em slot - which assumes a glyph with its own
+  // side bearings. Over a synthetic empty slot it just pushes the arc right.
+  //
+  // `!important` is required: MathLive writes this as an INLINE style
+  // (`style="top:-3.4em;margin-left:0.28em"`), which a class cannot override.
+  //
+  // It also fixes the width. `.ML__center` is the stretchy's containing block
+  // (MathLive gives `.ML__vlist > span` position:relative), and its width is the
+  // base minus that margin - measured 9.85px - 4.93px = 4.93px, exactly half,
+  // which is why the arc came out half-width AND offset right.
+  //
+  // Scoped with `:has(.ML__stretchy)`: only stretchy accents are affected.
+  // A single-glyph accent (`\hat{x}`, `\vec{x}`) genuinely needs its centring
+  // offset, and must keep it.
+  '& .ML__center:has(.ML__stretchy)': {
+    marginLeft: '0 !important',
   },
 };
 

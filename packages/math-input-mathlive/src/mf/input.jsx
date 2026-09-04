@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import { loadMathLive, getMacros, MATH_MODE_SPACE } from '../mathlive-instance';
+import { loadMathLive, getMacros, MATH_MODE_SPACE, applyShadowStyles } from '../mathlive-instance';
 import { toMathLive, fromMathLive, keyToAction, KEYSTROKES } from '../latex-bridge';
 
 const log = debug('pie-lib:math-input-mathlive:input');
@@ -74,6 +74,10 @@ export class Input extends React.Component {
     // Without this the spacebar does nothing: MathLive's mathModeSpace
     // defaults to an empty string.
     this.mathField.mathModeSpace = MATH_MODE_SPACE;
+
+    // The mathfield renders in shadow DOM, so page CSS cannot reach it - the
+    // stretchy-accent fix has to be injected there directly.
+    applyShadowStyles(this.mathField);
 
     this.mathField.addEventListener('input', this.onInputEdit);
 

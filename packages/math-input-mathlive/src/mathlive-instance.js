@@ -181,6 +181,67 @@ const configureLoaded = () => {
 };
 
 /**
+ * CSS that has to live *inside* a mathfield's shadow root.
+ *
+ * A live `<math-field>` renders in shadow DOM (`attachShadow({mode:'open'})`),
+ * so nothing in the host page's stylesheets reaches it. The stretchy-accent
+ * problem therefore needs fixing twice: once for static markup (see
+ * `placeholderStyles`) and once here for the editor.
+ *
+ * MathLive centres an accent with `margin-left: <half the content width>` as an
+ * inline style. For a stretchy accent that also shrinks its containing block
+ * (`.ML__center` is position:relative), so the arc ends up half-width and offset
+ * - visibly failing to span the text underneath.
+ *
+ * `:has(.ML__stretchy)` keeps the fix to stretchy accents; single-glyph accents
+ * (`\hat{x}`, `\vec{x}`) still need their centring offset.
+ */
+const SHADOW_CSS = '.ML__latex .ML__center:has(.ML__stretchy){margin-left:0 !important}';
+
+/**
+ * Apply {@link SHADOW_CSS} inside a mathfield's shadow root.
+ *
+ * Uses `adoptedStyleSheets` when available (which is how MathLive loads its own
+ * stylesheets) and falls back to appending a <style> node.
+ *
+ * @param {HTMLElement} mathField
+ */
+export const applyShadowStyles = (mathField) => {
+  const root = mathField && mathField.shadowRoot;
+
+  if (!root) {
+    return;
+  }
+
+  try {
+    if ('adoptedStyleSheets' in root && typeof CSSStyleSheet !== 'undefined') {
+      // Do not re-add on a re-render.
+      if (root.__pieAccentSheet) {
+        return;
+      }
+
+      const sheet = new CSSStyleSheet();
+
+      sheet.replaceSync(SHADOW_CSS);
+      root.adoptedStyleSheets = [...root.adoptedStyleSheets, sheet];
+      root.__pieAccentSheet = sheet;
+
+      return;
+    }
+
+    if (!root.querySelector('style[data-pie-accent]')) {
+      const style = document.createElement('style');
+
+      style.setAttribute('data-pie-accent', '');
+      style.textContent = SHADOW_CSS;
+      root.appendChild(style);
+    }
+  } catch (e) {
+    log('could not apply shadow styles to the mathfield: %s', e && e.message);
+  }
+};
+
+/**
  * Ensure MathLive's "core" stylesheet is in the document.
  *
  * `convertLatexToMarkup` - which renders keypad labels and static math - does

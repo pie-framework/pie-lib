@@ -190,6 +190,27 @@ describe('latex-bridge', () => {
       expect(keyToAction({ command: '^' })).toEqual({ type: 'insert', value: '^{#?}' });
     });
 
+    // MathQuill's `/` turned the preceding expression into the numerator: type
+    // 5, press the key, get 5/_ with the caret in the denominator. `#@` is
+    // MathLive's "selection, or the item before the cursor" token, and is what
+    // MathLive binds to `/` itself.
+    it('division takes the preceding item as the numerator', () => {
+      expect(keyToAction({ command: '/' })).toEqual({ type: 'insert', value: '\\frac{#@}{#?}' });
+    });
+
+    it('an explicit blank-over-blank fraction stays empty', () => {
+      // distinct from `/`: this key is meant to insert two empty slots
+      expect(keyToAction({ command: '\\frac' })).toEqual({ type: 'insert', value: '\\frac{#?}{#?}' });
+    });
+
+    it('the x-over-blank key routes through division', () => {
+      // eslint-disable-next-line global-require
+      const { xOverBlank } = require('../keys/fractions');
+
+      expect(xOverBlank.command).toEqual('/');
+      expect(keyToAction(xOverBlank).value).toEqual('\\frac{#@}{#?}');
+    });
+
     it('passes argument-less commands through', () => {
       expect(keyToAction({ command: '\\pi' })).toEqual({ type: 'insert', value: '\\pi' });
     });

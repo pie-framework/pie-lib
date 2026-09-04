@@ -55,11 +55,19 @@ export const DEFAULT_FIELD_ID = 'r1';
  *
  * `\placeholder{}` is not usable here: in static markup it renders as a
  * non-breaking space, because its editable box only exists inside a live
- * mathfield. So an actual glyph is required.
+ * mathfield. So something with real width is required.
+ *
+ * It must be a `\rule`, not a unicode glyph. A glyph's width comes from font
+ * metrics, and U+25AB is not in the KaTeX fonts - the browser substitutes a
+ * wider fallback while MathLive still sizes surrounding accents from its own
+ * metrics. That left stretchy accents (`\overarc`, `\overleftrightarrow`)
+ * visibly narrower than the box they were meant to span. A rule carries an
+ * explicit em width, so accents size correctly - and a filled box is closer to
+ * MathQuill's `.mq-empty` anyway.
  *
  * Live mathfields need none of this - MathLive manages empty slots itself.
  */
-const EMPTY_SLOT = '\\htmlData{pie-empty=1}{\\unicode{"25AB}}';
+const EMPTY_SLOT = '\\htmlData{pie-empty=1}{\\rule{0.55em}{0.55em}}';
 const EMPTY_GROUP_REGEX = /\{\s*\}/g;
 
 /**
@@ -240,8 +248,15 @@ export const fromMathLive = (latex) => {
  * placeholders in the inserted latex.
  */
 const COMMANDS_WITH_ARGS = {
+  // An explicit "blank over blank" key: both slots start empty.
   '\\frac': '\\frac{#?}{#?}',
-  '/': '\\frac{#?}{#?}',
+  // Division, which must behave like MathQuill's `/`: whatever precedes the
+  // cursor becomes the numerator and the caret lands in the denominator. `#@`
+  // is MathLive's token for "the selection, or the item before the cursor" -
+  // this is exactly the template MathLive binds to the `/` key itself. Using
+  // `#?` here instead produced an empty fraction and left the typed number
+  // stranded outside it.
+  '/': '\\frac{#@}{#?}',
   '\\sqrt': '\\sqrt{#?}',
   '\\nthroot': '\\sqrt[#?]{#?}',
   '\\overline': '\\overline{#?}',

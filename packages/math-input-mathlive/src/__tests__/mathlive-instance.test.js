@@ -209,6 +209,53 @@ describe('mathlive-instance', () => {
     });
   });
 
+  // A live <math-field> renders in shadow DOM, so nothing in the page's
+  // stylesheets reaches it - the stretchy-accent fix has to be injected there.
+  describe('applyShadowStyles', () => {
+    const host = () => {
+      const el = document.createElement('div');
+
+      el.attachShadow({ mode: 'open' });
+
+      return el;
+    };
+
+    it('is a no-op without a shadow root', () => {
+      expect(() => instance.applyShadowStyles(undefined)).not.toThrow();
+      expect(() => instance.applyShadowStyles(document.createElement('div'))).not.toThrow();
+    });
+
+    it('injects the accent fix into the shadow root', () => {
+      const el = host();
+
+      instance.applyShadowStyles(el);
+
+      const viaSheet = el.shadowRoot.__pieAccentSheet;
+      const viaStyle = el.shadowRoot.querySelector('style[data-pie-accent]');
+      const css = viaSheet ? 'adopted' : (viaStyle && viaStyle.textContent) || '';
+
+      expect(viaSheet || viaStyle).toBeTruthy();
+
+      if (viaStyle) {
+        expect(css).toContain('margin-left:0 !important');
+        // scoped so single-glyph accents keep their centring offset
+        expect(css).toContain(':has(.ML__stretchy)');
+      }
+    });
+
+    it('does not inject twice', () => {
+      const el = host();
+
+      instance.applyShadowStyles(el);
+      instance.applyShadowStyles(el);
+
+      const styles = el.shadowRoot.querySelectorAll('style[data-pie-accent]');
+
+      // either one adopted sheet, or exactly one style node
+      expect(el.shadowRoot.__pieAccentSheet ? 1 : styles.length).toBe(1);
+    });
+  });
+
   describe('latexToMarkup', () => {
     it('returns empty string when MathLive is not loaded', () => {
       expect(instance.latexToMarkup('\\pi')).toEqual('');

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import { loadMathLive, getMacros, latexToMarkup, MATH_MODE_SPACE } from '../mathlive-instance';
+import { loadMathLive, getMacros, latexToMarkup, MATH_MODE_SPACE, applyShadowStyles } from '../mathlive-instance';
 import { toMathLive, fromMathLive, fieldIds } from '../latex-bridge';
 import { placeholderStyles } from './common-styles';
 
@@ -92,6 +92,10 @@ export default class Static extends React.Component {
     // defaults to an empty string.
     this.mathField.mathModeSpace = MATH_MODE_SPACE;
     this.mathField.value = toMathLive(this.props.latex);
+
+    // The mathfield renders in shadow DOM, so page CSS cannot reach it - the
+    // stretchy-accent fix has to be injected there directly.
+    applyShadowStyles(this.mathField);
 
     this.mathField.addEventListener('input', this.onPromptInput);
     this.mathField.addEventListener('focusin', this.onPromptFocus);

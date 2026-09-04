@@ -29,22 +29,20 @@ const LabelHolder = styled('span')(() => ({
   pointerEvents: 'none',
   textTransform: 'none',
   color: color.text(),
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  // Deliberately inline-block, NOT inline-flex: MathLive's markup relies on
+  // normal inline flow. Making its spans flex items collapses their width, and
+  // stretchy accents render an <svg width="100%" preserveAspectRatio="none">
+  // that then squeezes into a spike instead of spanning the content.
+  display: 'inline-block',
+  textAlign: 'center',
   lineHeight: 1,
-  // Never let a label size its grid column. Stretchy accents
-  // (\overrightarrow, \overleftrightarrow, \overarc) render an <svg> that
-  // mathlive-static.css positions absolutely at width:100%; if that stylesheet
-  // is missing the svg lays out statically and expands without bound, dragging
-  // the whole column across the screen. `overflow: hidden` also collapses the
-  // label's min-content contribution, so the grid can't blow out either way.
+  // Keep a label from sizing its grid column. `overflow: hidden` also collapses
+  // the label's min-content contribution, so a wide accent cannot drag the
+  // column across the screen. The svg's own positioning is left to
+  // mathlive-static.css (injected by the package) - duplicating it here broke
+  // the accent's containing block.
   maxWidth: '100%',
   overflow: 'hidden',
-  '& svg': {
-    position: 'absolute',
-    width: '100%',
-  },
   // Answer-block / empty-slot boxes inside a label.
   '& .ML__placeholder': {
     backgroundColor: color.keypadEmptyPlaceholder ? color.keypadEmptyPlaceholder() : undefined,

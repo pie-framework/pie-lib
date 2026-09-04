@@ -14,7 +14,10 @@ export const overRightArrow = set({
 
 export const overLeftRightArrow = set({
   name: 'Segment',
-  latex: '\\overleftrightarrow{\\overline{}}', // used this notation to display the pink box
+  // MathQuill needed a nested \overline{} to draw the empty box; MathLive
+  // renders that as a real line, so the label showed a spurious bar under the
+  // arrows. `withVisibleEmptySlots` supplies the box for `{}` instead.
+  latex: '\\overleftrightarrow{}',
   symbol: 'AB',
   command: '\\overleftrightarrow',
 });
@@ -51,7 +54,9 @@ export const angle = set({
 });
 export const overArc = set({
   name: 'Over arc',
-  latex: '\\overarc{\\overline{}}', // used this notation to display the pink box
+  // See the note on Segment above: the nested \overline{} drew a straight line
+  // instead of leaving the arc visible.
+  latex: '\\overarc{}',
   command: '\\overarc',
 });
 export const measureOfAngle = set({
