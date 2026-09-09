@@ -13,6 +13,8 @@ import { styled } from '@mui/material/styles';
 import { color } from '@pie-lib/render-ui';
 import { renderMath } from '@pie-lib/math-rendering';
 
+const pieVar = color.v('pie');
+
 const StyledButton = styled(Button)(() => ({
   color: color.text(),
   border: `1px solid ${color.borderGray()}`,
@@ -54,7 +56,10 @@ const StyledButton = styled(Button)(() => ({
 
 const StyledMenu = styled(Menu)(() => ({
   '& .MuiPaper-root': {
-    backgroundColor: color.background(),
+    // honour the host's --pie-background, but stay opaque when it is undefined:
+    // color.background() falls back to rgba(255,255,255,0), which makes the open
+    // menu transparent and unreadable over the item content (PIE-1008)
+    backgroundColor: pieVar('background', color.defaults.WHITE),
   },
   // remove default padding on the inner list
   '& .MuiList-root': {
