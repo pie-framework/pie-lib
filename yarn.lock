@@ -3075,15 +3075,10 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.6.6.tgz#ecd5614fe2dbb76a1744a9b5a96e305b8591ceac"
   integrity sha512-Jbs9FpkkIDw8FgSc6kOVsOv8JuuqGAL7J4X1oot77JxAoDlkNn2GRkd0aYRVuQ+pVQAiHWVkE4rX/dkF5fBiCw==
 
-"@tiptap/core@3.20.0":
-  version "3.20.0"
-  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-3.20.0.tgz#dac72894d83829f2fbbabee2e90a748d7c1479ee"
-  integrity sha512-aC9aROgia/SpJqhsXFiX9TsligL8d+oeoI8W3u00WI45s0VfsqjgeKQLDLF7Tu7hC+7F02teC84SAHuup003VQ==
-
-"@tiptap/core@^3.20.0":
-  version "3.24.0"
-  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-3.24.0.tgz#f8eec5678d04de4861f10633abdcd8007c18e8f3"
-  integrity sha512-GTAsXAI32p4hEZgPzvUv2RPrObxamy9AFhmhG10fXSvN/cDUs8naEYVIqDV3Sh99jMwQEbTFKW1E1mcspsY6ow==
+"@tiptap/core@3.30.5", "@tiptap/core@^3.20.0":
+  version "3.30.5"
+  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-3.30.5.tgz#9929ae10a5e0892fb1a38a197ae8208cdd3801ea"
+  integrity sha512-3O7N0FyKIfuLV+xrdWyDM3V5eUY/q2CgLjhhMwOAbM1Pu7VPp9VP+TpEYOdH8aRyB+h1vj5hX5A747D8ZrPfHA==
 
 "@tiptap/extension-blockquote@^3.20.0":
   version "3.24.0"
