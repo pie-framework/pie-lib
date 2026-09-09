@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.1.2...@pie-lib/mask-markup@3.1.3) (2026-09-09)
+
+### Bug Fixes
+
+- **mask-markup:** prevent transparent dropdown background PIE-1008 ([225b527](https://github.com/pie-framework/pie-lib/commit/225b5277ebb391b8ca6ccd469d7f06bcc59c2d76))
+
 ## [3.1.2](https://github.com/pie-framework/pie-lib/compare/@pie-lib/mask-markup@3.1.1...@pie-lib/mask-markup@3.1.2) (2026-09-03)
 
 **Note:** Version bump only for package @pie-lib/mask-markup
