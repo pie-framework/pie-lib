@@ -114,6 +114,40 @@ export const toNativeCommands = (latex) => {
   out = replaceAbs(out);
   out = out.replace(/\\longdiv\{/g, '\\enclose{longdiv}{');
   out = out.replace(/\\overarc\{/g, '\\overparen{');
+  out = escapeBareComments(out);
+
+  return out;
+};
+
+/**
+ * Escape an unescaped `%`.
+ *
+ * In real LaTeX `%` starts a comment, so MathLive discards it *and everything
+ * after it*: `50%` renders as `50`, and `x%y` as just `x`. MathQuill had no
+ * such notion - it treated `%` as a symbol - so latex from anywhere outside the
+ * keypad may still carry a bare one.
+ *
+ * Only a `%` preceded by an even number of backslashes is bare: `\%` is already
+ * escaped, while the `%` in `\\%` (a line break, then a comment) is not.
+ *
+ * @param {string} latex
+ * @returns {string}
+ */
+const escapeBareComments = (latex) => {
+  if (latex.indexOf('%') === -1) {
+    return latex;
+  }
+
+  let out = '';
+  // Consecutive backslashes immediately before the current character.
+  let backslashes = 0;
+
+  for (let i = 0; i < latex.length; i++) {
+    const ch = latex[i];
+
+    out += ch === '%' && backslashes % 2 === 0 ? '\\%' : ch;
+    backslashes = ch === '\\' ? backslashes + 1 : 0;
+  }
 
   return out;
 };

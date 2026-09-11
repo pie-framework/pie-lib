@@ -34,6 +34,7 @@ jest.mock('../mathlive-instance', () => {
     // must mirror the real export, otherwise the component sets `undefined`
     MATH_MODE_SPACE: '\\ ',
     applyShadowStyles: () => {},
+    trackPlaceholderCaret: () => () => {},
     latexToMarkup: (l) => `<span>${l}</span>`,
   };
 });

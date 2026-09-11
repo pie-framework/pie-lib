@@ -133,6 +133,28 @@ describe('latex-bridge', () => {
       expect(toNativeCommands('\\longdiv{1}\\longdiv{2}')).toEqual('\\enclose{longdiv}{1}\\enclose{longdiv}{2}');
     });
 
+    // `%` starts a comment in real LaTeX, so MathLive drops it and everything
+    // after it. MathQuill had no comments, so latex authored under it - or by
+    // hand - can carry a bare `%` that would silently truncate the expression.
+    it('escapes a bare % so it cannot comment out the rest of the line', () => {
+      expect(toNativeCommands('%')).toEqual('\\%');
+      expect(toNativeCommands('50%')).toEqual('50\\%');
+      expect(toNativeCommands('x%y')).toEqual('x\\%y');
+      expect(toNativeCommands('a%b%c')).toEqual('a\\%b\\%c');
+    });
+
+    it('leaves an already-escaped % alone', () => {
+      expect(toNativeCommands('\\%')).toEqual('\\%');
+      expect(toNativeCommands('50\\%')).toEqual('50\\%');
+      // idempotent: toMathLive may run over latex that came back out of a field
+      expect(toNativeCommands(toNativeCommands('50%'))).toEqual('50\\%');
+    });
+
+    // `\\` is a line break, not an escape, so the `%` after it is still bare.
+    it('counts backslashes to decide whether a % is escaped', () => {
+      expect(toNativeCommands('a\\\\%b')).toEqual('a\\\\\\%b');
+    });
+
     it('leaves other latex untouched', () => {
       ['\\frac{1}{2}', '\\pi', '\\sqrt{x}', '\\overline{AB}'].forEach((l) => {
         expect(toNativeCommands(l)).toEqual(l);

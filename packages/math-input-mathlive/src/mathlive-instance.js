@@ -196,7 +196,81 @@ const configureLoaded = () => {
  * `:has(.ML__stretchy)` keeps the fix to stretchy accents; single-glyph accents
  * (`\hat{x}`, `\vec{x}`) still need their centring offset.
  */
-const SHADOW_CSS = '.ML__latex .ML__center:has(.ML__stretchy){margin-left:0 !important}';
+/**
+ * Marker put on the host `<math-field>` while a `\placeholder{}` is selected,
+ * so the caret rules below apply to a placeholder and nothing else.
+ */
+export const PLACEHOLDER_CARET_CLASS = 'pie-caret-in-placeholder';
+
+/** What MathLive serialises a `#?` slot as. */
+const PLACEHOLDER_LATEX = '\\placeholder{}';
+
+/**
+ * A blinking caret inside a selected placeholder box.
+ *
+ * A keypad key such as `\frac` inserts `\frac{#?}{#?}`. MathLive turns each
+ * `#?` into a `\placeholder{}` atom and *selects* the first one. That atom is a
+ * leaf - the offsets around it are "before" and "after", there is no position
+ * inside it - so MathLive renders **no caret element at all** and shows only
+ * the selection highlight. The box therefore looked focused (blue) but dead,
+ * where MathQuill used to blink a cursor inside its empty box.
+ *
+ * So the caret is drawn here. `:not(:has(.ML__selected))` picks the innermost
+ * selected element (MathLive puts the class on a wrapper *and* the glyph span,
+ * which would otherwise give two carets), and the `ML__caret-blink` keyframes
+ * plus `--_caret-color` are MathLive's own, already in this shadow root.
+ *
+ * Typing still replaces the whole placeholder, which for an empty box is
+ * indistinguishable from inserting at the caret.
+ */
+const PLACEHOLDER_CARET_CSS = [
+  `:host(.${PLACEHOLDER_CARET_CLASS}) .ML__selected:not(:has(.ML__selected)){position:relative}`,
+  `:host(.${PLACEHOLDER_CARET_CLASS}) .ML__selected:not(:has(.ML__selected))::after{`,
+  'content:"";position:absolute;left:50%;top:12%;height:76%;',
+  'border-right:2px solid var(--_caret-color, currentColor);',
+  'animation:ML__caret-blink 1.05s step-end forwards infinite}',
+].join('');
+
+const SHADOW_CSS = '.ML__latex .ML__center:has(.ML__stretchy){margin-left:0 !important}' + PLACEHOLDER_CARET_CSS;
+
+/**
+ * Keep {@link PLACEHOLDER_CARET_CLASS} in step with the selection.
+ *
+ * Gating on the class is what keeps the caret specific to placeholders: an
+ * ordinary selection (`x+1`) must not sprout one. MathLive fires
+ * `selection-change` for every caret move, including the one that lands on the
+ * placeholder straight after an insert.
+ *
+ * @param {HTMLElement} mathField
+ * @returns {function|undefined} teardown, to call on unmount
+ */
+export const trackPlaceholderCaret = (mathField) => {
+  if (!mathField || typeof mathField.addEventListener !== 'function') {
+    return undefined;
+  }
+
+  const update = () => {
+    let selected = '';
+
+    try {
+      // A collapsed selection already has a real MathLive caret.
+      if (!mathField.selectionIsCollapsed && mathField.selection) {
+        selected = mathField.getValue(mathField.selection, 'latex');
+      }
+    } catch (e) {
+      log('could not read the selection: %s', e && e.message);
+    }
+
+    if (mathField.classList) {
+      mathField.classList.toggle(PLACEHOLDER_CARET_CLASS, selected === PLACEHOLDER_LATEX);
+    }
+  };
+
+  mathField.addEventListener('selection-change', update);
+  update();
+
+  return () => mathField.removeEventListener('selection-change', update);
+};
 
 /**
  * Apply {@link SHADOW_CSS} inside a mathfield's shadow root.

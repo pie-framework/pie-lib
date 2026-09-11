@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import { loadMathLive, getMacros, latexToMarkup, MATH_MODE_SPACE, applyShadowStyles } from '../mathlive-instance';
+import {
+  loadMathLive,
+  getMacros,
+  latexToMarkup,
+  MATH_MODE_SPACE,
+  applyShadowStyles,
+  trackPlaceholderCaret,
+} from '../mathlive-instance';
 import { toMathLive, fromMathLive, fieldIds } from '../latex-bridge';
 import { placeholderStyles } from './common-styles';
 
@@ -97,6 +104,10 @@ export default class Static extends React.Component {
     // stretchy-accent fix has to be injected there directly.
     applyShadowStyles(this.mathField);
 
+    // A selected `\placeholder{}` gets no MathLive caret; draw one. Answer
+    // blocks are typed into with the same keypad, so they grow placeholders too.
+    this.untrackCaret = trackPlaceholderCaret(this.mathField);
+
     this.mathField.addEventListener('input', this.onPromptInput);
     this.mathField.addEventListener('focusin', this.onPromptFocus);
     this.mathField.addEventListener('keydown', this.onKeyDown);
@@ -122,6 +133,11 @@ export default class Static extends React.Component {
   componentWillUnmount() {
     // Invalidate any mount still awaiting the MathLive load.
     this.mountGeneration = (this.mountGeneration || 0) + 1;
+
+    if (this.untrackCaret) {
+      this.untrackCaret();
+      this.untrackCaret = undefined;
+    }
 
     if (this.mathField) {
       this.mathField.removeEventListener('input', this.onPromptInput);
@@ -254,6 +270,13 @@ export default class Static extends React.Component {
   promptHandle(id) {
     return {
       id,
+      // MathQuill's inner fields could be focused directly; keep that.
+      focus: () => {
+        if (this.mathField) {
+          this.mathField.focus();
+          this.focusPrompt(id);
+        }
+      },
       latex: (value) => {
         if (!this.mathField) {
           return '';
@@ -351,8 +374,77 @@ export default class Static extends React.Component {
     }
   };
 
+  /** The id of the prompt whose range contains `position`, if any. */
+  promptContaining(position) {
+    if (!this.mathField || typeof position !== 'number') {
+      return undefined;
+    }
+
+    return (this.mathField.getPrompts() || []).find((id) => {
+      const range = this.mathField.getPromptRange(id);
+
+      return range && position >= range[0] && position <= range[1];
+    });
+  }
+
+  /**
+   * Put a blinking caret inside an answer block.
+   *
+   * MathLive only makes the caret visible while the field element carries the
+   * `ML__focused` class, and it adds that class during a *render*, gated on
+   * `isSelectionEditable && hasFocus()`. In a read-only field only prompt
+   * interiors are editable, so the two things both have to be true:
+   *
+   *  - the selection must sit inside a prompt, and
+   *  - a render must run afterwards.
+   *
+   * Assigning `selection` satisfies the first but not the second - it updates
+   * the model without re-rendering, so the class stays off and the caret span
+   * remains `visibility: hidden`. Executing any command does trigger the
+   * render, and `scrollIntoView` is the one with no other effect: it keeps the
+   * caret on screen, which the preceding `focus()` already does anyway.
+   *
+   * @param {string} [id] prompt to focus; defaults to the first one
+   */
+  focusPrompt(id) {
+    if (!this.mathField) {
+      return;
+    }
+
+    const ids = this.mathField.getPrompts() || [];
+    const target = id && ids.indexOf(id) !== -1 ? id : ids[0];
+
+    if (!target) {
+      return;
+    }
+
+    const range = this.mathField.getPromptRange(target);
+
+    if (!range) {
+      return;
+    }
+
+    this.mathField.selection = { ranges: [[range[0], range[0]]] };
+
+    if (typeof this.mathField.executeCommand === 'function') {
+      this.mathField.executeCommand('scrollIntoView');
+    }
+  }
+
   focus() {
-    this.mathField && this.mathField.focus();
+    if (!this.mathField) {
+      return;
+    }
+
+    this.mathField.focus();
+
+    // A bare focus() leaves the selection outside every prompt, which in a
+    // read-only field is not editable - the block looked focused but had no
+    // cursor. Clicking a prompt already works, because MathLive's own pointer
+    // handling moves the selection and re-renders.
+    if (!this.promptContaining(this.mathField.position)) {
+      this.focusPrompt();
+    }
   }
 
   blur() {

@@ -211,6 +211,113 @@ describe('mathlive-instance', () => {
 
   // A live <math-field> renders in shadow DOM, so nothing in the page's
   // stylesheets reaches it - the stretchy-accent fix has to be injected there.
+  /**
+   * A keypad key like \frac inserts `\frac{#?}{#?}`; MathLive turns each `#?`
+   * into a `\placeholder{}` atom and *selects* the first one. Measured in
+   * Chromium: that atom is a leaf (its offsets are before/after, there is no
+   * position inside), so MathLive renders NO caret element and shows only the
+   * selection highlight - the box read as focused-but-dead. The caret is drawn
+   * by our own shadow CSS, gated on a class so it is placeholder-specific.
+   */
+  describe('trackPlaceholderCaret', () => {
+    const fakeField = (selection, latex) => {
+      const classes = new Set();
+
+      return {
+        listeners: {},
+        selection,
+        selectionIsCollapsed: !selection,
+        getValue: () => latex,
+        classList: {
+          toggle: (name, on) => (on ? classes.add(name) : classes.delete(name)),
+          contains: (name) => classes.has(name),
+        },
+        addEventListener(name, fn) {
+          this.listeners[name] = fn;
+        },
+        removeEventListener(name) {
+          delete this.listeners[name];
+        },
+      };
+    };
+
+    it('marks the host when a placeholder is selected', () => {
+      const mf = fakeField({ ranges: [[1, 2]] }, '\\placeholder{}');
+
+      instance.trackPlaceholderCaret(mf);
+
+      expect(mf.classList.contains(instance.PLACEHOLDER_CARET_CLASS)).toBe(true);
+    });
+
+    it('does not mark an ordinary selection', () => {
+      const mf = fakeField({ ranges: [[0, 3]] }, 'x+1');
+
+      instance.trackPlaceholderCaret(mf);
+
+      expect(mf.classList.contains(instance.PLACEHOLDER_CARET_CLASS)).toBe(false);
+    });
+
+    it('does not mark a collapsed selection, which has a real caret already', () => {
+      const mf = fakeField(null, '\\placeholder{}');
+
+      instance.trackPlaceholderCaret(mf);
+
+      expect(mf.classList.contains(instance.PLACEHOLDER_CARET_CLASS)).toBe(false);
+    });
+
+    it('leaves a named prompt alone - it takes a real caret inside', () => {
+      const mf = fakeField({ ranges: [[1, 2]] }, '\\placeholder[r1]{}');
+
+      instance.trackPlaceholderCaret(mf);
+
+      expect(mf.classList.contains(instance.PLACEHOLDER_CARET_CLASS)).toBe(false);
+    });
+
+    it('re-evaluates whenever the selection moves', () => {
+      const mf = fakeField(null, '');
+
+      instance.trackPlaceholderCaret(mf);
+      expect(mf.classList.contains(instance.PLACEHOLDER_CARET_CLASS)).toBe(false);
+
+      // the caret lands on a placeholder
+      mf.selection = { ranges: [[1, 2]] };
+      mf.selectionIsCollapsed = false;
+      mf.getValue = () => '\\placeholder{}';
+      mf.listeners['selection-change']();
+      expect(mf.classList.contains(instance.PLACEHOLDER_CARET_CLASS)).toBe(true);
+
+      // ...and moves off it again
+      mf.selectionIsCollapsed = true;
+      mf.listeners['selection-change']();
+      expect(mf.classList.contains(instance.PLACEHOLDER_CARET_CLASS)).toBe(false);
+    });
+
+    it('returns a teardown that detaches the listener', () => {
+      const mf = fakeField(null, '');
+      const off = instance.trackPlaceholderCaret(mf);
+
+      expect(typeof mf.listeners['selection-change']).toEqual('function');
+      off();
+      expect(mf.listeners['selection-change']).toBeUndefined();
+    });
+
+    it('survives a field that throws while reading the selection', () => {
+      const mf = fakeField({ ranges: [[1, 2]] }, '');
+
+      mf.getValue = () => {
+        throw new Error('detached');
+      };
+
+      expect(() => instance.trackPlaceholderCaret(mf)).not.toThrow();
+      expect(mf.classList.contains(instance.PLACEHOLDER_CARET_CLASS)).toBe(false);
+    });
+
+    it('is a no-op without a field', () => {
+      expect(instance.trackPlaceholderCaret(undefined)).toBeUndefined();
+      expect(instance.trackPlaceholderCaret({})).toBeUndefined();
+    });
+  });
+
   describe('applyShadowStyles', () => {
     const host = () => {
       const el = document.createElement('div');
@@ -240,6 +347,27 @@ describe('mathlive-instance', () => {
         expect(css).toContain('margin-left:0 !important');
         // scoped so single-glyph accents keep their centring offset
         expect(css).toContain(':has(.ML__stretchy)');
+      }
+    });
+
+    it('injects the placeholder caret rules', () => {
+      const el = host();
+
+      instance.applyShadowStyles(el);
+
+      const viaStyle = el.shadowRoot.querySelector('style[data-pie-accent]');
+
+      if (viaStyle) {
+        const css = viaStyle.textContent;
+
+        // gated on the host class, so an ordinary selection gets no caret
+        expect(css).toContain(`:host(.${instance.PLACEHOLDER_CARET_CLASS})`);
+        // MathLive's own blink keyframes and caret colour, already in this root
+        expect(css).toContain('ML__caret-blink');
+        expect(css).toContain('--_caret-color');
+        // the innermost selected element only: MathLive marks a wrapper AND the
+        // glyph span, which would otherwise render two carets
+        expect(css).toContain('.ML__selected:not(:has(.ML__selected))');
       }
     });
 

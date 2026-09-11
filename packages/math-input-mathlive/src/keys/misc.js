@@ -29,10 +29,16 @@ export const brackets = set({
   command: '[',
 });
 
+// `%` must be escaped. MathQuill was not a real LaTeX parser: it defined
+// `LatexCmds['%']` as a symbol that *serialised* to `\%`, so a bare `%` worked
+// both as a label and as a command. MathLive parses LaTeX properly, where `%`
+// begins a comment - it rendered nothing (a blank button) and, once inserted,
+// silently swallowed the rest of the expression. `\%` is what MathQuill stored
+// all along, so this changes the key only, not the saved latex.
 export const percentage = set({
   name: 'Percent',
-  latex: '%',
-  command: '%',
+  latex: '\\%',
+  command: '\\%',
 });
 
 export const approx = set({

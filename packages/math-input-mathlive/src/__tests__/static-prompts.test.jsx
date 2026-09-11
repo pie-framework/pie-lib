@@ -26,6 +26,13 @@ const stubField = (values = {}, selection = null) => ({
     return [i * 10, i * 10 + 5];
   },
   selection,
+  // Caret bookkeeping: MathLive exposes the caret offset as `position`, and any
+  // executeCommand triggers the render that reveals the caret.
+  position: undefined,
+  commands: [],
+  executeCommand(name) {
+    this.commands.push(name);
+  },
   addEventListener() {},
   removeEventListener() {},
   focus() {
@@ -246,6 +253,112 @@ describe('Static: answer blocks / prompts', () => {
 
       expect(s.mathField.focused).toBe(true);
       expect(s.mathField.blurred).toBe(true);
+    });
+  });
+
+  /**
+   * MathLive shows the caret only while the field carries `ML__focused`, which
+   * it adds during a render gated on `isSelectionEditable && hasFocus()`. In a
+   * read-only field only prompt interiors are editable, so after a bare
+   * `focus()` - whose selection sits outside every prompt - the answer block
+   * looked focused but had no blinking cursor. Verified in Chromium: the caret
+   * span goes from visibility:hidden to visible once the selection is inside a
+   * prompt AND a render has run.
+   */
+  describe('caret placement', () => {
+    it('puts a collapsed caret in the first prompt on focus', () => {
+      const s = make();
+
+      s.mathField = stubField({ r1: '', r2: '' });
+      s.focus();
+
+      // stub ranges are [0,5] for r1, [10,15] for r2
+      expect(s.mathField.selection).toEqual({ ranges: [[0, 0]] });
+    });
+
+    it('forces the render that makes the caret visible', () => {
+      const s = make();
+
+      s.mathField = stubField({ r1: '' });
+      s.focus();
+
+      // assigning `selection` alone updates the model without re-rendering, so
+      // ML__focused would never be added
+      expect(s.mathField.commands).toEqual(['scrollIntoView']);
+    });
+
+    it('does not move a caret that is already inside a prompt', () => {
+      const s = make();
+
+      s.mathField = stubField({ r1: '', r2: '' });
+      s.mathField.position = 12; // inside r2
+      s.focus();
+
+      expect(s.mathField.selection).toBe(null);
+      expect(s.mathField.commands).toEqual([]);
+    });
+
+    it('targets a specific prompt', () => {
+      const s = make();
+
+      s.mathField = stubField({ r1: '', r2: '' });
+      s.focusPrompt('r2');
+
+      expect(s.mathField.selection).toEqual({ ranges: [[10, 10]] });
+    });
+
+    it('falls back to the first prompt for an unknown id', () => {
+      const s = make();
+
+      s.mathField = stubField({ r1: '', r2: '' });
+      s.focusPrompt('nope');
+
+      expect(s.mathField.selection).toEqual({ ranges: [[0, 0]] });
+    });
+
+    it('is a no-op when there are no prompts', () => {
+      const s = make();
+
+      s.mathField = stubField({});
+
+      expect(() => s.focusPrompt()).not.toThrow();
+      expect(s.mathField.selection).toBe(null);
+    });
+
+    it('is safe without a field', () => {
+      expect(() => make().focusPrompt('r1')).not.toThrow();
+    });
+
+    describe('promptContaining', () => {
+      it('finds the prompt whose range holds the offset, inclusive', () => {
+        const s = make();
+
+        s.mathField = stubField({ r1: '', r2: '' });
+
+        expect(s.promptContaining(0)).toEqual('r1');
+        expect(s.promptContaining(5)).toEqual('r1');
+        expect(s.promptContaining(10)).toEqual('r2');
+        expect(s.promptContaining(7)).toBeUndefined();
+      });
+
+      it('treats a missing position as outside', () => {
+        const s = make();
+
+        s.mathField = stubField({ r1: '' });
+
+        expect(s.promptContaining(undefined)).toBeUndefined();
+      });
+    });
+
+    // MathQuill's inner fields could be focused directly.
+    it('promptHandle exposes focus() for its own prompt', () => {
+      const s = make();
+
+      s.mathField = stubField({ r1: '', r2: '' });
+      s.promptHandle('r2').focus();
+
+      expect(s.mathField.focused).toBe(true);
+      expect(s.mathField.selection).toEqual({ ranges: [[10, 10]] });
     });
   });
 });

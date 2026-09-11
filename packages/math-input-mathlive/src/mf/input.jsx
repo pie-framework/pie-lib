@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import debug from 'debug';
-import { loadMathLive, getMacros, MATH_MODE_SPACE, applyShadowStyles } from '../mathlive-instance';
+import {
+  loadMathLive,
+  getMacros,
+  MATH_MODE_SPACE,
+  applyShadowStyles,
+  trackPlaceholderCaret,
+} from '../mathlive-instance';
 import { toMathLive, fromMathLive, keyToAction, KEYSTROKES } from '../latex-bridge';
 
 const log = debug('pie-lib:math-input-mathlive:input');
@@ -79,6 +85,9 @@ export class Input extends React.Component {
     // stretchy-accent fix has to be injected there directly.
     applyShadowStyles(this.mathField);
 
+    // A selected `\placeholder{}` gets no MathLive caret; draw one.
+    this.untrackCaret = trackPlaceholderCaret(this.mathField);
+
     this.mathField.addEventListener('input', this.onInputEdit);
 
     // Belt and braces: drop anything a previous mount may have left behind.
@@ -116,6 +125,11 @@ export class Input extends React.Component {
     // Invalidate any mount still awaiting the MathLive load, so it does not
     // append a field into a holder that is going away.
     this.mountGeneration = (this.mountGeneration || 0) + 1;
+
+    if (this.untrackCaret) {
+      this.untrackCaret();
+      this.untrackCaret = undefined;
+    }
 
     if (this.mathField) {
       this.mathField.removeEventListener('input', this.onInputEdit);

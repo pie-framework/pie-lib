@@ -111,6 +111,51 @@ describe('keypad label display normalisation', () => {
     });
   });
 
+  // The Percent key showed as a blank button on the Advanced Algebra keypad
+  // (row 1, position 6). MathQuill defined `LatexCmds['%']` as a symbol that
+  // serialised to `\\%`, so its bare `%` label parsed fine; MathLive parses real
+  // LaTeX, where `%` opens a comment - the label rendered nothing, and pressing
+  // the key inserted a comment that swallowed the rest of the expression.
+  it('the percent key is escaped, not a latex comment', () => {
+    // eslint-disable-next-line global-require
+    const { percentage } = require('../keys/misc');
+
+    expect(percentage.latex).toEqual('\\%');
+    expect(keyToAction(percentage).value).toEqual('\\%');
+  });
+
+  // Any bare `%` in a key would fail the same way, silently.
+  it('no keypad key carries an unescaped %', () => {
+    // eslint-disable-next-line global-require
+    const { baseSet } = require('../keys');
+    // eslint-disable-next-line global-require
+    const { gradeSets } = require('../keys/grades');
+
+    const every = [...baseSet, ...gradeSets.map((g) => g.set)];
+
+    const walk = (node) => {
+      if (Array.isArray(node)) {
+        node.forEach(walk);
+        return;
+      }
+
+      if (!node) {
+        return;
+      }
+
+      ['latex', 'write', 'command'].forEach((field) => {
+        const value = node[field];
+
+        if (typeof value === 'string') {
+          // a `%` is only safe when preceded by an odd run of backslashes
+          expect(value.replace(/\\./g, '')).not.toContain('%');
+        }
+      });
+    };
+
+    walk(every);
+  });
+
   it('leaves latex without empty groups alone', () => {
     ['\\pi', '\\sin', 'x^2', '\\overline{AB}'].forEach((latex) => {
       expect(latexForDisplay(latex)).toEqual(latex);
