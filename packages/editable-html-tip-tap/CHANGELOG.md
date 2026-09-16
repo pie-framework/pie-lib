@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.18](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.17...@pie-lib/editable-html-tip-tap@2.1.18) (2026-09-16)
+
+### Bug Fixes
+
+- **editable-html-tip-tap:** put the bottom toolbar in normal flow DNAFORM-2093 ([3a48c25](https://github.com/pie-framework/pie-lib/commit/3a48c251807e94b4a8683166e7c5ed8cbc4b3249))
+- **editable-html-tip-tap:** restore role=textbox and add data-pie-editor PIE-1015 PIE-1016 ([e9064f4](https://github.com/pie-framework/pie-lib/commit/e9064f480511665499a7a17e80ae7407e59f53ef))
+
 ## [2.1.17](https://github.com/pie-framework/pie-lib/compare/@pie-lib/editable-html-tip-tap@2.1.16...@pie-lib/editable-html-tip-tap@2.1.17) (2026-09-03)
 
 ### Bug Fixes
