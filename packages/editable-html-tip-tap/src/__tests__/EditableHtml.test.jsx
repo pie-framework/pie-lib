@@ -602,6 +602,8 @@ describe('EditableHtml', () => {
       });
 
       expect(lastEditorAttributes()).toEqual({
+        role: 'textbox',
+        'data-pie-editor': 'true',
         spellcheck: 'false',
         autocorrect: 'off',
         autocapitalize: 'off',
@@ -616,6 +618,8 @@ describe('EditableHtml', () => {
       });
 
       expect(lastEditorAttributes()).toEqual({
+        role: 'textbox',
+        'data-pie-editor': 'true',
         spellcheck: 'true',
         autocorrect: 'on',
         autocapitalize: 'on',
@@ -650,7 +654,13 @@ describe('EditableHtml', () => {
 
       expect(editor.setOptions).toHaveBeenCalledWith({
         editorProps: expect.objectContaining({
-          attributes: { spellcheck: 'false', autocorrect: 'off', autocapitalize: 'off' },
+          attributes: {
+            role: 'textbox',
+            'data-pie-editor': 'true',
+            spellcheck: 'false',
+            autocorrect: 'off',
+            autocapitalize: 'off',
+          },
         }),
       });
     });

@@ -96,12 +96,23 @@ const cssVariables = {
                0px 3.618px 9.949px 0px rgba(0, 0, 0, .04)`,
 };
 
-// ProseMirror puts these on the contenteditable element. Without them the browser
-// spellchecks the editor regardless of the spellCheck prop.
-const spellCheckAttributes = (enabled) => ({
-  spellcheck: enabled ? 'true' : 'false',
-  autocorrect: enabled ? 'on' : 'off',
-  autocapitalize: enabled ? 'on' : 'off',
+// Attributes PIE puts on the editor's contenteditable element.
+//
+// ProseMirror rebuilds the element's attribute set from editorProps.attributes on every view
+// update and removes anything no longer listed, and Tiptap merges its own role="textbox" only in
+// createView - not into editor.options, which is what setOptions re-pushes. So every attribute we
+// want to survive has to be listed here. See PIE-1015.
+const editorAttributes = (spellCheckEnabled) => ({
+  // Tiptap's own attribute, re-declared so it survives setOptions. setEditable alone re-pushes
+  // editorProps on every mount, which is what removed it in 2.1.17.
+  role: 'textbox',
+  // PIE-owned hook for external consumers - see PIE-1016. Query [data-pie-editor], or
+  // [data-pie-editor][contenteditable="true"] to skip read-only renders.
+  'data-pie-editor': 'true',
+  // Without these the browser spellchecks the editor regardless of the spellCheck prop.
+  spellcheck: spellCheckEnabled ? 'true' : 'false',
+  autocorrect: spellCheckEnabled ? 'on' : 'off',
+  autocapitalize: spellCheckEnabled ? 'on' : 'off',
 });
 
 export const EditableHtml = (props) => {
@@ -320,7 +331,7 @@ export const EditableHtml = (props) => {
       extensions,
       immediatelyRender: false,
       editorProps: {
-        attributes: spellCheckAttributes(spellCheckEnabled),
+        attributes: editorAttributes(spellCheckEnabled),
         handleKeyDown(view, event) {
           if (props.onKeyDown) {
             return props.onKeyDown(event);
@@ -366,15 +377,16 @@ export const EditableHtml = (props) => {
 
   // useEditor only re-applies options on its own when it is called with an empty dependency
   // array, and this call site depends on charactersLimit, so a spellCheck change on a mounted
-  // editor has to be pushed in. Only the attributes are replaced - the rest of editorProps
-  // stays as the editor already has it.
+  // editor has to be pushed in. The rest of editorProps stays as the editor already has it, and
+  // the attributes are merged rather than replaced so an attribute contributed by Tiptap or an
+  // extension can't be dropped the way role="textbox" was - see PIE-1015.
   useEffect(() => {
     if (!editor) {
       return;
     }
 
     const currentEditorProps = editor.options?.editorProps;
-    const attributes = spellCheckAttributes(spellCheckEnabled);
+    const attributes = { ...currentEditorProps?.attributes, ...editorAttributes(spellCheckEnabled) };
 
     if (currentEditorProps?.attributes?.spellcheck === attributes.spellcheck) {
       return;
