@@ -9,8 +9,11 @@ const applyPresentationToTableElement = (table, attrs) => {
 };
 
 class ExtendedTableView extends TableView {
-  constructor(node, cellMinWidth, view) {
-    super(node, cellMinWidth, view);
+  // Since 3.24 the base TableView takes a 4th `HTMLAttributes` argument and applies it to the
+  // table element. columnResizing (the resizable path) still constructs views with 3 arguments,
+  // but Table.addNodeView - used when the editor is read-only - passes all 4, so forward it.
+  constructor(node, cellMinWidth, view, HTMLAttributes) {
+    super(node, cellMinWidth, view, HTMLAttributes);
     applyPresentationToTableElement(this.table, node.attrs);
   }
 
