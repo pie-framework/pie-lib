@@ -37,7 +37,7 @@
     "@pie-lib/text-select": "^3.0.5",
     "@pie-lib/tools": "^2.0.3",
     "@pie-lib/translator": "^4.0.2",
-    "@tiptap/pm": "3.30.2",
+    "@tiptap/pm": "3.31.3",
     "@visx/axis": "^4.0.0",
     "@visx/grid": "^4.0.0",
     "@visx/group": "^4.0.0",
