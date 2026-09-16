@@ -530,6 +530,10 @@ const StyledMenuBar = (props) => {
 };
 
 const StyledMenuBarRoot = styled('div')(() => ({
+  // A zero-height slot the toolbar overflows out of, so the toolbar rides normal flow while the
+  // root's geometry stays as it was.
+  height: 0,
+  overflow: 'visible',
   '& .defaultToolbar': {
     display: 'flex',
     width: '100%',
@@ -580,13 +584,16 @@ const StyledMenuBarRoot = styled('div')(() => ({
     color: 'var(--white)',
   },
   '& .toolbar': {
-    position: 'absolute',
+    // Offset from its own in-flow position: no containing block and no static position to resolve,
+    // either of which a lockdown browser extension can get wrong as the editor grows.
+    position: 'relative',
+    top: '5px',
     zIndex: 20,
     cursor: 'pointer',
     justifyContent: 'space-between',
     background: 'var(--editable-html-toolbar-bg, #efefef)',
     minWidth: '280px',
-    margin: '5px 0 0 0',
+    margin: 0,
     padding: '2px',
     boxShadow:
       '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
@@ -599,6 +606,8 @@ const StyledMenuBarRoot = styled('div')(() => ({
     minWidth: '265px',
   },
   '& .toolbarTop': {
+    // Anchored to the root's top, which never depended on the editor's height.
+    position: 'absolute',
     top: '-45px',
   },
   '& .toolbarRight': {
