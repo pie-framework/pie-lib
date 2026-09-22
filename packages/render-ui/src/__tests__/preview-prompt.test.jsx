@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import PreviewPrompt from '../preview-prompt';
 import * as color from '../color';
@@ -221,6 +221,115 @@ describe('PreviewPrompt - Extended Tests', () => {
 
       const playButton = document.getElementById('play-audio-button');
       expect(playButton).not.toBeInTheDocument();
+    });
+  });
+
+  // playImage is the idle state, pauseImage the playing one. The button has to
+  // start in the state the audio is actually in: it used to always start on
+  // pauseImage, and the click handler read that image back as "already
+  // playing", so with autoplay off every click was silently swallowed.
+  describe('custom audio button playback', () => {
+    const customAudioButton = { playImage: 'play.png', pauseImage: 'pause.png' };
+    const promptWithAudio = '<audio src="test.mp3"></audio>';
+
+    let play;
+    let paused;
+
+    const stubPlayback = (impl) => {
+      play = jest.fn(impl);
+      // jsdom does not implement playback, and the component reads `paused`
+      // alongside calling `play()`, so both are driven by hand here.
+      Object.defineProperty(HTMLMediaElement.prototype, 'play', {
+        configurable: true,
+        writable: true,
+        value: play,
+      });
+      Object.defineProperty(HTMLMediaElement.prototype, 'paused', {
+        configurable: true,
+        get: () => paused,
+      });
+    };
+
+    const renderPrompt = (autoplayAudioEnabled) => {
+      render(
+        <PreviewPrompt
+          prompt={promptWithAudio}
+          autoplayAudioEnabled={autoplayAudioEnabled}
+          customAudioButton={customAudioButton}
+        />,
+      );
+
+      return document.getElementById('play-audio-button');
+    };
+
+    beforeEach(() => {
+      paused = true;
+      stubPlayback(() => Promise.resolve());
+    });
+
+    it('should start on the idle image when autoplay is off', () => {
+      const playButton = renderPrompt(false);
+
+      expect(playButton.style.backgroundImage).toContain(customAudioButton.playImage);
+    });
+
+    it('should play when clicked with autoplay off', () => {
+      const playButton = renderPrompt(false);
+
+      fireEvent.click(playButton);
+
+      expect(play).toHaveBeenCalledTimes(1);
+    });
+
+    // No controller defaults `autoplayAudioEnabled`, so an item that does not
+    // set it reaches delivery as undefined. The initial image tracks whether
+    // play() is called - a truthy check - not whether the author opted out.
+    it('should start on the idle image and stay clickable when autoplay is unset', () => {
+      const playButton = renderPrompt(undefined);
+
+      expect(playButton.style.backgroundImage).toContain(customAudioButton.playImage);
+      expect(play).not.toHaveBeenCalled();
+
+      fireEvent.click(playButton);
+
+      expect(play).toHaveBeenCalledTimes(1);
+    });
+
+    it('should start on the playing image and autoplay when autoplay is on', () => {
+      const playButton = renderPrompt(true);
+
+      expect(playButton.style.backgroundImage).toContain(customAudioButton.pauseImage);
+      expect(play).toHaveBeenCalledTimes(1);
+    });
+
+    it('should ignore a click while the audio is already playing', () => {
+      const playButton = renderPrompt(false);
+      paused = false;
+
+      fireEvent.click(playButton);
+
+      expect(play).not.toHaveBeenCalled();
+    });
+
+    it('should fall back to the idle image and stay clickable when autoplay is blocked', async () => {
+      // Only the autoplay attempt is blocked; the click that follows is a user
+      // gesture, so the browser allows it.
+      let attempts = 0;
+      stubPlayback(() => {
+        attempts += 1;
+        return attempts === 1 ? Promise.reject(new Error('NotAllowedError')) : Promise.resolve();
+      });
+      jest.spyOn(console, 'error').mockImplementation(() => {});
+
+      const playButton = renderPrompt(true);
+
+      await waitFor(() => {
+        expect(playButton.style.backgroundImage).toContain(customAudioButton.playImage);
+      });
+
+      fireEvent.click(playButton);
+
+      expect(play).toHaveBeenCalledTimes(2);
     });
   });
 
