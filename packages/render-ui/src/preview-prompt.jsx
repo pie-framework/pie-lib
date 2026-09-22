@@ -97,7 +97,7 @@ export class PreviewPrompt extends Component {
   promptRef = React.createRef();
 
   parsedText = (text) => {
-    const { customAudioButton } = this.props;
+    const { autoplayAudioEnabled, customAudioButton } = this.props;
     const div = document.createElement('div');
     div.innerHTML = text;
 
@@ -124,7 +124,10 @@ export class PreviewPrompt extends Component {
           display: 'block',
           width: '128px',
           height: '128px',
-          backgroundImage: `url(${customAudioButton.pauseImage})`,
+          // pauseImage is the playing state. Only autoplay starts in it - with
+          // autoplay off the audio is paused, so the button has to show
+          // playImage or it advertises a state the audio is not in.
+          backgroundImage: `url(${autoplayAudioEnabled ? customAudioButton.pauseImage : customAudioButton.playImage})`,
           backgroundSize: 'cover',
           borderRadius: '50%',
           border: '1px solid #326295',
@@ -151,6 +154,12 @@ export class PreviewPrompt extends Component {
           }
         })
         .catch((error) => {
+          // Autoplay blocked (Safari/Firefox until the page has been
+          // interacted with). The audio is paused, so drop the button back to
+          // the idle image - clicking it is now the only way to start.
+          if (playButton && customAudioButton) {
+            playButton.style.backgroundImage = `url(${customAudioButton.playImage})`;
+          }
           console.error('Error playing audio', error);
         });
     }
@@ -160,7 +169,6 @@ export class PreviewPrompt extends Component {
     const handlePlayClick = () => {
       // if already playing, don't play again
       if (!audio.paused) return;
-      if (playButton.style.backgroundImage.includes(customAudioButton.pauseImage)) return;
 
       audio.play();
     };
