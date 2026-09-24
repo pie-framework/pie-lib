@@ -371,6 +371,28 @@ describe('mathlive-instance', () => {
       }
     });
 
+    it('injects the radical index size fix', () => {
+      const el = host();
+
+      instance.applyShadowStyles(el);
+
+      const viaStyle = el.shadowRoot.querySelector('style[data-pie-accent]');
+
+      if (viaStyle) {
+        const css = viaStyle.textContent;
+
+        // MathLive's scriptscriptstyle index (an inline 50%) reads too small in
+        // the authoring UI; a mathfield's shadow root needs its own copy of the
+        // rule, since host styles do not cross the boundary. Compared against
+        // the exported rule, so the size stays defined in one place.
+        // eslint-disable-next-line global-require
+        const { ROOT_INDEX_CSS } = require('../mf/common-styles');
+
+        expect(ROOT_INDEX_CSS).toContain('.ML__sqrt-index >');
+        expect(css).toContain(ROOT_INDEX_CSS);
+      }
+    });
+
     it('does not inject twice', () => {
       const el = host();
 

@@ -13,7 +13,9 @@
  * Most are intentionally near-empty: MathLive sizes scripts, radicals and
  * fences correctly on its own, so the MathQuill-era corrections are not needed.
  * They stay as documented extension points rather than being deleted, so the
- * destructuring above keeps working.
+ * destructuring above keeps working. The exception is the radical index, which
+ * MathLive sizes to TeX metrics that read too small here - see
+ * `rootIndexStyles`.
  */
 
 /**
@@ -40,10 +42,47 @@ export const longdivStyles = {
 };
 
 /**
- * Superscript/subscript sizing. MathLive follows TeX metrics, so no overrides
- * are required.
+ * How the index of a radical is sized.
+ *
+ * MathLive follows TeX and sets the index of `\sqrt[n]{x}` in scriptscriptstyle,
+ * which it emits as an inline `font-size: 50%` on the span wrapping the index's
+ * glyphs. At authoring sizes that leaves the index - on the nth-root key, and in
+ * any radical the author types - too small to read next to the radicand, so it is
+ * scaled up to 80% - 1.6x what MathLive asks for.
+ *
+ * Only that innermost span is resized. `.ML__sqrt-index` itself keeps its font
+ * size on purpose: the vlist inside it tucks the index into the radical's crook
+ * with em-based `top`/`height` offsets, and scaling those lifts the index clear
+ * of the radical instead of just enlarging it.
+ *
+ * The child chain is spelled out so that nothing nested deeper inside the index
+ * (a fraction's numerator, another radical) is caught by the same rule, and
+ * `!important` is required because the 50% is an INLINE style.
  */
-export const supsubStyles = {};
+const ROOT_INDEX_SELECTOR = '.ML__sqrt-index > .ML__vlist-t > .ML__vlist-r > .ML__vlist > span > [style*="font-size"]';
+const ROOT_INDEX_FONT_SIZE = '80%';
+
+export const rootIndexStyles = {
+  [`& ${ROOT_INDEX_SELECTOR}`]: {
+    fontSize: `${ROOT_INDEX_FONT_SIZE} !important`,
+  },
+};
+
+/**
+ * The same rule as a CSS string, for a live mathfield's shadow root - see
+ * `SHADOW_CSS` in mathlive-instance.js. Static markup is styled by
+ * {@link rootIndexStyles}.
+ */
+export const ROOT_INDEX_CSS = `${ROOT_INDEX_SELECTOR}{font-size:${ROOT_INDEX_FONT_SIZE} !important}`;
+
+/**
+ * Superscript/subscript sizing. MathLive follows TeX metrics for scripts, so the
+ * MathQuill-era corrections are gone; the radical index is the one place where a
+ * TeX-correct size reads too small in the authoring UI.
+ */
+export const supsubStyles = {
+  ...rootIndexStyles,
+};
 
 /** Empty placeholder boxes (answer blocks / open slots). */
 export const placeholderStyles = {
@@ -102,6 +141,7 @@ export const placeholderStyles = {
 export const commonMqKeyboardStyles = {
   ...commonMqFontStyles,
   ...longdivStyles,
+  ...rootIndexStyles,
   ...placeholderStyles,
   touchAction: 'manipulation',
   '& math-field': {
@@ -143,6 +183,7 @@ export const commonKeyboardStyles = commonMqKeyboardStyles;
 export default {
   commonMqFontStyles,
   longdivStyles,
+  rootIndexStyles,
   supsubStyles,
   commonMqKeyboardStyles,
   placeholderStyles,

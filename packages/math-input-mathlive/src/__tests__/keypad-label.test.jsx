@@ -88,6 +88,79 @@ describe('keypad label display normalisation', () => {
     expect(placeholderStyles['& .ML__center:has(.ML__stretchy)'].marginLeft).toEqual('0 !important');
   });
 
+  // MathLive sets the index of \sqrt[n]{x} in scriptscriptstyle - an inline
+  // `font-size: 50%` - which is too small to read on the nth-root key and in
+  // authored radicals. It is scaled up to 80%.
+  describe('radical index size', () => {
+    // Real MathLive 0.110 output for `\sqrt[1]{2}`, trimmed to the index. The
+    // selector walks this exact chain, so this fixture is what pins it down.
+    const INDEX_MARKUP = `
+      <span class="ML__base">
+        <span class="ML__sqrt-index">
+          <span class="ML__vlist-t"><span class="ML__vlist-r"><span class="ML__vlist" style="height:0.78em">
+            <span style="top:-3.45em">
+              <span class="ML__pstrut" style="height:3em"></span>
+              <span id="index-size" style="height:0.33em;display:inline-block;font-size: 50%">
+                <span class="ML__cmr">1</span>
+                <span id="nested-size" style="font-size: 50%">nested</span>
+              </span>
+            </span>
+          </span></span></span>
+        </span>
+        <span class="ML__sqrt-sign"><span class="ML__delim-size1">&#8730;</span></span>
+      </span>`;
+
+    const rule = () => {
+      // eslint-disable-next-line global-require
+      const { rootIndexStyles } = require('../mf/common-styles');
+      const selectors = Object.keys(rootIndexStyles);
+
+      expect(selectors).toHaveLength(1);
+
+      return { selector: selectors[0], value: rootIndexStyles[selectors[0]].fontSize };
+    };
+
+    it("scales the index glyph to 80%, up from MathLive's 50%", () => {
+      // !important: the 50% is an inline style, which a class cannot override.
+      expect(rule().value).toEqual('80% !important');
+    });
+
+    it('targets the span MathLive puts the inline font-size on', () => {
+      const holder = document.createElement('div');
+
+      holder.innerHTML = INDEX_MARKUP;
+
+      const matched = holder.querySelectorAll(rule().selector.replace(/^&\s*/, ''));
+
+      expect(Array.from(matched).map((el) => el.id)).toEqual(['index-size']);
+    });
+
+    it('leaves the radical index box itself unscaled', () => {
+      // Scaling `.ML__sqrt-index` would scale the em-based top/height offsets
+      // that tuck the index into the radical, lifting it clear of the crook.
+      const { selector } = rule();
+
+      expect(selector).not.toMatch(/\.ML__sqrt-index\s*\{?$/);
+      expect(selector.startsWith('& .ML__sqrt-index >')).toBe(true);
+    });
+
+    it('applies wherever math renders - keypad labels, static math, mathfield', () => {
+      // eslint-disable-next-line global-require
+      const cs = require('../mf/common-styles');
+      const { selector } = rule();
+
+      ['commonKeyboardStyles', 'commonMathLiveStyles', 'supsubStyles'].forEach((name) => {
+        expect(cs[name][selector]).toBeDefined();
+      });
+
+      // The live mathfield renders in a shadow root, which host styles cannot
+      // reach, so the same rule ships as plain CSS for `applyShadowStyles`.
+      expect(cs.ROOT_INDEX_CSS).toContain('.ML__sqrt-index >');
+      // Derived, so the size lives in one place: the two copies cannot drift.
+      expect(cs.ROOT_INDEX_CSS).toContain(`font-size:${rule().value}`);
+    });
+  });
+
   it('applies those rules wherever static math renders', () => {
     // eslint-disable-next-line global-require
     const cs = require('../mf/common-styles');

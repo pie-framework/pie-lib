@@ -9,7 +9,7 @@ import { color } from '@pie-lib/render-ui';
 
 import { baseSet } from '../keys';
 import { sortKeys } from './keys-layout';
-import { commonKeyboardStyles } from '../mf/common-styles';
+import { commonKeyboardStyles, rootIndexStyles } from '../mf/common-styles';
 import { loadMathLive, latexToMarkup } from '../mathlive-instance';
 
 const log = debug('pie-lib:math-input-mathlive:keypad');
@@ -53,6 +53,9 @@ const LabelHolder = styled('span')(() => ({
   '& [data-pie-empty]': {
     opacity: 0.5,
   },
+  // A readable index on the nth-root key. Carried by the label itself, not only
+  // by the keypad container, so it holds wherever a LatexLabel is mounted.
+  ...rootIndexStyles,
 }));
 
 export class LatexLabel extends React.Component {

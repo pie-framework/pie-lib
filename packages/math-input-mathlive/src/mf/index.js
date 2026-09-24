@@ -6,6 +6,7 @@ import CommonMqStyles, {
   commonMqFontStyles,
   commonMqKeyboardStyles,
   longdivStyles,
+  rootIndexStyles,
   supsubStyles,
   placeholderStyles,
 } from './common-styles';
@@ -21,6 +22,7 @@ export {
   commonMqFontStyles,
   commonMqKeyboardStyles,
   longdivStyles,
+  rootIndexStyles,
   supsubStyles,
   placeholderStyles,
 };

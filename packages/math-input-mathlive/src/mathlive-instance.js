@@ -1,5 +1,6 @@
 import debug from 'debug';
 import { NEWLINE_EMBED, toMathLive, withVisibleEmptySlots } from './latex-bridge';
+import { ROOT_INDEX_CSS } from './mf/common-styles';
 
 const log = debug('pie-lib:math-input-mathlive:instance');
 
@@ -231,7 +232,11 @@ const PLACEHOLDER_CARET_CSS = [
   'animation:ML__caret-blink 1.05s step-end forwards infinite}',
 ].join('');
 
-const SHADOW_CSS = '.ML__latex .ML__center:has(.ML__stretchy){margin-left:0 !important}' + PLACEHOLDER_CARET_CSS;
+// A live mathfield needs the readable radical index too: `rootIndexStyles` is
+// written for static markup in the host page, which cannot cross the shadow
+// boundary.
+const SHADOW_CSS =
+  '.ML__latex .ML__center:has(.ML__stretchy){margin-left:0 !important}' + ROOT_INDEX_CSS + PLACEHOLDER_CARET_CSS;
 
 /**
  * Keep {@link PLACEHOLDER_CARET_CLASS} in step with the selection.
