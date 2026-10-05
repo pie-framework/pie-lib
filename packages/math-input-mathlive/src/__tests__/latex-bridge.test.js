@@ -4,6 +4,8 @@ import {
   fieldIds,
   keyToAction,
   toNativeCommands,
+  toCanonicalCommands,
+  MATHQUILL_ALIASES,
   NEWLINE_EMBED,
   DEFAULT_FIELD_ID,
 } from '../latex-bridge';
@@ -194,6 +196,65 @@ describe('latex-bridge', () => {
 
       expect(fieldIds(latex)).toEqual(['r1']);
       expect(fieldIds(latex)).toEqual(['r1']);
+    });
+  });
+
+  // MathQuill registered some keypad names as aliases of a different command:
+  // the divide key stored `\div`, not `\divide`. MathLive knows `\divide` only as
+  // a pie macro and serialises it under that name, so it reached storage and
+  // MathJax (which has no `\divide`) rendered it as red text.
+  describe('MathQuill command aliases', () => {
+    it('the divide and perpendicular keys insert the command MathQuill stored', () => {
+      /* eslint-disable global-require */
+      const { divide } = require('../keys/basic-operators');
+      // Exported under a pre-existing misspelling.
+      const { perpindicular: perpendicular } = require('../keys/geometry');
+      /* eslint-enable global-require */
+
+      expect(keyToAction(divide)).toEqual({ type: 'insert', value: '\\div' });
+      expect(keyToAction(perpendicular)).toEqual({ type: 'insert', value: '\\perp' });
+    });
+
+    it('stores the canonical command for latex that still carries an alias', () => {
+      // Typed into the field, or saved before the keypad resolved the alias.
+      expect(fromMathLive('1\\divide 6')).toEqual('1\\div 6');
+      expect(fromMathLive('a\\perpendicular b')).toEqual('a\\perp b');
+    });
+
+    it('only replaces whole command names', () => {
+      // \divideontimes is a real AMS symbol and must survive.
+      expect(toCanonicalCommands('a\\divideontimes b')).toEqual('a\\divideontimes b');
+      expect(toCanonicalCommands('\\divide\\divide')).toEqual('\\div\\div');
+    });
+
+    it('no keypad key inserts an alias name', () => {
+      /* eslint-disable global-require */
+      const fs = require('fs');
+      const path = require('path');
+      /* eslint-enable global-require */
+      const keysDir = path.resolve(__dirname, '../keys');
+      const keys = [];
+
+      const collect = (v) => {
+        if (Array.isArray(v)) return v.forEach(collect);
+        if (v && typeof v === 'object' && (v.command || v.latex || v.write)) keys.push(v);
+      };
+
+      fs.readdirSync(keysDir)
+        .filter((f) => /\.js$/.test(f))
+        // eslint-disable-next-line global-require, import/no-dynamic-require
+        .forEach((f) => Object.values(require(path.join(keysDir, f))).forEach(collect));
+
+      expect(keys.length).toBeGreaterThan(50);
+
+      keys.forEach((k) => {
+        const action = keyToAction(k);
+        const value = (action && action.value) || '';
+
+        Object.keys(MATHQUILL_ALIASES).forEach((alias) => {
+          expect(new RegExp(`\\${alias}(?![a-zA-Z])`).test(value)).toBe(false);
+        });
+      });
     });
   });
 

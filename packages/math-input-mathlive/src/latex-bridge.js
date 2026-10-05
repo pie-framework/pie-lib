@@ -237,6 +237,36 @@ export const toMathLive = (latex) => {
 };
 
 /**
+ * Keypad command names that MathQuill treated as ALIASES of a different command.
+ *
+ * MathQuill registered `\\divide` as another name for `\\div` (and
+ * `\\perpendicular` for `\\perp`), so pressing the key stored the real command.
+ * MathLive only knows these names through `PIE_MACROS`, and serialises a macro
+ * under its own name - so `\\divide` reached storage verbatim, where MathJax
+ * (@pie-lib/math-rendering) has no such command and renders it as red text.
+ *
+ * Every other keypad command already matches what MathQuill stored (`\\degree`,
+ * `\\nsim`, `\\ncong`, `\\nparallel`, `\\square`, `\\napprox`,
+ * `\\parallelogram`), and MathJax understands those.
+ */
+const MATHQUILL_ALIASES = {
+  '\\divide': '\\div',
+  '\\perpendicular': '\\perp',
+};
+
+// Whole command names only: `\\divideontimes` is a real AMS symbol.
+const MATHQUILL_ALIAS_REGEX = /\\(divide|perpendicular)(?![a-zA-Z])/g;
+
+/**
+ * Replace MathQuill alias names with the command MathQuill actually stored.
+ *
+ * @param {string} latex
+ * @returns {string}
+ */
+export const toCanonicalCommands = (latex) =>
+  typeof latex === 'string' ? latex.replace(MATHQUILL_ALIAS_REGEX, (m) => MATHQUILL_ALIASES[m]) : latex;
+
+/**
  * Convert latex out of MathLive back into the stored form, so items authored
  * with the MathLive editor remain readable by @pie-lib/math-rendering and by
  * the existing MathQuill implementation.
@@ -273,7 +303,9 @@ export const fromMathLive = (latex) => {
   out = out.replace(BARE_PLACEHOLDER_REGEX, (_m, content) => content);
   out = out.replace(BARE_PLACEHOLDER_NO_ARG_REGEX, '');
 
-  return out;
+  // Store the command MathQuill stored, not the alias - also heals latex that was
+  // saved with `\\divide` before the keypad resolved it.
+  return toCanonicalCommands(out);
 };
 
 /**
@@ -347,7 +379,7 @@ export const keyToAction = (key) => {
     // applied them in sequence; MathLive inserts one latex string, so expand
     // each part and concatenate.
     const parts = Array.isArray(key.command) ? key.command : [key.command];
-    const value = parts.map((c) => COMMANDS_WITH_ARGS[c] || c).join('');
+    const value = parts.map((c) => COMMANDS_WITH_ARGS[c] || MATHQUILL_ALIASES[c] || c).join('');
 
     return { type: 'insert', value };
   }
@@ -361,4 +393,4 @@ export const keyToAction = (key) => {
   return undefined;
 };
 
-export { COMMANDS_WITH_ARGS, KEYSTROKES };
+export { COMMANDS_WITH_ARGS, KEYSTROKES, MATHQUILL_ALIASES };
