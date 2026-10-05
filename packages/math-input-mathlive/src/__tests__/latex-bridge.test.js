@@ -227,6 +227,31 @@ describe('latex-bridge', () => {
       expect(toCanonicalCommands('\\divide\\divide')).toEqual('\\div\\div');
     });
 
+    // The double prime key: MathLive serialises `5''` as `5^{\doubleprime}`,
+    // which MathJax cannot render (red `\doubleprime`). MathQuill stored `5''`.
+    it('stores the double prime key as apostrophes', () => {
+      expect(fromMathLive('5^{\\doubleprime}')).toEqual("5''");
+      expect(fromMathLive('x^{\\prime}')).toEqual("x'");
+      expect(fromMathLive('x^{\\prime\\prime\\prime}')).toEqual("x'''");
+      expect(fromMathLive('\\doubleprime')).toEqual("''");
+    });
+
+    // Typing `'` twice yields two superscript groups - a MathJax double-exponent
+    // error - so they collapse into apostrophes too.
+    it('collapses adjacent prime superscripts', () => {
+      expect(fromMathLive('x^{\\prime}^{\\prime}')).toEqual("x''");
+      expect(fromMathLive('5^{\\prime}^{\\doubleprime}')).toEqual("5'''");
+    });
+
+    it('leaves superscripts that hold more than primes alone', () => {
+      expect(fromMathLive('x^{\\prime 2}')).toEqual('x^{\\prime 2}');
+      expect(fromMathLive('x^{2}')).toEqual('x^{2}');
+    });
+
+    it('round-trips stored primes unchanged', () => {
+      expect(fromMathLive("12^{\\circ}30'15''")).toEqual("12^{\\circ}30'15''");
+    });
+
     it('no keypad key inserts an alias name', () => {
       /* eslint-disable global-require */
       const fs = require('fs');

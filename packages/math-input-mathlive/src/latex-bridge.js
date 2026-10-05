@@ -258,13 +258,40 @@ const MATHQUILL_ALIASES = {
 const MATHQUILL_ALIAS_REGEX = /\\(divide|perpendicular)(?![a-zA-Z])/g;
 
 /**
- * Replace MathQuill alias names with the command MathQuill actually stored.
+ * Primes. MathLive turns a prime that follows a base into a superscript atom and
+ * serialises it as `^{\\prime}`, or `^{\\doubleprime}` for the keypad's double
+ * prime key (`5''` comes back out as `5^{\\doubleprime}`). MathJax has no
+ * `\\doubleprime`, and two adjacent `^{\\prime}` groups - what typing `'` twice
+ * produces - are a "double exponent" error. MathQuill stored plain apostrophes,
+ * which both MathJax and MathLive read as primes, so store those.
+ *
+ * Only a superscript made of primes alone is rewritten: `x^{\\prime 2}` keeps
+ * its group, since it holds more than primes.
+ */
+const PRIME_SUPERSCRIPT_REGEX = /\^\{((?:\s*\\(?:prime|doubleprime)(?![a-zA-Z]))+)\s*\}/g;
+const BARE_DOUBLEPRIME_REGEX = /\\doubleprime(?![a-zA-Z])/g;
+
+const primesToApostrophes = (primes) =>
+  // eslint-disable-next-line quotes
+  "'".repeat(
+    (primes.match(/\\prime(?![a-zA-Z])/g) || []).length + 2 * (primes.match(BARE_DOUBLEPRIME_REGEX) || []).length,
+  );
+
+/**
+ * Rewrite what MathLive serialises into the form MathQuill stored: alias
+ * command names, and primes.
  *
  * @param {string} latex
  * @returns {string}
  */
 export const toCanonicalCommands = (latex) =>
-  typeof latex === 'string' ? latex.replace(MATHQUILL_ALIAS_REGEX, (m) => MATHQUILL_ALIASES[m]) : latex;
+  typeof latex === 'string'
+    ? latex
+        .replace(MATHQUILL_ALIAS_REGEX, (m) => MATHQUILL_ALIASES[m])
+        .replace(PRIME_SUPERSCRIPT_REGEX, (_m, primes) => primesToApostrophes(primes))
+        // eslint-disable-next-line quotes
+        .replace(BARE_DOUBLEPRIME_REGEX, "''")
+    : latex;
 
 /**
  * Convert latex out of MathLive back into the stored form, so items authored
