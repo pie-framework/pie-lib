@@ -115,6 +115,17 @@ describe('async mount race', () => {
     expect(input.mathField.mathModeSpace).not.toEqual('');
   });
 
+  // MathLive leaves a superscript after one digit by default (`smartSuperscript`),
+  // so x^23 / 10^6 cannot be typed.
+  it('stays in the exponent after a digit instead of jumping out', async () => {
+    const input = new Input({});
+
+    holderFor(input);
+    await input.componentDidMount();
+
+    expect(input.mathField.smartSuperscript).toBe(false);
+  });
+
   it('reports itself through innerRef on mount and clears it on unmount', async () => {
     const innerRef = jest.fn();
     const input = new Input({ innerRef });

@@ -102,6 +102,8 @@ export default class Static extends React.Component {
     // Without this the spacebar does nothing: MathLive's mathModeSpace
     // defaults to an empty string.
     this.mathField.mathModeSpace = MATH_MODE_SPACE;
+    // Same as the editor: stay in the exponent after a digit (see mf/input.jsx).
+    this.mathField.smartSuperscript = false;
     this.mathField.value = toMathLive(this.props.latex);
 
     // The mathfield renders in shadow DOM, so page CSS cannot reach it - the
