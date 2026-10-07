@@ -1,6 +1,6 @@
 import debug from 'debug';
 import { NEWLINE_EMBED, toMathLive, withVisibleEmptySlots } from './latex-bridge';
-import { ROOT_INDEX_CSS } from './mf/common-styles';
+import { ROOT_INDEX_CSS, PARALLEL_CSS } from './mf/common-styles';
 
 const log = debug('pie-lib:math-input-mathlive:instance');
 
@@ -116,6 +116,9 @@ export const PIE_MACROS = {
   // Argument-less symbols. Atomic is correct here: backspace should remove the
   // whole glyph, and there is nothing to type into.
   parallelogram: '\\htmlData{pie-macro=parallelogram}{\\unicode{"25B1}}',
+  // Same glyph as the built-in `\\parallel` (U+2225), tagged so it can be sized -
+  // see `parallelStyles`.
+  parallel: '\\htmlData{pie-macro=parallel}{\\unicode{"2225}}',
   napprox: '\\not\\approx',
   nsim: '\\not\\sim',
   ncong: '\\not\\cong',
@@ -236,7 +239,10 @@ const PLACEHOLDER_CARET_CSS = [
 // written for static markup in the host page, which cannot cross the shadow
 // boundary.
 const SHADOW_CSS =
-  '.ML__latex .ML__center:has(.ML__stretchy){margin-left:0 !important}' + ROOT_INDEX_CSS + PLACEHOLDER_CARET_CSS;
+  '.ML__latex .ML__center:has(.ML__stretchy){margin-left:0 !important}' +
+  ROOT_INDEX_CSS +
+  PARALLEL_CSS +
+  PLACEHOLDER_CARET_CSS;
 
 /**
  * Keep {@link PLACEHOLDER_CARET_CLASS} in step with the selection.

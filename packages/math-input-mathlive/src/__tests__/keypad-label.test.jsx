@@ -1,5 +1,5 @@
 import { withVisibleEmptySlots as latexForDisplay } from '../latex-bridge';
-import { keyToAction } from '../latex-bridge';
+import { keyToAction, toMathLive } from '../latex-bridge';
 
 /**
  * Keys use empty groups to show a command's shape (`\frac{}{}`, `x^{}`).
@@ -15,6 +15,25 @@ describe('keypad label display normalisation', () => {
     // MathLive's, which left stretchy accents narrower than the box
     expect(out).toContain('\\rule');
     expect(out).toContain('pie-empty');
+  });
+
+  it.each([
+    ['absolute value', '\\abs{}', '|', '|'],
+    ['parenthesis', '\\left(\\right)', '(', ')'],
+    ['brackets', '\\left[\\right]', '[', ']'],
+  ])('gives an empty %s a tall, filled slot (the same muted tag as other slots)', (_name, latex, open, close) => {
+    const out = latexForDisplay(toMathLive(latex));
+
+    expect(out).toContain('pie-empty=1');
+    expect(out).toContain('\\rule{0.55em}{1em}');
+    expect(out).not.toContain('\\boxed');
+    expect(out.startsWith(`\\left${open}`)).toBe(true);
+    expect(out.endsWith(`\\right${close}`)).toBe(true);
+  });
+
+  it('leaves a filled pair of fences alone', () => {
+    expect(latexForDisplay(toMathLive('\\abs{x}'))).toEqual('\\left|x\\right|');
+    expect(latexForDisplay('\\left(x\\right)')).toEqual('\\left(x\\right)');
   });
 
   it('handles every empty-group key shape', () => {

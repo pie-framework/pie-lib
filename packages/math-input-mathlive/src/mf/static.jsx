@@ -11,7 +11,7 @@ import {
   trackPlaceholderCaret,
 } from '../mathlive-instance';
 import { toMathLive, fromMathLive, fieldIds } from '../latex-bridge';
-import { placeholderStyles, rootIndexStyles } from './common-styles';
+import { placeholderStyles, rootIndexStyles, parallelStyles } from './common-styles';
 
 const log = debug('pie-lib:math-input-mathlive:static');
 
@@ -22,6 +22,7 @@ const Holder = styled('span')({
   // Readable radical index - display mode renders in the light DOM, so the
   // shadow-root copy of this rule does not reach it.
   ...rootIndexStyles,
+  ...parallelStyles,
   '& math-field': {
     display: 'inline-block',
     border: 'none',

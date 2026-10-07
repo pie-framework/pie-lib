@@ -76,12 +76,31 @@ export const rootIndexStyles = {
 export const ROOT_INDEX_CSS = `${ROOT_INDEX_SELECTOR}{font-size:${ROOT_INDEX_FONT_SIZE} !important}`;
 
 /**
+ * Size of the parallel sign (`\parallel`, tagged `data-pie-macro="parallel"` by
+ * `PIE_MACROS`). The legacy editor enlarged it (`updateSpans` set 32px) because
+ * the bars read too small next to the letters of `AB ∥ CD`; MathLive draws it at
+ * the surrounding size, so it is scaled up here. Not applied to keypad labels.
+ */
+const PARALLEL_SELECTOR = '[data-pie-macro="parallel"]';
+const PARALLEL_FONT_SIZE = '1.4em';
+
+export const parallelStyles = {
+  [`& ${PARALLEL_SELECTOR}`]: {
+    fontSize: PARALLEL_FONT_SIZE,
+  },
+};
+
+/** The same rule as a CSS string, for a live mathfield's shadow root. */
+export const PARALLEL_CSS = `${PARALLEL_SELECTOR}{font-size:${PARALLEL_FONT_SIZE}}`;
+
+/**
  * Superscript/subscript sizing. MathLive follows TeX metrics for scripts, so the
  * MathQuill-era corrections are gone; the radical index is the one place where a
  * TeX-correct size reads too small in the authoring UI.
  */
 export const supsubStyles = {
   ...rootIndexStyles,
+  ...parallelStyles,
 };
 
 /** Empty placeholder boxes (answer blocks / open slots). */

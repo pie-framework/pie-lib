@@ -69,6 +69,14 @@ export const DEFAULT_FIELD_ID = 'r1';
  */
 const EMPTY_SLOT = '\\htmlData{pie-empty=1}{\\rule{0.55em}{0.55em}}';
 const EMPTY_GROUP_REGEX = /\{\s*\}/g;
+// Empty delimiter pairs: `\abs{}` is converted to `\left|\right|`, and the
+// parenthesis / bracket keys are `\left(\right)` / `\left[\right]`. None has a
+// `{}` group for the rule above to catch, so they would render as bare fences.
+const EMPTY_FENCE_REGEX = /\\left([(\[|])\s*\\right([)\]|])/g;
+// The same muted fill as the other slots (`pie-empty`), but a tall rectangle
+// rather than a square. It also sets the fences' height: `\left...\right` stretch
+// to their content, so a taller slot gives taller parentheses.
+const EMPTY_FENCE_SLOT = '\\htmlData{pie-empty=1}{\\rule{0.55em}{1em}}';
 
 /**
  * Make empty argument slots visible, for static rendering.
@@ -79,7 +87,10 @@ const EMPTY_GROUP_REGEX = /\{\s*\}/g;
  * @param {string} latex
  * @returns {string}
  */
-export const withVisibleEmptySlots = (latex) => (latex || '').replace(EMPTY_GROUP_REGEX, `{${EMPTY_SLOT}}`);
+export const withVisibleEmptySlots = (latex) =>
+  (latex || '')
+    .replace(EMPTY_GROUP_REGEX, `{${EMPTY_SLOT}}`)
+    .replace(EMPTY_FENCE_REGEX, (_m, open, close) => `\\left${open}${EMPTY_FENCE_SLOT}\\right${close}`);
 
 /**
  * Pie commands that take an argument, and their native MathLive equivalents.

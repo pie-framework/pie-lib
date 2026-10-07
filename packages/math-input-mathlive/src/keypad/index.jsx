@@ -22,10 +22,25 @@ const log = debug('pie-lib:math-input-mathlive:keypad');
  * `convertLatexToMarkup`, so a 40-key keypad no longer creates 40 live math
  * instances.
  */
+// Labels that the legacy keypad drew slanted. MathQuill styled `\parallel` as
+// italic, which slants the two bars; MathLive draws it upright. A skew is used
+// rather than `font-style: italic` so the slant does not depend on the font
+// having an italic face for this glyph.
+const SLANTED_LABELS = ['\\parallel'];
+const SLANT = 'skewX(-15deg)';
+// MathLive's `∥` has hairline bars next to the radical sign and the other keys, so
+// they are thickened with a text stroke and stretched a little taller.
+const SLANTED_STROKE = '0.03em currentColor';
+const SLANTED_SCALE_Y = 1.25;
+
 // The `color.*()` helpers must be called lazily, inside the styled callback.
 // Evaluating them in a plain object literal runs them at module load, which
 // breaks any consumer that mocks a subset of @pie-lib/render-ui.
-const LabelHolder = styled('span')(() => ({
+const LabelHolder = styled('span', { shouldForwardProp: (prop) => prop !== 'slanted' })(({ slanted }) => ({
+  ...(slanted && {
+    transform: `${SLANT} scaleY(${SLANTED_SCALE_Y})`,
+    '& *': { WebkitTextStroke: SLANTED_STROKE },
+  }),
   pointerEvents: 'none',
   textTransform: 'none',
   color: color.text(),
@@ -112,9 +127,9 @@ export class LatexLabel extends React.Component {
     // Fall back to the raw latex so a button is never blank.
     return markup ? (
       // eslint-disable-next-line react/no-danger
-      <LabelHolder dangerouslySetInnerHTML={{ __html: markup }} />
+      <LabelHolder slanted={SLANTED_LABELS.includes(this.props.latex)} dangerouslySetInnerHTML={{ __html: markup }} />
     ) : (
-      <LabelHolder>{this.props.latex}</LabelHolder>
+      <LabelHolder slanted={SLANTED_LABELS.includes(this.props.latex)}>{this.props.latex}</LabelHolder>
     );
   }
 }
