@@ -76,7 +76,16 @@ const EMPTY_FENCE_REGEX = /\\left([(\[|])\s*\\right([)\]|])/g;
 // The same muted fill as the other slots (`pie-empty`), but a tall rectangle
 // rather than a square. It also sets the fences' height: `\left...\right` stretch
 // to their content, so a taller slot gives taller parentheses.
-const EMPTY_FENCE_SLOT = '\\htmlData{pie-empty=1}{\\rule{0.55em}{1em}}';
+//
+// A `\rule` stands on the baseline, but the fences are centred on the math axis
+// (0.25em above it), so an un-lifted box sat high between them. `[-0.25em]`
+// lowers it by (axis - height / 2) = 0.25 - 1 / 2, centring it on the axis.
+//
+// Lowering it alone also shrinks the fences, which size themselves to their
+// content (MathLive switches to short bars). The zero-width `\rule{0em}{1em}`
+// strut keeps the content as tall as before, so the bars keep their height and
+// only the box moves.
+const EMPTY_FENCE_SLOT = '\\rule{0em}{1em}\\htmlData{pie-empty=1}{\\rule[-0.25em]{0.55em}{1em}}';
 
 /**
  * Make empty argument slots visible, for static rendering.

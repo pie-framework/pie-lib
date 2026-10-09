@@ -81,7 +81,7 @@ export class Input extends React.Component {
     // defaults to an empty string.
     this.mathField.mathModeSpace = MATH_MODE_SPACE;
     // After the exponent key the cursor must stay in the exponent until it is moved
-    // explicitly, as in the legacy editor. MathLive's `smartSuperscript` (on by
+    // MathLive's `smartSuperscript` (on by
     // default) jumps out of an empty superscript after a single digit, which breaks
     // typing x^23 or 10^6 and is inconsistent with non-digit exponents.
     this.mathField.smartSuperscript = false;

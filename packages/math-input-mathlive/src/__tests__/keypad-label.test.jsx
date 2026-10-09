@@ -25,8 +25,10 @@ describe('keypad label display normalisation', () => {
     const out = latexForDisplay(toMathLive(latex));
 
     expect(out).toContain('pie-empty=1');
-    expect(out).toContain('\\rule{0.55em}{1em}');
+    expect(out).toContain('\\rule[-0.25em]{0.55em}{1em}');
     expect(out).not.toContain('\\boxed');
+    // the strut that keeps the fences tall while the box is centred on the axis
+    expect(out).toContain('\\rule{0em}{1em}');
     expect(out.startsWith(`\\left${open}`)).toBe(true);
     expect(out.endsWith(`\\right${close}`)).toBe(true);
   });
