@@ -72,7 +72,7 @@ const EMPTY_GROUP_REGEX = /\{\s*\}/g;
 // Empty delimiter pairs: `\abs{}` is converted to `\left|\right|`, and the
 // parenthesis / bracket keys are `\left(\right)` / `\left[\right]`. None has a
 // `{}` group for the rule above to catch, so they would render as bare fences.
-const EMPTY_FENCE_REGEX = /\\left([(\[|])\s*\\right([)\]|])/g;
+const EMPTY_FENCE_REGEX = /\\left([([|])\s*\\right([)\]|])/g;
 // The same muted fill as the other slots (`pie-empty`), but a tall rectangle
 // rather than a square. It also sets the fences' height: `\left...\right` stretch
 // to their content, so a taller slot gives taller parentheses.
