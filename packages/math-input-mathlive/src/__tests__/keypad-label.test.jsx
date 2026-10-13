@@ -33,6 +33,18 @@ describe('keypad label display normalisation', () => {
     expect(out.endsWith(`\\right${close}`)).toBe(true);
   });
 
+  it('lifts the bar of an empty segment so its box lines up with the ray and line keys', () => {
+    const out = latexForDisplay('\\overline{}');
+
+    expect(out).toContain('\\overline{\\rule{0em}{1.08em}');
+    expect(out).toContain('pie-empty');
+    // the ray and line keys are left as they were
+    expect(latexForDisplay('\\overrightarrow{}')).not.toContain('\\rule{0em}');
+    expect(latexForDisplay('\\overleftrightarrow{}')).not.toContain('\\rule{0em}');
+    // a filled bar is untouched
+    expect(latexForDisplay('\\overline{AB}')).toEqual('\\overline{AB}');
+  });
+
   it('leaves a filled pair of fences alone', () => {
     expect(latexForDisplay(toMathLive('\\abs{x}'))).toEqual('\\left|x\\right|');
     expect(latexForDisplay('\\left(x\\right)')).toEqual('\\left(x\\right)');
