@@ -10,7 +10,6 @@ import {
   trackPlaceholderCaret,
 } from '../mathlive-instance';
 import { toMathLive, fromMathLive, keyToAction, KEYSTROKES } from '../latex-bridge';
-import { trackWholeAtomSelection } from '../selection';
 
 const log = debug('pie-lib:math-input-mathlive:input');
 
@@ -94,9 +93,6 @@ export class Input extends React.Component {
     // A selected `\placeholder{}` gets no MathLive caret; draw one.
     this.untrackCaret = trackPlaceholderCaret(this.mathField);
 
-    // Shift+Arrow would otherwise select half a fraction; snap to whole atoms.
-    this.untrackSelection = trackWholeAtomSelection(this.mathField);
-
     this.mathField.addEventListener('input', this.onInputEdit);
 
     // Belt and braces: drop anything a previous mount may have left behind.
@@ -138,11 +134,6 @@ export class Input extends React.Component {
     if (this.untrackCaret) {
       this.untrackCaret();
       this.untrackCaret = undefined;
-    }
-
-    if (this.untrackSelection) {
-      this.untrackSelection();
-      this.untrackSelection = undefined;
     }
 
     if (this.mathField) {

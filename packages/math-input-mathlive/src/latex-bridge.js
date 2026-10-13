@@ -303,6 +303,81 @@ const primesToApostrophes = (primes) =>
     (primes.match(/\\prime(?![a-zA-Z])/g) || []).length + 2 * (primes.match(BARE_DOUBLEPRIME_REGEX) || []).length,
   );
 
+const BARE_PRIME_COMMAND_REGEX = /^\\(doubleprime|prime)(?![a-zA-Z])/;
+
+/**
+ * Primes that are *not* in a superscript.
+ *
+ * MathLive emits bare `\prime` / `\doubleprime` for a `′` or `″` typed or pasted
+ * as a character (`5′6″` serialises as `5\prime6\doubleprime`). A bare `\prime`
+ * is a full-size glyph in MathJax, while `''` is a superscript, so storing
+ * `5\prime6''` drew the single prime visibly larger than each stroke of the
+ * double prime. Both become apostrophes, the superscript primes MathQuill
+ * stored, so they always match.
+ *
+ * Inside a script (`x^{\prime 2}`, `x^\prime`) a prime is already a
+ * superscript, and an apostrophe there would mean something else, so
+ * `\prime` is kept and `\doubleprime` (unknown to MathJax) becomes
+ * `\prime\prime`.
+ *
+ * @param {string} latex
+ * @returns {string}
+ */
+const barePrimesToApostrophes = (latex) => {
+  if (latex.indexOf('prime') === -1) {
+    return latex;
+  }
+
+  // One entry per open brace: is that group a super/subscript?
+  const groups = [];
+  let out = '';
+  let i = 0;
+
+  while (i < latex.length) {
+    const ch = latex[i];
+
+    if (ch === '\\') {
+      const match = latex.slice(i).match(BARE_PRIME_COMMAND_REGEX);
+
+      if (match) {
+        const isDouble = match[1] === 'doubleprime';
+        // `x^\prime`: the command is itself the script.
+        const isScriptArgument = /[\^_]\s*$/.test(out);
+        const inScript = isScriptArgument || groups.indexOf(true) !== -1;
+
+        if (inScript) {
+          out += isDouble ? '\\prime\\prime' : '\\prime';
+        } else {
+          // eslint-disable-next-line quotes
+          out += isDouble ? "''" : "'";
+        }
+
+        i += match[0].length;
+        continue;
+      }
+
+      // Copy any other command, or an escaped character such as `\{`, whole.
+      const command = latex.slice(i).match(/^\\(?:[a-zA-Z]+|.)/);
+      const text = command ? command[0] : ch;
+
+      out += text;
+      i += text.length;
+      continue;
+    }
+
+    if (ch === '{') {
+      groups.push(/[\^_]\s*$/.test(out));
+    } else if (ch === '}') {
+      groups.pop();
+    }
+
+    out += ch;
+    i += 1;
+  }
+
+  return out;
+};
+
 /**
  * Rewrite what MathLive serialises into the form MathQuill stored: alias
  * command names, and primes.
@@ -312,11 +387,11 @@ const primesToApostrophes = (primes) =>
  */
 export const toCanonicalCommands = (latex) =>
   typeof latex === 'string'
-    ? latex
-        .replace(MATHQUILL_ALIAS_REGEX, (m) => MATHQUILL_ALIASES[m])
-        .replace(PRIME_SUPERSCRIPT_REGEX, (_m, primes) => primesToApostrophes(primes))
-        // eslint-disable-next-line quotes
-        .replace(BARE_DOUBLEPRIME_REGEX, "''")
+    ? barePrimesToApostrophes(
+        latex
+          .replace(MATHQUILL_ALIAS_REGEX, (m) => MATHQUILL_ALIASES[m])
+          .replace(PRIME_SUPERSCRIPT_REGEX, (_m, primes) => primesToApostrophes(primes)),
+      )
     : latex;
 
 /**

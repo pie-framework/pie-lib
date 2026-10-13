@@ -252,6 +252,36 @@ describe('latex-bridge', () => {
       expect(fromMathLive("12^{\\circ}30'15''")).toEqual("12^{\\circ}30'15''");
     });
 
+    // `5′6″` typed or pasted as characters serialises as bare commands. A bare
+    // `\prime` is full size in MathJax while `''` is a superscript, so storing
+    // `5\prime6''` drew the single prime larger than each stroke of the double.
+    it('stores bare primes as apostrophes, so single and double match', () => {
+      expect(fromMathLive('5\\prime6\\doubleprime')).toEqual("5'6''");
+      expect(fromMathLive('5\\prime 6\\doubleprime')).toEqual("5' 6''");
+      expect(fromMathLive('\\prime')).toEqual("'");
+      expect(fromMathLive('\\frac{5\\prime}{2}')).toEqual("\\frac{5'}{2}");
+    });
+
+    // Inside a script a prime is already a superscript; an apostrophe there
+    // would be a prime *of* the script.
+    it('keeps primes that are inside a superscript or subscript', () => {
+      expect(fromMathLive('x^{\\prime 2}')).toEqual('x^{\\prime 2}');
+      expect(fromMathLive('x^\\prime')).toEqual('x^\\prime');
+      expect(fromMathLive('x_{\\prime}')).toEqual('x_{\\prime}');
+      // MathJax has no \doubleprime: spell it out rather than leave red text
+      expect(fromMathLive('x^{\\doubleprime 2}')).toEqual('x^{\\prime\\prime 2}');
+    });
+
+    it('closes the script scope at the matching brace', () => {
+      expect(fromMathLive('x^{2}\\prime')).toEqual("x^{2}'");
+      expect(fromMathLive('x^{\\frac{a}{b}}6\\doubleprime')).toEqual("x^{\\frac{a}{b}}6''");
+    });
+
+    it('does not touch commands that merely start with "prime"', () => {
+      expect(fromMathLive('\\primes')).toEqual('\\primes');
+      expect(fromMathLive('\\backprime')).toEqual('\\backprime');
+    });
+
     it('no keypad key inserts an alias name', () => {
       /* eslint-disable global-require */
       const fs = require('fs');
