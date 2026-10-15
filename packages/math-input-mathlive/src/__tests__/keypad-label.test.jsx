@@ -33,12 +33,13 @@ describe('keypad label display normalisation', () => {
     expect(out.endsWith(`\\right${close}`)).toBe(true);
   });
 
-  it('lifts the bar of an empty segment so its box lines up with the ray and line keys', () => {
+  it('aligns an empty segment with the ray and line keys: bar up to the shaft, box down', () => {
     const out = latexForDisplay('\\overline{}');
 
-    expect(out).toContain('\\overline{\\rule{0em}{1.08em}');
+    // strut inside the bar (bar up) and one before it (label down)
+    expect(out).toMatch(/^\\rule\{0em\}\{1\.3em\}\\overline\{\\rule\{0em\}\{0\.87em\}/);
     expect(out).toContain('pie-empty');
-    // the ray and line keys are left as they were
+    // the ray and line keys are the reference, so they are left as they were
     expect(latexForDisplay('\\overrightarrow{}')).not.toContain('\\rule{0em}');
     expect(latexForDisplay('\\overleftrightarrow{}')).not.toContain('\\rule{0em}');
     // a filled bar is untouched

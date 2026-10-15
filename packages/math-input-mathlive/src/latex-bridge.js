@@ -69,11 +69,18 @@ export const DEFAULT_FIELD_ID = 'r1';
  */
 const EMPTY_SLOT = '\\htmlData{pie-empty=1}{\\rule{0.55em}{0.55em}}';
 const EMPTY_GROUP_REGEX = /\{\s*\}/g;
-// The segment key (`\overline{}`). A bar is a thin accent, so its label is shorter
-// than the ray and line keys' stretchy arrows. The keypad centres every label
-// in its cell, so the bar's box ended up ~0.17em higher than theirs.
+// The segment key (`\overline{}`). The keypad centres every label in its cell, and
+// a thin bar is a much shorter label than the ray and line keys' stretchy arrows,
+// so by default both its bar and its box sit off from theirs: the bar is lower
+// than the arrows' shafts, and the box higher than theirs. Two zero-width struts
+// fix that, found by rendering the three keys at 14-28px and measuring:
+//  - inside the bar, above the box: pushes the bar up to the height of the
+//    arrows' shafts (the bar-to-box distance then matches theirs);
+//  - before the bar, from the baseline: raises the label's top, which moves the
+//    whole label down so the box lands where theirs does.
 const EMPTY_OVERLINE_REGEX = /\\overline\{\s*\}/g;
-const EMPTY_OVERLINE_STRUT = '\\rule{0em}{1.08em}';
+const EMPTY_OVERLINE_BAR_STRUT = '\\rule{0em}{0.87em}';
+const EMPTY_OVERLINE_LABEL_STRUT = '\\rule{0em}{1.3em}';
 // Empty delimiter pairs: `\abs{}` is converted to `\left|\right|`, and the
 // parenthesis / bracket keys are `\left(\right)` / `\left[\right]`. None has a
 // `{}` group for the rule above to catch, so they would render as bare fences.
@@ -103,7 +110,7 @@ const EMPTY_FENCE_SLOT = '\\rule{0em}{1em}\\htmlData{pie-empty=1}{\\rule[-0.25em
  */
 export const withVisibleEmptySlots = (latex) =>
   (latex || '')
-    .replace(EMPTY_OVERLINE_REGEX, `\\overline{${EMPTY_OVERLINE_STRUT}${EMPTY_SLOT}}`)
+    .replace(EMPTY_OVERLINE_REGEX, `${EMPTY_OVERLINE_LABEL_STRUT}\\overline{${EMPTY_OVERLINE_BAR_STRUT}${EMPTY_SLOT}}`)
     .replace(EMPTY_GROUP_REGEX, `{${EMPTY_SLOT}}`)
     .replace(EMPTY_FENCE_REGEX, (_m, open, close) => `\\left${open}${EMPTY_FENCE_SLOT}\\right${close}`);
 
