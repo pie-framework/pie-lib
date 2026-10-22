@@ -69,6 +69,18 @@ export const DEFAULT_FIELD_ID = 'r1';
  */
 const EMPTY_SLOT = '\\htmlData{pie-empty=1}{\\rule{0.55em}{0.55em}}';
 const EMPTY_GROUP_REGEX = /\{\s*\}/g;
+// The smallest boxes are the ones in a subscript (`x_{}`, `\log_{}`) or exponent
+// (`x^{}`): they sit at script size, so the 0.55em square reads cramped. They get
+// 0.4em more height, and `\rule[-d]` decides which side it grows on:
+//  - subscript / log base: all of it goes below, the top edge stays put;
+//  - exponent: 0.3em goes above, plus 0.1em below.
+const EMPTY_SUBSCRIPT_REGEX = /_\{\s*\}/g;
+const EMPTY_SUPERSCRIPT_REGEX = /\^\{\s*\}/g;
+const EMPTY_SUBSCRIPT_SLOT = '\\htmlData{pie-empty=1}{\\rule[-0.4em]{0.55em}{0.95em}}';
+// The label clips what hangs below its line box (`overflow: hidden`), so the lowered
+// box needs a zero-width strut after it to make room, or its bottom is cut off.
+const EMPTY_SUBSCRIPT_STRUT = '\\rule[-0.5em]{0em}{0.5em}';
+const EMPTY_SUPERSCRIPT_SLOT = '\\htmlData{pie-empty=1}{\\rule[-0.1em]{0.55em}{0.95em}}';
 // The segment key (`\overline{}`). The keypad centres every label in its cell, and
 // a thin bar is a much shorter label than the ray and line keys' stretchy arrows,
 // so by default both its bar and its box sit off from theirs: the bar is lower
@@ -111,6 +123,8 @@ const EMPTY_FENCE_SLOT = '\\rule{0em}{1em}\\htmlData{pie-empty=1}{\\rule[-0.25em
 export const withVisibleEmptySlots = (latex) =>
   (latex || '')
     .replace(EMPTY_OVERLINE_REGEX, `${EMPTY_OVERLINE_LABEL_STRUT}\\overline{${EMPTY_OVERLINE_BAR_STRUT}${EMPTY_SLOT}}`)
+    .replace(EMPTY_SUBSCRIPT_REGEX, `_{${EMPTY_SUBSCRIPT_SLOT}}${EMPTY_SUBSCRIPT_STRUT}`)
+    .replace(EMPTY_SUPERSCRIPT_REGEX, `^{${EMPTY_SUPERSCRIPT_SLOT}}`)
     .replace(EMPTY_GROUP_REGEX, `{${EMPTY_SLOT}}`)
     .replace(EMPTY_FENCE_REGEX, (_m, open, close) => `\\left${open}${EMPTY_FENCE_SLOT}\\right${close}`);
 
@@ -529,3 +543,7 @@ export const keyToAction = (key) => {
 };
 
 export { COMMANDS_WITH_ARGS, KEYSTROKES, MATHQUILL_ALIASES };
+
+// TEMP: remove once confirmed that pie-elements picks up this build.
+// eslint-disable-next-line no-console
+console.log('[math-input-mathlive] latex-bridge loaded - taller sub/sup slots (PIE-1135 v2)');
