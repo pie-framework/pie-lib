@@ -11,6 +11,7 @@ import { baseSet } from '../keys';
 import { sortKeys } from './keys-layout';
 import { commonKeyboardStyles, rootIndexStyles } from '../mf/common-styles';
 import { loadMathLive, latexToMarkup } from '../mathlive-instance';
+import { fixLongDivisionWhenReady } from '../longdiv';
 
 const log = debug('pie-lib:math-input-mathlive:keypad');
 
@@ -103,11 +104,14 @@ export class LatexLabel extends React.Component {
   constructor(props) {
     super(props);
     this.state = { markup: latexToMarkup(props.latex) };
+    this.labelRef = React.createRef();
   }
 
   async componentDidMount() {
     // MathLive may not have finished loading when the keypad first mounts.
     if (this.state.markup) {
+      // The long-division key's label needs MathLive's drawing corrected.
+      fixLongDivisionWhenReady(this.labelRef.current);
       return;
     }
 
@@ -133,9 +137,13 @@ export class LatexLabel extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.latex !== this.props.latex) {
       this.setState({ markup: latexToMarkup(this.props.latex) });
+    }
+
+    if (this.state.markup !== (prevState && prevState.markup)) {
+      fixLongDivisionWhenReady(this.labelRef.current);
     }
   }
 
@@ -149,7 +157,11 @@ export class LatexLabel extends React.Component {
     // Fall back to the raw latex so a button is never blank.
     return markup ? (
       // eslint-disable-next-line react/no-danger
-      <LabelHolder slanted={SLANTED_LABELS.includes(this.props.latex)} dangerouslySetInnerHTML={{ __html: markup }} />
+      <LabelHolder
+        ref={this.labelRef}
+        slanted={SLANTED_LABELS.includes(this.props.latex)}
+        dangerouslySetInnerHTML={{ __html: markup }}
+      />
     ) : (
       <LabelHolder slanted={SLANTED_LABELS.includes(this.props.latex)}>{this.props.latex}</LabelHolder>
     );

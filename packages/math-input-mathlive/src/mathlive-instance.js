@@ -1,6 +1,7 @@
 import debug from 'debug';
 import { NEWLINE_EMBED, toMathLive, withVisibleEmptySlots } from './latex-bridge';
 import { ROOT_INDEX_CSS, PARALLEL_CSS } from './mf/common-styles';
+import { fixLongDivisionWhenReady } from './longdiv';
 
 const log = debug('pie-lib:math-input-mathlive:instance');
 
@@ -562,6 +563,9 @@ export function applyStaticMath(element, latex, options = {}) {
   element.innerHTML = ml.convertLatexToMarkup(withVisibleEmptySlots(toMathLive(source)), {
     macros: { ...getMacros(), ...(options.macros || {}) },
   });
+
+  // MathLive misdraws long division (see longdiv.js).
+  fixLongDivisionWhenReady(element);
 
   return element;
 }

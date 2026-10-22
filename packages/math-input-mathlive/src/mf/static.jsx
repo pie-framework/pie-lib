@@ -10,6 +10,7 @@ import {
   applyShadowStyles,
   trackPlaceholderCaret,
 } from '../mathlive-instance';
+import { trackLongDivision, fixLongDivisionWhenReady } from '../longdiv';
 import { toMathLive, fromMathLive, fieldIds } from '../latex-bridge';
 import { placeholderStyles, rootIndexStyles, parallelStyles } from './common-styles';
 
@@ -114,6 +115,9 @@ export default class Static extends React.Component {
     // blocks are typed into with the same keypad, so they grow placeholders too.
     this.untrackCaret = trackPlaceholderCaret(this.mathField);
 
+    // MathLive misdraws long division; correct it after every render.
+    this.untrackLongDivision = trackLongDivision(this.mathField);
+
     this.mathField.addEventListener('input', this.onPromptInput);
     this.mathField.addEventListener('focusin', this.onPromptFocus);
     this.mathField.addEventListener('keydown', this.onKeyDown);
@@ -124,7 +128,12 @@ export default class Static extends React.Component {
     this.createLiveRegion();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
+    // Display mode: new markup was just written into the DOM.
+    if (!this.mathField && this.state.markup !== (prevState && prevState.markup)) {
+      fixLongDivisionWhenReady(this.holderRef.current);
+    }
+
     if (prevProps.latex === this.props.latex) {
       return;
     }
@@ -143,6 +152,11 @@ export default class Static extends React.Component {
     if (this.untrackCaret) {
       this.untrackCaret();
       this.untrackCaret = undefined;
+    }
+
+    if (this.untrackLongDivision) {
+      this.untrackLongDivision();
+      this.untrackLongDivision = undefined;
     }
 
     if (this.mathField) {

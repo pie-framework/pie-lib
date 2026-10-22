@@ -11,6 +11,7 @@ import {
 } from '../mathlive-instance';
 import { toMathLive, fromMathLive, keyToAction, KEYSTROKES } from '../latex-bridge';
 import { trackWholeAtomSelection } from '../selection';
+import { trackLongDivision } from '../longdiv';
 
 const log = debug('pie-lib:math-input-mathlive:input');
 
@@ -97,6 +98,9 @@ export class Input extends React.Component {
     // Shift+Arrow would otherwise select half a fraction; snap to whole atoms.
     this.untrackSelection = trackWholeAtomSelection(this.mathField);
 
+    // MathLive misdraws long division; correct it after every render.
+    this.untrackLongDivision = trackLongDivision(this.mathField);
+
     this.mathField.addEventListener('input', this.onInputEdit);
 
     // Belt and braces: drop anything a previous mount may have left behind.
@@ -143,6 +147,11 @@ export class Input extends React.Component {
     if (this.untrackSelection) {
       this.untrackSelection();
       this.untrackSelection = undefined;
+    }
+
+    if (this.untrackLongDivision) {
+      this.untrackLongDivision();
+      this.untrackLongDivision = undefined;
     }
 
     if (this.mathField) {
