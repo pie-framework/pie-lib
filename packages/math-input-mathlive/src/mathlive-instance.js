@@ -235,6 +235,14 @@ const PLACEHOLDER_CARET_CSS = [
   'animation:ML__caret-blink 1.05s step-end forwards infinite}',
 ].join('');
 
+// MathLive sets the bar of `\overline{}` right on top of the content, so over an
+// empty slot it touches the slot's box, while the ray and line arrows (stretchy
+// accents) float clear of it. The bar is raised 0.33em, and the strut that sets
+// the field's top edge is raised with it, or the bar would be clipped.
+const OVERLINE_GAP_CSS =
+  '.ML__latex .overline>.ML__vlist-t>.ML__vlist-r>.ML__vlist>span:has(>.overline-line){top:-4.15em !important}' +
+  '.ML__latex:has(.overline)>.ML__strut{height:1.23em !important}';
+
 // A live mathfield needs the readable radical index too: `rootIndexStyles` is
 // written for static markup in the host page, which cannot cross the shadow
 // boundary.
@@ -242,6 +250,7 @@ const SHADOW_CSS =
   '.ML__latex .ML__center:has(.ML__stretchy){margin-left:0 !important}' +
   ROOT_INDEX_CSS +
   PARALLEL_CSS +
+  OVERLINE_GAP_CSS +
   PLACEHOLDER_CARET_CSS;
 
 /**
