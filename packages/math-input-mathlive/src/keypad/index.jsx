@@ -68,6 +68,28 @@ const LabelHolder = styled('span', { shouldForwardProp: (prop) => prop !== 'slan
   '& [data-pie-empty]': {
     opacity: 0.5,
   },
+  // A fraction is taller than the label's 1em line box, so its numerator sat
+  // flush against (and was clipped by) the top edge. Extra room above it grows
+  // the box, which the keypad then centres, so the fraction moves down a little.
+  '&:has(.ML__mfrac)': {
+    paddingTop: '0.25em',
+  },
+  // Centre a fraction's bar between its empty slots (see `placeholderStyles`).
+  '& .ML__mfrac:has([data-pie-empty]) .ML__frac-line': {
+    position: 'relative',
+    top: '0.16em',
+  },
+  // A real numerator (`x`) is lighter than an empty box and its ink ends at the
+  // baseline, so the full drop overshoots: it needs a smaller drop. The numerator is
+  // the second `.ML__center` (MathLive emits the denominator first).
+  '& .ML__mfrac:has([data-pie-empty]):not(:has(.ML__center ~ .ML__center [data-pie-empty])) .ML__frac-line': {
+    top: '0.13em',
+  },
+  // Same for a mixed number (`x` then the fraction): the leading `x` is a sibling
+  // of the fraction, which a lone `\frac{}{}` does not have.
+  '& .ML__mfrac:has([data-pie-empty]):not(:only-child) .ML__frac-line': {
+    top: '0.13em',
+  },
   // A readable index on the nth-root key. Carried by the label itself, not only
   // by the keypad container, so it holds wherever a LatexLabel is mounted.
   ...rootIndexStyles,

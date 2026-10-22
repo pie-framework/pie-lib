@@ -243,6 +243,14 @@ const OVERLINE_GAP_CSS =
   '.ML__latex .overline>.ML__vlist-t>.ML__vlist-r>.ML__vlist>span:has(>.overline-line){top:-4.15em !important}' +
   '.ML__latex:has(.overline)>.ML__strut{height:1.23em !important}';
 
+// MathLive spaces a fraction's bar for text glyphs, whose ink sits tight against
+// the baseline. An empty slot's box (`▢`) hangs lower than that, so the bar ends
+// up much nearer the denominator's box than the numerator's (measured ~0.28em vs
+// ~0.11em). Dropping the bar 0.08em evens the two gaps. Layout is untouched, so
+// the numerator and denominator keep their positions; filled fractions (`1/2`)
+// only see the bar move a hair.
+const FRAC_BAR_CENTER_CSS = '.ML__latex .ML__frac-line{position:relative;top:0.08em}';
+
 // A live mathfield needs the readable radical index too: `rootIndexStyles` is
 // written for static markup in the host page, which cannot cross the shadow
 // boundary.
@@ -251,6 +259,7 @@ const SHADOW_CSS =
   ROOT_INDEX_CSS +
   PARALLEL_CSS +
   OVERLINE_GAP_CSS +
+  FRAC_BAR_CENTER_CSS +
   PLACEHOLDER_CARET_CSS;
 
 /**
