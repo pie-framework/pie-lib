@@ -103,6 +103,10 @@ export const supsubStyles = {
   ...parallelStyles,
 };
 
+const OVERLINE_BAR_MASK =
+  'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 522\' preserveAspectRatio=\'none\'%3E' +
+  '%3Crect y=\'241\' width=\'100\' height=\'40\'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat';
+
 /** Empty placeholder boxes (answer blocks / open slots). */
 export const placeholderStyles = {
   '& .ML__placeholder': {
@@ -133,6 +137,37 @@ export const placeholderStyles = {
   // of the fraction, which a lone `\frac{}{}` does not have.
   '& .ML__mfrac:has([data-pie-empty]):not(:only-child) .ML__frac-line': {
     top: '0.13em',
+  },
+  // Segment (`\overline`) vs ray / line (stretchy arrows). Over filled content
+  // MathLive draws the bar ~0.31em below the arrows' shafts, and the bar is
+  // `max(1px, 0.04em)` twice (:before + :after) while a shaft is a 0.04em path,
+  // so it also renders heavier. Raise it to the shaft height and draw it once at
+  // 0.04em. An empty slot (`data-pie-empty`) is already aligned by the struts in
+  // `withVisibleEmptySlots`, so it keeps its position. `!important`: the offset is
+  // an inline style.
+  '& .overline:not(:has([data-pie-empty])) > .ML__vlist-t > .ML__vlist-r > .ML__vlist > span:has(> .overline-line)': {
+    top: '-4.07em !important',
+  },
+  '& .overline .overline-line': {
+    position: 'relative',
+  },
+  // Drawn as a mask with the arrow shaft's geometry (y 241-281 of a 522-high box)
+  // instead of a border, which the browser snaps to whole device pixels.
+  '& .overline .overline-line:before': {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: '-0.241em',
+    height: '0.522em !important',
+    border: '0 !important',
+    background: 'currentColor',
+    WebkitMask: OVERLINE_BAR_MASK,
+    mask: OVERLINE_BAR_MASK,
+  },
+  '& .overline .overline-line:after': {
+    display: 'none !important',
   },
   // Stretchy accents (\overarc, \overleftrightarrow, \overrightarrow) render an
   // <svg width="100%" preserveAspectRatio="none"> inside a `.ML__stretchy`. That

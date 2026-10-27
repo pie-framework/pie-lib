@@ -236,13 +236,35 @@ const PLACEHOLDER_CARET_CSS = [
   'animation:ML__caret-blink 1.05s step-end forwards infinite}',
 ].join('');
 
-// MathLive sets the bar of `\overline{}` right on top of the content, so over an
-// empty slot it touches the slot's box, while the ray and line arrows (stretchy
-// accents) float clear of it. The bar is raised 0.33em, and the strut that sets
-// the field's top edge is raised with it, or the bar would be clipped.
+// MathLive sets the bar of `\overline{}` lower than the shafts of the ray and line
+// arrows (stretchy accents), and its strut is shorter than theirs, which also
+// shifts the whole field vertically as the font grows. The bar is raised to the
+// shaft height (measured in a live <math-field> at 14-24px), drawn once at the
+// shafts' 0.04em, and the strut matches the arrows' (1.37em).
+const OVERLINE_BAR_MASK =
+  'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 522\' preserveAspectRatio=\'none\'%3E' +
+  '%3Crect y=\'241\' width=\'100\' height=\'40\'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat';
+
+const OVERLINE_LIFT = '-0.06em';
+
 const OVERLINE_GAP_CSS =
-  '.ML__latex .overline>.ML__vlist-t>.ML__vlist-r>.ML__vlist>span:has(>.overline-line){top:-4.15em !important}' +
-  '.ML__latex:has(.overline)>.ML__strut{height:1.23em !important}';
+  '.ML__latex .overline>.ML__vlist-t>.ML__vlist-r>.ML__vlist>span:has(>.overline-line){top:-4.07em !important}' +
+  // ...and its bar ~0.03em lower than the arrows' shafts.
+  '.ML__latex .overline:has(>.ML__vlist-t>.ML__vlist-r>.ML__vlist>span>span[style*="height:0.9em"])>.ML__vlist-t>.ML__vlist-r>.ML__vlist>span:has(>.overline-line){top:-4.1em !important}' +
+  // The bar and box move up together as one unit (the live field only; the keypad is fine).
+  `.ML__latex .overline{position:relative;top:${OVERLINE_LIFT}}` +
+  // An empty slot's box (0.9em tall, against 0.65em for text) ends up ~0.03em higher than in the arrows.
+  '.ML__latex .overline>.ML__vlist-t>.ML__vlist-r>.ML__vlist>span:has(>span[style*="height:0.9em"]){top:-2.97em !important}' +
+  // The bar is a CSS border, which the browser snaps to whole device pixels, so it
+  // renders crisper than the arrows' antialiased SVG shafts. Draw it the same way: a
+  // mask with the shaft's geometry (y 241-281 of a 522-high box), centred on the
+  // bar's own position.
+  `.ML__latex .overline .overline-line{position:relative}` +
+  `.ML__latex .overline .overline-line:before{content:"";display:block;position:absolute;left:0;right:0;top:-0.241em;` +
+  `height:0.522em !important;border:0 !important;background:currentColor;` +
+  `-webkit-mask:${OVERLINE_BAR_MASK};mask:${OVERLINE_BAR_MASK}}` +
+  '.ML__latex .overline .overline-line:after{display:none !important}' +
+  '.ML__latex:has(.overline)>.ML__strut{height:1.37em !important}';
 
 // MathLive spaces a fraction's bar for text glyphs, whose ink sits tight against
 // the baseline. An empty slot's box (`▢`) hangs lower than that, so the bar ends
