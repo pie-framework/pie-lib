@@ -1,5 +1,10 @@
 # @pie-lib/\*
 
+> [!IMPORTANT]
+> This repository is no longer maintained. Development and npm publishing for
+> `@pie-lib/*` have moved to
+> [pie-elements-ng](https://github.com/pie-framework/pie-elements-ng).
+
 [![CircleCI](https://circleci.com/gh/pie-framework/pie-lib.svg?style=svg)](https://circleci.com/gh/pie-framework/pie-lib)
 
 Some reusable react components, mostly used in [pie][pie] components.
