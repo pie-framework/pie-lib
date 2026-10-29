@@ -120,23 +120,24 @@ export const placeholderStyles = {
     opacity: 0.5,
   },
   // A fraction with an empty slot: MathLive spaces the bar for text, but the
-  // slot's box is a taller `\rule`, so the bar hugs the numerator's box (~0.2em
-  // above vs ~0.4em below). Dropping the bar 0.16em (0.13em when the numerator is not an empty slot or follows an `x`) centres it between the two
-  // boxes. Only the bar moves, not the slots.
+  // slot's box is a taller `\rule`, so the bar hugs the numerator's box. Measured
+  // at 100px: dropping it 0.14em centres it between two boxes, and 0.13em between
+  // a real numerator (`x`, whose ink ends at the baseline) and an empty denominator.
+  // Only the bar moves, not the slots. The numerator is the second `.ML__center`
+  // (MathLive emits the denominator first).
   '& .ML__mfrac:has([data-pie-empty]) .ML__frac-line': {
     position: 'relative',
-    top: '0.16em',
+    top: '0.14em',
   },
-  // A real numerator (`x`) is lighter than an empty box and its ink ends at the
-  // baseline, so the full drop overshoots: it needs a smaller drop. The numerator is
-  // the second `.ML__center` (MathLive emits the denominator first).
   '& .ML__mfrac:has([data-pie-empty]):not(:has(.ML__center ~ .ML__center [data-pie-empty])) .ML__frac-line': {
     top: '0.13em',
   },
-  // Same for a mixed number (`x` then the fraction): the leading `x` is a sibling
-  // of the fraction, which a lone `\frac{}{}` does not have.
+  // A mixed number (`x` then the fraction): the leading `x` is a sibling of the
+  // fraction, which a lone `\frac{}{}` does not have, and the label's pixel
+  // rounding then lands the bar a row lower - so it takes a smaller drop. This
+  // also keeps the bar level with the `x`.
   '& .ML__mfrac:has([data-pie-empty]):not(:only-child) .ML__frac-line': {
-    top: '0.13em',
+    top: '0.1em',
   },
   // Segment (`\overline`) vs ray / line (stretchy arrows). Over filled content
   // MathLive draws the bar ~0.31em below the arrows' shafts, and the bar is
