@@ -1,3 +1,8 @@
+# Tests only. This repo no longer publishes to npm: its packages are published from
+# pie-framework/pie-elements-ng, which takes over their npm trusted-publisher records
+# (PIE-883). npm allows one trusted publisher per package, so once this repo's records are
+# revoked, a publish from here would fail with ENEEDAUTH; the publish jobs are removed so a
+# merge cannot attempt one. They remain in git history.
 name: PIE Lib CI
 
 on:
@@ -6,11 +11,6 @@ on:
   pull_request:
     branches: [develop, master]
   workflow_dispatch:
-    inputs:
-      ref:
-        description: Branch or commit to publish missing packages from
-        required: false
-        default: master
 
 jobs:
   test:
@@ -31,88 +31,3 @@ jobs:
       - run: scripts/release --build
       - run: scripts/release --test
 
-  build-next:
-    needs: test
-    if: >
-      github.event_name == 'push' &&
-      github.ref == 'refs/heads/develop'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write   # REQUIRED for npm trusted publishing
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0   # REQUIRED for lerna version
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org/
-          cache: yarn
-      - run: yarn install
-      - run: scripts/release --build
-      - run: scripts/release --release --next --loglevel verbose
-
-  build-release:
-    needs: test
-    if: >
-      github.event_name == 'push' &&
-      github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write   # REQUIRED for npm trusted publishing
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0   # REQUIRED for lerna version
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org/
-          cache: yarn
-      - run: yarn install
-      - run: scripts/release --build
-      - run: scripts/release --release --loglevel verbose
-
-  # Manually-triggered retry: publishes only package versions that are missing
-  # from the registry (lerna publish from-package), skipping already-published
-  # ones. Use this to finish a release where some packages failed to publish
-  # (e.g. a transient npm provenance/transparency-log error) without re-running
-  # `lerna version`.
-  publish-missing:
-    needs: test
-    if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write   # REQUIRED for npm trusted publishing
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event.inputs.ref }}
-          fetch-depth: 0
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org/
-          cache: yarn
-      - run: yarn install
-      - run: scripts/release --build
-      # Invoke lerna directly (not via scripts/release) so this step does not
-      # depend on the scripts/release version present on the checked-out ref.
-      # `from-package` publishes only versions missing from the registry and
-      # never versions or pushes tags, so it needs no write access to the repo.
-      - run: npx lerna publish from-package --yes --loglevel verbose
