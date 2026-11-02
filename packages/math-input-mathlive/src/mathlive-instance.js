@@ -276,6 +276,12 @@ const FRAC_BAR_CENTER_CSS =
   '.ML__latex .ML__mfrac:has(.ML__vlist>.ML__center:first-child span[style*="height:0.9em"]) .ML__frac-line' +
   '{position:relative;top:-0.025em}';
 
+// A filled fraction (`55/555`) has its bar ~0.075em nearer the numerator's digits
+// than the denominator's (measured at 40px: 8.5px above, 11.5px below); drop it 0.04em.
+// Fractions with an empty slot (a 0.9em-tall box) are handled above.
+const FRAC_BAR_FILLED_CSS =
+  '.ML__latex .ML__mfrac:not(:has(span[style*="height:0.9em"])) .ML__frac-line{position:relative;top:0.04em}';
+
 // A live mathfield needs the readable radical index too: `rootIndexStyles` is
 // written for static markup in the host page, which cannot cross the shadow
 // boundary.
@@ -285,6 +291,7 @@ const SHADOW_CSS =
   PARALLEL_CSS +
   OVERLINE_GAP_CSS +
   FRAC_BAR_CENTER_CSS +
+  FRAC_BAR_FILLED_CSS +
   PLACEHOLDER_CARET_CSS;
 
 /**

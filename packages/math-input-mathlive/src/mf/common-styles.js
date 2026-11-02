@@ -119,6 +119,14 @@ export const placeholderStyles = {
   '& [data-pie-empty]': {
     opacity: 0.5,
   },
+  // A filled fraction (`55/555`): MathLive's bar sits ~0.075em nearer the numerator's
+  // digits than the denominator's (measured at 40px: 8.5px above, 11.5px below).
+  // Dropping the bar 0.04em evens the two gaps. Fractions with an empty slot have
+  // their own drop below, which is more specific and overrides this one.
+  '& .ML__mfrac:not(:has([data-pie-empty])) .ML__frac-line': {
+    position: 'relative',
+    top: '0.04em',
+  },
   // A fraction with an empty slot: MathLive spaces the bar for text, but the
   // slot's box is a taller `\rule`, so the bar hugs the numerator's box. Measured
   // at 100px: dropping it 0.14em centres it between two boxes, and 0.13em between
