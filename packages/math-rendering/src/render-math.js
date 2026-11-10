@@ -20,6 +20,7 @@ import { MmlFactory } from 'mathjax-full/js/core/MmlTree/MmlFactory';
 import { SerializedMmlVisitor } from 'mathjax-full/js/core/MmlTree/SerializedMmlVisitor';
 import { CHTMLWrapperFactory } from 'mathjax-full/js/output/chtml/WrapperFactory';
 import { CHTMLmspace } from 'mathjax-full/js/output/chtml/Wrappers/mspace';
+import { CHTMLmo } from 'mathjax-full/js/output/chtml/Wrappers/mo';
 import { HTMLDomStrings } from 'mathjax-full/js/handlers/html/HTMLDomStrings';
 
 if (typeof window !== 'undefined') {
@@ -405,6 +406,20 @@ CHTMLmspace.styles = {
     display: 'block',
     'text-align': 'center',
     height: '5px',
+  },
+};
+
+/**
+ * MathJax 3 draws the `\overline` bar (segment) above the shafts of `\overrightarrow` (ray) and
+ * `\overleftrightarrow` (line), so they do not line up. Lower only the bar (`mjx-c2013`) by 0.25em,
+ * measured to land within half a pixel of the shafts. MathJax 4 is handled in
+ * `@pie-element/shared-math-rendering-mathjax`.
+ */
+CHTMLmo.styles = {
+  ...CHTMLmo.styles,
+  'mjx-over > mjx-mo > mjx-stretchy-h.mjx-c2013': {
+    position: 'relative',
+    top: '0.25em',
   },
 };
 
